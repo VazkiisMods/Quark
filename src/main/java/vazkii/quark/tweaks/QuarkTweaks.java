@@ -11,13 +11,14 @@
 package vazkii.quark.tweaks;
 
 import vazkii.quark.base.module.Module;
+import vazkii.quark.management.feature.FToSwitchItems;
+import vazkii.quark.management.feature.StoreToChests;
 import vazkii.quark.tweaks.feature.AngryCreepers;
 import vazkii.quark.tweaks.feature.ArmedArmorStands;
 import vazkii.quark.tweaks.feature.ArrowSafeMobs;
 import vazkii.quark.tweaks.feature.BabyZombiesBurn;
 import vazkii.quark.tweaks.feature.ChickensShedFeathers;
 import vazkii.quark.tweaks.feature.DragonsBreathBottleless;
-import vazkii.quark.tweaks.feature.FToSwitchItems;
 import vazkii.quark.tweaks.feature.GlassShards;
 import vazkii.quark.tweaks.feature.JumpBoostStepAssist;
 import vazkii.quark.tweaks.feature.KnockOnDoors;
@@ -28,7 +29,6 @@ import vazkii.quark.tweaks.feature.SlabsToBlocks;
 import vazkii.quark.tweaks.feature.SnowGolemPlayerHeads;
 import vazkii.quark.tweaks.feature.StackableItems;
 import vazkii.quark.tweaks.feature.StairsMakeMore;
-import vazkii.quark.tweaks.feature.StoreToChests;
 
 public class QuarkTweaks extends Module {
 
@@ -50,9 +50,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new LessIntrusiveShields());
 		registerFeature(new NoteBlocksMobSounds(), "Note blocks play mob sounds if there's a head attached");
 		registerFeature(new ArmedArmorStands());
-		registerFeature(new StoreToChests());
 		registerFeature(new BabyZombiesBurn());
-		registerFeature(new FToSwitchItems(), "Press F in the inventory to switch item to main hand");
 	}
 	
 }

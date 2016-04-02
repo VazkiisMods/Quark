@@ -6,29 +6,29 @@
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
  * 
- * File Created @ [31/03/2016, 02:55:00 (GMT)]
+ * File Created @ [02/04/2016, 18:01:17 (GMT)]
  */
 package vazkii.quark.base.network.message;
 
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import vazkii.quark.base.network.Message;
-import vazkii.quark.management.feature.FToSwitchItems;
+import vazkii.quark.management.feature.FavoriteItems;
 
-public class MessageSwapItems extends Message {
+public class MessageFavoriteItem extends Message {
 
 	public int index;
 	
-	public MessageSwapItems() { }
+	public MessageFavoriteItem() { }
 	
-	public MessageSwapItems(int index) {
+	public MessageFavoriteItem(int index) {
 		this.index = index;
 	}
 	
 	@Override
 	public IMessage handleMessage(MessageContext context) {
-		FToSwitchItems.switchItems(context.getServerHandler().playerEntity, index);
+		FavoriteItems.favoriteItem(context.getServerHandler().playerEntity, index);
 		return null;
 	}
-	
+
 }

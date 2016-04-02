@@ -10,25 +10,27 @@
  */
 package vazkii.quark.base.network.message;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import vazkii.quark.base.handler.DropoffHandler;
 import vazkii.quark.base.network.Message;
-import vazkii.quark.tweaks.feature.StoreToChests;
 
 public class MessageDropoff extends Message {
 
 	public boolean smart;
+	public boolean useContainer;
 	
 	public MessageDropoff() { }
 	
-	public MessageDropoff(boolean smart) {
+	public MessageDropoff(boolean smart, boolean useContainer) {
 		this.smart = smart;
+		this.useContainer = useContainer;
 	}
 	
 	@Override
 	public IMessage handleMessage(MessageContext context) {
-		DropoffHandler.dropoff(context.getServerHandler().playerEntity, smart);
+		DropoffHandler.dropoff(context.getServerHandler().playerEntity, smart, useContainer);
 		return null;
 	}
 	

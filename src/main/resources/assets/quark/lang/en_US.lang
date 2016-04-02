@@ -162,6 +162,7 @@ item.quark:glass_shard_yellow.name=Yellow Glass Shard
 
 # GUI STUFF
 quark.gui.emotes=Emotes
+quark.gui.favorited=Favorited
 quark.emote.wave=Wave
 quark.emote.yes=Yes
 quark.emote.no=No

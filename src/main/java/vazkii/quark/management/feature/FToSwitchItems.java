@@ -8,7 +8,7 @@
  * 
  * File Created @ [31/03/2016, 02:35:05 (GMT)]
  */
-package vazkii.quark.tweaks.feature;
+package vazkii.quark.management.feature;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;

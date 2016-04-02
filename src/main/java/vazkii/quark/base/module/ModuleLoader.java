@@ -31,6 +31,7 @@ import vazkii.quark.automation.QuarkAutomation;
 import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.building.QuarkBuilding;
 import vazkii.quark.decoration.QuarkDecoration;
+import vazkii.quark.management.QuarkManagement;
 import vazkii.quark.tweaks.QuarkTweaks;
 import vazkii.quark.vanity.QuarkVanity;
 import vazkii.quark.world.QuarkWorld;
@@ -48,6 +49,7 @@ public final class ModuleLoader {
 		registerModule(QuarkDecoration.class);
 		registerModule(QuarkBuilding.class);	
 		registerModule(QuarkAutomation.class);
+		registerModule(QuarkManagement.class);
 	}
 
 	private static List<Class<? extends Module>> moduleClasses;
