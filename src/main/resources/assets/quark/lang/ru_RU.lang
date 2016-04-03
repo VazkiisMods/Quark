@@ -162,16 +162,17 @@ item.quark:glass_shard_yellow.name=Осколки желтого стекла
 
 # GUI STUFF
 quark.gui.emotes=Эмоции
+quark.gui.favorited=Избранное
 quark.emote.wave=Привет
 quark.emote.yes=Да
 quark.emote.no=Нет
 quark.emote.cheer=Ура
 quark.emote.clap=Аплодисмент
 quark.emote.salute=Салют
-quark.emote.facepalm=Facepalm
-quark.emote.shrug=Пожать плечами
+quark.emote.facepalm=Рукалицо
+quark.emote.shrug=Незнаю
 quark.emote.point=Указать
-quark.emote.headbang=Headbang
+quark.emote.headbang=Хэдбенг
 
 # BANNER NAMES
 item.banner.quark_dragon.black=Черный дракон
