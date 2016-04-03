@@ -12,15 +12,16 @@ package vazkii.quark.base.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import vazkii.quark.base.handler.RecipeHandler;
 import vazkii.quark.base.item.ItemModBlock;
+import vazkii.quark.base.lib.LibMisc;
 
 public class BlockModStairs extends BlockStairs implements IQuarkBlock {
 
@@ -40,8 +41,9 @@ public class BlockModStairs extends BlockStairs implements IQuarkBlock {
 	@Override
 	public Block setUnlocalizedName(String name) {
 		super.setUnlocalizedName(name);
-		setRegistryName(name);
-		GameRegistry.registerBlock(this, ItemModBlock.class);
+		setRegistryName(LibMisc.PREFIX_MOD + name);
+		GameRegistry.register(this);
+		GameRegistry.register(new ItemModBlock(this), new ResourceLocation(LibMisc.PREFIX_MOD + name));
 		return this;
 	}
 

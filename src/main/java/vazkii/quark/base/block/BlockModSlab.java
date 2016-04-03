@@ -12,7 +12,6 @@ package vazkii.quark.base.block;
 
 import java.util.HashMap;
 import java.util.Random;
-import java.util.function.Supplier;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
@@ -27,6 +26,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -34,6 +34,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import vazkii.quark.base.block.BlockMetaVariants.EnumBase;
 import vazkii.quark.base.handler.RecipeHandler;
 import vazkii.quark.base.item.ItemModBlockSlab;
+import vazkii.quark.base.lib.LibMisc;
 
 public class BlockModSlab extends BlockSlab implements IQuarkBlock {
 	
@@ -118,15 +119,11 @@ public class BlockModSlab extends BlockSlab implements IQuarkBlock {
 		return new ItemStack(getSingleBlock());
 	}
 
-	@Override
-	public Block setUnlocalizedName(String name) {
-		super.setUnlocalizedName(name);
-		setRegistryName(name);
-		return this;
-	}
-
 	public void register() {
-		GameRegistry.registerBlock(this, isDouble() ? null : ItemModBlockSlab.class, bareName);
+		setRegistryName(LibMisc.PREFIX_MOD + bareName);
+		GameRegistry.register(this);
+		if(!isDouble())
+			GameRegistry.register(new ItemModBlockSlab(this), new ResourceLocation(LibMisc.PREFIX_MOD + bareName));
 	}
 	
 	@Override

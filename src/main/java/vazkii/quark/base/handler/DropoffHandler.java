@@ -247,21 +247,31 @@ public final class DropoffHandler {
 		@Override
 		public void dropoff(DropoffPredicate pred) {
 			IItemHandler inv = itemHandlers.get(0).getLeft();
-			IItemHandler playerInv = new InvWrapper(player.inventory);
+			IItemHandler playerInv = new PlayerInvWrapper(player.inventory);
 			
-			for(int i = 0; i < inv.getSlots(); i++) {
+			for(int i = inv.getSlots() - 1; i >= 0; i--) {
 				ItemStack stackAt = inv.getStackInSlot(i);
 				
 				if(stackAt != null) {
 					ItemStack ret = insertInHandler(playerInv, stackAt, pred);
-					if(!ItemStack.areItemsEqual(stackAt, ret)) {
-						inv.extractItem(i, 64, false);
-						if(ret != null)
-							inv.insertItem(i, ret, false);
-					}
+					inv.extractItem(i, 64, false);
+					inv.insertItem(i, ret, false);
 				}
 			}
 		}
+	}
+	
+	public static class PlayerInvWrapper extends InvWrapper {
+
+		public PlayerInvWrapper(IInventory inv) {
+			super(inv);
+		}
+		
+		@Override
+		public int getSlots() {
+			return super.getSlots() - 5;
+		}
+		
 	}
 	
 	public static interface DropoffPredicate {

@@ -54,7 +54,7 @@ public class ChestButtons extends Feature {
 			
 			for(Slot s : container.inventorySlots) {
 				IInventory inv = s.inventory;
-				if(DropoffHandler.isValidChest(player, inv) && inv instanceof TileEntity) {
+				if(inv != null && DropoffHandler.isValidChest(player, inv)) {
 					accept = true;
 					break;
 				}
@@ -68,9 +68,12 @@ public class ChestButtons extends Feature {
 			
 			for(Slot s : container.inventorySlots)
 				if(s.inventory == player.inventory && s.getSlotIndex() == 9) {
-					event.getButtonList().add(new GuiButtonChest(Action.RESTOCK, 13211, guiLeft + s.xDisplayPosition - 25, guiTop + s.yDisplayPosition));
-					event.getButtonList().add(new GuiButtonChest(Action.DEPOSIT, 13212, guiLeft + s.xDisplayPosition - 25, guiTop + s.yDisplayPosition + 18));
-					event.getButtonList().add(new GuiButtonChest(Action.SMART_DEPOSIT, 13213, guiLeft + s.xDisplayPosition - 25, guiTop + s.yDisplayPosition + 36));
+					if(restock)
+						event.getButtonList().add(new GuiButtonChest(Action.RESTOCK, 13211, guiLeft + s.xDisplayPosition - 25, guiTop + s.yDisplayPosition));
+					if(deposit)
+						event.getButtonList().add(new GuiButtonChest(Action.DEPOSIT, 13212, guiLeft + s.xDisplayPosition - 25, guiTop + s.yDisplayPosition + 18));
+					if(smartDeposit)
+						event.getButtonList().add(new GuiButtonChest(Action.SMART_DEPOSIT, 13213, guiLeft + s.xDisplayPosition - 25, guiTop + s.yDisplayPosition + 36));
 					
 					break;
 				}

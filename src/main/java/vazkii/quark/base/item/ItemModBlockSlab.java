@@ -20,6 +20,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import vazkii.quark.base.block.BlockModSlab;
 import vazkii.quark.base.block.IQuarkBlock;
@@ -45,7 +46,7 @@ public class ItemModBlockSlab extends ItemSlab implements IVariantHolder {
 
 	@Override
 	public ItemBlock setUnlocalizedName(String par1Str) {
-		GameRegistry.registerItem(this, par1Str);
+//		GameRegistry.register(this);
 		return super.setUnlocalizedName(par1Str);
 	}
 

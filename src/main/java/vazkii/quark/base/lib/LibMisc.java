@@ -17,7 +17,7 @@ public final class LibMisc {
 	public static final String MOD_NAME = MOD_ID;
 	public static final String BUILD = "GRADLE:BUILD";
 	public static final String VERSION = "GRADLE:VERSION-" + BUILD;
-	public static final String DEPENDENCIES = "required-after:Forge@[12.16.0.1809,);";
+	public static final String DEPENDENCIES = "required-after:Forge@[12.16.0.1826,);";
 	public static final String PREFIX_MOD = MOD_ID.toLowerCase() + ":";
 
 	// Proxy Constants

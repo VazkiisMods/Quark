@@ -22,12 +22,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.item.ItemModBlock;
+import vazkii.quark.base.lib.LibMisc;
 
 public class BlockObsidianPressurePlate extends BlockPressurePlate implements IQuarkBlock {
 
@@ -64,8 +66,9 @@ public class BlockObsidianPressurePlate extends BlockPressurePlate implements IQ
 	@Override
 	public Block setUnlocalizedName(String name) {
 		super.setUnlocalizedName(name);
-		setRegistryName(name);
-		GameRegistry.registerBlock(this, ItemModBlock.class);
+		setRegistryName(LibMisc.PREFIX_MOD + name);
+		GameRegistry.register(this);
+		GameRegistry.register(new ItemModBlock(this), new ResourceLocation(LibMisc.PREFIX_MOD + name));
 		return this;
 	}
 
