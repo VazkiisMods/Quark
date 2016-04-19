@@ -140,6 +140,19 @@ tile.quark:carved_birch_wood.name=Отёсанная береза
 tile.quark:carved_jungle_wood.name=Отёсанное тропическое дерево
 tile.quark:carved_acacia_wood.name=Отёсанная акация
 tile.quark:carved_dark_oak_wood.name=Отёсанный темный дуб
+tile.quark:biotite_ore.name=Биотитовая руда края
+tile.quark:biotite_block.name=Блок биотита
+tile.quark:chiseled_biotite_block.name=Резной блок биотита
+tile.quark:pillar_biotite_block.name=Колонна из биотита
+tile.quark:biotite_slab.name=Плита биотита
+tile.quark:biotite_stairs.name=Ступени из биотита
+tile.quark:biotite_wall.name=Стены из биотита
+tile.quark:rain_detector.name=Погодный сенсор
+tile.quark:ender_watcher.name=Смотритель края
+tile.quark:snow_bricks.name=Снежные кирпичи
+tile.quark:snow_bricks_slab.name=Плита из снежных кирпичей
+tile.quark:snow_bricks_stairs.name=Ступени из снежных кирпичей
+tile.quark:snow_bricks_wall.name=Стена из снежных кирпичей
 
 # ITEM NAMES
 item.quark:glass_shard.name=Осколки стекла
@@ -159,6 +172,7 @@ item.quark:glass_shard_red.name=Осколки красного стекла
 item.quark:glass_shard_silver.name=Осколки светло-серого стекла
 item.quark:glass_shard_white.name=Осколки белого стекла
 item.quark:glass_shard_yellow.name=Осколки желтого стекла
+item.quark:biotite.name=Биотит края
 
 # GUI STUFF
 quark.gui.emotes=Эмоции
