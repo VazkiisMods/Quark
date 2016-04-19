@@ -1,0 +1,10 @@
+{
+    "variants": {
+    	"inventory": { "model": "quark:biotite_normal" },
+        "normal": { "model": "quark:biotite_normal" },
+        "chiseled": { "model": "quark:biotite_chiseled" },
+        "axis=y": { "model": "quark:biotite_lines" },
+        "axis=z": { "model": "quark:biotite_lines", "x": 90 },
+        "axis=x": { "model": "quark:biotite_lines", "x": 90, "y": 90 }
+    }
+}

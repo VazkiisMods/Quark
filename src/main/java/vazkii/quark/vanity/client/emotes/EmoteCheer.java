@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [26/03/2016, 23:08:47 (GMT)]
  */
 package vazkii.quark.vanity.client.emotes;
@@ -26,26 +26,26 @@ public class EmoteCheer extends EmoteBase {
 	@Override
 	public Timeline getTimeline(EntityPlayer player, ModelBiped model) {
 		Timeline timeline = Timeline.createSequence()
-			.beginParallel()
+				.beginParallel()
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 200F).target(-PI_F + 0.1F))
 				.push(Tween.to(model, ModelAccessor.LEFT_ARM_X, 200F).target(-PI_F + 0.1F))
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_Z, 200F).target(-0.2F))
 				.push(Tween.to(model, ModelAccessor.LEFT_ARM_Z, 200F).target(0.2F))
-			.end()
-			.beginParallel()
+				.end()
+				.beginParallel()
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 150F).target(-PI_F + 0.5F).repeatYoyo(11, 0F))
 				.push(Tween.to(model, ModelAccessor.LEFT_ARM_X, 150F).target(-PI_F + 0.5F).repeatYoyo(11, 0F))
-			.end()
-			.beginParallel()
+				.end()
+				.beginParallel()
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_Z, 400F).target(0F))
 				.push(Tween.to(model, ModelAccessor.LEFT_ARM_Z, 400F).target(0F))
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 400F).target(0F))
 				.push(Tween.to(model, ModelAccessor.LEFT_ARM_X, 400F).target(0F))
-			.end();
-		
+				.end();
+
 		return timeline;
 	}
-	
+
 	@Override
 	public boolean usesBodyPart(int part) {
 		return part == ModelAccessor.RIGHT_ARM || part == ModelAccessor.LEFT_ARM;

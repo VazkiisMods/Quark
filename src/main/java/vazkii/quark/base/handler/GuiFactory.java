@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [19/03/2016, 00:59:31 (GMT)]
  */
 package vazkii.quark.base.handler;
@@ -45,24 +45,24 @@ public class GuiFactory implements IModGuiFactory {
 	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
 		return null;
 	}
-	
+
 	public static class GuiQuarkConfig extends GuiConfig {
 
 		public GuiQuarkConfig(GuiScreen parentScreen) {
 			super(parentScreen, getAllElements(), LibMisc.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(ModuleLoader.config.toString()));
 		}
-		
+
 		public static List<IConfigElement> getAllElements() {
 			List<IConfigElement> list = new ArrayList();
-			
+
 			Set<String> categories = ModuleLoader.config.getCategoryNames();
 			for(String s : categories)
 				if(!s.contains("."))
 					list.add(new DummyConfigElement.DummyCategoryElement(s, s, new ConfigElement(ModuleLoader.config.getCategory(s)).getChildElements()));
-			
+
 			return list;
 		}
-		
+
 	}
 
 }

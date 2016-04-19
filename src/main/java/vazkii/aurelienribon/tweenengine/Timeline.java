@@ -128,7 +128,7 @@ public final class Timeline extends BaseTween<Timeline> {
 
 	private void setup(Modes mode) {
 		this.mode = mode;
-		this.current = this;
+		current = this;
 	}
 
 	// -------------------------------------------------------------------------
@@ -242,15 +242,15 @@ public final class Timeline extends BaseTween<Timeline> {
 			obj.build();
 
 			switch (mode) {
-				case SEQUENCE:
-					float tDelay = duration;
-					duration += obj.getFullDuration();
-					obj.delay += tDelay;
-					break;
+			case SEQUENCE:
+				float tDelay = duration;
+				duration += obj.getFullDuration();
+				obj.delay += tDelay;
+				break;
 
-				case PARALLEL:
-					duration = Math.max(duration, obj.getFullDuration());
-					break;
+			case PARALLEL:
+				duration = Math.max(duration, obj.getFullDuration());
+				break;
 			}
 		}
 

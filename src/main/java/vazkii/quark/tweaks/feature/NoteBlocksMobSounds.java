@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [27/03/2016, 06:02:47 (GMT)]
  */
 package vazkii.quark.tweaks.feature;
@@ -28,14 +28,14 @@ public class NoteBlocksMobSounds extends Feature {
 	@SubscribeEvent
 	public void noteBlockPlayed(NoteBlockEvent.Play event) {
 		BlockPos pos = event.getPos();
-		
+
 		EnumFacing[] facings = new EnumFacing[] {
 				EnumFacing.NORTH,
 				EnumFacing.SOUTH,
 				EnumFacing.EAST,
 				EnumFacing.WEST
 		};
-		
+
 		TileEntity tile = null;
 		boolean can = false;
 		for(EnumFacing face : facings) {
@@ -49,15 +49,15 @@ public class NoteBlocksMobSounds extends Feature {
 				}
 			}
 		}
-		
+
 		if(can) {
-			int type = ((TileEntitySkull) tile).getSkullType(); 
+			int type = ((TileEntitySkull) tile).getSkullType();
 			if(type != 3) {
 				event.setCanceled(true);
-				
+
 				SoundEvent sound = null;
 				switch(type) {
-				case 0: 
+				case 0:
 				case 1:
 					sound = SoundEvents.entity_skeleton_ambient;
 					break;
@@ -71,7 +71,7 @@ public class NoteBlocksMobSounds extends Feature {
 					sound = SoundEvents.entity_enderdragon_ambient;
 					break;
 				}
-				
+
 				if(sound != null) {
 					System.out.println("play");
 					event.getWorld().playSound(null, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5, sound, SoundCategory.BLOCKS, 1F, 1F);
@@ -79,10 +79,10 @@ public class NoteBlocksMobSounds extends Feature {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean hasSubscriptions() {
 		return true;
 	}
-	
+
 }

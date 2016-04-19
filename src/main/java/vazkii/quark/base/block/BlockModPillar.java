@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [20/03/2016, 23:32:36 (GMT)]
  */
 package vazkii.quark.base.block;
@@ -46,7 +46,7 @@ public class BlockModPillar extends BlockMod {
 		switch (rot) {
 		case COUNTERCLOCKWISE_90:
 		case CLOCKWISE_90:
-			switch ((EnumFacing.Axis)state.getValue(BlockRotatedPillar.AXIS)) {
+			switch (state.getValue(BlockRotatedPillar.AXIS)) {
 			case X:
 				return state.withProperty(BlockRotatedPillar.AXIS, EnumFacing.Axis.Z);
 			case Z:
@@ -70,13 +70,13 @@ public class BlockModPillar extends BlockMod {
 		else if (i == 8)
 			enumfacing$axis = EnumFacing.Axis.Z;
 
-		return this.getDefaultState().withProperty(BlockRotatedPillar.AXIS, enumfacing$axis);
+		return getDefaultState().withProperty(BlockRotatedPillar.AXIS, enumfacing$axis);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int i = 0;
-		EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis)state.getValue(BlockRotatedPillar.AXIS);
+		EnumFacing.Axis enumfacing$axis = state.getValue(BlockRotatedPillar.AXIS);
 
 		if(enumfacing$axis == EnumFacing.Axis.X)
 			i |= 4;

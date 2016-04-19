@@ -2,17 +2,15 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [18/03/2016, 22:32:56 (GMT)]
  */
 package vazkii.quark.tweaks;
 
 import vazkii.quark.base.module.Module;
-import vazkii.quark.management.feature.FToSwitchItems;
-import vazkii.quark.management.feature.StoreToChests;
 import vazkii.quark.tweaks.feature.AngryCreepers;
 import vazkii.quark.tweaks.feature.ArmedArmorStands;
 import vazkii.quark.tweaks.feature.ArrowSafeMobs;
@@ -20,11 +18,13 @@ import vazkii.quark.tweaks.feature.BabyZombiesBurn;
 import vazkii.quark.tweaks.feature.ChickensShedFeathers;
 import vazkii.quark.tweaks.feature.DragonsBreathBottleless;
 import vazkii.quark.tweaks.feature.GlassShards;
+import vazkii.quark.tweaks.feature.GreenerGrass;
 import vazkii.quark.tweaks.feature.JumpBoostStepAssist;
 import vazkii.quark.tweaks.feature.KnockOnDoors;
 import vazkii.quark.tweaks.feature.LessIntrusiveShields;
 import vazkii.quark.tweaks.feature.LookDownLadders;
 import vazkii.quark.tweaks.feature.NoteBlocksMobSounds;
+import vazkii.quark.tweaks.feature.RightClickSignEdit;
 import vazkii.quark.tweaks.feature.SlabsToBlocks;
 import vazkii.quark.tweaks.feature.SnowGolemPlayerHeads;
 import vazkii.quark.tweaks.feature.StackableItems;
@@ -36,7 +36,7 @@ public class QuarkTweaks extends Module {
 	public void addFeatures() {
 		registerFeature(new StackableItems());
 		registerFeature(new LookDownLadders(), "Look down on ladders to descend fast");
-//		registerFeature(new RightClickSignEdit()); TODO: Broken until forge fixes PlayerInteractEvent
+		registerFeature(new RightClickSignEdit());
 		registerFeature(new ChickensShedFeathers());
 		registerFeature(new AngryCreepers(), "Creepers turn red when they're exploding");
 		registerFeature(new GlassShards());
@@ -51,6 +51,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new NoteBlocksMobSounds(), "Note blocks play mob sounds if there's a head attached");
 		registerFeature(new ArmedArmorStands());
 		registerFeature(new BabyZombiesBurn());
+		registerFeature(new GreenerGrass());
 	}
-	
+
 }

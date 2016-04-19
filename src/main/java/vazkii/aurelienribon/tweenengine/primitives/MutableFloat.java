@@ -18,8 +18,8 @@ public class MutableFloat extends Number implements TweenAccessor<MutableFloat> 
 
 	@Override public int intValue() {return (int) value;}
 	@Override public long longValue() {return (long) value;}
-	@Override public float floatValue() {return (float) value;}
-	@Override public double doubleValue() {return (double) value;}
+	@Override public float floatValue() {return value;}
+	@Override public double doubleValue() {return value;}
 
 	@Override
 	public int getValues(MutableFloat target, int tweenType, float[] returnValues) {

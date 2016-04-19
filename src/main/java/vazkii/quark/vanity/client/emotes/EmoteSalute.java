@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [26/03/2016, 23:20:32 (GMT)]
  */
 package vazkii.quark.vanity.client.emotes;
@@ -26,19 +26,19 @@ public class EmoteSalute extends EmoteBase {
 	@Override
 	public Timeline getTimeline(EntityPlayer player, ModelBiped model) {
 		Timeline timeline = Timeline.createSequence()
-			.beginParallel()
+				.beginParallel()
 				.push(Tween.to(model, ModelAccessor.HEAD_X, 150F).target(0F))
 				.push(Tween.to(model, ModelAccessor.HEAD_Y, 150F).target(0F))
 				.push(Tween.to(model, ModelAccessor.HEAD_Z, 150F).target(0F))
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 150F).target(-PI_F + 0.8F))
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_Z, 150F).target(0.4F))
-			.end()
-			.pushPause(2500F)
-			.beginParallel()
+				.end()
+				.pushPause(2500F)
+				.beginParallel()
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 300F).target(0F))
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_Z, 300F).target(0F))
-			.end();
-		
+				.end();
+
 		return timeline;
 	}
 

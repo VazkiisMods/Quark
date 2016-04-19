@@ -1,0 +1,9 @@
+{
+	"variants": {
+		"inventory": { "model": "quark:rain_sensor" },
+		"inverted=false,power=true": { "model": "quark:rain_sensor" },
+		"inverted=false,power=false": { "model": "quark:rain_sensor" },
+		"inverted=true,power=true": { "model": "quark:rain_sensor_inverted" },
+		"inverted=true,power=false": { "model": "quark:rain_sensor_inverted" }
+	}
+}

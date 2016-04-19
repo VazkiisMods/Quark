@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [25/03/2016, 21:13:18 (GMT)]
  */
 package vazkii.quark.tweaks.feature;
@@ -36,10 +36,10 @@ public class SnowGolemPlayerHeads extends Feature {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean hasSubscriptions() {
 		return true;
 	}
-	
+
 }

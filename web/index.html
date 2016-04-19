@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Quark</title>
+
+		<meta name="theme-color" content="#48ddbc">
+		
+		<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.teal-orange.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+		<link rel="stylesheet" href="quark.css">
+		<link rel="icon" href="favicon.ico">
+	</head>
+
+	<body>
+		<div id="main-container">
+			<div id="header">
+				<img src="img/quark.png" id="quark-logo"></img>
+
+				<div id="header-contents">
+					<div class="title"><span class="q">q</span>uark</div>
+					<div class="subtitle">a big mod made of small things.</div>
+				</div>
+
+				<button id="download-button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick='window.open("http://minecraft.curseforge.com/projects/quark")'>
+					<i class="material-icons">file_download</i>
+				</button>
+
+				<div class="mdl-tooltip mdl-tooltip--left" for="download-button">
+					Download
+				</div>
+			</div>
+
+			<div id="contents" class="mdl-layout mdl-js-layout mdl-layout--transparent">
+				<header class="mdl-layout__header mdl-layout__header--transparent">
+					<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-layout--fixed-tabs mdl-layout__header--transparent">
+						<a href="#module-info" class="mdl-layout__tab is-active">Info</a>
+						<a href="#module-automation" class="mdl-layout__tab">Automation</a>
+						<a href="#module-building" class="mdl-layout__tab">Building</a>
+						<a href="#module-decoration" class="mdl-layout__tab">Decoration</a>
+						<a href="#module-management" class="mdl-layout__tab">Management</a>
+						<a href="#module-tweaks" class="mdl-layout__tab">Tweaks</a>
+						<a href="#module-vanity" class="mdl-layout__tab">Vanity</a>
+						<a href="#module-world" class="mdl-layout__tab">World</a>
+					</div>
+				</header>
+
+				<div class="mdl-layout__content">
+					<section class="mdl-layout__tab-panel is-active" id="module-info">
+						<div class="page-content">
+							<b>Quark</b> is a mod for Minecraft. It aims to create an experience akin to the "vanilla" experience, by having a very simple motto: <i>anything that would be added to Quark could also be added to the default game without compromising its gameplay style.</i>
+							<br><br>
+							To that end, every feature added to Quark is simple and small. Hence the name of the mod, Quark, as a Quark is a very small thing. Quark is a <i>Modular</i> mod. Which means that its features are split within various modules. All of the modules can be disabled, and all the features can also be disabled individually if one wants to.
+							<br><br>
+							Check out the various tabs to have a look of what the mod contains. If you're on mobile you can scroll left on the tabs to see more. You can download Quark for Minecraft 1.9 using the download button in the header.
+							<br><br>
+							<img id="main-image" src="img/main.png"></img>
+	 					</div>
+					</section>
+
+					<section class="mdl-layout__tab-panel" id="module-automation">
+						<div class="page-content">
+							<div class="module-info">
+								<div class="module-title">Automation</div>
+								<div class="module-desc">
+									This module adds features to minecraft's automation prospects.
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/automation/dispensers.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Dispenser Planting</div>
+									<div class="feature-desc">
+										Dispensers can plant seeds on the correct type of soil.<br><br>
+										This works for all overworld seeds, on Tilled Soil, Nether Wart, on Soul Sand, and Chorus Flower on End stone.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/automation/obsidian-plates.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Obsidian Pressure Plates</div>
+									<div class="feature-desc">
+										Pressure Plates made with obsidian will only trigger when Players walk over them.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/automation/weather-sensor.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Weather Sensor</div>
+									<div class="feature-desc">
+										The Weather Sensor is crafted with Purpur Slabs, Biotite (from the World module, or Obsidian if not enabled) and Glass. It works like a Daylight Sensor, but it emits a full redstone signal if it's raining or snowing.<br><br>
+										Right clicking it inverts its output.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/automation/ender-watcher.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Ender Watcher</div>
+									<div class="feature-desc">
+										The Ender Watcher is a new redstone input block. It emits a full redstone signal if a player is looking directly at it.<br><br>
+										It's crafted with an Eye of Ender, Redstone and Blocks of Biotite (from the World module, or Obsidian if not enabled).
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="mdl-layout__tab-panel" id="module-building">
+						<div class="page-content">
+							<div class="module-info">
+								<div class="module-title">Building</div>
+								<div class="module-desc">
+									This module adds new structural building blocks.
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/clay-tiles.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Hardened Clay Tiles</div>
+									<div class="feature-desc">
+										"Tile" style blocks for Hardened Clay and all colors of Stained Clay. They can all be turned into stairs and slabs, and look great for roofs.<br><br>
+										4 Blocks are crafted with a 2x2 of the respective Hardened/Stained Clay block.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/reed-blocks.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Sugar Cane Blocks</div>
+									<div class="feature-desc">
+										A 3x3 of Sugar Canes creates a Sugar Cane Block. These can be turned into stairs, slabs and walls. You can also turn them back into Sugar Canes, if you want.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/sandy-bricks.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Sandy Bricks</div>
+									<div class="feature-desc">
+										Bricks with a sandy tone, crafted with a Brick block and a Sand Block. They can also be used for stairs, slabs, and walls.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/snow-bricks.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Snow Bricks</div>
+									<div class="feature-desc">
+										Snow Bricks, for all your igloo and winter wonderland needs. They can also be used for stairs, slabs, and walls.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/thatch.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Thatch</div>
+									<div class="feature-desc">
+										Thatch is created via a 2x2 of Wheat. It can be used for stairs and slabs or turned back into 4 Wheat.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/stone-bricks.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">More Stone Bricks</div>
+									<div class="feature-desc">
+										Stone Bricks for Granite, Diorite and Andesite. Crafted with a 2x2 of the Polished variant. All of them can be used for stairs, slabs, and walls.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/bark-blocks.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Bark Blocks</div>
+									<div class="feature-desc">
+										Log-type blocks with the log "bark" texture on all sides. Crafted with a 2x2 of the respective log. Can be turned into walls.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/polished-stone.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Polished Stone</div>
+									<div class="feature-desc">
+										Created with 2 Stone Slabs, similarly to Chiseled Sandstone. Looks like the top of the Stone Slab texture on all sides.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/carved-wood.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Carved Wood</div>
+									<div class="feature-desc">
+										Carved Wood is a cornerstone type block for wood, made with a 2x2 of the respective wood slab.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/building/new-variants.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Stairs, Slabs, and Walls</div>
+									<div class="feature-desc">
+										Stairs, Slabs, and Walls for a bunch of vanilla materials: Stone, Granite, Diorite, Andesite, End Bricks, Prismarine, Prismarine Bricks, and Dark Prismarine.
+										<br><br>Walls for, aside from all the previous: Purpur, Bricks, Quartz, Sandstone, Red Sandstone, and Stone Bricks.
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="mdl-layout__tab-panel" id="module-decoration">
+						<div class="page-content">
+							<div class="module-info">
+								<div class="module-title">Decoration</div>
+								<div class="module-desc">
+									This module adds new decorative building blocks.
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/decoration/lit-lamp.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Lit Redstone Lamp</div>
+									<div class="feature-desc">
+										Combining a Redstone Lamp with a Redstone Torch creates a Lit Redstone lamp, that's always emitting light.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/decoration/blaze-lantern.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Blaze Lantern</div>
+									<div class="feature-desc">
+										The Blaze Lantern is the fire equivalent of the Sea Lantern. Crafted with a + of Blaze Powder and Blaze Rods in the corners, like a Sea Lantern.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/decoration/paper-walls.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Paper Walls</div>
+									<div class="feature-desc">
+										Paper Walls use the "pane" look, which lets you make fancy oriental style buildings. Thanks to the new 1.9 change that makes standalone panes look like poles, they can also be used to make makeshift "tiki torches".<br><br>
+										These are crafted with 3 Paper in the middle row, and Sticks covering the rest of the grid.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/decoration/trapdoors.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">All The Trapdoors</div>
+									<div class="feature-desc">
+										This allows you to make trapdoors of all wood blocks rather than just Oak. It also changes the recipe to create 6 rather than 2 trapdoors, since doors make 3.
+									</div>
+								</div>
+							</div>
+	
+							<div class="feature">
+								<img class="feature-image" src="img/decoration/banner-icons.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">New Banner Motifs</div>
+									<div class="feature-desc">
+										New banner motifs can be made using Dragon Heads, Eyes of Ender, Iron Swords, and Iron Chestplates, alongside the chosen color of dye.
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="mdl-layout__tab-panel" id="module-management">
+						<div class="page-content">
+							<div class="module-info">
+								<div class="module-title">Management</div>
+								<div class="module-desc">
+									This module adds inventory management features.
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/management/f-swap.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">F to Switch</div>
+									<div class="feature-desc">
+										Pressing F on an item in the inventory swaps it with your off-hand item, just as if you'd pressed F outside of the inventory. This uses the same keybind used for that purpose.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/management/dropoff.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Dropoff Button</div>
+									<div class="feature-desc">
+										A "Dropoff" button is added to the inventory screen. Pressing this button deposits everything in your inventory (not hotbar, armor or off-hand) in nearby chests. The range it stores in is similar to the player's reach, so it won't store items in chests the player can't open. The closest chests are picked first.<br><br>
+										If Shift is held, it stores items in "smart" mode, meaning it'll only store items in chests that already have at least one of that item.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/management/chest-buttons.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Chest Buttons</div>
+									<div class="feature-desc">
+										Three buttons are added to Chest interfaces. From top to bottom, they do the following:
+										<ul>
+											<li>Extract all items from the chest that you have at least one of in your inventory.</li>
+											<li>Deposit your entire inventory (not hotbar, armor or off-hand) in the chest.</li>
+											<li>Same as the previous, but in "smart" mode.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<div class="feature">
+								<img class="feature-image" src="img/management/favorites.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Favorite Items</div>
+									<div class="feature-desc">
+										Ctrl-clicking (or Cmd-clicking on a Mac) an item will make it a "Favorite Item". Favorite items are not deposited by the Dropoff button or the last two Chest buttons.
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="mdl-layout__tab-panel" id="module-tweaks">
+						<div class="page-content">
+							<div class="module-info">
+								<div class="module-title">Tweaks</div>
+								<div class="module-desc">
+									This module tweaks various gameplay elements.
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/angry-creepers.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Angry Creepers</div>
+									<div class="feature-desc">
+										Creepers turn red when they're about to explode.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/safe-horses.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Safe Mounts</div>
+									<div class="feature-desc">
+										Mounts are immune to attacks from riders. No more shooting your own horse!
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/chicken-shed.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Chicken Shedding</div>
+									<div class="feature-desc">
+										Chickens shed feathers periodically, similarly to how they lay eggs.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/glass-shards.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Glass Shards</div>
+									<div class="feature-desc">
+										Glass drops shards. Stained Glass will drop shards of the respective type. Crafting them in a 2x2 creates a Glass block back.<br><br>
+										The shards act like Glowstone Dust, in which Fortune will let you get more, and Silk Touch will just drop the block.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/look-down-ladders.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Ladder Sliding</div>
+									<div class="feature-desc">
+										When on a ladder, if not moving or sneaking, looking down will have you go down the ladder faster.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/slabs-to-blocks.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Slabs to Blocks</div>
+									<div class="feature-desc">
+										Slabs can be converted back to their respective blocks. These recipes are generated dynamically for every slab type in the game.<br><br>
+										In the case that there's already a recipe of this sort (like Chiseled Sandstone), that recipe will be the one used for crafting.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/stairs-to-blocks.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Stairs to Blocks</div>
+									<div class="feature-desc">
+										Stairs can be converted back to their respective blocks. Like the previous feature, these recipes are generated dynamically for every stair type in the game.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/more-stairs.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Proper Stair Math</div>
+									<div class="feature-desc">
+										Stairs make 8 rather than 4. Why did they even make 4 in the first place? How does that even work? Anyway, this modifies every stair recipe in the game.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/stackable-carts.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Stackable Minecarts</div>
+									<div class="feature-desc">
+										Yeah.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/jump-boost.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Jump Boost Step Assist</div>
+									<div class="feature-desc">
+										Having Jump Boost II on your character will allow you to go up 1 block high gaps, like Horses can.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/knock-knock.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Knock on Doors</div>
+									<div class="feature-desc">
+										Left clicking a door with an empty hand will have you "knock". This makes a bit of a louder sound than if you left clicked any other block, but nowhere as infuriating as opening and closing it.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/breath-bottle.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Effective Dragon's Breath</div>
+									<div class="feature-desc">
+										Dragon's Breath will not leave behind a bottle when brewed with, so it doesn't mess up all brewing automation systems.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/snowman-heads.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Snow Golem Heads</div>
+									<div class="feature-desc">
+										Named Snow Golems equipped with a Pumpkin will drop a player head with the same name as theirs, if killed by a Witch.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/unintrusive-shield.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Subtler Shields</div>
+									<div class="feature-desc">
+										Shields have been pushed back a bit, so they don't use up as much of your screen when equipped and not blocking.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/note-blocks.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Monster Note Blocks</div>
+									<div class="feature-desc">
+										Note Blocks with heads attached to their side will emit the respective mob's sound instead of a note.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/armor-stand.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Armed Armor Stands</div>
+									<div class="feature-desc">
+										Armor Stands placed by the Armor Stand item will have arms.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/burning-baby.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Burning Baby Zombies</div>
+									<div class="feature-desc">
+										Baby Zombies will die in sunlight like their parents.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/sign-edit.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Sign Editing</div>
+									<div class="feature-desc">
+										Right Clicking a Sign lets you edit it.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/tweaks/greener-grass.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Greener Grass</div>
+									<div class="feature-desc">
+										Grass is greener on the Quark side. Biome colors are still respected, but are greener non the less.<br><br>
+										There's also config options to enable Alpha style grass, which gives you the Minecraft Alpha vibe, or to manually set the grass color.
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="mdl-layout__tab-panel" id="module-vanity">
+						<div class="page-content">
+							<div class="module-info">
+								<div class="module-title">Vanity</div>
+								<div class="module-desc">
+									This module adds vanity features for your character.
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/vanity/dyable-elytra.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Dyable Elytra</div>
+									<div class="feature-desc">
+										The Elytra can be dyed with any of the 16 dyes. You can dye it as many times as you want.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/vanity/benches.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Stair Chairs</div>
+									<div class="feature-desc">
+										Right clicking a stair block facing up, with empty hands, will let you sit down on it.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/vanity/firework-dupe.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Firework Duplication</div>
+									<div class="feature-desc">
+										Empty Fireworks can be crafted with already made ones to duplicate them. This works like Banners, in which the origin firework will not get used up.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/vanity/emotes.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Emotes</div>
+									<div class="feature-desc">
+										In the corner of the Chat menu there's a button to open an emote panel with 10 different emotes your character can do. In this picture, Alex is doing the "Wave" emote.
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="mdl-layout__tab-panel" id="module-world">
+						<div class="page-content">
+							<div class="module-info">
+								<div class="module-title">World</div>
+								<div class="module-desc">
+									This module adds world generation features.
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/world/basalt.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Basalt</div>
+									<div class="feature-desc">
+										Basalt spawns in the Nether in large clusters. It works like the overworld rocks (Granite, Diorite, and Andesite), and the recipes for it are similar.<br><br>
+										Combining Basalt with Quartz makes Andesite. Combining Cobblestone with Biotite (Coal if not enabled) makes Basalt.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/world/biotite.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Ender Biotite</div>
+									<div class="feature-desc">
+										Ender Biotite is a renewable ore that does not spawn naturally. Clusters of it will, instead, get scattered across the main End island when an Ender Dragon dies.<br><br>
+										Similarly to Nether Quartz, Ender Biotite drops an item, which can be used for crafting or to create Decorative Biotite Blocks, black quartz style blocks.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/world/cave-clay.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Underground Clay</div>
+									<div class="feature-desc">
+										Clay generates in patches underground, similarly to Dirt, albeit less often.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/world/ocean-guardians.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Guardians in Oceans</div>
+									<div class="feature-desc">
+										Guardians spawn naturally in Oceans, rarely.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/world/swamp-shrooms.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Big Mushrooms in Swamps</div>
+									<div class="feature-desc">
+										Big mushrooms of both types will generate in Swamps, similarly to the Console Edition.
+									</div>
+								</div>
+							</div>
+
+							<div class="feature">
+								<img class="feature-image" src="img/world/options.jpg"></img>
+								<div class="feature-info">
+									<div class="feature-title">Default World Options</div>
+									<div class="feature-desc">
+										All the options available for the Customized world type can be tweaked in the mod's configuration. These apply to the normal world type.<br><br>
+										This is mostly a modpack maker feature, as all these options are already available through the Customized world type.
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+
+		<button id="btt-button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="window.scrollTo(0, 0)">
+			<i class="material-icons">arrow_upward</i>
+		</button>
+		<div class="mdl-tooltip mdl-tooltip--top" for="btt-button">
+			Back to Top
+		</div>
+
+		<div id="footer">
+			Links:
+			<a href="http://twitter.com/Vazkii">Twitter</a> |
+			<a href="https://github.com/Vazkii/Quark">Github</a> | 
+			<a href="https://patreon.com/Vazkii">Patreon</a> | 
+			<a href="http://vazkii.us">Vazkii.us</a> 
+		</div>
+
+		<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+	</body>
+</html>

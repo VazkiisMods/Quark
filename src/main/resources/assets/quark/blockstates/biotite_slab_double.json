@@ -1,0 +1,11 @@
+{
+"forge_marker": 1,
+"defaults": {
+	"model": "quark:biotite_normal",
+	"transform": "forge:default-block"
+},
+	"variants": {
+		"normal": [{ }],
+		"prop=blarg": [{ }]
+	}
+}

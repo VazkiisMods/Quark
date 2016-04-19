@@ -74,13 +74,13 @@ public abstract class Elastic extends TweenEquation {
 
 	public Elastic a(float a) {
 		param_a = a;
-		this.setA = true;
+		setA = true;
 		return this;
 	}
 
 	public Elastic p(float p) {
 		param_p = p;
-		this.setP = true;
+		setP = true;
 		return this;
 	}
 }

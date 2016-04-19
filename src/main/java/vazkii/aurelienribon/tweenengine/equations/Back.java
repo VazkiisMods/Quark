@@ -38,8 +38,8 @@ public abstract class Back extends TweenEquation {
 		@Override
 		public final float compute(float t) {
 			float s = param_s;
-			if ((t*=2) < 1) return 0.5f*(t*t*(((s*=(1.525f))+1)*t - s));
-			return 0.5f*((t-=2)*t*(((s*=(1.525f))+1)*t + s) + 2);
+			if ((t*=2) < 1) return 0.5f*(t*t*(((s*=1.525f)+1)*t - s));
+			return 0.5f*((t-=2)*t*(((s*=1.525f)+1)*t + s) + 2);
 		}
 
 		@Override

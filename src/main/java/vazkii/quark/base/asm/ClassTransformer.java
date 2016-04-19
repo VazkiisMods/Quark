@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [26/03/2016, 21:31:04 (GMT)]
  */
 package vazkii.quark.base.asm;
@@ -35,12 +35,12 @@ public class ClassTransformer implements IClassTransformer {
 			String obfName = "a";
 			String funcDesc = "(FFFFFFLnet/minecraft/entity/Entity;)V";
 			String obfDesc = "(FFFFFFLrr;)V";
-			
+
 			if(LoadingPlugin.runtimeDeobfEnabled)
 				funcName = "func_78087_a";
 			log("Method is " + funcName + " or " + obfName + " for obf.");
 			log("Descriptor is " + funcDesc + " or " + obfDesc + " dor obf.");
-			
+
 			ClassReader reader = new ClassReader(basicClass);
 			ClassNode node = new ClassNode();
 			reader.accept(node, 0);
@@ -51,7 +51,7 @@ public class ClassTransformer implements IClassTransformer {
 					Iterator<AbstractInsnNode> iterator = method.instructions.iterator();
 
 					while(iterator.hasNext()) {
-						AbstractInsnNode anode = (AbstractInsnNode) iterator.next();
+						AbstractInsnNode anode = iterator.next();
 						if(anode.getOpcode() == Opcodes.RETURN) {
 							log("RETURN Opcode found");
 							InsnList newInstructions = new InsnList();

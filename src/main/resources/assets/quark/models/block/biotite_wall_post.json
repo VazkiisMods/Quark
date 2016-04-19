@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/wall_post",
+	"textures": {
+		"wall": "quark:blocks/biotite_block_bottom"
+	}
+}

@@ -395,8 +395,8 @@ public final class Tween extends BaseTween<Tween> {
 		if (duration < 0) throw new RuntimeException("Duration can't be negative");
 
 		this.target = target;
-		this.targetClass = target != null ? findTargetClass() : null;
-		this.type = tweenType;
+		targetClass = target != null ? findTargetClass() : null;
+		type = tweenType;
 		this.duration = duration;
 	}
 
@@ -441,7 +441,7 @@ public final class Tween extends BaseTween<Tween> {
 	 * @see TweenEquations
 	 */
 	public Tween ease(TweenEquation easeEquation) {
-		this.equation = easeEquation;
+		equation = easeEquation;
 		return this;
 	}
 
@@ -899,7 +899,7 @@ public final class Tween extends BaseTween<Tween> {
 
 	@Override
 	protected boolean containsTarget(Object target, int tweenType) {
-		return this.target == target && this.type == tweenType;
+		return this.target == target && type == tweenType;
 	}
 
 	// -------------------------------------------------------------------------
@@ -908,17 +908,17 @@ public final class Tween extends BaseTween<Tween> {
 
 	private void throwCombinedAttrsLimitReached() {
 		String msg = "You cannot combine more than " + combinedAttrsLimit + " "
-			+ "attributes in a tween. You can raise this limit with "
-			+ "Tween.setCombinedAttributesLimit(), which should be called once "
-			+ "in application initialization code.";
+				+ "attributes in a tween. You can raise this limit with "
+				+ "Tween.setCombinedAttributesLimit(), which should be called once "
+				+ "in application initialization code.";
 		throw new RuntimeException(msg);
 	}
 
 	private void throwWaypointsLimitReached() {
 		String msg = "You cannot add more than " + waypointsLimit + " "
-			+ "waypoints to a tween. You can raise this limit with "
-			+ "Tween.setWaypointsLimit(), which should be called once in "
-			+ "application initialization code.";
+				+ "waypoints to a tween. You can raise this limit with "
+				+ "Tween.setWaypointsLimit(), which should be called once in "
+				+ "application initialization code.";
 		throw new RuntimeException(msg);
 	}
 }

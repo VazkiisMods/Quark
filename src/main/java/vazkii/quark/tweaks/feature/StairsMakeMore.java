@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [20/03/2016, 03:15:51 (GMT)]
  */
 package vazkii.quark.tweaks.feature;
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,7 +30,7 @@ public class StairsMakeMore extends Feature {
 
 	int targetSize;
 	int originalSize;
-	boolean reversionRecipe;	
+	boolean reversionRecipe;
 
 	@Override
 	public void setupConfig() {
@@ -59,8 +58,8 @@ public class StairsMakeMore extends Feature {
 
 						ItemStack outStack = null;
 
-						for(int i = 0; i < recipeItems.length; i++) {
-							Object recipeItem = recipeItems[i];
+						for (Object recipeItem2 : recipeItems) {
+							Object recipeItem = recipeItem2;
 							if(recipeItem instanceof List) {
 								List<ItemStack> ores = (List<ItemStack>) recipeItem;
 								if(!ores.isEmpty())
@@ -76,8 +75,8 @@ public class StairsMakeMore extends Feature {
 						ItemStack outCopy = outStack.copy();
 						if(outCopy.getItemDamage() == OreDictionary.WILDCARD_VALUE)
 							outCopy.setItemDamage(0);
-						
-						outCopy.stackSize = 24 / targetSize; 
+
+						outCopy.stackSize = 24 / targetSize;
 						RecipeHandler.addOreDictRecipe(outCopy,
 								"BB", "BB",
 								'B', output.copy());

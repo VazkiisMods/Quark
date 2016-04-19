@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [26/03/2016, 21:58:56 (GMT)]
  */
 package vazkii.quark.vanity.client.emotes;
@@ -27,13 +27,13 @@ public class EmoteYes extends EmoteBase {
 	public Timeline getTimeline(EntityPlayer player, ModelBiped model) {
 		Timeline timeline = Timeline.createSequence()
 				.beginParallel()
-					.push(Tween.to(model, ModelAccessor.HEAD_X, 200F).target(0.15F))
-					.push(Tween.to(model, ModelAccessor.HEAD_Y, 200F).target(0F))
-					.push(Tween.to(model, ModelAccessor.HEAD_Z, 200F).target(0F))
+				.push(Tween.to(model, ModelAccessor.HEAD_X, 200F).target(0.15F))
+				.push(Tween.to(model, ModelAccessor.HEAD_Y, 200F).target(0F))
+				.push(Tween.to(model, ModelAccessor.HEAD_Z, 200F).target(0F))
 				.end()
 				.push(Tween.to(model, ModelAccessor.HEAD_X, 200F).target(-0.15F).repeatYoyo(4, 0F))
 				.push(Tween.to(model, ModelAccessor.HEAD_X, 200F).target(0F));
-				
+
 		return timeline;
 	}
 

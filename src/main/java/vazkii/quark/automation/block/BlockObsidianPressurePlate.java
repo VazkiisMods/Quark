@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [20/03/2016, 21:06:08 (GMT)]
  */
 package vazkii.quark.automation.block;
@@ -54,7 +54,7 @@ public class BlockObsidianPressurePlate extends BlockPressurePlate implements IQ
 
 		List<? extends Entity> list = worldIn.<Entity>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
-		if(!list.isEmpty()) 
+		if(!list.isEmpty())
 			for(Entity entity : list)
 				if(!entity.doesEntityNotTriggerPressurePlate())
 					return 15;

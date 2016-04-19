@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [19/03/2016, 16:57:46 (GMT)]
  */
 package vazkii.quark.tweaks.client.render;
@@ -26,7 +26,7 @@ public class RenderCreeperAngry extends RenderCreeper {
 	public RenderCreeperAngry(RenderManager renderManagerIn) {
 		super(renderManagerIn);
 	}
-	
+
 	@Override
 	protected ResourceLocation getEntityTexture(EntityCreeper entity) {
 		if(entity.getCreeperState() == 1) {
@@ -35,9 +35,9 @@ public class RenderCreeperAngry extends RenderCreeper {
 		}
 		return super.getEntityTexture(entity);
 	}
-	
+
 	public static IRenderFactory factory() {
 		return manager -> new RenderCreeperAngry(manager);
 	}
-	
+
 }

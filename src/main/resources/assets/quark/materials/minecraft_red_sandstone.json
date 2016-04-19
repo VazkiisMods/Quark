@@ -1,6 +1,6 @@
 {
 	"id": "minecraft:sandstone",
 	"blocks": {
-		"wall": { "id": "quark:sandstone_wall", "meta": 0 }
+		"wall": { "id": "quark:red_sandstone_wall", "meta": 0 }
 	}
 }

@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [18/03/2016, 22:16:30 (GMT)]
  */
 package vazkii.quark.base.module;
@@ -33,6 +33,20 @@ public class ConfigHelper {
 		prop.setComment(desc);
 
 		return prop.getBoolean(default_);
-	}	
+	}
+
+	public static String loadPropString(String propName, String category, String desc, String default_) {
+		Property prop = ModuleLoader.config.get(category, propName, default_);
+		prop.setComment(desc);
+
+		return prop.getString();
+	}
 	
+	public static String[] loadPropStringList(String propName, String category, String desc, String[] default_) {
+		Property prop = ModuleLoader.config.get(category, propName, default_);
+		prop.setComment(desc);
+
+		return prop.getStringList();
+	}
+
 }

@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [28/03/2016, 22:03:46 (GMT)]
  */
 package vazkii.quark.tweaks.feature;
@@ -28,7 +28,7 @@ public class BabyZombiesBurn extends Feature {
 
 			if(zombie.worldObj.isDaytime() && !zombie.worldObj.isRemote && zombie.isChild()) {
 				float f = zombie.getBrightness(1.0F);
-				BlockPos blockpos = zombie.getRidingEntity() instanceof EntityBoat ? (new BlockPos(zombie.posX, (double)Math.round(zombie.posY), zombie.posZ)).up() : new BlockPos(zombie.posX, (double)Math.round(zombie.posY), zombie.posZ);
+				BlockPos blockpos = zombie.getRidingEntity() instanceof EntityBoat ? new BlockPos(zombie.posX, Math.round(zombie.posY), zombie.posZ).up() : new BlockPos(zombie.posX, Math.round(zombie.posY), zombie.posZ);
 
 				if(f > 0.5F && zombie.worldObj.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && zombie.worldObj.canSeeSky(blockpos)) {
 					boolean flag = true;
@@ -53,7 +53,7 @@ public class BabyZombiesBurn extends Feature {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean hasSubscriptions() {
 		return true;

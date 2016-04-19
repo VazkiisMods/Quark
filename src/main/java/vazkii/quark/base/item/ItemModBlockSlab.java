@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [20/03/2016, 16:33:11 (GMT)]
  */
 package vazkii.quark.base.item;
@@ -20,8 +20,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import vazkii.quark.base.block.BlockModSlab;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.lib.LibMisc;
@@ -41,12 +39,12 @@ public class ItemModBlockSlab extends ItemSlab implements IVariantHolder {
 
 	@Override
 	public int getMetadata(int damage) {
-		return damage;	
+		return damage;
 	}
 
 	@Override
 	public ItemBlock setUnlocalizedName(String par1Str) {
-//		GameRegistry.register(this);
+		//		GameRegistry.register(this);
 		return super.setUnlocalizedName(par1Str);
 	}
 

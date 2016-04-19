@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [26/03/2016, 21:07:15 (GMT)]
  */
 package vazkii.quark.tweaks.feature;
@@ -27,12 +27,13 @@ public class LessIntrusiveShields extends Feature {
 	@SideOnly(Side.CLIENT)
 	public void preInitClient(FMLPreInitializationEvent event) {
 		ModelHandler.registerModels(Items.shield, new String[] { "shield_override" }, true);
-		
+
 		ModelLoader.setCustomMeshDefinition(Items.shield, new ItemMeshDefinition() {
-            public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return new ModelResourceLocation("quark:shield_override", "inventory");
-            }
-        });
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack) {
+				return new ModelResourceLocation("quark:shield_override", "inventory");
+			}
+		});
 	}
-	
+
 }

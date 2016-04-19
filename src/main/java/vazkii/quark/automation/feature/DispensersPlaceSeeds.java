@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [20/03/2016, 23:56:07 (GMT)]
  */
 package vazkii.quark.automation.feature;
@@ -37,7 +37,7 @@ public class DispensersPlaceSeeds extends Feature {
 		BlockDispenser.dispenseBehaviorRegistry.putObject(Items.beetroot_seeds, new BehaviourSeeds(Blocks.beetroots));
 		BlockDispenser.dispenseBehaviorRegistry.putObject(Item.getItemFromBlock(Blocks.chorus_flower), new BehaviourSeeds(Blocks.chorus_flower));
 	}
-	
+
 	public class BehaviourSeeds extends BehaviorDefaultDispenseItem {
 
 		Block block;
@@ -51,7 +51,7 @@ public class DispensersPlaceSeeds extends Feature {
 			EnumFacing facing = BlockDispenser.getFacing(par1IBlockSource.getBlockMetadata());
 			BlockPos pos = par1IBlockSource.getBlockPos().offset(facing);
 			World world = par1IBlockSource.getWorld();
-			
+
 			if(world.isAirBlock(pos) && block.canPlaceBlockAt(world, pos)) {
 				world.setBlockState(pos, block.getDefaultState());
 				par2ItemStack.stackSize--;
@@ -62,5 +62,5 @@ public class DispensersPlaceSeeds extends Feature {
 		}
 
 	}
-	
+
 }

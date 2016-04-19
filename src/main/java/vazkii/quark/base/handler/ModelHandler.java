@@ -18,6 +18,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
@@ -27,7 +28,6 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameData;
 import vazkii.quark.base.block.IQuarkBlock;
-import vazkii.quark.base.block.IVariantEnumHolder;
 import vazkii.quark.base.item.IColorProvider;
 import vazkii.quark.base.item.IExtraVariantHolder;
 import vazkii.quark.base.item.IVariantHolder;
@@ -37,12 +37,12 @@ import vazkii.quark.base.lib.LibMisc;
 public class ModelHandler {
 
 	public static HashMap<String, ModelResourceLocation> resourceLocations = new HashMap();
-	
+
 	public static void preInit() {
 		for(IVariantHolder holder : ItemMod.variantHolders)
 			registerModels(holder);
 	}
-	
+
 	public static void init() {
 		ItemColors colors = Minecraft.getMinecraft().getItemColors();
 		for(IVariantHolder holder : ItemMod.variantHolders)
@@ -62,7 +62,7 @@ public class ModelHandler {
 				registerModels(i, extra.getExtraVariants(), true);
 			}
 		}
-	} 
+	}
 
 	public static void registerModels(Item item, String[] variants, boolean extra) {
 		if(item instanceof ItemBlock && ((ItemBlock) item).getBlock() instanceof IQuarkBlock) {
@@ -71,17 +71,22 @@ public class ModelHandler {
 
 			IProperty variantProp = quarkBlock.getVariantProp();
 			boolean ignoresVariant = false;
-			
-			IProperty[] ignored = quarkBlock.getIgnoredProperties();
-			if(ignored != null && ignored.length > 0) {
-				StateMap.Builder builder = new StateMap.Builder();
-				for(IProperty p : ignored) {
-					if(p == variantProp)
-						ignoresVariant = true;
-					builder.ignore(p);
-				}
 
-				ModelLoader.setCustomStateMapper((Block) quarkBlock, builder.build());
+			IStateMapper mapper = quarkBlock.getStateMapper();
+			IProperty[] ignored = quarkBlock.getIgnoredProperties();
+			if(mapper != null || (ignored != null && ignored.length > 0)) {
+				if(mapper != null)
+					ModelLoader.setCustomStateMapper((Block) quarkBlock, mapper);
+				else {
+					StateMap.Builder builder = new StateMap.Builder();
+					for(IProperty p : ignored) {
+						if(p == variantProp)
+							ignoresVariant = true;
+						builder.ignore(p);
+					}
+
+					ModelLoader.setCustomStateMapper((Block) quarkBlock, builder.build());
+				}
 			}
 
 			if(clazz != null && !ignoresVariant) {

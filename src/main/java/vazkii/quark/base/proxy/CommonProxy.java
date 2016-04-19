@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [18/03/2016, 21:49:33 (GMT)]
  */
 package vazkii.quark.base.proxy;
@@ -24,25 +24,25 @@ public class CommonProxy {
 
 	public void preInit(FMLPreInitializationEvent event) {
 		ModuleLoader.preInit(event);
-		
+
 		NetworkRegistry.INSTANCE.registerGuiHandler(Quark.instance, new GuiHandler());
 		NetworkHandler.init();
 	}
-	
+
 	public void init(FMLInitializationEvent event) {
 		ModuleLoader.init(event);
 	}
-	
+
 	public void postInit(FMLPostInitializationEvent event) {
 		ModuleLoader.postInit(event);
 	}
-	
+
 	public void serverStarting(FMLServerStartingEvent event) {
 		ModuleLoader.serverStarting(event);
 	}
-	
+
 	public void doEmote(String playerName, String emoteName) {
 		// proxy override
 	}
-	
+
 }

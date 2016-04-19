@@ -30,22 +30,22 @@ public class TweenUtils {
 	public static TweenEquation parseEasing(String easingName) {
 		if (easings == null) {
 			easings = new TweenEquation[] {Linear.INOUT,
-				Quad.IN, Quad.OUT, Quad.INOUT,
-				Cubic.IN, Cubic.OUT, Cubic.INOUT,
-				Quart.IN, Quart.OUT, Quart.INOUT,
-				Quint.IN, Quint.OUT, Quint.INOUT,
-				Circ.IN, Circ.OUT, Circ.INOUT,
-				Sine.IN, Sine.OUT, Sine.INOUT,
-				Expo.IN, Expo.OUT, Expo.INOUT,
-				Back.IN, Back.OUT, Back.INOUT,
-				Bounce.IN, Bounce.OUT, Bounce.INOUT,
-				Elastic.IN, Elastic.OUT, Elastic.INOUT
+					Quad.IN, Quad.OUT, Quad.INOUT,
+					Cubic.IN, Cubic.OUT, Cubic.INOUT,
+					Quart.IN, Quart.OUT, Quart.INOUT,
+					Quint.IN, Quint.OUT, Quint.INOUT,
+					Circ.IN, Circ.OUT, Circ.INOUT,
+					Sine.IN, Sine.OUT, Sine.INOUT,
+					Expo.IN, Expo.OUT, Expo.INOUT,
+					Back.IN, Back.OUT, Back.INOUT,
+					Bounce.IN, Bounce.OUT, Bounce.INOUT,
+					Elastic.IN, Elastic.OUT, Elastic.INOUT
 			};
 		}
 
-		for (int i=0; i<easings.length; i++) {
-			if (easingName.equals(easings[i].toString()))
-				return easings[i];
+		for (TweenEquation easing : easings) {
+			if (easingName.equals(easing.toString()))
+				return easing;
 		}
 
 		return null;

@@ -36,7 +36,7 @@ public abstract class Quad extends TweenEquation {
 		@Override
 		public final float compute(float t) {
 			if ((t*=2) < 1) return 0.5f*t*t;
-			return -0.5f * ((--t)*(t-2) - 1);
+			return -0.5f * (--t*(t-2) - 1);
 		}
 
 		@Override

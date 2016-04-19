@@ -62,7 +62,7 @@ public class BlockMetaVariants<T extends Enum<T> & IStringSerializable> extends 
 	}
 
 	@Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return new ItemStack(this, 1, getMetaFromState(world.getBlockState(pos)));
 	}
 
@@ -70,7 +70,7 @@ public class BlockMetaVariants<T extends Enum<T> & IStringSerializable> extends 
 	public Class<T> getVariantEnum() {
 		return variantsEnum;
 	}
-	
+
 	@Override
 	public IProperty getVariantProp() {
 		return variantProp;

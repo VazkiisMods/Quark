@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [24/03/2016, 16:54:45 (GMT)]
  */
 package vazkii.quark.base.block;
@@ -27,10 +27,10 @@ public class BlockModTrapdoor extends BlockTrapDoor implements IQuarkBlock {
 
 	private final String[] variants;
 	private final String bareName;
-	
+
 	public BlockModTrapdoor(String name) {
 		super(Material.wood);
-		
+
 		setHardness(3.0F);
 		setStepSound(SoundType.WOOD);
 
@@ -74,7 +74,7 @@ public class BlockModTrapdoor extends BlockTrapDoor implements IQuarkBlock {
 	public IProperty[] getIgnoredProperties() {
 		return new IProperty[0];
 	}
-	
+
 	@Override
 	public IProperty getVariantProp() {
 		return null;

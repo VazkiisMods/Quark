@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [26/03/2016, 21:53:17 (GMT)]
  */
 package vazkii.quark.vanity.feature;
@@ -20,7 +20,6 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -48,14 +47,14 @@ public class EmoteSystem extends Feature {
 
 	private static final int EMOTE_BUTTON_START = 1800;
 	static boolean emotesVisible = false;
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void preInitClient(FMLPreInitializationEvent event) {
 		Tween.registerAccessor(ModelBiped.class, new ModelAccessor());
 
 		MinecraftForge.EVENT_BUS.register(new EmoteHandler.TickHandler());
-		
+
 		EmoteHandler.emoteMap.put("wave", EmoteWave.class);
 		EmoteHandler.emoteMap.put("salute", EmoteSalute.class);
 		EmoteHandler.emoteMap.put("yes", EmoteYes.class);
@@ -67,12 +66,12 @@ public class EmoteSystem extends Feature {
 		EmoteHandler.emoteMap.put("facepalm", EmoteFacepalm.class);
 		EmoteHandler.emoteMap.put("headbang", EmoteHeadbang.class);
 	}
-	
+
 	@Override
 	public void serverStarting(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandEmote());
 	}
-	
+
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void initGui(GuiScreenEvent.InitGuiEvent.Post event) {
@@ -80,13 +79,13 @@ public class EmoteSystem extends Feature {
 		if(gui instanceof GuiChat) {
 			List<GuiButton> list = event.getButtonList();
 			list.add(new GuiButtonTranslucent(EMOTE_BUTTON_START, gui.width - 105, gui.height - 40, 105, 20, I18n.format("quark.gui.emotes")));
-			
+
 			int size = EmoteHandler.emoteMap.size() - 1;
 			int i = 0;
 			for(String key : EmoteHandler.emoteMap.keySet()) {
-				int x = gui.width - 105 + (i % 2) * 55;
-				int y = gui.height - 105 - 55 * (size / 2 - (i / 2));
-				
+				int x = gui.width - 105 + i % 2 * 55;
+				int y = gui.height - 105 - 55 * (size / 2 - i / 2);
+
 				GuiButton button = new GuiButtonEmote(EMOTE_BUTTON_START + i + 1, x, y, key);
 				button.visible = emotesVisible;
 				button.enabled = emotesVisible;
@@ -95,32 +94,32 @@ public class EmoteSystem extends Feature {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void performAction(GuiScreenEvent.ActionPerformedEvent.Pre event) {
 		GuiButton button = event.getButton();
-		
+
 		if(button.id == EMOTE_BUTTON_START) {
-			GuiScreen gui = event.getGui();
+			event.getGui();
 			List<GuiButton> list = event.getButtonList();
-			
+
 			for(GuiButton b : list)
 				if(b instanceof GuiButtonEmote) {
 					b.visible = !b.visible;
 					b.enabled = !b.enabled;
 				}
-			
+
 			emotesVisible = !emotesVisible;
 		} else if(button instanceof GuiButtonEmote) {
 			String emote = ((GuiButtonEmote) button).emote;
 			Minecraft.getMinecraft().thePlayer.sendChatMessage("/emote " + emote);
 		}
 	}
-	
+
 	@Override
 	public boolean hasSubscriptions() {
-		return FMLCommonHandler.instance().getSide().isClient();
+		return isClient();
 	}
-	
+
 }

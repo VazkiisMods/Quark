@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [26/03/2016, 21:34:16 (GMT)]
  */
 package vazkii.quark.base.asm;
@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 public class LoadingPlugin implements IFMLLoadingPlugin {
 
 	public static boolean runtimeDeobfEnabled = false;
-	
+
 	@Override
 	public String[] getASMTransformerClass() {
 		return new String[]{ "vazkii.quark.base.asm.ClassTransformer" };

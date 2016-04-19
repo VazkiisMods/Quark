@@ -140,6 +140,19 @@ tile.quark:carved_birch_wood.name=Carved Birch Wood
 tile.quark:carved_jungle_wood.name=Carved Jungle Wood
 tile.quark:carved_acacia_wood.name=Carved Acacia Wood
 tile.quark:carved_dark_oak_wood.name=Carved Dark Oak Wood
+tile.quark:biotite_ore.name=Ender Biotite Ore
+tile.quark:biotite_block.name=Block of Biotite
+tile.quark:chiseled_biotite_block.name=Chiseled Biotite Block
+tile.quark:pillar_biotite_block.name=Pillar Biotite Block
+tile.quark:biotite_slab.name=Biotite Slab
+tile.quark:biotite_stairs.name=Biotite Stairs
+tile.quark:biotite_wall.name=Biotite Wall
+tile.quark:rain_detector.name=Weather Sensor
+tile.quark:ender_watcher.name=Ender Watcher
+tile.quark:snow_bricks.name=Snow Bricks
+tile.quark:snow_bricks_slab.name=Snow Brick Slab
+tile.quark:snow_bricks_stairs.name=Snow Brick Stairs
+tile.quark:snow_bricks_wall.name=Snow Brick Wall
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -159,6 +172,7 @@ item.quark:glass_shard_red.name=Red Glass Shard
 item.quark:glass_shard_silver.name=Light Gray Glass Shard
 item.quark:glass_shard_white.name=White Glass Shard
 item.quark:glass_shard_yellow.name=Yellow Glass Shard
+item.quark:biotite.name=Ender Biotite
 
 # GUI STUFF
 quark.gui.emotes=Emotes

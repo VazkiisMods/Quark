@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [18/03/2016, 21:52:08 (GMT)]
  */
 package vazkii.quark.base.module;
@@ -40,14 +40,14 @@ public final class ModuleLoader {
 
 	static {
 		moduleClasses = new ArrayList();
-		
+
 		registerModule(QuarkTweaks.class);
 		registerModule(QuarkWorld.class);
-//		registerModule(QuarkExploration.class);
-//		registerModule(QuarkCombat.class);
+		//		registerModule(QuarkExploration.class);
+		//		registerModule(QuarkCombat.class);
 		registerModule(QuarkVanity.class);
 		registerModule(QuarkDecoration.class);
-		registerModule(QuarkBuilding.class);	
+		registerModule(QuarkBuilding.class);
 		registerModule(QuarkAutomation.class);
 		registerModule(QuarkManagement.class);
 	}
@@ -56,7 +56,7 @@ public final class ModuleLoader {
 	public static Map<Class<? extends Module>, Module> moduleInstances = new HashMap();
 	public static Map<Class<? extends Feature>, Feature> featureInstances = new HashMap();
 	public static List<Module> enabledModules;
-	
+
 	public static Configuration config;
 
 	public static void preInit(FMLPreInitializationEvent event) {
@@ -66,12 +66,12 @@ public final class ModuleLoader {
 			} catch (Exception e) {
 				throw new RuntimeException("Can't initialize module " + clazz, e);
 			}
-		});	
-		
+		});
+
 		setupConfig(event);
-		
+
 		forEachModule(module -> FMLLog.info("[Quark] Module " + module.name + " is " + (module.enabled ? "enabled" : "disabled")));
-		
+
 		forEachEnabled(module -> module.preInit(event));
 	}
 
@@ -82,12 +82,12 @@ public final class ModuleLoader {
 	public static void postInit(FMLPostInitializationEvent event) {
 		forEachEnabled(module -> module.postInit(event));
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public static void preInitClient(FMLPreInitializationEvent event) {
 		forEachEnabled(module -> module.preInitClient(event));
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public static void initClient(FMLInitializationEvent event) {
 		forEachEnabled(module -> module.initClient(event));
@@ -97,40 +97,40 @@ public final class ModuleLoader {
 	public static void postInitClient(FMLPostInitializationEvent event) {
 		forEachEnabled(module -> module.postInitClient(event));
 	}
-	
+
 	public static void serverStarting(FMLServerStartingEvent event) {
 		forEachEnabled(module -> module.serverStarting(event));
 	}
-	
+
 	public static void setupConfig(FMLPreInitializationEvent event) {
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-		
+
 		forEachModule(module -> module.enabled = !module.canBeDisabled() || ConfigHelper.loadPropBool(module.name, "_modules", "", true));
-		
+
 		enabledModules = new ArrayList(moduleInstances.values());
 		enabledModules.removeIf(module -> !module.enabled);
-		
+
 		loadModuleConfigs();
-		
+
 		MinecraftForge.EVENT_BUS.register(new ChangeListener());
 	}
 
 	private static void loadModuleConfigs() {
 		forEachEnabled(module -> module.setupConfig());
-		
+
 		if(config.hasChanged())
 			config.save();
 	}
-	
+
 	public static boolean isModuleEnabled(Class<? extends Module> clazz) {
 		return moduleInstances.get(clazz).enabled;
 	}
-	
+
 	public static boolean isFeatureEnabled(Class<? extends Feature> clazz) {
 		return featureInstances.get(clazz).enabled;
 	}
-	
+
 	public static void forEachModule(Consumer<Module> consumer) {
 		moduleInstances.values().forEach(consumer);
 	}
@@ -143,7 +143,7 @@ public final class ModuleLoader {
 		if(!moduleClasses.contains(clazz))
 			moduleClasses.add(clazz);
 	}
-	
+
 	public static class ChangeListener {
 
 		@SubscribeEvent

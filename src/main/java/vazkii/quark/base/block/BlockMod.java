@@ -71,7 +71,7 @@ public class BlockMod extends Block implements IQuarkBlock {
 	public IProperty[] getIgnoredProperties() {
 		return new IProperty[0];
 	}
-	
+
 	@Override
 	public IProperty getVariantProp() {
 		return null;

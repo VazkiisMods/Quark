@@ -1,0 +1,12 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:cube_all",
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"inventory": [{ "textures": { "all": "quark:blocks/ender_watcher" } }],
+		"watched=true": [{ "textures": { "all": "quark:blocks/ender_watcher_on" } }],
+		"watched=false": [{ "textures": { "all": "quark:blocks/ender_watcher" } }]
+	}
+}

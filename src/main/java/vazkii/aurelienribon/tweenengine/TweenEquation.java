@@ -15,7 +15,7 @@ public abstract class TweenEquation {
 	 * @param t The current time, between 0 and 1.
 	 * @return The current value.
 	 */
-    public abstract float compute(float t);
+	public abstract float compute(float t);
 
 	/**
 	 * Returns true if the given string is the name of this equation (the name

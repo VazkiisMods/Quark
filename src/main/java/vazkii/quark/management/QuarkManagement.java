@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [02/04/2016, 16:31:28 (GMT)]
  */
 package vazkii.quark.management;
@@ -25,5 +25,5 @@ public class QuarkManagement extends Module {
 		registerFeature(new ChestButtons());
 		registerFeature(new FavoriteItems(), "Ctrl-click an item to favorite it. Favorited items aren't stored by the other features here");
 	}
-	
+
 }

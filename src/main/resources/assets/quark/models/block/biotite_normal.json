@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/cube_bottom_top",
+    "textures": {
+        "bottom": "quark:blocks/biotite_block_bottom",
+        "top": "quark:blocks/biotite_block_top",
+        "side": "quark:blocks/biotite_block_side"
+    }
+}

@@ -2,19 +2,17 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [19/03/2016, 01:43:43 (GMT)]
  */
 package vazkii.quark.building.block;
 
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.text.TextFormatting;
 import vazkii.quark.base.block.BlockMetaVariants;
 
 public class BlockStainedClayTiles extends BlockMetaVariants {

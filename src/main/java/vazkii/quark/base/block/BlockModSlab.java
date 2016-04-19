@@ -2,10 +2,10 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * [ADD-LICENSE-HERE]
- * 
+ *
  * File Created @ [20/03/2016, 16:23:27 (GMT)]
  */
 package vazkii.quark.base.block;
@@ -37,24 +37,24 @@ import vazkii.quark.base.item.ItemModBlockSlab;
 import vazkii.quark.base.lib.LibMisc;
 
 public class BlockModSlab extends BlockSlab implements IQuarkBlock {
-	
+
 	static boolean tempDoubleSlab;
 	boolean doubleSlab;
 	private final String[] variants;
 	private final String bareName;
 
 	public static final PropertyEnum prop = PropertyEnum.create("prop", DummyEnum.class);
-	
+
 	public static HashMap<BlockModSlab, BlockModSlab> halfSlabs = new HashMap();
 	public static HashMap<BlockModSlab, BlockModSlab> fullSlabs = new HashMap();
-	
+
 	public BlockModSlab(String name, Material materialIn, boolean doubleSlab) {
 		super(hacky(materialIn, doubleSlab));
 
 		this.doubleSlab = doubleSlab;
 		if(doubleSlab)
 			name += "_double";
-		
+
 		variants = new String[] { name };
 		bareName = name;
 
@@ -63,10 +63,10 @@ public class BlockModSlab extends BlockSlab implements IQuarkBlock {
 			useNeighborBrightness = true;
 			setDefaultState(blockState.getBaseState().withProperty(HALF, EnumBlockHalf.BOTTOM).withProperty(prop, DummyEnum.BLARG));
 		}
-		
+
 		setCreativeTab(doubleSlab ? null : CreativeTabs.tabBlock);
 	}
-	
+
 	public static Material hacky(Material m, boolean doubleSlab) {
 		tempDoubleSlab = doubleSlab;
 		return m;
@@ -92,15 +92,15 @@ public class BlockModSlab extends BlockSlab implements IQuarkBlock {
 	}
 
 	public BlockSlab getFullBlock() {
-		return fullSlabs.get(this); 
+		return fullSlabs.get(this);
 	}
 
 	public BlockSlab getSingleBlock() {
-		return halfSlabs.get(this); 
+		return halfSlabs.get(this);
 	}
 
 	@Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return new ItemStack(getSingleBlock());
 	}
 
@@ -125,7 +125,7 @@ public class BlockModSlab extends BlockSlab implements IQuarkBlock {
 		if(!isDouble())
 			GameRegistry.register(new ItemModBlockSlab(this), new ResourceLocation(LibMisc.PREFIX_MOD + bareName));
 	}
-	
+
 	@Override
 	public String getBareName() {
 		return bareName;
@@ -165,12 +165,12 @@ public class BlockModSlab extends BlockSlab implements IQuarkBlock {
 	public IProperty<?> getVariantProp() {
 		return prop;
 	}
-	
+
 	@Override
 	public IProperty<?> getVariantProperty() {
 		return prop;
 	}
-	
+
 	@Override
 	public Class getVariantEnum() {
 		return DummyEnum.class;
@@ -180,21 +180,21 @@ public class BlockModSlab extends BlockSlab implements IQuarkBlock {
 	public Comparable<?> getTypeForItem(ItemStack stack) {
 		return DummyEnum.BLARG;
 	}
-	
+
 	public static void initSlab(Block base, int meta, BlockModSlab half, BlockModSlab full) {
 		fullSlabs.put(half, full);
 		fullSlabs.put(full, full);
 		halfSlabs.put(half, half);
 		halfSlabs.put(full, half);
-		
+
 		half.register();
 		full.register();
-		
-		RecipeHandler.addOreDictRecipe(new ItemStack(half, 6), 
+
+		RecipeHandler.addOreDictRecipe(new ItemStack(half, 6),
 				"BBB",
 				'B', new ItemStack(base, 1, meta));
 	}
-	
+
 	public static enum DummyEnum implements EnumBase {
 		BLARG
 	}

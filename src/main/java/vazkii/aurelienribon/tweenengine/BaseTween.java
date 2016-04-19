@@ -385,7 +385,7 @@ public abstract class BaseTween<T> {
 	}
 
 	protected boolean isValid(int step) {
-		return (step >= 0 && step <= repeatCnt*2) || repeatCnt < 0;
+		return step >= 0 && step <= repeatCnt*2 || repeatCnt < 0;
 	}
 
 	protected void killTarget(Object target) {
