@@ -153,6 +153,19 @@ tile.quark:snow_bricks.name=Снежные кирпичи
 tile.quark:snow_bricks_slab.name=Плита из снежных кирпичей
 tile.quark:snow_bricks_stairs.name=Ступени из снежных кирпичей
 tile.quark:snow_bricks_wall.name=Стена из снежных кирпичей
+tile.quark:charred_nether_bricks.name=Обугленный адский кирпич
+tile.quark:charred_nether_brick_slab.name=Плита обугленного адского кирпича
+tile.quark:charred_nether_brick_stairs.name=Ступени из обугленного адского кирпича
+tile.quark:sandstone_smooth.name=Полированный песчаник
+tile.quark:sandstone_bricks.name=Кирпичи из песчаника
+tile.quark:red_sandstone_smooth.name=Полированный красный песчаник
+tile.quark:red_sandstone_bricks.name=Кирпичи из красного песчаника
+tile.quark:sandstone_smooth_slab.name=Плита отполированного песчаника
+tile.quark:sandstone_bricks_slab.name=Плита кирпичей из песчаника
+tile.quark:red_sandstone_smooth_slab.name=Плита отполированного красного песчаника
+tile.quark:red_sandstone_bricks_slab.name=Плита кирпичей из красного песчанника
+tile.quark:sandstone_bricks_stairs.name=Ступени кирпичей из песчаника
+tile.quark:red_sandstone_bricks_stairs.name=Ступени кирпичей из красного печсаника
 
 # ITEM NAMES
 item.quark:glass_shard.name=Осколки стекла
@@ -173,6 +186,10 @@ item.quark:glass_shard_silver.name=Осколки светло-серого ст
 item.quark:glass_shard_white.name=Осколки белого стекла
 item.quark:glass_shard_yellow.name=Осколки желтого стекла
 item.quark:biotite.name=Биотит края
+item.quark:ancient_tome.name=Древний Фолиант
+item.quark:witch_hat.name=Ведьмин колпак
+item.quark:slime_bucket_normal.name=Слизень в ведре
+item.quark:slime_bucket_excited.name=Слизень в ведре
 
 # GUI STUFF
 quark.gui.emotes=Эмоции
@@ -187,6 +204,23 @@ quark.emote.facepalm=Рукалицо
 quark.emote.shrug=Незнаю
 quark.emote.point=Указать
 quark.emote.headbang=Хэдбенг
+quark.dyedElytra=Окрашено в %s
+quark.dye.white=Белый
+quark.dye.orange=Оранжевый
+quark.dye.magenta=Пурпурный
+quark.dye.lightBlue=Голубой
+quark.dye.yellow=Желтый
+quark.dye.lime=Лаймовый
+quark.dye.pink=Розовый
+quark.dye.gray=Серый
+quark.dye.silver=Светло-серый
+quark.dye.cyan=Бирюзовый
+quark.dye.purple=Фиалетовый
+quark.dye.blue=Синий
+quark.dye.brown=Коричневый
+quark.dye.green=Зеленый
+quark.dye.red=Красный
+quark.dye.black=Черный
 
 # BANNER NAMES
 item.banner.quark_dragon.black=Черный дракон
