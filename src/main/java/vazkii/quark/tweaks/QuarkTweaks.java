@@ -29,6 +29,7 @@ import vazkii.quark.tweaks.feature.NoPotionShift;
 import vazkii.quark.tweaks.feature.NoteBlocksMobSounds;
 import vazkii.quark.tweaks.feature.RightClickSignEdit;
 import vazkii.quark.tweaks.feature.ShearableChickens;
+import vazkii.quark.tweaks.feature.SheepArmor;
 import vazkii.quark.tweaks.feature.SlabsToBlocks;
 import vazkii.quark.tweaks.feature.SnowGolemPlayerHeads;
 import vazkii.quark.tweaks.feature.StackableItems;
@@ -60,6 +61,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new ShearableChickens());
 		registerFeature(new MinecartInteraction(), "Right click minecarts to add blocks to them");
 		registerFeature(new EndermenTeleportYou(), "Endermen teleport you to them if you're in a 2 high area");
+		registerFeature(new SheepArmor(), "Sheep have armor while wearing wool");
 	}
 
 }
