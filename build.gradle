@@ -11,7 +11,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 
@@ -31,6 +31,8 @@ archivesBaseName = config.mod_name
 minecraft {
     version = "${config.mc_version}-${config.forge_version}-${config.mc_version}"
     runDir = "eclipse/assets"
+
+    coreMod = "vazkii.quark.base.asm.LoadingPlugin"
 
     mappings = config.mc_mappings
     replace 'GRADLE:BUILD', config.build_number
