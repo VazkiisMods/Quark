@@ -30,6 +30,7 @@ import vazkii.quark.base.client.gui.GuiButtonTranslucent;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.vanity.client.emotes.EmoteCheer;
 import vazkii.quark.vanity.client.emotes.EmoteClap;
+import vazkii.quark.vanity.client.emotes.EmoteDab;
 import vazkii.quark.vanity.client.emotes.EmoteFacepalm;
 import vazkii.quark.vanity.client.emotes.EmoteHeadbang;
 import vazkii.quark.vanity.client.emotes.EmoteNo;
@@ -65,6 +66,7 @@ public class EmoteSystem extends Feature {
 		EmoteHandler.emoteMap.put("shrug", EmoteShrug.class);
 		EmoteHandler.emoteMap.put("facepalm", EmoteFacepalm.class);
 		EmoteHandler.emoteMap.put("headbang", EmoteHeadbang.class);
+		EmoteHandler.emoteMap.put("dab", EmoteDab.class);
 	}
 
 	@Override
