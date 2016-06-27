@@ -45,7 +45,7 @@ public class BlockMetaVariants<T extends Enum<T> & IStringSerializable> extends 
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(variantProp == null ? temporaryVariantProp : variantProp).ordinal();
+		return state.<T>getValue(variantProp == null ? temporaryVariantProp : variantProp).ordinal();
 	}
 
 	@Override
