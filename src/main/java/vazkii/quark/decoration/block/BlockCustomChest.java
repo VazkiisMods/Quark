@@ -12,11 +12,15 @@ package vazkii.quark.decoration.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,36 +32,37 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.quark.base.block.IQuarkBlock;
-import vazkii.quark.base.item.ItemModBlock;
 import vazkii.quark.base.lib.LibMisc;
+import vazkii.quark.decoration.feature.CustomChest;
 import vazkii.quark.decoration.item.ItemChestBlock;
 import vazkii.quark.decoration.tileentity.TileEntityCustomChest;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class BlockCustomChest extends BlockChest implements IQuarkBlock {
 
     private final String[] variants;
     private final String bareName;
+    private static final Type CUSTOM_TYPE_QUARK = EnumHelper.addEnum(Type.class, "CUSTOM_TYPE_QUARK", new Class[0]);
 
     public BlockCustomChest() {
-        super(Type.BASIC);
+        super(CUSTOM_TYPE_QUARK);
 
         this.variants = new String[] { "custom_chest" };
-
         this.bareName = "custom_chest";
-
         setUnlocalizedName("custom_chest");
+        setHardness(2.5F);
+        setSoundType(SoundType.WOOD);
     }
 
     @Override
@@ -66,7 +71,6 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
         setRegistryName(LibMisc.PREFIX_MOD + name);
         GameRegistry.register(this);
         GameRegistry.register(new ItemChestBlock(this), new ResourceLocation(LibMisc.PREFIX_MOD + name));
-
         GameRegistry.registerTileEntity(TileEntityCustomChest.class, LibMisc.PREFIX_MOD + name);
 
         return this;
@@ -108,49 +112,14 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
         return null;
     }
 
-    public enum CustomChestType {
-        NONE(""),
-        ACACIA("acacia"),
-        BIRCH("birch"),
-        DARKOAK("darkoak"),
-        JUNGLE("jungle"),
-        SPRUCE("spruce");
-
-        public final String name;
-        public final ResourceLocation nrmTex;
-        public final ResourceLocation dblTex;
-
-        public static final CustomChestType[] VALID_TYPES;
-        public static final Map<String, CustomChestType> NAME_TO_TYPE;
-
-        CustomChestType(String name) {
-            this.name = name;
-            this.nrmTex = new ResourceLocation(LibMisc.PREFIX_MOD + "textures/blocks/chest/" + name + ".png");
-            this.dblTex = new ResourceLocation(LibMisc.PREFIX_MOD + "textures/blocks/chest/" + name + "_double.png");
-        }
-
-        public static CustomChestType getType(String type) {
-            return NAME_TO_TYPE.containsKey(type) ? NAME_TO_TYPE.get(type) : NONE;
-        }
-
-        static {
-            VALID_TYPES = new CustomChestType[] {ACACIA, BIRCH, DARKOAK, JUNGLE, SPRUCE};
-            NAME_TO_TYPE = new HashMap<>();
-            for( CustomChestType type : VALID_TYPES ) {
-                NAME_TO_TYPE.put(type.name, type);
-            }
-        }
-    }
-
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        CustomChestType myType = getCustomType(source, pos);
+        CustomChest.ChestType myType = getCustomType(source, pos);
         return getCustomType(source, pos.north()) == myType ? NORTH_CHEST_AABB : (getCustomType(source, pos.south()) == myType ? SOUTH_CHEST_AABB : (getCustomType(source, pos.west()) == myType ? WEST_CHEST_AABB : (getCustomType(source, pos.east()) == myType ? EAST_CHEST_AABB : NOT_CONNECTED_AABB)));
     }
 
     @Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-    }
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) { }
 
     @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
@@ -166,46 +135,52 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
         BlockPos westPos = pos.west();
         BlockPos eastPos = pos.east();
 
-        CustomChestType myType = getCustomType(stack);
+        CustomChest.ChestType myType = getCustomType(stack);
 
         boolean northChest = myType == getCustomType(worldIn, northPos);
         boolean southChest = myType == getCustomType(worldIn, southPos);
         boolean westChest = myType == getCustomType(worldIn, westPos);
         boolean eastChest = myType == getCustomType(worldIn, eastPos);
 
-        if( !northChest && !southChest && !westChest && !eastChest ) {
+        if(!northChest && !southChest && !westChest && !eastChest) {
             worldIn.setBlockState(pos, state, 3);
-        } else if( facing.getAxis() != EnumFacing.Axis.X || !northChest && !southChest ) {
-            if( facing.getAxis() == EnumFacing.Axis.Z && (westChest || eastChest) ) {
-                if( westChest ) {
-                    worldIn.setBlockState(westPos, state, 3);
-                } else {
-                    worldIn.setBlockState(eastPos, state, 3);
-                }
+        } else if(facing.getAxis() != EnumFacing.Axis.X || !northChest && !southChest) {
+            if(facing.getAxis() == EnumFacing.Axis.Z && (westChest || eastChest)) {
+                if( westChest )
+                    setState(worldIn, westPos, state, 3);
+                else
+                    setState(worldIn, eastPos, state, 3);
 
                 worldIn.setBlockState(pos, state, 3);
             }
         } else {
-            if( northChest ) {
-                worldIn.setBlockState(northPos, state, 3);
-            } else {
-                worldIn.setBlockState(southPos, state, 3);
-            }
+            if(northChest)
+                setState(worldIn, northPos, state, 3);
+            else
+                setState(worldIn, southPos, state, 3);
 
             worldIn.setBlockState(pos, state, 3);
         }
 
         TileEntity te = worldIn.getTileEntity(pos);
-        if( te instanceof TileEntityCustomChest ) {
+        if(te instanceof TileEntityCustomChest) {
             TileEntityCustomChest chest = (TileEntityCustomChest) te;
-            if( stack.hasDisplayName() ) {
+            if( stack.hasDisplayName() )
                 chest.setCustomName(stack.getDisplayName());
-            }
 
             chest.chestType = myType;
         }
 
         this.onBlockAdded(worldIn, pos, state);
+    }
+
+    public void setState(World worldIn, BlockPos pos, IBlockState state, int flag) {
+        TileEntity te = worldIn.getTileEntity(pos);
+        worldIn.setBlockState(pos, state, flag);
+        if(te != null) {
+            te.validate();
+            worldIn.setTileEntity(pos, te);
+        }
     }
 
     @Override
@@ -214,99 +189,21 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
         return state;
     }
 
-    public IBlockState checkForSurroundingChests(World worldIn, BlockPos pos, IBlockState state, CustomChestType myType) {
-        if( worldIn.isRemote ) {
-            return state;
-        } else {
-            IBlockState stateN = worldIn.getBlockState(pos.north());
-            IBlockState stateS = worldIn.getBlockState(pos.south());
-            IBlockState stateW = worldIn.getBlockState(pos.west());
-            IBlockState stateE = worldIn.getBlockState(pos.east());
-
-            CustomChestType typeN = getCustomType(worldIn, pos.north());
-            CustomChestType typeS = getCustomType(worldIn, pos.south());
-            CustomChestType typeW = getCustomType(worldIn, pos.west());
-            CustomChestType typeE = getCustomType(worldIn, pos.east());
-
-            EnumFacing facing = state.getValue(FACING);
-
-            if( typeN != myType && typeS != myType ) {
-                boolean fullBlockN = stateN.isFullBlock();
-                boolean fullBlockS = stateS.isFullBlock();
-
-                if( typeW == myType || typeE == myType ) {
-                    BlockPos adjPos = typeW == myType ? pos.west() : pos.east();
-                    IBlockState adjStateN = worldIn.getBlockState(adjPos.north());
-                    IBlockState adjStateS = worldIn.getBlockState(adjPos.south());
-                    facing = EnumFacing.SOUTH;
-                    EnumFacing facingAdj;
-
-                    if( typeW == myType ) {
-                        facingAdj = stateW.getValue(FACING);
-                    } else {
-                        facingAdj = stateE.getValue(FACING);
-                    }
-
-                    if( facingAdj == EnumFacing.NORTH ) {
-                        facing = EnumFacing.NORTH;
-                    }
-
-                    if( (fullBlockN || adjStateN.isFullBlock()) && !fullBlockS && !adjStateS.isFullBlock() ) {
-                        facing = EnumFacing.SOUTH;
-                    }
-
-                    if ((fullBlockS || adjStateS.isFullBlock()) && !fullBlockN && !adjStateN.isFullBlock()) {
-                        facing = EnumFacing.NORTH;
-                    }
-                }
-            } else {
-                BlockPos adjPos = typeN == myType ? pos.north() : pos.south();
-                IBlockState adjStateW = worldIn.getBlockState(adjPos.west());
-                IBlockState adjStateE = worldIn.getBlockState(adjPos.east());
-                facing = EnumFacing.EAST;
-                EnumFacing facingAdj;
-
-                if( typeN == myType ) {
-                    facingAdj = stateN.getValue(FACING);
-                } else {
-                    facingAdj = stateS.getValue(FACING);
-                }
-
-                if( facingAdj == EnumFacing.WEST ) {
-                    facing = EnumFacing.WEST;
-                }
-
-                if( (stateW.isFullBlock() || adjStateW.isFullBlock()) && !stateE.isFullBlock() && !adjStateE.isFullBlock() ) {
-                    facing = EnumFacing.EAST;
-                }
-
-                if( (stateE.isFullBlock() || adjStateE.isFullBlock()) && !stateW.isFullBlock() && !adjStateW.isFullBlock() ) {
-                    facing = EnumFacing.WEST;
-                }
-            }
-
-            state = state.withProperty(FACING, facing);
-            worldIn.setBlockState(pos, state, 3);
-            return state;
-        }
-    }
-
     @Override
     @Deprecated
     public IBlockState correctFacing(World worldIn, BlockPos pos, IBlockState state) {
-        return correctFacing(worldIn, pos, state, CustomChestType.NONE);
+        return correctFacing(worldIn, pos, state, CustomChest.ChestType.NONE);
     }
 
-    public IBlockState correctFacing(World worldIn, BlockPos pos, IBlockState state, CustomChestType myType) {
+    public IBlockState correctFacing(World worldIn, BlockPos pos, IBlockState state, CustomChest.ChestType myType) {
         EnumFacing facing = null;
 
-        for( EnumFacing horizFace : EnumFacing.Plane.HORIZONTAL ) {
-            if( getCustomType(worldIn, pos.offset(horizFace)) == myType ) {
+        for(EnumFacing horizFace : EnumFacing.Plane.HORIZONTAL) {
+            if(getCustomType(worldIn, pos.offset(horizFace)) == myType)
                 return state;
-            }
 
-            if( worldIn.getBlockState(pos.offset(horizFace)).isFullBlock() ) {
-                if( facing != null ) {
+            if(worldIn.getBlockState(pos.offset(horizFace)).isFullBlock()) {
+                if(facing != null) {
                     facing = null;
                     break;
                 }
@@ -315,22 +212,19 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
             }
         }
 
-        if( facing != null ) {
+        if(facing != null) {
             return state.withProperty(FACING, facing.getOpposite());
         } else {
             EnumFacing enumfacing2 = state.getValue(FACING);
 
-            if( worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock() ) {
+            if(worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
                 enumfacing2 = enumfacing2.getOpposite();
-            }
 
-            if( worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock() ) {
+            if(worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
                 enumfacing2 = enumfacing2.rotateY();
-            }
 
-            if( worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock() ) {
+            if(worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
                 enumfacing2 = enumfacing2.getOpposite();
-            }
 
             return state.withProperty(FACING, enumfacing2);
         }
@@ -341,16 +235,14 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
         return true;
     }
 
-    public boolean isDoubleChest(World worldIn, BlockPos pos, CustomChestType myType) {
-        if( getCustomType(worldIn, pos) != myType ) {
+    public boolean isDoubleChest(World worldIn, BlockPos pos, CustomChest.ChestType myType) {
+        if(getCustomType(worldIn, pos) != myType) {
             return false;
         } else {
-            CustomChestType theType = getCustomType(worldIn, pos);
-            for( EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL ) {
-                if( getCustomType(worldIn, pos.offset(enumfacing)) == theType ) {
+            CustomChest.ChestType theType = getCustomType(worldIn, pos);
+            for(EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+                if(getCustomType(worldIn, pos.offset(enumfacing)) == theType)
                     return true;
-                }
-            }
 
             return false;
         }
@@ -364,9 +256,8 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack) {
         super.harvestBlock(worldIn, player, pos, state, te, stack);
-        if( te instanceof TileEntityCustomChest ) {
+        if(te instanceof TileEntityCustomChest)
             te.invalidate();
-        }
         worldIn.setBlockToAir(pos);
     }
 
@@ -374,35 +265,85 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
         return new TileEntityCustomChest();
     }
 
-    public CustomChestType getCustomType(IBlockAccess source, BlockPos pos) {
-        if( source.getBlockState(pos).getBlock() == this ) {
+    public CustomChest.ChestType getCustomType(IBlockAccess source, BlockPos pos) {
+        if(source.getBlockState(pos).getBlock() == this) {
             TileEntity te = source.getTileEntity(pos);
-            if( te instanceof TileEntityCustomChest ) {
+            if(te instanceof TileEntityCustomChest)
                 return ((TileEntityCustomChest) te).chestType;
-            }
         }
 
-        return CustomChestType.NONE;
+        return CustomChest.ChestType.NONE;
     }
 
-    public CustomChestType getCustomType(ItemStack stack) {
-        if( stack.hasTagCompound() ) {
-            return CustomChestType.getType(stack.getTagCompound().getString("customType"));
-        }
+    public CustomChest.ChestType getCustomType(ItemStack stack) {
+        if(stack.hasTagCompound())
+            return CustomChest.ChestType.getType(stack.getTagCompound().getString("customType"));
 
-        return CustomChestType.NONE;
+        return CustomChest.ChestType.NONE;
     }
 
-    public ItemStack setCustomType(ItemStack stack, CustomChestType type) {
+    public ItemStack setCustomType(ItemStack stack, CustomChest.ChestType type) {
         NBTTagCompound nbt = stack.getTagCompound();
-        if( nbt == null ) {
+        if(nbt == null)
             nbt = new NBTTagCompound();
-        }
 
         nbt.setString("customType", type.name);
         stack.setTagCompound(nbt);
 
         return stack;
+    }
+
+    @Override
+    public ILockableContainer getContainer(World world, BlockPos pos, boolean locked) {
+        TileEntity tile = world.getTileEntity(pos);
+
+        if(!(tile instanceof TileEntityCustomChest)) {
+            return null;
+        } else {
+            ILockableContainer myChest = (TileEntityCustomChest) tile;
+            CustomChest.ChestType myType = ((TileEntityCustomChest) tile).chestType;
+
+            if(!locked && this.isBlocked(world, pos)) {
+                return null;
+            } else {
+                for(EnumFacing facing : EnumFacing.Plane.HORIZONTAL) {
+                    BlockPos adjPos = pos.offset(facing);
+
+                    TileEntity adjTile = world.getTileEntity(adjPos);
+
+                    if(world.getBlockState(adjPos).getBlock() == this && adjTile instanceof TileEntityCustomChest && ((TileEntityCustomChest) adjTile).chestType == myType) {
+                        if(this.isBlocked(world, adjPos))
+                            return null;
+
+                        if(facing != EnumFacing.WEST && facing != EnumFacing.NORTH)
+                            myChest = new InventoryLargeChest("container.chestDouble", myChest, (TileEntityCustomChest)adjTile);
+                        else
+                            myChest = new InventoryLargeChest("container.chestDouble", (TileEntityCustomChest)adjTile, myChest);
+                    }
+                }
+
+                return myChest;
+            }
+        }
+    }
+
+    private boolean isBlocked(World worldIn, BlockPos pos) {
+        return this.isBelowSolidBlock(worldIn, pos) || this.isOcelotSittingOnChest(worldIn, pos);
+    }
+
+    private boolean isBelowSolidBlock(World worldIn, BlockPos pos) {
+        return worldIn.getBlockState(pos.up()).isSideSolid(worldIn, pos.up(), EnumFacing.DOWN);
+    }
+
+    private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos) {
+        for(Entity entity : worldIn.getEntitiesWithinAABB(EntityOcelot.class, new AxisAlignedBB(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1))) {
+            EntityOcelot cat = (EntityOcelot)entity;
+
+            if(cat.isSitting())
+                return true;
+        }
+
+        return false;
     }
 
     @Override
