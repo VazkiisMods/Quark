@@ -161,6 +161,17 @@ public class BlockCustomChest extends BlockChest implements IQuarkBlock {
                     setState(worldIn, eastPos, state, 3);
 
                 worldIn.setBlockState(pos, state, 3);
+            } else {
+                EnumFacing corrected = facing.rotateY();
+                setState(worldIn, pos, state.withProperty(FACING, corrected), 3);
+                if(northChest)
+                    setState(worldIn, northPos, state.withProperty(FACING, corrected), 3);
+                else if(southChest)
+                    setState(worldIn, southPos, state.withProperty(FACING, corrected), 3);
+                else if(westChest)
+                    setState(worldIn, westPos, state.withProperty(FACING, corrected), 3);
+                else if(eastChest)
+                    setState(worldIn, eastPos, state.withProperty(FACING, corrected), 3);
             }
         } else {
             if(northChest)
