@@ -11,14 +11,13 @@
 package vazkii.quark.world.entity.arrow;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockTorch;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -64,12 +63,17 @@ public class EntityArrowTorch extends EntityArrow {
 
 		if(!worldObj.isRemote) {
 			BlockPos pos = raytraceResultIn.getBlockPos();
-			BlockPos finalPos = pos.offset(raytraceResultIn.sideHit);
-			IBlockState state = worldObj.getBlockState(finalPos);
-			Block block = state.getBlock();
-			if(block.isAir(state, worldObj, finalPos) || block.isReplaceable(worldObj, finalPos)) {
-				worldObj.setBlockState(finalPos, Blocks.TORCH.getDefaultState().withProperty(BlockTorch.FACING, raytraceResultIn.sideHit));
-				setDead();
+
+			if(pos != null) {
+				EnumFacing facing = raytraceResultIn.sideHit;
+				BlockPos torchPos = pos.offset(facing);
+				Block torchBlock = worldObj.getBlockState(torchPos).getBlock();
+
+				if(Blocks.TORCH.canPlaceBlockAt(worldObj, torchPos) && (worldObj.isAirBlock(torchPos) || torchBlock.isReplaceable(worldObj, torchPos))) {
+					IBlockState finalState = Blocks.TORCH.onBlockPlaced(worldObj, torchPos, facing, 0, 0, 0, 0, null);
+					worldObj.setBlockState(torchPos, finalState);
+					setDead();
+				}
 			}
 		}
 	}
