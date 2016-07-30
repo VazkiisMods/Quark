@@ -326,3 +326,56 @@ item.banner.quark_shield.lightBlue=Голубой щит
 item.banner.quark_shield.magenta=Пурпурный щит
 item.banner.quark_shield.orange=Оранжевый щит
 item.banner.quark_shield.white=Белый щит
+
+
+item.quark:colored_bed_item_black.name=Черная кровать
+item.quark:colored_bed_item_blue.name=Синяя кровать
+item.quark:colored_bed_item_brown.name=Коричневая кровать
+item.quark:colored_bed_item_cyan.name=Голубая кровать
+item.quark:colored_bed_item_gray.name=Серая кровать
+item.quark:colored_bed_item_green.name=Зеленая кровать
+item.quark:colored_bed_item_light_blue.name=Светло-голубая кровать
+item.quark:colored_bed_item_lime.name=Желто-зеленая кровать
+item.quark:colored_bed_item_magenta.name=Пурпурная кровать
+item.quark:colored_bed_item_orange.name=Оранжевая кровать
+item.quark:colored_bed_item_pink.name=Розовая кровать
+item.quark:colored_bed_item_purple.name=Фиолетовая кровать
+item.quark:colored_bed_item_silver.name=Светло-серая кровать
+item.quark:colored_bed_item_white.name=Белая кровать
+item.quark:colored_bed_item_yellow.name=Желтая кровать
+
+item.quark:arrow_ender.name=Стрела края
+item.quark:arrow_explosive.name=Взрывная стрела
+item.quark:arrow_torch.name=Осветительная стрела
+
+item.quark:pirate_hat.name=Пиратская шляпа
+item.quark:soul_bead.name=Бусина души
+
+#Runes
+item.quark:rune_black.name=Черная руна
+item.quark:rune_blue.name=Голубая руна
+item.quark:rune_brown.name=Коричневая руна
+item.quark:rune_cyan.name=Циановая руна
+item.quark:rune_gray.name=Серая руна
+item.quark:rune_green.name=Зеленая руна
+item.quark:rune_light_blue.name=Светло голубая руна
+item.quark:rune_lime.name=Лаймовая руна
+item.quark:rune_magenta.name=Пурпурная руна
+item.quark:rune_orange.name=Оранжевая руна
+item.quark:rune_pink.name=Розовая руна
+item.quark:rune_purple.name=Фиолетовая руна
+item.quark:rune_red.name=Красная руна
+item.quark:rune_silver.name=Светло серая руна
+item.quark:rune_white.name=Белая руна
+item.quark:rune_yellow.name=Желтая руна
+
+# ENTITY NAMES
+entity.Quark.quark:colored_item_frame.name=Colored Item Frame
+entity.Quark.dweller.name=Обитатель (dweller)
+entity.Quark.ashen.name=Пепельный скелет (ashen)
+entity.Quark.pirate.name=Скелет-пиратЪ (pirate)
+entity.Quark.wraith.name=Видение (wraith)
+
+# POTION NAMES
+quark.potion.curse.name=Зелье проклятия
+
