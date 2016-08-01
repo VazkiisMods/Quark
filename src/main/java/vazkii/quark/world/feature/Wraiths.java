@@ -65,7 +65,7 @@ public class Wraiths extends Feature {
 			curse = new PotionMod("curse", true, 0x000000, 0);
 
 		EntityRegistry.registerModEntity(EntityWraith.class, "wraith", LibEntityIDs.WRAITH, Quark.instance, 80, 3, true, 0xececec, 0xbdbdbd);
-		EntityRegistry.addSpawn(EntityWraith.class, weight, min, max, EnumCreatureType.MONSTER, Biomes.HELL);
+		EntityRegistry.addSpawn(EntityWraith.class, weight, min, max, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(Type.NETHER));
 	}
 
 	@Override
