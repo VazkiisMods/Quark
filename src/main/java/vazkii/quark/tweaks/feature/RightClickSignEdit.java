@@ -13,6 +13,7 @@ package vazkii.quark.tweaks.feature;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import vazkii.quark.base.Quark;
@@ -31,6 +32,9 @@ public class RightClickSignEdit extends Feature {
 
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent.RightClickBlock event) {
+		if(event.getUseBlock() == Result.DENY) {
+			return;	
+		}
 		TileEntity tile = event.getWorld().getTileEntity(event.getPos());
 		if(tile instanceof TileEntitySign && (!emptyHand || event.getEntityPlayer().getHeldItemMainhand() == null) && event.getEntityPlayer().capabilities.allowEdit && !event.getEntity().isSneaking()) {
 			TileEntitySign sign = (TileEntitySign) tile;
