@@ -19,6 +19,7 @@ import vazkii.quark.tweaks.feature.BabyZombiesBurn;
 import vazkii.quark.tweaks.feature.ChickensShedFeathers;
 import vazkii.quark.tweaks.feature.ConvertClay;
 import vazkii.quark.tweaks.feature.DeployLaddersDown;
+import vazkii.quark.tweaks.feature.DoubleDoors;
 import vazkii.quark.tweaks.feature.DragonsBreathBottleless;
 import vazkii.quark.tweaks.feature.EndermenTeleportYou;
 import vazkii.quark.tweaks.feature.FlintTools;
@@ -74,6 +75,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new AutoJumpHotkey());
 		registerFeature(new HoeSickle(), "Hoes break a 5x5 of plants");
 		registerFeature(new DeployLaddersDown());
+		registerFeature(new DoubleDoors());
 	}
 
 }
