@@ -29,10 +29,12 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.arl.network.NetworkHandler;
 import vazkii.arl.util.ItemNBTHelper;
+import vazkii.quark.base.lib.LibObfuscation;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.network.message.MessageFavoriteItem;
@@ -79,8 +81,8 @@ public class FavoriteItems extends Feature {
 			GuiContainer guiInv = (GuiContainer) event.getGui();
 			Container container = guiInv.inventorySlots;
 
-			int guiLeft = (guiInv.width - 176) / 2;
-			int guiTop = (guiInv.height - 166) / 2;
+			int guiLeft = ReflectionHelper.getPrivateValue(GuiContainer.class, guiInv, LibObfuscation.GUI_LEFT);
+			int guiTop = ReflectionHelper.getPrivateValue(GuiContainer.class, guiInv, LibObfuscation.GUI_TOP);
 
 			GlStateManager.color(1F, 1F, 1F);
 			GlStateManager.pushMatrix();
