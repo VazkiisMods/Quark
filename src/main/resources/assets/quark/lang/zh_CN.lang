@@ -298,10 +298,10 @@ entity.Quark.wraith.name=游魂
 quark.potion.curse.name=诅咒
 
 # GUI STUFF
-quark.gui.emotes=表情
-quark.gui.emotesKeygroup=Quark 表情
-quark.gui.favorited=收藏
-quark.emote.wave=波浪
+quark.gui.emotes=动作
+quark.gui.emotesKeygroup=Quark 动作
+quark.gui.favorited=最爱
+quark.emote.wave=挥手
 quark.emote.yes=是
 quark.emote.no=否
 quark.emote.cheer=欢呼
@@ -328,8 +328,8 @@ quark.dye.brown=棕
 quark.dye.green=绿
 quark.dye.red=红
 quark.dye.black=黑
-generator.quark_realistic=现实主义
-generator.quark_realistic.info=[Quark] 由/u/Soniop制作的更现实的世界
+generator.quark_realistic=真实化
+generator.quark_realistic.info=[Quark] 由/u/Soniop制作的真实化世界
 quark.keybind.toggleAutojump=自动跳跃开关
 
 # BANNER NAMES
