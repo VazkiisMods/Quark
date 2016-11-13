@@ -299,7 +299,7 @@ quark.potion.curse.name=诅咒
 
 # GUI STUFF
 quark.gui.emotes=动作
-quark.gui.emotesKeygroup=Quark 动作
+quark.gui.emotesKeygroup=夸克 动作
 quark.gui.favorited=收藏
 quark.emote.wave=招手
 quark.emote.yes=是
