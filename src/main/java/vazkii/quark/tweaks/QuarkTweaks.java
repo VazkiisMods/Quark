@@ -76,6 +76,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new HoeSickle(), "Hoes break a 5x5 of plants");
 		registerFeature(new DeployLaddersDown());
 		registerFeature(new DoubleDoors(), "Double doors open together");
+		registerFeature(new SwordAttackBehindGrass(), "");
 	}
 
 }
