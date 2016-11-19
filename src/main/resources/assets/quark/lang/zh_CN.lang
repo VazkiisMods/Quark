@@ -262,8 +262,7 @@ item.quark:colored_item_frame_orange.name=橙色物品展示框
 item.quark:colored_item_frame_pink.name=粉红色物品展示框
 item.quark:colored_item_frame_purple.name=紫色物品展示框
 item.quark:colored_item_frame_red.name=红色物品展示框
-item.quark:colored_item_frame_silver.name=淡灰色物品展示框
-item.quark:colored_item_frame_white.name=白色物品展示框
+item.quark:colored_item_frame_silver.name=淡灰色物品展示框item.quark:colored_item_frame_white.name=白色物品展示框
 item.quark:colored_item_frame_yellow.name=黄色物品展示框
 item.quark:pirate_hat.name=海盗帽
 item.quark:soul_bead.name=游魂珠
@@ -273,8 +272,7 @@ item.quark:colored_bed_item_blue.name=蓝色床
 item.quark:colored_bed_item_brown.name=棕色床
 item.quark:colored_bed_item_cyan.name=青色床
 item.quark:colored_bed_item_gray.name=灰色床
-item.quark:colored_bed_item_green.name=绿色床
-item.quark:colored_bed_item_light_blue.name=淡蓝色床
+item.quark:colored_bed_item_green.name=绿色床item.quark:colored_bed_item_light_blue.name=淡蓝色床
 item.quark:colored_bed_item_lime.name=黄绿色床
 item.quark:colored_bed_item_magenta.name=品红色床
 item.quark:colored_bed_item_orange.name=橙色床
@@ -299,7 +297,7 @@ quark.potion.curse.name=诅咒
 
 # GUI STUFF
 quark.gui.emotes=动作
-quark.gui.emotesKeygroup=夸克 动作
+quark.gui.emotesKeygroup=quark 动作
 quark.gui.favorited=收藏
 quark.emote.wave=招手
 quark.emote.yes=是
