@@ -41,12 +41,11 @@ public class SwordAttackBehindGrass extends Feature{
 		classes = new ArrayList<>();
 
 		try {
-			if (Loader.isModLoaded("tconstruct")) {
+			if(Loader.isModLoaded("tconstruct")) {
 				//TConstract version: 2.5.0 or above
- 				classes.add(Class.forName("slimeknights.tconstruct.library.tools.SwordCore"));
+				classes.add(Class.forName("slimeknights.tconstruct.library.tools.SwordCore"));
 			}
-
-		} catch (ClassNotFoundException e) {
+		} catch(ClassNotFoundException e) {
 			// Class doesn't exist. Do nothing.
 		}
 	}
@@ -54,66 +53,56 @@ public class SwordAttackBehindGrass extends Feature{
 	@SuppressWarnings("UnusedDeclaration")
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent.LeftClickBlock event) {
-
 		if(event.getEntityPlayer().getHeldItemMainhand() == null)
 			return;
 
 		IBlockState state = event.getWorld().getBlockState(event.getPos()).getActualState(event.getWorld(), event.getPos());
 		Block block = state.getBlock();
-
-		if (block instanceof BlockBush) {
+		if(block instanceof BlockBush) {
 			Item item = event.getEntityPlayer().getHeldItemMainhand().getItem();
-
-			if (item instanceof ItemSword || this.isItemInstanceOf(item, classes)) {
-
+			if(item instanceof ItemSword || this.isItemInstanceOf(item, classes)) {
 				EntityPlayer entityPlayer = event.getEntityPlayer();
 				//Player block reach distance
 				int length = 4;
 
 				Vec3d startPos = new Vec3d(entityPlayer.posX, entityPlayer.posY + entityPlayer.getEyeHeight(), entityPlayer.posZ);
 				Vec3d endPos = startPos.add(new Vec3d(entityPlayer.getLookVec().xCoord * length, entityPlayer.getLookVec().yCoord * length, entityPlayer.getLookVec().zCoord * length));
-
 				AxisAlignedBB axisAlignedBB = new AxisAlignedBB(startPos, endPos).expandXyz(1.0D);
 
 				Entity entity = rayTraceEntityExcluding(entityPlayer, event.getWorld(), axisAlignedBB, startPos, endPos);
-
-				if (entity != null) {
+				if(entity != null) {
 					event.getEntityPlayer().attackTargetEntityWithCurrentItem(entity);
 					event.setCanceled(true);
 				}
 			}
 		}
-
 	}
 
-	private boolean isItemInstanceOf(Item item, List<Class<?>> list){
-
-		for (Class<?> clazz : list ) {
+	private boolean isItemInstanceOf(Item item, List<Class<?>> list) {
+		for(Class<?> clazz : list ) {
 			if(clazz.isInstance(item)) return true;
 		}
-
 		return false;
 	}
 
-	private Entity rayTraceEntityExcluding(@Nullable Entity entityIn, World world, AxisAlignedBB axisAlignedBB, Vec3d startPos, Vec3d endPos){
+	private Entity rayTraceEntityExcluding(@Nullable Entity entityIn, World world, AxisAlignedBB axisAlignedBB, Vec3d startPos, Vec3d endPos) {
 		Entity entity = null;
 		List<Entity> list = world.getEntitiesInAABBexcluding(entityIn, axisAlignedBB, null);
 		double d0 = 0.0D;
 
-		for (Entity entity1 : list) {
-			AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expandXyz(0.30000001192092896D);
-			RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(startPos, endPos);
+		for(Entity entity1 : list) {
+			axisAlignedBB = entity1.getEntityBoundingBox().expandXyz(0.30000001192092896D);
+			RayTraceResult raytraceResult = axisAlignedBB.calculateIntercept(startPos, endPos);
 
-			if (raytraceresult != null) {
-				double d1 = startPos.squareDistanceTo(raytraceresult.hitVec);
+			if(raytraceResult != null) {
+				double d1 = startPos.squareDistanceTo(raytraceResult.hitVec);
 
-				if (d1 < d0 || d0 == 0.0D) {
+				if(d1 < d0 || d0 == 0.0D) {
 					entity = entity1;
 					d0 = d1;
 				}
 			}
 		}
-
 		return entity;
 	}
 
