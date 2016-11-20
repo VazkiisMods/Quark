@@ -11,36 +11,7 @@
 package vazkii.quark.tweaks;
 
 import vazkii.quark.base.module.Module;
-import vazkii.quark.tweaks.feature.AngryCreepers;
-import vazkii.quark.tweaks.feature.ArmedArmorStands;
-import vazkii.quark.tweaks.feature.ArrowSafeMobs;
-import vazkii.quark.tweaks.feature.AutoJumpHotkey;
-import vazkii.quark.tweaks.feature.BabyZombiesBurn;
-import vazkii.quark.tweaks.feature.ChickensShedFeathers;
-import vazkii.quark.tweaks.feature.ConvertClay;
-import vazkii.quark.tweaks.feature.DeployLaddersDown;
-import vazkii.quark.tweaks.feature.DoubleDoors;
-import vazkii.quark.tweaks.feature.DragonsBreathBottleless;
-import vazkii.quark.tweaks.feature.EndermenTeleportYou;
-import vazkii.quark.tweaks.feature.FlintTools;
-import vazkii.quark.tweaks.feature.GlassShards;
-import vazkii.quark.tweaks.feature.GreenerGrass;
-import vazkii.quark.tweaks.feature.HoeSickle;
-import vazkii.quark.tweaks.feature.JumpBoostStepAssist;
-import vazkii.quark.tweaks.feature.KnockOnDoors;
-import vazkii.quark.tweaks.feature.LessIntrusiveShields;
-import vazkii.quark.tweaks.feature.LookDownLadders;
-import vazkii.quark.tweaks.feature.MinecartInteraction;
-import vazkii.quark.tweaks.feature.NoPotionShift;
-import vazkii.quark.tweaks.feature.NoteBlocksMobSounds;
-import vazkii.quark.tweaks.feature.RemoveSnowLayers;
-import vazkii.quark.tweaks.feature.RightClickSignEdit;
-import vazkii.quark.tweaks.feature.ShearableChickens;
-import vazkii.quark.tweaks.feature.SheepArmor;
-import vazkii.quark.tweaks.feature.SlabsToBlocks;
-import vazkii.quark.tweaks.feature.SnowGolemPlayerHeads;
-import vazkii.quark.tweaks.feature.StackableItems;
-import vazkii.quark.tweaks.feature.StairsMakeMore;
+import vazkii.quark.tweaks.feature.*;
 
 public class QuarkTweaks extends Module {
 
@@ -76,6 +47,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new HoeSickle(), "Hoes break a 5x5 of plants");
 		registerFeature(new DeployLaddersDown());
 		registerFeature(new DoubleDoors(), "Double doors open together");
+		registerFeature(new SwordAttackBehindGrass(), "");
 	}
 
 }
