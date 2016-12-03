@@ -69,7 +69,7 @@ public class InventorySorting extends Feature {
 	
 	@Override
 	public String[] getIncompatibleMods() {
-		return new String[] { "inventorytweaks", "inventorysorter" };
+		return new String[] { "inventorytweaks", "inventorysorter", "itemscroller", "mousetweaks" };
 	}
 
 	
