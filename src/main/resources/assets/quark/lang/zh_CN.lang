@@ -4,6 +4,7 @@ quarkmisc.chestButton.deposit=存储
 quarkmisc.chestButton.smart_deposit=合并
 quarkmisc.chestButton.dropoff=存储到邻近箱子
 quarkmisc.chestButton.dropoff.shift=合并到邻近箱子
+quarkmisc.chestButton.sort=排序
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=硬化粘土瓦砖
@@ -165,14 +166,19 @@ tile.quark:charred_nether_brick_slab.name=烧焦地狱砖台阶
 tile.quark:charred_nether_brick_stairs.name=烧焦地狱砖楼梯
 tile.quark:sandstone_smooth.name=磨制沙石
 tile.quark:sandstone_bricks.name=沙石砖
-tile.quark:red_sandstone_smooth.name=磨制红沙石
-tile.quark:red_sandstone_bricks.name=红沙石砖
 tile.quark:sandstone_smooth_slab.name=磨制沙石台阶
 tile.quark:sandstone_bricks_slab.name=沙石砖台阶
+tile.quark:sandstone_bricks_stairs.name=沙石砖楼梯
+tile.quark:red_sandstone_smooth.name=磨制红沙石
+tile.quark:red_sandstone_bricks.name=红沙石砖
 tile.quark:red_sandstone_smooth_slab.name=磨制红沙石台阶
 tile.quark:red_sandstone_bricks_slab.name=红沙石砖台阶
-tile.quark:sandstone_bricks_stairs.name=沙石砖楼梯
-tile.quark:red_sandstone_bricks_stairs.name=红沙石砖台阶
+tile.quark:red_sandstone_bricks_stairs.name=红沙石砖楼梯
+tile.quark:soul_sandstone_smooth.name=磨制灵魂沙石
+tile.quark:soul_sandstone_bricks.name=灵魂沙石砖
+tile.quark:soul_sandstone_smooth_slab.name=磨制灵魂沙石台阶
+tile.quark:soul_sandstone_bricks_slab.name=灵魂沙石砖台阶
+tile.quark:soul_sandstone_bricks_stairs.name=灵魂沙石砖楼梯
 tile.quark:nether_brick_fence_gate.name=地狱砖栅栏门
 tile.quark:charcoal_block.name=木炭块
 tile.quark:red_nether_brick_slab.name=红色地狱砖台阶
@@ -209,6 +215,19 @@ tile.quark:bookshelf_birch.name=白桦木书架
 tile.quark:bookshelf_jungle.name=丛林木书架
 tile.quark:bookshelf_acacia.name=金合欢木书架
 tile.quark:bookshelf_dark_oak.name=深色橡木书架
+tile.quark:vertical_oak_planks.name=垂直橡木木板
+tile.quark:vertical_spruce_planks.name=垂直云杉木板
+tile.quark:vertical_birch_planks.name=垂直白桦木板
+tile.quark:vertical_jungle_planks.name=垂直丛林木板
+tile.quark:vertical_acacia_planks.name=垂直金合欢木板
+tile.quark:vertical_dark_oak_planks.name=垂直深色橡木木板
+tile.quark:soul_sandstone.name=灵魂沙石
+tile.quark:chiseled_soul_sandstone.name=錾制灵魂沙石
+tile.quark:smooth_soul_sandstone.name=平滑灵魂沙石
+tile.quark:soul_sandstone_slab.name=灵魂沙石台阶
+tile.quark:soul_sandstone_stairs.name=灵魂沙石楼梯
+tile.quark:soul_sandstone_wall.name=灵魂沙石墙
+tile.quark:iron_ladder.name=铁梯子
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
@@ -262,7 +281,8 @@ item.quark:colored_item_frame_orange.name=橙色物品展示框
 item.quark:colored_item_frame_pink.name=粉红色物品展示框
 item.quark:colored_item_frame_purple.name=紫色物品展示框
 item.quark:colored_item_frame_red.name=红色物品展示框
-item.quark:colored_item_frame_silver.name=淡灰色物品展示框item.quark:colored_item_frame_white.name=白色物品展示框
+item.quark:colored_item_frame_silver.name=淡灰色物品展示框
+item.quark:colored_item_frame_white.name=白色物品展示框
 item.quark:colored_item_frame_yellow.name=黄色物品展示框
 item.quark:pirate_hat.name=海盗帽
 item.quark:soul_bead.name=游魂珠
@@ -272,7 +292,8 @@ item.quark:colored_bed_item_blue.name=蓝色床
 item.quark:colored_bed_item_brown.name=棕色床
 item.quark:colored_bed_item_cyan.name=青色床
 item.quark:colored_bed_item_gray.name=灰色床
-item.quark:colored_bed_item_green.name=绿色床item.quark:colored_bed_item_light_blue.name=淡蓝色床
+item.quark:colored_bed_item_green.name=绿色床
+item.quark:colored_bed_item_light_blue.name=淡蓝色床
 item.quark:colored_bed_item_lime.name=黄绿色床
 item.quark:colored_bed_item_magenta.name=品红色床
 item.quark:colored_bed_item_orange.name=橙色床
@@ -297,7 +318,7 @@ quark.potion.curse.name=诅咒
 
 # GUI STUFF
 quark.gui.emotes=动作
-quark.gui.emotesKeygroup=quark 动作
+quark.gui.emotesKeygroup=Quark动作
 quark.gui.favorited=收藏
 quark.emote.wave=招手
 quark.emote.yes=是
