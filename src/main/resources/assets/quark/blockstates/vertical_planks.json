@@ -1,15 +1,15 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"model": "minecraft:cube_all",
+		"model": "quark:vertical_planks",
 		"transform": "forge:default-block"
 	},
 	"variants": {
-		"variant=vertical_oak_planks": [{ "textures": { "all": "quark:blocks/vertical_planks_oak" } }],
-		"variant=vertical_spruce_planks": [{ "textures": { "all": "quark:blocks/vertical_planks_spruce" } }],
-		"variant=vertical_birch_planks": [{ "textures": { "all": "quark:blocks/vertical_planks_birch" } }],
-		"variant=vertical_jungle_planks": [{ "textures": { "all": "quark:blocks/vertical_planks_jungle" } }],
-		"variant=vertical_acacia_planks": [{ "textures": { "all": "quark:blocks/vertical_planks_acacia" } }],
-		"variant=vertical_dark_oak_planks": [{ "textures": { "all": "quark:blocks/vertical_planks_big_oak" } }]
+		"variant=vertical_oak_planks": [{ "textures": { "all": "minecraft:blocks/planks_oak" } }],
+		"variant=vertical_spruce_planks": [{ "textures": { "all": "minecraft:blocks/planks_spruce" } }],
+		"variant=vertical_birch_planks": [{ "textures": { "all": "minecraft:blocks/planks_birch" } }],
+		"variant=vertical_jungle_planks": [{ "textures": { "all": "minecraft:blocks/planks_jungle" } }],
+		"variant=vertical_acacia_planks": [{ "textures": { "all": "minecraft:blocks/planks_acacia" } }],
+		"variant=vertical_dark_oak_planks": [{ "textures": { "all": "minecraft:blocks/planks_big_oak" } }]
 	}
 }
