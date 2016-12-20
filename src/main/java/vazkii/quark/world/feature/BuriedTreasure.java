@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Random;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.gson.*;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,10 +33,12 @@ import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
+import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.arl.util.ItemNBTHelper;
+import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 
 public class BuriedTreasure extends Feature {
@@ -54,6 +57,7 @@ public class BuriedTreasure extends Feature {
 	public void setupConfig() {
 		rarity = loadPropInt("Treasure map Rarity", "", 10);
 		quality = loadPropInt("Treasure map item quality", "This is used for the luck attribute in loot tables. It doesn't affect the loot you get from the map itself.", 2);
+		LootFunctionManager.registerFunction(new SetAsTreasureFunction.Serializer());
 	}
 
 	@SubscribeEvent
@@ -174,6 +178,22 @@ public class BuriedTreasure extends Feature {
 			return stack;
 		}
 
+		public static class Serializer extends LootFunction.Serializer<SetAsTreasureFunction> {
+
+			protected Serializer() {
+				super(new ResourceLocation(LibMisc.MOD_ID, "set_treasure"),SetAsTreasureFunction.class);
+			}
+
+			@Override
+			public void serialize(JsonObject object, SetAsTreasureFunction functionClazz,
+					JsonSerializationContext serializationContext) {}
+
+			@Override
+			public SetAsTreasureFunction deserialize(JsonObject object, JsonDeserializationContext deserializationContext,
+					LootCondition[] conditionsIn) {
+				return new SetAsTreasureFunction();
+			}
+		}
 	}
 
 }

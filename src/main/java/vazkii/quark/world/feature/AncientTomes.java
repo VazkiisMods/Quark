@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.google.gson.*;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -29,11 +31,13 @@ import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
+import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.world.item.ItemAncientTome;
 
@@ -51,6 +55,7 @@ public class AncientTomes extends Feature {
 		dungeonWeight = loadPropInt("Dungeon loot weight", "", 8);
 		libraryWeight = loadPropInt("Stronghold Library loot weight", "", 12);
 		itemQuality = loadPropInt("Item quality for loot", "", 2);
+		LootFunctionManager.registerFunction(new EnchantTomeFunction.Serializer());
 	}
 
 	@Override
@@ -181,7 +186,23 @@ public class AncientTomes extends Feature {
 			stack.addEnchantment(enchantment, enchantment.getMaxLevel());
 			return stack;
 		}
+		
+		public static class Serializer extends LootFunction.Serializer<EnchantTomeFunction> {
 
+			protected Serializer() {
+				super(new ResourceLocation(LibMisc.MOD_ID, "enchant_tome"), EnchantTomeFunction.class);
+			}
+
+			@Override
+			public void serialize(JsonObject object, EnchantTomeFunction functionClazz,
+					JsonSerializationContext serializationContext) {}
+
+			@Override
+			public EnchantTomeFunction deserialize(JsonObject object, JsonDeserializationContext deserializationContext,
+					LootCondition[] conditionsIn) {
+				return new EnchantTomeFunction();
+			}	
+		}
 	}
 
 }
