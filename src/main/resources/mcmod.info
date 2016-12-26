@@ -1,6 +1,6 @@
 [
 {
-  "modid": "Quark",
+  "modid": "quark",
   "name": "Quark",
   "description": "Small things.",
   "version": "${version}",
