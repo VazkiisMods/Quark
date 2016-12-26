@@ -40,6 +40,7 @@ import vazkii.quark.vanity.client.emotes.EmoteSalute;
 import vazkii.quark.vanity.client.emotes.EmoteShrug;
 import vazkii.quark.vanity.client.emotes.EmoteWave;
 import vazkii.quark.vanity.client.emotes.EmoteYes;
+import vazkii.quark.vanity.client.emotes.EmoteDab;
 import vazkii.quark.vanity.client.emotes.base.EmoteHandler;
 import vazkii.quark.vanity.client.emotes.base.EmoteKeybinds;
 import vazkii.quark.vanity.client.emotes.base.ModelAccessor;
@@ -75,6 +76,7 @@ public class EmoteSystem extends Feature {
 		EmoteHandler.emoteMap.put("shrug", EmoteShrug.class);
 		EmoteHandler.emoteMap.put("facepalm", EmoteFacepalm.class);
 		EmoteHandler.emoteMap.put("headbang", EmoteHeadbang.class);
+		EmoteHandler.emoteMap.put("dab", EmoteDab.class);
 
 		if(enableKeybinds)
 			EmoteKeybinds.init();
