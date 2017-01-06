@@ -333,11 +333,11 @@ item.quark:arrow_explosive.name=爆炸之箭
 item.quark:arrow_torch.name=火炬之箭
 
 # ENTITY NAMES
-entity.Quark.quark:colored_item_frame.name=染色物品展示框
-entity.Quark.dweller.name=穴居僵尸
-entity.Quark.ashen.name=穴居骷髅
-entity.Quark.pirate.name=海盗
-entity.Quark.wraith.name=游魂
+entity.quark.quark:colored_item_frame.name=染色物品展示框
+entity.quark.dweller.name=穴居僵尸
+entity.quark.ashen.name=穴居骷髅
+entity.quark.pirate.name=海盗
+entity.quark.wraith.name=游魂
 
 # POTION NAMES
 quark.potion.curse.name=诅咒
