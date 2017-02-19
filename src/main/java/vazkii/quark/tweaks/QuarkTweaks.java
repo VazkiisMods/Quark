@@ -40,6 +40,7 @@ import vazkii.quark.tweaks.feature.RightClickSignEdit;
 import vazkii.quark.tweaks.feature.ShearableChickens;
 import vazkii.quark.tweaks.feature.SheepArmor;
 import vazkii.quark.tweaks.feature.SlabsToBlocks;
+import vazkii.quark.tweaks.feature.SpongeDriesInNether;
 import vazkii.quark.tweaks.feature.StackableItems;
 import vazkii.quark.tweaks.feature.StairsMakeMore;
 import vazkii.quark.tweaks.feature.TorchesBurnInFurnaces;
@@ -82,6 +83,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new BetterVanillaTextures());
 		registerFeature(new VillagerPursueEmeralds(), "Villagers chase players holding Emerald Blocks");
 		registerFeature(new MapTooltip());
+		registerFeature(new SpongeDriesInNether(), "Wet sponge will dry in the nether");
 	}
 
 }

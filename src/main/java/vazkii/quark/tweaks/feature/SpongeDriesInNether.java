@@ -8,7 +8,7 @@
  *
  * File Created @ [19/02/2017, 14:24:42 (CET)]
  */
-package vazkii.quark.world.feature;
+package vazkii.quark.tweaks.feature;
 
 import net.minecraft.block.BlockSponge;
 import net.minecraft.init.Blocks;
