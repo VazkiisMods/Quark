@@ -34,8 +34,7 @@ public class StoneInfoBasedGenerator implements IWorldGenerator {
 		if(!info.enabled)
 			return;
 		
-		boolean isOverworld = world.provider.getDimensionType() == DimensionType.OVERWORLD;
-		if(!isOverworld)
+		if(world.provider.getDimensionType() != DimensionType.OVERWORLD)
 			return;
 		
 		int amount = 1;
