@@ -31,6 +31,8 @@ public class EntityColoredItemFrame extends EntityItemFrame implements IEntityAd
 
 	private static final DataParameter<Integer> COLOR = EntityDataManager.<Integer>createKey(EntityColoredItemFrame.class, DataSerializers.VARINT);
 	private static final String TAG_COLOR = "DyeColor";
+	private static final String TAG_ITEMDROPCHANCE = "ItemDropChance";
+	private float itemDropChance = 1.0F;
 
 	public EntityColoredItemFrame(World worldIn) {
 		super(worldIn);
@@ -72,6 +74,13 @@ public class EntityColoredItemFrame extends EntityItemFrame implements IEntityAd
 			}
 
 			entityDropItem(new ItemStack(ColoredItemFrames.colored_item_frame, 1, getColor()), 0.0F);
+
+			if(!itemstack.isEmpty() && rand.nextFloat() < itemDropChance) {
+				itemstack = itemstack.copy();
+				removeFrameFromMap(itemstack);
+				entityDropItem(itemstack, 0.0F);
+			}
+
 		}
 	}
 
@@ -95,6 +104,11 @@ public class EntityColoredItemFrame extends EntityItemFrame implements IEntityAd
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		dataManager.set(COLOR, compound.getInteger(TAG_COLOR));
+
+		if(compound.hasKey(TAG_ITEMDROPCHANCE, 99)) {
+			itemDropChance = compound.getFloat(TAG_ITEMDROPCHANCE);
+		}
+
 		super.readEntityFromNBT(compound);
 	}
 
