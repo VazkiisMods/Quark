@@ -107,6 +107,9 @@ public class AncientTomes extends Feature {
 				Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(right);
 				if(enchants.size() == 1) {
 					Enchantment ench = enchants.keySet().iterator().next();
+					if(ench == null)
+						return;
+
 					int level = enchants.get(ench);
 
 					if(level > ench.getMaxLevel() && ench.canApply(left)) {
