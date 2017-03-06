@@ -6,6 +6,8 @@ quarkmisc.chestButton.dropoff=存储到邻近箱子
 quarkmisc.chestButton.dropoff.shift=合并到邻近箱子
 quarkmisc.chestButton.sort=排序
 quarkmisc.incrementNote=音符键盘
+quarkmisc.craftButton.redo=重做合成
+quarkmisc.craftButton.balance=均分物品
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=粘土瓦砖
@@ -330,6 +332,14 @@ tile.quark:duskbound_block_stairs.name=黯际楼梯
 tile.quark:duskbound_block_wall.name=黯际墙
 tile.quark:duskbound_lantern.name=黯际灯
 tile.quark:sturdy_stone.name=硬质石头
+tile.quark:fire_stone.name=硫黄石
+tile.quark:icy_stone.name=永冻石
+tile.quark:glowcelium.name=荧光土
+tile.quark:glowshroom.name=荧光蘑菇
+tile.quark:fire_stone_slab.name=硫黄石台阶
+tile.quark:icy_stone_slab.name=永冻石台阶
+tile.quark:fire_stone_stairs.name=硫黄石楼梯
+tile.quark:icy_stone_stairs.name=永冻石楼梯
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
