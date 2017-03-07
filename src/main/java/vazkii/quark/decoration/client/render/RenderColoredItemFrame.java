@@ -21,7 +21,9 @@ import net.minecraft.client.renderer.block.model.ModelManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.tileentity.RenderItemFrame;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
@@ -36,7 +38,7 @@ import vazkii.quark.decoration.entity.EntityColoredItemFrame;
 
 // Basically a copy of RenderItemFrame
 @SideOnly(Side.CLIENT)
-public class RenderColoredItemFrame extends Render<EntityColoredItemFrame> {
+public class RenderColoredItemFrame extends RenderItemFrame {
 	private static final ResourceLocation MAP_BACKGROUND_TEXTURES = new ResourceLocation("textures/map/map_background.png");
 	private final Minecraft mc = Minecraft.getMinecraft();
 
@@ -45,12 +47,13 @@ public class RenderColoredItemFrame extends Render<EntityColoredItemFrame> {
 	private RenderItem itemRenderer;
 
 	public RenderColoredItemFrame(RenderManager renderManagerIn) {
-		super(renderManagerIn);
+		super(renderManagerIn, Minecraft.getMinecraft().getRenderItem());
 		itemRenderer = Minecraft.getMinecraft().getRenderItem();
 	}
 
 	@Override
-	public void doRender(EntityColoredItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(EntityItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks) {
+		EntityColoredItemFrame entityColored = (EntityColoredItemFrame) entity;
 		GlStateManager.pushMatrix();
 		BlockPos blockpos = entity.getHangingPosition();
 		double d0 = blockpos.getX() - entity.posX + x;
@@ -82,7 +85,7 @@ public class RenderColoredItemFrame extends Render<EntityColoredItemFrame> {
 
 		blockrendererdispatcher.getBlockModelRenderer().renderModelBrightnessColor(ibakedmodel1, 1.0F, 1.0F, 1.0F, 1.0F);
 
-		int color = ItemDye.DYE_COLORS[15 - entity.getColor()];
+		int color = ItemDye.DYE_COLORS[15 - entityColored.getColor()];
 		float r = (color >> 16 & 0xFF) / 255F;
 		float g = (color >> 8 & 0xFF) / 255F;
 		float b = (color & 0xFF) / 255F;
@@ -102,11 +105,11 @@ public class RenderColoredItemFrame extends Render<EntityColoredItemFrame> {
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityColoredItemFrame entity) {
+	protected ResourceLocation getEntityTexture(EntityItemFrame entity) {
 		return null;
 	}
 
-	private void renderItem(EntityColoredItemFrame itemFrame) {
+	private void renderItem(EntityItemFrame itemFrame) {
 		ItemStack itemstack = itemFrame.getDisplayedItem();
 
 		if(!itemstack.isEmpty()) {
@@ -123,28 +126,28 @@ public class RenderColoredItemFrame extends Render<EntityColoredItemFrame> {
 
 			GlStateManager.rotate(i * 360.0F / 8.0F, 0.0F, 0.0F, 1.0F);
 
-			//            net.minecraftforge.client.event.RenderItemInFrameEvent event = new net.minecraftforge.client.event.RenderItemInFrameEvent(itemFrame, this);
-			//            if (!net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
-			//            {
-			if(item instanceof net.minecraft.item.ItemMap) {
-				renderManager.renderEngine.bindTexture(MAP_BACKGROUND_TEXTURES);
-				GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-				float f = 0.0078125F;
-				GlStateManager.scale(f, f, f);
-				GlStateManager.translate(-64.0F, -64.0F, 0.0F);
-				MapData mapdata = Items.FILLED_MAP.getMapData(entityitem.getEntityItem(), itemFrame.getEntityWorld());
-				GlStateManager.translate(0.0F, 0.0F, -1.0F);
+			net.minecraftforge.client.event.RenderItemInFrameEvent event = new net.minecraftforge.client.event.RenderItemInFrameEvent(itemFrame, this);
+			if (!net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event)) {
+				if(item instanceof net.minecraft.item.ItemMap) {
+					renderManager.renderEngine.bindTexture(MAP_BACKGROUND_TEXTURES);
+					GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+					float f = 0.0078125F;
+					GlStateManager.scale(f, f, f);
+					GlStateManager.translate(-64.0F, -64.0F, 0.0F);
+					MapData mapdata = Items.FILLED_MAP.getMapData(entityitem.getEntityItem(), itemFrame.getEntityWorld());
+					GlStateManager.translate(0.0F, 0.0F, -1.0F);
 
-				if(mapdata != null)
-					mc.entityRenderer.getMapItemRenderer().renderMap(mapdata, true);
-			} else {
-				GlStateManager.scale(0.5F, 0.5F, 0.5F);
+					if(mapdata != null)
+						mc.entityRenderer.getMapItemRenderer().renderMap(mapdata, true);
+				} else {
+					GlStateManager.scale(0.5F, 0.5F, 0.5F);
 
-				GlStateManager.pushAttrib();
-				RenderHelper.enableStandardItemLighting();
-				itemRenderer.renderItem(entityitem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);
-				RenderHelper.disableStandardItemLighting();
-				GlStateManager.popAttrib();
+					GlStateManager.pushAttrib();
+					RenderHelper.enableStandardItemLighting();
+					itemRenderer.renderItem(entityitem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);
+					RenderHelper.disableStandardItemLighting();
+					GlStateManager.popAttrib();
+				}
 			}
 
 			GlStateManager.enableLighting();
@@ -153,7 +156,7 @@ public class RenderColoredItemFrame extends Render<EntityColoredItemFrame> {
 	}
 
 	@Override
-	protected void renderName(EntityColoredItemFrame entity, double x, double y, double z) {
+	protected void renderName(EntityItemFrame entity, double x, double y, double z) {
 		if(Minecraft.isGuiEnabled() && !entity.getDisplayedItem().isEmpty() && entity.getDisplayedItem().hasDisplayName() && renderManager.pointedEntity == entity) {
 			double d0 = entity.getDistanceSqToEntity(renderManager.renderViewEntity);
 			float f = entity.isSneaking() ? 32.0F : 64.0F;
