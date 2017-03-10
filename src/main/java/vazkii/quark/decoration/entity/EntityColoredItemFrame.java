@@ -10,10 +10,17 @@
  */
 package vazkii.quark.decoration.entity;
 
+import com.google.common.base.Predicate;
 import io.netty.buffer.ByteBuf;
+import javax.annotation.Nullable;
+import net.minecraft.block.BlockRedstoneDiode;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityHanging;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,18 +28,18 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapData;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import org.apache.commons.lang3.Validate;
 import vazkii.quark.decoration.feature.ColoredItemFrames;
 
-public class EntityColoredItemFrame extends EntityItemFrame implements IEntityAdditionalSpawnData {
+public class EntityColoredItemFrame extends EntityFlatItemFrame {
 
 	private static final DataParameter<Integer> COLOR = EntityDataManager.<Integer>createKey(EntityColoredItemFrame.class, DataSerializers.VARINT);
 	private static final String TAG_COLOR = "DyeColor";
-	private static final String TAG_ITEMDROPCHANCE = "ItemDropChance";
-	private float itemDropChance = 1.0F;
 
 	public EntityColoredItemFrame(World worldIn) {
 		super(worldIn);
@@ -54,45 +61,8 @@ public class EntityColoredItemFrame extends EntityItemFrame implements IEntityAd
 		return dataManager.get(COLOR);
 	}
 
-	@Override
-	public void dropItemOrSelf(Entity entityIn, boolean p_146065_2_) {
-		if(!p_146065_2_) {
-			super.dropItemOrSelf(entityIn, p_146065_2_);
-			return;
-		}
-
-		if(getEntityWorld().getGameRules().getBoolean("doEntityDrops")) {
-			ItemStack itemstack = getDisplayedItem();
-
-			if(entityIn instanceof EntityPlayer) {
-				EntityPlayer entityplayer = (EntityPlayer)entityIn;
-
-				if(entityplayer.capabilities.isCreativeMode) {
-					removeFrameFromMap(itemstack);
-					return;
-				}
-			}
-
-			entityDropItem(new ItemStack(ColoredItemFrames.colored_item_frame, 1, getColor()), 0.0F);
-
-			if(!itemstack.isEmpty() && rand.nextFloat() < itemDropChance) {
-				itemstack = itemstack.copy();
-				removeFrameFromMap(itemstack);
-				entityDropItem(itemstack, 0.0F);
-			}
-
-		}
-	}
-
-	private void removeFrameFromMap(ItemStack stack) {
-		if(!stack.isEmpty()) {
-			if(stack.getItem() instanceof ItemMap) {
-				MapData mapdata = ((ItemMap) stack.getItem()).getMapData(stack, getEntityWorld());
-				mapdata.mapDecorations.remove("frame-" + getEntityId());
-			}
-
-			stack.setItemFrame((EntityItemFrame) null);
-		}
+	protected void dropFrame() {
+		entityDropItem(new ItemStack(ColoredItemFrames.colored_item_frame, 1, getColor()), 0.0F);
 	}
 
 	@Override
@@ -104,22 +74,6 @@ public class EntityColoredItemFrame extends EntityItemFrame implements IEntityAd
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		dataManager.set(COLOR, compound.getInteger(TAG_COLOR));
-
-		if(compound.hasKey(TAG_ITEMDROPCHANCE, 99)) {
-			itemDropChance = compound.getFloat(TAG_ITEMDROPCHANCE);
-		}
-
 		super.readEntityFromNBT(compound);
 	}
-
-	@Override
-	public void writeSpawnData(ByteBuf buffer) {
-		buffer.writeShort(facingDirection.getHorizontalIndex());
-	}
-
-	@Override
-	public void readSpawnData(ByteBuf additionalData) {
-		updateFacingWithBoundingBox(EnumFacing.getHorizontal(additionalData.readShort()));
-	}
-
 }

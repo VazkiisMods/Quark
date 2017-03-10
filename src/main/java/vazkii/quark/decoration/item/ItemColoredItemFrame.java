@@ -27,7 +27,10 @@ import vazkii.arl.interf.IExtraVariantHolder;
 import vazkii.arl.interf.IItemColorProvider;
 import vazkii.arl.item.ItemMod;
 import vazkii.quark.base.item.IQuarkItem;
+import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.decoration.entity.EntityColoredItemFrame;
+import vazkii.quark.decoration.feature.FlatItemFrames;
+
 
 public class ItemColoredItemFrame extends ItemMod implements IItemColorProvider, IExtraVariantHolder, IQuarkItem {
 
@@ -67,7 +70,7 @@ public class ItemColoredItemFrame extends ItemMod implements IItemColorProvider,
 		ItemStack stack = playerIn.getHeldItem(hand);
 		BlockPos blockpos = pos.offset(facing);
 
-		if(facing != EnumFacing.DOWN && facing != EnumFacing.UP && playerIn.canPlayerEdit(blockpos, facing, stack)) {
+		if((ModuleLoader.isFeatureEnabled(FlatItemFrames.class) || facing.getAxis() != EnumFacing.Axis.Y) && playerIn.canPlayerEdit(blockpos, facing, stack)) {
 			EntityHanging entityhanging = createEntity(worldIn, blockpos, facing, stack.getItemDamage());
 
 			if(entityhanging != null && entityhanging.onValidSurface()) {
