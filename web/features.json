@@ -43,10 +43,17 @@
 				"introduced":9
 			},
 			{
-				"name":"Pistons move Tile Entities",
+				"name":"Pistons Move Tile Entities",
 				"description":"Pistons are allowed to move Tile Entities (blocks with extra data attached, like Chests or Furnaces).<br>Attempting to move a block to an invalid position will cause it to break and drop its contents (e.g. trying to create a triple chest).<br>Monster Spawners can't be moved this way.<br><br>For a block that pistons can't move, now that furnaces can't be used, look into Sturdy Stone in the Building module.",
 				"image":"pistons-move-tes.jpg",
 				"introduced":11
+			},
+			{
+				"name":"Dispensers Place Blocks",
+				"description":"Dispensers are allowed to place blocks in the world. Any blocks that already had a placement behaviour, like TNT, are ignored.<br><br>The blocks are rotated so they're placed forward from the dispenser.",
+				"image":"dispensers-place-blocks.jpg",
+				"introduced":11,
+				"overlap": ["BlockDispenser"]
 			}
 		]
 	},
@@ -529,6 +536,12 @@
 				"name":"Sponges dry in the Nether",
 				"description":"Title says it all, really. Placing a sponge in the nether will cause it to dry out without needing fuel.",
 				"image":"nether-sponge.jpg",
+				"introduced":11
+			},
+			{
+				"name":"Better Shulker Box Tooltip",
+				"description":"Shulker Boxes show their items while being hovered in an inventory display rather than displaying the item names on the tooltip.",
+				"image":"shulker-box-tooltip.jpg",
 				"introduced":11
 			}
 		]

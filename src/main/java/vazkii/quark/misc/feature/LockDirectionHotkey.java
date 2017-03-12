@@ -3,15 +3,16 @@ package vazkii.quark.misc.feature;
 import java.util.HashMap;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLSync;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockStairs;
@@ -62,35 +63,49 @@ public class LockDirectionHotkey extends Feature {
 		
 		World world = event.getWorld();
 		IBlockState state = event.getPlacedBlock();
-		Block block = state.getBlock();
 		BlockPos pos = event.getPos();
 		
 		String name = event.getPlayer().getName();
 		if(lockProfiles.containsKey(name)) {
 			LockProfile profile = lockProfiles.get(name);
-			ImmutableMap<IProperty<?>, Comparable<?>> props = state.getProperties(); 
-			
-			IBlockState setState = state;
-			
-			if(props.containsKey(BlockDirectional.FACING))
-				setState = state.withProperty(BlockDirectional.FACING, profile.facing.getOpposite());
-			else if(props.containsKey(BlockHorizontal.FACING) && profile.facing.getAxis() != Axis.Y)
-				setState = state.withProperty(BlockHorizontal.FACING, profile.facing.getOpposite());
-			else if(props.containsKey(BlockRotatedPillar.AXIS))
-				setState = state.withProperty(BlockRotatedPillar.AXIS, profile.facing.getAxis());
-			else if(props.containsKey(BlockLog.LOG_AXIS))
-				setState = state.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(profile.facing.getAxis()));
-			if(profile.half != -1) {
-				if(block instanceof BlockStairs) {
-					setState = setState.withProperty(BlockStairs.HALF, profile.half == 1 ? BlockStairs.EnumHalf.TOP : BlockStairs.EnumHalf.BOTTOM)
-							.withProperty(BlockHorizontal.FACING, profile.facing);
-				} else if(block instanceof BlockSlab)
-					setState = setState.withProperty(BlockSlab.HALF, profile.half == 1 ? BlockSlab.EnumBlockHalf.TOP : BlockSlab.EnumBlockHalf.BOTTOM);
-			}
-			
-			if(setState != state)
-				world.setBlockState(pos, setState);
+			setBlockRotated(world, state, pos, profile.facing.getOpposite(), true, profile.half);
 		}
+	}
+	
+	public static void setBlockRotated(World world, IBlockState state, BlockPos pos, EnumFacing face) {
+		setBlockRotated(world, state, pos, face, false, -1);
+	}
+
+	public static void setBlockRotated(World world, IBlockState state, BlockPos pos, EnumFacing face, boolean stateCheck, int half) {
+		IBlockState setState = state;
+		ImmutableMap<IProperty<?>, Comparable<?>> props = state.getProperties(); 
+		Block block = state.getBlock();
+		
+		if(props.containsKey(BlockDirectional.FACING))
+			setState = state.withProperty(BlockDirectional.FACING, face);
+		else if(props.containsKey(BlockHorizontal.FACING) && face.getAxis() != Axis.Y) {
+			if(block instanceof BlockStairs)
+				setState = state.withProperty(BlockHorizontal.FACING, face.getOpposite());
+			else setState = state.withProperty(BlockHorizontal.FACING, face);
+		} else if(props.containsKey(BlockRotatedPillar.AXIS))
+			setState = state.withProperty(BlockRotatedPillar.AXIS, face.getAxis());
+		else if(props.containsKey(BlockLog.LOG_AXIS))
+			setState = state.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(face.getAxis()));
+		else if(props.containsKey(BlockQuartz.VARIANT)) {
+			BlockQuartz.EnumType type = state.getValue(BlockQuartz.VARIANT);
+			if(ImmutableSet.of(BlockQuartz.EnumType.LINES_X, BlockQuartz.EnumType.LINES_Y, BlockQuartz.EnumType.LINES_Z).contains(type))
+				setState = state.withProperty(BlockQuartz.VARIANT, BlockQuartz.VARIANT.parseValue("lines_" + face.getAxis().getName()).or(BlockQuartz.EnumType.LINES_Y));
+		}
+			
+		if(half != -1) {
+			if(block instanceof BlockStairs)
+				setState = setState.withProperty(BlockStairs.HALF, half == 1 ? BlockStairs.EnumHalf.TOP : BlockStairs.EnumHalf.BOTTOM);
+			else if(block instanceof BlockSlab)
+				setState = setState.withProperty(BlockSlab.HALF, half == 1 ? BlockSlab.EnumBlockHalf.TOP : BlockSlab.EnumBlockHalf.BOTTOM);
+		}
+		
+		if(!stateCheck || setState != state)
+			world.setBlockState(pos, setState);
 	}
 	
 	@SubscribeEvent

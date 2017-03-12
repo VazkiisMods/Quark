@@ -53,7 +53,8 @@ public class GreenerGrass extends Feature {
 				"buildingbrickscompatvanilla:grass_step",
 				"buildingbrickscompatvanilla:grass_corner",
 				"buildingbrickscompatvanilla:grass_vertical_slab",
-				"buildingbrickscompatvanilla:grass_stairs"
+				"buildingbrickscompatvanilla:grass_stairs",
+				"betterwithmods:dirt_slab"
 		}));
 	}
 

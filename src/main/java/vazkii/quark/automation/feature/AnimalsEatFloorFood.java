@@ -15,7 +15,7 @@ public class AnimalsEatFloorFood extends Feature {
 	public void onEntityTick(LivingUpdateEvent event) {
 		if(event.getEntityLiving() instanceof EntityAnimal) {
 			EntityAnimal animal = (EntityAnimal) event.getEntityLiving();
-			if(animal.getGrowingAge() == 0 && !animal.isInLove()) {
+			if(animal.getGrowingAge() == 0 && !animal.isInLove() && !animal.isDead) {
 				double range = 2;
 				List<EntityItem> nearbyFood = animal.getEntityWorld().getEntitiesWithinAABB(EntityItem.class, animal.getEntityBoundingBox().expand(range, 0, range),
 						(EntityItem i) -> !i.getEntityItem().isEmpty() && !i.isDead && animal.isBreedingItem(i.getEntityItem()));

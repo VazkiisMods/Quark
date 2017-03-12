@@ -8,6 +8,8 @@ quarkmisc.chestButton.sort=Sort
 quarkmisc.incrementNote=Increment Note
 quarkmisc.craftButton.redo=Redo Recipe
 quarkmisc.craftButton.balance=Balance Grid
+quarkmisc.shulkerBoxShift=Hold Shift to see contents
+quarkmisc.mapShift=Hold Shift to see the map
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=Clay Shingles

@@ -11,6 +11,7 @@
 package vazkii.quark.tweaks.feature;
 
 import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,7 @@ public class BabyZombiesBurn extends Feature {
 
 	@SubscribeEvent
 	public void entityUpdate(LivingUpdateEvent event) {
-		if(event.getEntity() instanceof EntityZombie) {
+		if(event.getEntity() instanceof EntityZombie && !(event.getEntity() instanceof EntityHusk)) {
 			EntityZombie zombie = (EntityZombie) event.getEntity();
 
 			if(zombie.getEntityWorld().isDaytime() && !zombie.getEntityWorld().isRemote && zombie.isChild()) {
