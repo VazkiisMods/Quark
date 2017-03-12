@@ -8,6 +8,8 @@ quarkmisc.chestButton.sort=排序
 quarkmisc.incrementNote=音符键盘
 quarkmisc.craftButton.redo=重做合成
 quarkmisc.craftButton.balance=均分物品
+quarkmisc.shulkerBoxShift=按住Shift查看内容
+quarkmisc.mapShift=按住Shift查看地图
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=粘土瓦砖
