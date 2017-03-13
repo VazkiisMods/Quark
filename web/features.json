@@ -223,6 +223,12 @@
 				"introduced":9
 			},
 			{
+				"name":"Flat Item Frames",
+				"description":"Item Frames and Colored Item Frames can be placed on floors and ceilings. The top of the frame is oriented north in both cases.",
+				"image":"flat-item-frames.jpg",
+				"introduced":11
+			},
+			{
 				"name":"Iron Ladders",
 				"description":"Iron Ladders can be crafted with the H shape of Iron Ingots. They work like normal ladders, except that they can stand by themselves as long as there is an Iron Ladder on top of them, like in the picture.",
 				"image":"iron-ladders.jpg",
