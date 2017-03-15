@@ -342,6 +342,7 @@ tile.quark:fire_stone_slab.name=硫黄石台阶
 tile.quark:icy_stone_slab.name=永冻石台阶
 tile.quark:fire_stone_stairs.name=硫黄石楼梯
 tile.quark:icy_stone_stairs.name=永冻石楼梯
+tile.quark:iron_rod.name=铁棒
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
@@ -445,6 +446,7 @@ quark.keybind.emote.point=动作：指点
 quark.keybind.emote.headbang=动作：摇头
 quark.keybind.lockBuilding=锁定朝向
 quark.keybind.toggleAutojump=自动跳跃开关
+quark.keybind.changeHotbar=切换快捷栏
 
 # GUI STUFF
 quark.gui.emotes=动作
