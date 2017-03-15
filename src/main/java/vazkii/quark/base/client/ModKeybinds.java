@@ -15,6 +15,7 @@ public class ModKeybinds {
 	
 	public static KeyBinding lockKey = null;
 	public static KeyBinding autoJumpKey = null;
+	public static KeyBinding changeHotbarKey = null;
 	
 	public static void initEmoteKeybinds() {
 		for(String emoteName : EmoteHandler.emoteMap.keySet()) {
@@ -29,6 +30,10 @@ public class ModKeybinds {
 	
 	public static void initAutoJumpKey() {
 		autoJumpKey = init("toggleAutojump", Keyboard.KEY_B);
+	}
+	
+	public static void initChangeHotbarKey() {
+		changeHotbarKey = init("changeHotbar", Keyboard.KEY_X);
 	}
 	
 	public static KeyBinding init(String s, int key) {

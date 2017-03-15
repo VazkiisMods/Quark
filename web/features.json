@@ -11,8 +11,8 @@
 				"overlap": ["Botania"]
 			},
 			{
-				"name":"End Rods as Block Breakers",
-				"description":"Pistons that push an End Rod will have it work as a drill of sorts, breaking any blocks in front in the direction the rod is facing.<br><br>These can break anything the piston can push.",
+				"name":"Piston Block Breakers",
+				"description":"Pistons pusing an Iron Rod will have it work as a drill of sorts, breaking any blocks in front in the direction the rod is facing. These can break anything the piston can push.<br><br>Iron Rods are crafted with 2 Iron Ingots and an End Rod, or just 3 Iron Ingots if you enable easy mode in the config.<br><br>Note: In 1.10, a normal End Rod block is used instead.",
 				"image":"piston-block-breakers.jpg",
 				"introduced":10
 			},
@@ -230,6 +230,12 @@
 				"introduced":9
 			},
 			{
+				"name":"Flat Item Frames",
+				"description":"Item Frames and Colored Item Frames can be placed on floors and ceilings. The top of the frame is oriented north in both cases.",
+				"image":"flat-item-frames.jpg",
+				"introduced":11
+			},
+			{
 				"name":"Iron Ladders",
 				"description":"Iron Ladders can be crafted with the H shape of Iron Ingots. They work like normal ladders, except that they can stand by themselves as long as there is an Iron Ladder on top of them, like in the picture.",
 				"image":"iron-ladders.jpg",
@@ -318,6 +324,12 @@
 				"name":"Better Crafting Shift-Clicking",
 				"description":"Shift-clicking an item in your inventory in the crafting table interface will move it to the crafting grid, and not the hotbar.",
 				"image":"better-craft-shifting.jpg",
+				"introduced":11
+			},
+			{
+				"name":"Hotbar Changer",
+				"description":"Pressing the X key (rebindable) will show your entire inventory above your hotbar. You can then press 1, 2, or 3, to switch that respective inventory row with your hotbar. Pressing X again will hide the 3 additional rows with no change.",
+				"image":"hotbar-changer.jpg",
 				"introduced":11
 			}
 		]
@@ -516,7 +528,7 @@
 			},
 			{
 				"name":"Texture Changes",
-				"description":"Quark generates a \"low priority resource pack\", changing some textures to less rough or more sensible variants. Each of these can be turned off individually, and will be overriden by any other resource pack you load on top. The current changes are as follows:<ul><li>1.8 Stones (smoother texture)</li><li>Bricks (some color variance)</li><li>Glass (less spots)</li><li>Pistons (model swap to look like the pocket edition ones, sticky piston sides, 1.11 only)</li><li>Pumpkin (disables the face, off by default)</li></ul>",
+				"description":"Quark generates a \"low priority resource pack\", changing some textures to less rough or more sensible variants. Each of these can be turned off individually, and will be overriden by any other resource pack you load on top. The current changes are as follows:<ul><li>1.8 Stones (smoother texture)</li><li>Bricks (some color variance)</li><li>Glass (less spots)</li><li>Pistons (model swap to look like the pocket edition ones, sticky piston sides, 1.11 only)</li><li>Pumpkin (disables the face, off by default)</li><li>Bow (improved pull animation, with more frames)</li></ul>",
 				"image":"texture-changes.jpg",
 				"introduced":10
 			},

@@ -1,0 +1,24 @@
+{
+	"Comment": "Designed by Wiiv with Cubik Studio - https://cubik.studio",
+	"parent": "block/end_rod",
+	"textures": {
+		"iron_rod": "quark:blocks/iron_rod",
+		"particle": "quark:blocks/iron_rod"
+		
+	},
+	"elements": [
+		{
+			"Comment": "Rod",
+			"from": [ 7, 0, 7 ],
+			"to": [ 9, 16, 9 ],
+			"faces": {
+				"down": { "uv": [ 0, 13, 2, 16 ], "texture": "#iron_rod" },
+				"up": { "uv": [ 2, 0, 4, 2 ], "texture": "#iron_rod" },
+				"north": { "uv": [ 0, 0, 2, 16 ], "texture": "#iron_rod" },
+				"south": { "uv": [ 0, 0, 2, 16 ], "texture": "#iron_rod" },
+				"west": { "uv": [ 0, 0, 2, 16 ], "texture": "#iron_rod" },
+				"east": { "uv": [ 0, 0, 2, 16 ], "texture": "#iron_rod" }
+			}
+		}
+	]
+}

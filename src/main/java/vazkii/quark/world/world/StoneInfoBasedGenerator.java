@@ -22,6 +22,9 @@ public class StoneInfoBasedGenerator {
 	
 	WorldGenMinable generator;
 	long seedXor;
+	
+	// The lock has to be present to prevent chunk bleeding with really large values
+	boolean lock;
 
 	public StoneInfoBasedGenerator(Supplier<StoneInfo> infoSupplier, IBlockState state, String name) {
 		this.infoSupplier = infoSupplier;
@@ -32,6 +35,9 @@ public class StoneInfoBasedGenerator {
 	}
 
 	public void generate(int chunkX, int chunkZ, World world) {
+		if(lock)
+			return;
+		
 		Random rand = new Random(world.getSeed());
         long xSeed = rand.nextLong() >> 2 + 1L;
         long zSeed = rand.nextLong() >> 2 + 1L;
@@ -57,7 +63,8 @@ public class StoneInfoBasedGenerator {
 		int lower = Math.abs(info.lowerBound);
 		int range = Math.abs(info.upperBound - info.lowerBound);
 
-		if(rand.nextInt(chance) == 0)
+		if(rand.nextInt(chance) == 0) {
+			lock = true;
 			for(int i = 0; i < amount; i++) {
 				int x = chunkX * 16 + rand.nextInt(16);
 				int y = rand.nextInt(range) + lower;
@@ -74,6 +81,8 @@ public class StoneInfoBasedGenerator {
 
 				generator.generate(world, rand, pos);
 			}
+			lock = false;
+		}
 	}
 	
 	public boolean canGenerateInBiome(Biome b) {

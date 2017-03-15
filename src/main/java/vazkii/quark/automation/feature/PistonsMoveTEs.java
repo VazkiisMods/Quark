@@ -33,7 +33,7 @@ public class PistonsMoveTEs extends Feature {
 	@Override
 	public void setupConfig() {
 		String[] renderBlacklistArray = loadPropStringList("Tile Entity Render Blacklist", "Some mod blocks with complex renders will break everything if moved. Add them here if you find any.", 
-				new String[] { "psi:programmer" });
+				new String[] { "psi:programmer", "botania:starfield" });
 		String[] movementBlacklistArray = loadPropStringList("Tile Entity Movement Blacklist", "Blocks with Tile Entities that pistons should not be able to move.", 
 				new String[] { "minecraft:mob_spawner" });
 		String[] delayedUpdateListArray = loadPropStringList("Delayed Update List", "List of blocks whose tile entity update should be delayed by one tick after placed to prevent corruption.", 

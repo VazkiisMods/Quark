@@ -28,7 +28,7 @@ public class QuarkAutomation extends Module {
 		registerFeature(new DispensersPlaceSeeds());
 		registerFeature(new RainDetector());
 		registerFeature(new EnderWatcher());
-		registerFeature(new PistonSpikes(), "Ender Rods as Block Breakers");
+		registerFeature(new PistonSpikes(), "Piston Block Breakers");
 		registerFeature(new AnimalsEatFloorFood());
 		registerFeature(new PistonsMoveTEs());
 		registerFeature(new DispensersPlaceBlocks());

@@ -34,19 +34,26 @@ import vazkii.quark.management.client.gui.GuiButtonChest.Action;
 
 public class ChestButtons extends Feature {
 
-	boolean deposit, smartDeposit, restock, sort;
-	int xShift, yShift;
-
+	ButtonInfo deposit, smartDeposit, restock, sort;
+	
 	@Override
 	public void setupConfig() {
-		deposit = loadPropBool("Enable Deposit Button", "", true);
-		smartDeposit = loadPropBool("Enable Smart Deposit Button", "", true);
-		restock = loadPropBool("Enable Restock Button", "", true);
-		sort = loadPropBool("Enable Sort Button", "The Sort button is only available if the Inventory Sorting feature is enabled", true);
-		xShift = loadPropInt("Horizontal Icon Shift", "", -18);
-		yShift = loadPropInt("Vertical Icon Shift", "", 0);
+		deposit = loadButtonInfo("deposit", "", -18, -60);
+		smartDeposit = loadButtonInfo("smart_deposit", "", -18, -40);
+		restock = loadButtonInfo("restock", "", -18, 18);
+		sort = loadButtonInfo("sort", "The Sort button is only available if the Inventory Sorting feature is enable", -18, 36);
 	}
-
+	
+	private ButtonInfo loadButtonInfo(String name, String comment, int xShift, int yShift) {
+		ButtonInfo info = new ButtonInfo();
+		String category = configCategory + "." + name;
+		
+		info.enabled = ModuleLoader.config.getBoolean("Enabled", category, true, comment); 
+		info.xShift = ModuleLoader.config.getInt("X Position", category, xShift, Integer.MIN_VALUE, Integer.MAX_VALUE, "");
+		info.yShift = ModuleLoader.config.getInt("Y Position", category, yShift, Integer.MIN_VALUE, Integer.MAX_VALUE, "");
+		return info;
+	}
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void initGui(GuiScreenEvent.InitGuiEvent.Post event) {
@@ -73,14 +80,14 @@ public class ChestButtons extends Feature {
 
 			for(Slot s : container.inventorySlots)
 				if(s.inventory == player.inventory && s.getSlotIndex() == 9) {
-					if(sort && ModuleLoader.isFeatureEnabled(InventorySorting.class))
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SORT, 13210, guiLeft + xShift, guiTop + s.yPos - 60 + yShift));
-					if(restock)
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.RESTOCK, 13211, guiLeft + xShift, guiTop + s.yPos - 40 + yShift));
-					if(deposit)
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.DEPOSIT, 13212, guiLeft + xShift, guiTop + s.yPos + 18 + yShift));
-					if(smartDeposit)
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SMART_DEPOSIT, 13213, guiLeft + xShift, guiTop + s.yPos + 36 + yShift));
+					if(sort.enabled && ModuleLoader.isFeatureEnabled(InventorySorting.class))
+						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SORT, 13210, guiLeft + sort.xShift, guiTop + s.yPos + sort.yShift));
+					if(restock.enabled)
+						event.getButtonList().add(new GuiButtonChest(guiInv, Action.RESTOCK, 13211, guiLeft + restock.xShift, guiTop + s.yPos + restock.yShift));
+					if(deposit.enabled)
+						event.getButtonList().add(new GuiButtonChest(guiInv, Action.DEPOSIT, 13212, guiLeft + deposit.xShift, guiTop + s.yPos + deposit.yShift));
+					if(smartDeposit.enabled)
+						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SMART_DEPOSIT, 13213, guiLeft + smartDeposit.xShift, guiTop + s.yPos + smartDeposit.yShift));
 					
 					break;
 				}
@@ -115,6 +122,11 @@ public class ChestButtons extends Feature {
 	@Override
 	public boolean hasSubscriptions() {
 		return isClient();
+	}
+	
+	private static class ButtonInfo {
+		boolean enabled;
+		int xShift, yShift;
 	}
 
 }

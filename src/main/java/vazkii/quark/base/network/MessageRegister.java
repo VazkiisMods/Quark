@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import vazkii.arl.network.NetworkHandler;
 import vazkii.arl.network.NetworkMessage;
 import vazkii.quark.base.network.message.MessageChangeConfig;
+import vazkii.quark.base.network.message.MessageChangeHotbar;
 import vazkii.quark.base.network.message.MessageDeleteItem;
 import vazkii.quark.base.network.message.MessageDisableDropoffClient;
 import vazkii.quark.base.network.message.MessageDoEmote;
@@ -42,6 +43,7 @@ public class MessageRegister {
 		NetworkHandler.register(MessageSortInventory.class, Side.SERVER);
 		NetworkHandler.register(MessageTuneNoteBlock.class, Side.SERVER);
 		NetworkHandler.register(MessageSetLockProfile.class, Side.SERVER);
+		NetworkHandler.register(MessageChangeHotbar.class, Side.SERVER);
 
 		NetworkMessage.mapHandler(LockProfile.class, LockProfile::readProfile, LockProfile::writeProfile);
 	}

@@ -8,6 +8,7 @@ import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
@@ -36,8 +37,6 @@ public class ShulkerBoxTooltip extends Feature {
 
 	boolean useColors, requireShift;
 
-	ItemStack currentBox = null;
-	int currentX, currentY;
 
 	@Override
 	public void setupConfig() {
@@ -67,66 +66,68 @@ public class ShulkerBoxTooltip extends Feature {
 
 	@SubscribeEvent
 	public void renderTooltip(RenderTooltipEvent.PostText event) {
-		if(event.getStack() != null && event.getStack().getItem() instanceof ItemShulkerBox && event.getStack().hasTagCompound()) {
+		if(event.getStack() != null && event.getStack().getItem() instanceof ItemShulkerBox && event.getStack().hasTagCompound() && (!requireShift || GuiScreen.isShiftKeyDown())) {
 			NBTTagCompound cmp = ItemNBTHelper.getCompound(event.getStack(), "BlockEntityTag", true);
 			if(cmp.hasKey("Items", 9)) {
-				currentBox = event.getStack();
-				currentX = event.getX() - 5;
-				currentY = event.getY() - 70;
-			}
-		}
-	}
+				ItemStack currentBox = event.getStack();
+				int currentX = event.getX() - 5;
+				int currentY = event.getY() - 70;
+				
+				int texWidth = 172;
+				int texHeight = 64;
+				
+				if(currentY < 0)
+					currentY = event.getY() + event.getLines().size() * 10 + 5;
+				
+				ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
+				int right = currentX + texWidth;
+				if(right  > res.getScaledWidth())
+					currentX -= (right - res.getScaledWidth());
+				
+				GlStateManager.pushMatrix();
+				RenderHelper.enableStandardItemLighting();
+				GlStateManager.enableRescaleNormal();
+				GlStateManager.color(1F, 1F, 1F);
+				GlStateManager.translate(0, 0, 700);
 
-	@SubscribeEvent
-	public void finishRender(RenderTickEvent event) {
-		if(event.phase == Phase.END && currentBox != null && (!requireShift || GuiScreen.isShiftKeyDown())) {
-			GlStateManager.pushMatrix();
-			RenderHelper.enableStandardItemLighting();
-			GlStateManager.enableRescaleNormal();
-			GlStateManager.color(1F, 1F, 1F);
-			GlStateManager.translate(0, 0, 700);
+				Minecraft mc = Minecraft.getMinecraft();
+				mc.getTextureManager().bindTexture(WIDGET_RESOURCE);
 
-			Minecraft mc = Minecraft.getMinecraft();
-			mc.getTextureManager().bindTexture(WIDGET_RESOURCE);
-
-			NBTTagCompound cmp = ItemNBTHelper.getCompound(currentBox, "BlockEntityTag", true);
-
-			RenderHelper.disableStandardItemLighting();
-			
-			if(useColors) {
-				EnumDyeColor dye = ((BlockShulkerBox) ((ItemBlock) currentBox.getItem()).getBlock()).getColor();
-				int color = ItemDye.DYE_COLORS[dye.getDyeDamage()];
-				Color colorObj = new Color(color);
-				GlStateManager.color((float) colorObj.getRed() / 255F, (float) colorObj.getGreen() / 255F, (float) colorObj.getBlue() / 255F);
-			}
-			Gui.drawModalRectWithCustomSizedTexture(currentX, currentY, 0, 0, 172, 64, 256, 256);
-			
-			GlStateManager.color(1F, 1F, 1F);
-
-			NonNullList<ItemStack> itemList = NonNullList.<ItemStack>withSize(27, ItemStack.EMPTY);
-			ItemStackHelper.loadAllItems(cmp, itemList);
-
-			RenderItem render = mc.getRenderItem();
-
-			RenderHelper.enableGUIStandardItemLighting();
-			GlStateManager.enableDepth();
-			int i = 0;
-			for(ItemStack itemstack : itemList) {
-				if(!itemstack.isEmpty()) {
-					int xp = currentX + 6 + (i % 9) * 18;
-					int yp = currentY + 6 + (i / 9) * 18;
-
-					render.renderItemAndEffectIntoGUI(itemstack, xp, yp);
-					render.renderItemOverlays(mc.fontRendererObj, itemstack, xp, yp);
+				RenderHelper.disableStandardItemLighting();
+				
+				if(useColors) {
+					EnumDyeColor dye = ((BlockShulkerBox) ((ItemBlock) currentBox.getItem()).getBlock()).getColor();
+					int color = ItemDye.DYE_COLORS[dye.getDyeDamage()];
+					Color colorObj = new Color(color);
+					GlStateManager.color((float) colorObj.getRed() / 255F, (float) colorObj.getGreen() / 255F, (float) colorObj.getBlue() / 255F);
 				}
-				i++;
+				Gui.drawModalRectWithCustomSizedTexture(currentX, currentY, 0, 0, texWidth, texHeight, 256, 256);
+				
+				GlStateManager.color(1F, 1F, 1F);
+
+				NonNullList<ItemStack> itemList = NonNullList.<ItemStack>withSize(27, ItemStack.EMPTY);
+				ItemStackHelper.loadAllItems(cmp, itemList);
+
+				RenderItem render = mc.getRenderItem();
+
+				RenderHelper.enableGUIStandardItemLighting();
+				GlStateManager.enableDepth();
+				int i = 0;
+				for(ItemStack itemstack : itemList) {
+					if(!itemstack.isEmpty()) {
+						int xp = currentX + 6 + (i % 9) * 18;
+						int yp = currentY + 6 + (i / 9) * 18;
+
+						render.renderItemAndEffectIntoGUI(itemstack, xp, yp);
+						render.renderItemOverlays(mc.fontRendererObj, itemstack, xp, yp);
+					}
+					i++;
+				}
+
+				GlStateManager.disableDepth();
+				GlStateManager.disableRescaleNormal();
+				GlStateManager.popMatrix();
 			}
-
-			GlStateManager.disableDepth();
-			GlStateManager.disableRescaleNormal();
-			GlStateManager.popMatrix();
-
-			currentBox = null;
 		}
 	}
 

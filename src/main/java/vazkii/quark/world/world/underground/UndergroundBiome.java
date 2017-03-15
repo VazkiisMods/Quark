@@ -113,7 +113,7 @@ public abstract class UndergroundBiome {
 
 	public void fill(World world, BlockPos pos) {
 		IBlockState state = world.getBlockState(pos);
-		if(state.getBlock().getBlockHardness(state, world, pos) == -1)
+		if(state.getBlock().getBlockHardness(state, world, pos) == -1 || world.canBlockSeeSky(pos))
 			return;
 
 		if(isFloor(world, pos, state)) {
@@ -189,7 +189,7 @@ public abstract class UndergroundBiome {
 	}
 	
 	boolean isFloor(World world, BlockPos pos, IBlockState state) {
-		if(!state.isFullBlock())
+		if(!state.isFullBlock() || !state.isOpaqueCube())
 			return false;
 
 		BlockPos upPos = pos.up();
@@ -197,7 +197,7 @@ public abstract class UndergroundBiome {
 	}
 
 	boolean isCeiling(World world, BlockPos pos, IBlockState state) {
-		if(!state.isFullBlock())
+		if(!state.isFullBlock() || !state.isOpaqueCube())
 			return false;
 
 		BlockPos downPos = pos.down();
@@ -205,7 +205,7 @@ public abstract class UndergroundBiome {
 	}
 
 	boolean isWall(World world, BlockPos pos, IBlockState state) {
-		if(!state.isFullBlock() || !STONE_PREDICATE.apply(state))
+		if(!state.isFullBlock() || !state.isOpaqueCube() || !STONE_PREDICATE.apply(state))
 			return false;
 
 		return isBorder(world, pos, state);

@@ -13,28 +13,27 @@ package vazkii.quark.world.client.render;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderZombie;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import vazkii.quark.world.client.model.ModelWraith;
+import vazkii.quark.world.entity.EntityWraith;
 
-public class RenderWraith extends RenderZombie {
+public class RenderWraith extends RenderLiving<EntityWraith> {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation("quark", "textures/entity/wraith.png");
 
 	public static final IRenderFactory FACTORY = (RenderManager manager) -> new RenderWraith(manager);
 
 	public RenderWraith(RenderManager renderManagerIn) {
-		super(renderManagerIn);
+		super(renderManagerIn, new ModelWraith(), 0F);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityZombie entity) {
-		GlStateManager.enableBlend();
-		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
+	protected ResourceLocation getEntityTexture(EntityWraith entity) {
 		return TEXTURE;
 	}
 

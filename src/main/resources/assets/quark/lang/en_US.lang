@@ -342,6 +342,7 @@ tile.quark:fire_stone_slab.name=Brimstone Slab
 tile.quark:icy_stone_slab.name=Permafrost Slab
 tile.quark:fire_stone_stairs.name=Brimstone Stairs
 tile.quark:icy_stone_stairs.name=Permafrost Stairs
+tile.quark:iron_rod.name=Iron Rod
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -445,6 +446,7 @@ quark.keybind.emote.point=Emote: Point
 quark.keybind.emote.headbang=Emote: Headbang
 quark.keybind.lockBuilding=Lock Orientation
 quark.keybind.toggleAutojump=Toggle Autojump
+quark.keybind.changeHotbar=Change Hotbar
 
 # GUI STUFF
 quark.gui.emotes=Emotes

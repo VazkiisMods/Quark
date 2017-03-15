@@ -7,14 +7,37 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import vazkii.arl.util.RecipeHandler;
+import vazkii.quark.automation.block.BlockIronRod;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 
 public class PistonSpikes extends Feature {
 
+	public static Block iron_rod;
+
+	boolean ezRecipe;
+	
+	@Override
+	public void setupConfig() {
+		ezRecipe = loadPropBool("Enable Easy Recipe", "Replace the End Rod in the recipe with an Iron Ingot", false);
+	}
+	
+	@Override
+	public void preInit(FMLPreInitializationEvent event) {
+		iron_rod = new BlockIronRod();
+		
+		RecipeHandler.addOreDictRecipe(new ItemStack(iron_rod), 
+				"I", "I", "R",
+				'I', "ingotIron",
+				'R', (ezRecipe ? "ingotIron" : Blocks.END_ROD));
+	}
+	
 	public static boolean breakStuffWithSpikes(World world, BlockPos sourcePos, List<BlockPos> moveList, List<BlockPos> destroyList, EnumFacing facing, boolean extending) {
 		if(!extending || !ModuleLoader.isFeatureEnabled(PistonSpikes.class))
 			return false;
@@ -26,7 +49,7 @@ public class PistonSpikes extends Feature {
 		
 		for(BlockPos pos : moveList) {
 			IBlockState state = world.getBlockState(pos);
-			if(state.getBlock() == Blocks.END_ROD && state.getValue(BlockDirectional.FACING) == facing) {
+			if(state.getBlock() == iron_rod && state.getValue(BlockDirectional.FACING) == facing) {
 				BlockPos off = pos.offset(oppositeFacing);
 
 				if(!off.equals(sourcePos))
@@ -69,6 +92,11 @@ public class PistonSpikes extends Feature {
 		}
 		
 		return did;
+	}
+	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
 	}
 	
 }
