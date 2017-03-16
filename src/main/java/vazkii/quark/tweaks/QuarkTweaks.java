@@ -35,6 +35,7 @@ import vazkii.quark.tweaks.feature.LookDownLadders;
 import vazkii.quark.tweaks.feature.MapTooltip;
 import vazkii.quark.tweaks.feature.MinecartInteraction;
 import vazkii.quark.tweaks.feature.NoPotionShift;
+import vazkii.quark.tweaks.feature.QuickArmorSwapping;
 import vazkii.quark.tweaks.feature.RemoveSnowLayers;
 import vazkii.quark.tweaks.feature.RightClickSignEdit;
 import vazkii.quark.tweaks.feature.ShearableChickens;
@@ -86,6 +87,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new MapTooltip());
 		registerFeature(new SpongeDriesInNether(), "Wet sponge will dry in the nether");
 		registerFeature(new ShulkerBoxTooltip());
+		registerFeature(new QuickArmorSwapping());
 	}
 
 }

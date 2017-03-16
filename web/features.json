@@ -479,6 +479,12 @@
 				"introduced":9
 			},
 			{
+				"name":"Quick Armor Swapping",
+				"description":"Right clicking an armor stand while sneaking will swap all armor and your off hand item quickly.",
+				"image":"quick-armor-swapping.jpg",
+				"introduced":11
+			},
+			{
 				"name":"Safe Mounts",
 				"description":"Mounts are immune to attacks from riders. No more shooting your own horse!",
 				"image":"safe-horses.jpg",
