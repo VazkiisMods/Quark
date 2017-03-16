@@ -89,7 +89,7 @@ public class BoatSails extends Feature {
 	}
 	
 	public static void onBoatUpdate(EntityBoat boat) {
-		if(boat.getEntityWorld().isRemote)
+		if(boat.getEntityWorld().isRemote || !ModuleLoader.isFeatureEnabled(BoatSails.class))
 			return;
 		
 		ItemStack dataStack = boat.getDataManager().get(bannerData);

@@ -24,11 +24,13 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import vazkii.quark.base.client.ModKeybinds;
 import vazkii.quark.base.module.Feature;
 
 public class AutoJumpHotkey extends Feature {
@@ -40,32 +42,25 @@ public class AutoJumpHotkey extends Feature {
 	private static final ResourceLocation AUTOJUMP_OFF = new ResourceLocation("quark", "textures/misc/autojump_off.png");
 	private static final ResourceLocation AUTOJUMP_ON = new ResourceLocation("quark", "textures/misc/autojump_on.png");
 
-	@SideOnly(Side.CLIENT)
-	KeyBinding key;
-
-	boolean down;
 	int hudTime;
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void preInitClient(FMLPreInitializationEvent event) {
-		key = new KeyBinding("quark.keybind.toggleAutojump", 48, "key.categories.movement");
-		ClientRegistry.registerKeyBinding(key);
+		ModKeybinds.initAutoJumpKey();
 	}
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void onRenderTick(RenderTickEvent event) {
+	public void onKeyInput(KeyInputEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
-		boolean downNow = key.isKeyDown();
-		if(mc.inGameHasFocus && !down && downNow) {
+		boolean down = ModKeybinds.autoJumpKey.isKeyDown();
+		if(mc.inGameHasFocus && down) {
 			boolean b = mc.gameSettings.getOptionOrdinalValue(Options.AUTO_JUMP);
 			int i = b ? 1 : 0;
 			mc.gameSettings.setOptionValue(Options.AUTO_JUMP, ~i & 1);
 			hudTime = (int) TOTAL_TIME;
 		}
-
-		down = downNow;
 	}
 
 	@SubscribeEvent

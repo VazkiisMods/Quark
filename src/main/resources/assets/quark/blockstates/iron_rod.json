@@ -1,0 +1,17 @@
+{
+    "variants": {
+        "connected=false,facing=up": { "model": "quark:iron_rod" },
+        "connected=false,facing=down": { "model": "quark:iron_rod", "x": 180 },
+        "connected=false,facing=east": { "model": "quark:iron_rod", "y": 90, "x": 90 },
+        "connected=false,facing=south": { "model": "quark:iron_rod", "y": 180, "x": 90 },
+        "connected=false,facing=west": { "model": "quark:iron_rod", "y": 270, "x": 90 },
+        "connected=false,facing=north": { "model": "quark:iron_rod", "y": 0, "x": 90 },
+
+        "connected=true,facing=up": { "model": "quark:iron_rod_base" },
+        "connected=true,facing=down": { "model": "quark:iron_rod_base", "x": 180 },
+        "connected=true,facing=east": { "model": "quark:iron_rod_base", "y": 90, "x": 90 },
+        "connected=true,facing=south": { "model": "quark:iron_rod_base", "y": 180, "x": 90 },
+        "connected=true,facing=west": { "model": "quark:iron_rod_base", "y": 270, "x": 90 },
+        "connected=true,facing=north": { "model": "quark:iron_rod_base", "y": 0, "x": 90 }
+    }
+}

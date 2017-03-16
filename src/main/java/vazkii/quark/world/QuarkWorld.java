@@ -24,6 +24,7 @@ import vazkii.quark.world.feature.OceanGuardians;
 import vazkii.quark.world.feature.PirateShips;
 import vazkii.quark.world.feature.RealisticWorldType;
 import vazkii.quark.world.feature.RevampStoneGen;
+import vazkii.quark.world.feature.UndergroundBiomes;
 import vazkii.quark.world.feature.VariedDungeons;
 import vazkii.quark.world.feature.Wraiths;
 
@@ -44,6 +45,7 @@ public class QuarkWorld extends Module {
 		registerFeature(new RevampStoneGen());
 		registerFeature(new CrystalCaves());
 		registerFeature(new VariedDungeons());
+		registerFeature(new UndergroundBiomes());
 
 		registerFeature(new RealisticWorldType());
 		registerFeature(new DefaultWorldOptions());

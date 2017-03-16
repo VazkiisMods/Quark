@@ -6,6 +6,7 @@ import vazkii.quark.misc.feature.AutoJumpHotkey;
 import vazkii.quark.misc.feature.ColorRunes;
 import vazkii.quark.misc.feature.EndermitesIntoShulkers;
 import vazkii.quark.misc.feature.ExtraArrows;
+import vazkii.quark.misc.feature.LockDirectionHotkey;
 import vazkii.quark.misc.feature.NoteBlockInterface;
 import vazkii.quark.misc.feature.NoteBlocksMobSounds;
 import vazkii.quark.misc.feature.PanoramaMaker;
@@ -28,6 +29,7 @@ public class QuarkMisc extends Module {
 		registerFeature(new SnowGolemPlayerHeads(), "Named snow golems with pumpkins drop player heads if killed by a witch");
 		registerFeature(new NoteBlockInterface());
 		registerFeature(new SoulPowder());
+		registerFeature(new LockDirectionHotkey());
 	}
 	
 }

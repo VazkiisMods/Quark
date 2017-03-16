@@ -1,0 +1,11 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:cube_all",
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"variant=fire_stone": [{ "textures": { "all": "quark:blocks/fire_stone" } }],
+		"variant=icy_stone": [{ "textures": { "all": "quark:blocks/icy_stone" } }]
+	}
+}

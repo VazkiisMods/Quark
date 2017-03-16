@@ -1,19 +1,33 @@
 package vazkii.quark.world.feature;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.text.WordUtils;
+
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import vazkii.arl.block.BlockMod;
 import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
+import vazkii.quark.base.handler.BiomeTypeConfigHandler;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.building.feature.VanillaWalls;
@@ -32,10 +46,14 @@ public class RevampStoneGen extends Feature {
 
 	boolean enableStairsAndSlabs;
 	boolean enableWalls;
+	boolean outputCSV;
+	
+	public static boolean generateBasedOnBiomes;
 	public static boolean enableMarble;
 	public static boolean enableLimestone;
 
 	public static StoneInfo graniteInfo, dioriteInfo, andesiteInfo, marbleInfo, limestoneInfo;
+	private static List<StoneInfoBasedGenerator> generators;
 
 	@Override
 	public void setupConfig() {
@@ -43,22 +61,24 @@ public class RevampStoneGen extends Feature {
 		enableWalls = loadPropBool("Enable walls", "", true);
 		enableMarble = loadPropBool("Enable Marble", "", true);
 		enableLimestone = loadPropBool("Enable Limestone", "", true);
+		generateBasedOnBiomes = loadPropBool("Generate Based on Biomes", "Note: The stone rarity values are tuned based on this being true. If you turn it off, also change the stones' rarity (around 50 is fine).", true);
+		outputCSV = loadPropBool("Output CSV Debug Info", "If this is true, CSV debug info will be printed out to the console on init, to help test biome spreads.", false);
 
 		int defSize = 200;
-		int defRarity = 50;
+		int defRarity = 15;
 		int defUpper = 80;
 		int defLower = 20;
 
-		graniteInfo = loadStoneInfo("granite", defSize, defRarity, defUpper, defLower, true);
-		dioriteInfo = loadStoneInfo("diorite", defSize, defRarity, defUpper, defLower, true);
-		andesiteInfo = loadStoneInfo("andesite", defSize, defRarity, defUpper, defLower, true);
-		marbleInfo = loadStoneInfo("marble", defSize, defRarity, defUpper, defLower, enableMarble);
-		limestoneInfo = loadStoneInfo("limestone", defSize, defRarity, defUpper, defLower, enableLimestone);
+		graniteInfo = loadStoneInfo("granite", defSize, defRarity, defUpper, defLower, true, Type.MOUNTAIN, Type.HILLS);
+		dioriteInfo = loadStoneInfo("diorite", defSize, defRarity, defUpper, defLower, true, Type.SANDY, Type.SAVANNA, Type.WASTELAND, Type.MUSHROOM);
+		andesiteInfo = loadStoneInfo("andesite", defSize, defRarity, defUpper, defLower, true, Type.FOREST);
+		marbleInfo = loadStoneInfo("marble", defSize, defRarity, defUpper, defLower, enableMarble, Type.PLAINS, Type.SNOWY);
+		limestoneInfo = loadStoneInfo("limestone", defSize, defRarity, defUpper, defLower, enableLimestone, Type.SWAMP, Type.OCEAN, Type.RIVER, Type.BEACH, Type.JUNGLE);
 	}
 
-	private StoneInfo loadStoneInfo(String name, int clusterSize, int clusterRarity, int upperBound, int lowerBound, boolean enabled) {
+	private StoneInfo loadStoneInfo(String name, int clusterSize, int clusterRarity, int upperBound, int lowerBound, boolean enabled, BiomeDictionary.Type... biomes) {
 		String category = configCategory + "." + name;
-		StoneInfo info = new StoneInfo(category, clusterSize, clusterRarity, upperBound, lowerBound, enabled);
+		StoneInfo info = new StoneInfo(category, clusterSize, clusterRarity, upperBound, lowerBound, enabled, biomes);
 
 		return info;
 	}
@@ -104,16 +124,21 @@ public class RevampStoneGen extends Feature {
 		IBlockState dioriteState = Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE);
 		IBlockState andesiteState = Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE);
 
-		GameRegistry.registerWorldGenerator(new StoneInfoBasedGenerator(() -> graniteInfo, graniteState, "granite"), 0);
-		GameRegistry.registerWorldGenerator(new StoneInfoBasedGenerator(() -> dioriteInfo, dioriteState, "diorite"), 0);
-		GameRegistry.registerWorldGenerator(new StoneInfoBasedGenerator(() -> andesiteInfo, andesiteState, "andesite"), 0);
+		generators = new ArrayList();
+		
+		generators.add(new StoneInfoBasedGenerator(() -> graniteInfo, graniteState, "granite"));
+		generators.add(new StoneInfoBasedGenerator(() -> dioriteInfo, dioriteState, "diorite"));
+		generators.add(new StoneInfoBasedGenerator(() -> andesiteInfo, andesiteState, "andesite"));
 
 		if(enableMarble)
-			GameRegistry.registerWorldGenerator(new StoneInfoBasedGenerator(() -> marbleInfo, marble.getDefaultState(), "marble"), 0);
+			generators.add(new StoneInfoBasedGenerator(() -> marbleInfo, marble.getDefaultState(), "marble"));
 		if(enableLimestone)
-			GameRegistry.registerWorldGenerator(new StoneInfoBasedGenerator(() -> limestoneInfo, limestone.getDefaultState(), "limestone"), 0);
+			generators.add(new StoneInfoBasedGenerator(() -> limestoneInfo, limestone.getDefaultState(), "limestone"));
+		
+		if(outputCSV)
+			BiomeTypeConfigHandler.debugStoneGeneration(generators);
 	}
-
+	
 	@SubscribeEvent
 	public void onOreGenerate(OreGenEvent.GenerateMinable event) {
 		switch(event.getType()) {
@@ -128,12 +153,22 @@ public class RevampStoneGen extends Feature {
 		case ANDESITE:
 			if(andesiteInfo.enabled)
 				event.setResult(Result.DENY);
+			
+			generateNewStones(event);
 			break;
 		default: return;
 		}
 	}
 
-
+	private void generateNewStones(OreGenEvent.GenerateMinable event) {
+		World world = event.getWorld();
+		BlockPos pos = event.getPos();
+		Chunk chunk = world.getChunkFromBlockCoords(pos);
+		
+		for(StoneInfoBasedGenerator gen : generators)
+			gen.generate(chunk.xPosition, chunk.zPosition, world);
+	}
+	
 	@Override
 	public boolean hasOreGenSubscriptions() {
 		return true;
@@ -149,14 +184,18 @@ public class RevampStoneGen extends Feature {
 		public final boolean enabled;
 		public final int clusterSize, clusterRarity, upperBound, lowerBound;
 		public final boolean clustersRarityPerChunk;
+		
+		public final List<BiomeDictionary.Type> allowedBiomes;
 
-		private StoneInfo(String category, int clusterSize, int clusterRarity, int upperBound, int lowerBound, boolean enabled) {
+		private StoneInfo(String category, int clusterSize, int clusterRarity, int upperBound, int lowerBound, boolean enabled, BiomeDictionary.Type... biomes) {
 			this.enabled = ModuleLoader.config.getBoolean("Enabled", category, true, "") && enabled;
 			this.clusterSize = ModuleLoader.config.getInt("Cluster Size", category, clusterSize, 0, Integer.MAX_VALUE, "");
 			this.clusterRarity = ModuleLoader.config.getInt("Cluster Rarity", category, clusterRarity, 0, Integer.MAX_VALUE, "Out of how many chunks would one of these clusters generate");
 			this.upperBound = ModuleLoader.config.getInt("Y Level Max", category, upperBound, 0, 255, "");
 			this.lowerBound = ModuleLoader.config.getInt("Y Level Min", category, lowerBound, 0, 255, "");
 			clustersRarityPerChunk = ModuleLoader.config.getBoolean("Invert Cluster Rarity", category, false, "Setting this to true will make the 'Cluster Rarity' feature be X per chunk rather than 1 per X chunks");
+			
+			allowedBiomes = BiomeTypeConfigHandler.parseBiomeTypeArrayConfig("Allowed Biome Types", category, biomes);
 		}
 	}
 

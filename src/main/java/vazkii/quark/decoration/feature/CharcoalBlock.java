@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.decoration.block.BlockCharcoal;
@@ -34,6 +35,8 @@ public class CharcoalBlock extends Feature {
 				'C', new ItemStack(Items.COAL, 1, 1));
 		RecipeHandler.addShapelessOreDictRecipe(new ItemStack(Items.COAL, 9, 1), new ItemStack(charcoal_block));
 
+		OreDictionary.registerOre("blockCharcoal", charcoal_block);
+		
 		GameRegistry.registerFuelHandler(new IFuelHandler() {
 
 			@Override

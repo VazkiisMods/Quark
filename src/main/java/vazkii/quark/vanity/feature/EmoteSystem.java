@@ -28,6 +28,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.aurelienribon.tweenengine.Tween;
+import vazkii.quark.base.client.ModKeybinds;
 import vazkii.quark.base.client.gui.GuiButtonTranslucent;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.vanity.client.emotes.EmoteCheer;
@@ -41,7 +42,6 @@ import vazkii.quark.vanity.client.emotes.EmoteShrug;
 import vazkii.quark.vanity.client.emotes.EmoteWave;
 import vazkii.quark.vanity.client.emotes.EmoteYes;
 import vazkii.quark.vanity.client.emotes.base.EmoteHandler;
-import vazkii.quark.vanity.client.emotes.base.EmoteKeybinds;
 import vazkii.quark.vanity.client.emotes.base.ModelAccessor;
 import vazkii.quark.vanity.client.gui.GuiButtonEmote;
 import vazkii.quark.vanity.command.CommandEmote;
@@ -77,7 +77,7 @@ public class EmoteSystem extends Feature {
 		EmoteHandler.emoteMap.put("headbang", EmoteHeadbang.class);
 
 		if(enableKeybinds)
-			EmoteKeybinds.init();
+			ModKeybinds.initEmoteKeybinds();
 	}
 
 	@Override
@@ -135,9 +135,9 @@ public class EmoteSystem extends Feature {
 	public void onKeyInput(KeyInputEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
 		if(mc.inGameHasFocus && enableKeybinds) {
-			for(KeyBinding key : EmoteKeybinds.emoteKeys.keySet())
+			for(KeyBinding key : ModKeybinds.emoteKeys.keySet())
 				if(key.isKeyDown()) {
-					String emote = EmoteKeybinds.emoteKeys.get(key);
+					String emote = ModKeybinds.emoteKeys.get(key);
 					mc.player.sendChatMessage("/emote " + emote);
 					return;
 				}

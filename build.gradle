@@ -38,7 +38,9 @@ minecraft {
     replace 'GRADLE:BUILD', config.build_number
     replace 'GRADLE:VERSION', config.version
 
-    replaceIn 'LibMisc.java' //I may have missed another file, though I can only find it in here.
+    // Scala: not even once
+    replace 'scala.actors.threadpool.Arrays', 'java.util.Arrays'
+
     makeObfSourceJar = false
 }
 

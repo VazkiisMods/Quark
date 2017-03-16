@@ -9,7 +9,7 @@ import vazkii.quark.base.block.IQuarkBlock;
 public class BlockStainedPlanks extends BlockMetaVariants implements IQuarkBlock {
 
 	public BlockStainedPlanks() {
-		super("stained_planks", Material.ROCK, Variants.class);
+		super("stained_planks", Material.WOOD, Variants.class);
 		setHardness(2.0F);
 		setResistance(5.0F);
 		setSoundType(SoundType.WOOD);

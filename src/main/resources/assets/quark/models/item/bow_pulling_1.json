@@ -1,0 +1,6 @@
+{
+    "parent": "item/bow",
+    "textures": {
+        "layer0": "quark:items/bow_anim/1"
+    }
+}

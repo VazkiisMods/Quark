@@ -6,6 +6,10 @@ quarkmisc.chestButton.dropoff=Deposit to nearby Chests
 quarkmisc.chestButton.dropoff.shift=Merge to nearby Chests
 quarkmisc.chestButton.sort=Sort
 quarkmisc.incrementNote=Increment Note
+quarkmisc.craftButton.redo=Redo Recipe
+quarkmisc.craftButton.balance=Balance Grid
+quarkmisc.shulkerBoxShift=Hold Shift to see contents
+quarkmisc.mapShift=Hold Shift to see the map
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=Clay Shingles
@@ -330,6 +334,15 @@ tile.quark:duskbound_block_stairs.name=Duskbound Stairs
 tile.quark:duskbound_block_wall.name=Duskbound Wall
 tile.quark:duskbound_lantern.name=Duskbound Lantern
 tile.quark:sturdy_stone.name=Sturdy Stone
+tile.quark:fire_stone.name=Brimstone
+tile.quark:icy_stone.name=Permafrost
+tile.quark:glowcelium.name=Glowcelium
+tile.quark:glowshroom.name=Glowshroom
+tile.quark:fire_stone_slab.name=Brimstone Slab
+tile.quark:icy_stone_slab.name=Permafrost Slab
+tile.quark:fire_stone_stairs.name=Brimstone Stairs
+tile.quark:icy_stone_stairs.name=Permafrost Stairs
+tile.quark:iron_rod.name=Iron Rod
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -419,9 +432,24 @@ entity.quark:wraith.name=Wraith
 # POTION NAMES
 quark.potion.curse.name=Curse
 
+# KEYBINDS
+quark.gui.keygroup=Quark Keybinds
+quark.keybind.emote.wave=Emote: Wave
+quark.keybind.emote.yes=Emote: Yes
+quark.keybind.emote.no=Emote: No
+quark.keybind.emote.cheer=Emote: Cheer
+quark.keybind.emote.clap=Emote: Clap
+quark.keybind.emote.salute=Emote: Salute
+quark.keybind.emote.facepalm=Emote: Facepalm
+quark.keybind.emote.shrug=Emote: Shrug
+quark.keybind.emote.point=Emote: Point
+quark.keybind.emote.headbang=Emote: Headbang
+quark.keybind.lockBuilding=Lock Orientation
+quark.keybind.toggleAutojump=Toggle Autojump
+quark.keybind.changeHotbar=Change Hotbar
+
 # GUI STUFF
 quark.gui.emotes=Emotes
-quark.gui.emotesKeygroup=Quark Emotes
 quark.gui.favorited=Favorited
 quark.emote.wave=Wave
 quark.emote.yes=Yes
@@ -452,7 +480,6 @@ quark.dye.red=Red
 quark.dye.black=Black
 generator.quark_realistic=Realistic
 generator.quark_realistic.info=[Quark] Realistic World Type by /u/Soniop
-quark.keybind.toggleAutojump=Toggle Autojump
 
 # BANNER NAMES
 item.banner.quark_dragon.black=Black Dragon

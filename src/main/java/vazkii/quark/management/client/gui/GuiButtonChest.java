@@ -26,7 +26,7 @@ import vazkii.quark.management.feature.StoreToChests;
 
 public class GuiButtonChest<T extends GuiScreen> extends GuiButton {
 
-	public static ResourceLocation chest_icons = new ResourceLocation("quark", "textures/misc/chest_icons.png");
+	public static ResourceLocation GENERAL_ICONS_RESOURCE = new ResourceLocation("quark", "textures/misc/general_icons.png");
 	public final Action action;
 	public final T parent;
 
@@ -86,7 +86,7 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton {
 				break;
 			}
 
-			par1Minecraft.renderEngine.bindTexture(chest_icons);
+			par1Minecraft.renderEngine.bindTexture(GENERAL_ICONS_RESOURCE);
 			GlStateManager.color(1F, 1F, 1F, 1F);
 			drawTexturedModalRect(xPosition, yPosition, u, v, 16, 16);
 			

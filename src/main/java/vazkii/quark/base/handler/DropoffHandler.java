@@ -250,11 +250,12 @@ public final class DropoffHandler {
 
 				if(!stackAt.isEmpty()) {
 					ItemStack copy = stackAt.copy();
-					ItemStack ret = insertInHandler(playerInv, stackAt, pred);
-
-					if(!ItemStack.areItemStacksEqual(copy, ret)) {
+					ItemStack ret = insertInHandler(playerInv, copy, pred);
+					
+					if(!ItemStack.areItemStacksEqual(stackAt, ret)) {
 						inv.extractItem(i, 64, false);
-						inv.insertItem(i, ret, false);
+						if(!ret.isEmpty())
+							inv.insertItem(i, ret, false);
 					}
 				}
 			}

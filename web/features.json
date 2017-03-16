@@ -11,8 +11,8 @@
 				"overlap": ["Botania"]
 			},
 			{
-				"name":"End Rods as Block Breakers",
-				"description":"Pistons that push an End Rod will have it work as a drill of sorts, breaking any blocks in front in the direction the rod is facing.<br><br>These can break anything the piston can push.",
+				"name":"Piston Block Breakers",
+				"description":"Pistons pusing an Iron Rod will have it work as a drill of sorts, breaking any blocks in front in the direction the rod is facing. These can break anything the piston can push.<br><br>Iron Rods are crafted with 2 Iron Ingots and an End Rod, or just 3 Iron Ingots if you enable easy mode in the config.<br><br>Note: In 1.10, a normal End Rod block is used instead.",
 				"image":"piston-block-breakers.jpg",
 				"introduced":10
 			},
@@ -43,10 +43,17 @@
 				"introduced":9
 			},
 			{
-				"name":"Pistons move Tile Entities",
+				"name":"Pistons Move Tile Entities",
 				"description":"Pistons are allowed to move Tile Entities (blocks with extra data attached, like Chests or Furnaces).<br>Attempting to move a block to an invalid position will cause it to break and drop its contents (e.g. trying to create a triple chest).<br>Monster Spawners can't be moved this way.<br><br>For a block that pistons can't move, now that furnaces can't be used, look into Sturdy Stone in the Building module.",
 				"image":"pistons-move-tes.jpg",
 				"introduced":11
+			},
+			{
+				"name":"Dispensers Place Blocks",
+				"description":"Dispensers are allowed to place blocks in the world. Any blocks that already had a placement behaviour, like TNT, are ignored.<br><br>The blocks are rotated so they're placed forward from the dispenser.",
+				"image":"dispensers-place-blocks.jpg",
+				"introduced":11,
+				"overlap": ["BlockDispenser"]
 			}
 		]
 	},
@@ -223,6 +230,12 @@
 				"introduced":9
 			},
 			{
+				"name":"Flat Item Frames",
+				"description":"Item Frames and Colored Item Frames can be placed on floors and ceilings. The top of the frame is oriented north in both cases.",
+				"image":"flat-item-frames.jpg",
+				"introduced":11
+			},
+			{
 				"name":"Iron Ladders",
 				"description":"Iron Ladders can be crafted with the H shape of Iron Ingots. They work like normal ladders, except that they can stand by themselves as long as there is an Iron Ladder on top of them, like in the picture.",
 				"image":"iron-ladders.jpg",
@@ -311,6 +324,12 @@
 				"name":"Better Crafting Shift-Clicking",
 				"description":"Shift-clicking an item in your inventory in the crafting table interface will move it to the crafting grid, and not the hotbar.",
 				"image":"better-craft-shifting.jpg",
+				"introduced":11
+			},
+			{
+				"name":"Hotbar Changer",
+				"description":"Pressing the X key (rebindable) will show your entire inventory above your hotbar. You can then press 1, 2, or 3, to switch that respective inventory row with your hotbar. Pressing X again will hide the 3 additional rows with no change.",
+				"image":"hotbar-changer.jpg",
 				"introduced":11
 			}
 		]
@@ -509,7 +528,7 @@
 			},
 			{
 				"name":"Texture Changes",
-				"description":"Quark generates a \"low priority resource pack\", changing some textures to less rough or more sensible variants. Each of these can be turned off individually, and will be overriden by any other resource pack you load on top. The current changes are as follows:<ul><li>1.8 Stones (smoother texture)</li><li>Bricks (some color variance)</li><li>Glass (less spots)</li><li>Pistons (model swap to look like the pocket edition ones, sticky piston sides, 1.11 only)</li><li>Pumpkin (disables the face, off by default)</li></ul>",
+				"description":"Quark generates a \"low priority resource pack\", changing some textures to less rough or more sensible variants. Each of these can be turned off individually, and will be overriden by any other resource pack you load on top. The current changes are as follows:<ul><li>1.8 Stones (smoother texture)</li><li>Bricks (some color variance)</li><li>Glass (less spots)</li><li>Pistons (model swap to look like the pocket edition ones, sticky piston sides, 1.11 only)</li><li>Pumpkin (disables the face, off by default)</li><li>Bow (improved pull animation, with more frames)</li></ul>",
 				"image":"texture-changes.jpg",
 				"introduced":10
 			},
@@ -523,6 +542,18 @@
 				"name":"Villagers follow Emerald Blocks",
 				"description":"Holding an Emerald Block causes nearby villagers to follow the player, much like animals do for food items.",
 				"image":"villager-emeralds.jpg",
+				"introduced":11
+			},
+			{
+				"name":"Sponges dry in the Nether",
+				"description":"Title says it all, really. Placing a sponge in the nether will cause it to dry out without needing fuel.",
+				"image":"nether-sponge.jpg",
+				"introduced":11
+			},
+			{
+				"name":"Better Shulker Box Tooltip",
+				"description":"Shulker Boxes show their items while being hovered in an inventory display rather than displaying the item names on the tooltip.",
+				"image":"shulker-box-tooltip.jpg",
 				"introduced":11
 			}
 		]
@@ -655,7 +686,7 @@
 			},
 			{
 				"name":"Stone Revamp",
-				"description":"Diorite, Granite, and Andesite will now spawn in really large, uncommon clusters, rather than all over the place in small bits. Furthermore, two new stones are added to the mix: Marble and Limestone (pictured). These last two can be used for anything the first three can.",
+				"description":"Diorite, Granite, and Andesite will now spawn in really large, uncommon clusters, rather than all over the place in small bits. Furthermore, two new stones are added to the mix: Marble and Limestone (pictured). These last two can be used for anything the first three can.<br><br>As of 1.11, the stones will generate based on biome. You can find the table for which stones generate in which biomes <a href='img/stone-table.jpg'>here</a>.",
 				"image":"stone-revamp.jpg",
 				"album":"https://imgur.com/a/irNFo",
 				"introduced":10
@@ -671,6 +702,13 @@
 				"description":"Wraiths are mobs that will spawn rarely in the nether, on Soul Sand. They spawn in packs and attack like a Zombie, albiet moving faster. When they strike their target, they inflict a short Slowness debuff and knock themselves back. Fighting them standing still is a bad idea. They also don't have their own sounds, instead appropriating other mobs' sounds.<br><br>Wraiths drop a Soul Bead item. Right clicking it will break it, and inflict a Curse debuff on the player for 20 minutes. Mobs in a 64 block radius of a player with Curse will spawn ignoring light levels and other conditions (like slime chunk restrictions). Curse can not be cleansed with Milk.",
 				"image":"wraiths.jpg",
 				"introduced":10
+			},
+			{
+				"name":"Underground Biomes",
+				"description":"Underground biomes are uncommon spawns in mid level underground, spawning based on their respective overworld biomes. There are currently 9 underground cave styles you may find.<br><br>This feature is too large to fit in a single card, so in order to properly show them all, please check out the album, by clicking the yellow picture button in the bottom of the card.",
+				"image":"underground-biomes.jpg",
+				"album":"https://imgur.com/a/olViK",
+				"introduced":11
 			}
 		]
 	},
@@ -742,6 +780,12 @@
 				"name":"Note Block Interface",
 				"description":"Note Blocks get an interface when right clicked. A piano button layout shows up where you can set the note that the block will play. If you prefer the vanilla clicks system, you can click the note block icon to mimic that behaviour, and each note button has the amount of clicks needed under the note name.<br><br>Other players will hear you using the interface, and the piano keys are all keybound, so you can use it to play songs ingame, if you want to!",
 				"image":"note-block-gui.jpg",
+				"introduced":11
+			},
+			{
+				"name":"L to Lock Rotation",
+				"description":"Pressing the L key (rebindable) will lock a rotation, and optionally a block half, if you're looking at a block. Any further blocks placed are changed to that direction, regardless of how you were facing when placing them. This can be very useful for building with blocks that have awkward rotation methods, such as stairs or pistons.<br><br>To unlock the rotation press the key again while holding Shift.",
+				"image":"lock-rotation.jpg",
 				"introduced":11
 			}
 		]

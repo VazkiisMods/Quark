@@ -46,4 +46,7 @@ public final class LibObfuscation {
 	public static final String[] Y_OFFSET = new String[] { "l", "field_179005_m", "yOffset" };
 	public static final String[] Z_OFFSET = new String[] { "m", "field_179002_n", "zOffset" };
 	
+	// GuiCreateWorld
+	public static final String[] SELECTED_INDEX = new String[] { "L", "field_146331_K", "selectedIndex" };
+	
 }

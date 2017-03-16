@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:half_slab",
+    "textures": {
+      "bottom": "quark:blocks/fire_stone",
+      "top": "quark:blocks/fire_stone",
+      "side": "quark:blocks/fire_stone"
+    },
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "half=top": [{
+      "x": 180,
+      "uvlock": true
+    }],
+    "half=bottom": [{}],
+    "inventory": [{}]
+  }
+}

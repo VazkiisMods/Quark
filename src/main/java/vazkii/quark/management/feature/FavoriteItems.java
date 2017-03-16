@@ -91,7 +91,7 @@ public class FavoriteItems extends Feature {
 			for(Slot s : container.inventorySlots) {
 				ItemStack stack = s.getStack();
 				if(isItemFavorited(stack)) {
-					Minecraft.getMinecraft().renderEngine.bindTexture(GuiButtonChest.chest_icons);
+					Minecraft.getMinecraft().renderEngine.bindTexture(GuiButtonChest.GENERAL_ICONS_RESOURCE);
 					guiInv.drawTexturedModalRect(guiLeft + s.xPos, guiTop + s.yPos, 96, 0, 16, 16);
 				}
 			}

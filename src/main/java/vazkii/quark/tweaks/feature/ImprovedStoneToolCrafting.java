@@ -37,7 +37,7 @@ public class ImprovedStoneToolCrafting extends Feature {
 		if(RevampStoneGen.enableMarble)
 			OreDictionary.registerOre(mat, new ItemStack(RevampStoneGen.marble));
 		
-		String[][] patterns = new String[][] {{"XXX", " # ", " # "}, {"X", "#", "#"}, {"XX", "X#", " #"}, {"XX", " #", " #"}, {"X", "#", "#"}};
+		String[][] patterns = new String[][] {{"XXX", " # ", " # "}, {"X", "#", "#"}, {"XX", "X#", " #"}, {"XX", " #", " #"}, {"X", "X", "#"}};
 		Item[] items = new Item[] { Items.STONE_PICKAXE, Items.STONE_SHOVEL, Items.STONE_AXE, Items.STONE_HOE, Items.STONE_SWORD };
 
 		for(int i = 0; i < patterns.length; i++)

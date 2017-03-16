@@ -115,12 +115,14 @@
 								<li>/u/darwinpatrick for the Soul Sandstone textures.</li>
 								<li>/u/Nyodex for the original Duskbound Block idea and textures.</li>
 								<li>/u/MushirMickeyJoe for recreation of the pocket edition piston model.</li>
+								<li>/u/gibraltarMC for flat item frames.</li>
+								<li>/u/CopherSans for the improved bow animation.</li>
 								<li>The creators of all the awesome suggestions I found in /r/MinecraftSuggestions that I implemented here.</li>
 							</ul>
 							<hr>
 							<b>Contact and Donations</b>
 							<ul>
-								<li><a href="https://www.reddit.com/r/minecraftsuggestions">Minecraft Suggestions Subreddit</a> <i>(suggest here, tag /u/vazkii in a comment if you want it in quark)</i></li>
+								<li><a href="https://www.reddit.com/r/quarkmod">Quark Subreddit</a> <i>(suggestions should go here, make sure to read the sticky!)</i></li>
 								<li><a href="https://github.com/Vazkii/Quark/issues">Issues</a> <i>(report your bugs here)</i></li>
 								<li><a href="https://github.com/Vazkii/Quark">Source Code</a></li>
 								<li><a href="https://github.com/Vazkii/Quark/blob/master/modders.md">APIs for Modders</a></li>

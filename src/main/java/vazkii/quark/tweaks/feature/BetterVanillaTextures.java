@@ -6,7 +6,7 @@ import vazkii.quark.base.module.Feature;
 
 public class BetterVanillaTextures extends Feature {
 
-	boolean granite, andesite, diorite, bricks, glass, pumpkinFace, pistonModels;
+	boolean granite, andesite, diorite, bricks, glass, pumpkinFace, pistonModels, bowAnimation;
 	
 	@Override
 	public void setupConfig() {
@@ -17,6 +17,7 @@ public class BetterVanillaTextures extends Feature {
 		glass = loadPropBool("Override Glass", "", true);
 		pumpkinFace = loadPropBool("Override Pumpkin Front Face", "", false);
 		pistonModels = loadPropBool("Override Piston Models", "", true);
+		bowAnimation = loadPropBool("Override Bow Animation", "", true);
 	}
 	
 	@Override
@@ -34,6 +35,8 @@ public class BetterVanillaTextures extends Feature {
 		overrideBlockModel("piston_head_sticky", pistonModels);
 		overrideBlockModel("piston_inventory_sticky", pistonModels);
 		overrideBlockModel("sticky_piston", pistonModels);
+		
+		overrideItemModel("bow", bowAnimation);
 	}
 	
 	private void overrideBlock(String str, boolean flag) {
@@ -45,6 +48,12 @@ public class BetterVanillaTextures extends Feature {
 		if(flag)
 			Quark.proxy.addResourceOverride("models", "block", str, "json");
 	}
+	
+	private void overrideItemModel(String str, boolean flag) {
+		if(flag)
+			Quark.proxy.addResourceOverride("models", "item", str, "json");
+	}
+
 	
 	@Override
 	public boolean requiresMinecraftRestartToEnable() {
