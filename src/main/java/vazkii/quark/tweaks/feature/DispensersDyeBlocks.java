@@ -50,15 +50,14 @@ public class DispensersDyeBlocks extends Feature {
                 if (tileEntity instanceof TileEntityShulkerBox) {
                     NBTTagCompound tagCompound = tileEntity.serializeNBT();
                     ((TileEntityShulkerBox) tileEntity).clear();
-                    world.setBlockState(pos, BlockShulkerBox.getBlockByColor(color).getDefaultState().withProperty(BlockShulkerBox.FACING, source.getBlockState().getValue(BlockShulkerBox.FACING)));
+                    world.setBlockState(pos, BlockShulkerBox.getBlockByColor(color).getDefaultState().withProperty(BlockShulkerBox.FACING, world.getBlockState(pos).getValue(BlockShulkerBox.FACING)));
                     ((TileEntityShulkerBox) world.getTileEntity(pos)).loadFromNbt(tagCompound);
                 }
 
             } else if (block instanceof BlockColored || block instanceof BlockCarpet || block instanceof BlockStainedGlass || block instanceof BlockStainedGlassPane) {
                 world.setBlockState(pos, world.getBlockState(pos).withProperty(BlockColored.COLOR, color));
 
-            } else if (color == EnumDyeColor.WHITE) { //Vanilla copy of Bonemeal behavour
-
+            } else if (color == EnumDyeColor.WHITE) { //Vanilla copy of Bonemeal behaviour
                 if (ItemDye.applyBonemeal(stack, world, pos)) {
                     if (!world.isRemote) {
                         world.playEvent(2005, pos, 0);
@@ -76,5 +75,10 @@ public class DispensersDyeBlocks extends Feature {
             stack.shrink(1);
             return stack;
         }
+    }
+
+    @Override
+    public boolean requiresMinecraftRestartToEnable() {
+        return true;
     }
 }
