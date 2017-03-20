@@ -10,7 +10,13 @@
  */
 package vazkii.quark.tweaks.feature;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockCarpet;
+import net.minecraft.block.BlockColored;
+import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.BlockShulkerBox;
+import net.minecraft.block.BlockStainedGlass;
+import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.init.Bootstrap;
 import net.minecraft.init.Items;
@@ -28,9 +34,15 @@ import vazkii.quark.base.module.Feature;
 import javax.annotation.Nonnull;
 
 public class DispensersDyeBlocks extends Feature {
+
     @Override
     public void init(FMLInitializationEvent event) {
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.DYE, new DyeBehaviour());
+    }
+
+    @Override
+    public boolean requiresMinecraftRestartToEnable() {
+        return true;
     }
 
     private static class DyeBehaviour extends Bootstrap.BehaviorDispenseOptional {
@@ -44,22 +56,22 @@ public class DispensersDyeBlocks extends Feature {
             EnumDyeColor color = EnumDyeColor.byDyeDamage(stack.getMetadata());
             this.successful = true;
 
-            if (block instanceof BlockShulkerBox) {
+            if(block instanceof BlockShulkerBox) {
                 TileEntity tileEntity = world.getTileEntity(pos);
 
-                if (tileEntity instanceof TileEntityShulkerBox) {
+                if(tileEntity instanceof TileEntityShulkerBox) {
                     NBTTagCompound tagCompound = tileEntity.serializeNBT();
                     ((TileEntityShulkerBox) tileEntity).clear();
                     world.setBlockState(pos, BlockShulkerBox.getBlockByColor(color).getDefaultState().withProperty(BlockShulkerBox.FACING, world.getBlockState(pos).getValue(BlockShulkerBox.FACING)));
                     ((TileEntityShulkerBox) world.getTileEntity(pos)).loadFromNbt(tagCompound);
                 }
 
-            } else if (block instanceof BlockColored || block instanceof BlockCarpet || block instanceof BlockStainedGlass || block instanceof BlockStainedGlassPane) {
+            } else if(block instanceof BlockColored || block instanceof BlockCarpet || block instanceof BlockStainedGlass || block instanceof BlockStainedGlassPane) {
                 world.setBlockState(pos, world.getBlockState(pos).withProperty(BlockColored.COLOR, color));
 
-            } else if (color == EnumDyeColor.WHITE) { //Vanilla copy of Bonemeal behaviour
-                if (ItemDye.applyBonemeal(stack, world, pos)) {
-                    if (!world.isRemote) {
+            } else if(color == EnumDyeColor.WHITE) { //Vanilla copy of Bonemeal behaviour
+                if(ItemDye.applyBonemeal(stack, world, pos)) {
+                    if(!world.isRemote) {
                         world.playEvent(2005, pos, 0);
                     }
                 }
@@ -67,18 +79,11 @@ public class DispensersDyeBlocks extends Feature {
                     this.successful = false;
                 }
                 return stack;
-
-            } else {
+            } else
                 return super.dispenseStack(source, stack);
-            }
 
             stack.shrink(1);
             return stack;
         }
-    }
-
-    @Override
-    public boolean requiresMinecraftRestartToEnable() {
-        return true;
     }
 }

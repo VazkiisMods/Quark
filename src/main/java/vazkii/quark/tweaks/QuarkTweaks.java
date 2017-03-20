@@ -87,7 +87,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new MapTooltip());
 		registerFeature(new SpongeDriesInNether(), "Wet sponge will dry in the nether");
 		registerFeature(new ShulkerBoxTooltip());
-		registerFeature(new DispensersDyeBlocks(), "Dyable blocks can be dyed using a dispenser");
+		registerFeature(new DispensersDyeBlocks());
 	}
 
 }
