@@ -18,6 +18,7 @@ import vazkii.quark.tweaks.feature.BabyZombiesBurn;
 import vazkii.quark.tweaks.feature.BetterVanillaTextures;
 import vazkii.quark.tweaks.feature.ChickensShedFeathers;
 import vazkii.quark.tweaks.feature.ConvertClay;
+import vazkii.quark.tweaks.feature.DispensersDyeBlocks;
 import vazkii.quark.tweaks.feature.DeployLaddersDown;
 import vazkii.quark.tweaks.feature.DoubleDoors;
 import vazkii.quark.tweaks.feature.DragonsBreathBottleless;
@@ -86,6 +87,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new MapTooltip());
 		registerFeature(new SpongeDriesInNether(), "Wet sponge will dry in the nether");
 		registerFeature(new ShulkerBoxTooltip());
+		registerFeature(new DispensersDyeBlocks());
 	}
 
 }
