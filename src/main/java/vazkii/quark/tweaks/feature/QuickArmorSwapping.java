@@ -60,4 +60,8 @@ public class QuickArmorSwapping extends Feature {
 		return true;
 	}
 
+	@Override
+	public String[] getIncompatibleMods() {
+		return new String[] { "iberia" };
+	}
 }

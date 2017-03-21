@@ -115,7 +115,6 @@
 								<li>/u/darwinpatrick for the Soul Sandstone textures.</li>
 								<li>/u/Nyodex for the original Duskbound Block idea and textures.</li>
 								<li>/u/MushirMickeyJoe for recreation of the pocket edition piston model.</li>
-								<li>/u/gibraltarMC for flat item frames and quick armor swapping.</li>
 								<li>/u/CopherSans for the improved bow animation.</li>
 								<li>The creators of all the awesome suggestions I found in /r/MinecraftSuggestions that I implemented here.</li>
 							</ul>

@@ -482,7 +482,9 @@
 				"name":"Quick Armor Swapping",
 				"description":"Right clicking an armor stand while sneaking will swap all armor and your off hand item quickly.",
 				"image":"quick-armor-swapping.jpg",
-				"introduced":11
+				"introduced":11,
+				"contributor": "gibraltarMC",
+				"overlap": ["Iberia"]
 			},
 			{
 				"name":"Safe Mounts",
