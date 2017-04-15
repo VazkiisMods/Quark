@@ -31,6 +31,7 @@ import vazkii.quark.tweaks.feature.ImprovedStoneToolCrafting;
 import vazkii.quark.tweaks.feature.JumpBoostStepAssist;
 import vazkii.quark.tweaks.feature.KnockOnDoors;
 import vazkii.quark.tweaks.feature.LessIntrusiveShields;
+import vazkii.quark.tweaks.feature.VisualStatDisplay;
 import vazkii.quark.tweaks.feature.LookDownLadders;
 import vazkii.quark.tweaks.feature.MapTooltip;
 import vazkii.quark.tweaks.feature.MinecartInteraction;
@@ -88,6 +89,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new SpongeDriesInNether(), "Wet sponge will dry in the nether");
 		registerFeature(new ShulkerBoxTooltip());
 		registerFeature(new QuickArmorSwapping());
+		registerFeature(new VisualStatDisplay());
 	}
 
 }

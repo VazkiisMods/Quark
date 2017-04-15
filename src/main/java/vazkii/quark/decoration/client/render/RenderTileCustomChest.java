@@ -19,7 +19,6 @@ import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
-import scala.tools.nsc.Global;
 import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.decoration.feature.VariedChests;
 import vazkii.quark.decoration.tile.TileCustomChest;

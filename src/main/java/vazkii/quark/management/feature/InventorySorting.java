@@ -9,10 +9,12 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.arl.network.NetworkHandler;
+import vazkii.quark.base.client.ModKeybinds;
 import vazkii.quark.base.handler.SortingHandler;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.network.message.MessageSortInventory;
@@ -32,6 +34,12 @@ public class InventorySorting extends Feature {
 		yPosC = loadPropInt("Position Y (Creative)", "", -20);
 	}
 	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void preInitClient(FMLPreInitializationEvent event) {
+		ModKeybinds.initPlayerSortingKey();
+	}
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void initGui(GuiScreenEvent.InitGuiEvent.Post event) {
@@ -40,6 +48,9 @@ public class InventorySorting extends Feature {
 			GuiContainerCreative creativeInv = null;
 			if(guiInv instanceof GuiContainerCreative)
 				creativeInv = (GuiContainerCreative) guiInv;
+			
+			if(creativeInv == null && Minecraft.getMinecraft().player.capabilities.isCreativeMode)
+				return;
 
 			int guiLeft = (guiInv.width - 176) / 2;
 			int guiTop = (guiInv.height - 166) / 2;
@@ -48,13 +59,13 @@ public class InventorySorting extends Feature {
 			for(Slot s : container.inventorySlots)
 				if(creativeInv != null || s instanceof SlotCrafting) {
 					if(creativeInv == null)
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SORT, 13212, guiLeft + s.xPos + xPos, guiTop + s.yPos + yPos));
+						ChestButtons.addButtonAndKeybind(event, Action.SORT, guiInv, 13212, guiLeft + s.xPos + xPos, guiTop + s.yPos + yPos, s, ModKeybinds.playerSortKey);
 					else {
 						if(s.getSlotIndex() != 15)
 							continue;
 
-						event.getButtonList().add(new GuiButtonChest<GuiContainerCreative>(creativeInv, Action.SORT, 13212, guiLeft + s.xPos + xPosC, guiTop + s.yPos + yPosC,
-								(gui) -> gui.getSelectedTabIndex() == CreativeTabs.INVENTORY.getTabIndex()));
+						ChestButtons.<GuiContainerCreative>addButtonAndKeybind(event, Action.SORT, guiInv, 132112, guiLeft + s.xPos + xPosC, guiTop + s.yPos + yPosC, s, ModKeybinds.playerSortKey,
+								(gui) -> gui.getSelectedTabIndex() == CreativeTabs.INVENTORY.getTabIndex());
 					}
 
 					break;
@@ -84,6 +95,11 @@ public class InventorySorting extends Feature {
 	@Override
 	public String[] getIncompatibleMods() {
 		return new String[] { "inventorytweaks", "inventorysorter" };
+	}
+	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
 	}
 
 	

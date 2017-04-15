@@ -17,11 +17,14 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import vazkii.arl.util.ModelHandler;
+import vazkii.quark.base.client.ClientTicker;
 import vazkii.quark.base.client.ResourceProxy;
 import vazkii.quark.base.lib.LibObfuscation;
 import vazkii.quark.base.module.ModuleLoader;
@@ -43,6 +46,7 @@ public class ClientProxy extends CommonProxy {
 		super.init(event);
 		ModuleLoader.initClient(event);
 		ModelHandler.init();
+		MinecraftForge.EVENT_BUS.register(ClientTicker.class);
 	}
 
 	@Override

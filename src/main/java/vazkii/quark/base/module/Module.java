@@ -135,7 +135,11 @@ public class Module {
 	public void postInit(FMLPostInitializationEvent event) {
 		forEachEnabled(feature -> feature.postInit(event));
 	}
-
+	
+	public void finalInit(FMLPostInitializationEvent event) {
+		forEachEnabled(feature -> feature.finalInit(event));
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public void preInitClient(FMLPreInitializationEvent event) {
 		forEachEnabled(feature -> feature.preInitClient(event));

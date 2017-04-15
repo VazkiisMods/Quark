@@ -49,4 +49,7 @@ public final class LibObfuscation {
 	// GuiCreateWorld
 	public static final String[] SELECTED_INDEX = new String[] { "L", "field_146331_K", "selectedIndex" };
 	
+	// GuiScreen
+	public static final String[] BUTTON_LIST = new String[] { "n", "field_146292_n", "buttonList" };
+	
 }

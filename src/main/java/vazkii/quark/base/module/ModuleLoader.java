@@ -88,6 +88,10 @@ public final class ModuleLoader {
 		forEachEnabled(module -> module.postInit(event));
 	}
 
+	public static void finalInit(FMLPostInitializationEvent event) {
+		forEachEnabled(module -> module.finalInit(event));
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public static void preInitClient(FMLPreInitializationEvent event) {
 		forEachEnabled(module -> module.preInitClient(event));

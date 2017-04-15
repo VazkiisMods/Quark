@@ -11,6 +11,7 @@ quarkmisc.craftButton.redo=Redo Recipe
 quarkmisc.craftButton.balance=Balance Grid
 quarkmisc.shulkerBoxShift=Hold Shift to see contents
 quarkmisc.mapShift=Hold Shift to see the map
+quarkmisc.keyboundButton=%sPress %s
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=Clay Shingles
@@ -384,6 +385,7 @@ item.quark:rune_red.name=Red Rune
 item.quark:rune_silver.name=Light Gray Rune
 item.quark:rune_white.name=White Rune
 item.quark:rune_yellow.name=Yellow Rune
+item.quark:rune_rainbow.name=Rainbow Rune
 item.quark:colored_item_frame_black.name=Black Item Frame
 item.quark:colored_item_frame_blue.name=Blue Item Frame
 item.quark:colored_item_frame_brown.name=Brown Item Frame
@@ -448,6 +450,12 @@ quark.keybind.emote.headbang=Emote: Headbang
 quark.keybind.lockBuilding=Lock Orientation
 quark.keybind.toggleAutojump=Toggle Autojump
 quark.keybind.changeHotbar=Change Hotbar
+quark.keybind.dropoff=Dropoff
+quark.keybind.playerSort=Sort Player Inventory
+quark.keybind.chestSort=Sort Container
+quark.keybind.chestDropoff=Deposit into Container
+quark.keybind.chestMerge=Merge into Container
+quark.keybind.chestRestock=Restock from Container
 
 # GUI STUFF
 quark.gui.emotes=Emotes

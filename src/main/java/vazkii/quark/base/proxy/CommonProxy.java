@@ -39,6 +39,10 @@ public class CommonProxy {
 	public void postInit(FMLPostInitializationEvent event) {
 		ModuleLoader.postInit(event);
 	}
+	
+	public void finalInit(FMLPostInitializationEvent event) {
+		ModuleLoader.finalInit(event);
+	}
 
 	public void serverStarting(FMLServerStartingEvent event) {
 		ModuleLoader.serverStarting(event);

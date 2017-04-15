@@ -29,6 +29,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.quark.base.module.Feature;
 
 public class VariedDungeons extends Feature {
+	
+	ResourceLocation lootTable;
+	
+	@Override
+	public void setupConfig() {
+		String lootTableStr = loadPropString("Custom Loot Table", "Set this to anything other than null to load a custom loot table for the dungeons.", "");
+		lootTable = lootTableStr.isEmpty() ? null : new ResourceLocation(lootTableStr);
+	}
 
 	@SubscribeEvent
 	public void onDungeonSpawn(PopulateChunkEvent.Populate event) {
@@ -138,8 +146,11 @@ public class VariedDungeons extends Feature {
 			world.setBlockState(pos, Blocks.CHEST.correctFacing(world, pos, Blocks.CHEST.getDefaultState()), 2);
             TileEntity tile = world.getTileEntity(pos);
 
-            if(tile instanceof TileEntityChest)
-                ((TileEntityChest) tile).setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());
+            if(tile instanceof TileEntityChest) {
+            	if(lootTable == null)
+            		((TileEntityChest) tile).setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());
+            	else ((TileEntityChest) tile).setLootTable(lootTable, rand.nextLong());
+            }
 		}
 	}
 

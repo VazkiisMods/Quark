@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.arl.network.NetworkHandler;
+import vazkii.quark.base.client.ModKeybinds;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.network.message.MessageDropoff;
 import vazkii.quark.management.client.gui.GuiButtonChest;
@@ -55,6 +56,12 @@ public class StoreToChests extends Feature {
 	public void preInit(FMLPreInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new DropoffGamerule());
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void preInitClient(FMLPreInitializationEvent event) {
+		ModKeybinds.initDropoffKey();
+	}
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
@@ -71,6 +78,9 @@ public class StoreToChests extends Feature {
 			if(guiInv instanceof GuiContainerCreative)
 				creativeInv = (GuiContainerCreative) guiInv;
 
+			if(creativeInv == null && Minecraft.getMinecraft().player.capabilities.isCreativeMode)
+				return;
+			
 			int guiLeft = (guiInv.width - 176) / 2;
 			int guiTop = (guiInv.height - 166) / 2;
 
@@ -78,13 +88,13 @@ public class StoreToChests extends Feature {
 			for(Slot s : container.inventorySlots)
 				if(creativeInv != null || s instanceof SlotCrafting) {
 					if(creativeInv == null)
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.DROPOFF, 13211, guiLeft + s.xPos + xPos, guiTop + s.yPos + yPos));
+						ChestButtons.addButtonAndKeybind(event, Action.DROPOFF, guiInv, 13211, guiLeft + s.xPos + xPos, guiTop + s.yPos + yPos, s, ModKeybinds.dropoffKey);
 					else {
 						if(s.getSlotIndex() != 15)
 							continue;
-
-						event.getButtonList().add(new GuiButtonChest<GuiContainerCreative>(creativeInv, Action.DROPOFF, 13211, guiLeft + s.xPos + xPosC, guiTop + s.yPos + yPosC,
-								(gui) -> gui.getSelectedTabIndex() == CreativeTabs.INVENTORY.getTabIndex()));
+						
+						ChestButtons.<GuiContainerCreative>addButtonAndKeybind(event, Action.DROPOFF, guiInv, 13211, guiLeft + s.xPos + xPosC, guiTop + s.yPos + yPosC, s, ModKeybinds.dropoffKey,
+								(gui) -> gui.getSelectedTabIndex() == CreativeTabs.INVENTORY.getTabIndex());
 					}
 
 					break;
@@ -105,6 +115,11 @@ public class StoreToChests extends Feature {
 	@Override
 	public boolean hasSubscriptions() {
 		return isClient();
+	}
+	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
 	}
 
 }

@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.automation.block.BlockEnderWatcher;
 import vazkii.quark.automation.tile.TileEnderWatcher;
+import vazkii.quark.base.handler.ModIntegrationHandler;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.world.feature.Biotite;
@@ -31,6 +32,7 @@ public class EnderWatcher extends Feature {
 	public void preInit(FMLPreInitializationEvent event) {
 		ender_watcher = new BlockEnderWatcher();
 		registerTile(TileEnderWatcher.class, "ender_watcher");
+		ModIntegrationHandler.addCharsetCarry(ender_watcher);
 	}
 
 	@Override

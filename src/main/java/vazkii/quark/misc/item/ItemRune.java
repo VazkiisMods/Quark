@@ -10,6 +10,8 @@
  */
 package vazkii.quark.misc.item;
 
+import java.awt.Color;
+
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemDye;
@@ -18,6 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.arl.interf.IItemColorProvider;
 import vazkii.arl.item.ItemMod;
+import vazkii.quark.base.client.ClientTicker;
 import vazkii.quark.base.handler.ICustomEnchantColor;
 import vazkii.quark.base.item.IQuarkItem;
 import vazkii.quark.misc.feature.ColorRunes;
@@ -40,7 +43,8 @@ public class ItemRune extends ItemMod implements IItemColorProvider, ICustomEnch
 			"rune_brown",
 			"rune_green",
 			"rune_red",
-			"rune_black"
+			"rune_black",
+			"rune_rainbow"
 	};
 
 	public ItemRune() {
@@ -61,9 +65,16 @@ public class ItemRune extends ItemMod implements IItemColorProvider, ICustomEnch
 
 	@Override
 	public int getEnchantEffectColor(ItemStack stack) {
-		return ItemDye.DYE_COLORS[15 - Math.min(15, stack.getItemDamage())];
+		return getColor(stack.getItemDamage());
 	}
-
+	
+	public static int getColor(int meta) {
+		if(meta > 15) 
+			return Color.HSBtoRGB(ClientTicker.total * 0.005F, 1F, 0.6F);
+		
+		else return ItemDye.DYE_COLORS[15 - meta];
+	}
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IItemColor getItemColor() {

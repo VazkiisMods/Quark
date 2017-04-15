@@ -11,6 +11,7 @@
 package vazkii.quark.misc.feature;
 
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
@@ -25,6 +26,7 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.arl.util.ItemNBTHelper;
+import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.handler.ICustomEnchantColor;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
@@ -40,7 +42,8 @@ public class ColorRunes extends Feature {
 	public static Item rune;
 
 	int dungeonWeight, netherFortressWeight, jungleTempleWeight, desertTempleWeight, itemQuality, applyCost;
-
+	boolean enableRainbowRuneCrafting, enableRainbowRuneChests;
+	
 	@Override
 	public void setupConfig() {
 		dungeonWeight = loadPropInt("Dungeon loot weight", "", 20);
@@ -49,16 +52,32 @@ public class ColorRunes extends Feature {
 		desertTempleWeight = loadPropInt("Desert Temple loot weight", "", 15);
 		itemQuality = loadPropInt("Item quality for loot", "", 0);
 		applyCost = loadPropInt("Cost to apply rune", "", 15);
+		enableRainbowRuneCrafting = loadPropBool("Enable Rainbow Rune Crafting", "", true);
+		enableRainbowRuneChests = loadPropBool("Enable Rainbow Rune in Chests", "", false);
 	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		rune = new ItemRune();
+		
+		if(enableRainbowRuneCrafting) {
+			RecipeHandler.addOreDictRecipe(new ItemStack(rune, 7, 16), 
+					"345", "2G6", "1W7",
+					'G', new ItemStack(Blocks.GLASS),
+					'W', new ItemStack(rune, 1, 0),
+					'1', new ItemStack(rune, 1, 14),
+					'2', new ItemStack(rune, 1, 1),
+					'3', new ItemStack(rune, 1, 4),
+					'4', new ItemStack(rune, 1, 5),
+					'5', new ItemStack(rune, 1, 3),
+					'6', new ItemStack(rune, 1, 11),
+					'7', new ItemStack(rune, 1, 2));
+		}
 	}
-
+	
 	@SubscribeEvent
 	public void onLootTableLoad(LootTableLoadEvent event) {
-		LootFunction[] funcs = new LootFunction[] { new SetMetadata(new LootCondition[0], new RandomValueRange(0, 15)) };
+		LootFunction[] funcs = new LootFunction[] { new SetMetadata(new LootCondition[0], new RandomValueRange(0, enableRainbowRuneChests ? 16 : 15)) };
 
 		if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON))
 			event.getTable().getPool("main").addEntry(new LootEntryItem(rune, dungeonWeight, itemQuality, funcs, new LootCondition[0], "quark:rune"));
@@ -131,7 +150,7 @@ public class ColorRunes extends Feature {
 			truncate = ((ICustomEnchantColor) stack.getItem()).shouldTruncateColorBrightness(stack);
 			retColor = 0xFF000000 | color;
 		} else if (doesStackHaveRune(stack)) {
-			int color = ItemDye.DYE_COLORS[15 - Math.min(15, ItemNBTHelper.getInt(targetStack, TAG_RUNE_COLOR, 0))];
+			int color = ItemRune.getColor(ItemNBTHelper.getInt(targetStack, TAG_RUNE_COLOR, 0));
 			retColor = 0xFF000000 | color;
 		}
 

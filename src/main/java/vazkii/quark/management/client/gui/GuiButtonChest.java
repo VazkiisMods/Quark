@@ -10,21 +10,29 @@
  */
 package vazkii.quark.management.client.gui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.common.base.Predicate;
+import com.google.common.collect.BiMap;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import vazkii.arl.util.RenderHelper;
+import vazkii.quark.base.client.IParentedGui;
+import vazkii.quark.base.client.ModKeybinds;
 import vazkii.quark.management.feature.FavoriteItems;
 import vazkii.quark.management.feature.StoreToChests;
 
-public class GuiButtonChest<T extends GuiScreen> extends GuiButton {
+public class GuiButtonChest<T extends GuiScreen> extends GuiButton implements IParentedGui {
 
 	public static ResourceLocation GENERAL_ICONS_RESOURCE = new ResourceLocation("quark", "textures/misc/general_icons.png");
 	public final Action action;
@@ -92,7 +100,7 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton {
 			drawTexturedModalRect(xPosition, yPosition, u, v, 16, 16);
 			
 			if(k == 2) {
-				if(action != Action.RESTOCK)
+				if(action != Action.RESTOCK && !action.isSortAction())
 					FavoriteItems.hovering = true;
 				
 				GlStateManager.pushMatrix();
@@ -102,12 +110,34 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton {
 					else tooltip = I18n.translateToLocal("quarkmisc.chestButton." + action.name().toLowerCase());
 				int len = Minecraft.getMinecraft().fontRendererObj.getStringWidth(tooltip);
 				
-				
 				int tooltipShift = action == Action.DROPOFF ? 0 : -len - 24;
-				RenderHelper.renderTooltip(par2 + tooltipShift, par3 + 8, Arrays.asList(new String[] { tooltip }));
+				
+				List<String> tooltipList = new ArrayList();
+				tooltipList.add(tooltip);
+				BiMap<IParentedGui, KeyBinding> map = ModKeybinds.keyboundButtons.inverse();
+				if(map.containsKey(this)) {
+					KeyBinding key = map.get(this);
+					if(key.getKeyCode() != 0) {
+						String press = String.format(I18n.translateToLocal("quarkmisc.keyboundButton"), TextFormatting.GRAY, GameSettings.getKeyDisplayString(key.getKeyCode())); 
+						tooltipList.add(press);
+						
+						if(action != Action.DROPOFF) {
+							int len2 = Minecraft.getMinecraft().fontRendererObj.getStringWidth(press);
+							if(len2 > len)
+								tooltipShift = -len2 - 24;
+						}
+					}
+				}
+				
+				RenderHelper.renderTooltip(par2 + tooltipShift, par3 + 8, tooltipList);
 				GlStateManager.popMatrix();
 			}
 		}
+	}
+	
+	@Override
+	public GuiScreen getParent() {
+		return parent;
 	}
 
 	public static enum Action {

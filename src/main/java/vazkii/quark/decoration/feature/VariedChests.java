@@ -32,6 +32,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import vazkii.arl.util.RecipeHandler;
+import vazkii.quark.base.handler.ModIntegrationHandler;
 import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.decoration.block.BlockCustomChest;
@@ -64,6 +65,9 @@ public class VariedChests extends Feature {
 		custom_chest_trap = new BlockCustomChest("custom_chest_trap", CUSTOM_TYPE_QUARK_TRAP);
 
 		registerTile(TileCustomChest.class, "quark_chest");
+		
+		ModIntegrationHandler.addCharsetCarry(custom_chest);
+		ModIntegrationHandler.addCharsetCarry(custom_chest_trap);
 
 		OreDictionary.registerOre("chest", new ItemStack(custom_chest, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("chest", new ItemStack(custom_chest_trap, 1, OreDictionary.WILDCARD_VALUE));
@@ -134,6 +138,11 @@ public class VariedChests extends Feature {
 				"I I", "ICI", " I ",
 				'I', Items.IRON_INGOT,
 				'C', "chestWood");
+		
+		RecipeHandler.addOreDictRecipe(new ItemStack(Blocks.PURPLE_SHULKER_BOX), 
+				"S", "C", "S",
+				'S', new ItemStack(Items.SHULKER_SHELL),
+				'C', "chest");
 	}
 	
 	@Override

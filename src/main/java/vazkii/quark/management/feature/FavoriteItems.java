@@ -13,6 +13,7 @@ package vazkii.quark.management.feature;
 import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -21,11 +22,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -101,12 +102,39 @@ public class FavoriteItems extends Feature {
 		hovering = false;
 	}
 
+//	@SubscribeEvent
+//	public void onTooltip(ItemTooltipEvent event) {
+//		if(isItemFavorited(event.getItemStack()))
+//			event.getToolTip().add(TextFormatting.GREEN + I18n.translateToLocal("quark.gui.favorited"));
+//	}
+
 	@SubscribeEvent
-	public void onTooltip(ItemTooltipEvent event) {
+	@SideOnly(Side.CLIENT)
+	public void makeTooltip(ItemTooltipEvent event) {
 		if(isItemFavorited(event.getItemStack()))
-			event.getToolTip().add(TextFormatting.GREEN + I18n.translateToLocal("quark.gui.favorited"));
+			event.getToolTip().set(0, "   " + event.getToolTip().get(0));
 	}
 
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void renderTooltip(RenderTooltipEvent.PostText event) {
+		ItemStack stack = event.getStack();
+		if(isItemFavorited(event.getStack())) {
+			Item item = stack.getItem();
+			GlStateManager.pushMatrix();
+			GlStateManager.color(1F, 1F, 1F);
+			Minecraft mc = Minecraft.getMinecraft();
+
+			int x = event.getX();
+			int y = event.getY() - 1;
+			
+			mc.getTextureManager().bindTexture(GuiButtonChest.GENERAL_ICONS_RESOURCE);
+			Gui.drawModalRectWithCustomSizedTexture(x, y, 211, 0, 9, 9, 256, 256);
+			
+			GlStateManager.popMatrix();
+		}
+	}
+	
 	public static void favoriteItem(EntityPlayer player, int slot) {
 		if(!ModuleLoader.isFeatureEnabled(FavoriteItems.class) || slot >= player.inventory.getSizeInventory())
 			return;
@@ -123,7 +151,7 @@ public class FavoriteItems extends Feature {
 	}
 
 	public static boolean isItemFavorited(ItemStack stack) {
-		if(stack.isEmpty() || !stack.hasTagCompound() || !ModuleLoader.isFeatureEnabled(FavoriteItems.class))
+		if(stack == null || stack.isEmpty() || !stack.hasTagCompound() || !ModuleLoader.isFeatureEnabled(FavoriteItems.class))
 			return false;
 
 		return ItemNBTHelper.getBoolean(stack, TAG_FAVORITE_ITEM, false);

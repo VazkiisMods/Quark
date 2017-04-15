@@ -64,6 +64,10 @@ public class Feature {
 	public void postInit(FMLPostInitializationEvent event) {
 		// NO-OP
 	}
+	
+	public void finalInit(FMLPostInitializationEvent event) {
+		// NO-OP
+	}
 
 	@SideOnly(Side.CLIENT)
 	public void preInitClient(FMLPreInitializationEvent event) {

@@ -52,4 +52,9 @@ public class CharcoalBlock extends Feature {
 		return true;
 	}
 	
+	@Override
+	public String[] getIncompatibleMods() {
+		return new String[] { "actuallyadditions" };
+	}
+	
 }

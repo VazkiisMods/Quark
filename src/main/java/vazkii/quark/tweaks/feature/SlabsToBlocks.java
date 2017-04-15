@@ -11,11 +11,15 @@
 package vazkii.quark.tweaks.feature;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -28,6 +32,8 @@ import vazkii.quark.base.module.Feature;
 
 public class SlabsToBlocks extends Feature {
 
+	public static Map<IBlockState, ItemStack> slabs = new HashMap();
+	
 	int originalSize;
 
 	@Override
@@ -81,6 +87,11 @@ public class SlabsToBlocks extends Feature {
 								outCopy.setItemDamage(0);
 
 							ItemStack in = output.copy();
+							if(in.getItem() instanceof ItemBlock && outCopy.getItem() instanceof ItemBlock) {
+								Block block = Block.getBlockFromItem(outCopy.getItem());
+								slabs.put(block.getStateFromMeta(outCopy.getItemDamage()), in);
+							}
+							
 							RecipeHandler.addShapelessOreDictRecipe(outCopy, in, in);
 						}
 					}
