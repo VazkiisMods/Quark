@@ -5,11 +5,13 @@ quarkmisc.chestButton.smart_deposit=合并
 quarkmisc.chestButton.dropoff=存储到邻近箱子
 quarkmisc.chestButton.dropoff.shift=合并到邻近箱子
 quarkmisc.chestButton.sort=排序
+quarkmisc.chestButton.sort_player=排序
 quarkmisc.incrementNote=音符键盘
 quarkmisc.craftButton.redo=重做合成
 quarkmisc.craftButton.balance=均分物品
 quarkmisc.shulkerBoxShift=按住Shift查看内容
 quarkmisc.mapShift=按住Shift查看地图
+quarkmisc.keyboundButton=%s按 %s
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=粘土瓦砖
@@ -383,6 +385,7 @@ item.quark:rune_red.name=红色符文
 item.quark:rune_silver.name=淡灰色符文
 item.quark:rune_white.name=白色符文
 item.quark:rune_yellow.name=黄色符文
+item.quark:rune_rainbow.name=七彩符文
 item.quark:colored_item_frame_black.name=黑色物品展示框
 item.quark:colored_item_frame_blue.name=蓝色物品展示框
 item.quark:colored_item_frame_brown.name=棕色物品展示框
@@ -447,6 +450,12 @@ quark.keybind.emote.headbang=动作：摇头
 quark.keybind.lockBuilding=锁定朝向
 quark.keybind.toggleAutojump=自动跳跃开关
 quark.keybind.changeHotbar=切换快捷栏
+quark.keybind.dropoff=存储
+quark.keybind.playerSort=排序玩家物品栏
+quark.keybind.chestSort=排序容器
+quark.keybind.chestDropoff=存储到容器
+quark.keybind.chestMerge=合并到容器
+quark.keybind.chestRestock=从容器补充
 
 # GUI STUFF
 quark.gui.emotes=动作
