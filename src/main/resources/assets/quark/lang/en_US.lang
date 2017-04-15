@@ -5,6 +5,7 @@ quarkmisc.chestButton.smart_deposit=Merge
 quarkmisc.chestButton.dropoff=Deposit to nearby Chests
 quarkmisc.chestButton.dropoff.shift=Merge to nearby Chests
 quarkmisc.chestButton.sort=Sort
+quarkmisc.chestButton.sort_player=Sort
 quarkmisc.incrementNote=Increment Note
 quarkmisc.craftButton.redo=Redo Recipe
 quarkmisc.craftButton.balance=Balance Grid

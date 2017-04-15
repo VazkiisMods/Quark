@@ -4,9 +4,9 @@ Hey there. Looks like you want to contribute with an issue. Great. Here's what y
   * Issues regarding MCPC+/Cauldron/Spigot/Sponge that are not reproducible with forge only are **not accepted**;
   * Issues regarding outdated versions of the mod are **not accepted**;
   * Duplicate issues or issues that have been solved already (use the search feature!) will be closed without asking. If the issue is still happening, comment on the old one with the proper info you'd use when reporting a new one. (if it's locked for some reason feel free to make another one)
-  * Suggestions are **not** accepted here. Since quark is a mod for features that will go in vanilla, post your suggestions to [/r/minecraftsuggestions](https://www.reddit.com/r/minecraftsuggestions) and tag me (/u/vazkii) if you want me to see it. I take notes of all features I intend on adding.
+  * Suggestions are **not** accepted here. Please check the your [Quark subreddit](https://www.reddit.com/r/quarkmod) and tag me (/u/vazkii) instead.
 
-[Report the Issue](https://github.com/Vazkii/Botania/issues)!
+[Report the Issue](https://github.com/Vazkii/Quark/issues)!
 
 You can find me at most times on [#vazkii @ irc.esper.net](http://webchat.esper.net/?channels=vazkii), if you need to speak with me about the issue you would report. Just make sure to use common sense and read what the bot tells you.
 

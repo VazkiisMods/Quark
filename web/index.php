@@ -1,3 +1,7 @@
+<?php
+	header("cache-control: no-cache");
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -103,7 +107,6 @@
 								<li>Rorax for the emote icons.</li>
 								<li>DylanKaiser for the inventory chest icon.</li>
 								<li>SanAndreasP for the chest textures and most of their code.</li>
-								<li>Darkhax for the sheep having wool feature.</li>
 								<li>ZeroLevels for the Iron Plate texture.</li>
 								<li>Noodlor for the variety dungeon structures.</li>
 								<li>Xisumavoid for the sticky piston side texture.</li>
@@ -115,9 +118,9 @@
 								<li>/u/darwinpatrick for the Soul Sandstone textures.</li>
 								<li>/u/Nyodex for the original Duskbound Block idea and textures.</li>
 								<li>/u/MushirMickeyJoe for recreation of the pocket edition piston model.</li>
-								<li>/u/gibraltarMC for flat item frames.</li>
 								<li>/u/CopherSans for the improved bow animation.</li>
 								<li>The creators of all the awesome suggestions I found in /r/MinecraftSuggestions that I implemented here.</li>
+								<li>And all the awesome people who pull requested features into the mod, credited in their individual cards.</li>
 							</ul>
 							<hr>
 							<b>Contact and Donations</b>

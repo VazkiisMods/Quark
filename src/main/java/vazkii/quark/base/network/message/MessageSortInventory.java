@@ -7,11 +7,17 @@ import vazkii.quark.base.handler.SortingHandler;
 
 public class MessageSortInventory extends NetworkMessage {
 
+	public boolean forcePlayer;
+	
 	public MessageSortInventory() { }
 
+	public MessageSortInventory(boolean forcePlayer) { 
+		this.forcePlayer = forcePlayer;
+	}
+	
 	@Override
 	public IMessage handleMessage(MessageContext context) {
-		SortingHandler.sortInventory(context.getServerHandler().playerEntity);
+		SortingHandler.sortInventory(context.getServerHandler().playerEntity, forcePlayer);
 		return null;
 	}
 

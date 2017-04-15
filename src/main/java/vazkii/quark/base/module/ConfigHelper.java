@@ -15,6 +15,7 @@ import net.minecraftforge.common.config.Property;
 public class ConfigHelper {
 
 	public static boolean needsRestart;
+	public static boolean allNeedRestart = false;
 	
 	public static int loadPropInt(String propName, String category, String desc, int default_) {
 		Property prop = ModuleLoader.config.get(category, propName, default_);
@@ -59,7 +60,7 @@ public class ConfigHelper {
 	private static void setNeedsRestart(Property prop) {
 		if(needsRestart)
 			prop.setRequiresMcRestart(needsRestart);
-		needsRestart = false;
+		needsRestart = allNeedRestart;
 	}
 	
 }

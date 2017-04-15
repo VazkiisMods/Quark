@@ -11,6 +11,7 @@
 package vazkii.quark.automation;
 
 import vazkii.quark.automation.feature.AnimalsEatFloorFood;
+import vazkii.quark.automation.feature.DispenserRecords;
 import vazkii.quark.automation.feature.DispensersPlaceBlocks;
 import vazkii.quark.automation.feature.DispensersPlaceSeeds;
 import vazkii.quark.automation.feature.EnderWatcher;
@@ -32,6 +33,7 @@ public class QuarkAutomation extends Module {
 		registerFeature(new AnimalsEatFloorFood());
 		registerFeature(new PistonsMoveTEs());
 		registerFeature(new DispensersPlaceBlocks());
+		registerFeature(new DispenserRecords());
 	}
 
 }

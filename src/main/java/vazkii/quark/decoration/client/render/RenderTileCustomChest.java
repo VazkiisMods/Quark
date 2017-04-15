@@ -19,6 +19,8 @@ import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
+import scala.tools.nsc.Global;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.decoration.feature.VariedChests;
 import vazkii.quark.decoration.tile.TileCustomChest;
 
@@ -33,8 +35,10 @@ public class RenderTileCustomChest extends TileEntitySpecialRenderer<TileCustomC
 	private boolean xmas;
 	
 	public RenderTileCustomChest() {
-        Calendar calendar = Calendar.getInstance();
-        xmas = calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DAY_OF_MONTH) >= 24 && calendar.get(Calendar.DAY_OF_MONTH) <= 26;
+		if(GlobalConfig.enableSeasonalFeatures) {
+			Calendar calendar = Calendar.getInstance();
+	        xmas = calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DAY_OF_MONTH) >= 24 && calendar.get(Calendar.DAY_OF_MONTH) <= 26;
+		}
 	}
 	
 	@Override

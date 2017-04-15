@@ -56,6 +56,10 @@ public class DyeItemNames extends Feature {
 
 		if (!left.isEmpty() && !right.isEmpty() && right.getItem() == Items.DYE) {
 			ItemStack out = left.copy();
+			String name = event.getName();
+			if(!name.trim().isEmpty())
+				out.setStackDisplayName(name.trim());
+			
 			ItemNBTHelper.setInt(out, TAG_DYE, right.getItemDamage());
 			event.setOutput(out);
 			event.setCost(3);

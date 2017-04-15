@@ -34,14 +34,15 @@ import vazkii.quark.management.client.gui.GuiButtonChest.Action;
 
 public class ChestButtons extends Feature {
 
-	ButtonInfo deposit, smartDeposit, restock, sort;
+	ButtonInfo deposit, smartDeposit, restock, sort, sortPlayer;
 	
 	@Override
 	public void setupConfig() {
-		deposit = loadButtonInfo("deposit", "", -18, -60);
-		smartDeposit = loadButtonInfo("smart_deposit", "", -18, -40);
-		restock = loadButtonInfo("restock", "", -18, 18);
-		sort = loadButtonInfo("sort", "The Sort button is only available if the Inventory Sorting feature is enable", -18, 36);
+		deposit = loadButtonInfo("deposit", "", -18, -50);
+		smartDeposit = loadButtonInfo("smart_deposit", "", -18, -30);
+		restock = loadButtonInfo("restock", "", -18, 35);
+		sort = loadButtonInfo("sort", "The Sort button is only available if the Inventory Sorting feature is enable", -18, -70);
+		sortPlayer = loadButtonInfo("sort_player", "The Sort button is only available if the Inventory Sorting feature is enable", -18, 15);
 	}
 	
 	private ButtonInfo loadButtonInfo(String name, String comment, int xShift, int yShift) {
@@ -80,14 +81,19 @@ public class ChestButtons extends Feature {
 
 			for(Slot s : container.inventorySlots)
 				if(s.inventory == player.inventory && s.getSlotIndex() == 9) {
-					if(sort.enabled && ModuleLoader.isFeatureEnabled(InventorySorting.class))
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SORT, 13210, guiLeft + sort.xShift, guiTop + s.yPos + sort.yShift));
 					if(restock.enabled)
 						event.getButtonList().add(new GuiButtonChest(guiInv, Action.RESTOCK, 13211, guiLeft + restock.xShift, guiTop + s.yPos + restock.yShift));
 					if(deposit.enabled)
 						event.getButtonList().add(new GuiButtonChest(guiInv, Action.DEPOSIT, 13212, guiLeft + deposit.xShift, guiTop + s.yPos + deposit.yShift));
 					if(smartDeposit.enabled)
 						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SMART_DEPOSIT, 13213, guiLeft + smartDeposit.xShift, guiTop + s.yPos + smartDeposit.yShift));
+					
+					if(ModuleLoader.isFeatureEnabled(InventorySorting.class)) {
+						if(sort.enabled)
+							event.getButtonList().add(new GuiButtonChest(guiInv, Action.SORT, 13214, guiLeft + sort.xShift, guiTop + s.yPos + sort.yShift));
+						if(sortPlayer.enabled)
+							event.getButtonList().add(new GuiButtonChest(guiInv, Action.SORT_PLAYER, 13215, guiLeft + sortPlayer.xShift, guiTop + s.yPos + sortPlayer.yShift));
+					}
 					
 					break;
 				}

@@ -21,7 +21,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -79,10 +81,10 @@ public class Wraiths extends Feature {
 
 	@SubscribeEvent
 	public void onSpawn(LivingSpawnEvent.CheckSpawn event) {
-		if(event.getResult() != Result.ALLOW && event.getEntityLiving() instanceof IMob) {
-			List<EntityPlayer> players = event.getWorld().getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(event.getX() - curseRange, event.getY() - curseRange, event.getZ() -curseRange, event.getX() + curseRange, event.getY() + curseRange, event.getZ() + curseRange));
+		if(event.getResult() != Result.ALLOW && event.getEntityLiving() instanceof IMob && event.getWorld() instanceof WorldServer) {
+			List<EntityPlayer> players = ((WorldServer) event.getWorld()).playerEntities;
 			for(EntityPlayer player : players)
-				if(player.getActivePotionEffect(curse) != null) {
+				if(player.getActivePotionEffect(curse) != null && player.getDistanceSqToEntity(event.getEntity()) < curseRange * curseRange) {
 					event.getEntityLiving().addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));
 					event.setResult(Result.ALLOW);
 					return;

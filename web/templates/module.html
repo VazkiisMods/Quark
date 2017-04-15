@@ -9,7 +9,15 @@
 			<img class="feature-image lazyload-image" data-original="img/modules/{{module_key}}/{{image}}"></img> 
 			<div class="feature-info">
 				<div class="feature-title">{{name}}</div>
-				<div class="feature-desc">{{{description}}}</div>
+				<div class="feature-desc">
+						{{#was_contributed}}
+							<div class="contributor-info">
+								<i class="material-icons">favorite</i> This feature was kindly contributed to Quark by <b>{{contributor}}</b>.
+							</div>
+						{{/was_contributed}}
+
+						{{{description}}}
+				</div>
 
 				<div class="feature-versions">
 					{{#versions}}

@@ -21,6 +21,17 @@ import vazkii.quark.management.client.gui.GuiButtonChest.Action;
 
 public class InventorySorting extends Feature {
 
+	int xPos, yPos;
+	int xPosC, yPosC;
+	
+	@Override
+	public void setupConfig() {
+		xPos = loadPropInt("Position X", "", -20);
+		yPos = loadPropInt("Position Y ", "", 30);
+		xPosC = loadPropInt("Position X (Creative)", "", 8);
+		yPosC = loadPropInt("Position Y (Creative)", "", -20);
+	}
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void initGui(GuiScreenEvent.InitGuiEvent.Post event) {
@@ -37,12 +48,12 @@ public class InventorySorting extends Feature {
 			for(Slot s : container.inventorySlots)
 				if(creativeInv != null || s instanceof SlotCrafting) {
 					if(creativeInv == null)
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SORT, 13212, guiLeft + s.xPos - 20, guiTop + s.yPos + 30));
+						event.getButtonList().add(new GuiButtonChest(guiInv, Action.SORT, 13212, guiLeft + s.xPos + xPos, guiTop + s.yPos + yPos));
 					else {
 						if(s.getSlotIndex() != 15)
 							continue;
 
-						event.getButtonList().add(new GuiButtonChest<GuiContainerCreative>(creativeInv, Action.SORT, 13212, guiLeft + s.xPos + 8, guiTop + s.yPos - 20,
+						event.getButtonList().add(new GuiButtonChest<GuiContainerCreative>(creativeInv, Action.SORT, 13212, guiLeft + s.xPos + xPosC, guiTop + s.yPos + yPosC,
 								(gui) -> gui.getSelectedTabIndex() == CreativeTabs.INVENTORY.getTabIndex()));
 					}
 
@@ -54,10 +65,14 @@ public class InventorySorting extends Feature {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void performAction(GuiScreenEvent.ActionPerformedEvent.Pre event) {
-		if(event.getButton() instanceof GuiButtonChest && ((GuiButtonChest) event.getButton()).action == Action.SORT) {
-			NetworkHandler.INSTANCE.sendToServer(new MessageSortInventory());
-			SortingHandler.sortInventory(Minecraft.getMinecraft().player);
-			event.setCanceled(true);
+		if(event.getButton() instanceof GuiButtonChest) {
+			Action a = ((GuiButtonChest) event.getButton()).action;
+			if(a.isSortAction()) {
+				boolean forcePlayer = a == Action.SORT_PLAYER;
+				NetworkHandler.INSTANCE.sendToServer(new MessageSortInventory(forcePlayer));
+				SortingHandler.sortInventory(Minecraft.getMinecraft().player, forcePlayer);
+				event.setCanceled(true);
+			}
 		}
 	}
 	

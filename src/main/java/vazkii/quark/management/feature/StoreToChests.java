@@ -38,10 +38,17 @@ public class StoreToChests extends Feature {
 
 	public static boolean clientDisabled;
 	public static boolean invert;
+	
+	int xPos, yPos;
+	int xPosC, yPosC;
 
 	@Override
 	public void setupConfig() {
 		invert = loadPropBool("Invert button", "", false);
+		xPos = loadPropInt("Position X", "", 0);
+		yPos = loadPropInt("Position Y ", "", 30);
+		xPosC = loadPropInt("Position X (Creative)", "", 28);
+		yPosC = loadPropInt("Position Y (Creative)", "", -20);
 	}
 
 	@Override
@@ -71,12 +78,12 @@ public class StoreToChests extends Feature {
 			for(Slot s : container.inventorySlots)
 				if(creativeInv != null || s instanceof SlotCrafting) {
 					if(creativeInv == null)
-						event.getButtonList().add(new GuiButtonChest(guiInv, Action.DROPOFF, 13211, guiLeft + s.xPos, guiTop + s.yPos + 30));
+						event.getButtonList().add(new GuiButtonChest(guiInv, Action.DROPOFF, 13211, guiLeft + s.xPos + xPos, guiTop + s.yPos + yPos));
 					else {
 						if(s.getSlotIndex() != 15)
 							continue;
 
-						event.getButtonList().add(new GuiButtonChest<GuiContainerCreative>(creativeInv, Action.DROPOFF, 13211, guiLeft + s.xPos + 28, guiTop + s.yPos - 20,
+						event.getButtonList().add(new GuiButtonChest<GuiContainerCreative>(creativeInv, Action.DROPOFF, 13211, guiLeft + s.xPos + xPosC, guiTop + s.yPos + yPosC,
 								(gui) -> gui.getSelectedTabIndex() == CreativeTabs.INVENTORY.getTabIndex()));
 					}
 

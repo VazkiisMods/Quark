@@ -107,7 +107,7 @@ public class ChangeHotbarKeybind extends Feature {
 			GlStateManager.pushMatrix();
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
+			
 			mc.renderEngine.bindTexture(WIDGETS);
 			for(int i = 0; i < 3; i++) {
 				GlStateManager.color(1F, 1F, 1F, 0.75F);
@@ -128,6 +128,7 @@ public class ChangeHotbarKeybind extends Feature {
 				render.renderItemAndEffectIntoGUI(invStack, x, y);
 				render.renderItemOverlays(mc.fontRendererObj, invStack, x, y);
 			}
+			RenderHelper.disableStandardItemLighting();
 
 			GlStateManager.popMatrix();
 		}

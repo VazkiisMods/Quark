@@ -10,6 +10,7 @@ import java.util.WeakHashMap;
 import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -65,6 +66,10 @@ public class PistonsMoveTEs extends Feature {
 	public static boolean shouldMoveTE(boolean te, IBlockState state) {
 		if(!ModuleLoader.isFeatureEnabled(PistonsMoveTEs.class))
 			return te;
+		
+		// Jukeboxes that are playing can't be moved so the music can be stopped
+		if(state.getPropertyKeys().contains(BlockJukebox.HAS_RECORD) && state.getValue(BlockJukebox.HAS_RECORD))
+			return true;
 		
 		return PistonsMoveTEs.movementBlacklist.contains(Block.REGISTRY.getNameForObject(state.getBlock()).toString());
 	}

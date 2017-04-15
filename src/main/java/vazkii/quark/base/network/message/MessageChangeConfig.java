@@ -13,7 +13,7 @@ package vazkii.quark.base.network.message;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import vazkii.arl.network.NetworkMessage;
-import vazkii.quark.experimental.features.ConfigCommand;
+import vazkii.quark.base.module.GlobalConfig;
 
 public class MessageChangeConfig extends NetworkMessage {
 	
@@ -34,7 +34,7 @@ public class MessageChangeConfig extends NetworkMessage {
 	
 	@Override
 	public IMessage handleMessage(MessageContext context) {
-		ConfigCommand.changeConfig(moduleName, category, key, value, saveToFile);
+		GlobalConfig.changeConfig(moduleName, category, key, value, saveToFile);
 		return null;
 	}
 	

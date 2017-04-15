@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import vazkii.arl.util.RecipeHandler;
+import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.decoration.block.BlockColoredBed;
 import vazkii.quark.decoration.item.ItemColoredBed;
@@ -59,6 +60,12 @@ public class ColoredBeds extends Feature {
 		}
 
 		colored_bed_item = new ItemColoredBed();
+		
+		OreDictionary.registerOre("bed", new ItemStack(colored_bed_item, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("bed", Items.BED);
+		for(Block b : colored_bed_blocks)
+			OreDictionary.registerOre("blockBed", b);
+		OreDictionary.registerOre("blockBed", Blocks.BED);
 	}
 
 	@Override
@@ -83,6 +90,7 @@ public class ColoredBeds extends Feature {
 					"WWW", "PPP",
 					'W', new ItemStack(Blocks.WOOL, 1, i),
 					'P', "plankWood");
+			RecipeHandler.addShapelessOreDictRecipe(stack, "bed", LibMisc.OREDICT_DYES.get(15 - i));
 		}
 
 

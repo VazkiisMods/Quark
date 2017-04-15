@@ -63,5 +63,10 @@ public class FToSwitchItems extends Feature {
 	public boolean hasSubscriptions() {
 		return isClient();
 	}
+	
+	@Override
+	public String[] getIncompatibleMods() {
+		return new String[] { "visiblearmorslots" };
+	}
 
 }

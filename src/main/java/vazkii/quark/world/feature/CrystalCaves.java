@@ -51,4 +51,9 @@ public class CrystalCaves extends Feature {
 				'S', "stone");
 	}
 	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
+	}
+	
 }

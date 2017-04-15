@@ -68,6 +68,7 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton {
 				}
 				break;
 			case SORT:
+			case SORT_PLAYER:
 				v = 16;
 			case DEPOSIT:
 				if(k == 2)
@@ -96,7 +97,7 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton {
 				
 				GlStateManager.pushMatrix();
 				String tooltip; 
-				if(action == Action.DROPOFF && GuiScreen.isShiftKeyDown())
+				if(action == Action.DROPOFF && (GuiScreen.isShiftKeyDown() != StoreToChests.invert))
 					tooltip = I18n.translateToLocal("quarkmisc.chestButton." + action.name().toLowerCase() + ".shift");
 					else tooltip = I18n.translateToLocal("quarkmisc.chestButton." + action.name().toLowerCase());
 				int len = Minecraft.getMinecraft().fontRendererObj.getStringWidth(tooltip);
@@ -115,7 +116,12 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton {
 		DEPOSIT,
 		SMART_DEPOSIT,
 		RESTOCK,
-		SORT
+		SORT,
+		SORT_PLAYER;
+		
+		public boolean isSortAction() {
+			return this == SORT || this == SORT_PLAYER;
+		}
 
 	}
 

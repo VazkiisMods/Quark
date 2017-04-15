@@ -76,7 +76,7 @@ public class Module {
 			
 			feature.setupConstantConfig();
 			
-			if(!feature.forceLoad) {
+			if(!feature.forceLoad && !GlobalConfig.enableAntiOverlap) {
 				String[] incompatibilities = feature.getIncompatibleMods();
 				if(incompatibilities != null) {
 					List<String> failiures = new ArrayList();

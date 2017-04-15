@@ -82,14 +82,14 @@ public class MoreSandstone extends Feature {
 	
 	@Override
 	public void init(FMLInitializationEvent event) {
-		boolean soulSandstone = ModuleLoader.isFeatureEnabled(SoulSandstone.class);
-		
-		RecipeHandler.addOreDictRecipe(new ItemStack(sandstone_new, 8, 4),
-				"SSS", "S S", "SSS",
-				'S', new ItemStack(SoulSandstone.soul_sandstone));
-		RecipeHandler.addOreDictRecipe(new ItemStack(sandstone_new, 4, 5),
-				"SS", "SS",
-				'S', new ItemStack(sandstone_new, 1, 4));
+		if(ModuleLoader.isFeatureEnabled(SoulSandstone.class)) {
+			RecipeHandler.addOreDictRecipe(new ItemStack(sandstone_new, 8, 4),
+					"SSS", "S S", "SSS",
+					'S', new ItemStack(SoulSandstone.soul_sandstone));
+			RecipeHandler.addOreDictRecipe(new ItemStack(sandstone_new, 4, 5),
+					"SS", "SS",
+					'S', new ItemStack(sandstone_new, 1, 4));
+		}
 	}
 	
 	@Override

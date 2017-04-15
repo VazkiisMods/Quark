@@ -233,7 +233,9 @@
 				"name":"Flat Item Frames",
 				"description":"Item Frames and Colored Item Frames can be placed on floors and ceilings. The top of the frame is oriented north in both cases.",
 				"image":"flat-item-frames.jpg",
-				"introduced":11
+				"introduced":11,
+				"contributor": "gibraltarMC",
+				"overlap": ["Strait"]
 			},
 			{
 				"name":"Iron Ladders",
@@ -299,7 +301,8 @@
 				"name":"F to Switch",
 				"description":"Pressing F on an item in the inventory swaps it with your off-hand item, just as if you'd pressed F outside of the inventory. This uses the same keybind used for that purpose.",
 				"image":"f-swap.jpg",
-				"introduced":9
+				"introduced":9,
+				"overlap": ["VisibleArmorSlots"]
 			},
 			{
 				"name":"Favorite Items",
@@ -479,6 +482,14 @@
 				"introduced":9
 			},
 			{
+				"name":"Quick Armor Swapping",
+				"description":"Right clicking an armor stand while sneaking will swap all armor and your off hand item quickly.",
+				"image":"quick-armor-swapping.jpg",
+				"introduced":11,
+				"contributor": "gibraltarMC",
+				"overlap": ["Iberia"]
+			},
+			{
 				"name":"Safe Mounts",
 				"description":"Mounts are immune to attacks from riders. No more shooting your own horse!",
 				"image":"safe-horses.jpg",
@@ -494,7 +505,8 @@
 				"name":"Sheep Armor",
 				"description":"Sheep that have wool also have a bit of armor added to them, making them take less damage.",
 				"image":"sheep-armor.jpg",
-				"introduced":9
+				"introduced":9,
+				"contributor": "Darkhax"
 			},
 			{
 				"name":"Sign Editing",
@@ -548,7 +560,8 @@
 				"name":"Sponges dry in the Nether",
 				"description":"Title says it all, really. Placing a sponge in the nether will cause it to dry out without needing fuel.",
 				"image":"nether-sponge.jpg",
-				"introduced":11
+				"introduced":11,
+				"contributor": "ichttt"
 			},
 			{
 				"name":"Better Shulker Box Tooltip",

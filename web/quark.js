@@ -30,6 +30,7 @@ function loadFeatures(obj) {
 				feature = moduleData.features[i];
 				feature.id = feature.name.toLowerCase().replace(/\s/g, '-');
 				feature.has_album = feature.album != null;
+				feature.was_contributed = feature.contributor != null;
 				feature.anchor = encodeURIComponent(module + '-' + feature.id);
 
 				var versionData = [];

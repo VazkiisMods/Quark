@@ -211,6 +211,21 @@ a {
 	font-size: 12px;
 }
 
+.contributor-info {
+	position: relative;
+	display: block;
+	height: 0px;
+	top: 170px;
+	font-size: 16px;
+}
+
+.contributor-info > .material-icons {
+	position: relative;
+	top: 3px;
+	font-size: 20px;
+	margin-right: 5px;
+}
+
 #main-image {
 	margin-left: -20px;
 	width: 950px;

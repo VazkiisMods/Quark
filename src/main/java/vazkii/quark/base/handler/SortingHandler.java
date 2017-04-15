@@ -73,12 +73,12 @@ public final class SortingHandler {
 			SortingHandler::enchantmentCompare,
 			SortingHandler::damageCompare);
 	
-	public static void sortInventory(EntityPlayer player) {
+	public static void sortInventory(EntityPlayer player, boolean forcePlayer) {
 		if(!ModuleLoader.isFeatureEnabled(InventorySorting.class))
 			return;
 		
 		Container c = player.openContainer;
-		if(c == null)
+		if(forcePlayer || c == null)
 			c = player.inventoryContainer;
 		
 		boolean playerContainer = c == player.inventoryContainer;

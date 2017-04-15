@@ -8,7 +8,7 @@
  * 
  * File Created @ [15/07/2016, 05:22:28 (GMT)]
  */
-package vazkii.quark.experimental.command;
+package vazkii.quark.base.command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,8 @@ import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import vazkii.arl.network.NetworkHandler;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.base.network.message.MessageChangeConfig;
-import vazkii.quark.experimental.features.ConfigCommand;
 
 public class CommandConfig extends CommandBase {
 
@@ -75,7 +75,7 @@ public class CommandConfig extends CommandBase {
 		String key = matches.get(2);
 		String value = matches.get(3);
 		
-		ConfigCommand.changeConfig(moduleName, category, key, value, save);
+		GlobalConfig.changeConfig(moduleName, category, key, value, save);
 		
 		String player = matches.size() > 5 ? player = matches.get(5) : null;
 		if(player != null) {
