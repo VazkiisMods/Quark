@@ -1,0 +1,25 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:cube_all",
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"variant=wool_quilted_black": [{ "textures": { "all": "quark:blocks/wool_quilted_black" } }],
+		"variant=wool_quilted_blue": [{ "textures": { "all": "quark:blocks/wool_quilted_blue" } }],
+		"variant=wool_quilted_brown": [{ "textures": { "all": "quark:blocks/wool_quilted_brown" } }],
+		"variant=wool_quilted_cyan": [{ "textures": { "all": "quark:blocks/wool_quilted_cyan" } }],
+		"variant=wool_quilted_gray": [{ "textures": { "all": "quark:blocks/wool_quilted_gray" } }],
+		"variant=wool_quilted_green": [{ "textures": { "all": "quark:blocks/wool_quilted_green" } }],
+		"variant=wool_quilted_light_blue": [{ "textures": { "all": "quark:blocks/wool_quilted_light_blue" } }],
+		"variant=wool_quilted_lime": [{ "textures": { "all": "quark:blocks/wool_quilted_lime" } }],
+		"variant=wool_quilted_magenta": [{ "textures": { "all": "quark:blocks/wool_quilted_magenta" } }],
+		"variant=wool_quilted_orange": [{ "textures": { "all": "quark:blocks/wool_quilted_orange" } }],
+		"variant=wool_quilted_pink": [{ "textures": { "all": "quark:blocks/wool_quilted_pink" } }],
+		"variant=wool_quilted_purple": [{ "textures": { "all": "quark:blocks/wool_quilted_purple" } }],
+		"variant=wool_quilted_red": [{ "textures": { "all": "quark:blocks/wool_quilted_red" } }],
+		"variant=wool_quilted_silver": [{ "textures": { "all": "quark:blocks/wool_quilted_silver" } }],
+		"variant=wool_quilted_white": [{ "textures": { "all": "quark:blocks/wool_quilted_white" } }],
+		"variant=wool_quilted_yellow": [{ "textures": { "all": "quark:blocks/wool_quilted_yellow" } }]
+	}
+}

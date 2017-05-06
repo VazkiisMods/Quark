@@ -66,9 +66,9 @@ public class StoneInfoBasedGenerator {
 		if(rand.nextInt(chance) == 0) {
 			lock = true;
 			for(int i = 0; i < amount; i++) {
-				int x = chunkX * 16 + rand.nextInt(16);
+				int x = chunkX * 16 + rand.nextInt(16) + 8;
 				int y = rand.nextInt(range) + lower;
-				int z = chunkZ * 16 + rand.nextInt(16);
+				int z = chunkZ * 16 + rand.nextInt(16) + 8;
 
 				BlockPos pos = new BlockPos(x, y, z);
 

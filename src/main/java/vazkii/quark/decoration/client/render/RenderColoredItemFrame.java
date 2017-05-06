@@ -12,31 +12,15 @@ package vazkii.quark.decoration.client.render;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ModelManager;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.tileentity.RenderItemFrame;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemCompass;
 import net.minecraft.item.ItemDye;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.storage.MapData;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import vazkii.arl.util.ModelHandler;
 import vazkii.quark.decoration.entity.EntityColoredItemFrame;
 import vazkii.quark.decoration.entity.EntityFlatItemFrame;
 
@@ -56,11 +40,11 @@ public class RenderColoredItemFrame extends RenderFlatItemFrame {
 		IBakedModel ibakedmodel1, ibakedmodel2;
 
 		if(!entity.getDisplayedItem().isEmpty() && entity.getDisplayedItem().getItem() == Items.FILLED_MAP) {
-			ibakedmodel1 = modelmanager.getModel(vazkii.arl.util.ModelHandler.resourceLocations.get("colored_item_frame_map_wood"));
-			ibakedmodel2 = modelmanager.getModel(vazkii.arl.util.ModelHandler.resourceLocations.get("colored_item_frame_map"));
+			ibakedmodel1 = modelmanager.getModel(ModelHandler.resourceLocations.get("colored_item_frame_map_wood"));
+			ibakedmodel2 = modelmanager.getModel(ModelHandler.resourceLocations.get("colored_item_frame_map"));
 		} else {
-			ibakedmodel1 = modelmanager.getModel(vazkii.arl.util.ModelHandler.resourceLocations.get("colored_item_frame_wood"));
-			ibakedmodel2 = modelmanager.getModel(vazkii.arl.util.ModelHandler.resourceLocations.get("colored_item_frame_normal"));
+			ibakedmodel1 = modelmanager.getModel(ModelHandler.resourceLocations.get("colored_item_frame_wood"));
+			ibakedmodel2 = modelmanager.getModel(ModelHandler.resourceLocations.get("colored_item_frame_normal"));
 		}
 
 		blockrendererdispatcher.getBlockModelRenderer().renderModelBrightnessColor(ibakedmodel1, 1.0F, 1.0F, 1.0F, 1.0F);

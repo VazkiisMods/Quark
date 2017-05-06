@@ -21,6 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.inventory.GuiShulkerBox;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -44,6 +45,7 @@ import vazkii.quark.base.network.message.MessageDropoff;
 import vazkii.quark.base.network.message.MessageRestock;
 import vazkii.quark.management.client.gui.GuiButtonChest;
 import vazkii.quark.management.client.gui.GuiButtonChest.Action;
+import vazkii.quark.management.client.gui.GuiButtonShulker;
 
 public class ChestButtons extends Feature {
 
@@ -92,7 +94,7 @@ public class ChestButtons extends Feature {
 			if(debugClassnames)
 				FMLLog.log(Level.INFO, "[Quark] Opening GUI %s", guiInv.getClass().getName());
 			
-			boolean accept = guiInv instanceof GuiChest || classnames.contains(guiInv.getClass().getName());
+			boolean accept = guiInv instanceof GuiChest || guiInv instanceof GuiShulkerBox || classnames.contains(guiInv.getClass().getName());
 			
 			if(!accept)
 				for(Slot s : container.inventorySlots) {
@@ -138,7 +140,11 @@ public class ChestButtons extends Feature {
 
 	@SideOnly(Side.CLIENT)
 	public static <T extends GuiScreen>void addButtonAndKeybind(GuiScreenEvent.InitGuiEvent.Post event, Action action, GuiContainer guiInv, int index, int x, int y, Slot s, KeyBinding kb, Predicate<T> pred) {
-		GuiButtonChest button = new GuiButtonChest(guiInv, action, index, x, y, pred);
+		GuiButtonChest button;
+		if(guiInv instanceof GuiShulkerBox)
+			button = new GuiButtonShulker((GuiShulkerBox) guiInv, action, index, x, y);
+		else button = new GuiButtonChest(guiInv, action, index, x, y, pred);
+		
 		event.getButtonList().add(button);
 		if(kb != null)
 			ModKeybinds.keybindButton(kb, button);

@@ -22,5 +22,6 @@ public final class LibEntityIDs {
 	public static final int ARROW_TORCH = 7;
 	public static final int SOUL_POWDER = 8;
 	public static final int FLAT_ITEM_FRAME = 9;
+	public static final int GLASS_ITEM_FRAME = 10;
 
 }

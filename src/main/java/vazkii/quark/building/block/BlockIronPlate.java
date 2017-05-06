@@ -13,17 +13,24 @@ package vazkii.quark.building.block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import vazkii.arl.block.BlockMetaVariants;
 import vazkii.arl.block.BlockMod;
+import vazkii.arl.block.BlockMetaVariants.EnumBase;
 import vazkii.quark.base.block.IQuarkBlock;
 
-public class BlockIronPlate extends BlockMod implements IQuarkBlock {
+public class BlockIronPlate extends BlockMetaVariants implements IQuarkBlock {
 
 	public BlockIronPlate() {
-		super("iron_plate", Material.IRON);
+		super("iron_plate", Material.IRON, Variants.class);
 		setHardness(5.0F);
 		setResistance(10.0F);
 		setSoundType(SoundType.METAL);
 		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+	}
+	
+	public enum Variants implements EnumBase {
+		IRON_PLATE,
+		RUSTY_IRON_PLATE
 	}
 
 }

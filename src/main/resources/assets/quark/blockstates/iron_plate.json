@@ -1,5 +1,11 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:cube_all",
+		"transform": "forge:default-block"
+	},
 	"variants": {
-		"normal": { "model": "quark:iron_plate" }
+		"variant=iron_plate": [{ "textures": { "all": "quark:blocks/iron_plate" } }],
+		"variant=rusty_iron_plate": [{ "textures": { "all": "quark:blocks/iron_plate_rusted" } }]
 	}
 }

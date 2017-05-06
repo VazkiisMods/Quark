@@ -48,7 +48,7 @@ public class ShulkerBoxTooltip extends Feature {
 	public void makeTooltip(ItemTooltipEvent event) {
 		if(!event.getItemStack().isEmpty() && event.getItemStack().getItem() instanceof ItemShulkerBox && event.getItemStack().hasTagCompound()) {
 			NBTTagCompound cmp = ItemNBTHelper.getCompound(event.getItemStack(), "BlockEntityTag", true);
-			if(cmp.hasKey("Items", 9)) {
+			if(cmp != null && cmp.hasKey("Items", 9)) {
 				List<String> tooltip = event.getToolTip();
 				List<String> tooltipCopy = new ArrayList(tooltip);
 				
@@ -68,7 +68,7 @@ public class ShulkerBoxTooltip extends Feature {
 	public void renderTooltip(RenderTooltipEvent.PostText event) {
 		if(event.getStack() != null && event.getStack().getItem() instanceof ItemShulkerBox && event.getStack().hasTagCompound() && (!requireShift || GuiScreen.isShiftKeyDown())) {
 			NBTTagCompound cmp = ItemNBTHelper.getCompound(event.getStack(), "BlockEntityTag", true);
-			if(cmp.hasKey("Items", 9)) {
+			if(cmp != null && cmp.hasKey("Items", 9)) {
 				ItemStack currentBox = event.getStack();
 				int currentX = event.getX() - 5;
 				int currentY = event.getY() - 70;

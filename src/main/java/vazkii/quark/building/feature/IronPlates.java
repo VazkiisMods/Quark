@@ -11,6 +11,7 @@
 package vazkii.quark.building.feature;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import vazkii.arl.block.BlockModSlab;
@@ -44,6 +45,16 @@ public class IronPlates extends Feature {
 		RecipeHandler.addOreDictRecipe(new ItemStack(iron_plate, 24),
 				"III", "I I", "III",
 				'I', "ingotIron");
+		
+		RecipeHandler.addOreDictRecipe(new ItemStack(iron_plate, 24, 1),
+				"III", "IBI", "III",
+				'I', "ingotIron",
+				'B', new ItemStack(Items.WATER_BUCKET));
+		
+		RecipeHandler.addOreDictRecipe(new ItemStack(iron_plate, 8, 1),
+				"III", "IBI", "III",
+				'I', new ItemStack(iron_plate),
+				'B', new ItemStack(Items.WATER_BUCKET));
 	}
 	
 	@Override

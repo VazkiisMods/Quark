@@ -19,7 +19,6 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ModelManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.RenderItemFrame;
@@ -27,17 +26,17 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemCompass;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.storage.MapData;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import vazkii.quark.decoration.entity.EntityColoredItemFrame;
 import vazkii.quark.decoration.entity.EntityFlatItemFrame;
 
 // Basically a copy of RenderItemFrame
@@ -147,11 +146,12 @@ public class RenderFlatItemFrame extends RenderItemFrame {
 					if(mapdata != null)
 						mc.entityRenderer.getMapItemRenderer().renderMap(mapdata, true);
 				} else {
-					GlStateManager.scale(0.5F, 0.5F, 0.5F);
+					ItemStack stack = entityitem.getEntityItem();
+					transformItem(itemFrame, stack);
 
 					GlStateManager.pushAttrib();
 					RenderHelper.enableStandardItemLighting();
-					itemRenderer.renderItem(entityitem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);
+					itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
 					RenderHelper.disableStandardItemLighting();
 					GlStateManager.popAttrib();
 				}
@@ -160,6 +160,12 @@ public class RenderFlatItemFrame extends RenderItemFrame {
 			GlStateManager.enableLighting();
 			GlStateManager.popMatrix();
 		}
+	}
+	
+	protected void transformItem(EntityItemFrame frame, ItemStack stack) {
+		if(stack.getItem() instanceof ItemBlock && ((EntityFlatItemFrame) frame).realFacingDirection.getAxis().equals(Axis.Y))
+			GlStateManager.rotate(-90F, 1F, 0F, 0F);
+		GlStateManager.scale(0.5F, 0.5F, 0.5F);
 	}
 
 	@Override

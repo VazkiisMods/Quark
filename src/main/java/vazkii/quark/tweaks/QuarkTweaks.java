@@ -21,7 +21,7 @@ import vazkii.quark.tweaks.feature.ConvertClay;
 import vazkii.quark.tweaks.feature.DeployLaddersDown;
 import vazkii.quark.tweaks.feature.DoubleDoors;
 import vazkii.quark.tweaks.feature.DragonsBreathBottleless;
-import vazkii.quark.tweaks.feature.EndermenTeleportYou;
+import vazkii.quark.tweaks.feature.EndermenAntiCheese;
 import vazkii.quark.tweaks.feature.FoodTooltip;
 import vazkii.quark.tweaks.feature.GlassShards;
 import vazkii.quark.tweaks.feature.GreenerGrass;
@@ -72,7 +72,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new NoPotionShift());
 		registerFeature(new ShearableChickens());
 		registerFeature(new MinecartInteraction(), "Right click minecarts to add blocks to them");
-		registerFeature(new EndermenTeleportYou(), "Endermen teleport you to them if you're in a 2 high area");
+		registerFeature(new EndermenAntiCheese(), "Endermen teleport you to them if you're in a 2 high area");
 		registerFeature(new SheepArmor(), "Sheep have armor while wearing wool");
 		registerFeature(new ImprovedStoneToolCrafting(), "Allow crafting stone tools using flint");
 		registerFeature(new ConvertClay(), "Convert Clay Blocks to Clay");

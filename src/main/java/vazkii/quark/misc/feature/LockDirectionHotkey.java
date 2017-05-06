@@ -119,22 +119,23 @@ public class LockDirectionHotkey extends Feature {
 		Minecraft mc = Minecraft.getMinecraft();
 		boolean down = ModKeybinds.lockKey.isKeyDown();
 		if(mc.inGameHasFocus && down) {
-			if(GuiScreen.isShiftKeyDown())
-				clientProfile = null;
-			else {
-				RayTraceResult result = mc.objectMouseOver;
-				if(result.typeOfHit == Type.BLOCK) {
-					int half = (int) ((result.hitVec.yCoord - (int) result.hitVec.yCoord) * 2);
-					if(result.sideHit.getAxis() == Axis.Y)
-						half = -1;
-					
-					clientProfile = new LockProfile(result.sideHit.getOpposite(), half);
-				} else {
-					Vec3d look = mc.player.getLookVec();
-					clientProfile = new LockProfile(EnumFacing.getFacingFromVector((float) look.xCoord, (float) look.yCoord, (float) look.zCoord), -1);
-				}
+			LockProfile newProfile;
+			RayTraceResult result = mc.objectMouseOver;
+			if(result.typeOfHit == Type.BLOCK) {
+				int half = (int) ((result.hitVec.yCoord - (int) result.hitVec.yCoord) * 2);
+				if(result.sideHit.getAxis() == Axis.Y)
+					half = -1;
+				
+				newProfile = new LockProfile(result.sideHit.getOpposite(), half);
+
+			} else {
+				Vec3d look = mc.player.getLookVec();
+				newProfile = new LockProfile(EnumFacing.getFacingFromVector((float) look.xCoord, (float) look.yCoord, (float) look.zCoord), -1);
 			}
 			
+			if(clientProfile != null && clientProfile.equals(newProfile))
+				clientProfile = null;
+			else clientProfile = newProfile;
 			NetworkHandler.INSTANCE.sendToServer(new MessageSetLockProfile(clientProfile));
 		}
 	}
@@ -209,6 +210,17 @@ public class LockDirectionHotkey extends Feature {
 				buf.writeInt(p.facing.ordinal());
 				buf.writeInt(p.half);
 			}
+		}
+		
+		@Override
+		public boolean equals(Object other) {
+			if(other == this)
+				return true;
+			if(!(other instanceof LockProfile))
+				return false;
+				
+			LockProfile otherProfile = (LockProfile) other;
+			return otherProfile.facing == facing && otherProfile.half == half;
 		}
 		
 	}

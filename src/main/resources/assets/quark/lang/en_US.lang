@@ -226,6 +226,7 @@ tile.quark:custom_chest_jungle_trap.name=Jungle Trapped Chest
 tile.quark:custom_chest_acacia_trap.name=Acacia Trapped Chest
 tile.quark:custom_chest_dark_oak_trap.name=Dark Oak Trapped Chest
 tile.quark:iron_plate.name=Iron Plate
+tile.quark:rusty_iron_plate.name=Rusty Iron Plate
 tile.quark:iron_plate_slab.name=Iron Plate Slab
 tile.quark:iron_plate_stairs.name=Iron Plate Stairs
 tile.quark:oak_leaf_carpet.name=Oak Leaf Carpet
@@ -345,6 +346,22 @@ tile.quark:icy_stone_slab.name=Permafrost Slab
 tile.quark:fire_stone_stairs.name=Brimstone Stairs
 tile.quark:icy_stone_stairs.name=Permafrost Stairs
 tile.quark:iron_rod.name=Iron Rod
+tile.quark:wool_quilted_black.name=Black Quilted Wool
+tile.quark:wool_quilted_blue.name=Blue Quilted Wool
+tile.quark:wool_quilted_brown.name=Brown Quilted Wool
+tile.quark:wool_quilted_cyan.name=Cyan Quilted Wool
+tile.quark:wool_quilted_gray.name=Gray Quilted Wool
+tile.quark:wool_quilted_green.name=Green Quilted Wool
+tile.quark:wool_quilted_light_blue.name=Light Blue Quilted Wool
+tile.quark:wool_quilted_lime.name=Lime Quilted Wool
+tile.quark:wool_quilted_magenta.name=Magenta Quilted Wool
+tile.quark:wool_quilted_orange.name=Orange Quilted Wool
+tile.quark:wool_quilted_pink.name=Pink Quilted Wool
+tile.quark:wool_quilted_purple.name=Purple Quilted Wool
+tile.quark:wool_quilted_red.name=Red Quilted Wool
+tile.quark:wool_quilted_silver.name=Light Gray Quilted Wool
+tile.quark:wool_quilted_white.name=White Quilted Wool
+tile.quark:wool_quilted_yellow.name=Yellow Quilted Wool
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -424,6 +441,7 @@ item.quark:arrow_ender.name=Ender Arrow
 item.quark:arrow_explosive.name=Explosive Arrow
 item.quark:arrow_torch.name=Torch Arrow
 item.quark:soul_powder.name=Soul Powder
+item.quark:glass_item_frame.name=Glass Item Frame
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Colored Item Frame

@@ -96,7 +96,11 @@ public class ModKeybinds {
 			int button = 100 + key;
 			return Mouse.isButtonDown(button);
 		}
-		return Keyboard.isKeyDown(key);
+		try {
+			return Keyboard.isKeyDown(key);
+		} catch(IndexOutOfBoundsException e) {
+			return false;
+		}
 	}
 
 	private static class KeybindButtonHandler {

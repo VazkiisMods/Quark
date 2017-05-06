@@ -11,6 +11,7 @@
 package vazkii.quark.misc.feature;
 
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -36,7 +37,7 @@ public class SlimeBucket extends Feature {
 	public void entityInteract(PlayerInteractEvent.EntityInteract event) {
 		if(event.getTarget() != null) {
 			String name = EntityList.getEntityString(event.getTarget());
-			if(name != null && name.equals("Slime") && ((EntitySlime) event.getTarget()).getSlimeSize() == 1 && !event.getTarget().isDead) {
+			if(name != null && name.equals("Slime") && ((EntitySlime) event.getTarget()).getSlimeSize() == 1 && ((EntityLiving) event.getTarget()).getHealth() > 0) {
 				EntityPlayer player = event.getEntityPlayer();
 				EnumHand hand = EnumHand.MAIN_HAND;
 				ItemStack stack = player.getHeldItemMainhand();

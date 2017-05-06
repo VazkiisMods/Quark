@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
@@ -83,7 +84,10 @@ public class DispensersPlaceBlocks extends Feature {
 
 			if(world.isAirBlock(pos) && block.canPlaceBlockAt(world, pos)) {
 				int meta = item.getMetadata(par2ItemStack.getItemDamage());
-				IBlockState state = block.getStateFromMeta(meta);
+				IBlockState state;
+				if(!(block instanceof BlockPistonBase))
+					state = block.getStateFromMeta(meta);
+				else state = block.getDefaultState();
 
 				LockDirectionHotkey.setBlockRotated(world, state, pos, facing);
 				
