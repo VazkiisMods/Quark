@@ -225,7 +225,8 @@ tile.quark:custom_chest_birch_trap.name=白桦木陷阱箱
 tile.quark:custom_chest_jungle_trap.name=丛林木陷阱箱
 tile.quark:custom_chest_acacia_trap.name=金合欢木陷阱箱
 tile.quark:custom_chest_dark_oak_trap.name=深色橡木陷阱箱
-tile.quark:iron_plate.name=铁皮方块
+tile.quark:iron_plate.name=铁皮
+tile.quark:rusty_iron_plate.name=锈蚀铁皮
 tile.quark:iron_plate_slab.name=铁皮台阶
 tile.quark:iron_plate_stairs.name=铁皮楼梯
 tile.quark:oak_leaf_carpet.name=橡树树叶地毯
@@ -345,6 +346,22 @@ tile.quark:icy_stone_slab.name=永冻石台阶
 tile.quark:fire_stone_stairs.name=硫黄石楼梯
 tile.quark:icy_stone_stairs.name=永冻石楼梯
 tile.quark:iron_rod.name=铁棒
+tile.quark:wool_quilted_black.name=黑色棉羊毛
+tile.quark:wool_quilted_blue.name=蓝色棉羊毛
+tile.quark:wool_quilted_brown.name=棕色棉羊毛
+tile.quark:wool_quilted_cyan.name=青色棉羊毛
+tile.quark:wool_quilted_gray.name=灰色棉羊毛
+tile.quark:wool_quilted_green.name=绿色棉羊毛
+tile.quark:wool_quilted_light_blue.name=淡蓝色棉羊毛
+tile.quark:wool_quilted_lime.name=黄绿色棉羊毛
+tile.quark:wool_quilted_magenta.name=品红色棉羊毛
+tile.quark:wool_quilted_orange.name=橙色棉羊毛
+tile.quark:wool_quilted_pink.name=粉红色棉羊毛
+tile.quark:wool_quilted_purple.name=紫色棉羊毛
+tile.quark:wool_quilted_red.name=红色棉羊毛
+tile.quark:wool_quilted_silver.name=淡灰色棉羊毛
+tile.quark:wool_quilted_white.name=白色棉羊毛
+tile.quark:wool_quilted_yellow.name=黄色棉羊毛
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
@@ -424,6 +441,7 @@ item.quark:arrow_ender.name=末影之箭
 item.quark:arrow_explosive.name=爆炸之箭
 item.quark:arrow_torch.name=火炬之箭
 item.quark:soul_powder.name=灵魂粉
+item.quark:glass_item_frame.name=玻璃物品展示框
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=染色物品展示框
