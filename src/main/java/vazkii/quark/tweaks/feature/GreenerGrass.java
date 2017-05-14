@@ -54,7 +54,15 @@ public class GreenerGrass extends Feature {
 				"buildingbrickscompatvanilla:grass_corner",
 				"buildingbrickscompatvanilla:grass_vertical_slab",
 				"buildingbrickscompatvanilla:grass_stairs",
-				"betterwithmods:dirt_slab"
+				"betterwithmods:dirt_slab",
+			     	"biomesoplenty:plant_0",
+            			"biomesoplenty:plant_1",
+            			"biomesoplenty:leaves_1",
+            			"biomesoplenty:leaves_2",
+            			"biomesoplenty:leaves_3",
+				"biomesoplenty:leaves_4",
+				"biomesoplenty:leaves_5",
+            			"biomesoplenty:grass"
 		}));
 	}
 
