@@ -23,7 +23,7 @@ public class DeleteItems extends Feature {
 	
 	@SubscribeEvent
 	public void keyboardEvent(GuiScreenEvent.KeyboardInputEvent.Post event) {
-		boolean down = Keyboard.isKeyDown(Keyboard.KEY_DELETE);
+		boolean down = Keyboard.isKeyDown(Keyboard.KEY_DELETE) || (Minecraft.IS_RUNNING_ON_MAC && Keyboard.isKeyDown(Keyboard.KEY_BACK));
 		if(GuiScreen.isCtrlKeyDown() && down && !this.down && event.getGui() instanceof GuiContainer) {
 			GuiContainer gui = (GuiContainer) event.getGui();
 			Slot slot = gui.getSlotUnderMouse();
