@@ -461,6 +461,7 @@ item.quark:glass_item_frame.name=Glass Item Frame
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Colored Item Frame
+entity.quark:glass_item_frame.name=Glass Item Frame
 entity.quark:dweller.name=Dweller
 entity.quark:ashen.name=Ashen
 entity.quark:pirate.name=Pirate
