@@ -17,7 +17,7 @@ public class FoodTooltip extends Feature {
 	
 	@SubscribeEvent
 	public void bwmFeatureEnabled(FeatureEnabledEvent event) {
-		if(event.getFeature().equals("hchunger"))
+		if(event.getFeature().equals("hchunger") && event.isEnabled())
 			divisor = 12;
 	}
 	
