@@ -345,6 +345,8 @@ tile.quark:fire_stone_slab.name=硫黄石台阶
 tile.quark:icy_stone_slab.name=永冻石台阶
 tile.quark:fire_stone_stairs.name=硫黄石楼梯
 tile.quark:icy_stone_stairs.name=永冻石楼梯
+tile.quark:fire_stone_wall.name=硫黄石墙
+tile.quark:icy_stone_wall.name=永冻石墙
 tile.quark:iron_rod.name=铁棒
 tile.quark:wool_quilted_black.name=黑色棉羊毛
 tile.quark:wool_quilted_blue.name=蓝色棉羊毛
@@ -362,6 +364,35 @@ tile.quark:wool_quilted_red.name=红色棉羊毛
 tile.quark:wool_quilted_silver.name=淡灰色棉羊毛
 tile.quark:wool_quilted_white.name=白色棉羊毛
 tile.quark:wool_quilted_yellow.name=黄色棉羊毛
+tile.quark:colored_flowerpot_black.name=黑色花盆
+tile.quark:colored_flowerpot_blue.name=蓝色色花盆
+tile.quark:colored_flowerpot_brown.name=棕色花盆
+tile.quark:colored_flowerpot_cyan.name=青色花盆
+tile.quark:colored_flowerpot_gray.name=灰色花盆
+tile.quark:colored_flowerpot_green.name=绿色花盆
+tile.quark:colored_flowerpot_light_blue.name=淡蓝色花盆
+tile.quark:colored_flowerpot_lime.name=黄绿色花盆
+tile.quark:colored_flowerpot_magenta.name=品红色花盆
+tile.quark:colored_flowerpot_orange.name=橙色花盆
+tile.quark:colored_flowerpot_pink.name=粉红色花盆
+tile.quark:colored_flowerpot_purple.name=紫色花盆
+tile.quark:colored_flowerpot_silver.name=淡灰色花盆
+tile.quark:colored_flowerpot_white.name=白色花盆
+tile.quark:colored_flowerpot_yellow.name=黄色花盆
+tile.quark:colored_flowerpot_red.name=红色花盆
+
+tile.quark:bark_oak_stairs.name=橡树树皮楼梯
+tile.quark:bark_spruce_stairs.name=云杉树皮楼梯
+tile.quark:bark_birch_stairs.name=白桦树皮楼梯
+tile.quark:bark_jungle_stairs.name=丛林树皮楼梯
+tile.quark:bark_acacia_stairs.name=金合欢树皮楼梯
+tile.quark:bark_dark_oak_stairs.name=深色橡树树皮楼梯
+tile.quark:bark_oak_slab.name=橡树树皮台阶
+tile.quark:bark_spruce_slab.name=云杉树皮台阶
+tile.quark:bark_birch_slab.name=白桦树皮台阶
+tile.quark:bark_jungle_slab.name=丛林树皮台阶
+tile.quark:bark_acacia_slab.name=金合欢树皮台阶
+tile.quark:bark_dark_oak_slab.name=深色橡树树皮台阶
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
@@ -445,6 +476,7 @@ item.quark:glass_item_frame.name=玻璃物品展示框
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=染色物品展示框
+entity.quark:glass_item_frame.name=玻璃物品展示框
 entity.quark:dweller.name=穴居僵尸
 entity.quark:ashen.name=穴居骷髅
 entity.quark:pirate.name=海盗
