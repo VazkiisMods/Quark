@@ -18,6 +18,7 @@ import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.building.block.BlockMidori;
 import vazkii.quark.building.block.BlockMidoriPillar;
 import vazkii.quark.building.block.slab.BlockMidoriSlab;
@@ -32,7 +33,7 @@ public class MidoriBlocks extends Feature {
 
 	@Override
 	public void setupConfig() {
-		enableWalls = loadPropBool("Enable walls", "", true);
+		enableWalls = loadPropBool("Enable walls", "", true) && GlobalConfig.enableVariants;
 	}
 
 	@Override

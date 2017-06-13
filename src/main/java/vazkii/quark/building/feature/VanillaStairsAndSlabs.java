@@ -18,6 +18,7 @@ import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.quark.base.block.BlockQuarkStairs;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.building.block.slab.BlockVanillaSlab;
 
 public class VanillaStairsAndSlabs extends Feature {
@@ -39,6 +40,9 @@ public class VanillaStairsAndSlabs extends Feature {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
+		if(!GlobalConfig.enableVariants)
+			return;
+		
 		add("stone", Blocks.STONE, 0, false, true, stone);
 		add("stone_granite", Blocks.STONE, 1, granite);
 		add("stone_diorite", Blocks.STONE, 3, diorite);

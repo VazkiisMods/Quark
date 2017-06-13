@@ -12,6 +12,8 @@ package vazkii.quark.tweaks.feature;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockLilyPad;
+import net.minecraft.block.BlockReed;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -58,7 +60,8 @@ public class HoeSickle extends Feature {
 	}
 	
 	private boolean canHarvest(IBlockState state) {
-		return state.getBlock() instanceof BlockBush;
+		Block block = state.getBlock();
+		return (block instanceof BlockBush && !(block instanceof BlockLilyPad)) || block instanceof BlockReed;
 	}
 	
 	@Override

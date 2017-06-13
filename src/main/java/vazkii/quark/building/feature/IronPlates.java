@@ -18,6 +18,7 @@ import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.building.block.BlockIronPlate;
 import vazkii.quark.building.block.slab.BlockIronPlateSlab;
 import vazkii.quark.building.block.stairs.BlockIronPlateStairs;
@@ -30,7 +31,7 @@ public class IronPlates extends Feature {
 
 	@Override
 	public void setupConfig() {
-		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true);
+		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true) && GlobalConfig.enableVariants;
 	}
 
 	@Override

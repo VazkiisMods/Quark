@@ -21,7 +21,9 @@ import vazkii.arl.block.BlockMod;
 import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
+import vazkii.quark.base.handler.DimensionConfig;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.building.feature.VanillaWalls;
 import vazkii.quark.world.block.BlockBasalt;
@@ -33,7 +35,7 @@ public class Basalt extends Feature {
 
 	public static BlockMod basalt;
 
-	boolean nether, overworld;
+	DimensionConfig dims;
 	int clusterSizeNether, clusterSizeOverworld;
 	int clusterCountNether, clusterCountOverworld;
 	boolean enableStairsAndSlabs;
@@ -41,14 +43,13 @@ public class Basalt extends Feature {
 
 	@Override
 	public void setupConfig() {
-		nether = loadPropBool("Generate in nether", "", true);
-		overworld = loadPropBool("Generate in overworld", "", false);
 		clusterSizeNether = loadPropInt("Nether cluster size", "", 80);
 		clusterSizeOverworld = loadPropInt("Overworld cluster size", "", 33);
 		clusterCountNether = loadPropInt("Nether cluster count", "", 1);
 		clusterCountOverworld = loadPropInt("Overworld cluster count", "", 10);
-		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true);
-		enableWalls = loadPropBool("Enable walls", "", true);
+		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true) && GlobalConfig.enableVariants;
+		enableWalls = loadPropBool("Enable walls", "", true) && GlobalConfig.enableVariants;
+		dims = new DimensionConfig(configCategory, false, "-1");
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class Basalt extends Feature {
 				"BB", "BB",
 				'B', new ItemStack(basalt, 1, 0));
 
-		GameRegistry.registerWorldGenerator(new BasaltGenerator(nether, overworld, clusterSizeOverworld, clusterSizeNether, clusterCountOverworld, clusterCountNether), 0);
+		GameRegistry.registerWorldGenerator(new BasaltGenerator(dims, clusterSizeOverworld, clusterSizeNether, clusterCountOverworld, clusterCountNether), 0);
 	}
 
 	@Override

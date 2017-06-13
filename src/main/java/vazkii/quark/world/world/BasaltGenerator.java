@@ -21,18 +21,18 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import vazkii.quark.base.handler.DimensionConfig;
 import vazkii.quark.world.feature.Basalt;
 
 public class BasaltGenerator implements IWorldGenerator {
 
-	boolean nether, overworld;
+	DimensionConfig dims;
 	int clusterCountOverworld, clusterCountNether;
 	WorldGenMinable generatorOverworld;
 	WorldGenMinable generatorNether;
 
-	public BasaltGenerator(boolean nether, boolean overworld, int clusterSizeOverworld, int clusterSizeNether, int clusterCountOverworld, int clusterCountNether) {
-		this.nether = nether;
-		this.overworld = overworld;
+	public BasaltGenerator(DimensionConfig dims, int clusterSizeOverworld, int clusterSizeNether, int clusterCountOverworld, int clusterCountNether) {
+		this.dims = dims;
 		this.clusterCountNether = clusterCountNether;
 		this.clusterCountOverworld = clusterCountOverworld;
 
@@ -45,7 +45,7 @@ public class BasaltGenerator implements IWorldGenerator {
 		boolean isNether = world.provider.getDimensionType() == DimensionType.NETHER;
 		boolean isOverworld = world.provider.getDimensionType() == DimensionType.OVERWORLD;
 
-		if(isNether && !nether || isOverworld && !overworld || !isNether && !isOverworld)
+		if(!dims.canSpawnHere(world))
 			return;
 
 		for(int i = 0; i < (isNether ? clusterCountNether : clusterCountOverworld); i++) {

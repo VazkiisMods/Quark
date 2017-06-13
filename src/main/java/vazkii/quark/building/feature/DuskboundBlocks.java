@@ -9,6 +9,7 @@ import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.building.block.BlockDuskbound;
 import vazkii.quark.building.block.BlockDuskboundLantern;
 import vazkii.quark.building.block.slab.BlockDuskboundSlab;
@@ -24,8 +25,8 @@ public class DuskboundBlocks extends Feature {
 
 	@Override
 	public void setupConfig() {
-		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true);
-		enableWalls = loadPropBool("Enable walls", "", true);
+		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true) && GlobalConfig.enableVariants;
+		enableWalls = loadPropBool("Enable walls", "", true) && GlobalConfig.enableVariants;
 	}
 
 	@Override

@@ -291,6 +291,12 @@
 				"description":"Crafting an Item Frame with Glass Panes makes a Glass Item Frame. The frame itself will not render while an item is inside, and items inside render a bit larger than a normal Item Frame.",
 				"image":"glass-item-frame.jpg",
 				"introduced":11
+			},
+			{
+				"name":"Colored Flower Pots",
+				"description":"Flower Pots can be combined with a dye to change their texture to that of the respective Stained Clay variant. All functionality remains the same.",
+				"image":"colored-flower-pots.jpg",
+				"introduced":11
 			}
 		]
 	},

@@ -16,20 +16,25 @@ import vazkii.aurelienribon.tweenengine.BaseTween;
 import vazkii.aurelienribon.tweenengine.Timeline;
 import vazkii.aurelienribon.tweenengine.TweenCallback;
 import vazkii.aurelienribon.tweenengine.TweenManager;
+import vazkii.quark.base.client.ClientTicker;
 
 public abstract class EmoteBase {
 
 	public static final float PI_F = (float) Math.PI;
 
-	public TweenManager emoteManager;
+	public final EmoteDescriptor desc;
+	
+	TweenManager emoteManager;
 	private ModelBiped model;
 	private ModelBiped armorModel;
 	private ModelBiped armorLegsModel;
 	private EmoteState state;
-
+	
+	public float timeDone, totalTime;
 	private boolean done = false;
 
-	public EmoteBase(EntityPlayer player, ModelBiped model, ModelBiped armorModel, ModelBiped armorLegsModel) {
+	public EmoteBase(EmoteDescriptor desc, EntityPlayer player, ModelBiped model, ModelBiped armorModel, ModelBiped armorLegsModel) {
+		this.desc = desc;
 		emoteManager = new TweenManager();
 		state = new EmoteState(this);
 		this.model = model;
@@ -43,6 +48,7 @@ public abstract class EmoteBase {
 
 	void startTimeline(EntityPlayer player, ModelBiped model, boolean callback) {
 		Timeline timeline = getTimeline(player, model).start(emoteManager);
+		totalTime = timeline.getFullDuration() / 50F;
 		if(callback)
 			timeline.setCallback(new FinishCallback());
 	}
@@ -56,7 +62,8 @@ public abstract class EmoteBase {
 		state.load(armorModel);
 		state.load(armorLegsModel);
 		if(doUpdate) {
-			emoteManager.update(EmoteHandler.delta);
+			timeDone += ClientTicker.delta;
+			emoteManager.update(ClientTicker.delta * 50F);
 			state.save(model);
 		}
 	}

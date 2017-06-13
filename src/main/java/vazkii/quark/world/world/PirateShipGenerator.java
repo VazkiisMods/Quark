@@ -39,14 +39,21 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import vazkii.quark.base.handler.DimensionConfig;
 import vazkii.quark.world.entity.EntityPirate;
 import vazkii.quark.world.feature.PirateShips;
 
 public class PirateShipGenerator implements IWorldGenerator {
 
+	DimensionConfig dims;
+	
+	public PirateShipGenerator(DimensionConfig dims) {
+		this.dims = dims;
+	}
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		if(!(world instanceof WorldServer))
+		if(!(world instanceof WorldServer) || !dims.canSpawnHere(world))
 			return;
 		WorldServer sWorld = (WorldServer) world;
 

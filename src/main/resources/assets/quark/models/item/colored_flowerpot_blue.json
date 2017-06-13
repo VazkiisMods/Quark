@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": { 
+        "layer0": "quark:items/flower_pot_stained_blue"
+    }
+}

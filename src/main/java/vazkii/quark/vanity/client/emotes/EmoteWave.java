@@ -15,12 +15,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import vazkii.aurelienribon.tweenengine.Timeline;
 import vazkii.aurelienribon.tweenengine.Tween;
 import vazkii.quark.vanity.client.emotes.base.EmoteBase;
+import vazkii.quark.vanity.client.emotes.base.EmoteDescriptor;
 import vazkii.quark.vanity.client.emotes.base.ModelAccessor;
 
 public class EmoteWave extends EmoteBase {
 
-	public EmoteWave(EntityPlayer player, ModelBiped model, ModelBiped armorModel, ModelBiped armorLegsModel) {
-		super(player, model, armorModel, armorLegsModel);
+	public EmoteWave(EmoteDescriptor desc, EntityPlayer player, ModelBiped model, ModelBiped armorModel, ModelBiped armorLegsModel) {
+		super(desc, player, model, armorModel, armorLegsModel);
 	}
 
 	@Override

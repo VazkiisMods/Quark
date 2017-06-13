@@ -38,19 +38,15 @@ public class StoneInfoBasedGenerator {
 		if(lock)
 			return;
 		
+		StoneInfo info = infoSupplier.get();
+		if(!info.enabled || !info.dims.canSpawnHere(world))
+			return;
+		
 		Random rand = new Random(world.getSeed());
         long xSeed = rand.nextLong() >> 2 + 1L;
         long zSeed = rand.nextLong() >> 2 + 1L;
         long chunkSeed = (xSeed * chunkX + zSeed * chunkZ) ^ world.getSeed() ^ seedXor;
 		rand.setSeed(chunkSeed);
-
-		StoneInfo info = infoSupplier.get();
-		if(!info.enabled)
-			return;
-
-		boolean isOverworld = world.provider.getDimensionType() == DimensionType.OVERWORLD;
-		if(!isOverworld)
-			return;
 
 		int amount = 1;
 		int chance = info.clusterRarity;

@@ -345,6 +345,8 @@ tile.quark:fire_stone_slab.name=Brimstone Slab
 tile.quark:icy_stone_slab.name=Permafrost Slab
 tile.quark:fire_stone_stairs.name=Brimstone Stairs
 tile.quark:icy_stone_stairs.name=Permafrost Stairs
+tile.quark:fire_stone_wall.name=Brimstone Wall
+tile.quark:icy_stone_wall.name=Permafrost Wall
 tile.quark:iron_rod.name=Iron Rod
 tile.quark:wool_quilted_black.name=Black Quilted Wool
 tile.quark:wool_quilted_blue.name=Blue Quilted Wool
@@ -362,6 +364,35 @@ tile.quark:wool_quilted_red.name=Red Quilted Wool
 tile.quark:wool_quilted_silver.name=Light Gray Quilted Wool
 tile.quark:wool_quilted_white.name=White Quilted Wool
 tile.quark:wool_quilted_yellow.name=Yellow Quilted Wool
+tile.quark:colored_flowerpot_black.name=Black Flower Pot
+tile.quark:colored_flowerpot_blue.name=Blue Flower Pot
+tile.quark:colored_flowerpot_brown.name=Brown Flower Pot
+tile.quark:colored_flowerpot_cyan.name=Cyan Flower Pot
+tile.quark:colored_flowerpot_gray.name=Gray Flower Pot
+tile.quark:colored_flowerpot_green.name=Green Flower Pot
+tile.quark:colored_flowerpot_light_blue.name=Light Blue Flower Pot
+tile.quark:colored_flowerpot_lime.name=Lime Flower Pot
+tile.quark:colored_flowerpot_magenta.name=Magenta Flower Pot
+tile.quark:colored_flowerpot_orange.name=Orange Flower Pot
+tile.quark:colored_flowerpot_pink.name=Pink Flower Pot
+tile.quark:colored_flowerpot_purple.name=Purple Flower Pot
+tile.quark:colored_flowerpot_silver.name=Light Gray Flower Pot
+tile.quark:colored_flowerpot_white.name=White Flower Pot
+tile.quark:colored_flowerpot_yellow.name=Yellow Flower Pot
+tile.quark:colored_flowerpot_red.name=Red Flower Pot
+
+tile.quark:bark_oak_stairs.name=Oak Bark Stairs
+tile.quark:bark_spruce_stairs.name=Spruce Bark Stairs
+tile.quark:bark_birch_stairs.name=Birch Bark Stairs
+tile.quark:bark_jungle_stairs.name=Jungle Bark Stairs
+tile.quark:bark_acacia_stairs.name=Acacia Bark Stairs
+tile.quark:bark_dark_oak_stairs.name=Dark Oak Bark Stairs
+tile.quark:bark_oak_slab.name=Oak Bark Slab
+tile.quark:bark_spruce_slab.name=Spruce Bark Slab
+tile.quark:bark_birch_slab.name=Birch Bark Slab
+tile.quark:bark_jungle_slab.name=Jungle Bark Slab
+tile.quark:bark_acacia_slab.name=Acacia Bark Slab
+tile.quark:bark_dark_oak_slab.name=Dark Oak Bark Slab
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -445,6 +476,7 @@ item.quark:glass_item_frame.name=Glass Item Frame
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Colored Item Frame
+entity.quark:glass_item_frame.name=Glass Item Frame
 entity.quark:dweller.name=Dweller
 entity.quark:ashen.name=Ashen
 entity.quark:pirate.name=Pirate

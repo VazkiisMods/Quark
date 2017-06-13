@@ -34,17 +34,22 @@ import vazkii.quark.management.client.gui.GuiButtonChest;
 
 public class VisualStatDisplay extends Feature {
 
+	public static final ImmutableSet<String> VALID_ATTRIBUTES = ImmutableSet.of("generic.attackDamage", "generic.attackSpeed", "generic.armor", "generic.armorToughness");
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void makeTooltip(ItemTooltipEvent event) {
+		Minecraft mc = Minecraft.getMinecraft();
 		ItemStack stack = event.getItemStack();
 
 		if(!GuiScreen.isShiftKeyDown() && isAttributeStrippable(stack)) {
 			List<String> tooltip = event.getToolTip();
+			String allDesc = "";
 			boolean clearedAny = false;
 
 			for(EntityEquipmentSlot slot : EntityEquipmentSlot.values()) {
 				Multimap<String, AttributeModifier> slotAttributes = stack.getAttributeModifiers(slot);
+				
 				if(!slotAttributes.isEmpty()) {
 					String slotDesc = I18n.translateToLocal("item.modifiers." + slot.getName());
 					int index = tooltip.indexOf(slotDesc) - 1;
@@ -56,6 +61,9 @@ public class VisualStatDisplay extends Feature {
 				}
 
 				for(String s : slotAttributes.keys()) {
+					if(VALID_ATTRIBUTES.contains(s))
+						allDesc += ItemStack.DECIMALFORMAT.format(getAttribute(event.getEntityPlayer(), stack, slotAttributes, s));
+						
 					String name = I18n.translateToLocal("attribute.name." + s);
 					for(int i = 1; i < tooltip.size(); i++)
 						if(tooltip.get(i).contains(name)) {
@@ -66,8 +74,14 @@ public class VisualStatDisplay extends Feature {
 				}
 			}
 
-			if(clearedAny)
-				tooltip.add(1, "");
+			if(clearedAny) {
+				int len = mc.fontRendererObj.getStringWidth(allDesc) + 32;
+				String spaces = "";
+				while(mc.fontRendererObj.getStringWidth(spaces) < len)
+					spaces += " " ;
+				
+				tooltip.add(1, spaces);
+			}
 		}
 	}
 
@@ -86,7 +100,7 @@ public class VisualStatDisplay extends Feature {
 			
 			for(int i = 1; i < event.getLines().size(); i++) {
 				String s = event.getLines().get(i);
-				if(TextFormatting.getTextWithoutFormattingCodes(s).isEmpty()) {
+				if(TextFormatting.getTextWithoutFormattingCodes(s).trim().isEmpty()) {
 					y += 10 * (i - 1) + 1;
 					break;
 				}
@@ -133,10 +147,9 @@ public class VisualStatDisplay extends Feature {
 				x += mc.fontRendererObj.getStringWidth(toughnessStr) + 20;
 			}
 			
-			ImmutableSet<String> validAttributes = ImmutableSet.of("generic.attackDamage", "generic.attackSpeed", "generic.armor", "generic.armorToughness");
 			if(slotAttributes != null)
 				for(String s : slotAttributes.keySet())
-					if(!validAttributes.contains(s)) {
+					if(!VALID_ATTRIBUTES.contains(s)) {
 						mc.fontRendererObj.drawStringWithShadow(TextFormatting.YELLOW + "[+]", x, y + 1, 0xFFFFFF);
 						break;
 					}

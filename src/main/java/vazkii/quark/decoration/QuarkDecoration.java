@@ -14,6 +14,7 @@ import vazkii.quark.base.module.Module;
 import vazkii.quark.decoration.feature.BlazeLantern;
 import vazkii.quark.decoration.feature.CharcoalBlock;
 import vazkii.quark.decoration.feature.ColoredBeds;
+import vazkii.quark.decoration.feature.ColoredFlowerPots;
 import vazkii.quark.decoration.feature.ColoredItemFrames;
 import vazkii.quark.decoration.feature.FlatItemFrames;
 import vazkii.quark.decoration.feature.GlassItemFrame;
@@ -46,6 +47,7 @@ public class QuarkDecoration extends Module {
 		registerFeature(new IronLadders());
 		registerFeature(new FlatItemFrames());
 		registerFeature(new GlassItemFrame());
+		registerFeature(new ColoredFlowerPots());
 	}
 
 }

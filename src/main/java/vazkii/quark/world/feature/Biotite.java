@@ -25,6 +25,7 @@ import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.building.feature.VanillaWalls;
 import vazkii.quark.world.block.BlockBiotite;
 import vazkii.quark.world.block.BlockBiotiteOre;
@@ -49,7 +50,7 @@ public class Biotite extends Feature {
 
 	@Override
 	public void setupConfig() {
-		enableWalls = loadPropBool("Enable walls", "", true);
+		enableWalls = loadPropBool("Enable walls", "", true) && GlobalConfig.enableVariants;
 		generateNatually = loadPropBool("Generate naturally", "", false);
 		generateByDragon = loadPropBool("Generate by dragon kill", "", true);
 		clusterSize = loadPropInt("Cluster size", "", 14);

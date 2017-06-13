@@ -181,12 +181,10 @@ public class ClassTransformer implements IClassTransformer {
 			invokestaticCount = 0;
 			transClass = transform(transClass, Pair.of(sig2, combine(
 					(AbstractInsnNode node) -> { // Filter
-						return node.getOpcode() == Opcodes.INVOKESTATIC;
+						return node.getOpcode() == Opcodes.INVOKESTATIC && ((MethodInsnNode) node).desc.equals("(FFFF)V");
 					},
 					(MethodNode method, AbstractInsnNode node) -> { // Action
 						invokestaticCount++;
-						if(invokestaticCount != 5 && invokestaticCount != 8)
-							return false;
 
 						InsnList newInstructions = new InsnList();
 
@@ -194,7 +192,7 @@ public class ClassTransformer implements IClassTransformer {
 
 						method.instructions.insertBefore(node, newInstructions);
 						method.instructions.remove(node);
-						return invokestaticCount == 8;
+						return invokestaticCount == 2;
 					})));
 		}
 

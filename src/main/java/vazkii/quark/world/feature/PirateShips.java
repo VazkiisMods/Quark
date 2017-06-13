@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import vazkii.quark.base.Quark;
+import vazkii.quark.base.handler.DimensionConfig;
 import vazkii.quark.base.lib.LibEntityIDs;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.world.client.render.RenderPirate;
@@ -33,11 +34,13 @@ public class PirateShips extends Feature {
 
 	boolean onlyHat;
 	public static int rarity;
+	DimensionConfig dims;
 
 	@Override
 	public void setupConfig() {
 		onlyHat = loadPropBool("Only hat", "Disables the pirate mob and generator, only adds the hat", false);
 		rarity = loadPropInt("Pirate Ship Rarity", "Given this value as X, 1 ship will spawn in X ocean biome chunks", 1600);
+		dims = new DimensionConfig(configCategory);
 	}
 
 	@Override
@@ -50,7 +53,7 @@ public class PirateShips extends Feature {
 		String pirateName = "quark:pirate";
 		EntityRegistry.registerModEntity(new ResourceLocation(pirateName), EntityPirate.class, pirateName, LibEntityIDs.PIRATE, Quark.instance, 80, 3, true, 0x4d1d14, 0xac9617);
 
-		GameRegistry.registerWorldGenerator(new PirateShipGenerator(), 0);
+		GameRegistry.registerWorldGenerator(new PirateShipGenerator(dims), 0);
 	}
 
 	@Override

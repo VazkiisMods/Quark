@@ -31,12 +31,12 @@ import vazkii.quark.tweaks.feature.ImprovedStoneToolCrafting;
 import vazkii.quark.tweaks.feature.JumpBoostStepAssist;
 import vazkii.quark.tweaks.feature.KnockOnDoors;
 import vazkii.quark.tweaks.feature.LessIntrusiveShields;
-import vazkii.quark.tweaks.feature.VisualStatDisplay;
 import vazkii.quark.tweaks.feature.LookDownLadders;
 import vazkii.quark.tweaks.feature.MapTooltip;
 import vazkii.quark.tweaks.feature.MinecartInteraction;
 import vazkii.quark.tweaks.feature.NoPotionShift;
 import vazkii.quark.tweaks.feature.QuickArmorSwapping;
+import vazkii.quark.tweaks.feature.RandomAnimalTextures;
 import vazkii.quark.tweaks.feature.RemoveSnowLayers;
 import vazkii.quark.tweaks.feature.RightClickSignEdit;
 import vazkii.quark.tweaks.feature.ShearableChickens;
@@ -48,6 +48,7 @@ import vazkii.quark.tweaks.feature.StackableItems;
 import vazkii.quark.tweaks.feature.StairsMakeMore;
 import vazkii.quark.tweaks.feature.TorchesBurnInFurnaces;
 import vazkii.quark.tweaks.feature.VillagerPursueEmeralds;
+import vazkii.quark.tweaks.feature.VisualStatDisplay;
 
 public class QuarkTweaks extends Module {
 
@@ -90,6 +91,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new ShulkerBoxTooltip());
 		registerFeature(new QuickArmorSwapping());
 		registerFeature(new VisualStatDisplay());
+		registerFeature(new RandomAnimalTextures());
 	}
 
 }

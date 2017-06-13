@@ -7,7 +7,8 @@ public final class GlobalConfig {
 	public static boolean enableAntiOverlap;
 	public static boolean enableSeasonalFeatures;
 	public static boolean enableConfigCommand;
-	
+	public static boolean enableVariants;
+
 	public static void initGlobalConfig() {
 		String category = "_global";
 		
@@ -31,6 +32,11 @@ public final class GlobalConfig {
 				+ "\nAnother example can be /quarkconfig tweaks - \"Shearable chickens\" false"
 				+ "\nThis disables shearable chickens for everybody on the server. \"nosave\" doesn't need to be included, as it's the default."
 				+ "\n\"nosave\" does need to be there if a player name is used. Lastly, - signifies no subcategory inside the module.", true);
+		
+		enableVariants = ConfigHelper.loadPropBool("Allow Block Variants", category, 
+				"Set this to false to disable stairs, slabs, and walls, mod-wide. As these blocks can use a lot of Block IDs,\n"
+				+ "this is helpful to reduce the load, if you intend on running a really large modpack.\n"
+				+ "Note: Blocks that require stairs and/or slabs for their recipes (such as Soul Sandstone or Midori) won't be affected.", true);
 		
 		ConfigHelper.needsRestart = ConfigHelper.allNeedRestart = false;
 	}

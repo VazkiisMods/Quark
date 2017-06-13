@@ -24,8 +24,11 @@ import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.handler.BiomeTypeConfigHandler;
+import vazkii.quark.base.handler.DimensionConfig;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.base.module.ModuleLoader;
+import vazkii.quark.building.feature.VanillaWalls;
 import vazkii.quark.world.block.BlockBiomeCobblestone;
 import vazkii.quark.world.block.BlockGlowcelium;
 import vazkii.quark.world.block.BlockGlowshroom;
@@ -57,7 +60,7 @@ public class UndergroundBiomes extends Feature {
 	public static IBlockState firestoneState, icystoneState;
 	
 	public static boolean firestoneEnabled, icystoneEnabled, glowceliumEnabled;
-	boolean enableStairsAndSlabs;
+	boolean enableStairsAndSlabs, enableWalls;
 	
 	@Override
 	public void setupConfig() {
@@ -66,8 +69,9 @@ public class UndergroundBiomes extends Feature {
 		firestoneEnabled = loadPropBool("Enable Firestone", "", true);
 		icystoneEnabled = loadPropBool("Enable Froststone", "", true);
 		glowceliumEnabled = loadPropBool("Enable Glowcelium and Glowshrooms", "", true);
-		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true);
-		
+		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true)  && GlobalConfig.enableVariants;
+		enableWalls = loadPropBool("Enable walls", "", true)  && GlobalConfig.enableVariants;
+
 		glowshroomGrowthRate = loadPropInt("Glowshroom Growth Rate", "The smaller, the faster glowshrooms will spread. Vanilla mushroom speed is 25.", 30);
 		
 		biomes.add(loadUndergrondBiomeInfo("Lush", new UndergroundBiomeLush(), 160, Type.JUNGLE));
@@ -98,6 +102,9 @@ public class UndergroundBiomes extends Feature {
 			}
 		}
 		
+		VanillaWalls.add("icy_stone", biome_cobblestone, 0, enableWalls && icystoneEnabled);
+		VanillaWalls.add("fire_stone", biome_cobblestone, 1, enableWalls && firestoneEnabled);
+
 		if(glowceliumEnabled) {
 			glowcelium = new BlockGlowcelium();
 			glowshroom = new BlockGlowshroom();
@@ -123,6 +130,9 @@ public class UndergroundBiomes extends Feature {
 			Random rand = event.getRand();
 			
 			for(UndergroundBiomeInfo biomeInfo : biomes) {
+				if(!biomeInfo.dims.canSpawnHere(world))
+					continue;
+				
 				BlockPos spawnPos = pos.add(rand.nextInt(16), biomeInfo.minY + rand.nextInt(biomeInfo.maxY - biomeInfo.minY), rand.nextInt(16));
 				Biome biome = world.getBiome(spawnPos);
 				
@@ -159,6 +169,7 @@ public class UndergroundBiomes extends Feature {
 		
 		public final boolean enabled;
 		public final UndergroundBiome biome;
+		public final DimensionConfig dims;
 		public final List<BiomeDictionary.Type> types;
 		public final int rarity;
 		public final int minXSize, minYSize, minZSize;
@@ -170,6 +181,8 @@ public class UndergroundBiomes extends Feature {
 			this.biome = biome;
 			this.types = BiomeTypeConfigHandler.parseBiomeTypeArrayConfig("Allowed Biome Types", category, biomes);
 			this.rarity = ModuleLoader.config.getInt("Rarity", category, rarity, 0, Integer.MAX_VALUE, "This biome will spawn in 1 of X valid chunks");
+			
+			dims = new DimensionConfig(category);
 			
 			minY = ModuleLoader.config.getInt("Minimum Y Level", category, 10, 0, 255, "");
 			maxY = ModuleLoader.config.getInt("Maximum Y Level", category, 40, 0, 255, "");

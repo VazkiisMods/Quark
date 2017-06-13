@@ -20,6 +20,7 @@ import vazkii.arl.block.BlockModSlab;
 import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.building.block.BlockNewSandstone;
 import vazkii.quark.building.block.slab.BlockVanillaSlab;
@@ -33,7 +34,7 @@ public class MoreSandstone extends Feature {
 
 	@Override
 	public void setupConfig() {
-		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true);
+		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true) && GlobalConfig.enableVariants;
 	}
 
 	@Override

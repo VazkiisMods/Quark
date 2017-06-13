@@ -16,16 +16,15 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import vazkii.quark.base.client.gui.GuiButtonTranslucent;
+import vazkii.quark.vanity.client.emotes.base.EmoteDescriptor;
 
 public class GuiButtonEmote extends GuiButtonTranslucent {
 
-	public final String emote;
-	private ResourceLocation resource;
+	public final EmoteDescriptor desc;
 
-	public GuiButtonEmote(int buttonId, int x, int y, String emote) {
-		super(buttonId, x, y, 100, 18, I18n.format("quark.emote." + emote));
-		this.emote = emote;
-		resource = new ResourceLocation("quark", "textures/emotes/" + emote + ".png");
+	public GuiButtonEmote(int buttonId, int x, int y, EmoteDescriptor desc) {
+		super(buttonId, x, y, 100, 18, I18n.format("quark.emote." + desc.getUnlocalizedName()));
+		this.desc = desc;
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class GuiButtonEmote extends GuiButtonTranslucent {
 			GlStateManager.pushMatrix();
 			GlStateManager.scale(0.5, 0.5, 0.5);
 			GlStateManager.color(1F, 1F, 1F);
-			mc.getTextureManager().bindTexture(resource);
+			mc.getTextureManager().bindTexture(desc.texture);
 			drawTexturedModalRect((xPosition + 9) * 2, (yPosition + 2) * 2, 32, 32);
 			GlStateManager.popMatrix();
 		}

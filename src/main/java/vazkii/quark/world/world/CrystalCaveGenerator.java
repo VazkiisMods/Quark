@@ -14,13 +14,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import vazkii.quark.base.handler.DimensionConfig;
 import vazkii.quark.world.feature.CrystalCaves;
 
 public class CrystalCaveGenerator implements IWorldGenerator {
 
+	DimensionConfig dims;
+	
+	public CrystalCaveGenerator(DimensionConfig dims) {
+		this.dims = dims;
+	}
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		if(random.nextInt(CrystalCaves.crystalCaveRarity) != 0)
+		if(random.nextInt(CrystalCaves.crystalCaveRarity) != 0 || !dims.canSpawnHere(world))
 			return;
 
 		int x = chunkX * 16 + random.nextInt(16);

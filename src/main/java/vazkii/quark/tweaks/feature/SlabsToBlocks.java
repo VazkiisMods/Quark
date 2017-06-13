@@ -87,6 +87,7 @@ public class SlabsToBlocks extends Feature {
 								outCopy.setItemDamage(0);
 
 							ItemStack in = output.copy();
+							in.setCount(1);
 							if(in.getItem() instanceof ItemBlock && outCopy.getItem() instanceof ItemBlock) {
 								Block block = Block.getBlockFromItem(outCopy.getItem());
 								slabs.put(block.getStateFromMeta(outCopy.getItemDamage()), in);

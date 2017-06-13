@@ -96,6 +96,7 @@ public class StairsMakeMore extends Feature {
 
 							outCopy.setCount(24 / targetSize);
 							ItemStack in = output.copy();
+							in.setCount(1);
 							if(in.getItem() instanceof ItemBlock && outCopy.getItem() instanceof ItemBlock) {
 								Block block = Block.getBlockFromItem(outCopy.getItem());
 								stairs.put(block.getStateFromMeta(outCopy.getItemDamage()), in);

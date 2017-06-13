@@ -19,6 +19,7 @@ import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.building.block.BlockHardenedClayTiles;
 import vazkii.quark.building.block.BlockStainedClayTiles;
 import vazkii.quark.building.block.slab.BlockHardenedClayTilesSlab;
@@ -36,8 +37,8 @@ public class HardenedClayTiles extends Feature {
 
 	@Override
 	public void setupConfig() {
-		enableStainedClay = loadPropBool("Enable stained tiles", "", true);
-		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true);
+		enableStainedClay = loadPropBool("Enable stained tiles", "", true) && GlobalConfig.enableVariants;
+		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true) && GlobalConfig.enableVariants;
 	}
 
 	@Override

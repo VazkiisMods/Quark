@@ -36,18 +36,23 @@ import vazkii.quark.base.lib.LibObfuscation;
 
 public final class EmoteHandler {
 
-	public static Map<String, Class<? extends EmoteBase>> emoteMap = new LinkedHashMap();
+	public static Map<String, EmoteDescriptor> emoteMap = new LinkedHashMap();
 	private static WeakHashMap<EntityPlayer, EmoteBase> playerEmotes = new WeakHashMap();
 	private static List<EntityPlayer> updatedPlayers = new ArrayList();
 
-	public static float time, partialTicks, total, delta;
+	private static int count;
 
+	public static void addEmote(String name, Class<? extends EmoteBase> clazz) {
+		EmoteDescriptor desc = new EmoteDescriptor(clazz, name, count++);
+		emoteMap.put(name, desc);
+	}
+	
 	public static void putEmote(AbstractClientPlayer player, String emoteName) {
 		if(emoteMap.containsKey(emoteName))
 			putEmote(player, emoteMap.get(emoteName));
 	}
 
-	public static void putEmote(AbstractClientPlayer player, Class<? extends EmoteBase> clazz) {
+	public static void putEmote(AbstractClientPlayer player, EmoteDescriptor desc) {
 		if(playerEmotes.containsKey(player))
 			return;
 
@@ -58,11 +63,7 @@ public final class EmoteHandler {
 		if(model.bipedHead.rotateAngleY < 0)
 			model.bipedHead.rotateAngleY = 2 * (float) Math.PI - model.bipedHead.rotateAngleY;
 
-		try {
-			playerEmotes.put(player, clazz.getConstructor(EntityPlayer.class, ModelBiped.class, ModelBiped.class, ModelBiped.class).newInstance(player, model, armorModel, armorLegModel));
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		playerEmotes.put(player, desc.instantiate(player, model, armorModel, armorLegModel));
 	}
 
 	public static void updateEmotes(Entity e) {
@@ -86,6 +87,10 @@ public final class EmoteHandler {
 				updatedPlayers.add(player);
 			}
 		}
+	}
+	
+	public static EmoteBase getPlayerEmote(EntityPlayer player) {
+		return playerEmotes.get(player);
 	}
 
 	public static void clearPlayerList() {
@@ -126,38 +131,6 @@ public final class EmoteHandler {
 		model.bipedBody.rotateAngleZ = 0F;
 		model.bipedRightLeg.rotateAngleZ = 0F;
 		model.bipedLeftLeg.rotateAngleZ = 0F;
-	}
-
-	public static class TickHandler {
-
-		private void calcDelta() {
-			float oldTotal = total;
-			total = time + partialTicks;
-			delta = (total - oldTotal) * 50F;
-		}
-
-		@SubscribeEvent
-		public void renderTick(RenderTickEvent event) {
-			if(event.phase == Phase.START) {
-				partialTicks = event.renderTickTime;
-				EmoteHandler.clearPlayerList();
-			} else calcDelta();
-		}
-
-		@SubscribeEvent
-		public void clientTickEnd(ClientTickEvent event) {
-			if(event.phase == Phase.END) {
-				Minecraft mc = Minecraft.getMinecraft();
-
-				GuiScreen gui = mc.currentScreen;
-				if(gui == null || !gui.doesGuiPauseGame()) {
-					time++;
-					partialTicks = 0;
-				}
-
-				calcDelta();
-			}
-		}
 	}
 
 }

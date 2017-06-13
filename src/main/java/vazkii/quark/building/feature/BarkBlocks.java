@@ -14,19 +14,25 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import vazkii.arl.block.BlockMod;
+import vazkii.arl.block.BlockModSlab;
+import vazkii.arl.block.BlockModStairs;
 import vazkii.arl.util.RecipeHandler;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.building.block.BlockBark;
+import vazkii.quark.building.block.slab.BlockBarkSlab;
+import vazkii.quark.building.block.stairs.BlockBarkStairs;
 
 public class BarkBlocks extends Feature {
 
 	public static BlockMod bark;
 
-	boolean enableWalls;
+	boolean enableWalls, enableStairsAndSlabs;
 
 	@Override
 	public void setupConfig() {
-		enableWalls = loadPropBool("Enable walls", "", true);
+		enableWalls = loadPropBool("Enable walls", "", true) && GlobalConfig.enableVariants;
+		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true) && GlobalConfig.enableVariants;
 	}
 
 	@Override
@@ -46,6 +52,11 @@ public class BarkBlocks extends Feature {
 			bark.getDefaultState().withProperty(bark.getVariantProp(), variant);
 			String name = variant.getName();
 			VanillaWalls.add(name, bark, variant.ordinal(), enableWalls);
+			
+			if(enableStairsAndSlabs) {
+				BlockModStairs.initStairs(bark, variant.ordinal(), new BlockBarkStairs(variant));
+				BlockModSlab.initSlab(bark, variant.ordinal(), new BlockBarkSlab(variant, false), new BlockBarkSlab(variant, true));
+			}
 		}
 	}
 	
