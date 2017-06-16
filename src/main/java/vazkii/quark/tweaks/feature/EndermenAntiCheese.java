@@ -94,7 +94,7 @@ public class EndermenAntiCheese extends Feature {
 		
 		IBlockState state = entity.world.getBlockState(pos);
 		boolean unbreakable = state.getBlock().getBlockHardness(state, entity.world, pos) == -1 || !state.getBlock().canEntityDestroy(state, entity.world, pos, entity);
-		if(!unbreakable && state.getBlock().getCollisionBoundingBox(state, entity.getEntityWorld(), pos) != null) {
+		if(!unbreakable && state.getBlock().getCollisionBoundingBox(state, entity.getEntityWorld(), pos) != null && EntityEnderman.getCarriable(state.getBlock())) {
 			IBlockState carried = entity.getHeldBlockState();
 			if(carried != null) {
 				Block outBlock = carried.getBlock();
