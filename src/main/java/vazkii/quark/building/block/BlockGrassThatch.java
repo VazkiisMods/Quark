@@ -30,6 +30,34 @@ public class BlockGrassThatch extends BlockMod implements IQuarkBlock {
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
+	public IBlockColor getBlockColor() {
+		return new IBlockColor() {
+
+			@Override
+			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+				IBlockState base = ((Variants) state.getValue(getVariantProp())).baseState;
+				return Minecraft.getMinecraft().getBlockColors().colorMultiplier(base, worldIn, pos, tintIndex);
+			}
+
+		};
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IItemColor getItemColor() {
+		return new IItemColor() {
+
+			@Override
+			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+				ItemStack baseStack = Variants.class.getEnumConstants()[Math.min(5, stack.getItemDamage())].baseStack;
+				return Minecraft.getMinecraft().getItemColors().getColorFromItemstack(baseStack, tintIndex);
+			}
+
+		};
+	}
+	
+	@Override
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
         entityIn.fall(fallDistance, GrassThatch.fallDamageMultiplier);
     }
