@@ -110,6 +110,7 @@
 								<li>ZeroLevels for the Iron Plate texture.</li>
 								<li>Noodlor for the variety dungeon structures.</li>
 								<li>Xisumavoid for the sticky piston side texture.</li>
+								<li>Golbolco for the grass thatch block.</li>
 								<li>/u/Soniop for the realistic world preset.</li>
 								<li>/u/Martwaza for the trapdoor textures.</li>
 								<li>/u/FelitonC and /u/origamidragon412 for the banner textures.</li>
