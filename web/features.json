@@ -92,6 +92,13 @@
 				"introduced":9
 			},
 			{
+				"name":"Grass Thatch",
+				"description":"Grass thatch is created via a 2x2 of tall grass. It can be used for stairs and slabs or turned back into 4 tall grass. It will change colour depending on the biome it is placed in.",
+				"image":"grass-thatch.jpg",
+				"introduced":12,
+				"contributor": "Golbolco",
+			},
+			{
 				"name":"Iron Plates",
 				"description":"Iron Plate blocks can be created with 8 Iron Ingots in the donut shape, this recipe outputs 24 plates. Putting a Water Bucket in the middle will create Rusty Iron Plates instead.<br><br>Iron Plates can also be turned into stairs and slabs.",
 				"image":"iron-plates.jpg",
