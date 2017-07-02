@@ -1,0 +1,13 @@
+{
+	"name": "Grass Thatch",
+	"id": "quark:grass_thatch",
+	"type": "plant",
+	"hardness": 0.5,
+	"resistance": 0.8333333,
+	"textures": "quark:blocks/grass_thatch",
+	"blocks": {
+		"full": "quark:grass_thatch",
+		"stairs": "quark:grass_thatch_stairs",
+		"slab": { "id": "quark:grass_thatch_slab", "meta": 0 }
+	}
+}
