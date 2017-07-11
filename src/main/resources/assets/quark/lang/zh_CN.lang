@@ -257,6 +257,7 @@ tile.quark:smooth_soul_sandstone.name=平滑灵魂砂岩
 tile.quark:soul_sandstone_slab.name=灵魂砂岩台阶
 tile.quark:soul_sandstone_stairs.name=灵魂砂岩楼梯
 tile.quark:soul_sandstone_wall.name=灵魂砂岩墙
+tile.ladder.name=木梯子
 tile.quark:iron_ladder.name=铁梯子
 tile.quark:crystal_white.name=白色洞穴水晶
 tile.quark:crystal_red.name=红色洞穴水晶
