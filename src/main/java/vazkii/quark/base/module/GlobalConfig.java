@@ -15,7 +15,7 @@ public final class GlobalConfig {
 		ConfigHelper.needsRestart = ConfigHelper.allNeedRestart = true;
 		
 		enableAntiOverlap = ConfigHelper.loadPropBool("Enable Anti-Overlap", category, 
-				"Set this to false to remove the system that has features turn themselves off automatically when"
+				"Set this to false to remove the system that has features turn themselves off automatically when "
 				+ "other mods are present that add similar features."
 				+ "\nNote that you can force features to be enabled individually through their respective configs.", true);
 		
