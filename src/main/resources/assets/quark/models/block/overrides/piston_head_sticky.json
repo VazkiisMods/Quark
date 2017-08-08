@@ -27,7 +27,7 @@
         "down":  { "uv": [ 0, 8, 4, 16 ], "rotation": 180, "texture": "#piston" },
         "up":    { "uv": [ 0, 8, 4, 16 ], "texture": "#piston" },
         "west":  { "uv": [ 0, 8, 4, 16 ], "rotation": 270, "texture": "#piston" },
-        "east":  { "uv": [ 0, 8, 4, 16 ], "rotation": 270, "texture": "#piston" }
+        "east":  { "uv": [ 0, 8, 4, 16 ], "rotation": 90, "texture": "#piston" }
     }
 },
 {
