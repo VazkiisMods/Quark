@@ -1,0 +1,51 @@
+[
+	[{"text":"Quark","bold":true},{"text":" is a mod for Minecraft. It aims to create an experience akin to the \"vanilla\" experience, by having a very simple motto: ","bold":false},{"text":"anything that would be added to Quark could also be added to the default game without compromising its gameplay style. ","italic":true, "bold": false},{"text":"Quark currently has ","italic":false, "bold": false},{"text":"134","bold":true},{"text":" features to spice up your game, all of which fitting the previous motto. ","bold":false}],
+	null,
+	["To that end, every feature added to Quark is simple and small. Hence the name of the mod, Quark, as a Quark is a very small thing. Quark is a ", {"text":"Modular", "italic":true}, " mod. Which means that its features are split within various modules. All of the modules can be disabled, and all the features can also be disabled individually if one wants to. Many of the features even have extra configuration options."],
+	null,
+	"The mod features ingame configuration via the Mod Options menu. Most features can be toggled from inside the game, others require a world reload, it depends on the changes they make. Any features that add new explicit content, such as items, blocks or entities, will require a reset.",
+	null,
+	"## Credits",
+	{
+		"id": "list",
+		"list": [
+			"wiiv for most of the textures.",
+			"Rorax for the emote icons.",
+			"cheeserolls for the biome detection code from Biomes'o'Plenty used for Pathfinder Maps.",
+			"DylanKaiser for the inventory chest icon.",
+			"SanAndreasP for the chest textures and most of their code.",
+			"ZeroLevels for the Iron Plate texture.",
+			"Noodlor for the variety dungeon structures.",
+			"Xisumavoid for the sticky piston side texture.",
+			"/u/Soniop for the realistic world preset.",
+			"/u/Martwaza for the trapdoor textures.",
+			"/u/FelitonC and /u/origamidragon412 for the banner textures.",
+			"/u/kopasz7 for the Midori block textures.",
+			"/u/robotthunder500 for the Bookshelf textures.",
+			"/u/darwinpatrick for the Soul Sandstone textures.",
+			"/u/Nyodex for the original Duskbound Block idea and textures.",
+			"/u/MushirMickeyJoe for recreation of the pocket edition piston model.",
+			"/u/CopherSans for the improved bow animation.",
+			"The creators of all the awesome suggestions I found in /r/MinecraftSuggestions and /r/QuarkMod that I implemented here.",
+			"And all the awesome people who pull requested features into the mod, credited in their individual cards."
+		]
+	},
+	null,
+	"## Contact and Donations",
+	{
+		"id": "list",
+		"list": [
+			{"text":"Quark Subreddit (suggestions should go here, make sure to read the sticky!)", "clickEvent":{"action":"open_url", "value":"https://www.reddit.com/r/quarkmod"}, "color": "blue"},
+			{"text":"Issues (report your bugs here)", "clickEvent":{"action":"open_url", "value":"https://github.com/Vazkii/Quark/issues"}, "color": "blue"},
+			{"text":"Source Code", "clickEvent":{"action":"open_url", "value":"https://github.com/Vazkii/Quark"}, "color": "blue"},
+			{"text":"APIs for Modders", "clickEvent":{"action":"open_url", "value":"https://github.com/Vazkii/Quark/blob/master/modders.md"}, "color": "blue"},
+			{"text":"Vazkii's Twitter", "clickEvent":{"action":"open_url", "value":"https://twitter.com/Vazkii/"}, "color": "blue"},
+			{"text":"Vazkii's Patreon", "clickEvent":{"action":"open_url", "value":"https://patreon.com/Vazkii/"}, "color": "blue"},
+			{"text":"wiiv's Twitter", "clickEvent":{"action":"open_url", "value":"https://twitter.com/wiliv75/"}, "color": "blue"},
+			{"text":"wiiv's Patreon", "clickEvent":{"action":"open_url", "value":"https://patreon.com/WIIV/"}, "color": "blue"},
+			{"text":"Donations", "clickEvent":{"action":"open_url", "value":"https://vazkii.us/about-me/supportdonations/"}, "color": "blue"},
+			{"text":"Email and other Contacts", "clickEvent":{"action":"open_url", "value":"https://vazkii.us/about-me/contact/"}, "color": "blue"},
+			{"text":"vazkii.us", "clickEvent":{"action":"open_url", "value":"https://vazkii.us/"}, "color": "blue"}
+		]
+	}
+]

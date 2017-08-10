@@ -1,0 +1,1 @@
+["# Food Tooltip","Food items show how much they heal in their tooltip.",null,{"id":"image","image":"https://raw.githubusercontent.com/Vazkii/Quark/master/web/img/modules/tweaks/food-tooltip.jpg","width":200,"height":200},null,"This feature was introduced in Minecraft 1.10.","This feature disables itself if the AppleSkin mod is loaded to prevent content overlap."]
