@@ -21,7 +21,7 @@ public final class GlobalConfig {
 		
 		enableSeasonalFeatures = ConfigHelper.loadPropBool("Enable Seasonal Features", category,
 				"Whether features that are based on the time of year should be enabled."
-				+ "\nAn example is chests turning to prsents when it's Christmas."
+				+ "\nAn example is chests turning to presents when it's Christmas."
 				+ "\nNote that this will not affect vanilla's own seasonal features.", true);
 		
 		enableConfigCommand = ConfigHelper.loadPropBool("Enable Quark Config Command", category,
