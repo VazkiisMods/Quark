@@ -23,28 +23,24 @@ public class GuiButtonShulker extends GuiButtonChest<GuiShulkerBox> {
 	}
 
 	@Override
-	protected void drawIcon(int u, int v) {
+	protected void drawChest() {
 		Minecraft mc = Minecraft.getMinecraft();
 		BlockPos pos = mc.objectMouseOver.getBlockPos();
 		if(pos != null) {
 			TileEntity tile = mc.world.getTileEntity(pos);
 			if(tile instanceof TileEntityShulkerBox) {
-				v += 128;
-				super.drawIcon(u, v);
-				
 				TileEntityShulkerBox shulker = (TileEntityShulkerBox) tile;
 				EnumDyeColor dye = ((BlockShulkerBox) shulker.getBlockType()).getColor();
 				int color = ItemDye.DYE_COLORS[dye.getDyeDamage()];
 				Color colorObj = new Color(color).brighter();
 				GlStateManager.color((float) colorObj.getRed() / 255F, (float) colorObj.getGreen() / 255F, (float) colorObj.getBlue() / 255F);
-				v += 32;
-
-				super.drawIcon(u, v);
+				super.drawIcon(16, 160);
+				GlStateManager.color(1F, 1F, 1F);
 				return;
 			}
 		}
 
-		super.drawIcon(u, v);
+		super.drawChest();
 	}
 
 }

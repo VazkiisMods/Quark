@@ -76,7 +76,7 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton implements IP
 			
 			par1Minecraft.renderEngine.bindTexture(LibMisc.GENERAL_ICONS_RESOURCE);
 			GlStateManager.color(1F, 1F, 1F, 1F);
-			drawIcon(u, v);
+			draw(u, v);
 			
 			if(k == 2) {
 				if(action != Action.RESTOCK && !action.isSortAction())
@@ -112,6 +112,15 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton implements IP
 				GlStateManager.popMatrix();
 			}
 		}
+	}
+
+	private void draw(int u, int v) {
+		drawChest();
+		drawIcon(u, v + 128);
+	}
+
+	protected void drawChest() {
+		drawIcon(0, 160);
 	}
 	
 	protected void drawIcon(int u, int v) {
