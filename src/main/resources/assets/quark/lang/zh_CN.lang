@@ -16,6 +16,12 @@ quarkmisc.keyboundButton=%s按 %s
 quarkmisc.nowAfk=你现在离开游戏了。
 quarkmisc.leftAfk=你现在回到游戏了。
 quarkmisc.personSleeping=%s 正在睡觉。(%d/%d)
+# The %s is very important!
+quarkmisc.sleepingListHeader=睡觉中的玩家：%s
+quarkmisc.buried_chest_map=藏宝地图
+quarkmisc.trashButtonOpen=点击删除
+quarkmisc.signShift=切换
+quarkmisc.signClear=清空
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=陶瓦砖
@@ -422,6 +428,7 @@ item.quark:ancient_tome.name=古卷
 item.quark:witch_hat.name=巫师帽
 item.quark:slime_bucket_normal.name=桶装史莱姆
 item.quark:slime_bucket_excited.name=桶装史莱姆
+item.quark:slime_bucket_named.name=桶装%s
 item.quark:rune_black.name=黑色符文
 item.quark:rune_blue.name=蓝色符文
 item.quark:rune_brown.name=棕色符文
@@ -479,6 +486,7 @@ item.quark:arrow_torch.name=火炬之箭
 item.quark:soul_powder.name=灵魂粉
 item.quark:glass_item_frame.name=玻璃物品展示框
 item.quark:enderdragon_scale.name=龙鳞
+item.quark:trowel.name=泥铲
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=染色物品展示框
@@ -492,17 +500,9 @@ entity.quark:wraith.name=游魂
 quark.potion.curse.name=诅咒
 
 # KEYBINDS
-quark.gui.keygroup=Quark键位绑定
-quark.keybind.emote.wave=动作：招手
-quark.keybind.emote.yes=动作：是
-quark.keybind.emote.no=动作：否
-quark.keybind.emote.cheer=动作：欢呼
-quark.keybind.emote.clap=动作：鼓掌
-quark.keybind.emote.salute=动作：敬礼
-quark.keybind.emote.facepalm=动作：捂脸
-quark.keybind.emote.shrug=动作：耸肩
-quark.keybind.emote.point=动作：指点
-quark.keybind.emote.headbang=动作：摇头
+quark.gui.keygroupMisc=夸克 杂项
+quark.gui.keygroupInv=夸克 物品栏
+quark.gui.keygroupEmote=夸克 动作
 quark.keybind.lockBuilding=锁定朝向
 quark.keybind.toggleAutojump=自动跳跃开关
 quark.keybind.changeHotbar=切换快捷栏
@@ -512,7 +512,6 @@ quark.keybind.chestSort=排序容器
 quark.keybind.chestDropoff=存储到容器
 quark.keybind.chestMerge=合并到容器
 quark.keybind.chestRestock=从容器合并
-quark.keybind.chestRestock=从容器补充
 quark.keybind.chestExtract=从容器提取
 
 # GUI STUFF
@@ -528,7 +527,8 @@ quark.emote.facepalm=捂脸
 quark.emote.shrug=耸肩
 quark.emote.point=指点
 quark.emote.headbang=摇头
-quark.emote.custom=自定义
+quark.emote.think=思考
+quark.emote.weep=流泪
 quark.dyedElytra=%s
 quark.dye.white=白色
 quark.dye.orange=橙色
@@ -547,7 +547,21 @@ quark.dye.green=绿色
 quark.dye.red=红色
 quark.dye.black=黑色
 generator.quark_realistic=真实化
-generator.quark_realistic.info=[Quark]由/u/Soniop制作的真实化世界
+generator.quark_realistic.info=[夸克]由/u/Soniop制作的真实化世界
+
+# BIOME MAPS
+quark.biomeMap.ice_flats=冰原探路图
+quark.biomeMap.extreme_hills=峭壁探路图
+quark.biomeMap.roofed_forest=黑森林探路图
+quark.biomeMap.desert=沙漠探路图
+quark.biomeMap.savanna=热带草原探路图
+quark.biomeMap.swampland=沼泽探路图
+quark.biomeMap.redwood_taiga=大型针叶林探路图
+quark.biomeMap.mutated_forest=繁花森林探路图
+quark.biomeMap.jungle=丛林探路图
+quark.biomeMap.mesa=平顶山探路图
+quark.biomeMap.mushroom_island=蘑菇岛探路图
+quark.biomeMap.mutated_ice_flats=冰刺之地探路图
 
 # BANNER NAMES
 item.banner.quark_dragon.black=黑色龙
