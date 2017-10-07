@@ -116,11 +116,11 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton implements IP
 
 	private void draw(int u, int v) {
 		drawChest();
-		drawIcon(u, v + 128);
+		drawIcon(u, v);
 	}
 
 	protected void drawChest() {
-		drawIcon(0, 160);
+		drawIcon(0, 128);
 	}
 	
 	protected void drawIcon(int u, int v) {

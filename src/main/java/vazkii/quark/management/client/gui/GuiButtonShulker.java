@@ -34,7 +34,7 @@ public class GuiButtonShulker extends GuiButtonChest<GuiShulkerBox> {
 				int color = ItemDye.DYE_COLORS[dye.getDyeDamage()];
 				Color colorObj = new Color(color).brighter();
 				GlStateManager.color((float) colorObj.getRed() / 255F, (float) colorObj.getGreen() / 255F, (float) colorObj.getBlue() / 255F);
-				super.drawIcon(16, 160);
+				super.drawIcon(16, 128);
 				GlStateManager.color(1F, 1F, 1F);
 				return;
 			}
