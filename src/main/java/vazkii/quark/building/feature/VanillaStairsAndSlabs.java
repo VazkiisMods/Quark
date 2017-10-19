@@ -23,14 +23,17 @@ import vazkii.quark.building.block.slab.BlockVanillaSlab;
 
 public class VanillaStairsAndSlabs extends Feature {
 
-	boolean stone, granite, diorite, andesite, endBricks, prismarine, prismarineBricks, darkPrismarine, redNetherBricks;
+	boolean stone, granite, graniteSmooth, diorite, dioriteSmooth, andesite, andesiteSmooth, endBricks, prismarine, prismarineBricks, darkPrismarine, redNetherBricks;
 
 	@Override
 	public void setupConfig() {
 		stone = loadPropBool("Stone", "", true);
 		granite = loadPropBool("Granite", "", true);
+		graniteSmooth = loadPropBool("Polished Granite", "", true);
 		diorite = loadPropBool("Diorite", "", true);
+		dioriteSmooth = loadPropBool("Polished Diorite", "", true);
 		andesite = loadPropBool("Andesite", "", true);
+		andesiteSmooth = loadPropBool("Polished Andesite", "", true);
 		endBricks = loadPropBool("End Bricks", "", true);
 		prismarine = loadPropBool("Prismarine", "", true);
 		prismarineBricks = loadPropBool("Prismarine Bricks", "", true);
@@ -45,8 +48,11 @@ public class VanillaStairsAndSlabs extends Feature {
 		
 		add("stone", Blocks.STONE, 0, false, true, stone);
 		add("stone_granite", Blocks.STONE, 1, granite);
+		add("stone_granite_smooth", Blocks.STONE, 2, graniteSmooth);
 		add("stone_diorite", Blocks.STONE, 3, diorite);
+		add("stone_diorite_smooth", Blocks.STONE, 4, dioriteSmooth);
 		add("stone_andesite", Blocks.STONE, 5, andesite);
+		add("stone_andesite_smooth", Blocks.STONE, 6, andesiteSmooth);
 		add("end_bricks", Blocks.END_BRICKS, 0, endBricks);
 		add("prismarine", Blocks.PRISMARINE, 0, prismarine);
 		add("prismarine_bricks", Blocks.PRISMARINE, 1, prismarineBricks);
