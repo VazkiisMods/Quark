@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/wall_post",
+	"textures": {
+		"wall": "minecraft:blocks/stone_andesite_smooth"
+	}
+}
