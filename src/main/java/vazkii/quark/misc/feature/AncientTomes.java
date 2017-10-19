@@ -139,16 +139,21 @@ public class AncientTomes extends Feature {
 	}
 
 	private void handleTome(ItemStack book, ItemStack tome, AnvilUpdateEvent event) {
-		Map<Enchantment, Integer> enchantsLeft = EnchantmentHelper.getEnchantments(book);
-		Map<Enchantment, Integer> enchantsRight = EnchantmentHelper.getEnchantments(tome);
-		
-		if(enchantsLeft.equals(enchantsRight)) {
-			Enchantment ench = enchantsRight.keySet().iterator().next();
-			ItemStack output = ProxyRegistry.newStack(Items.ENCHANTED_BOOK);
-			((ItemEnchantedBook) output.getItem()).addEnchantment(output, new EnchantmentData(ench, enchantsRight.get(ench) + 1));
-			event.setOutput(output);
-			event.setCost(mergeTomeCost);
+		Map<Enchantment, Integer> enchantsBook = EnchantmentHelper.getEnchantments(book);
+		Map<Enchantment, Integer> enchantsTome = EnchantmentHelper.getEnchantments(tome);
+		for (Map.Entry<Enchantment, Integer> entry : enchantsTome.entrySet()) {
+			if(enchantsBook.getOrDefault(entry.getKey(), 0).equals(entry.getValue())){
+				enchantsBook.put(entry.getKey(), entry.getValue() + 1);
+			} else {
+				return;
+			}
 		}
+		ItemStack output = ProxyRegistry.newStack(Items.ENCHANTED_BOOK);
+		for (Map.Entry<Enchantment, Integer> entry : enchantsBook.entrySet()) {
+			ItemEnchantedBook.addEnchantment(output, new EnchantmentData(entry.getKey(), entry.getValue()));
+		}
+		event.setOutput(output);
+		event.setCost(mergeTomeCost);
 	}
 
 	private String[] generateDefaultEnchantmentList() {
