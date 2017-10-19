@@ -1,0 +1,11 @@
+{
+"forge_marker": 1,
+"defaults": {
+	"model": "minecraft:cube_all",
+	"transform": "forge:default-block"
+},
+	"variants": {
+		"normal": [{ "textures": { "all": "minecraft:blocks/stone_andesite_smooth" } }],
+		"prop=blarg": [{ "textures": { "all": "minecraft:blocks/stone_andesite_smooth" } }]
+	}
+}
