@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Iterator;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -106,32 +107,53 @@ public class AncientTomes extends Feature {
 
 			else if(right.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(right);
-				if(enchants.size() == 1) {
-					Enchantment ench = enchants.keySet().iterator().next();
-					if(ench == null)
-						return;
+				Map<Enchantment, Integer> currentEnchants = EnchantmentHelper.getEnchantments(left);
+				boolean hasOverLevel = false;
+				boolean hasMatching = false;
+				for (Map.Entry<Enchantment, Integer> entry : enchants.entrySet()) {
+					Enchantment ench = entry.getKey();
+					int level = entry.getValue();
+					if (level > ench.getMaxLevel()) {
+						hasOverLevel = true;
+						if (ench.canApply(left)) {
+							hasMatching = true;
+							//remove incompatible enchantments
+							for (Iterator<Enchantment> iterator = currentEnchants.keySet().iterator(); iterator.hasNext(); ) {
+								Enchantment enchCompare = iterator.next();
+								if (enchCompare == ench)
+									continue;
 
-					int level = enchants.get(ench);
-
-					if(level > ench.getMaxLevel() && ench.canApply(left)) {
-						ItemStack out = left.copy();
-
-						Map<Enchantment, Integer> currentEnchants = EnchantmentHelper.getEnchantments(out);
-						for(Enchantment enchCompare : currentEnchants.keySet()) {
-							if(enchCompare == ench)
+								if (!enchCompare.isCompatibleWith(ench)) {
+									iterator.remove();
+								}
+							}
+							currentEnchants.put(ench, level);
+						}
+					} else if (ench.canApply(left)) {
+						boolean compatible = true;
+						//don't apply incompatible enchantments
+						for (Enchantment enchCompare : currentEnchants.keySet()) {
+							if (enchCompare == ench)
 								continue;
-							
-							if(!enchCompare.isCompatibleWith(ench)) {
-								event.setCanceled(true);
-								return;
+
+							if (!enchCompare.isCompatibleWith(ench)) {
+								compatible = false;
+								break;
 							}
 						}
-						
-						currentEnchants.put(ench, level);
+						if (compatible) {
+							currentEnchants.put(ench, level);
+						}
+					}
+				}
+				if (hasOverLevel) {
+					if (hasMatching) {
+						ItemStack out = left.copy();
 						EnchantmentHelper.setEnchantments(currentEnchants, out);
-
 						event.setOutput(out);
 						event.setCost(applyTomeCost);
+					} else {
+						event.setCanceled(true);
 					}
 				}
 			}
