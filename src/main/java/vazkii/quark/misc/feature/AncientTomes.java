@@ -150,8 +150,14 @@ public class AncientTomes extends Feature {
 					if (hasMatching) {
 						ItemStack out = left.copy();
 						EnchantmentHelper.setEnchantments(currentEnchants, out);
+						String name = event.getName();
+						int cost = applyTomeCost;
+						if(name != null && !name.isEmpty()){
+							out.setStackDisplayName(name);
+							cost++;
+						}
 						event.setOutput(out);
-						event.setCost(applyTomeCost);
+						event.setCost(cost);
 					} else {
 						event.setCanceled(true);
 					}
