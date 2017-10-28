@@ -18,7 +18,7 @@ public final class ModIntegrationHandler {
 		stack.writeToNBT(stackCmp);
 		cmp.setTag("stack", stackCmp);
 		
-		FMLInterModComms.sendMessage("chisel", "add_variation", stackCmp);
+		FMLInterModComms.sendMessage("chisel", "add_variation", cmp);
 	}
 	
 }
