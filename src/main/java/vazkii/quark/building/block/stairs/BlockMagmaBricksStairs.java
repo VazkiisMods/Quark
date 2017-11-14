@@ -17,6 +17,7 @@ public class BlockMagmaBricksStairs extends BlockQuarkStairs {
 	public BlockMagmaBricksStairs() {
 		super("magma_bricks_stairs", MagmaBricks.magma_bricks.getDefaultState());
 		useNeighborBrightness = false;
+		setLightLevel(0.2F);
 	}
 	
 	@Override

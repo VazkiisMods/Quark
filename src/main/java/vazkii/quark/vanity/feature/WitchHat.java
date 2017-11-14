@@ -12,6 +12,7 @@ package vazkii.quark.vanity.feature;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,15 +27,17 @@ public class WitchHat extends Feature {
 
 	public static Item witch_hat;
 
-	public boolean halveDamage;
-	public double dropRate;
-	public double lootingBoost;
+	boolean halveDamage;
+	double dropRate;
+	double lootingBoost;
+	boolean verifyTruePlayer;
 
 	@Override
 	public void setupConfig() {
 		halveDamage = loadPropBool("Halve witch damage", "", true);
 		dropRate = loadPropDouble("Drop Chance from witches", "", 0.025);
 		lootingBoost = loadPropDouble("Drop Chance boost per looting level", "", 0.01);
+		verifyTruePlayer = loadPropBool("Only Drop on Player Kills", "", true);
 	}
 
 	@Override
@@ -44,7 +47,7 @@ public class WitchHat extends Feature {
 
 	@SubscribeEvent
 	public void onDrops(LivingDropsEvent event) {
-		if(event.getEntityLiving() instanceof EntityWitch && Math.random() < dropRate + lootingBoost * event.getLootingLevel())
+		if(event.getEntityLiving() instanceof EntityWitch && (!verifyTruePlayer || event.getSource().getTrueSource() instanceof EntityPlayer) && Math.random() < dropRate + lootingBoost * event.getLootingLevel())
 			event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, new ItemStack(witch_hat)));
 	}
 
@@ -61,7 +64,7 @@ public class WitchHat extends Feature {
 	public boolean hasSubscriptions() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean requiresMinecraftRestartToEnable() {
 		return true;

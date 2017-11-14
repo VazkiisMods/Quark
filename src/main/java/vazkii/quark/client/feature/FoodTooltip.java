@@ -51,7 +51,7 @@ public class FoodTooltip extends Feature {
 			int pips = food.getHealAmount(event.getStack());
 			
 			PotionEffect eff = ReflectionHelper.getPrivateValue(ItemFood.class, food, LibObfuscation.POTION_ID);
-			boolean poison = eff != null && eff.getPotion().isBadEffect();
+			boolean poison = eff != null && eff.getPotion() != null && eff.getPotion().isBadEffect();
 
 			for(int i = 0; i < Math.ceil((double) pips / divisor); i++) {
 				int x = event.getX() + i * 9 - 2;

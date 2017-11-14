@@ -14,6 +14,7 @@ import vazkii.quark.base.module.Module;
 import vazkii.quark.experimental.features.BiggerCaves;
 import vazkii.quark.experimental.features.ColoredLights;
 import vazkii.quark.experimental.features.PrintSuppressor;
+import vazkii.quark.experimental.features.ReactiveCursor;
 
 public class QuarkExperimental extends Module {
 
@@ -22,6 +23,7 @@ public class QuarkExperimental extends Module {
 		registerFeature(new BiggerCaves(), false);
 		registerFeature(new PrintSuppressor(), false);
 		registerFeature(new ColoredLights(), false);
+		registerFeature(new ReactiveCursor(), false);
 	}
 
 	@Override

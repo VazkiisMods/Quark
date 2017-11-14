@@ -12,6 +12,7 @@ package vazkii.quark.building.feature;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import vazkii.arl.block.BlockMod;
 import vazkii.arl.block.BlockModSlab;
@@ -28,12 +29,13 @@ public class BarkBlocks extends Feature {
 
 	public static BlockMod bark;
 
-	boolean enableWalls, enableStairsAndSlabs;
+	boolean enableWalls, enableStairsAndSlabs, use3x3;
 
 	@Override
 	public void setupConfig() {
 		enableWalls = loadPropBool("Enable walls", "", true) && GlobalConfig.enableVariants;
 		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true) && GlobalConfig.enableVariants;
+		use3x3 = loadPropBool("Use 3x3 Recipe", "Set this to true to use a 3x3 recipe instead of 2x2.\nTurn this on if you have the Forestry mod to prevent recipe overlap.", false);
 	}
 
 	@Override
@@ -43,7 +45,11 @@ public class BarkBlocks extends Feature {
 		for(int i = 0; i < 6; i++) {
 			ItemStack log = ProxyRegistry.newStack(i > 3 ? Blocks.LOG2 : Blocks.LOG, 1, i % 4);
 
-			RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(bark, 4, i),
+			if(use3x3)
+				RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(bark, 9, i),
+						"WWW", "WWW", "WWW",
+						'W', log);
+			else RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(bark, 4, i),
 					"WW", "WW",
 					'W', log);
 			RecipeHandler.addShapelessOreDictRecipe(log, ProxyRegistry.newStack(bark, 1, i));

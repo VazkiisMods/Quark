@@ -14,6 +14,7 @@ import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -35,8 +36,8 @@ public class PistonsMoveTEs extends Feature {
 	public void setupConfig() {
 		String[] renderBlacklistArray = loadPropStringList("Tile Entity Render Blacklist", "Some mod blocks with complex renders will break everything if moved. Add them here if you find any.", 
 				new String[] { "psi:programmer", "botania:starfield" });
-		String[] movementBlacklistArray = loadPropStringList("Tile Entity Movement Blacklist", "Blocks with Tile Entities that pistons should not be able to move.", 
-				new String[] { "minecraft:mob_spawner" });
+		String[] movementBlacklistArray = loadPropStringList("Tile Entity Movement Blacklist", "Blocks with Tile Entities that pistons should not be able to move.\nYou can specify just mod names here, and all blocks from that mod will be disabled.", 
+				new String[] { "minecraft:mob_spawner", "integrateddynamics:cable" });
 		String[] delayedUpdateListArray = loadPropStringList("Delayed Update List", "List of blocks whose tile entity update should be delayed by one tick after placed to prevent corruption.", 
 				new String[] { "minecraft:dispenser", "minecraft:dropper" });
 		
@@ -71,7 +72,8 @@ public class PistonsMoveTEs extends Feature {
 		if(state.getPropertyKeys().contains(BlockJukebox.HAS_RECORD) && state.getValue(BlockJukebox.HAS_RECORD))
 			return true;
 		
-		return PistonsMoveTEs.movementBlacklist.contains(Block.REGISTRY.getNameForObject(state.getBlock()).toString());
+		ResourceLocation res = Block.REGISTRY.getNameForObject(state.getBlock());
+		return PistonsMoveTEs.movementBlacklist.contains(res.toString()) || PistonsMoveTEs.movementBlacklist.contains(res.getResourceDomain());
 	}
 	
 	public static void detachTileEntities(World world, BlockPos sourcePos, List<BlockPos> moveList, List<BlockPos> destroyList, EnumFacing facing, boolean extending) {

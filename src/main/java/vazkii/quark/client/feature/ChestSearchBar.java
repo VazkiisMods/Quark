@@ -1,5 +1,7 @@
 package vazkii.quark.client.feature;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -27,6 +29,7 @@ import net.minecraft.item.ItemShulkerBox;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -42,6 +45,7 @@ import vazkii.quark.api.ICustomSearchHandler.StringMatcher;
 import vazkii.quark.api.IItemSearchBar;
 import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
+import vazkii.quark.management.feature.FavoriteItems;
 
 public class ChestSearchBar extends Feature {
 
@@ -215,6 +219,12 @@ public class ChestSearchBar extends Feature {
 					return true;
 		}
 		
+		List<String> potionNames = new ArrayList();
+		PotionUtils.addPotionTooltip(stack, potionNames, 1F);
+		for(String s : potionNames)
+			if(matcher.matches(TextFormatting.getTextWithoutFormattingCodes(s.trim().toLowerCase()), search))
+				return true;
+		
 		if(stack.getItem() == Items.ENCHANTED_BOOK) {
 			NBTTagList enchants = ItemEnchantedBook.getEnchantments(stack);
 			for(int i = 0; i < enchants.tagCount(); i++) {
@@ -229,6 +239,9 @@ public class ChestSearchBar extends Feature {
 		
 		CreativeTabs tab = item.getCreativeTab();
 		if(tab != null && matcher.matches(I18n.translateToLocal(tab.getTranslatedTabLabel()).toLowerCase(), search))
+			return true;
+		
+		if(search.matches("favou?rites?") && FavoriteItems.isItemFavorited(stack))
 			return true;
 		
 		ResourceLocation itemName = Item.REGISTRY.getNameForObject(item);

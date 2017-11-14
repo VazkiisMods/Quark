@@ -18,23 +18,21 @@ import org.apache.logging.log4j.Level;
 import com.google.common.base.Predicate;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.gui.inventory.GuiShulkerBox;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import scala.actors.threadpool.Arrays;
@@ -42,7 +40,6 @@ import vazkii.arl.network.NetworkHandler;
 import vazkii.quark.api.IChestButtonCallback;
 import vazkii.quark.base.client.ModKeybinds;
 import vazkii.quark.base.handler.DropoffHandler;
-import vazkii.quark.base.lib.LibObfuscation;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.network.message.MessageDropoff;
@@ -160,6 +157,13 @@ public class ChestButtons extends Feature {
 		
 		if(guiInv instanceof IChestButtonCallback && !((IChestButtonCallback) guiInv).onAddChestButton(button, action.ordinal()))
 			return;
+		
+		if(guiInv.inventorySlots instanceof ContainerChest) {
+			ContainerChest chest = (ContainerChest) guiInv.inventorySlots;
+			IInventory chestInv = chest.getLowerChestInventory();
+			if(chestInv.getName().equals(Blocks.ENDER_CHEST.getLocalizedName()))
+				button.setEnder(true);
+		}
 		
 		chestButtons.add(button);
 		event.getButtonList().add(button);

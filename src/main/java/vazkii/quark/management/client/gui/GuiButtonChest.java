@@ -39,7 +39,8 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton implements IP
 	public final int shiftX, shiftY;
 	
 	Predicate<T> enabledPredicate = null;
-
+	boolean ender = false;
+	
 	public GuiButtonChest(T parent, Action action, int id, int par2, int par3, int left, int top) {
 		super(id, par2 + left, par3 + top, 16, 16, "");
 		this.action = action;
@@ -76,7 +77,7 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton implements IP
 			
 			par1Minecraft.renderEngine.bindTexture(LibMisc.GENERAL_ICONS_RESOURCE);
 			GlStateManager.color(1F, 1F, 1F, 1F);
-			drawIcon(u, v);
+			draw(u, v);
 			
 			if(k == 2) {
 				if(action != Action.RESTOCK && !action.isSortAction())
@@ -113,9 +114,22 @@ public class GuiButtonChest<T extends GuiScreen> extends GuiButton implements IP
 			}
 		}
 	}
+
+	private void draw(int u, int v) {
+		drawChest();
+		drawIcon(u, v);
+	}
+
+	protected void drawChest() {
+		drawIcon(ender ? 32 : 0, 128);
+	}
 	
 	protected void drawIcon(int u, int v) {
 		drawTexturedModalRect(x, y, u, v, 16, 16);
+	}
+	
+	public void setEnder(boolean ender) {
+		this.ender = ender;
 	}
 	
 	@Override

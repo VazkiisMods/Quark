@@ -75,7 +75,7 @@ public class UndergroundBiomes extends Feature {
 		enableStairsAndSlabs = loadPropBool("Enable stairs and slabs", "", true)  && GlobalConfig.enableVariants;
 		enableWalls = loadPropBool("Enable walls", "", true)  && GlobalConfig.enableVariants;
 
-		glowshroomGrowthRate = loadPropInt("Glowshroom Growth Rate", "The smaller, the faster glowshrooms will spread. Vanilla mushroom speed is 25.", 30);
+		glowshroomGrowthRate = loadPropInt("Glowshroom Growth Rate", "The smaller, the faster glowshrooms will spread. Vanilla mushroom speed is 25.", 20);
 		
 		biomes.add(loadUndergrondBiomeInfo("Lush", new UndergroundBiomeLush(), 160, Type.JUNGLE));
 		biomes.add(loadUndergrondBiomeInfo("Sandstone", new UndergroundBiomeSandstone(), 160, Type.SANDY));

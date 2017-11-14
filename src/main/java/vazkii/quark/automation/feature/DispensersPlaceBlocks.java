@@ -34,7 +34,8 @@ public class DispensersPlaceBlocks extends Feature {
 				"minecraft:flowing_water",
 				"minecraft:lava",
 				"minecraft:flowing_lava",
-				"minecraft:fire"
+				"minecraft:fire",
+				"botania:specialflower"
 		});
 		
 		blacklist = Arrays.asList(blacklistArray);

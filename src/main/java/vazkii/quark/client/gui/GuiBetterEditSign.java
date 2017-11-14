@@ -166,7 +166,7 @@ public class GuiBetterEditSign extends GuiScreen {
                 f2 = -90.0F;
 
             GlStateManager.rotate(f2, 0.0F, 1.0F, 0.0F);
-            GlStateManager.translate(0.0F, -1.0625F, 0.0F);
+            GlStateManager.translate(0.0F, -0.7625F, 0.0F);
         }
         
         sign.lineBeingEdited = -1;

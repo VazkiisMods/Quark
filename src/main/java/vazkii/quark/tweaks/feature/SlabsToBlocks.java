@@ -49,7 +49,7 @@ public class SlabsToBlocks extends Feature {
 	}
 	
 	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+	public void postPreInit(FMLPreInitializationEvent event) {
 		multiRecipe = new MultiRecipe(new ResourceLocation("quark", "slabs_to_blocks"));
 	}
 	

@@ -1,0 +1,34 @@
+{
+	"Comment": "Designed by Wiiv with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "#all",
+		"candle": "#all",
+		"wick": "minecraft:blocks/wool_colored_black"
+	},
+	"elements": [ 	 
+		{
+			"from": [ 7.75, 8, 7.75 ],
+			"to": [ 8.25, 9, 8.25 ],
+			"faces": {
+				"down": { "uv": [ 7, 7, 7.5, 7.5 ], "texture": "#wick" },
+				"up": { "uv": [ 7, 7, 7.5, 7.5 ], "texture": "#wick" },
+				"north": { "uv": [ 7.5, 7, 8, 8 ], "texture": "#wick" },
+				"south": { "uv": [ 7.5, 7, 8, 8 ], "texture": "#wick" },
+				"west": { "uv": [ 7.5, 7, 8, 8 ], "texture": "#wick" },
+				"east": { "uv": [ 7.5, 7, 8, 8 ], "texture": "#wick" }
+			}
+		},
+		{
+			"from": [ 6, 0, 6 ],
+			"to": [ 10, 8, 10 ],
+			"faces": {
+				"down": { "uv": [ 6, 12, 10, 16 ], "texture": "#candle" },
+				"up": { "uv": [ 6, 0, 10, 4 ], "texture": "#candle" },
+				"north": { "uv": [ 6, 4, 10, 12 ], "texture": "#candle" },
+				"south": { "uv": [ 6, 4, 10, 12 ], "texture": "#candle" },
+				"west": { "uv": [ 6, 4, 10, 12 ], "texture": "#candle" },
+				"east": { "uv": [ 6, 4, 10, 12 ], "texture": "#candle" }
+			}
+		}
+	]
+}

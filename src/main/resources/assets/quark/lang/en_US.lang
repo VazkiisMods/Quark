@@ -390,7 +390,6 @@ tile.quark:colored_flowerpot_silver.name=Light Gray Flower Pot
 tile.quark:colored_flowerpot_white.name=White Flower Pot
 tile.quark:colored_flowerpot_yellow.name=Yellow Flower Pot
 tile.quark:colored_flowerpot_red.name=Red Flower Pot
-
 tile.quark:bark_oak_stairs.name=Oak Bark Stairs
 tile.quark:bark_spruce_stairs.name=Spruce Bark Stairs
 tile.quark:bark_birch_stairs.name=Birch Bark Stairs
@@ -403,6 +402,29 @@ tile.quark:bark_birch_slab.name=Birch Bark Slab
 tile.quark:bark_jungle_slab.name=Jungle Bark Slab
 tile.quark:bark_acacia_slab.name=Acacia Bark Slab
 tile.quark:bark_dark_oak_slab.name=Dark Oak Bark Slab
+tile.quark:black_ash.name=Wither Ash
+tile.quark:glowstone_dust_block.name=Glowstone Dust
+tile.quark:gunpowder_block.name=Gunpowder
+tile.quark:smoker.name=Nether Smoker
+tile.quark:candle_black.name=Black Candle
+tile.quark:candle_blue.name=Blue Candle
+tile.quark:candle_brown.name=Brown Candle
+tile.quark:candle_cyan.name=Cyan Candle
+tile.quark:candle_gray.name=Gray Candle
+tile.quark:candle_green.name=Green Candle
+tile.quark:candle_light_blue.name=Light Blue Candle
+tile.quark:candle_lime.name=Lime Candle
+tile.quark:candle_magenta.name=Magenta Candle
+tile.quark:candle_orange.name=Orange Candle
+tile.quark:candle_pink.name=Pink Candle
+tile.quark:candle_purple.name=Purple Candle
+tile.quark:candle_silver.name=Light Gray Candle
+tile.quark:candle_white.name=White Candle
+tile.quark:candle_yellow.name=Yellow Candle
+tile.quark:candle_red.name=Red Candle
+tile.quark:magma_bricks.name=Magma Bricks
+tile.quark:magma_bricks_stairs.name=Magma Brick Stairs
+tile.quark:magma_bricks_slab.name=Magma Brick Slab
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -486,6 +508,7 @@ item.quark:soul_powder.name=Soul Powder
 item.quark:glass_item_frame.name=Glass Item Frame
 item.quark:enderdragon_scale.name=Dragon Scale
 item.quark:trowel.name=Trowel
+item.quark:tallow.name=Tallow
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Colored Item Frame
@@ -497,6 +520,24 @@ entity.quark:wraith.name=Wraith
 
 # POTION NAMES
 quark.potion.curse.name=Curse
+quark.potion.danger_sight.name=Danger Sight
+
+potion.effect.haste=Potion of Haste
+splash_potion.effect.haste=Splash Potion of Haste
+lingering_potion.effect.haste=Lingering Potion of Haste
+tipped_arrow.effect.haste=Arrow of Haste
+potion.effect.mining_fatigue=Potion of Lagging
+splash_potion.effect.mining_fatigue=Splash Potion of Lagging
+lingering_potion.effect.mining_fatigue=Lingering Potion of Lagging
+tipped_arrow.effect.mining_fatigue=Arrow of Lagging
+potion.effect.resistance=Potion of Fortitude
+splash_potion.effect.resistance=Splash Potion of Fortitude
+lingering_potion.effect.resistance=Lingering Potion of Fortitude
+tipped_arrow.effect.resistance=Arrow of Fortitude
+potion.effect.danger_sight=Potion of Danger Sight
+splash_potion.effect.danger_sight=Splash Potion of Danger Sight
+lingering_potion.effect.danger_sight=Lingering Potion of Danger Sight
+tipped_arrow.effect.danger_sight=Arrow of Danger Sight
 
 # KEYBINDS
 quark.gui.keygroupMisc=Quark Misc
@@ -548,7 +589,6 @@ quark.dye.black=Black
 generator.quark_realistic=Realistic
 generator.quark_realistic.info=[Quark] Realistic World Type by /u/Soniop
 
-# BIOME MAPS
 quark.biomeMap.ice_flats=Ice Plains Pathfinder Map
 quark.biomeMap.extreme_hills=Extreme Hills Pathfinder Map
 quark.biomeMap.roofed_forest=Roofed Forest Pathfinder Map

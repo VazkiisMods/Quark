@@ -11,8 +11,8 @@
 package vazkii.quark.automation.tile;
 
 import net.minecraft.util.ITickable;
+import vazkii.arl.block.tile.TileMod;
 import vazkii.quark.automation.block.BlockRainDetector;
-import vazkii.quark.base.block.tile.TileMod;
 
 public class TileRainDetector extends TileMod implements ITickable {
 

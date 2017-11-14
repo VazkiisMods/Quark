@@ -1,0 +1,25 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "quark:candle",
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"variant=candle_black": [{ "textures": { "all": "quark:blocks/candle_black" } }],
+		"variant=candle_blue": [{ "textures": { "all": "quark:blocks/candle_blue" } }],
+		"variant=candle_brown": [{ "textures": { "all": "quark:blocks/candle_brown" } }],
+		"variant=candle_cyan": [{ "textures": { "all": "quark:blocks/candle_cyan" } }],
+		"variant=candle_gray": [{ "textures": { "all": "quark:blocks/candle_gray" } }],
+		"variant=candle_green": [{ "textures": { "all": "quark:blocks/candle_green" } }],
+		"variant=candle_light_blue": [{ "textures": { "all": "quark:blocks/candle_light_blue" } }],
+		"variant=candle_lime": [{ "textures": { "all": "quark:blocks/candle_lime" } }],
+		"variant=candle_magenta": [{ "textures": { "all": "quark:blocks/candle_magenta" } }],
+		"variant=candle_orange": [{ "textures": { "all": "quark:blocks/candle_orange" } }],
+		"variant=candle_pink": [{ "textures": { "all": "quark:blocks/candle_pink" } }],
+		"variant=candle_purple": [{ "textures": { "all": "quark:blocks/candle_purple" } }],
+		"variant=candle_red": [{ "textures": { "all": "quark:blocks/candle_red" } }],
+		"variant=candle_silver": [{ "textures": { "all": "quark:blocks/candle_silver" } }],
+		"variant=candle_white": [{ "textures": { "all": "quark:blocks/candle_white" } }],
+		"variant=candle_yellow": [{ "textures": { "all": "quark:blocks/candle_yellow" } }]
+	}
+}

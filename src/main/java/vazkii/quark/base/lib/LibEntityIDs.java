@@ -23,5 +23,6 @@ public final class LibEntityIDs {
 	public static final int SOUL_POWDER = 8;
 	public static final int FLAT_ITEM_FRAME = 9;
 	public static final int GLASS_ITEM_FRAME = 10;
+	public static final int DRAGON_BREATH_BOTTLE = 11;
 
 }

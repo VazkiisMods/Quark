@@ -104,23 +104,24 @@
 							<hr>
 							<b>Credits</b>
 							<ul>
-								<li>wiiv for most of the textures.</li>
-								<li>Rorax for the emote icons.</li>
 								<li>cheeserolls for the biome detection code from Biomes'o'Plenty used for Pathfinder Maps.</li>
 								<li>DylanKaiser for the inventory chest icon.</li>
-								<li>SanAndreasP for the chest textures and most of their code.</li>
-								<li>ZeroLevels for the Iron Plate texture.</li>
+								<li>Jragon014 for a bunch of inspiration from The Tempest Box.</li>
 								<li>Noodlor for the variety dungeon structures.</li>
+								<li>Rorax for the old emote icons.</li>
+								<li>SanAndreasP for the chest textures and most of their code.</li>
+								<li>wiiv for most of the textures.</li>
 								<li>Xisumavoid for the sticky piston side texture.</li>
-								<li>/u/Soniop for the realistic world preset.</li>
-								<li>/u/Martwaza for the trapdoor textures.</li>
+								<li>ZeroLevels for the old Iron Plate texture.</li>
+								<li>/u/CopherSans for the improved bow animation.</li>
+								<li>/u/darwinpatrick for the Soul Sandstone textures.</li>
 								<li>/u/FelitonC and /u/origamidragon412 for the banner textures.</li>
 								<li>/u/kopasz7 for the Midori block textures.</li>
-								<li>/u/robotthunder500 for the Bookshelf textures.</li>
-								<li>/u/darwinpatrick for the Soul Sandstone textures.</li>
-								<li>/u/Nyodex for the original Duskbound Block idea and textures.</li>
+								<li>/u/Martwaza for the trapdoor textures.</li>
 								<li>/u/MushirMickeyJoe for recreation of the pocket edition piston model.</li>
-								<li>/u/CopherSans for the improved bow animation.</li>
+								<li>/u/Nyodex for the original Duskbound Block idea and textures.</li>
+								<li>/u/robotthunder500 for the Bookshelf textures.</li>
+								<li>/u/Soniop for the realistic world preset.</li>
 								<li>The creators of all the awesome suggestions I found in /r/MinecraftSuggestions and /r/QuarkMod that I implemented here.</li>
 								<li>And all the awesome people who pull requested features into the mod, credited in their individual cards.</li>
 							</ul>

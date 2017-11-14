@@ -12,6 +12,7 @@ package vazkii.quark.building.feature;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import vazkii.arl.block.BlockMod;
 import vazkii.arl.block.BlockModSlab;
@@ -82,30 +83,43 @@ public class WorldStoneBricks extends Feature {
 					"SS", "SS",
 					'S', ProxyRegistry.newStack(Blocks.STONE, 1, i * 2 + 2));
 
-		ModIntegrationHandler.registerChiselVariant("granite", ProxyRegistry.newStack(world_stone_bricks, 1, 0));
-		ModIntegrationHandler.registerChiselVariant("diorite", ProxyRegistry.newStack(world_stone_bricks, 1, 1));
-		ModIntegrationHandler.registerChiselVariant("andesite", ProxyRegistry.newStack(world_stone_bricks, 1, 2));
-		
 		if(BlockWorldStoneBricks.Variants.STONE_BASALT_BRICKS.isEnabled()) {
 			RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(world_stone_bricks, 4, 3),
 					"SS", "SS",
 					'S', ProxyRegistry.newStack(Basalt.basalt, 1, 1));
-			ModIntegrationHandler.registerChiselVariant("basalt", ProxyRegistry.newStack(world_stone_bricks, 1, 3));
 		}
 		
 		if(BlockWorldStoneBricks.Variants.STONE_MARBLE_BRICKS.isEnabled()) {
 			RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(world_stone_bricks, 4, 4),
 					"SS", "SS",
 					'S', ProxyRegistry.newStack(RevampStoneGen.marble, 1, 1));
-			ModIntegrationHandler.registerChiselVariant("marble", ProxyRegistry.newStack(world_stone_bricks, 1, 4));
 		}
 		
 		if(BlockWorldStoneBricks.Variants.STONE_LIMESTONE_BRICKS.isEnabled()) {
 			RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(world_stone_bricks, 4, 5),
 					"SS", "SS",
 					'S', ProxyRegistry.newStack(RevampStoneGen.limestone, 1, 1));
+		}
+	}
+
+	@Override
+	public void init(FMLInitializationEvent event) {
+		ModIntegrationHandler.registerChiselVariant("granite", ProxyRegistry.newStack(world_stone_bricks, 1, 0));
+		ModIntegrationHandler.registerChiselVariant("diorite", ProxyRegistry.newStack(world_stone_bricks, 1, 1));
+		ModIntegrationHandler.registerChiselVariant("andesite", ProxyRegistry.newStack(world_stone_bricks, 1, 2));
+
+		if(BlockWorldStoneBricks.Variants.STONE_BASALT_BRICKS.isEnabled()) {
+			ModIntegrationHandler.registerChiselVariant("basalt", ProxyRegistry.newStack(world_stone_bricks, 1, 3));
+		}
+
+		if(BlockWorldStoneBricks.Variants.STONE_MARBLE_BRICKS.isEnabled()) {
+			ModIntegrationHandler.registerChiselVariant("marble", ProxyRegistry.newStack(world_stone_bricks, 1, 4));
+		}
+
+		if(BlockWorldStoneBricks.Variants.STONE_LIMESTONE_BRICKS.isEnabled()) {
 			ModIntegrationHandler.registerChiselVariant("limestone", ProxyRegistry.newStack(world_stone_bricks, 1, 5));
 		}
+
 	}
 	
 	@Override

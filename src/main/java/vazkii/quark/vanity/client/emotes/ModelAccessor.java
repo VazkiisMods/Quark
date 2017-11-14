@@ -11,6 +11,7 @@
 package vazkii.quark.vanity.client.emotes;
 
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.model.ModelRenderer;
 import vazkii.aurelienribon.tweenengine.TweenAccessor;
 
@@ -121,9 +122,36 @@ public class ModelAccessor implements TweenAccessor<ModelBiped> {
 	}
 
 	private void messWithModel(ModelBiped biped, ModelRenderer part, int axis, float val) {
+		setPartAxis(part, axis, val);
+
+		if(part == biped.bipedHead)
+			messWithModel(biped, biped.bipedHeadwear, axis, val);
+		
+		else if(biped instanceof ModelPlayer)
+			messWithPlayerModel((ModelPlayer) biped, part, axis, val);
+	}
+
+	private void messWithPlayerModel(ModelPlayer biped, ModelRenderer part, int axis, float val) {
+		ModelRenderer newPart = null;
+		
+		if(part == biped.bipedLeftArm)
+			newPart = biped.bipedLeftArmwear;
+		else if(part == biped.bipedRightArm)
+			newPart = biped.bipedRightArmwear;
+		else if(part == biped.bipedLeftLeg)
+			newPart = biped.bipedLeftLegwear;
+		else if(part == biped.bipedRightLeg)
+			newPart = biped.bipedRightLegwear;
+		else if(part == biped.bipedBody)
+			newPart = biped.bipedBodyWear;
+		
+		setPartAxis(newPart, axis, val);
+	}
+
+	private void setPartAxis(ModelRenderer part, int axis, float val) {
 		if(part == null)
 			return;
-
+		
 		switch(axis) {
 		case ROT_X:
 			part.rotateAngleX = val; break;
@@ -138,9 +166,6 @@ public class ModelAccessor implements TweenAccessor<ModelBiped> {
 		case OFF_Z:
 			part.offsetZ = val; break;
 		}
-
-		if(part == biped.bipedHead)
-			messWithModel(biped, biped.bipedHeadwear, axis, val);
 	}
 
 }

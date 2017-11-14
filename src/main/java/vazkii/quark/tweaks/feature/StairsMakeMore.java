@@ -55,7 +55,7 @@ public class StairsMakeMore extends Feature {
 	}
 	
 	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+	public void postPreInit(FMLPreInitializationEvent event) {
 		if(enableSlabToStair)
 			slabMultiRecipe = new MultiRecipe(new ResourceLocation("quark", "slabs_to_stairs"));
 		if(reversionRecipe)

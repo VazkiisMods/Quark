@@ -104,6 +104,9 @@ public class ModKeybinds {
 	
 	public static boolean isKeyDown(KeyBinding keybind) {
 		int key = keybind.getKeyCode();
+		if(key == 0)
+			return false;
+		
 		if(key < 0) {
 			int button = 100 + key;
 			return Mouse.isButtonDown(button);

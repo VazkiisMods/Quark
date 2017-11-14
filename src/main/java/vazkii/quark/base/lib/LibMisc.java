@@ -49,6 +49,6 @@ public final class LibMisc {
 			"dyeWhite"
 	});
 	
-	public static ResourceLocation GENERAL_ICONS_RESOURCE = new ResourceLocation("quark", "textures/misc/general_icons.png");
+	public static final ResourceLocation GENERAL_ICONS_RESOURCE = new ResourceLocation(MOD_ID, "textures/misc/general_icons.png");
 	
 }

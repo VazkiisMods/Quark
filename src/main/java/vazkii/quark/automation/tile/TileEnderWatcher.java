@@ -26,8 +26,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import vazkii.arl.block.tile.TileMod;
 import vazkii.quark.automation.block.BlockEnderWatcher;
-import vazkii.quark.base.block.tile.TileMod;
 
 public class TileEnderWatcher extends TileMod implements ITickable {
 
