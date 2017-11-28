@@ -1,7 +1,7 @@
 {
 	"automation":{
 		"name":"Automation",
-		"description":"This module adds features to minecraft's automation prospects.",
+		"description":"This module adds features to Minecraft's automation prospects.",
 		"features":[
 			{
 				"name":"Dispenser Planting",
@@ -12,7 +12,7 @@
 			},
 			{
 				"name":"Piston Block Breakers",
-				"description":"Pistons pusing an Iron Rod will have it work as a drill of sorts, breaking any blocks in front in the direction the rod is facing. These can break anything the piston can push.<br><br>Iron Rods are crafted with 2 Iron Ingots and an End Rod, or just 3 Iron Ingots if you enable easy mode in the config.<br><br>Note: In 1.10, a normal End Rod block is used instead.",
+				"description":"Pistons pushing a Iron Rod will have it work as a drill of sorts, breaking any blocks in front in the direction the rod is facing. These can break anything the piston can push.<br><br>Iron Rods are crafted with 2 Iron Ingots and an End Rod, or just 3 Iron Ingots if you enable easy mode in the config.<br><br>Note: In 1.10, a normal End Rod block is used instead.",
 				"image":"piston-block-breakers.jpg",
 				"introduced":10
 			},
