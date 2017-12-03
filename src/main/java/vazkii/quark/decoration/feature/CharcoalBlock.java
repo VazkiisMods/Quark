@@ -52,7 +52,7 @@ public class CharcoalBlock extends Feature {
 	
 	@Override
 	public String[] getIncompatibleMods() {
-		return new String[] { "actuallyadditions" };
+		return new String[] { "actuallyadditions", "mekanism" };
 	}
 	
 }
