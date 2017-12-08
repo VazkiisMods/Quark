@@ -22,6 +22,48 @@ quarkmisc.buried_chest_map=藏宝地图
 quarkmisc.trashButtonOpen=点击删除
 quarkmisc.signShift=切换
 quarkmisc.signClear=清空
+quarkmisc.rotationLockBefore=你启动了锁定朝向。你所放置的方块将朝向将根据你之前看向的方向而定。你可以按【
+quarkmisc.rotationLockAfter=】以改变或重置朝向。此提示将不会再次出现。
+
+# CONFIG STRINGS
+quark.config.title=夸克 配置
+quark.config.import=导入配置
+quark.config.configure=配置夸克
+quark.config.opensite=夸克站点
+quark.config.general=常规设置
+quark.config.close=关闭游戏
+quark.config.skip=跳过至主菜单
+quark.config.qdisabled=（如果你禁用了 q 按钮，你可以从模组列表中访问此菜单）
+quark.config.needrestart=（你更改的某些设置需要重启游戏后生效）
+quark.config.importinfo0=你可以在此菜单中导入由夸克站点生成的
+quark.config.importinfo1=特性禁用列表，点击特性旁的对号即可禁
+quark.config.importinfo2=用该特性，选择完毕后，点击“复制”按钮。
+quark.config.importinfo3=你可以通过粘贴入文本域（按 Ctrl+V）来导入配置。
+quark.config.importinfo3m=你可以通过粘贴入文本域（按 Cmd+V）来导入配置。
+quark.config.disabledcount=%d 个特性被禁用。请重启你的游戏：
+quark.config.disabledcount1=1 个特性被禁用。请重启你的游戏：
+quark.config.cantimport=世界被加载后无法导入配置
+quark.config.firstload=初次加载
+quark.config.firstloadinfo0=欢迎使用夸克！夸克拥有许多特性，你可以在夸克的站点中快速
+quark.config.firstloadinfo1=入门。（中文版请查看 MCBBS 介绍帖子中的链接）每个特性都可
+quark.config.firstloadinfo2=被关闭，所以你可以轻易地禁用那些你不喜欢的特性。
+quark.config.firstloadinfo3=你可以在夸克站点中选择禁用特性，然后复制到
+quark.config.firstloadinfo4=配置菜单中的“导入配置”按钮来批量禁用特性。
+quark.config.firstloadinfo5=警告
+quark.config.firstloadinfo6=如果你打算在原版服务器，或是未安装夸克的服务器中
+quark.config.firstloadinfo7=游玩，你*需要*关闭除“客户端”外的其它模块，否则
+quark.config.firstloadinfo8=将会出现不兼容和/或崩溃。如果你在拥有夸克的服务
+quark.config.firstloadinfo9=器中游玩，不要禁用“客户端”模块外的选项。
+quark.config.module.automation=自动化
+quark.config.module.building=建材
+quark.config.module.client=客户端
+quark.config.module.decoration=装饰
+quark.config.module.experimental=实验性
+quark.config.module.management=管理
+quark.config.module.misc=杂项
+quark.config.module.tweaks=调整
+quark.config.module.vanity=随意之作
+quark.config.module.world=世界
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=陶瓦砖
@@ -263,7 +305,6 @@ tile.quark:smooth_soul_sandstone.name=平滑灵魂砂岩
 tile.quark:soul_sandstone_slab.name=灵魂砂岩台阶
 tile.quark:soul_sandstone_stairs.name=灵魂砂岩楼梯
 tile.quark:soul_sandstone_wall.name=灵魂砂岩墙
-tile.ladder.name=木梯子
 tile.quark:iron_ladder.name=铁梯子
 tile.quark:crystal_white.name=白色洞穴水晶
 tile.quark:crystal_red.name=红色洞穴水晶
@@ -391,7 +432,6 @@ tile.quark:colored_flowerpot_silver.name=淡灰色花盆
 tile.quark:colored_flowerpot_white.name=白色花盆
 tile.quark:colored_flowerpot_yellow.name=黄色花盆
 tile.quark:colored_flowerpot_red.name=红色花盆
-
 tile.quark:bark_oak_stairs.name=橡树树皮楼梯
 tile.quark:bark_spruce_stairs.name=云杉树皮楼梯
 tile.quark:bark_birch_stairs.name=白桦树皮楼梯
@@ -404,6 +444,29 @@ tile.quark:bark_birch_slab.name=白桦树皮台阶
 tile.quark:bark_jungle_slab.name=丛林树皮台阶
 tile.quark:bark_acacia_slab.name=金合欢树皮台阶
 tile.quark:bark_dark_oak_slab.name=深色橡树树皮台阶
+tile.quark:black_ash.name=凋零灰
+tile.quark:glowstone_dust_block.name=荧石粉
+tile.quark:gunpowder_block.name=火药
+tile.quark:smoker.name=地狱烟口
+tile.quark:candle_black.name=黑色蜡烛
+tile.quark:candle_blue.name=蓝色蜡烛
+tile.quark:candle_brown.name=棕色蜡烛
+tile.quark:candle_cyan.name=青色蜡烛
+tile.quark:candle_gray.name=灰色蜡烛
+tile.quark:candle_green.name=绿色蜡烛
+tile.quark:candle_light_blue.name=淡蓝色蜡烛
+tile.quark:candle_lime.name=黄绿色蜡烛
+tile.quark:candle_magenta.name=品红色蜡烛
+tile.quark:candle_orange.name=橙色蜡烛
+tile.quark:candle_pink.name=粉红色蜡烛
+tile.quark:candle_purple.name=紫色蜡烛
+tile.quark:candle_silver.name=淡灰色蜡烛
+tile.quark:candle_white.name=白色蜡烛
+tile.quark:candle_yellow.name=黄色蜡烛
+tile.quark:candle_red.name=红色蜡烛
+tile.quark:magma_bricks.name=岩浆砖
+tile.quark:magma_bricks_stairs.name=岩浆砖楼梯
+tile.quark:magma_bricks_slab.name=岩浆砖台阶
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
@@ -487,6 +550,7 @@ item.quark:soul_powder.name=灵魂粉
 item.quark:glass_item_frame.name=玻璃物品展示框
 item.quark:enderdragon_scale.name=龙鳞
 item.quark:trowel.name=泥铲
+item.quark:tallow.name=油脂
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=染色物品展示框
@@ -498,6 +562,24 @@ entity.quark:wraith.name=游魂
 
 # POTION NAMES
 quark.potion.curse.name=诅咒
+quark.potion.danger_sight.name=危险感
+
+potion.effect.haste=急迫药水
+splash_potion.effect.haste=喷溅型急迫药水
+lingering_potion.effect.haste=滞留型急迫药水
+tipped_arrow.effect.haste=急迫之箭
+potion.effect.mining_fatigue=缓慢药水
+splash_potion.effect.mining_fatigue=喷溅型缓慢药水
+lingering_potion.effect.mining_fatigue=滞留型缓慢药水
+tipped_arrow.effect.mining_fatigue=缓慢之箭
+potion.effect.resistance=抗性提升药水
+splash_potion.effect.resistance=喷溅型抗性提升药水
+lingering_potion.effect.resistance=滞留型抗性提升药水
+tipped_arrow.effect.resistance=刚毅之箭
+potion.effect.danger_sight=危险感药水
+splash_potion.effect.danger_sight=喷溅型危险感药水
+lingering_potion.effect.danger_sight=滞留型危险感药水
+tipped_arrow.effect.danger_sight=敏感之箭
 
 # KEYBINDS
 quark.gui.keygroupMisc=夸克 杂项
@@ -549,7 +631,6 @@ quark.dye.black=黑色
 generator.quark_realistic=真实化
 generator.quark_realistic.info=[夸克]由/u/Soniop制作的真实化世界
 
-# BIOME MAPS
 quark.biomeMap.ice_flats=冰原探路图
 quark.biomeMap.extreme_hills=峭壁探路图
 quark.biomeMap.roofed_forest=黑森林探路图
@@ -631,3 +712,5 @@ item.banner.quark_shield.lightBlue=淡蓝色盾牌
 item.banner.quark_shield.magenta=品红色盾牌
 item.banner.quark_shield.orange=橙色盾牌
 item.banner.quark_shield.white=白色盾牌
+
+tile.ladder.name=木梯子
