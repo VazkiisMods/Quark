@@ -33,6 +33,7 @@ quark.config.opensite=夸克站点
 quark.config.general=常规设置
 quark.config.close=关闭游戏
 quark.config.skip=跳过至主菜单
+quark.config.enableq=启用 q 按钮
 quark.config.qdisabled=（如果你禁用了 q 按钮，你可以从模组列表中访问此菜单）
 quark.config.needrestart=（你更改的某些设置需要重启游戏后生效）
 quark.config.importinfo0=你可以在此菜单中导入由夸克站点生成的
