@@ -151,10 +151,9 @@ public class ClassTransformer implements IClassTransformer {
 				}, (MethodNode method, AbstractInsnNode node) -> { // Action
 					InsnList newInstructions = new InsnList();
 
-					newInstructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, ASM_HOOKS, "getRuneColor", "()I"));
+					newInstructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, ASM_HOOKS, "getRuneColor", "(I)I"));
 
-					method.instructions.insertBefore(node, newInstructions);
-					method.instructions.remove(node);
+					method.instructions.insert(node, newInstructions);
 					return false;
 				})));
 
@@ -194,10 +193,9 @@ public class ClassTransformer implements IClassTransformer {
 
 						InsnList newInstructions = new InsnList();
 
-						newInstructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, ASM_HOOKS, "applyRuneColor", "(FFFF)V"));
+						newInstructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, ASM_HOOKS, "applyRuneColor", "()V"));
 
-						method.instructions.insertBefore(node, newInstructions);
-						method.instructions.remove(node);
+						method.instructions.insert(node, newInstructions);
 						return invokestaticCount == 2;
 					})));
 		}
