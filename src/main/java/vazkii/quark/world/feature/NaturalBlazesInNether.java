@@ -10,20 +10,20 @@
  */
 package vazkii.quark.world.feature;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import scala.actors.threadpool.Arrays;
 import vazkii.quark.base.module.Feature;
 
 public class NaturalBlazesInNether extends Feature {
@@ -50,7 +50,8 @@ public class NaturalBlazesInNether extends Feature {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		Biomes.HELL.getSpawnableList(EnumCreatureType.MONSTER).add(new SpawnListEntry(EntityBlaze.class, weight, min, max));
+		SpawnListEntry blazeEntry = new SpawnListEntry(EntityBlaze.class, weight, min, max);
+		BiomeDictionary.getBiomes(BiomeDictionary.Type.NETHER).forEach(biome -> biome.getSpawnableList(EnumCreatureType.MONSTER).add(blazeEntry));
 	}
 	
 	@SubscribeEvent
