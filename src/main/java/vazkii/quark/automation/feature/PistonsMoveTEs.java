@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -164,8 +165,12 @@ public class PistonsMoveTEs extends Feature {
 	
 	private static TileEntity getAndClearMovement(World world, BlockPos pos) {
 		TileEntity tile = getMovement(world, pos, true);
-		if(tile != null)
+		if(tile != null) {
 			tile.validate();
+			
+			if(tile instanceof TileEntityChest)
+				((TileEntityChest) tile).numPlayersUsing = 0;
+		}
 		
 		return tile;
 	}

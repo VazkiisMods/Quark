@@ -118,16 +118,15 @@ public class ColorRunes extends Feature {
 		targetStack = stack;
 	}
 
-	public static int getColor() {
+	public static int getColor(int original) {
 		if(!ModuleLoader.isFeatureEnabled(ColorRunes.class) || !doesStackHaveRune(targetStack) && !targetStack.isEmpty() && !(targetStack.getItem() instanceof ICustomEnchantColor))
-			return 0xff8040cc;
+			return original;
 
 		return getColorFromStack(targetStack);
 	}
 
-	public static void applyColor(float f1, float f2, float f3, float f4) {
+	public static void applyColor() {
 		if(!ModuleLoader.isFeatureEnabled(ColorRunes.class) || !doesStackHaveRune(targetStack)) {
-			GlStateManager.color(f1, f2, f3, f4);
 			return;
 		}
 

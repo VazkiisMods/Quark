@@ -156,8 +156,8 @@ public class VariedChests extends Feature {
 		
 		// Reversion Recipe
 		if(reversionRecipe) {
-			RecipeHandler.addOreDictRecipe(new ItemStack(Blocks.CHEST), "chestWood");
-			RecipeHandler.addOreDictRecipe(new ItemStack(Blocks.TRAPPED_CHEST), "chestTrapped");
+			RecipeHandler.addShapelessOreDictRecipe(new ItemStack(Blocks.CHEST), "chestWood");
+			RecipeHandler.addShapelessOreDictRecipe(new ItemStack(Blocks.TRAPPED_CHEST), "chestTrapped");
 		}
 	}
 	

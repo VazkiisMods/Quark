@@ -78,12 +78,12 @@ public class StoneInfoBasedGenerator extends MultiChunkFeatureGenerator {
 		}
 		
 		BlockPos[] sources;
-		if(random.nextInt(chance) == 0) {
+		if(chance > 0 && random.nextInt(chance) == 0) {
 			sources = new BlockPos[amount];
 			int lower = Math.abs(info.lowerBound);
 			int range = Math.abs(info.upperBound - info.lowerBound);
 			
-			for(int i = 0; i < amount; i++) {
+			for(int i = 0; i < amount && range > 0; i++) {
 				int x = chunkX * 16 + random.nextInt(16) + 8;
 				int y = random.nextInt(range) + lower;
 				int z = chunkZ * 16 + random.nextInt(16) + 8;

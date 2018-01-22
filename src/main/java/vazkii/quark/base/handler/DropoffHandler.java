@@ -13,6 +13,7 @@ package vazkii.quark.base.handler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -54,7 +55,7 @@ public final class DropoffHandler {
 	}
 
 	public static void restock(EntityPlayer player, boolean filtered) {
-		if(!ModuleLoader.isFeatureEnabled(StoreToChests.class) || player.isSpectator())
+		if(!ModuleLoader.isFeatureEnabled(ChestButtons.class) || player.isSpectator())
 			return;
 
 		new Restock(player, filtered).execute();
@@ -70,14 +71,24 @@ public final class DropoffHandler {
 
 		if(te == null)
 			return null;
-
+		
 		boolean accept = isValidChest(player, te);
-		IItemHandler ret = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-		if(accept && ret == null && te instanceof IInventory)
-			ret = new InvWrapper((IInventory) te);
-
-		return accept ? ret : null;
+		if(accept) {
+			IItemHandler ret;
+			Supplier<IItemHandler> supplier = () -> {
+				IItemHandler innerRet = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+				if(innerRet == null && te instanceof IInventory)
+					innerRet = new InvWrapper((IInventory) te);
+				
+				return innerRet;
+			};
+			
+			if(te instanceof IDropoffManager)
+				ret = ((IDropoffManager) te).getDropoffItemHandler(supplier);
+			else return supplier.get();
+		}
+		
+		return null;
 	}
 
 
@@ -168,7 +179,7 @@ public final class DropoffHandler {
 				for(Slot s : c.inventorySlots) {
 					IInventory inv = s.inventory;
 					if(inv != player.inventory) {
-						itemHandlers.add(Pair.of(new ContainerWrapper(inv, c), 0.0));
+						itemHandlers.add(Pair.of(ContainerWrapper.provideWrapper(inv, c), 0.0));
 						break;
 					}
 				}
@@ -232,7 +243,7 @@ public final class DropoffHandler {
 
 			return stack;
 		}
-
+		
 	}
 
 	public static class Restock extends Dropoff {
@@ -288,7 +299,13 @@ public final class DropoffHandler {
 		
 		final Container container;
 		
-		public ContainerWrapper(IInventory inv, Container container) {
+		public static IItemHandler provideWrapper(IInventory inv, Container container) {
+			if(inv instanceof IDropoffManager)
+				return ((IDropoffManager) inv).getDropoffItemHandler(() -> new ContainerWrapper(inv, container));
+			return new ContainerWrapper(inv, container);
+		}
+		
+		private ContainerWrapper(IInventory inv, Container container) {
 			super(inv);
 			this.container = container;
 		}

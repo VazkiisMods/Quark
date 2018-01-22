@@ -9,7 +9,7 @@
 				"description":"Dispensers can plant seeds on the correct type of soil.<br><br>This works for all overworld seeds, on Tilled Soil, Nether Wart, on Soul Sand, and Chorus Flower on End stone. Cocoa Beans can be planted if there's a Jungle Wood block in front of the dispenser.",
 				"image":"dispensers.jpg",
 				"introduced":9,
-				"overlap": ["Botania"]
+				"overlap": ["Botania", "Animania"]
 			},
 			{
 				"name":"Piston Block Breakers",
@@ -284,7 +284,7 @@
 				"description":"It's a Block of Charcoal. Made with 9 Charcoal. Not sure what you expected here.<br><br>Similarly to Netherrack, this block retains fire.",
 				"image":"charcoal-block.jpg",
 				"introduced":9,
-				"overlap": ["ActuallyAdditions"]
+				"overlap": ["ActuallyAdditions", "Mekanism"]
 			},
 			{
 				"name":"Colored Beds",

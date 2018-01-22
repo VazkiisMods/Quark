@@ -39,12 +39,12 @@ public final class ASMHooks {
 		ColorRunes.setTargetStack(stack);
 	}
 	
-	public static int getRuneColor() {
-		return ColorRunes.getColor();
+	public static int getRuneColor(int original) {
+		return ColorRunes.getColor(original);
 	}
 	
-	public static void applyRuneColor(float f1, float f2, float f3, float f4) {
-		ColorRunes.applyColor(f1, f2, f3, f4);
+	public static void applyRuneColor() {
+		ColorRunes.applyColor();
 	}
 	
 	// ===== BOAT SAILS ===== //
