@@ -11,17 +11,18 @@ quarkmisc.craftButton.redo=ǝdᴉɔǝᴚ opǝᴚ
 quarkmisc.craftButton.balance=pᴉɹ⅁ ǝɔuɐꞁɐᗺ
 quarkmisc.shulkerBoxShift=sʇuǝʇuoɔ ǝǝs oʇ ʇɟᴉɥS pꞁoH
 quarkmisc.mapShift=dɐɯ ǝɥʇ ǝǝs oʇ ʇɟᴉɥS pꞁoH
-quarkmisc.keyboundButton=%s%s
+quarkmisc.keyboundButton=%2$s ssǝɹԀ%1$s
 quarkmisc.nowAfk=˙(pɹɐoqʎǝʞ ɯoɹℲ ʎɐʍⱯ) ʞℲⱯ ʍou ǝɹɐ no⅄
 quarkmisc.leftAfk=˙ʞℲⱯ ɹǝᵷuoꞁ ou ǝɹɐ no⅄
 quarkmisc.personSleeping=˙ᵷuᴉdǝǝꞁs ʍou sᴉ %s
-quarkmisc.sleepingListHeader=%s
+quarkmisc.sleepingListHeader=%s :sɹǝʎɐꞁԀ ᵷuᴉdǝǝꞁS
 quarkmisc.buried_chest_map=dɐW ǝɹnsɐǝɹ⟘ pǝᴉɹnᗺ
 quarkmisc.trashButtonOpen=ǝʇǝꞁǝᗡ oʇ ʞɔᴉꞁƆ
 quarkmisc.signShift=ʇɟᴉɥS
 quarkmisc.signClear=ɹɐǝꞁƆ
 quarkmisc.rotationLockBefore=] ssǝɹԀ ˙ᵷuᴉʞooꞁ ǝɹǝʍ noʎ uoᴉʇɔǝɹᴉp ǝɥʇ uᴉ pǝʇuǝᴉɹo ǝq ꞁꞁᴉʍ ǝɔɐꞁd noʎ sʞɔoꞁq ʎuⱯ ˙ʞɔoꞀ uoᴉʇɐʇoᴚ pǝꞁqɐuǝ ǝʌɐɥ no⅄
 quarkmisc.rotationLockAfter=˙uᴉɐᵷɐ ɹɐǝddɐ ʇ,uoʍ ǝᵷɐssǝɯ sᴉɥ⟘ ˙ʇᴉ ʇǝsǝɹ ɹo ǝᵷuɐɥɔ oʇ [
+
 quark.config.title=uoᴉʇɐɹnᵷᴉɟuoƆ ʞɹɐnΌ
 quark.config.import=ᵷᴉɟuoƆ ʇɹodɯI
 quark.config.configure=ʞɹɐnΌ ǝɹnᵷᴉɟuoƆ
@@ -61,6 +62,7 @@ quark.config.module.misc=snoǝuɐꞁꞁǝɔsᴉW
 quark.config.module.tweaks=sʞɐǝʍ⟘
 quark.config.module.vanity=ʎʇᴉuɐᴧ
 quark.config.module.world=pꞁɹoM
+
 tile.quark:hardened_clay_tiles.name=sǝꞁᵷuᴉɥS ɐʇʇoɔɐɹɹǝ⟘
 tile.quark:hardened_clay_tiles_slab.name=qɐꞁS ǝꞁᵷuᴉɥS ɐʇʇoɔɐɹɹǝ⟘
 tile.quark:hardened_clay_tiles_stairs.name=sɹᴉɐʇS ǝꞁᵷuᴉɥS ɐʇʇoɔɐɹɹǝ⟘
@@ -462,6 +464,7 @@ tile.quark:candle_red.name=ǝꞁpuɐƆ pǝᴚ
 tile.quark:magma_bricks.name=sʞɔᴉɹᗺ ɐɯᵷɐW
 tile.quark:magma_bricks_stairs.name=sɹᴉɐʇS ʞɔᴉɹᗺ ɐɯᵷɐW
 tile.quark:magma_bricks_slab.name=qɐꞁS ʞɔᴉɹᗺ ɐɯᵷɐW
+
 item.quark:glass_shard.name=pɹɐɥS ssɐꞁ⅁
 item.quark:glass_shard_black.name=pɹɐɥS ssɐꞁ⅁ ʞɔɐꞁᗺ
 item.quark:glass_shard_blue.name=pɹɐɥS ssɐꞁ⅁ ǝnꞁᗺ
@@ -544,14 +547,17 @@ item.quark:glass_item_frame.name=ǝɯɐɹℲ ɯǝʇI ssɐꞁ⅁
 item.quark:enderdragon_scale.name=ǝꞁɐɔS uoᵷɐɹᗡ
 item.quark:trowel.name=ꞁǝʍoɹ⟘
 item.quark:tallow.name=ʍoꞁꞁɐ⟘
+
 entity.quark:colored_item_frame.name=ǝɯɐɹℲ ɯǝʇI pǝɹoꞁoƆ
 entity.quark:glass_item_frame.name=ǝɯɐɹℲ ɯǝʇI ssɐꞁ⅁
 entity.quark:dweller.name=ɹǝꞁꞁǝʍᗡ
 entity.quark:ashen.name=uǝɥsⱯ
 entity.quark:pirate.name=ǝʇɐɹᴉԀ
 entity.quark:wraith.name=ɥʇᴉɐɹM
+
 quark.potion.curse.name=ǝsɹnƆ
 quark.potion.danger_sight.name=ʇɥᵷᴉS ɹǝᵷuɐᗡ
+
 potion.effect.haste=ǝʇsɐH ɟo uoᴉʇoԀ
 splash_potion.effect.haste=ǝʇsɐH ɟo uoᴉʇoԀ ɥsɐꞁdS
 lingering_potion.effect.haste=ǝʇsɐH ɟo uoᴉʇoԀ ᵷuᴉɹǝᵷuᴉꞀ
@@ -568,6 +574,7 @@ potion.effect.danger_sight=ʇɥᵷᴉS ɹǝᵷuɐᗡ ɟo uoᴉʇoԀ
 splash_potion.effect.danger_sight=ʇɥᵷᴉS ɹǝᵷuɐᗡ ɟo uoᴉʇoԀ ɥsɐꞁdS
 lingering_potion.effect.danger_sight=ʇɥᵷᴉS ɹǝᵷuɐᗡ ɟo uoᴉʇoԀ ᵷuᴉɹǝᵷuᴉꞀ
 tipped_arrow.effect.danger_sight=ʇɥᵷᴉS ɹǝᵷuɐᗡ ɟo ʍoɹɹⱯ
+
 quark.gui.keygroupMisc=ɔsᴉW ʞɹɐnΌ
 quark.gui.keygroupInv=ʎɹoʇuǝʌuI ʞɹɐnΌ
 quark.gui.keygroupEmote=sǝʇoɯƎ ʞɹɐnΌ
@@ -581,6 +588,7 @@ quark.keybind.chestDropoff=ʇᴉsodǝᗡ
 quark.keybind.chestMerge=ǝᵷɹǝW
 quark.keybind.chestRestock=ʞɔoʇsǝᴚ
 quark.keybind.chestExtract=ʇɔɐɹʇxƎ
+
 quark.gui.emotes=sǝʇoɯƎ
 quark.gui.favorited=pǝʇᴉɹoʌɐℲ
 quark.emote.wave=ǝʌɐM
@@ -595,7 +603,7 @@ quark.emote.point=ʇuᴉoԀ
 quark.emote.headbang=ᵷuɐqpɐǝH
 quark.emote.think=ʞuᴉɥ⟘
 quark.emote.weep=dǝǝM
-quark.dyedElytra=%s
+quark.dyedElytra=%s pǝʎᗡ
 quark.dye.white=ǝʇᴉɥM
 quark.dye.orange=ǝᵷuɐɹO
 quark.dye.magenta=ɐʇuǝᵷɐW
@@ -614,6 +622,7 @@ quark.dye.red=pǝᴚ
 quark.dye.black=ʞɔɐꞁᗺ
 generator.quark_realistic=ɔᴉʇsᴉꞁɐǝᴚ
 generator.quark_realistic.info=doᴉuoS/n/ ʎq ǝdʎ⟘ pꞁɹoM ɔᴉʇsᴉꞁɐǝᴚ [ʞɹɐnΌ]
+
 quark.biomeMap.ice_flats=dɐW ɹǝpuᴉɟɥʇɐԀ suᴉɐꞁԀ ǝɔI
 quark.biomeMap.extreme_hills=dɐW ɹǝpuᴉɟɥʇɐԀ sꞁꞁᴉH ǝɯǝɹʇxƎ
 quark.biomeMap.roofed_forest=dɐW ɹǝpuᴉɟɥʇɐԀ ʇsǝɹoℲ pǝɟooᴚ
@@ -626,6 +635,7 @@ quark.biomeMap.jungle=dɐW ɹǝpuᴉɟɥʇɐԀ ǝꞁᵷunՐ
 quark.biomeMap.mesa=dɐW ɹǝpuᴉɟɥʇɐԀ ɐsǝW
 quark.biomeMap.mushroom_island=dɐW ɹǝpuᴉɟɥʇɐԀ puɐꞁsI ɯooɹɥsnW
 quark.biomeMap.mutated_ice_flats=dɐW ɹǝpuᴉɟɥʇɐԀ sǝʞᴉdS ǝɔI
+
 item.banner.quark_dragon.black=uoᵷɐɹᗡ ʞɔɐꞁᗺ
 item.banner.quark_dragon.red=uoᵷɐɹᗡ pǝᴚ
 item.banner.quark_dragon.green=uoᵷɐɹᗡ uǝǝɹ⅁
@@ -642,6 +652,7 @@ item.banner.quark_dragon.lightBlue=uoᵷɐɹᗡ ǝnꞁᗺ ʇɥᵷᴉꞀ
 item.banner.quark_dragon.magenta=uoᵷɐɹᗡ ɐʇuǝᵷɐW
 item.banner.quark_dragon.orange=uoᵷɐɹᗡ ǝᵷuɐɹO
 item.banner.quark_dragon.white=uoᵷɐɹᗡ ǝʇᴉɥM
+
 item.banner.quark_eye.black=ǝʎƎ ʞɔɐꞁᗺ
 item.banner.quark_eye.red=ǝʎƎ pǝᴚ
 item.banner.quark_eye.green=ǝʎƎ uǝǝɹ⅁
@@ -658,6 +669,7 @@ item.banner.quark_eye.lightBlue=ǝʎƎ ǝnꞁᗺ ʇɥᵷᴉꞀ
 item.banner.quark_eye.magenta=ǝʎƎ ɐʇuǝᵷɐW
 item.banner.quark_eye.orange=ǝʎƎ ǝᵷuɐɹO
 item.banner.quark_eye.white=ǝʎƎ ǝʇᴉɥM
+
 item.banner.quark_sword.black=pɹoʍS ʞɔɐꞁᗺ
 item.banner.quark_sword.red=pɹoʍS pǝᴚ
 item.banner.quark_sword.green=pɹoʍS uǝǝɹ⅁
@@ -674,6 +686,7 @@ item.banner.quark_sword.lightBlue=pɹoʍS ǝnꞁᗺ ʇɥᵷᴉꞀ
 item.banner.quark_sword.magenta=pɹoʍS ɐʇuǝᵷɐW
 item.banner.quark_sword.orange=pɹoʍS ǝᵷuɐɹO
 item.banner.quark_sword.white=pɹoʍS ǝʇᴉɥM
+
 item.banner.quark_shield.black=pꞁǝᴉɥS ʞɔɐꞁᗺ
 item.banner.quark_shield.red=pꞁǝᴉɥS pǝᴚ
 item.banner.quark_shield.green=pꞁǝᴉɥS uǝǝɹ⅁
@@ -690,3 +703,4 @@ item.banner.quark_shield.lightBlue=pꞁǝᴉɥS ǝnꞁᗺ ʇɥᵷᴉꞀ
 item.banner.quark_shield.magenta=pꞁǝᴉɥS ɐʇuǝᵷɐW
 item.banner.quark_shield.orange=pꞁǝᴉɥS ǝᵷuɐɹO
 item.banner.quark_shield.white=pꞁǝᴉɥS ǝʇᴉɥM
+
