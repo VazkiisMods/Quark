@@ -74,7 +74,6 @@ public final class DropoffHandler {
 		
 		boolean accept = isValidChest(player, te);
 		if(accept) {
-			IItemHandler ret;
 			Supplier<IItemHandler> supplier = () -> {
 				IItemHandler innerRet = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 				if(innerRet == null && te instanceof IInventory)
@@ -84,7 +83,7 @@ public final class DropoffHandler {
 			};
 			
 			if(te instanceof IDropoffManager)
-				ret = ((IDropoffManager) te).getDropoffItemHandler(supplier);
+				return ((IDropoffManager) te).getDropoffItemHandler(supplier);
 			else return supplier.get();
 		}
 		
