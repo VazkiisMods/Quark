@@ -1,0 +1,2 @@
+include ":AutoRegLib"
+project(":AutoRegLib").projectDir = file("../AutoRegLib")

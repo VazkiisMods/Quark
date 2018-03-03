@@ -17,6 +17,10 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+dependencies {
+    compile project(":AutoRegLib")
+}
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 

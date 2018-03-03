@@ -23,6 +23,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.MouseInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import scala.actors.threadpool.Arrays;
@@ -195,6 +196,20 @@ public class ImprovedSleeping extends Feature {
 			NetworkHandler.INSTANCE.sendToServer(new MessageUpdateAfk(false));
 		timeSinceKeystroke = 0;
 	}
+
+    @SubscribeEvent
+    @SideOnly(Side.SERVER)
+    public void onPlayerLogout(PlayerLoggedOutEvent event) {
+        World logoutWorld = event.player.world;
+        List<EntityPlayer> players = logoutWorld.playerEntities;
+        if(players.size() == 1) {
+            EntityPlayer lastPlayer = players.get(0);
+            lastPlayer.getEntityData().setBoolean(TAG_AFK, false);
+            TextComponentTranslation text = new TextComponentTranslation("quarkmisc.leftAfk");
+            text.getStyle().setColor(TextFormatting.AQUA);
+            lastPlayer.sendMessage(text);
+        }
+    }
 
 	@Override
 	public boolean hasSubscriptions() {
