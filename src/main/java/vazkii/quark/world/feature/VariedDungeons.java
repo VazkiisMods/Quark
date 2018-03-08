@@ -24,6 +24,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.quark.base.module.Feature;
@@ -128,7 +129,16 @@ public class VariedDungeons extends Feature {
 	            TileEntity tile = world.getTileEntity(pos);
 
 	            if(tile instanceof TileEntityMobSpawner)
-	                ((TileEntityMobSpawner) tile).getSpawnerBaseLogic().setEntityId(DungeonHooks.getRandomDungeonMob(rand));
+	            {
+	            	if(Loader.isModLoaded("dungeontweeks"))
+	            	{
+	            		((TileEntityMobSpawner) tile).getSpawnerBaseLogic().setEntityId(new ResourceLocation("blank_" + "quark" + ":" + "dungeon"));
+	            	}
+	            	else
+	            	{
+	            		((TileEntityMobSpawner) tile).getSpawnerBaseLogic().setEntityId(DungeonHooks.getRandomDungeonMob(rand));
+	            	}
+	            }
 			}
 			else if(data.equals("chest"))
 				chests.add(pos);
