@@ -130,7 +130,7 @@ public class VariedDungeons extends Feature {
 
 	            if(tile instanceof TileEntityMobSpawner)
 	            {
-	            	if(Loader.isModLoaded("dungeontweeks"))
+	            	if(Loader.isModLoaded("dungeontweaks"))
 	            	{
 	            		((TileEntityMobSpawner) tile).getSpawnerBaseLogic().setEntityId(new ResourceLocation("blank_" + "quark" + ":" + "dungeon"));
 	            	}
