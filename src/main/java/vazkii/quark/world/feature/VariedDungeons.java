@@ -127,8 +127,26 @@ public class VariedDungeons extends Feature {
 				world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
 	            TileEntity tile = world.getTileEntity(pos);
 
-	            if(tile instanceof TileEntityMobSpawner)
-	                ((TileEntityMobSpawner) tile).getSpawnerBaseLogic().setEntityId(DungeonHooks.getRandomDungeonMob(rand));
+                if(tile instanceof TileEntityMobSpawner)
+                {
+                    if(!Loader.isModLoaded("dungeontweaks"))
+                    {
+                        ((TileEntityMobSpawner) tile).getSpawnerBaseLogic().setEntityId(DungeonHooks.getRandomDungeonMob(rand));
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Constructor<? extends Event> constructor = (Constructor<? extends Event>) Class.forName("com.EvilNotch.dungeontweeks.main.Events.EventDungeon$Post").getConstructor(TileEntity.class,BlockPos.class,Random.class,ResourceLocation.class,World.class);
+                            Event event = constructor.newInstance(tile,tile.getPos(),world.rand,new ResourceLocation("quark:dungeon"),world);
+                            MinecraftForge.EVENT_BUS.post(event);
+                        }
+                        catch(Throwable t)
+                        {
+                            t.printStackTrace();
+                        }
+                    }
+                }
 			}
 			else if(data.equals("chest"))
 				chests.add(pos);
