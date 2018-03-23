@@ -30,6 +30,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapData;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -64,6 +65,11 @@ public class EntityColoredItemFrame extends EntityFlatItemFrame {
 	@Override
 	protected void dropFrame() {
 		entityDropItem(new ItemStack(ColoredItemFrames.colored_item_frame, 1, getColor()), 0.0F);
+	}
+	
+	@Override
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return new ItemStack(ColoredItemFrames.colored_item_frame, 1, getColor());
 	}
 
 	@Override
