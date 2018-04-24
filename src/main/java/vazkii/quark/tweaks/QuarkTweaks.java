@@ -45,6 +45,7 @@ import vazkii.quark.tweaks.feature.SquidsInkYou;
 import vazkii.quark.tweaks.feature.StackableItems;
 import vazkii.quark.tweaks.feature.StairsMakeMore;
 import vazkii.quark.tweaks.feature.TorchesBurnInFurnaces;
+import vazkii.quark.tweaks.feature.VillagerOpenDoubleDoors;
 import vazkii.quark.tweaks.feature.VillagerPursueEmeralds;
 
 public class QuarkTweaks extends Module {
@@ -84,6 +85,7 @@ public class QuarkTweaks extends Module {
 		registerFeature(new BlastproofShulkerBoxes());
 		registerFeature(new DyeAnyWool());
 		registerFeature(new SquidsInkYou());
+		registerFeature(new VillagerOpenDoubleDoors());
 	}
 	
 	@Override
