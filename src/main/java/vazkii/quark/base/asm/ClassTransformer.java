@@ -438,12 +438,12 @@ public class ClassTransformer implements IClassTransformer {
 		boolean didAnything = false;
 
 		for(Pair<MethodSignature, MethodAction> pair : methods) {
-			LoadingPlugin.LOGGER.debug("Applying Transformation to method (" + pair.getLeft() + ")");
+			LoadingPlugin.LOGGER.info("Applying Transformation to method (" + pair.getLeft() + ")");
 			didAnything |= findMethodAndTransform(node, pair.getLeft(), pair.getRight());
 		}
 
 		if(didAnything) {
-			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+			ClassWriter writer = new ClassWriterPatch(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
 			node.accept(writer);
 			return writer.toByteArray();
 		}

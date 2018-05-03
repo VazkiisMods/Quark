@@ -83,7 +83,7 @@ public final class ModuleLoader {
 
 		setupConfig(event);
 
-		forEachModule(module -> LibMisc.LOGGER.info("[Quark] Module " + module.name + " is " + (module.enabled ? "enabled" : "disabled")));
+		forEachModule(module -> LibMisc.LOGGER.info("Module " + module.name + " is " + (module.enabled ? "enabled" : "disabled")));
 
 		forEachEnabled(module -> module.preInit(event));
 		forEachEnabled(module -> module.postPreInit(event));

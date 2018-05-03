@@ -1,3 +1,17 @@
+import javax.swing.JButton
+import javax.swing.JFrame
+import javax.swing.JOptionPane
+import javax.swing.JPanel
+import javax.swing.JPasswordField
+import javax.swing.WindowConstants
+import java.awt.Dimension
+import java.awt.GridLayout
+import java.awt.event.ActionEvent
+import java.awt.event.ActionListener
+import java.awt.event.KeyEvent
+import java.awt.event.KeyListener
+import java.util.concurrent.CountDownLatch
+
 buildscript {
     repositories {
         mavenCentral()
@@ -27,12 +41,11 @@ ext.config = parseConfig(configFile)
 version = "${config.version}-${config.build_number}"
 group = "vazkii.quark" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = config.mod_name
+def archiveGroup = "vazkii"
 
 minecraft {
     version = "${config.mc_version}-${config.forge_version}"
     runDir = "eclipse/assets"
-
-    coreMod = "vazkii.quark.base.asm.LoadingPlugin"
 
     mappings = config.mc_mappings
     replace 'GRADLE:BUILD', config.build_number
@@ -44,6 +57,85 @@ minecraft {
     makeObfSourceJar = false
 }
 
+task checkBuild() {
+    //Check if signing is enabled when building
+    if (project.gradle.startParameter.taskNames.contains("build") && (!project.hasProperty('keyStore') || !project.hasProperty('storeAlias'))) {
+        logger.log(LogLevel.WARN, 'Building without jarsigning! Please specify the keyStore and storeAlias property to enable!')
+    }
+}
+
+def signPass
+task setupKeys() {
+    onlyIf {
+        project.hasProperty('keyStore')
+    }
+    if (project.hasProperty('keyStore')) {
+        def gui = new SimplePasswordQuery()
+        gui.latch.await()
+        signPass = gui.getPasswordAndDiscard()
+    }
+}
+
+//Everything from here til the marker is inspired from ImmersiveEngineering. Many thanks!
+reobf {
+    coreJar {mappingType = 'SEARGE'}
+}
+
+def coremodFiles = 'vazkii/quark/base/asm/**'
+task coreJar(type: Jar) {
+    // Copy all compiled files and resources from the source set to the JAR
+    // If you have additional source sets, add the same logic here
+    from(sourceSets.main.output) {
+        // Don't include the coremod in the main mod
+        // If you have more coremod-related packages that aren't nested in the main one, add exclusions for them
+        include coremodFiles
+    }
+    manifest {
+        attributes "FMLCorePlugin": "vazkii.quark.base.asm.LoadingPlugin"
+        attributes 'Maven-Artifact': archiveGroup+':'+archivesBaseName+'-core:'+version
+    }
+    // Add a classifier to the JAR ('-core' at the end of the file name)
+    // Distinguishes the mod JAR from the shipped one
+    classifier 'core'
+    group = 'build'
+}
+
+task signCoreJar(type: SignJar) {
+    onlyIf { // Skip the task if our secret data isn't available
+        project.hasProperty('keyStore')
+    }
+    dependsOn reobfCoreJar
+    if (project.hasProperty('keyStore')) { // This needs to be a path to the keystore file
+        keyStore = project.keyStore
+        alias = project.storeAlias
+        storePass = signPass
+        keyPass = signPass
+        inputFile = coreJar.archivePath
+        outputFile = coreJar.archivePath
+    }
+}
+
+task signMainJar(type: SignJar) {
+    onlyIf { // Skip the task if our secret data isn't available
+        project.hasProperty('keyStore')
+    }
+    dependsOn reobfJar
+    if (project.hasProperty('keyStore')) { // This needs to be a path to the keystore file
+        keyStore = project.keyStore
+        alias = project.storeAlias
+        storePass = signPass
+        keyPass = signPass
+        inputFile = jar.archivePath
+        outputFile = jar.archivePath
+    }
+}
+
+signMainJar.dependsOn setupKeys
+signCoreJar.dependsOn setupKeys
+build.dependsOn signMainJar
+jar.dependsOn signCoreJar
+
+def libPrefix = 'META-INF/libraries'
 jar {
     exclude "**/*.bat"
     exclude "**/*.psd"
@@ -51,10 +143,17 @@ jar {
     exclude "**/unused"
 
     manifest {
-        attributes("FMLCorePluginContainsFMLMod": "true", "FMLCorePlugin": "vazkii.quark.base.asm.LoadingPlugin")
+        attributes 'ContainedDeps': libPrefix+'/'+coreJar.archivePath.name
+        attributes 'Maven-Artifact': archiveGroup+':'+archivesBaseName+':'+version
     }
-
+    exclude coremodFiles
+    // Add the output of the mod JAR task to the main JAR for later extraction
+    from(coreJar.archivePath.absolutePath) {
+        include '*' // Due to the way Gradle's copy tasks work, we need this line for the JAR to get added
+        into libPrefix
+    }
 }
+//IE inspired stuff END
 
 processResources {
     // replace stuff in mcmod.info, nothing else
@@ -134,4 +233,59 @@ def parseConfig(File config) {
     }
 }
 
-defaultTasks 'clean', 'build', 'sort', 'incrementBuildNumber'
+defaultTasks 'clean', 'build', 'sort', 'incrementBuildNumber', 'checkBuild'
+
+@SuppressWarnings("all")
+class SimplePasswordQuery implements ActionListener, KeyListener {
+    private final CountDownLatch latch = new CountDownLatch(1);
+    private final JFrame frame = new JFrame("KeySigner Password");
+    private final JPanel login = new JPanel(new GridLayout(2, 1));
+    private String password;
+    private JPasswordField field = new JPasswordField();
+
+    public SimplePasswordQuery() {
+        frame.setContentPane(login);
+        field.addKeyListener(this);
+        login.add(field);
+        JButton okBtn = new JButton("OK");
+        okBtn.addActionListener(this);
+        login.add(okBtn);
+        frame.setMinimumSize(new Dimension(320, 200));
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public CountDownLatch getLatch() {
+        return latch;
+    }
+
+    public String getPasswordAndDiscard() {
+        String s = password;
+        frame.dispose();
+        login.removeAll();
+        password = null;
+        return s;
+    }
+
+    private void checkPW() {
+        password = new String(field.getPassword());
+        if (!password.equals(""))
+            latch.countDown();
+        else
+            JOptionPane.showMessageDialog(frame, "No password is not an option!")
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        checkPW();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER)
+            checkPW();
+    }
+
+    @Override public void keyReleased(KeyEvent e) {}
+    @Override public void keyTyped(KeyEvent e) {}
+}
