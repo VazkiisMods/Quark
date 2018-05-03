@@ -13,10 +13,13 @@ package vazkii.quark.base.asm;
 import java.util.Map;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @IFMLLoadingPlugin.Name("Quark LoadingPlugin")
 @IFMLLoadingPlugin.SortingIndex(1100)
 public class LoadingPlugin implements IFMLLoadingPlugin {
+	public static final Logger LOGGER = LogManager.getLogger("Quark ASM");
 
 	public static boolean runtimeDeobfEnabled = false;
 
