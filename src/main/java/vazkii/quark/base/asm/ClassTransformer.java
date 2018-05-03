@@ -46,26 +46,6 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static final String ASM_HOOKS = "vazkii/quark/base/asm/ASMHooks";
 
-	public static final ClassnameMap CLASS_MAPPINGS = new ClassnameMap(
-		"net/minecraft/entity/Entity", "vg",
-		"net/minecraft/item/ItemStack", "aip",
-		"net/minecraft/client/renderer/block/model/IBakedModel", "cfy",
-		"net/minecraft/entity/EntityLivingBase", "vp",
-		"net/minecraft/inventory/EntityEquipmentSlot", "vl",
-		"net/minecraft/client/renderer/entity/RenderLivingBase", "caa",
-		"net/minecraft/client/model/ModelBase", "bqf",
-		"net/minecraft/util/DamageSource", "ur",
-		"net/minecraft/entity/item/EntityBoat", "afd",
-		"net/minecraft/world/World", "amu",
-		"net/minecraft/util/math/BlockPos", "et",
-		"net/minecraft/util/EnumFacing", "fa",
-		"net/minecraft/entity/player/EntityPlayer", "aed",
-		"net/minecraft/block/state/IBlockState", "awt",
-		"net/minecraft/client/renderer/BufferBuilder", "buk",
-		"net/minecraft/world/IBlockAccess", "amy",
-		"net/minecraft/client/renderer/block/model/BakedQuad", "bvp"
-	);
-
 	private static final Map<String, Transformer> transformers = new HashMap();
 
 	static {
@@ -108,7 +88,7 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformModelBiped(byte[] basicClass) {
 		log("Transforming ModelBiped");
-		MethodSignature sig = new MethodSignature("setRotationAngles", "func_78087_a", "a", "(FFFFFFLnet/minecraft/entity/Entity;)V");
+		MethodSignature sig = new MethodSignature("setRotationAngles", "func_78087_a", "(FFFFFFLnet/minecraft/entity/Entity;)V");
 
 		return transform(basicClass, Pair.of(sig, combine(
 				(AbstractInsnNode node) -> { // Filter
@@ -127,8 +107,8 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformRenderItem(byte[] basicClass) {
 		log("Transforming RenderItem");
-		MethodSignature sig1 = new MethodSignature("renderItem", "func_180454_a", "a", "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/renderer/block/model/IBakedModel;)V");
-		MethodSignature sig2 = new MethodSignature("renderEffect", "func_191966_a", "a", "(Lnet/minecraft/client/renderer/block/model/IBakedModel;)V");
+		MethodSignature sig1 = new MethodSignature("renderItem", "func_180454_a", "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/renderer/block/model/IBakedModel;)V");
+		MethodSignature sig2 = new MethodSignature("renderEffect", "func_191966_a", "(Lnet/minecraft/client/renderer/block/model/IBakedModel;)V");
 
 		byte[] transClass = basicClass;
 
@@ -163,8 +143,8 @@ public class ClassTransformer implements IClassTransformer {
 	static int invokestaticCount = 0;
 	private static byte[] transformLayerArmorBase(byte[] basicClass) {
 		log("Transforming LayerArmorBase");
-		MethodSignature sig1 = new MethodSignature("renderArmorLayer", "func_188361_a", "a", "(Lnet/minecraft/entity/EntityLivingBase;FFFFFFFLnet/minecraft/inventory/EntityEquipmentSlot;)V");
-		MethodSignature sig2 = new MethodSignature("renderEnchantedGlint", "func_188364_a", "a", "(Lnet/minecraft/client/renderer/entity/RenderLivingBase;Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/client/model/ModelBase;FFFFFFF)V");
+		MethodSignature sig1 = new MethodSignature("renderArmorLayer", "func_188361_a", "(Lnet/minecraft/entity/EntityLivingBase;FFFFFFFLnet/minecraft/inventory/EntityEquipmentSlot;)V");
+		MethodSignature sig2 = new MethodSignature("renderEnchantedGlint", "func_188364_a", "(Lnet/minecraft/client/renderer/entity/RenderLivingBase;Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/client/model/ModelBase;FFFFFFF)V");
 
 		byte[] transClass = basicClass;
 
@@ -205,8 +185,8 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformEntityBoat(byte[] basicClass) {
 		log("Transforming EntityBoat");
-		MethodSignature sig1 = new MethodSignature("attackEntityFrom", "func_70097_a", "a", "(Lnet/minecraft/util/DamageSource;F)Z"); 
-		MethodSignature sig2 = new MethodSignature("onUpdate", "func_70071_h_", "B_", "()V");
+		MethodSignature sig1 = new MethodSignature("attackEntityFrom", "func_70097_a", "(Lnet/minecraft/util/DamageSource;F)Z");
+		MethodSignature sig2 = new MethodSignature("onUpdate", "func_70071_h_", "()V");
 
 		byte[] transClass = transform(basicClass, Pair.of(sig1, combine(
 				(AbstractInsnNode node) -> { // Filter
@@ -241,7 +221,7 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformRenderBoat(byte[] basicClass) {
 		log("Transforming RenderBoat");
-		MethodSignature sig = new MethodSignature("doRender", "func_188300_b", "b", "(Lnet/minecraft/entity/item/EntityBoat;DDDFF)V");
+		MethodSignature sig = new MethodSignature("doRender", "func_188300_b", "(Lnet/minecraft/entity/item/EntityBoat;DDDFF)V");
 
 		return transform(basicClass, Pair.of(sig, combine(
 				(AbstractInsnNode node) -> { // Filter
@@ -262,8 +242,8 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformBlockPistonBase(byte[] basicClass) {
 		log("Transforming BlockPistonBase");
-		MethodSignature sig1 = new MethodSignature("doMove", "func_176319_a", "a", "(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Z)Z");
-		MethodSignature sig2 = new MethodSignature("canPush", "func_185646_a", "a", "(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;ZLnet/minecraft/util/EnumFacing;)Z");
+		MethodSignature sig1 = new MethodSignature("doMove", "func_176319_a", "(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Z)Z");
+		MethodSignature sig2 = new MethodSignature("canPush", "func_185646_a", "(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;ZLnet/minecraft/util/EnumFacing;)Z");
 
 
 		byte[] transClass = transform(basicClass, Pair.of(sig1, combine(
@@ -329,7 +309,7 @@ public class ClassTransformer implements IClassTransformer {
 	static int bipushCount = 0;
 	private static byte[] transformContainerWorkbench(byte[] basicClass) {
 		log("Transforming ContainerWorkbench");
-		MethodSignature sig = new MethodSignature("transferStackInSlot", "func_82846_b", "b", "(Lnet/minecraft/entity/player/EntityPlayer;I)Lnet/minecraft/item/ItemStack;");
+		MethodSignature sig = new MethodSignature("transferStackInSlot", "func_82846_b", "(Lnet/minecraft/entity/player/EntityPlayer;I)Lnet/minecraft/item/ItemStack;");
 
 		bipushCount = 0;
 		return transform(basicClass, Pair.of(sig, combine(
@@ -352,8 +332,8 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformTileEntityPiston(byte[] basicClass) {
 		log("Transforming TileEntityPiston");
-		MethodSignature sig1 = new MethodSignature("clearPistonTileEntity", "func_145866_f", "j", "()V");
-		MethodSignature sig2 = new MethodSignature("update", "func_73660_a", "e", "()V");
+		MethodSignature sig1 = new MethodSignature("clearPistonTileEntity", "func_145866_f", "()V");
+		MethodSignature sig2 = new MethodSignature("update", "func_73660_a", "()V");
 
 		MethodAction action = combine(
 				(AbstractInsnNode node) -> { // Filter
@@ -376,7 +356,7 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformTileEntityPistonRenderer(byte[] basicClass) {
 		log("Transforming TileEntityPistonRenderer");
-		MethodSignature sig = new MethodSignature("renderStateModel", "func_188186_a", "a", "(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/client/renderer/BufferBuilder;Lnet/minecraft/world/World;Z)Z");
+		MethodSignature sig = new MethodSignature("renderStateModel", "func_188186_a", "(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/client/renderer/BufferBuilder;Lnet/minecraft/world/World;Z)Z");
 
 		return transform(basicClass, Pair.of(sig, combine(
 				(AbstractInsnNode node) -> { // Filter
@@ -398,7 +378,7 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformWorldServer(byte[] basicClass) {
 		log("Transforming WorldServer");
-		MethodSignature sig = new MethodSignature("areAllPlayersAsleep", "func_73056_e", "g", "()Z");
+		MethodSignature sig = new MethodSignature("areAllPlayersAsleep", "func_73056_e", "()Z");
 
 		return transform(basicClass, Pair.of(sig, combine(
 				(AbstractInsnNode node) -> { // Filter
@@ -424,7 +404,7 @@ public class ClassTransformer implements IClassTransformer {
 
 	private static byte[] transformBlockModelRenderer(byte[] basicClass) {
 		log("Transforming BlockModelRenderer");
-		MethodSignature sig1 = new MethodSignature("renderQuadsFlat", "func_187496_a", "a", "(Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/math/BlockPos;IZLnet/minecraft/client/renderer/BufferBuilder;Ljava/util/List;Ljava/util/BitSet;)V");
+		MethodSignature sig1 = new MethodSignature("renderQuadsFlat", "func_187496_a", "(Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/math/BlockPos;IZLnet/minecraft/client/renderer/BufferBuilder;Ljava/util/List;Ljava/util/BitSet;)V");
 
 		if(hasOptifine(sig1.toString()))
 			return basicClass;
@@ -478,7 +458,7 @@ public class ClassTransformer implements IClassTransformer {
 			funcName = sig.srgName;
 
 		for(MethodNode method : node.methods) {
-			if((method.name.equals(funcName)|| method.name.equals(sig.obfName) || method.name.equals(sig.srgName)) && (method.desc.equals(sig.funcDesc) || method.desc.equals(sig.obfDesc))) {
+			if((method.name.equals(funcName) || method.name.equals(sig.srgName)) && (method.desc.equals(sig.funcDesc))) {
 				log("Located Method, patching...");
 
 				boolean finish = pred.test(method);
@@ -535,7 +515,7 @@ public class ClassTransformer implements IClassTransformer {
 	}
 
 	private static boolean checkDesc(String desc, String expected) {
-		return desc.equals(expected) || desc.equals(MethodSignature.obfuscate(expected));
+		return desc.equals(expected);
 	}
 
 	private static boolean hasOptifine(String msg) {
@@ -549,27 +529,17 @@ public class ClassTransformer implements IClassTransformer {
 	}
 
 	private static class MethodSignature {
-		String funcName, srgName, obfName, funcDesc, obfDesc;
+		String funcName, srgName, funcDesc;
 
-		public MethodSignature(String funcName, String srgName, String obfName, String funcDesc) {
+		public MethodSignature(String funcName, String srgName, String funcDesc) {
 			this.funcName = funcName;
 			this.srgName = srgName;
-			this.obfName = obfName;
 			this.funcDesc = funcDesc;
-			this.obfDesc = obfuscate(funcDesc);
 		}
 
 		@Override
 		public String toString() {
-			return "Names [" + funcName + ", " + srgName + ", " + obfName + "] Descriptor " + funcDesc + " / " + obfDesc;
-		}
-
-		private static String obfuscate(String desc) {
-			for(String s : CLASS_MAPPINGS.keySet())
-				if(desc.contains(s))
-					desc = desc.replaceAll(s, CLASS_MAPPINGS.get(s));
-
-			return desc;
+			return "Names [" + funcName + ", " + srgName +"] Descriptor " + funcDesc;
 		}
 
 	}
