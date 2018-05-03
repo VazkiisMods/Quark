@@ -14,8 +14,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.util.ResourceLocation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class LibMisc {
+	// Logger
+	public static final Logger LOGGER = LogManager.getLogger("Quark");
 
 	// Mod Constants
 	public static final String MOD_ID = "quark";

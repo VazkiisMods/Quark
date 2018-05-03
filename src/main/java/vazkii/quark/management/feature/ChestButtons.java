@@ -30,7 +30,6 @@ import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,6 +39,7 @@ import vazkii.arl.network.NetworkHandler;
 import vazkii.quark.api.IChestButtonCallback;
 import vazkii.quark.base.client.ModKeybinds;
 import vazkii.quark.base.handler.DropoffHandler;
+import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.network.message.MessageDropoff;
@@ -96,7 +96,7 @@ public class ChestButtons extends Feature {
 			EntityPlayer player = Minecraft.getMinecraft().player;
 
 			if(debugClassnames)
-				FMLLog.log(Level.INFO, "[Quark] Opening GUI %s", guiInv.getClass().getName());
+				LibMisc.LOGGER.info("Opening GUI {}", guiInv.getClass().getName());
 			
 			boolean accept = guiInv instanceof IChestButtonCallback || guiInv instanceof GuiChest || guiInv instanceof GuiShulkerBox 
 					|| classnames.contains(guiInv.getClass().getName());

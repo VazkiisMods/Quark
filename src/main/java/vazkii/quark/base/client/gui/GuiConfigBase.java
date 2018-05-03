@@ -11,7 +11,6 @@ import net.minecraft.client.gui.GuiConfirmOpenLink;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.common.FMLLog;
 import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.ModuleLoader;
 
@@ -105,7 +104,7 @@ public class GuiConfigBase extends GuiScreen {
 			oclass.getMethod("browse", URI.class).invoke(object, url);
 		} catch(Throwable throwable1) {
 			Throwable throwable = throwable1.getCause();
-			FMLLog.warning("Couldn't open link: {}", (Object)(throwable == null ? "<UNKNOWN>" : throwable.getMessage()));
+			LibMisc.LOGGER.warn("Couldn't open link: {}", (Object)(throwable == null ? "<UNKNOWN>" : throwable.getMessage()));
 		}
 	}
 

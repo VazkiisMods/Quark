@@ -13,11 +13,11 @@ import java.util.Map;
 import java.util.Stack;
 
 import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.fml.common.FMLLog;
 import vazkii.aurelienribon.tweenengine.Timeline;
 import vazkii.aurelienribon.tweenengine.Tween;
 import vazkii.aurelienribon.tweenengine.TweenEquation;
 import vazkii.aurelienribon.tweenengine.TweenEquations;
+import vazkii.quark.base.lib.LibMisc;
 
 public class EmoteTemplate {
 
@@ -167,12 +167,12 @@ public class EmoteTemplate {
 	}
 	
 	private void logError(Exception e, int line) {
-		FMLLog.log.error("[Quark Custom Emotes] Error loading line " + (line + 1) + " of emote " + file);
+		LibMisc.LOGGER.error("[Custom Emotes] Error loading line " + (line + 1) + " of emote " + file);
 		if(!(e instanceof IllegalArgumentException)) {
-			FMLLog.log.error("[Quark Custom Emotes] This is an Internal Error, and not one in the emote file, please report it");
+			LibMisc.LOGGER.error("[Custom Emotes] This is an Internal Error, and not one in the emote file, please report it");
 			e.printStackTrace();
 		}
-		else FMLLog.log.error("[Quark Custom Emotes] " + e.getMessage());
+		else LibMisc.LOGGER.error("[Custom Emotes] " + e.getMessage());
 	}
 
 	private Timeline handle(ModelBiped model, Timeline timeline, String s) throws IllegalArgumentException {

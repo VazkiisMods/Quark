@@ -20,16 +20,14 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeMushroomIsland;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration.Type;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import vazkii.arl.util.ItemNBTHelper;
+import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.experimental.world.BiomeLocator;
@@ -143,8 +141,8 @@ public class PathfinderMaps extends Feature {
 			try {
 				loadTradeInfo(s);
 			} catch(IllegalArgumentException e) {
-				FMLLog.warning("[Quark][Custom Pathfinder Maps] Error while reading custom map string \"%s\"", s);
-				FMLLog.warning("[Quark][Custom Pathfinder Maps] - %s", e.getMessage());
+				LibMisc.LOGGER.warn("[Custom Pathfinder Maps] Error while reading custom map string \"{}\"", s);
+				LibMisc.LOGGER.warn("[Custom Pathfinder Maps] - {}", e.getMessage());
 			}
 	}
 
