@@ -80,12 +80,18 @@ artifacts {
     archives deobfJar
 }
 /**
- * Increments the buildnumber in your config file, and saves it
+ * Increments the buildnumber when building in your config file, and saves it.
  */
 task incrementBuildNumber {
-    config.build_number = (config.build_number.toString().toInteger()) + 1
-    configFile.withWriter {
-        config.toProperties().store(it, "")
+    def isBuilding = project.gradle.startParameter.taskNames.contains("build")
+    onlyIf {
+        isBuilding
+    }
+    if (isBuilding) {
+        config.build_number = (config.build_number.toString().toInteger()) + 1
+        configFile.withWriter {
+            config.toProperties().store(it, "")
+        }
     }
 }
 
@@ -127,6 +133,5 @@ def parseConfig(File config) {
         return (new ConfigSlurper().parse(prop))
     }
 }
-
 
 defaultTasks 'clean', 'build', 'sort', 'incrementBuildNumber'
