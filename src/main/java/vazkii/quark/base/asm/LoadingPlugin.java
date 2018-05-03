@@ -18,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 @IFMLLoadingPlugin.Name("Quark LoadingPlugin")
 @IFMLLoadingPlugin.SortingIndex(1100)
+@IFMLLoadingPlugin.TransformerExclusions("vazkii.quark.base.asm.")
 public class LoadingPlugin implements IFMLLoadingPlugin {
 	public static final Logger LOGGER = LogManager.getLogger("Quark ASM");
 
