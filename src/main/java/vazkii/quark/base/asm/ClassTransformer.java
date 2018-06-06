@@ -90,7 +90,7 @@ public class ClassTransformer implements IClassTransformer {
 		transformers.put("net.minecraft.tileentity.TileEntityPiston", ClassTransformer::transformTileEntityPiston);
 		transformers.put("net.minecraft.client.renderer.tileentity.TileEntityPistonRenderer", ClassTransformer::transformTileEntityPistonRenderer);
 
-		// For Imrpoved Sleeping
+		// For Improved Sleeping
 		transformers.put("net.minecraft.world.WorldServer", ClassTransformer::transformWorldServer);
 
 		// For Colored Lights
