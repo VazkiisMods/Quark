@@ -39,7 +39,6 @@ public class PistonsPushPullItems extends Feature {
 					TileEntity tile = world.getTileEntity(offsetPos1);
 					if(tile instanceof TileEntityPiston) {
 						TileEntityPiston movingBlockTile = (TileEntityPiston) tile;
-						
 						IBlockState adjacentMovingState = movingBlockTile.getPistonState();
 						if(adjacentMovingState.getBlock().isStickyBlock(adjacentMovingState)) {
 							//nudge the item in the same direction as the sticky block
@@ -51,9 +50,8 @@ public class PistonsPushPullItems extends Feature {
 					}
 					
 					//check for moving blocks or normal piston heads pushing *in* to this item
-					if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.DEFAULT) {
+					if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.DEFAULT)
 						nudgeItem(world, entity, face.getOpposite(), true);
-					}
 				}
 			}
 			
@@ -61,16 +59,14 @@ public class PistonsPushPullItems extends Feature {
 			if(world.isBlockLoaded(offsetPos2)) {
 				IBlockState state = world.getBlockState(offsetPos2);
 				if(state.getBlock() == Blocks.PISTON_EXTENSION) {
-					
 					//check for adjacent moving sticky piston heads pulling *away* from this item
 					if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.STICKY) {
 						//only moving sticky piston *heads* should affect items in this way
 						TileEntity tile = world.getTileEntity(offsetPos2);
 						if(tile instanceof TileEntityPiston) {
 							TileEntityPiston movingBlockTile = (TileEntityPiston) tile;
-							if(movingBlockTile.getPistonState().getBlock() == Blocks.STICKY_PISTON) {
+							if(movingBlockTile.getPistonState().getBlock() == Blocks.STICKY_PISTON)
 								nudgeItem(world, entity, face, false);
-							}
 						}
 					}
 				}
