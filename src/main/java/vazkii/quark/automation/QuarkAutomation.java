@@ -21,7 +21,7 @@ import vazkii.quark.automation.feature.EnderWatcher;
 import vazkii.quark.automation.feature.ObsidianPressurePlate;
 import vazkii.quark.automation.feature.PistonSpikes;
 import vazkii.quark.automation.feature.PistonsMoveTEs;
-import vazkii.quark.automation.feature.PistonsPushItems;
+import vazkii.quark.automation.feature.PistonsPushPullItems;
 import vazkii.quark.automation.feature.RainDetector;
 import vazkii.quark.base.module.Module;
 
@@ -38,7 +38,7 @@ public class QuarkAutomation extends Module {
 		registerFeature(new PistonsMoveTEs());
 		registerFeature(new DispensersPlaceBlocks());
 		registerFeature(new DispenserRecords());
-		registerFeature(new PistonsPushItems());
+		registerFeature(new PistonsPushPullItems(), "Pistons Push and Pull Items");
 		registerFeature(new Chute());
 	}
 	
