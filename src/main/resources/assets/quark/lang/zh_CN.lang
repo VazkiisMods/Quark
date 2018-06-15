@@ -468,6 +468,7 @@ tile.quark:candle_red.name=红色蜡烛
 tile.quark:magma_bricks.name=岩浆砖
 tile.quark:magma_bricks_stairs.name=岩浆砖楼梯
 tile.quark:magma_bricks_slab.name=岩浆砖台阶
+tile.quark:chute.name=给料槽
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
