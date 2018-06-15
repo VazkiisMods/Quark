@@ -17,7 +17,14 @@ import vazkii.arl.util.ItemTickHandler.EntityItemTickEvent;
 import vazkii.quark.base.module.Feature;
 
 public class PistonsPushPullItems extends Feature {
-
+	
+	double force = 0.48F;
+	
+	@Override
+	public void setupConfig() {
+		force = loadPropDouble("Push Strength", "", force);
+	}
+	
 	@SubscribeEvent
 	public void onEntityTick(EntityItemTickEvent event) {
 		EntityItem entity = event.getEntityItem();
@@ -38,13 +45,14 @@ public class PistonsPushPullItems extends Feature {
 							//nudge the item in the same direction as the sticky block
 							EnumFacing nudgeDirection = state.getValue(BlockDirectional.FACING);
 							if(!movingBlockTile.isExtending()) nudgeDirection = nudgeDirection.getOpposite();
-							nudgeItem(world, entity, nudgeDirection, 0.4f);
+							//give items a weaker push, to simulate sticking to slime
+							nudgeItem(world, entity, nudgeDirection, false, 0.25f);
 						}
 					}
 					
 					//check for moving blocks or normal piston heads pushing *in* to this item
 					if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.DEFAULT) {
-						nudgeItem(world, entity, face.getOpposite());
+						nudgeItem(world, entity, face.getOpposite(), true);
 					}
 				}
 			}
@@ -56,12 +64,12 @@ public class PistonsPushPullItems extends Feature {
 					
 					//check for adjacent moving sticky piston heads pulling *away* from this item
 					if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.STICKY) {
-						//only sticky piston *heads* should affect items
+						//only moving sticky piston *heads* should affect items in this way
 						TileEntity tile = world.getTileEntity(offsetPos2);
 						if(tile instanceof TileEntityPiston) {
 							TileEntityPiston movingBlockTile = (TileEntityPiston) tile;
 							if(movingBlockTile.getPistonState().getBlock() == Blocks.STICKY_PISTON) {
-								nudgeItem(world, entity, face);
+								nudgeItem(world, entity, face, false);
 							}
 						}
 					}
@@ -70,20 +78,19 @@ public class PistonsPushPullItems extends Feature {
 		}
 	}
 	
-	private static void nudgeItem(World world, EntityItem entity, EnumFacing whichWay) {
-		nudgeItem(world, entity, whichWay, 1);
+	private void nudgeItem(World world, EntityItem entity, EnumFacing whichWay, boolean showParticles) {
+		nudgeItem(world, entity, whichWay, showParticles, (float) force);
 	}
 	
-	private static void nudgeItem(World world, EntityItem entity, EnumFacing whichWay, float forceMultiplier) {
-		float force = 0.48F * forceMultiplier;
-		float x = force * whichWay.getFrontOffsetX();
-		float y = force * whichWay.getFrontOffsetY();
-		float z = force * whichWay.getFrontOffsetZ();
+	private void nudgeItem(World world, EntityItem entity, EnumFacing whichWay, boolean showParticles, float forceOverride) {
+		float x = forceOverride * whichWay.getFrontOffsetX();
+		float y = forceOverride * whichWay.getFrontOffsetY();
+		float z = forceOverride * whichWay.getFrontOffsetZ();
 		float px = x == 0 ? 0.4F : 0;
 		float py = y == 0 ? 0.4F : 0;
 		float pz = z == 0 ? 0.4F : 0;
 		entity.addVelocity(x, y, z);
-		if(world instanceof WorldServer)
+		if(showParticles && world instanceof WorldServer)
 			((WorldServer) world).spawnParticle(EnumParticleTypes.CRIT, entity.posX, entity.posY, entity.posZ, 12, px, py, pz, 0);
 	}
 

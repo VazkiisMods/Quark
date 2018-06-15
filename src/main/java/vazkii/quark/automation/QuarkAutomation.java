@@ -37,7 +37,7 @@ public class QuarkAutomation extends Module {
 		registerFeature(new PistonsMoveTEs());
 		registerFeature(new DispensersPlaceBlocks());
 		registerFeature(new DispenserRecords());
-		registerFeature(new PistonsPushPullItems());
+		registerFeature(new PistonsPushPullItems(), "Pistons Push/Pull Items");
 	}
 	
 	@Override
