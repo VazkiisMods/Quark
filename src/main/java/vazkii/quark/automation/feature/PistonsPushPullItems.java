@@ -1,7 +1,6 @@
 package vazkii.quark.automation.feature;
 
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockPistonExtension;
+import net.minecraft.block.*;
 import net.minecraft.block.BlockPistonExtension.EnumPistonType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -36,39 +35,30 @@ public class PistonsPushPullItems extends Feature {
 			BlockPos offsetPos1 = pos.offset(face);
 			if(world.isBlockLoaded(offsetPos1)) {
 				IBlockState state = world.getBlockState(offsetPos1);
-				if(state.getBlock() == Blocks.PISTON_EXTENSION) {
-					//check for adjacent moving sticky blocks e.g. slime blocks or other modded sticky blocks
-					TileEntity tile = world.getTileEntity(offsetPos1);
-					if(tile instanceof TileEntityPiston) {
-						TileEntityPiston movingBlockTile = (TileEntityPiston) tile;
-						IBlockState adjacentMovingState = movingBlockTile.getPistonState();
-						if(adjacentMovingState.getBlock().isStickyBlock(adjacentMovingState)) {
-							//nudge the item in the same direction as the sticky block
-							EnumFacing nudgeDirection = state.getValue(BlockDirectional.FACING);
-							if(!movingBlockTile.isExtending()) nudgeDirection = nudgeDirection.getOpposite();
-							//give items a weaker push, to simulate sticking to slime
-							nudgeItem(world, entity, nudgeDirection, false, 0.25f);
-						}
-					}
-					
+				if(state.getBlock() == Blocks.PISTON_EXTENSION) {					
 					//check for moving blocks or normal piston heads pushing *in* to this item
 					if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.DEFAULT)
 						nudgeItem(world, entity, face.getOpposite(), true);
 				}
 			}
 			
-			BlockPos offsetPos2 = pos.offset(face, 2);
-			if(world.isBlockLoaded(offsetPos2)) {
-				IBlockState state = world.getBlockState(offsetPos2);
-				if(state.getBlock() == Blocks.PISTON_EXTENSION) {
-					//check for adjacent moving sticky piston heads pulling *away* from this item
-					if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.STICKY) {
-						//only moving sticky piston *heads* should affect items in this way
-						TileEntity tile = world.getTileEntity(offsetPos2);
-						if(tile instanceof TileEntityPiston) {
-							TileEntityPiston movingBlockTile = (TileEntityPiston) tile;
-							if(movingBlockTile.getPistonState().getBlock() == Blocks.STICKY_PISTON)
-								nudgeItem(world, entity, face, false);
+			boolean closeToEdge = new BlockPos(entity.posX + face.getFrontOffsetX() * .5, entity.posY + face.getFrontOffsetY() * .5, entity.posZ + face.getFrontOffsetZ() * .5).equals(offsetPos1);
+			
+			if(closeToEdge) {
+				BlockPos offsetPos2 = pos.offset(face, 2);
+				if(world.isBlockLoaded(offsetPos2)) {
+					IBlockState state = world.getBlockState(offsetPos2);
+					if(state.getBlock() == Blocks.PISTON_EXTENSION) {
+						//check for adjacent moving sticky piston heads pulling *away* from this item
+						if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.STICKY) {
+							TileEntity tile = world.getTileEntity(offsetPos2);
+							if(tile instanceof TileEntityPiston) {
+								TileEntityPiston movingBlockTile = (TileEntityPiston) tile;
+								IBlockState movingBlockState = movingBlockTile.getPistonState();
+								Block movingBlock = movingBlockState.getBlock();
+								if(movingBlock == Blocks.STICKY_PISTON)
+									nudgeItem(world, entity, face, false);
+							}
 						}
 					}
 				}
