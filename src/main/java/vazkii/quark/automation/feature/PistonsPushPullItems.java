@@ -19,11 +19,11 @@ import vazkii.quark.base.module.Feature;
 
 public class PistonsPushPullItems extends Feature {
 
-	double force = 0.48F;
+	float force = 0.48F;
 	
 	@Override
 	public void setupConfig() {
-		force = loadPropDouble("Push Strength", "", force);
+		force = (float) loadPropDouble("Push Strength", "", force);
 	}
 	
 	@SubscribeEvent
@@ -35,11 +35,9 @@ public class PistonsPushPullItems extends Feature {
 			BlockPos offsetPos1 = pos.offset(face);
 			if(world.isBlockLoaded(offsetPos1)) {
 				IBlockState state = world.getBlockState(offsetPos1);
-				if(state.getBlock() == Blocks.PISTON_EXTENSION) {					
-					//check for moving blocks or normal piston heads pushing *in* to this item
-					if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.DEFAULT)
-						nudgeItem(world, entity, face.getOpposite(), true);
-				}
+				//check for moving blocks or normal piston heads pushing *in* to this item
+				if(state.getBlock() == Blocks.PISTON_EXTENSION && state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.DEFAULT)
+					nudgeItem(world, entity, face.getOpposite(), true);
 			}
 			
 			boolean closeToEdge = new BlockPos(entity.posX + face.getFrontOffsetX() * .5, entity.posY + face.getFrontOffsetY() * .5, entity.posZ + face.getFrontOffsetZ() * .5).equals(offsetPos1);
@@ -51,6 +49,7 @@ public class PistonsPushPullItems extends Feature {
 					if(state.getBlock() == Blocks.PISTON_EXTENSION) {
 						//check for adjacent moving sticky piston heads pulling *away* from this item
 						if(state.getValue(BlockDirectional.FACING) == face.getOpposite() && state.getValue(BlockPistonExtension.TYPE) == EnumPistonType.STICKY) {
+							//verify it's a moving head, not just any old block
 							TileEntity tile = world.getTileEntity(offsetPos2);
 							if(tile instanceof TileEntityPiston) {
 								TileEntityPiston movingBlockTile = (TileEntityPiston) tile;
@@ -67,13 +66,9 @@ public class PistonsPushPullItems extends Feature {
 	}
 	
 	private void nudgeItem(World world, EntityItem entity, EnumFacing whichWay, boolean showParticles) {
-		nudgeItem(world, entity, whichWay, showParticles, (float) force);
-	}
-	
-	private void nudgeItem(World world, EntityItem entity, EnumFacing whichWay, boolean showParticles, float forceOverride) {
-		float x = forceOverride * whichWay.getFrontOffsetX();
-		float y = forceOverride * whichWay.getFrontOffsetY();
-		float z = forceOverride * whichWay.getFrontOffsetZ();
+		float x = force * whichWay.getFrontOffsetX();
+		float y = force * whichWay.getFrontOffsetY();
+		float z = force * whichWay.getFrontOffsetZ();
 		float px = x == 0 ? 0.4F : 0;
 		float py = y == 0 ? 0.4F : 0;
 		float pz = z == 0 ? 0.4F : 0;
