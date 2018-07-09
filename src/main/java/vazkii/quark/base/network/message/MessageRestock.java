@@ -27,7 +27,12 @@ public class MessageRestock extends NetworkMessage {
 
 	@Override
 	public IMessage handleMessage(MessageContext context) {
-		DropoffHandler.restock(context.getServerHandler().player, filtered);
+		context.getServerHandler().player.getServer().addScheduledTask(new Runnable() {
+			@Override
+			public void run() {
+				DropoffHandler.restock(context.getServerHandler().player, filtered);
+			}
+		});
 		return null;
 	}
 
