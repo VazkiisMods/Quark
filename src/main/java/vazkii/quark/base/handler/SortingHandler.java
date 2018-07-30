@@ -39,6 +39,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import vazkii.quark.api.ICustomEnchantColor;
 import vazkii.quark.api.ICustomSorting;
@@ -91,10 +92,14 @@ public final class SortingHandler {
 		for(Slot s : c.inventorySlots) {
 			IInventory inv = s.inventory;
 			if((inv == player.inventory) == playerContainer) {
-				InvWrapper wrapper = new InvWrapper(inv);
-				if(playerContainer)
-					sortInventory(wrapper, 9, 36);
-				else sortInventory(wrapper);
+				if (!playerContainer && s instanceof SlotItemHandler) {
+					sortInventory(((SlotItemHandler) s).getItemHandler());
+				} else {
+					InvWrapper wrapper = new InvWrapper(inv);
+					if (playerContainer)
+						sortInventory(wrapper, 9, 36);
+					else sortInventory(wrapper);
+				}
 				break;
 			}
 		}

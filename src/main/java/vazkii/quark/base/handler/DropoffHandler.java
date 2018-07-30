@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
+import net.minecraftforge.items.SlotItemHandler;
 import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -111,9 +112,13 @@ public final class DropoffHandler {
 			accept = (name.contains("chest") || te instanceof TileEntityChest) && !name.contains("void") && !name.contains("trash");
 		}
 
-		accept = accept && te != null && te.isUsableByPlayer(player);
+		accept = accept && te.isUsableByPlayer(player);
 
 		return accept;
+	}
+
+	public static boolean isValidChest(EntityPlayer player, IItemHandler te) {
+		return te instanceof IDropoffManager && ((IDropoffManager) te).acceptsDropoff(player);
 	}
 
 	public static class Dropoff {
@@ -178,7 +183,7 @@ public final class DropoffHandler {
 				for(Slot s : c.inventorySlots) {
 					IInventory inv = s.inventory;
 					if(inv != player.inventory) {
-						itemHandlers.add(Pair.of(ContainerWrapper.provideWrapper(inv, c), 0.0));
+						itemHandlers.add(Pair.of(ContainerWrapper.provideWrapper(s, c), 0.0));
 						break;
 					}
 				}
@@ -297,7 +302,20 @@ public final class DropoffHandler {
 	public static class ContainerWrapper extends InvWrapper {
 		
 		final Container container;
-		
+
+		public static IItemHandler provideWrapper(Slot slot, Container container) {
+			if (slot instanceof SlotItemHandler) {
+				IItemHandler handler = ((SlotItemHandler) slot).getItemHandler();
+				if (handler instanceof IDropoffManager) {
+					return ((IDropoffManager) handler).getDropoffItemHandler(() -> handler);
+				} else {
+					return handler;
+				}
+			} else {
+				return provideWrapper(slot.inventory, container);
+			}
+		}
+
 		public static IItemHandler provideWrapper(IInventory inv, Container container) {
 			if(inv instanceof IDropoffManager)
 				return ((IDropoffManager) inv).getDropoffItemHandler(() -> new ContainerWrapper(inv, container));

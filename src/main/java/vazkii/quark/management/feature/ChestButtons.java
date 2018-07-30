@@ -13,6 +13,7 @@ package vazkii.quark.management.feature;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraftforge.items.SlotItemHandler;
 import org.apache.logging.log4j.Level;
 
 import com.google.common.base.Predicate;
@@ -103,6 +104,11 @@ public class ChestButtons extends Feature {
 			
 			if(!accept)
 				for(Slot s : container.inventorySlots) {
+					if (s instanceof SlotItemHandler && DropoffHandler.isValidChest(player, ((SlotItemHandler) s).getItemHandler())) {
+						accept = true;
+						break;
+					}
+
 					IInventory inv = s.inventory;
 					if(inv != null && DropoffHandler.isValidChest(player, inv)) {
 						accept = true;
