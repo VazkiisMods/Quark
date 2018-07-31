@@ -48,11 +48,12 @@ public class DoubleDoors extends Feature {
 				EntityAIBase te = it.next().action;
 				if(te instanceof EntityAIOpenDoubleDoor)
 					return;
-				else if(te instanceof EntityAIOpenDoor)
+				else if(te instanceof EntityAIOpenDoor) {
 					it.remove();
+					villager.tasks.addTask(4, new EntityAIOpenDoubleDoor(villager, true));
+					return;
+				}
 			}
-
-			villager.tasks.addTask(4, new EntityAIOpenDoubleDoor(villager, true));
 		}
 	}
 	
