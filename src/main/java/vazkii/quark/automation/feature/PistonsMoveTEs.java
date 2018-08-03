@@ -22,6 +22,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import vazkii.quark.api.IPistonCallback;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 
@@ -127,8 +128,9 @@ public class PistonsMoveTEs extends Feature {
 		
 		if(!destroyed) {
 			world.setBlockState(pos, state, flags);
-			world.setBlockState(pos, state, 0);
-
+			if(world.getTileEntity(pos) != null)
+				world.setBlockState(pos, state, 0);
+			
 			if(tile != null && !world.isRemote) {
 				if(delayedUpdateList.contains(Block.REGISTRY.getNameForObject(block).toString()))
 					registerDelayedUpdate(world, pos, tile);
