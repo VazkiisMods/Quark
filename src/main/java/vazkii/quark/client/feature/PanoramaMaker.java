@@ -227,7 +227,7 @@ public class PanoramaMaker extends Feature {
 					takingPanorama = false;
 
 					mc.player.rotationYaw = rotationYaw;
-					mc.player.rotationPitch = rotationYaw;
+					mc.player.rotationPitch = rotationPitch;
 					mc.player.prevRotationYaw = mc.player.rotationYaw;
 					mc.player.prevRotationPitch = mc.player.rotationPitch;
 
