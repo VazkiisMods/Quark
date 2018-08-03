@@ -25,6 +25,7 @@ quarkmisc.signClear=Clear
 quarkmisc.rotationLockBefore=You have enabled Rotation Lock. Any blocks you place will be oriented in the direction you were looking. Press [
 quarkmisc.rotationLockAfter=] to change or reset it. This message won't appear again.
 quarkmisc.rightClickAdd=Right-click to Add
+quarkmisc.panoramaSaved=Saved panorama as %s
 
 # CONFIG STRINGS
 quark.config.title=Quark Configuration

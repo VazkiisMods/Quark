@@ -10,6 +10,7 @@
  */
 package vazkii.quark.client.feature;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +35,8 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.ScreenShotHelper;
+import net.minecraft.util.text.*;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.ScreenshotEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -163,6 +166,10 @@ public class PanoramaMaker extends Feature {
 			currentDir.mkdirs();
 
 			event.setCanceled(true);
+			
+			ITextComponent panoramaDirComponent = new TextComponentString(currentDir.getName());
+			panoramaDirComponent.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, currentDir.getAbsolutePath())).setUnderlined(true);
+			event.setResultMessage(new TextComponentTranslation("quarkmisc.panoramaSaved", panoramaDirComponent));
 		}
 	}
 
