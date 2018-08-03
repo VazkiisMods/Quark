@@ -232,7 +232,7 @@ public class ChestSearchBar extends Feature {
 				int id = cmp.getInteger("id");
 				int lvl = cmp.getInteger("lvl");
 				Enchantment e = Enchantment.getEnchantmentByID(id);
-				if(matcher.matches(e.getTranslatedName(lvl).toLowerCase(), search))
+				if(e != null && matcher.matches(e.getTranslatedName(lvl).toLowerCase(), search))
 					return true;
 			}
 		}

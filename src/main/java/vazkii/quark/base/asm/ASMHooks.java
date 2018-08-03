@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.quark.automation.client.render.PistonTileEntityRenderer;
 import vazkii.quark.automation.feature.PistonSpikes;
 import vazkii.quark.automation.feature.PistonsMoveTEs;
+import vazkii.quark.decoration.feature.MoreBannerLayers;
 import vazkii.quark.experimental.features.ColoredLights;
 import vazkii.quark.management.feature.BetterCraftShifting;
 import vazkii.quark.misc.feature.ColorRunes;
@@ -72,8 +73,12 @@ public final class ASMHooks {
 	
 	// ===== BETTER CRAFT SHIFTING ===== //
 	
-	public static int getInventoryBoundary(int curr) {
-		return BetterCraftShifting.getInventoryBoundary(curr);
+	public static int getInventoryBoundaryCrafting(int curr) {
+		return BetterCraftShifting.getInventoryBoundaryCrafting(curr);
+	}
+	
+	public static int getInventoryBoundaryVillager(int curr) {
+		return BetterCraftShifting.getInventoryBoundaryVillager(curr);
 	}
 	
 	// ===== PISTONS MOVE TES ===== //
@@ -103,6 +108,12 @@ public final class ASMHooks {
 	public static void putColorsFlat(IBlockAccess world, IBlockState state, BlockPos pos, BufferBuilder buffer, BakedQuad quad, int brightness) {
 		ColoredLights.putColorsFlat(world, state, pos, buffer, quad, brightness);
 	}
+	
+	// ===== MORE BANNER LAYERS ===== //
+	public static int getLayerCount() {
+		return MoreBannerLayers.getLayerCount();
+	}
+
 	
 }
 	

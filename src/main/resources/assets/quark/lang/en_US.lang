@@ -27,6 +27,7 @@ quarkmisc.rotationLockAfter=] to change or reset it. This message won't appear a
 quarkmisc.rightClickAdd=Right-click to Add
 quarkmisc.panoramaSaved=Saved panorama as %s
 
+
 # CONFIG STRINGS
 quark.config.title=Quark Configuration
 quark.config.import=Import Config
@@ -571,6 +572,7 @@ entity.quark:dweller.name=Dweller
 entity.quark:ashen.name=Ashen
 entity.quark:pirate.name=Pirate
 entity.quark:wraith.name=Wraith
+entity.quark:chest_passenger.name=Boat Chest
 
 # POTION NAMES
 quark.potion.curse.name=Curse

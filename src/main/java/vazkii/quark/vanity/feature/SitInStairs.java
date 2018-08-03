@@ -39,7 +39,8 @@ public class SitInStairs extends Feature {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		EntityRegistry.registerModEntity(new ResourceLocation(LibMisc.MOD_ID, "seat"), Seat.class, "seat", LibEntityIDs.SEAT, Quark.instance, 16, 128, false);
+		String name = LibMisc.PREFIX_MOD + "seat";
+		EntityRegistry.registerModEntity(new ResourceLocation(name), Seat.class, name, LibEntityIDs.SEAT, Quark.instance, 16, 128, false);
 	}
 	
 	@SubscribeEvent
