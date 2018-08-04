@@ -20,16 +20,21 @@ import vazkii.quark.decoration.block.BlockPaperWall;
 
 public class PaperWall extends Feature {
 
-	public static Block paper_wall;
+	public static Block paper_wall, paper_wall_big;
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		paper_wall = new BlockPaperWall();
+		paper_wall = new BlockPaperWall("paper_wall");
+		paper_wall_big = new BlockPaperWall("paper_wall_big");
 
 		RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(paper_wall, 6),
 				"SSS", "PPP", "SSS",
 				'S', ProxyRegistry.newStack(Items.STICK),
 				'P', ProxyRegistry.newStack(Items.PAPER));
+		
+		RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(paper_wall_big, 4),
+				"PP", "PP",
+				'P', ProxyRegistry.newStack(paper_wall));
 	}
 
 	@Override
@@ -38,3 +43,4 @@ public class PaperWall extends Feature {
 	}
 	
 }
+

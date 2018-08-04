@@ -14,9 +14,11 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -49,7 +51,7 @@ public class BlockQuarkWall extends BlockMod implements IQuarkBlock {
 		setResistance(state.getBlock().getExplosionResistance(null) * 5F / 3F);
 		setSoundType(state.getBlock().getSoundType());
 		setDefaultState(blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
-		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
 	@Override
@@ -112,7 +114,7 @@ public class BlockQuarkWall extends BlockMod implements IQuarkBlock {
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 		Block block = iblockstate.getBlock();
 		Material material = iblockstate.getMaterial();
-		return block == Blocks.BARRIER ? false : block != this && !(block instanceof BlockFenceGate) ? material.isOpaque() && iblockstate.isFullCube() ? material != Material.GOURD : block instanceof BlockQuarkWall ? true : false : true;
+		return block == Blocks.BARRIER ? false : block != this && !(block instanceof BlockFenceGate) ? material.isOpaque() && iblockstate.isFullCube() ? material != Material.GOURD : block instanceof BlockQuarkWall || block instanceof BlockWall ? true : false : true;
 	}
 
 	@Override
@@ -134,6 +136,11 @@ public class BlockQuarkWall extends BlockMod implements IQuarkBlock {
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, new IProperty[] {UP, NORTH, EAST, WEST, SOUTH});
+	}
+	
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+		return face != EnumFacing.UP && face != EnumFacing.DOWN ? BlockFaceShape.MIDDLE_POLE_THICK : BlockFaceShape.CENTER_BIG;
 	}
 
 	@Override

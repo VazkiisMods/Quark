@@ -128,7 +128,7 @@ public class GuiConfigImport extends GuiConfigBase {
 			
 			for(String name : ModuleLoader.featureClassnames.keySet()) {
 				Feature f = ModuleLoader.featureClassnames.get(name);
-				boolean enabled = !disabledSet.contains(name);
+				boolean enabled = disabledSet.contains(name) != f.enabledByDefault;
 				if(f.prop.getBoolean() != enabled)
 					f.prop.set(enabled);
 				

@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/pane_noside_alt",
+    "textures": {
+        "pane": "quark:blocks/paper_wall_big"
+    }
+}

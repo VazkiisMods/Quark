@@ -21,6 +21,7 @@ import vazkii.quark.base.network.message.MessageDoEmote;
 import vazkii.quark.base.network.message.MessageDropoff;
 import vazkii.quark.base.network.message.MessageFavoriteItem;
 import vazkii.quark.base.network.message.MessageLinkItem;
+import vazkii.quark.base.network.message.MessageRequestPassengerChest;
 import vazkii.quark.base.network.message.MessageRestock;
 import vazkii.quark.base.network.message.MessageSetLockProfile;
 import vazkii.quark.base.network.message.MessageSortInventory;
@@ -46,6 +47,7 @@ public class MessageRegister {
 		NetworkHandler.register(MessageSetLockProfile.class, Side.SERVER);
 		NetworkHandler.register(MessageChangeHotbar.class, Side.SERVER);
 		NetworkHandler.register(MessageUpdateAfk.class, Side.SERVER);
+		NetworkHandler.register(MessageRequestPassengerChest.class, Side.SERVER);
 
 		NetworkMessage.mapHandler(LockProfile.class, LockProfile::readProfile, LockProfile::writeProfile);
 	}

@@ -21,4 +21,8 @@ public final class ModIntegrationHandler {
 		FMLInterModComms.sendMessage("chisel", "add_variation", cmp);
 	}
 	
+	public static void allowChiselAndBitsChiseling(Block b) {
+		FMLInterModComms.sendMessage("chiselsandbits", "ignoreblocklogic", b.getRegistryName());
+	}
+	
 }

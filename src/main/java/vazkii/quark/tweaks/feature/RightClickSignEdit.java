@@ -10,6 +10,7 @@
  */
 package vazkii.quark.tweaks.feature;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -37,6 +38,10 @@ public class RightClickSignEdit extends Feature {
 
 		TileEntity tile = event.getWorld().getTileEntity(event.getPos());
 		if(tile instanceof TileEntitySign && (!emptyHand || event.getEntityPlayer().getHeldItemMainhand().isEmpty()) && event.getEntityPlayer().capabilities.allowEdit && !event.getEntity().isSneaking()) {
+			IBlockState state = event.getWorld().getBlockState(event.getPos());
+			if(state.getBlock().getRegistryName().toString().contains("tcguideposts"))
+				return;
+			
 			TileEntitySign sign = (TileEntitySign) tile;
 			sign.setPlayer(event.getEntityPlayer());
 			ReflectionHelper.setPrivateValue(TileEntitySign.class, sign, true, LibObfuscation.IS_EDITABLE);

@@ -58,7 +58,7 @@ public class ThrowableDragonBreath extends Feature {
 
 		if(!world.isRemote) {
 			EntityDragonBreathBottle b = new EntityDragonBreathBottle(world, player);
-			b.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0F, 1.5F, 1F);
+			b.shoot(player, player.rotationPitch, player.rotationYaw, 0F, 1.5F, 1F);
 			world.spawnEntity(b);
 		}
 		else player.swingArm(event.getHand());

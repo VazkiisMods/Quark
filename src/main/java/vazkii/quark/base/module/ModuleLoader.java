@@ -30,6 +30,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.quark.automation.QuarkAutomation;
+import vazkii.quark.base.handler.WoodVariantReplacer;
 import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.building.QuarkBuilding;
 import vazkii.quark.client.QuarkClient;
@@ -88,6 +89,8 @@ public final class ModuleLoader {
 
 		forEachEnabled(module -> module.preInit(event));
 		forEachEnabled(module -> module.postPreInit(event));
+		
+		WoodVariantReplacer.executeReplacements();
 	}
 
 	public static void init(FMLInitializationEvent event) {

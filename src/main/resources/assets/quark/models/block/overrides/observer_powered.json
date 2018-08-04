@@ -1,0 +1,20 @@
+{
+    "parent": "block/observer",
+    "textures": {
+        "bottom": "blocks/observer_back_lit",
+        "front": "blocks/observer_front",
+        "side": "quark:blocks/observer_side_powered",
+        "top": "quark:blocks/observer_top_powered"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#top", "cullface": "down" },
+                "up":    { "uv": [ 0, 16, 16, 0 ], "texture": "#top", "cullface": "up" },
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#front", "cullface": "north" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "south" },
+                "west":  { "uv": [ 16, 16, 0, 0 ], "texture": "#side", "cullface": "west" },
+                "east":  { "uv": [ 0, 16, 16, 0 ], "texture": "#side", "cullface": "east" }
+}}]
+}

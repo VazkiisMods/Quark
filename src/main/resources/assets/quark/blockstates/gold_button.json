@@ -1,0 +1,25 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:button",
+		"textures": {
+			"texture": "minecraft:blocks/gold_block"
+		}
+	},
+    "variants": {
+        "inventory":                  { "model": "minecraft:button_inventory" },
+        "facing=up,powered=false":    { "model": "minecraft:button", "uvlock": true },
+        "facing=up,powered=false":    { "model": "minecraft:button", "uvlock": true },
+        "facing=down,powered=false":  { "model": "minecraft:button", "uvlock": true, "x": 180 },
+        "facing=east,powered=false":  { "model": "minecraft:button", "uvlock": true, "x": 90, "y": 90 },
+        "facing=west,powered=false":  { "model": "minecraft:button", "uvlock": true, "x": 90, "y": 270 },
+        "facing=south,powered=false": { "model": "minecraft:button", "uvlock": true, "x": 90, "y": 180 },
+        "facing=north,powered=false": { "model": "minecraft:button", "uvlock": true, "x": 90 },
+        "facing=up,powered=true":     { "model": "minecraft:button_pressed", "uvlock": true },
+        "facing=down,powered=true":   { "model": "minecraft:button_pressed", "uvlock": true, "x": 180 },
+        "facing=east,powered=true":   { "model": "minecraft:button_pressed", "uvlock": true, "x": 90, "y": 90 },
+        "facing=west,powered=true":   { "model": "minecraft:button_pressed", "uvlock": true, "x": 90, "y": 270 },
+        "facing=south,powered=true":  { "model": "minecraft:button_pressed", "uvlock": true, "x": 90, "y": 180 },
+        "facing=north,powered=true":  { "model": "minecraft:button_pressed", "uvlock": true, "x": 90 }
+    }
+}

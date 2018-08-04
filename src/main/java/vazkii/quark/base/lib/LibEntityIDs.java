@@ -24,5 +24,7 @@ public final class LibEntityIDs {
 	public static final int FLAT_ITEM_FRAME = 9;
 	public static final int GLASS_ITEM_FRAME = 10;
 	public static final int DRAGON_BREATH_BOTTLE = 11;
+	public static final int SEAT = 12;
+	public static final int CHEST_PASSENGER = 13;
 
 }

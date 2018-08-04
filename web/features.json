@@ -69,6 +69,21 @@
 				"description":"Dispensers can play records if there's a Jukebox directly in front of them. If there's already a record in the Jukebox, it gets placed back in the dispenser.",
 				"image":"dispenser-jukebox.jpg",
 				"introduced":11
+			},
+			{
+				"name":"Pistons Push/Pull Items",
+				"classname":"PistonsPushPullItems",
+				"description":"Pistons can push dropped items to make them fly! Sticky Pistons can't do this, but they can pull the items back.<br><br>Click the album icon in the bottom of this card for a demo video.",
+				"image":"pistons-push-items.jpg",
+				"album":"https://streamable.com/of1ew",
+				"introduced":12
+			},
+			{
+				"name":"Chute",
+				"classname":"Chute",
+				"description":"The Chute is a new automation block. Items can be inserted into it via automation (Hopper, Dropper, etc), and any items inserted are instantly dropped under it, always precisely in the center.<br><br>The Chute can be disabled with a redstone signal or by placing a block under it.",
+				"image":"chute.jpg",
+				"introduced":12
 			}
 		]
 	},
@@ -892,6 +907,13 @@
 				"description":"Nether Smokers are a new block which will spawn uncommonly on the border of lava lakes in the Nether. These blocks emit a bunch of smoke, which you can use for decoration to create chimneys or smokestacks.<br><br>Nether Smokers will not emit smoke if there's a solid block directly above them. Furthermore, creating a 1x1 chimney surrounded by solid blocks, from the smoker block upward, will cause the smoke to propagate. Combine these two with a piston and you can turn the smoke off at will on your chimney.",
 				"image":"smokers.jpg",
 				"introduced":12
+			},
+			{
+				"name": "Nether Fossils",
+				"classname":"NetherFossils",
+				"description":"Fossils will randomly spawn in the nether's lava lakes.",
+				"image":"nether-fossils.jpg",
+				"introduced":12
 			}
 		]
 	},
@@ -916,7 +938,7 @@
 			{
 				"name":"Texture Changes",
 				"classname":"BetterVanillaTextures",
-				"description":"Quark generates a \"low priority resource pack\", changing some textures to less rough or more sensible variants. Each of these can be turned off individually, and will be overriden by any other resource pack you load on top. The current changes are as follows:<ul><li>1.8 Stones (smoother texture)</li><li>Bricks (some color variance)</li><li>Glass (less spots)</li><li>Pistons (model swap to look like the pocket edition ones, sticky piston sides, 1.11 only)</li><li>Pumpkin (disables the face, off by default)</li><li>Bow (improved pull animation, with more frames)</li></ul>",
+				"description":"Quark generates a \"low priority resource pack\", changing some textures to less rough or more sensible variants. Each of these can be turned off individually, and will be overriden by any other resource pack you load on top. The current changes are as follows:<ul><li>1.8 Stones (smoother texture)</li><li>Bricks (some color variance)</li><li>Glass (less spots)</li><li>Pistons (model swap to look like the pocket edition ones, sticky piston sides, 1.11 only)</li><li>Observer (improved side/top textures to show the facing)</li><li>Bow (improved pull animation, with more frames)</li></ul>",
 				"image":"texture-changes.jpg",
 				"introduced":10
 			},
@@ -1137,6 +1159,13 @@
 				"classname":"MapMarkers",
 				"description":"Combine an Ink Sac with a Map to add a marker to where you're currently standing.<br><br>Note: At the moment, markers can't be removed, so plan wisely.",
 				"image":"map-markers.jpg",
+				"introduced":12
+			},
+			{
+				"name":"Utility Recipes",
+				"classname":"UtilityRecipes",
+				"description":"Combined Recipes for Dispensers, Redstone Repeaters, and Minecarts (with Chest/Furnace/Hopper/TNT) are added that mix the recipes of the components, making crafting these items more convenient.",
+				"image":"utility-recipes.jpg",
 				"introduced":12
 			}
 		]

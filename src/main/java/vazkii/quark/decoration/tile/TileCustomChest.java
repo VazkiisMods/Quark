@@ -136,7 +136,6 @@ public class TileCustomChest extends TileEntityChest {
 	}
 	
     @Override
-    @SuppressWarnings("unchecked")
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
         if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if(doubleChestHandler == null || doubleChestHandler.needsRefresh())

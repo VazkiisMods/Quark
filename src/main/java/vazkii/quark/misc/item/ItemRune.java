@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.arl.interf.IItemColorProvider;
 import vazkii.arl.item.ItemMod;
+import vazkii.arl.util.ClientTicker;
 import vazkii.quark.api.ICustomEnchantColor;
-import vazkii.quark.base.client.ClientTicker;
 import vazkii.quark.base.item.IQuarkItem;
 import vazkii.quark.misc.feature.ColorRunes;
 
@@ -82,7 +82,7 @@ public class ItemRune extends ItemMod implements IItemColorProvider, ICustomEnch
 		return new IItemColor() {
 
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+			public int colorMultiplier(ItemStack stack, int tintIndex) {
 				return tintIndex == 1 ? ColorRunes.getColorFromStack(stack) : 0xFFFFFF;
 			}
 		};

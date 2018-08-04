@@ -11,9 +11,6 @@
 package vazkii.quark.tweaks.feature;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockLilyPad;
-import net.minecraft.block.BlockReed;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -21,6 +18,8 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.quark.base.module.Feature;
@@ -29,12 +28,11 @@ public class HoeSickle extends Feature {
 
 	@SubscribeEvent
 	public void onBlockBroken(BlockEvent.BreakEvent event) {
-		ItemStack stack = event.getPlayer().getHeldItemMainhand();
-		if(!stack.isEmpty() && stack.getItem() instanceof ItemHoe && canHarvest(event.getState())) {
-			World world = event.getWorld();
-			EntityPlayer player = event.getPlayer();
-			BlockPos basePos = event.getPos();
-			
+		World world = event.getWorld();
+		EntityPlayer player = event.getPlayer();
+		BlockPos basePos = event.getPos();
+		ItemStack stack = player.getHeldItemMainhand();
+		if(!stack.isEmpty() && stack.getItem() instanceof ItemHoe && canHarvest(world, basePos, event.getState())) {
 			int range = 1;
 			if(stack.getItem() == Items.DIAMOND_HOE)
 				range++;
@@ -46,7 +44,7 @@ public class HoeSickle extends Feature {
 						
 						BlockPos pos = basePos.add(i, 0, k);
 						IBlockState state = world.getBlockState(pos);
-						if(canHarvest(state)) {
+						if(canHarvest(world, pos, state)) {
 							Block block = state.getBlock();
 							if(block.canHarvestBlock(world, pos, player))
 								block.harvestBlock(world, player, pos, state, world.getTileEntity(pos), stack);
@@ -59,9 +57,15 @@ public class HoeSickle extends Feature {
 		}
 	}
 	
-	private boolean canHarvest(IBlockState state) {
+	private boolean canHarvest(World world, BlockPos pos, IBlockState state) {
 		Block block = state.getBlock();
-		return (block instanceof BlockBush && !(block instanceof BlockLilyPad)) || block instanceof BlockReed;
+		if(block instanceof IPlantable) {
+			IPlantable plant = (IPlantable) block;
+			EnumPlantType type = plant.getPlantType(world, pos);
+			return type != EnumPlantType.Water && type != EnumPlantType.Desert;
+		}
+		
+		return false;
 	}
 	
 	@Override

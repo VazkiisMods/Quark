@@ -38,15 +38,16 @@ public class GuiButtonTrash extends GuiButton implements IParentedGui {
 		if(parent instanceof GuiContainer) {
 			EntityPlayer player = par1Minecraft.player;
 			ItemStack hovered = player.inventory.getItemStack();
-			if(DeleteItems.canItemBeDeleted(hovered))
+			if(DeleteItems.canItemBeDeleted(hovered)) {
 				u += 16;
+			}
 		}
 		
 		par1Minecraft.renderEngine.bindTexture(LibMisc.GENERAL_ICONS_RESOURCE);
 		GlStateManager.color(1F, 1F, 1F, 1F);
 		drawIcon(u, v);
 		
-		ready = (k == 2 && u != 0);
+		ready = k == 2 && u != 0;
 		if(ready) {
 			GlStateManager.pushMatrix();
 			String tooltip = I18n.translateToLocal("quarkmisc.trashButtonOpen"); 

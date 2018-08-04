@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "minecraft:cube_all",
+        "transform": "forge:default-block",
+        "textures": {
+            "block": "minecraft:blocks/netherrack"
+        }
+    },
+    "variants": {
+        "inventory": [{ "model": "quark:speleothem_medium" }],
+        "size=small": [{ "model": "quark:speleothem_small" }],
+        "size=medium": [{ "model": "quark:speleothem_medium" }],
+        "size=big": [{ "model": "quark:speleothem_big" }]
+    }
+}

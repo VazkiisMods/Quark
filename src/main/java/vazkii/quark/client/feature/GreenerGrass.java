@@ -114,5 +114,10 @@ public class GreenerGrass extends Feature {
 			}
 		};
 	}
+	
+	@Override
+	public String[] getIncompatibleMods() {
+		return new String[] { "toughasnails" };
+	}
 
 }

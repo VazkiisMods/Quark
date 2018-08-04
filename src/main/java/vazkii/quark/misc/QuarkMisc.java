@@ -20,6 +20,7 @@ import vazkii.quark.misc.feature.SlimeBucket;
 import vazkii.quark.misc.feature.SnowGolemPlayerHeads;
 import vazkii.quark.misc.feature.SoulPowder;
 import vazkii.quark.misc.feature.ThrowableDragonBreath;
+import vazkii.quark.misc.feature.UtilityRecipes;
 
 public class QuarkMisc extends Module {
 
@@ -42,6 +43,7 @@ public class QuarkMisc extends Module {
 		registerFeature(new PlaceVanillaDusts());
 		registerFeature(new MapMarkers());
 		registerFeature(new ExtraPotions());
+		registerFeature(new UtilityRecipes());
 	}
 	
 	@Override

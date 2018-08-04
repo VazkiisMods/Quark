@@ -1,0 +1,29 @@
+{
+    "multipart": [
+        {   "apply": { "model": "quark:paper_wall_post_big" }},
+        {   "when": { "north": true },
+            "apply": { "model": "quark:paper_wall_side_big" }
+        },
+        {   "when": { "east": true },
+            "apply": { "model": "quark:paper_wall_side_big", "y": 90 }
+        },
+        {   "when": { "south": true },
+            "apply": { "model": "quark:paper_wall_side_alt_big" }
+        },
+        {   "when": { "west": true },
+            "apply": { "model": "quark:paper_wall_side_alt_big", "y": 90 }
+        },
+        {   "when": { "north": false },
+            "apply": { "model": "quark:paper_wall_noside_big" }
+        },
+        {   "when": { "east": false },
+            "apply": { "model": "quark:paper_wall_noside_alt_big" }
+        },
+        {   "when": { "south": false },
+            "apply": { "model": "quark:paper_wall_noside_alt_big", "y": 90 }
+        },
+        {   "when": { "west": false },
+            "apply": { "model": "quark:paper_wall_noside_big", "y": 270 }
+        }
+    ]
+}

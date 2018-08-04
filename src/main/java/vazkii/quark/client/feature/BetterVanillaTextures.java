@@ -1,12 +1,14 @@
 package vazkii.quark.client.feature;
 
+import java.util.function.BiConsumer;
+
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.Feature;
 
 public class BetterVanillaTextures extends Feature {
 
-	boolean granite, andesite, diorite, bricks, glass, pumpkinFace, pistonModels, bowAnimation;
+	boolean granite, andesite, diorite, bricks, glass, pumpkinFace, pistonModels, bowAnimation, observer;
 	
 	@Override
 	public void setupConfig() {
@@ -18,6 +20,7 @@ public class BetterVanillaTextures extends Feature {
 		pumpkinFace = loadPropBool("Override Pumpkin Front Face", "", false);
 		pistonModels = loadPropBool("Override Piston Models", "", true);
 		bowAnimation = loadPropBool("Override Bow Animation", "", true);
+		observer = loadPropBool("Override Observer", "", true);
 	}
 	
 	@Override
@@ -29,12 +32,12 @@ public class BetterVanillaTextures extends Feature {
 		overrideBlock("glass", glass);
 		overrideBlock("pumpkin_face_off", pumpkinFace);
 		
-		overrideBlockModel("piston_extended_normal", pistonModels);
-		overrideBlockModel("piston_head_normal", pistonModels);
-		overrideBlockModel("piston_head_short_sticky", pistonModels);
-		overrideBlockModel("piston_head_sticky", pistonModels);
-		overrideBlockModel("piston_inventory_sticky", pistonModels);
-		overrideBlockModel("sticky_piston", pistonModels);
+		batch(this::overrideBlockModel, pistonModels,
+				"piston_extended_normal", "piston_head_normal", "piston_head_short_sticky",
+				"piston_head_sticky", "piston_inventory_sticky", "sticky_piston");
+		
+		batch(this::overrideBlockModel, observer,
+				"observer", "observer_powered");
 		
 		overrideItemModel("bow", bowAnimation);
 	}
@@ -52,6 +55,11 @@ public class BetterVanillaTextures extends Feature {
 	private void overrideItemModel(String str, boolean flag) {
 		if(flag)
 			Quark.proxy.addResourceOverride("models", "item", str, "json");
+	}
+	
+	private void batch(BiConsumer<String, Boolean> f, boolean flag, String... vars) {
+		for(String s : vars)
+			f.accept(s, flag);
 	}
 
 	@Override

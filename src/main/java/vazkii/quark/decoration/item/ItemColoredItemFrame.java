@@ -108,7 +108,7 @@ public class ItemColoredItemFrame extends ItemMod implements IItemColorProvider,
 		return new IItemColor() {
 
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+			public int colorMultiplier(ItemStack stack, int tintIndex) {
 				return tintIndex == 1 ? ItemDye.DYE_COLORS[15 - Math.min(15, stack.getItemDamage())] : 0xFFFFFF;
 			}
 		};

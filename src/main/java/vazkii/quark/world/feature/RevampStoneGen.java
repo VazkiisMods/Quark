@@ -63,7 +63,7 @@ public class RevampStoneGen extends Feature {
 		outputCSV = loadPropBool("Output CSV Debug Info", "If this is true, CSV debug info will be printed out to the console on init, to help test biome spreads.", false);
 
 		int defSize = 14;
-		int defRarity = 15;
+		int defRarity = 9;
 		int defUpper = 80;
 		int defLower = 20;
 

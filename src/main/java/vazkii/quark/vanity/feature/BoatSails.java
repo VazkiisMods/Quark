@@ -106,8 +106,10 @@ public class BoatSails extends Feature {
 			return;
 
 		ItemStack banner = getBanner(boat);
-		if(!banner.isEmpty())
+		if(!banner.isEmpty()) {
+			banner.setCount(1);
 			boat.entityDropItem(banner, 0F);
+		}
 	}
 
 	@Override

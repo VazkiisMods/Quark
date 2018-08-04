@@ -29,7 +29,12 @@ public class MessageDropoff extends NetworkMessage {
 
 	@Override
 	public IMessage handleMessage(MessageContext context) {
-		DropoffHandler.dropoff(context.getServerHandler().player, smart, useContainer);
+		context.getServerHandler().player.getServer().addScheduledTask(new Runnable() {
+			@Override
+			public void run() {
+				DropoffHandler.dropoff(context.getServerHandler().player, smart, useContainer);
+			}
+		});
 		return null;
 	}
 

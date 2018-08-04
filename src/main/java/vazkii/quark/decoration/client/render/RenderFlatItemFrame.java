@@ -175,7 +175,7 @@ public class RenderFlatItemFrame extends RenderItemFrame {
 	@Override
 	protected void renderName(EntityItemFrame entity, double x, double y, double z) {
 		if(Minecraft.isGuiEnabled() && !entity.getDisplayedItem().isEmpty() && entity.getDisplayedItem().hasDisplayName() && renderManager.pointedEntity == entity) {
-			double d0 = entity.getDistanceSqToEntity(renderManager.renderViewEntity);
+			double d0 = entity.getDistanceSq(renderManager.renderViewEntity);
 			float f = entity.isSneaking() ? 32.0F : 64.0F;
 
 			if(d0 < f * f) {

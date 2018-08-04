@@ -10,25 +10,18 @@
  */
 package vazkii.quark.decoration.feature;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import vazkii.arl.block.BlockMod;
+import vazkii.arl.recipe.BlacklistOreIngredient;
 import vazkii.arl.recipe.RecipeHandler;
 import vazkii.arl.util.ProxyRegistry;
+import vazkii.quark.base.handler.WoodVariantReplacer;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.decoration.block.BlockCustomBookshelf;
 
@@ -49,21 +42,8 @@ public class VariedBookshelves extends Feature {
 			Blocks.BOOKSHELF.setUnlocalizedName("oak_bookshelf");
 		
 		custom_bookshelf = new BlockCustomBookshelf();
-
-		List<ResourceLocation> recipeList = new ArrayList(CraftingManager.REGISTRY.getKeys());
-		for(ResourceLocation res : recipeList) {
-			IRecipe recipe = CraftingManager.REGISTRY.getObject(res);
-			ItemStack out = recipe.getRecipeOutput();
-			if(recipe instanceof ShapedRecipes && !out.isEmpty() && (out.getItem() == Item.getItemFromBlock(Blocks.BOOKSHELF))) {
-				ShapedRecipes shaped = (ShapedRecipes) recipe;
-				NonNullList<Ingredient> ingredients = shaped.recipeItems;
-				for(int i = 0; i < ingredients.size(); i++) {
-					Ingredient ingr = ingredients.get(i);
-					if(ingr.apply(ProxyRegistry.newStack(Blocks.PLANKS)))
-						ingredients.set(i, Ingredient.fromStacks(ProxyRegistry.newStack(Blocks.PLANKS, 1, 0)));
-				}
-			}
-		}
+		
+		WoodVariantReplacer.addReplacements(Blocks.BOOKSHELF);
 		
 		for(int i = 0; i < 5; i++)
 			RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(custom_bookshelf, 1, i),
@@ -71,9 +51,10 @@ public class VariedBookshelves extends Feature {
 					'W', ProxyRegistry.newStack(Blocks.PLANKS, 1, i + 1),
 					'B', ProxyRegistry.newStack(Items.BOOK));
 		
+		Ingredient wood = new BlacklistOreIngredient("plankWood", (stack) -> stack.getItem() == Item.getItemFromBlock(Blocks.PLANKS));
 		RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(Blocks.BOOKSHELF),
 				"WWW", "BBB", "WWW",
-				'W', "plankWood",
+				'W', wood,
 				'B', ProxyRegistry.newStack(Items.BOOK));
 	}
 

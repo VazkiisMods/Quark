@@ -1,0 +1,15 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:pressure_plate_up",
+		"textures": {
+			"texture": "minecraft:blocks/planks_jungle"
+		}
+	},
+	"variants": {
+		"normal": [{}],
+		"inventory": [{}],
+		"powered=false": [{}],
+		"powered=true": [{ "model": "minecraft:pressure_plate_down" }]
+	}
+}

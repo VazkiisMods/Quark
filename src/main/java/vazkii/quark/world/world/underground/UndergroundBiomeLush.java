@@ -39,7 +39,7 @@ public class UndergroundBiomeLush extends BasicUndergroundBiome {
 			if(vineChance > 0 && isCeiling(world, up, world.getBlockState(up)) && world.rand.nextInt(vineChance) == 0) {
 				IBlockState stateAt = world.getBlockState(off); 
 				boolean did = false;
-				while(stateAt.getBlock().isAir(stateAt, world, off)) {
+				while(stateAt.getBlock().isAir(stateAt, world, off) && off.getY() > 0) {
 					world.setBlockState(off, Blocks.VINE.getDefaultState().withProperty(BlockVine.getPropertyFor(facing.getOpposite()), true), 2);
 					off = off.down();
 					stateAt = world.getBlockState(off);

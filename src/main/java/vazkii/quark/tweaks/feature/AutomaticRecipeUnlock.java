@@ -43,7 +43,7 @@ public class AutomaticRecipeUnlock extends Feature {
 	public void onPlayerLoggedIn(PlayerLoggedInEvent event) {
 		if(event.player instanceof EntityPlayerMP) {
 			ArrayList<IRecipe> recipes = Lists.newArrayList(CraftingManager.REGISTRY);
-			recipes.removeIf((recipe) -> ignored.contains(recipe.getRegistryName().toString()));
+			recipes.removeIf((recipe) -> ignored.contains(recipe.getRegistryName().toString()) || recipe.getRecipeOutput().isEmpty());
 			((EntityPlayerMP) event.player).unlockRecipes(recipes);
 			
 			if(forceLimitedCrafting)

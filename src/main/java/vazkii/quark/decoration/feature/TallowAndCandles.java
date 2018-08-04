@@ -7,6 +7,7 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -25,7 +26,7 @@ public class TallowAndCandles extends Feature {
 	
 	public static boolean candlesFall;
 	boolean enableTallow;
-	int minDrop, maxDrop, candlesCrafted;
+	int minDrop, maxDrop, candlesCrafted, tallowBurnTime;
 	
 	@Override
 	public void setupConfig() {
@@ -34,6 +35,7 @@ public class TallowAndCandles extends Feature {
 		minDrop = loadPropInt("Min Tallow Dropped", "", 1);
 		maxDrop = loadPropInt("Max Tallow Dropped", "", 3);
 		candlesCrafted = loadPropInt("Candles Crafted", "", 2);
+		tallowBurnTime = loadPropInt("Tallow Burn Time", "", 200);
 	}
 	
 	@Override
@@ -73,6 +75,12 @@ public class TallowAndCandles extends Feature {
 			if(drops > 0)
 				event.getDrops().add(new EntityItem(e.world, e.posX, e.posY, e.posZ, new ItemStack(tallow, drops)));
 		}
+	}
+	
+	@SubscribeEvent
+	public void onFurnaceTimeCheck(FurnaceFuelBurnTimeEvent event) {
+		if(event.getItemStack().getItem() == tallow && tallowBurnTime > 0)
+			event.setBurnTime(tallowBurnTime);
 	}
 	
 	@Override

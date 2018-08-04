@@ -16,7 +16,7 @@ quarkmisc.keyboundButton=%sPress %s
 quarkmisc.nowAfk=You are now AFK (Away From Keyboard).
 quarkmisc.leftAfk=You are no longer AFK.
 quarkmisc.personSleeping=%s is now sleeping.
-# The %s is very important!
+# The %s is very important!paper
 quarkmisc.sleepingListHeader=Sleeping Players: %s
 quarkmisc.buried_chest_map=Buried Treasure Map
 quarkmisc.trashButtonOpen=Click to Delete
@@ -24,6 +24,9 @@ quarkmisc.signShift=Shift
 quarkmisc.signClear=Clear
 quarkmisc.rotationLockBefore=You have enabled Rotation Lock. Any blocks you place will be oriented in the direction you were looking. Press [
 quarkmisc.rotationLockAfter=] to change or reset it. This message won't appear again.
+quarkmisc.rightClickAdd=Right-click to Add
+quarkmisc.panoramaSaved=Saved panorama as %s
+
 
 # CONFIG STRINGS
 quark.config.title=Quark Configuration
@@ -176,6 +179,7 @@ tile.quark:reed_block.name=Sugar Cane Block
 tile.quark:reed_block_slab.name=Sugar Cane Slab
 tile.quark:reed_block_stairs.name=Sugar Cane Stairs
 tile.quark:paper_wall.name=Paper Wall
+tile.quark:paper_wall_big.name=Big Paper Wall
 tile.quark:bark_oak.name=Oak Bark
 tile.quark:bark_spruce.name=Spruce Bark
 tile.quark:bark_birch.name=Birch Bark
@@ -468,6 +472,30 @@ tile.quark:candle_red.name=Red Candle
 tile.quark:magma_bricks.name=Magma Bricks
 tile.quark:magma_bricks_stairs.name=Magma Brick Stairs
 tile.quark:magma_bricks_slab.name=Magma Brick Slab
+tile.quark:chute.name=Chute
+tile.quark:stone_speleothem.name=Stone Speleothem
+tile.quark:granite_speleothem.name=Granite Speleothem
+tile.quark:diorite_speleothem.name=Diorite Speleothem
+tile.quark:andesite_speleothem.name=Andesite Speleothem
+tile.quark:basalt_speleothem.name=Basalt Speleothem
+tile.quark:marble_speleothem.name=Marble Speleothem
+tile.quark:limestone_speleothem.name=Limestone Speleothem
+tile.quark:netherrack_speleothem.name=Netherrack Speleothem
+tile.quark:spruce_pressure_plate.name=Spruce Pressure Plate
+tile.quark:birch_pressure_plate.name=Birch Pressure Plate
+tile.quark:jungle_pressure_plate.name=Jungle Pressure Plate
+tile.quark:acacia_pressure_plate.name=Acacia Pressure Plate
+tile.quark:dark_oak_pressure_plate.name=Dark Oak Pressure Plate
+tile.oak_pressure_plate.name=Oak Pressure Plate
+tile.quark:spruce_button.name=Spruce Button
+tile.quark:birch_button.name=Birch Button
+tile.quark:jungle_button.name=Jungle Button
+tile.quark:acacia_button.name=Acacia Button
+tile.quark:dark_oak_button.name=Dark Oak Button
+tile.oak_button.name=Oak Button
+tile.quark:iron_button.name=Iron Button
+tile.quark:gold_button.name=Gold Button
+tile.quark:sugar_block.name=Sugar Block
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -560,6 +588,7 @@ entity.quark:dweller.name=Dweller
 entity.quark:ashen.name=Ashen
 entity.quark:pirate.name=Pirate
 entity.quark:wraith.name=Wraith
+entity.quark:chest_passenger.name=Boat Chest
 
 # POTION NAMES
 quark.potion.curse.name=Curse

@@ -34,7 +34,7 @@ import vazkii.quark.base.module.Feature;
 public class AutomaticToolRestock extends Feature {
 
 	private static final WeakHashMap<EntityPlayer, Stack<Pair<Integer, Integer>>> replacements = new WeakHashMap();
-	
+
 	public List<Enchantment> importantEnchants = new ArrayList();
 	private String[] enchantNames;
 	private boolean enableLooseMatching;
@@ -75,7 +75,7 @@ public class AutomaticToolRestock extends Feature {
 			Predicate<ItemStack> itemPredicate = (other) -> other.getItem() == item;
 			if(!stack.isItemStackDamageable())
 				itemPredicate = itemPredicate.and((other) -> other.getItemDamage() == stack.getItemDamage());
-			
+
 			Predicate<ItemStack> enchantmentPredicate = (other) -> !(new ArrayList(enchantmentsOnStack)).retainAll(getImportantEnchantments(other));
 
 			if(enableEnchantMatching && findReplacement(player, currSlot, itemPredicate.and(enchantmentPredicate)))
@@ -86,11 +86,14 @@ public class AutomaticToolRestock extends Feature {
 
 			if(enableLooseMatching) {
 				Set<String> classes = getItemClasses(stack);
-				
-				if(!classes.isEmpty()) {
-					Predicate<ItemStack> toolPredicate = (other) -> !getItemClasses(other).retainAll(classes);
 
-					if(enableEnchantMatching && findReplacement(player, currSlot, toolPredicate.and(enchantmentPredicate)))
+				if(!classes.isEmpty()) {
+					Predicate<ItemStack> toolPredicate = (other) -> {
+						Set<String> otherClasses = getItemClasses(other);
+						return !otherClasses.isEmpty() && !otherClasses.retainAll(classes);
+					};
+
+					if(enableEnchantMatching && !enchantmentsOnStack.isEmpty() && findReplacement(player, currSlot, toolPredicate.and(enchantmentPredicate)))
 						return;
 
 					findReplacement(player, currSlot, toolPredicate);
@@ -98,13 +101,13 @@ public class AutomaticToolRestock extends Feature {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event) {
 		if(event.phase == Phase.END && replacements.containsKey(event.player)) {
 			Stack<Pair<Integer, Integer>> replacementStack = replacements.get(event.player);
-			while(!replacementStack.isEmpty()) {
-				if(!replacementStack.isEmpty()) { // this was crashing with EmptyStackException so I just put this here? idk
+			synchronized(this) {
+				while(!replacementStack.isEmpty()) {
 					Pair<Integer, Integer> pair = replacementStack.pop();
 					switchItems(event.player, pair.getLeft(), pair.getRight());
 				}
@@ -122,7 +125,7 @@ public class AutomaticToolRestock extends Feature {
 			return new HashSet(Arrays.asList("bow"));
 		else if(item instanceof ItemFishingRod)
 			return new HashSet(Arrays.asList("fishing_rod"));
-		
+
 		return new HashSet();
 	}
 
@@ -132,7 +135,7 @@ public class AutomaticToolRestock extends Feature {
 				continue;
 
 			ItemStack stackAt = player.inventory.getStackInSlot(i);
-			if(match.test(stackAt)) {
+			if(!stackAt.isEmpty() && match.test(stackAt)) {
 				pushReplace(player, i, currSlot);
 				return true;
 			}
@@ -140,11 +143,13 @@ public class AutomaticToolRestock extends Feature {
 
 		return false;
 	}
-	
+
 	private void pushReplace(EntityPlayer player, int slot1, int slot2) {
-		if(!replacements.containsKey(player))
-			replacements.put(player, new Stack());
-		replacements.get(player).push(Pair.of(slot1, slot2));
+		synchronized(this) {
+			if(!replacements.containsKey(player))
+				replacements.put(player, new Stack());
+			replacements.get(player).push(Pair.of(slot1, slot2));
+		}
 	}
 
 	private void switchItems(EntityPlayer player, int slot1, int slot2) {

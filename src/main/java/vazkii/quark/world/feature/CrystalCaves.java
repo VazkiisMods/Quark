@@ -9,6 +9,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import vazkii.arl.recipe.RecipeHandler;
 import vazkii.arl.util.ProxyRegistry;
 import vazkii.quark.base.handler.DimensionConfig;
+import vazkii.quark.base.handler.ModIntegrationHandler;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.misc.feature.ColorRunes;
@@ -33,6 +34,8 @@ public class CrystalCaves extends Feature {
 		crystal = new BlockCrystal();
 		
 		GameRegistry.registerWorldGenerator(new CrystalCaveGenerator(dims), 1);
+		
+		ModIntegrationHandler.allowChiselAndBitsChiseling(crystal);
 	}
 	
 	@Override
@@ -48,7 +51,7 @@ public class CrystalCaves extends Feature {
 			addRuneRecipe(7, 2);
 		}
 	}
-
+	
 	private void addRuneRecipe(int crystalMeta, int runeMeta) {
 		RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(ColorRunes.rune, 1, runeMeta), 
 				"CCC", "CSC", "CCC",

@@ -66,9 +66,9 @@ public class VisualStatDisplay extends Feature {
 					if(VALID_ATTRIBUTES.contains(s))
 						allDesc += ItemStack.DECIMALFORMAT.format(getAttribute(event.getEntityPlayer(), stack, slotAttributes, s));
 						
-					String name = I18n.translateToLocal("attribute.name." + s);
+					String pattern = ".* ?\\+?\\d+ " + I18n.translateToLocal("attribute.name." + s) + "$";
 					for(int i = 1; i < tooltip.size(); i++)
-						if(tooltip.get(i).contains(name)) {
+						if(tooltip.get(i).matches(pattern)) {
 							tooltip.remove(i);
 							clearedAny = true;
 							break;
@@ -175,7 +175,8 @@ public class VisualStatDisplay extends Feature {
 
 	private boolean isAttributeStrippable(ItemStack stack) {
 		Item item = stack.getItem();
-		return !stack.isEmpty() && (item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemArmor || item instanceof ItemHoe);
+		boolean tool = !stack.isEmpty() && (item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemArmor || item instanceof ItemHoe);
+		return tool && (!stack.hasTagCompound() || (stack.getTagCompound().getInteger("HideFlags") & 2) == 0);
 	}
 
 	private double getAttribute(EntityPlayer player, ItemStack stack, Multimap<String, AttributeModifier> map, String key) {

@@ -59,7 +59,7 @@ public class DyableElytra extends Feature {
 		mc.getItemColors().registerItemColorHandler(new IItemColor() {
 
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+			public int colorMultiplier(ItemStack stack, int tintIndex) {
 				int color = ItemNBTHelper.getInt(stack, TAG_ELYTRA_DYE, -1);
 				if(color == -1 || color == 15)
 					return -1;

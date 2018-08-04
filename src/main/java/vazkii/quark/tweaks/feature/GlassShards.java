@@ -17,6 +17,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import vazkii.arl.recipe.RecipeHandler;
@@ -47,7 +48,7 @@ public class GlassShards extends Feature {
 		OreDictionary.registerOre("shardGlass", glass_shard);
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.LOW)
 	public void onDrops(HarvestDropsEvent event) {
 		Block block = event.getState().getBlock();
 		if(event.getDrops() != null && event.getDrops().isEmpty() && block != null && (block == Blocks.GLASS || block == Blocks.STAINED_GLASS) && !event.isSilkTouching()) {

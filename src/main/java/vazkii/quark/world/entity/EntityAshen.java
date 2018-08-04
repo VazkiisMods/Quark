@@ -36,6 +36,9 @@ public class EntityAshen extends EntitySkeleton {
 		ItemStack stack = new ItemStack(Items.TIPPED_ARROW);
 		PotionUtils.appendEffects(stack, ImmutableSet.of(new PotionEffect(MobEffects.BLINDNESS, 50, 0)));
 		setHeldItem(EnumHand.OFF_HAND, stack);
+		
+		inventoryHandsDropChances[0] = 0;
+		inventoryHandsDropChances[1] = 0;
 	}
 
 	@Override

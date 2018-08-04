@@ -25,6 +25,7 @@ import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration.Type;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
@@ -40,6 +41,8 @@ public class PathfinderMaps extends Feature {
 	public static boolean unlockAllAtOnce;
 	public static boolean multipleAtFirstUnlock;
 	public static boolean printAllBiomeNames;
+	
+	private String[] customs;
 	
 	@Override
 	public void setupConfig() {
@@ -79,12 +82,13 @@ public class PathfinderMaps extends Feature {
 				+ " - <name> being the display name of the map\n\n"
 				+ "Here's an example of a map to locate Ice Mountains:\n"
 				+ "minecraft:ice_mountains,2,8,14,7FE4FF,Ice Mountains Pathfinder Map";
-		String[] customs = loadPropStringList("Custom Map Info", desc, new String[0]);
-		loadCustomMaps(customs);
+		customs = loadPropStringList("Custom Map Info", desc, new String[0]);
  	}
 	
 	@SubscribeEvent
 	public void onRegisterVillagers(RegistryEvent.Register<VillagerProfession> event) {
+		loadCustomMaps(customs);
+		
 		VillagerProfession librarian = event.getRegistry().getValue(new ResourceLocation("minecraft:librarian"));
 		VillagerCareer cartographer = librarian.getCareer(1);
 		

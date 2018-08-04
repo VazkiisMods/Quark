@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"normal": { "model": "quark:sugar_block" }
+	}
+}

@@ -26,85 +26,26 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.arl.item.ItemModBlock;
 import vazkii.arl.util.ProxyRegistry;
+import vazkii.quark.base.block.BlockQuarkPressurePlate;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.lib.LibMisc;
 
-public class BlockObsidianPressurePlate extends BlockPressurePlate implements IQuarkBlock {
-
-	private final String[] variants;
-	private final String bareName;
+public class BlockObsidianPressurePlate extends BlockQuarkPressurePlate {
 
 	public BlockObsidianPressurePlate() {
-		super(Material.ROCK, Sensitivity.MOBS);
+		super("obsidian_pressure_plate", Material.ROCK, Sensitivity.MOBS);
 		setHardness(50.0F);
 		setResistance(2000.0F);
 		setSoundType(SoundType.STONE);
-
-		bareName = "obsidian_pressure_plate";
-		variants = new String[] { bareName };
-
-		setUnlocalizedName(bareName);
 	}
-
+	
 	@Override
-	protected int computeRedstoneStrength(World worldIn, BlockPos pos) {
-		AxisAlignedBB axisalignedbb = PRESSURE_AABB.offset(pos);
-
-		List<? extends Entity> list = worldIn.<Entity>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
-
-		if(!list.isEmpty())
-			for(Entity entity : list)
-				if(!entity.doesEntityNotTriggerPressurePlate())
-					return 15;
-
-		return 0;
-	}
-
-
-	@Override
-	public Block setUnlocalizedName(String name) {
-		super.setUnlocalizedName(name);
-		setRegistryName(LibMisc.PREFIX_MOD + name);
-		ProxyRegistry.register(this);
-		ProxyRegistry.register(new ItemModBlock(this, new ResourceLocation(LibMisc.PREFIX_MOD + name)));
-		return this;
-	}
-
-	@Override
-	public String getBareName() {
-		return bareName;
-	}
-
-	@Override
-	public String[] getVariants() {
-		return variants;
-	}
-
-	@Override
-	public ItemMeshDefinition getCustomMeshDefinition() {
-		return null;
-	}
-
-	@Override
-	public EnumRarity getBlockRarity(ItemStack stack) {
-		return EnumRarity.COMMON;
-	}
-
-	@Override
-	public IProperty[] getIgnoredProperties() {
-		return new IProperty[0];
-	}
-
-	@Override
-	public IProperty getVariantProp() {
-		return null;
-	}
-
-	@Override
-	public Class getVariantEnum() {
-		return null;
+	protected List<Entity> getValidEntities(World world, AxisAlignedBB aabb) {
+		return world.getEntitiesWithinAABB(EntityPlayer.class, aabb);
 	}
 
 }

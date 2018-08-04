@@ -8,7 +8,6 @@ import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentBase;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -20,12 +19,12 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.MouseInputEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.actors.threadpool.Arrays;
 import vazkii.arl.network.NetworkHandler;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
@@ -153,6 +152,19 @@ public class ImprovedSleeping extends Feature {
 		}
 	}
 
+    @SubscribeEvent
+    public void onPlayerLogout(PlayerLoggedOutEvent event) {
+        World logoutWorld = event.player.world;
+        List<EntityPlayer> players = logoutWorld.playerEntities;
+        if(players.size() == 1) {
+            EntityPlayer lastPlayer = players.get(0);
+            lastPlayer.getEntityData().setBoolean(TAG_AFK, false);
+            TextComponentTranslation text = new TextComponentTranslation("quarkmisc.leftAfk");
+            text.getStyle().setColor(TextFormatting.AQUA);
+            lastPlayer.sendMessage(text);
+        }
+    }
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onClientTick(ClientTickEvent event) {

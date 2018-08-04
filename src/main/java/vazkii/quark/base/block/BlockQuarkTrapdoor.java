@@ -15,13 +15,21 @@ import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.arl.item.ItemModBlock;
 import vazkii.arl.util.ProxyRegistry;
 import vazkii.quark.base.lib.LibMisc;
+import vazkii.quark.decoration.feature.IronLadders;
 
 public class BlockQuarkTrapdoor extends BlockTrapDoor implements IQuarkBlock {
 
@@ -40,6 +48,17 @@ public class BlockQuarkTrapdoor extends BlockTrapDoor implements IQuarkBlock {
 		setUnlocalizedName(name);
 		useNeighborBrightness = true;
 	}
+	
+    @Override
+    public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
+        if(state.getValue(OPEN))  {
+            IBlockState down = world.getBlockState(pos.down());
+            if(down.getBlock() == Blocks.LADDER || down.getBlock() == IronLadders.iron_ladder)
+                return down.getValue(FACING) == state.getValue(FACING);
+        }
+        
+        return false;
+    }
 
 	@Override
 	public Block setUnlocalizedName(String name) {
@@ -61,6 +80,7 @@ public class BlockQuarkTrapdoor extends BlockTrapDoor implements IQuarkBlock {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ItemMeshDefinition getCustomMeshDefinition() {
 		return null;
 	}

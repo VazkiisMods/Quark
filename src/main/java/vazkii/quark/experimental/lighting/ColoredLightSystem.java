@@ -12,7 +12,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeModContainer;
-import vazkii.quark.base.client.ClientTicker;
+import vazkii.arl.util.ClientTicker;
 
 public final class ColoredLightSystem {
 
@@ -99,6 +99,7 @@ public final class ColoredLightSystem {
 			src.newFrame();
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	public static void addLightSource(IBlockAccess access, BlockPos pos, IBlockState state) {
 		if(!(access instanceof World))
 			return;

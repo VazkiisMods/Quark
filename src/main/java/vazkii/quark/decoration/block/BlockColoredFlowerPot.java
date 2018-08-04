@@ -9,7 +9,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,12 +18,12 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.arl.interf.IBlockColorProvider;
 import vazkii.arl.interf.IRecipeGrouped;
 import vazkii.arl.item.ItemModBlock;
@@ -88,6 +87,7 @@ public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ItemMeshDefinition getCustomMeshDefinition() {
 		return null;
 	}
@@ -113,11 +113,13 @@ public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IItemColor getItemColor() {
 		return (stack, i) -> 0xFFFFFF;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IBlockColor getBlockColor() {
 		return (state, world, pos, i) -> Minecraft.getMinecraft().getBlockColors().colorMultiplier(Blocks.FLOWER_POT.getDefaultState(), world, pos, i);
 	}

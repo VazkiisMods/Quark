@@ -120,7 +120,7 @@ public class CompassAngleGetter implements IItemPropertyGetter {
 
 	@SideOnly(Side.CLIENT)
 	private double getFrameRotation(EntityItemFrame frame) {
-		return MathHelper.clampAngle(180 + frame.facingDirection.getHorizontalIndex() * 90);
+		return MathHelper.wrapDegrees(180 + frame.facingDirection.getHorizontalIndex() * 90);
 	}
 
 	@SideOnly(Side.CLIENT)

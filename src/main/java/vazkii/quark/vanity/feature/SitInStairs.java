@@ -20,16 +20,29 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
+import vazkii.quark.base.Quark;
+import vazkii.quark.base.lib.LibEntityIDs;
+import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 
 public class SitInStairs extends Feature {
 
+	@Override
+	public void preInit(FMLPreInitializationEvent event) {
+		String name = LibMisc.PREFIX_MOD + "seat";
+		EntityRegistry.registerModEntity(new ResourceLocation(name), Seat.class, name, LibEntityIDs.SEAT, Quark.instance, 16, 128, false);
+	}
+	
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent.RightClickBlock event) {
 		EntityPlayer player = event.getEntityPlayer();

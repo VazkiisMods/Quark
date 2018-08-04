@@ -1,0 +1,44 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "particle": "quark:blocks/chute_side",
+        "side": "quark:blocks/chute_side",
+        "top": "quark:blocks/chute_top",
+        "bottom": "quark:blocks/chute_bottom"
+    },
+    "elements": [
+        {   "from": [ 0, 10, 0 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "texture": "#bottom" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#side" },
+                "east":  { "texture": "#side" }
+            }
+        },
+        {   "from": [ 4, 4, 4 ],
+            "to": [ 12, 10, 12 ],
+            "faces": {
+                "down":  { "texture": "#bottom" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#side" },
+                "east":  { "texture": "#side" }
+            }
+        },
+        {   "from": [ 6, 0, 6 ],
+            "to": [ 10, 4, 10 ],
+            "faces": {
+                "down":  { "texture": "#bottom" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#side" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

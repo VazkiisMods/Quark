@@ -12,9 +12,9 @@ package vazkii.quark.vanity.client.emotes;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
+import vazkii.arl.util.ClientTicker;
 import vazkii.aurelienribon.tweenengine.Timeline;
 import vazkii.aurelienribon.tweenengine.TweenManager;
-import vazkii.quark.base.client.ClientTicker;
 
 public abstract class EmoteBase {
 

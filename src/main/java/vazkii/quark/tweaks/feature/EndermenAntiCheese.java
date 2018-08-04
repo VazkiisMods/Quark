@@ -105,8 +105,9 @@ public class EndermenAntiCheese extends Feature {
 			entity.world.setBlockToAir(pos);
 			entity.world.playEvent(2001, pos, Block.getStateId(state));
 			
-			for(ItemStack drop : drops)
-				entity.world.spawnEntity(new EntityItem(entity.world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
+			if(!target.world.isRemote)
+				for(ItemStack drop : drops)
+					entity.world.spawnEntity(new EntityItem(entity.world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
 		}
 	}
 

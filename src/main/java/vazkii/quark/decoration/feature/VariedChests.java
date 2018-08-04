@@ -10,9 +10,7 @@
  */
 package vazkii.quark.decoration.feature;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import net.minecraft.block.BlockChest.Type;
@@ -21,11 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -34,9 +28,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import vazkii.arl.recipe.BlacklistOreIngredient;
 import vazkii.arl.recipe.RecipeHandler;
 import vazkii.arl.util.ProxyRegistry;
 import vazkii.quark.base.handler.ModIntegrationHandler;
+import vazkii.quark.base.handler.WoodVariantReplacer;
 import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.decoration.block.BlockCustomChest;
@@ -90,20 +86,7 @@ public class VariedChests extends Feature {
 			Blocks.TRAPPED_CHEST.setUnlocalizedName("oak_chest_trap");
 		}
 
-		List<ResourceLocation> recipeList = new ArrayList(CraftingManager.REGISTRY.getKeys());
-		for(ResourceLocation res : recipeList) {
-			IRecipe recipe = CraftingManager.REGISTRY.getObject(res);
-			ItemStack out = recipe.getRecipeOutput();
-			if(recipe instanceof ShapedRecipes && !out.isEmpty() && (out.getItem() == Item.getItemFromBlock(Blocks.CHEST) || out.getItem() == Item.getItemFromBlock(Blocks.TRAPPED_CHEST))) {
-				ShapedRecipes shaped = (ShapedRecipes) recipe;
-				NonNullList<Ingredient> ingredients = shaped.recipeItems;
-				for(int i = 0; i < ingredients.size(); i++) {
-					Ingredient ingr = ingredients.get(i);
-					if(ingr.apply(ProxyRegistry.newStack(Blocks.PLANKS)))
-						ingredients.set(i, Ingredient.fromStacks(ProxyRegistry.newStack(Blocks.PLANKS, 1, 0)));
-				}
-			}
-		}
+		WoodVariantReplacer.addReplacements(Blocks.CHEST, Blocks.TRAPPED_CHEST);
 
 		RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(Blocks.CHEST),
 				"WWW", "W W", "WWW",
@@ -136,12 +119,14 @@ public class VariedChests extends Feature {
 			RecipeHandler.addShapelessOreDictRecipe(outTrap, out.copy(), ProxyRegistry.newStack(Blocks.TRIPWIRE_HOOK));
 			i++;
 		}
-
 		// Low priority ore dictionary recipes
+		Ingredient wood = new BlacklistOreIngredient("plankWood", (stack) -> stack.getItem() == Item.getItemFromBlock(Blocks.PLANKS));
+		Ingredient chest = new BlacklistOreIngredient("chestWood", (stack) -> stack.getItem() == Item.getItemFromBlock(custom_chest));
+
 		RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(Blocks.CHEST),
 				"WWW", "W W", "WWW",
-				'W', "plankWood");
-		RecipeHandler.addShapelessOreDictRecipe(ProxyRegistry.newStack(Blocks.TRAPPED_CHEST), "chestWood", ProxyRegistry.newStack(Blocks.TRIPWIRE_HOOK));
+				'W', wood);
+		RecipeHandler.addShapelessOreDictRecipe(ProxyRegistry.newStack(Blocks.TRAPPED_CHEST), chest, ProxyRegistry.newStack(Blocks.TRIPWIRE_HOOK));
 
 		// Vanilla recipe replacement
 		RecipeHandler.addOreDictRecipe(ProxyRegistry.newStack(Blocks.HOPPER),

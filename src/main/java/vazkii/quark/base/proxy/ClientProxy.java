@@ -22,13 +22,11 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import vazkii.quark.base.client.ClientTicker;
 import vazkii.quark.base.client.DevCapeHandler;
 import vazkii.quark.base.client.ResourceProxy;
 import vazkii.quark.base.client.gui.ConfigEvents;
 import vazkii.quark.base.lib.LibObfuscation;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.quark.vanity.client.emotes.CustomEmoteIconResourcePack;
 import vazkii.quark.vanity.client.emotes.EmoteHandler;
 import vazkii.quark.vanity.feature.EmoteSystem;
 
@@ -54,7 +52,7 @@ public class ClientProxy extends CommonProxy {
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
 		ModuleLoader.initClient(event);
-		MinecraftForge.EVENT_BUS.register(ClientTicker.class);
+
 		MinecraftForge.EVENT_BUS.register(DevCapeHandler.class);
 		MinecraftForge.EVENT_BUS.register(ConfigEvents.class);
 	}

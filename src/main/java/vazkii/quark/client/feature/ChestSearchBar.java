@@ -167,12 +167,12 @@ public class ChestSearchBar extends Feature {
 	}
 	
 	private void drawBackground(GuiScreen gui, int x, int y) {
-		if(gui instanceof IItemSearchBar && ((IItemSearchBar) gui).renderBackground(x, y))
+		if(gui instanceof IItemSearchBar && ((IItemSearchBar) gui).renderBackground(x, y) || gui == null)
 			return;
 		
 		GlStateManager.color(1F, 1F, 1F, 1F);
 		GlStateManager.disableLighting();
-		gui.mc.getTextureManager().bindTexture(LibMisc.GENERAL_ICONS_RESOURCE);
+		Minecraft.getMinecraft().getTextureManager().bindTexture(LibMisc.GENERAL_ICONS_RESOURCE);
 		Gui.drawModalRectWithCustomSizedTexture(x, y, 0, 244, 90, 12, 256, 256);
 	}
 	
@@ -232,7 +232,7 @@ public class ChestSearchBar extends Feature {
 				int id = cmp.getInteger("id");
 				int lvl = cmp.getInteger("lvl");
 				Enchantment e = Enchantment.getEnchantmentByID(id);
-				if(matcher.matches(e.getTranslatedName(lvl).toLowerCase(), search))
+				if(e != null && matcher.matches(e.getTranslatedName(lvl).toLowerCase(), search))
 					return true;
 			}
 		}

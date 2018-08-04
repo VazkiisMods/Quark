@@ -6,6 +6,7 @@ import org.lwjgl.input.Mouse;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -29,58 +30,64 @@ public class DeleteItems extends Feature {
 	boolean keyboardDown = false;
 	boolean mouseDown = false;
 	GuiButtonTrash trash;
+	
+	boolean trashButton, playerInvOnly;
+	int trashButtonX, trashButtonY;
+	
+	@Override
+	public void setupConfig() {
+		trashButton = loadPropBool("Enable Trash Button", "", true);
+		playerInvOnly = loadPropBool("Trash Button only on Player Inventory", "", false);
+		trashButtonX = loadPropInt("Trash Button X", "", 3);
+		trashButtonY = loadPropInt("Trash Button Y", "", -25);
+	}
 
-//	Will be used eventually
-//	@SubscribeEvent
-//	@SideOnly(Side.CLIENT)
-//	public void initGui(GuiScreenEvent.InitGuiEvent.Post event) {
-//		trash = null;
-//		if(event.getGui() instanceof GuiContainer) {
-//			GuiContainer guiInv = (GuiContainer) event.getGui();
-//			Container container = guiInv.inventorySlots;
-//			EntityPlayer player = Minecraft.getMinecraft().player;
-//			
-//			boolean accept = guiInv instanceof GuiContainer;
-//
-//			if(!accept)
-//				return;
-//
-//			int guiLeft = guiInv.getGuiLeft();
-//			int guiTop = guiInv.getGuiTop();
-//			int guiWidth = guiInv.getXSize();
-//			int guiHeight = guiInv.getYSize();
-//
-//			for(Slot s : container.inventorySlots)
-//				if(s.inventory == player.inventory && s.getSlotIndex() == 9) {
-//					trash = new GuiButtonTrash(guiInv, 82424, guiLeft + guiWidth + 2, guiTop + guiHeight - 25);
-//					event.getButtonList().add(trash);
-//					break;
-//				}
-//		}
-//	}
-//
-//	@SubscribeEvent
-//	public void mouseEvent(GuiScreenEvent.MouseInputEvent.Pre event) {
-//		handleMouseclick(event);
-//	}
-//	
-//	@SubscribeEvent
-//	public void mouseEvent(MouseEvent event) {
-//		handleMouseclick(event);
-//	}
-//	
-//	private void handleMouseclick(Event event) {
-//		mouseDown = Mouse.isButtonDown(0);
-//		boolean click = mouseDown;
-//
-//		GuiScreen current = Minecraft.getMinecraft().currentScreen;
-//		if(click && current instanceof GuiContainer) {
-//			GuiContainer gui = (GuiContainer) current;
-//			if(trash != null && trash.ready) {
-//				event.setCanceled(true);
-//			}
-//		}
-//	}
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void initGui(GuiScreenEvent.InitGuiEvent.Post event) {
+		trash = null;
+		if(event.getGui() instanceof GuiContainer && trashButton) {
+			GuiContainer guiInv = (GuiContainer) event.getGui();
+			Container container = guiInv.inventorySlots;
+			EntityPlayer player = Minecraft.getMinecraft().player;
+			
+			boolean accept = guiInv instanceof GuiContainer;
+			if(playerInvOnly)
+				accept = guiInv instanceof GuiInventory;
+			
+			if(!accept || player.isCreative())
+				return;
+
+			int guiLeft = guiInv.getGuiLeft();
+			int guiTop = guiInv.getGuiTop();
+			int guiWidth = guiInv.getXSize();
+			int guiHeight = guiInv.getYSize();
+
+			for(Slot s : container.inventorySlots)
+				if(s.inventory == player.inventory && s.getSlotIndex() == 9) {
+					trash = new GuiButtonTrash(guiInv, 82424, guiLeft + guiWidth, guiTop + guiHeight + trashButtonY);
+					event.getButtonList().add(trash);
+					break;
+				}
+		}
+	}
+
+	@SubscribeEvent
+	public void mouseEvent(GuiScreenEvent.MouseInputEvent.Pre event) {
+		boolean oldMouseDown = mouseDown;
+		mouseDown = Mouse.isButtonDown(0);
+
+		Minecraft mc = Minecraft.getMinecraft();
+		GuiScreen current = Minecraft.getMinecraft().currentScreen;
+		if(mouseDown != oldMouseDown && current instanceof GuiContainer) {
+			GuiContainer gui = (GuiContainer) current;
+			if(trash != null && trash.ready) {
+				NetworkHandler.INSTANCE.sendToServer(new MessageDeleteItem(-1));
+				event.setCanceled(true);
+				mc.player.inventory.setItemStack(ItemStack.EMPTY);
+			}
+		}
+	}
 	
 	@SubscribeEvent
 	public void keyboardEvent(GuiScreenEvent.KeyboardInputEvent.Post event) {
@@ -105,13 +112,17 @@ public class DeleteItems extends Feature {
 	}
 	
 	public static void deleteItem(EntityPlayer player, int slot) {
-		if(slot > player.inventory.mainInventory.size() || !canItemBeDeleted(player.inventory.getStackInSlot(slot)))
+		if(slot > player.inventory.mainInventory.size())
 			return;
 		
-		if(slot == player.inventory.mainInventory.size())
+		ItemStack stack = slot == -1 ? player.inventory.getItemStack() : player.inventory.getStackInSlot(slot);
+		if(!canItemBeDeleted(stack))
+			return;
+		
+		if(slot == -1)
 			player.inventory.setItemStack(ItemStack.EMPTY);
-
-		player.inventory.setInventorySlotContents(slot, ItemStack.EMPTY);
+		else 
+			player.inventory.setInventorySlotContents(slot, ItemStack.EMPTY);
 	}
 	
 	public static boolean canItemBeDeleted(ItemStack stack) {

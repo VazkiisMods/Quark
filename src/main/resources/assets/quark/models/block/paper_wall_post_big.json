@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/pane_post",
+    "textures": {
+        "edge": "quark:blocks/paper_wall_top",
+        "pane": "quark:blocks/paper_wall_big"
+    }
+}

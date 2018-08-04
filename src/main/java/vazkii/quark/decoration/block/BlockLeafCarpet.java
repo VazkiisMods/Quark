@@ -66,9 +66,9 @@ public class BlockLeafCarpet extends BlockMetaVariants implements IBlockColorPro
 		return new IItemColor() {
 
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+			public int colorMultiplier(ItemStack stack, int tintIndex) {
 				ItemStack baseStack = Variants.class.getEnumConstants()[Math.min(5, stack.getItemDamage())].baseStack;
-				return Minecraft.getMinecraft().getItemColors().getColorFromItemstack(baseStack, tintIndex);
+				return Minecraft.getMinecraft().getItemColors().colorMultiplier(baseStack, tintIndex);
 			}
 
 		};

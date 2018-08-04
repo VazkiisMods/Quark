@@ -16,21 +16,18 @@ import java.util.function.Function;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityMinecartChest;
-import net.minecraft.entity.item.EntityMinecartCommandBlock;
 import net.minecraft.entity.item.EntityMinecartEmpty;
-import net.minecraft.entity.item.EntityMinecartFurnace;
-import net.minecraft.entity.item.EntityMinecartHopper;
-import net.minecraft.entity.item.EntityMinecartMobSpawner;
-import net.minecraft.entity.item.EntityMinecartTNT;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import vazkii.quark.base.module.Feature;
 
 public class MinecartInteraction extends Feature {
@@ -45,15 +42,25 @@ public class MinecartInteraction extends Feature {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		inserters.put(Item.getItemFromBlock(Blocks.CHEST), (EntityMinecartEmpty e) -> new EntityMinecartChest(e.getEntityWorld(), e.posX, e.posY, e.posZ));
-		inserters.put(Item.getItemFromBlock(Blocks.TNT), (EntityMinecartEmpty e) -> new EntityMinecartTNT(e.getEntityWorld(), e.posX, e.posY, e.posZ));
-		inserters.put(Item.getItemFromBlock(Blocks.FURNACE), (EntityMinecartEmpty e) -> new EntityMinecartFurnace(e.getEntityWorld(), e.posX, e.posY, e.posZ));
-		inserters.put(Item.getItemFromBlock(Blocks.HOPPER), (EntityMinecartEmpty e) -> new EntityMinecartHopper(e.getEntityWorld(), e.posX, e.posY, e.posZ));
+		inserters.put(Item.getItemFromBlock(Blocks.CHEST), (EntityMinecartEmpty e) -> getMinecart(new ResourceLocation("minecraft", "chest_minecart"), e.getEntityWorld(), e.posX, e.posY, e.posZ));
+		inserters.put(Item.getItemFromBlock(Blocks.TNT), (EntityMinecartEmpty e) -> getMinecart(new ResourceLocation("minecraft", "tnt_minecart"), e.getEntityWorld(), e.posX, e.posY, e.posZ));
+		inserters.put(Item.getItemFromBlock(Blocks.FURNACE), (EntityMinecartEmpty e) -> getMinecart(new ResourceLocation("minecraft", "furnace_minecart"), e.getEntityWorld(), e.posX, e.posY, e.posZ));
+		inserters.put(Item.getItemFromBlock(Blocks.HOPPER), (EntityMinecartEmpty e) -> getMinecart(new ResourceLocation("minecraft", "hopper_minecart"), e.getEntityWorld(), e.posX, e.posY, e.posZ));
 
 		if(enableCommandAndSpawner) {
-			inserters.put(Item.getItemFromBlock(Blocks.COMMAND_BLOCK), (EntityMinecartEmpty e) -> new EntityMinecartCommandBlock(e.getEntityWorld(), e.posX, e.posY, e.posZ));
-			inserters.put(Item.getItemFromBlock(Blocks.MOB_SPAWNER), (EntityMinecartEmpty e) -> new EntityMinecartMobSpawner(e.getEntityWorld(), e.posX, e.posY, e.posZ));
+			inserters.put(Item.getItemFromBlock(Blocks.COMMAND_BLOCK), (EntityMinecartEmpty e) -> getMinecart(new ResourceLocation("minecraft", "commandblock_minecart"), e.getEntityWorld(), e.posX, e.posY, e.posZ));
+			inserters.put(Item.getItemFromBlock(Blocks.MOB_SPAWNER), (EntityMinecartEmpty e) -> getMinecart(new ResourceLocation("minecraft", "spawner_minecart"), e.getEntityWorld(), e.posX, e.posY, e.posZ));
 		}
+	}
+	
+	EntityMinecart getMinecart(ResourceLocation rl, World world, double x, double y, double z) {
+		try {
+			Class<? extends Entity> minecartClass = ForgeRegistries.ENTITIES.getValue(rl).getEntityClass();
+			return (EntityMinecart) minecartClass.getConstructor(World.class, double.class, double.class, double.class).newInstance(world, x, y, z);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@SubscribeEvent
@@ -72,16 +79,19 @@ public class MinecartInteraction extends Feature {
 				player.swingArm(hand);
 
 				if(!event.getWorld().isRemote) {
-					target.setDead();
-					event.getWorld().spawnEntity(inserters.get(stack.getItem()).apply((EntityMinecartEmpty) target));
-
-
-					event.setCanceled(true);
-					if(!player.capabilities.isCreativeMode) {
-						stack.shrink(1);
-
-						if(stack.getCount() <= 0)
-							player.setHeldItem(hand, ItemStack.EMPTY);
+					EntityMinecart minecart = inserters.get(stack.getItem()).apply((EntityMinecartEmpty) target);
+					if(minecart != null) {
+						target.setDead();
+						event.getWorld().spawnEntity(minecart);
+	
+	
+						event.setCanceled(true);
+						if(!player.capabilities.isCreativeMode) {
+							stack.shrink(1);
+	
+							if(stack.getCount() <= 0)
+								player.setHeldItem(hand, ItemStack.EMPTY);
+						}
 					}
 				}
 			}

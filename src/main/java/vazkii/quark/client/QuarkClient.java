@@ -11,6 +11,7 @@ import vazkii.quark.client.feature.FoodTooltip;
 import vazkii.quark.client.feature.GreenerGrass;
 import vazkii.quark.client.feature.ImprovedMountHUD;
 import vazkii.quark.client.feature.ImprovedSignEdit;
+import vazkii.quark.client.feature.ItemsFlashBeforeExpiring;
 import vazkii.quark.client.feature.LessIntrusiveShields;
 import vazkii.quark.client.feature.MapTooltip;
 import vazkii.quark.client.feature.NoPotionShift;
@@ -40,6 +41,7 @@ public class QuarkClient extends Module {
 		registerFeature(new PanoramaMaker());
 		registerFeature(new ImprovedSignEdit());
 		registerFeature(new UsageTicker());
+		registerFeature(new ItemsFlashBeforeExpiring());
 	}
 	
 	@Override

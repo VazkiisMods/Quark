@@ -13,20 +13,26 @@ package vazkii.quark.decoration.block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import vazkii.quark.base.block.BlockQuarkPane;
 
 public class BlockPaperWall extends BlockQuarkPane {
 
-	public BlockPaperWall() {
-		super("paper_wall", Material.CLOTH);
+	public BlockPaperWall(String name) {
+		super(name, Material.CLOTH);
 		setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
 	@Override
 	public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return true;
+		return !state.getValue(NORTH) && !state.getValue(SOUTH) && !state.getValue(EAST) && !state.getValue(WEST);
+	}
+	
+	@Override
+	public boolean canPaneConnectTo(IBlockAccess world, BlockPos pos, EnumFacing dir) {
+		return super.canPaneConnectTo(world, pos, dir) || world.getBlockState(pos.offset(dir)).getBlock() instanceof BlockPaperWall;
 	}
 
 }
