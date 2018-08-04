@@ -24,6 +24,9 @@ quarkmisc.signShift=切换
 quarkmisc.signClear=清空
 quarkmisc.rotationLockBefore=你启动了锁定朝向。你所放置的方块将朝向将根据你之前看向的方向而定。你可以按【
 quarkmisc.rotationLockAfter=】以改变或重置朝向。此提示将不会再次出现。
+quarkmisc.rightClickAdd=右击以添加
+quarkmisc.panoramaSaved=已将全景图存储至%s
+
 
 # CONFIG STRINGS
 quark.config.title=夸克 配置
@@ -176,6 +179,7 @@ tile.quark:reed_block.name=甘蔗块
 tile.quark:reed_block_slab.name=甘蔗台阶
 tile.quark:reed_block_stairs.name=甘蔗楼梯
 tile.quark:paper_wall.name=纸墙
+tile.quark:paper_wall_big.name=大型纸墙
 tile.quark:bark_oak.name=橡树树皮
 tile.quark:bark_spruce.name=云杉树皮
 tile.quark:bark_birch.name=白桦树皮
@@ -469,6 +473,29 @@ tile.quark:magma_bricks.name=岩浆砖
 tile.quark:magma_bricks_stairs.name=岩浆砖楼梯
 tile.quark:magma_bricks_slab.name=岩浆砖台阶
 tile.quark:chute.name=给料槽
+tile.quark:stone_speleothem.name=石头钟乳石
+tile.quark:granite_speleothem.name=花岗岩钟乳石
+tile.quark:diorite_speleothem.name=闪长岩钟乳石
+tile.quark:andesite_speleothem.name=安山岩钟乳石
+tile.quark:basalt_speleothem.name=玄武岩钟乳石
+tile.quark:marble_speleothem.name=大理石钟乳石
+tile.quark:limestone_speleothem.name=石灰石钟乳石
+tile.quark:netherrack_speleothem.name=地狱岩钟乳石
+tile.quark:spruce_pressure_plate.name=云杉木压力板
+tile.quark:birch_pressure_plate.name=白桦木压力板
+tile.quark:jungle_pressure_plate.name=丛林木压力板
+tile.quark:acacia_pressure_plate.name=金合欢木压力板
+tile.quark:dark_oak_pressure_plate.name=深色橡木压力板
+tile.oak_pressure_plate.name=橡木压力板
+tile.quark:spruce_button.name=云杉木按钮
+tile.quark:birch_button.name=白桦木按钮
+tile.quark:jungle_button.name=丛林木按钮
+tile.quark:acacia_button.name=金合欢木按钮
+tile.quark:dark_oak_button.name=深色橡木按钮
+tile.oak_button.name=橡木按钮
+tile.quark:iron_button.name=铁质按钮
+tile.quark:gold_button.name=金质按钮
+tile.quark:sugar_block.name=糖方块
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
@@ -561,6 +588,7 @@ entity.quark:dweller.name=穴居僵尸
 entity.quark:ashen.name=穴居骷髅
 entity.quark:pirate.name=海盗
 entity.quark:wraith.name=游魂
+entity.quark:chest_passenger.name=箱子
 
 # POTION NAMES
 quark.potion.curse.name=诅咒
