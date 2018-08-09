@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": { 
+		"layer0": "quark:items/egg_parrot",
+		"layer1": "quark:items/egg_parrot_overlay"
+	}
+}

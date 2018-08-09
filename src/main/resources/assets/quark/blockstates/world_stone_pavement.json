@@ -1,0 +1,15 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:cube_all",
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"variant=stone_diorite_pavement": [{ "textures": { "all": "quark:blocks/stone_diorite_pavement" } }],
+		"variant=stone_granite_pavement": [{ "textures": { "all": "quark:blocks/stone_granite_pavement" } }],
+		"variant=stone_andesite_pavement": [{ "textures": { "all": "quark:blocks/stone_andesite_pavement" } }],
+		"variant=stone_basalt_pavement": [{ "textures": { "all": "quark:blocks/stone_basalt_pavement" } }],
+		"variant=stone_marble_pavement": [{ "textures": { "all": "quark:blocks/stone_marble_pavement" } }],
+		"variant=stone_limestone_pavement": [{ "textures": { "all": "quark:blocks/stone_limestone_pavement" } }]
+	}
+}

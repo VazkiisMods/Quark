@@ -496,6 +496,15 @@ tile.oak_button.name=Oak Button
 tile.quark:iron_button.name=Iron Button
 tile.quark:gold_button.name=Gold Button
 tile.quark:sugar_block.name=Sugar Block
+tile.quark:redstone_randomizer.name=Redstone Randomizer
+tile.quark:stone_diorite_pavement.name=Diorite Pavement
+tile.quark:stone_granite_pavement.name=Granite Pavement
+tile.quark:stone_andesite_pavement.name=Andesite Pavement
+tile.quark:stone_basalt_pavement.name=Basalt Pavement
+tile.quark:stone_marble_pavement.name=Marble Pavement
+tile.quark:stone_limestone_pavement.name=Limestone Pavement
+tile.quark:framed_glass.name=Framed Glass
+tile.quark:framed_glass_pane.name=Framed Glass Pane
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -580,6 +589,11 @@ item.quark:glass_item_frame.name=Glass Item Frame
 item.quark:enderdragon_scale.name=Dragon Scale
 item.quark:trowel.name=Trowel
 item.quark:tallow.name=Tallow
+item.quark:red_parrot_egg.name=Red Parrot Egg
+item.quark:blue_parrot_egg.name=Blue Parrot Egg
+item.quark:cyan_parrot_egg.name=Cyan Parrot Egg
+item.quark:green_parrot_egg.name=Green Parrot Egg
+item.quark:grey_parrot_egg.name=Grey Parrot Egg
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Colored Item Frame

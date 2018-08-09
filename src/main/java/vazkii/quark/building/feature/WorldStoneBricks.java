@@ -108,18 +108,14 @@ public class WorldStoneBricks extends Feature {
 		ModIntegrationHandler.registerChiselVariant("diorite", ProxyRegistry.newStack(world_stone_bricks, 1, 1));
 		ModIntegrationHandler.registerChiselVariant("andesite", ProxyRegistry.newStack(world_stone_bricks, 1, 2));
 
-		if(BlockWorldStoneBricks.Variants.STONE_BASALT_BRICKS.isEnabled()) {
+		if(BlockWorldStoneBricks.Variants.STONE_BASALT_BRICKS.isEnabled())
 			ModIntegrationHandler.registerChiselVariant("basalt", ProxyRegistry.newStack(world_stone_bricks, 1, 3));
-		}
 
-		if(BlockWorldStoneBricks.Variants.STONE_MARBLE_BRICKS.isEnabled()) {
+		if(BlockWorldStoneBricks.Variants.STONE_MARBLE_BRICKS.isEnabled())
 			ModIntegrationHandler.registerChiselVariant("marble", ProxyRegistry.newStack(world_stone_bricks, 1, 4));
-		}
 
-		if(BlockWorldStoneBricks.Variants.STONE_LIMESTONE_BRICKS.isEnabled()) {
+		if(BlockWorldStoneBricks.Variants.STONE_LIMESTONE_BRICKS.isEnabled())
 			ModIntegrationHandler.registerChiselVariant("limestone", ProxyRegistry.newStack(world_stone_bricks, 1, 5));
-		}
-
 	}
 	
 	@Override

@@ -14,6 +14,7 @@ import vazkii.quark.misc.feature.LockDirectionHotkey;
 import vazkii.quark.misc.feature.MapMarkers;
 import vazkii.quark.misc.feature.NoteBlockInterface;
 import vazkii.quark.misc.feature.NoteBlocksMobSounds;
+import vazkii.quark.misc.feature.ParrotEggs;
 import vazkii.quark.misc.feature.PlaceVanillaDusts;
 import vazkii.quark.misc.feature.PoisonPotatoUsage;
 import vazkii.quark.misc.feature.SlimeBucket;
@@ -44,6 +45,7 @@ public class QuarkMisc extends Module {
 		registerFeature(new MapMarkers());
 		registerFeature(new ExtraPotions());
 		registerFeature(new UtilityRecipes());
+		registerFeature(new ParrotEggs());
 	}
 	
 	@Override
