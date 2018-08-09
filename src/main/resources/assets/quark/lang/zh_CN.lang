@@ -496,6 +496,15 @@ tile.oak_button.name=橡木按钮
 tile.quark:iron_button.name=铁质按钮
 tile.quark:gold_button.name=金质按钮
 tile.quark:sugar_block.name=糖方块
+tile.quark:redstone_randomizer.name=红石随机发生器
+tile.quark:stone_diorite_pavement.name=闪长岩铺路石
+tile.quark:stone_granite_pavement.name=花岗岩铺路石
+tile.quark:stone_andesite_pavement.name=安山岩铺路石
+tile.quark:stone_basalt_pavement.name=玄武岩铺路石
+tile.quark:stone_marble_pavement.name=大理石铺路石
+tile.quark:stone_limestone_pavement.name=石灰石铺路石
+tile.quark:framed_glass.name=有框玻璃
+tile.quark:framed_glass_pane.name=有框玻璃板
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
@@ -580,6 +589,11 @@ item.quark:glass_item_frame.name=玻璃物品展示框
 item.quark:enderdragon_scale.name=龙鳞
 item.quark:trowel.name=泥铲
 item.quark:tallow.name=油脂
+item.quark:red_parrot_egg.name=红色鹦鹉蛋
+item.quark:blue_parrot_egg.name=蓝色鹦鹉蛋
+item.quark:cyan_parrot_egg.name=青色鹦鹉蛋
+item.quark:green_parrot_egg.name=绿色鹦鹉蛋
+item.quark:grey_parrot_egg.name=灰色鹦鹉蛋
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=染色物品展示框
