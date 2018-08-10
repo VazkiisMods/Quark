@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.quark.automation.client.render.PistonTileEntityRenderer;
 import vazkii.quark.automation.feature.PistonSpikes;
 import vazkii.quark.automation.feature.PistonsMoveTEs;
+import vazkii.quark.client.feature.BetterFireEffect;
 import vazkii.quark.decoration.feature.MoreBannerLayers;
 import vazkii.quark.experimental.features.ColoredLights;
 import vazkii.quark.management.feature.BetterCraftShifting;
@@ -114,6 +115,10 @@ public final class ASMHooks {
 		return MoreBannerLayers.getLayerCount();
 	}
 
+	// ===== BETTER FIRE EFFECT ==== //
+	public static boolean renderFire(Entity entity, double x, double y, double z, float pticks) {
+		return BetterFireEffect.renderFire(entity, x, y, z, pticks);
+	}
 	
 }
 	

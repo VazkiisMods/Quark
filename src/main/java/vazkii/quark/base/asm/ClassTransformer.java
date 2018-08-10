@@ -101,6 +101,9 @@ public class ClassTransformer implements IClassTransformer {
 		// For More Banner Layers
 		transformers.put("net.minecraft.item.crafting.RecipesBanners$RecipeAddPattern", ClassTransformer::transformRecipeAddPattern);
 		transformers.put("net.minecraft.item.ItemBanner", ClassTransformer::transformItemBanner);
+		
+		// Better Fire Effect
+		transformers.put("net.minecraft.client.renderer.entity.Render", ClassTransformer::transformRender);
 	}
 
 	@Override
@@ -489,6 +492,34 @@ public class ClassTransformer implements IClassTransformer {
 
 		MethodSignature sig = new MethodSignature("appendHoverTextFromTileEntityTag", "func_185054_a", "a", "(Lnet/minecraft/item/ItemStack;Ljava/util/List;)V");
 		return transform(basicClass, Pair.of(sig, layerCountTransformer));
+	}
+	
+	private static byte[] transformRender(byte[] basicClass) {
+		log("Transforming Render");
+		
+		MethodSignature sig = new MethodSignature("renderEntityOnFire", "func_76977_a", "a", "(Lnet/minecraft/entity/Entity;DDDF)V");
+
+		return transform(basicClass, Pair.of(sig, combine(
+				(AbstractInsnNode node) -> { // Filter
+					return true;
+				},
+				(MethodNode method, AbstractInsnNode node) -> { // Action
+					InsnList newInstructions = new InsnList();
+
+					newInstructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
+					newInstructions.add(new VarInsnNode(Opcodes.DLOAD, 2));
+					newInstructions.add(new VarInsnNode(Opcodes.DLOAD, 4));
+					newInstructions.add(new VarInsnNode(Opcodes.DLOAD, 6));
+					newInstructions.add(new VarInsnNode(Opcodes.FLOAD, 8));	
+					newInstructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, ASM_HOOKS, "renderFire", "(Lnet/minecraft/entity/Entity;DDDF)Z"));
+					LabelNode label = new LabelNode();
+					newInstructions.add(new JumpInsnNode(Opcodes.IFEQ, label));
+					newInstructions.add(new InsnNode(Opcodes.RETURN));
+					newInstructions.add(label);
+
+					method.instructions.insertBefore(node, newInstructions);
+					return true;
+				})));
 	}
 
 	// BOILERPLATE BELOW ==========================================================================================================================================

@@ -505,6 +505,7 @@ tile.quark:stone_marble_pavement.name=Marble Pavement
 tile.quark:stone_limestone_pavement.name=Limestone Pavement
 tile.quark:framed_glass.name=Framed Glass
 tile.quark:framed_glass_pane.name=Framed Glass Pane
+tile.quark:paper_lantern.name=Paper Lamp
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard

@@ -10,6 +10,7 @@
  */
 package vazkii.quark.decoration.block;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,6 +23,8 @@ public class BlockPaperWall extends BlockQuarkPane {
 
 	public BlockPaperWall(String name) {
 		super(name, Material.CLOTH);
+		setHardness(1.5F);
+		setSoundType(SoundType.WOOD);
 		setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 

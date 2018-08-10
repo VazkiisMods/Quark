@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import vazkii.quark.base.module.Module;
 import vazkii.quark.client.feature.AngryCreepers;
 import vazkii.quark.client.feature.AutoJumpHotkey;
+import vazkii.quark.client.feature.BetterFireEffect;
 import vazkii.quark.client.feature.BetterVanillaTextures;
 import vazkii.quark.client.feature.ChestSearchBar;
 import vazkii.quark.client.feature.FoodTooltip;
@@ -42,6 +43,7 @@ public class QuarkClient extends Module {
 		registerFeature(new ImprovedSignEdit());
 		registerFeature(new UsageTicker());
 		registerFeature(new ItemsFlashBeforeExpiring());
+		registerFeature(new BetterFireEffect());
 	}
 	
 	@Override

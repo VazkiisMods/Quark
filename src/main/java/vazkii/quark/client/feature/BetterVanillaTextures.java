@@ -8,7 +8,7 @@ import vazkii.quark.base.module.Feature;
 
 public class BetterVanillaTextures extends Feature {
 
-	boolean granite, andesite, diorite, bricks, glass, pumpkinFace, pistonModels, bowAnimation, observer;
+	boolean granite, andesite, diorite, bricks, glass, pumpkinFace, pistonModels, bowAnimation, observer, beetrootSeeds;
 	
 	@Override
 	public void setupConfig() {
@@ -21,6 +21,7 @@ public class BetterVanillaTextures extends Feature {
 		pistonModels = loadPropBool("Override Piston Models", "", true);
 		bowAnimation = loadPropBool("Override Bow Animation", "", true);
 		observer = loadPropBool("Override Observer", "", true);
+		beetrootSeeds = loadPropBool("Override Beetroot Seeds", "", true);
 	}
 	
 	@Override
@@ -40,11 +41,18 @@ public class BetterVanillaTextures extends Feature {
 				"observer", "observer_powered");
 		
 		overrideItemModel("bow", bowAnimation);
+		
+		overrideItem("beetroot_seeds", beetrootSeeds);
 	}
 	
 	private void overrideBlock(String str, boolean flag) {
 		if(flag)
 			Quark.proxy.addResourceOverride("textures", "blocks", str, "png");
+	}
+	
+	private void overrideItem(String str, boolean flag) {
+		if(flag)
+			Quark.proxy.addResourceOverride("textures", "items", str, "png");
 	}
 	
 	private void overrideBlockModel(String str, boolean flag) {
