@@ -505,6 +505,7 @@ tile.quark:stone_marble_pavement.name=大理石铺路石
 tile.quark:stone_limestone_pavement.name=石灰石铺路石
 tile.quark:framed_glass.name=有框玻璃
 tile.quark:framed_glass_pane.name=有框玻璃板
+tile.quark:paper_lantern.name=纸灯笼
 
 # ITEM NAMES
 item.quark:glass_shard.name=玻璃碎片
