@@ -1,0 +1,6 @@
+{
+  "parent": "block/flower_pot_fern",
+  "textures": {
+    "plant": "quark:blocks/flower_missingno"
+  }
+}

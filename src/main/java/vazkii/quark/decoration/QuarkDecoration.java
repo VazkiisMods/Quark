@@ -13,6 +13,7 @@ package vazkii.quark.decoration;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import vazkii.quark.base.module.Module;
+import vazkii.quark.decoration.feature.BetterVanillaFlowerPot;
 import vazkii.quark.decoration.feature.BlazeLantern;
 import vazkii.quark.decoration.feature.CharcoalBlock;
 import vazkii.quark.decoration.feature.ColoredFlowerPots;
@@ -52,6 +53,7 @@ public class QuarkDecoration extends Module {
 		registerFeature(new FlatItemFrames());
 		registerFeature(new GlassItemFrame());
 		registerFeature(new ColoredFlowerPots());
+		registerFeature(new BetterVanillaFlowerPot());
 		registerFeature(new TallowAndCandles());
 		registerFeature(new MoreBannerLayers());
 		registerFeature(new VariedButtonsAndPressurePlates());

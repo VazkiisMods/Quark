@@ -1,14 +1,18 @@
 package vazkii.quark.decoration.block;
 
+import java.util.LinkedHashMap;
 import java.util.Random;
 
+import com.google.common.collect.Maps;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlowerPot;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.creativetab.CreativeTabs;
@@ -31,7 +35,7 @@ import vazkii.arl.util.ProxyRegistry;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.lib.LibMisc;
 
-public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock, IBlockColorProvider, IRecipeGrouped {
+public class BlockColoredFlowerPot extends BlockCustomFlowerPot implements IQuarkBlock, IBlockColorProvider, IRecipeGrouped {
 
 	private final String[] variants;
 	private final String bareName;
@@ -40,11 +44,8 @@ public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock
 		String name = "colored_flowerpot_" + color.getName();
 		variants = new String[] { name };
 		bareName = name;
-		
-		setHardness(0.0F);
-		setSoundType(SoundType.STONE);
+
 		setCreativeTab(CreativeTabs.DECORATIONS);
-		
 		setUnlocalizedName(name);
 	}
 
@@ -99,7 +100,12 @@ public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock
 
 	@Override
 	public IProperty[] getIgnoredProperties() {
-		return new IProperty[] { LEGACY_DATA };
+		return null;
+	}
+
+	@Override
+	public IStateMapper getStateMapper() {
+		return ColoredFlowerPotStateMapper.INSTANCE;
 	}
 
 	@Override
@@ -129,4 +135,25 @@ public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock
 		return "colored_flower_pot";
 	}
 
+	/**
+	 * Remaps the custom flag to be part of the contents enum, to prevent needing twice as many variants
+	 * Mainly used since Forge blockstates do not handle the model being set by two different properties well
+	 */
+	private static class ColoredFlowerPotStateMapper extends StateMapperBase {
+		public static final ColoredFlowerPotStateMapper INSTANCE = new ColoredFlowerPotStateMapper();
+
+		@Override
+		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+			ResourceLocation loc = state.getBlock().getRegistryName();
+			if(state.getValue(CUSTOM)) {
+				return new ModelResourceLocation(loc, "contents=custom");
+			}
+
+			LinkedHashMap<IProperty<?>, Comparable<?>> map = Maps.newLinkedHashMap(state.getProperties());
+			map.remove(CUSTOM);
+			map.remove(LEGACY_DATA);
+
+			return new ModelResourceLocation(loc, this.getPropertyString(map));
+		}
+	}
 }
