@@ -42,11 +42,12 @@ public class SpeleothemGenerator implements IWorldGenerator {
 			innerSpread = Speleothems.netherClusterCount;
 		}
 		
-		for(int i = 0; i < tries; i++) {
-			BlockPos target = new BlockPos(x + random.nextInt(spread), random.nextInt(upperBound) + offset, z + random.nextInt(spread));
-			if(placeSpeleothemCluster(random, world, target, innerSpread, innerTries))
-				i++;
-		}
+		if(upperBound > 0)
+			for(int i = 0; i < tries; i++) {
+				BlockPos target = new BlockPos(x + random.nextInt(spread), random.nextInt(upperBound) + offset, z + random.nextInt(spread));
+				if(placeSpeleothemCluster(random, world, target, innerSpread, innerTries))
+					i++;
+			}
 	}
 	
 	private boolean placeSpeleothemCluster(Random random, World world, BlockPos pos, int spread, int tries) {
