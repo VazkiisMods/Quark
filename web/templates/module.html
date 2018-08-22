@@ -1,11 +1,11 @@
 <div class="page-content">
 	<div class="module-info">
-		<div class="module-title">{{name}}</div>
-		<div class="module-desc">{{description}}</div>
+		<div class="module-title">{{{name}}}</div>
+		<div class="module-desc">{{{description}}}</div>
 	</div>
 
 	{{#features}}
-		<div id="{{anchor}}-fake" class="card feature-card {{#is_in_vanilla}}in-vanilla{{/is_in_vanilla}}">
+		<div id="{{anchor}}-fake" class="card feature-card {{#is_in_vanilla}}in-vanilla{{/is_in_vanilla}} {{#disable_counter}}disable-counter{{/disable_counter}}">
 			<img class="feature-image lazyload-image" data-original="img/modules/{{module_key}}/{{image}}"></img> 
 			<div class="feature-info">
 				<div class="feature-title">{{name}}</div>

@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+import vazkii.quark.base.lib.LibMisc;
 
 public class GuiConfigFirstLoad extends GuiConfigBase {
 
@@ -37,7 +38,7 @@ public class GuiConfigFirstLoad extends GuiConfigBase {
 			mc.displayGuiScreen(new GuiConfigRoot(parent));
 			break;
 		case 2: // Import Config
-			tryOpenWebsite();
+			tryOpenWebsite(LibMisc.MOD_WEBSITE);
 			break;
 		}
 	}

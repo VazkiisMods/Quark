@@ -35,4 +35,9 @@ public class MetalButtons extends Feature {
 		}
 	}
 	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
+	}
+	
 }

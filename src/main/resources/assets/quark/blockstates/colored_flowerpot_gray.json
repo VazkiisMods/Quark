@@ -30,6 +30,7 @@
         "contents=mushroom_brown":   { "model": "flower_pot_mushroom_brown" },
         "contents=dead_bush":        { "model": "flower_pot_dead_bush" },
         "contents=fern":             { "model": "flower_pot_fern" },
-        "contents=cactus":           { "model": "flower_pot_cactus" }
+        "contents=cactus":           { "model": "flower_pot_cactus" },
+        "contents=custom":           { "model": "quark:custom_flower_pot" }
     }
 }

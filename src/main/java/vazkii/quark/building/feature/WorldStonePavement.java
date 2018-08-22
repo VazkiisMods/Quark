@@ -46,4 +46,9 @@ public class WorldStonePavement extends Feature {
 		}
 	}
 	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
+	}
+	
 }

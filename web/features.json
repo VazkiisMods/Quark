@@ -84,6 +84,27 @@
 				"description":"The Chute is a new automation block. Items can be inserted into it via automation (Hopper, Dropper, etc), and any items inserted are instantly dropped under it, always precisely in the center.<br><br>The Chute can be disabled with a redstone signal or by placing a block under it.",
 				"image":"chute.jpg",
 				"introduced":12
+			},
+			{
+				"name":"Metal Buttons",
+				"classname":"MetalButtons",
+				"description":"Combining a Wooden Button with either an Iron Ingot or a Gold Ingot creates a button of that type.<br><br>Drawing influence from Weighted Pressure Plates, Gold Buttons emit a very short pulse (2 redstone ticks), whereas Iron Buttons emit a very long pulse (5 seconds).",
+				"image":"metal-buttons.jpg",
+				"introduced":12
+			},
+			{
+				"name":"Redstone Randomizer",
+				"classname":"RedstoneRandomizer",
+				"description":"The Redstone Randomizer is a new redstone circuit piece, made in the same way as a comparator, but with Biotite instead (from the World module, or an Eye of Ender if it's disabled).<br><br>Whenever the Randomizer receives a signal from the back, it'll enable either the left or right output, randomly.",
+				"image":"redstone-randomizer.jpg",
+				"introduced":12
+			},
+			{
+				"name":"Sugar Block",
+				"classname":"SugarBlock",
+				"description":"As a standard storage block affair, you can craft a Sugar Block with 9 Sugar.<br><br>The Sugar Block will fall like sand and gravel. Furthermore, if a Sugar Block is next to water, it'll simply dissolve and turn into air. I'm sure you can come up with some cool uses for this.",
+				"image":"sugar-block.jpg",
+				"introduced":12
 			}
 		]
 	},
@@ -258,6 +279,20 @@
 				"description":"Magma Bricks can be crafted by combining Magma and Stone Bricks. Similarly to Magma, these shine but don't emit light. Magma Bricks are also available as stairs and slabs.",
 				"image":"magma-bricks.jpg",
 				"introduced":12
+			},
+			{
+				"name":"Framed Glass",
+				"classname":"FramedGlass",
+				"description":"Combine Iron Ingots and Glass, and you get yourself some fancy Framed Glass, great for some more rustic or medieval builds.<br><br>You can also craft Panes with these, of course.",
+				"image":"framed-glass.jpg",
+				"introduced":12
+			},
+			{
+				"name":"Stone Pavement",
+				"classname":"WorldStonePavement",
+				"description":"Crafting a 3x3 of any sort of the world stone types will make Pavement. This block is inspired by the Portuguese sidewalks, and is awesome for that very purpose.<br><br>For extra fun, these are designed to look amazing with the Chisels & Bits mod, so go ahead and make some crazy patterns.",
+				"image":"pavement.jpg",
+				"introduced":12
 			}
 		]
 	},
@@ -363,7 +398,7 @@
 			{
 				"name":"Paper Walls",
 				"classname":"PaperWall",
-				"description":"Paper Walls use the \"pane\" look, which lets you make fancy oriental style buildings. Thanks to the new 1.9 change that makes standalone panes look like poles, they can also be used to make makeshift \"tiki torches\".<br><br>These are crafted with 3 Paper in the middle row, and Sticks covering the rest of the grid.",
+				"description":"Paper Walls use the \"pane\" look, which lets you make fancy oriental style buildings. Thanks to the new 1.9 change that makes standalone panes look like poles, they can also be used to make makeshift \"tiki torches\".<br><br>Paper Walls come in two variants, and are carfted using Paper and Sticks.",
 				"image":"paper-walls.jpg",
 				"introduced":9
 			},
@@ -384,8 +419,38 @@
 			{
 				"name":"Tallow and Candles",
 				"classname":"TallowAndCandles",
-				"description":"In an attempt to make pigs be useful in any way, they drop Tallow. Tallow can be crafted alongside String to create Candles.<br><br>Candles come in all 16 colors of the spectrum, and emit as much light as torches. Candles will also fall like sand if there's no block under them, which can have many fun uses.",
+				"description":"In an attempt to make pigs be useful in any way, they drop Tallow. Tallow can be crafted alongside String to create Candles, or as a furnace fuel.<br><br>Candles come in all 16 colors of the spectrum, and emit as much light as torches. Candles will also fall like sand if there's no block under them, which can have many fun uses.",
 				"image":"candles.jpg",
+				"introduced":12
+			},
+			{
+				"name":"Unrestricted Flower Pots",
+				"classname":"BetterVanillaFlowerPot",
+				"description":"Flower pots can now hold all types of flowers, even ones added by mods.<br><br>If you're only using Quark, this will allow them to carry Glowshrooms.",
+				"image":"better-flower-pots.jpg",
+				"introduced":12,
+				"contributor": "KnightMiner",
+				"overlap": ["Inspirations"]
+			},
+			{
+				"name":"More Banner Layers",
+				"classname":"MoreBannerLayers",
+				"description":"Banners in survival are now allowed to have up to 16 layers, up from vanilla's amount of 6, which allows for more complex banner designs. You can change the amount in the config too.",
+				"image":"more-banner-layers.jpg",
+				"introduced":12
+			},
+			{
+				"name":"Paper Lamps",
+				"classname":"PaperLantern",
+				"description":"Combine some Glowstone, Paper, and Sticks for a fancy Paper Lamp. These have a model that connects seamlessly to fences so you can make cool looking lights like the ones in the picture.",
+				"image":"paper-lamps.jpg",
+				"introduced":12
+			},			
+			{
+				"name":"All The Buttons & Pressure Plates",
+				"classname":"VariedButtonsAndPressurePlates",
+				"description":"You can now make Buttons and Pressure Plates out of all wood types. They act exactly the same to the oak wood counterparts.<br><br><i>This feature was added as a backport of a 1.13 feature, and will be removed upon the release of 1.13</i>",
+				"image":"pressure-plates-buttons.jpg",
 				"introduced":12
 			}
 		]
@@ -404,7 +469,7 @@
 			{
 				"name":"Delete Items",
 				"classname":"DeleteItems",
-				"description":"Pressing Ctrl+DELETE while hovering over an item will delete that item from your inventory. The item is deleted forever, this can't be undone.<br><br><i>How do you even make an image for this?</i>",
+				"description":"A new Trash Can icon is added to the right of the player's inventory. Throwing items in there will cause them to vanish into the either. Note that the item is deleted forever, this can't be undone.<br><br>Additionally, you can press Ctrl+DELETE while hovering over an item to delete that item from your inventory. Note that only the trash can icon is not available prior to 1.12, only the keybind.",
 				"image":"delete-items.jpg",
 				"introduced":10
 			},
@@ -466,6 +531,20 @@
 				"image":"auto-tool-restock.jpg",
 				"introduced":12,
 				"overlap": ["InvTweaks"]
+			},
+			{
+				"name":"Boats in Chests",
+				"classname":"ChestsInBoats",
+				"description":"Right clicking a Chest onto a Boat adds the chest in as a passenger. To access the chest, simply enter the boat and open your inventory, just like you would for a horse. To remove the chest (and the items inside), break the boat.",
+				"image":"boat-chests.jpg",
+				"introduced":12
+			},
+			{
+				"name":"Shulker Box Item Adding",
+				"classname":"RightClickAddToShulkerBox",
+				"description":"While holding an item in your cursor (that isn't a Shulker Box), you can right click on top of a non-full Shulker Box to add the item to it.",
+				"image":"right-click-shulker-box.jpg",
+				"introduced":12
 			}
 		]
 	},
@@ -809,7 +888,7 @@
 			{
 				"name":"Crystal Caves",
 				"classname":"CrystalCaves",
-				"description":"Crystal Caves are rare underground scenery pieces. The caves will spawn with 2 (out of 8) colors of Cave Crystal block and a bunch of ores. The Cave Crystal blocks are a light source and look cool!<br><br>If the feature is enabeld, they can be used to craft Colored Runes (from the misc module)",
+				"description":"Crystal Caves are rare underground scenery pieces. The caves will spawn with 2 (out of 8) colors of Cave Crystal block and a bunch of ores. The Cave Crystal blocks are a light source and look cool!<br><br>If the feature is enabled, they can be used to craft Colored Runes (from the misc module)",
 				"image":"crystal-caves.jpg",
 				"introduced":10
 			},
@@ -845,7 +924,7 @@
 			{
 				"name":"Guardians in Oceans",
 				"classname":"OceanGuardians",
-				"description":"Guardians spawn naturally in Oceans, rarely. See the previous feature.<br><br>If this feature is enabled, the Guardian sound is changed to not ignore distance for its volume (it does so in vanilla), so it's no longer a massive pain if you live near the ocean, or an ocean monument.",
+				"description":"Guardians spawn naturally in Deep Oceans, rarely. See the previous feature.<br><br>If this feature is enabled, the Guardian sound is changed to not ignore distance for its volume (it does so in vanilla), so it's no longer a massive pain if you live near the ocean, or an ocean monument.",
 				"image":"ocean-guardians.jpg",
 				"introduced":9
 			},
@@ -914,6 +993,20 @@
 				"description":"Fossils will randomly spawn in the nether's lava lakes.",
 				"image":"nether-fossils.jpg",
 				"introduced":12
+			},
+			{
+				"name": "Fairy Rings",
+				"classname":"FairyRings",
+				"description":"Rarely in Forests and Plains (rarer), you may find little flower circles. Should you dig in the center, you'll find some emeralds or diamonds!",
+				"image":"fairy-rings.jpg",
+				"introduced":12
+			},
+			{
+				"name": "Speleothems",
+				"classname":"Speleothems",
+				"description":"Speleothems (commonly known as Stalactites and Salagmites) will generate in caves and the Nether, in all stone type variants. These can be harvested only with Silk Touch (or crafted, if you want), and can grow up to 3 blocks high.<br><br>If you break the supporting blocks, the rest of the structure falls apart, which is actually really satisfying to do.",
+				"image":"speleothems.jpg",
+				"introduced":12
 			}
 		]
 	},
@@ -938,7 +1031,7 @@
 			{
 				"name":"Texture Changes",
 				"classname":"BetterVanillaTextures",
-				"description":"Quark generates a \"low priority resource pack\", changing some textures to less rough or more sensible variants. Each of these can be turned off individually, and will be overriden by any other resource pack you load on top. The current changes are as follows:<ul><li>1.8 Stones (smoother texture)</li><li>Bricks (some color variance)</li><li>Glass (less spots)</li><li>Pistons (model swap to look like the pocket edition ones, sticky piston sides, 1.11 only)</li><li>Observer (improved side/top textures to show the facing)</li><li>Bow (improved pull animation, with more frames)</li></ul>",
+				"description":"Quark generates some vanilla textures and models. These can be toggled individually, and resource packs will override them. The changes are as follows:<ul><li>1.8 Stones (smoother texture)</li><li>Bricks (some color variance)</li><li>Glass (less spots)</li><li>Pistons (model swap to look like the pocket edition ones, sticky piston sides, 1.11 only)</li><li>Observer (improved side/top textures to show the facing)</li><li>Bow (improved pull animation, with more frames)</li><li>Beetroot Seeds (no longer like they were made in mspaint)</li></ul>",
 				"image":"texture-changes.jpg",
 				"introduced":10
 			},
@@ -952,7 +1045,7 @@
 			{
 				"name":"Food Tooltip",
 				"classname":"FoodTooltip",
-				"description":"Food items show how much they heal in their tooltip.",
+				"description":"Food items show how much they heal in their tooltip. Items that give negative effects (like Rotten Flesh) will also show with a rotten food bar.",
 				"image":"food-tooltip.jpg",
 				"introduced":10,
 				"overlap": ["AppleSkin"]
@@ -1033,6 +1126,20 @@
 				"description":"A small interface addition shows up next to the hotbar when items are used, or armor takes damage. This shows how many items or blocks you have left, or how the status of your armor is.<br><br>As this feature is hard to demonstrate in a static picture, click the picture icon in the bottom of this card to see a demo gif.",
 				"image":"usage-ticker.jpg",
 				"album":"https://gfycat.com/EnragedDependentFugu",
+				"introduced":12
+			},
+			{
+				"name":"Better Looking Fire",
+				"classname":"BetterFireEffect",
+				"description":"Mobs on fire now look slightly better, by rendering the fire in a different way and sending some fire particles flying about.",
+				"image":"better-looking-fire.jpg",
+				"introduced":12
+			},
+			{
+				"name":"Item Despawn Flashing",
+				"classname":"ItemsFlashBeforeExpiring",
+				"description":"10 seconds before an item would despawn, it starts flashing in and out.<br><br><i>I can't really show this in a static image so just take my word for it.</i>",
+				"image":"items-flashing.jpg",
 				"introduced":12
 			}
 		]
@@ -1167,8 +1274,29 @@
 				"description":"Combined Recipes for Dispensers, Redstone Repeaters, and Minecarts (with Chest/Furnace/Hopper/TNT) are added that mix the recipes of the components, making crafting these items more convenient.",
 				"image":"utility-recipes.jpg",
 				"introduced":12
+			},
+			{
+				"name":"Parrot Eggs",
+				"classname":"ParrotEggs",
+				"description":"Feeding a parrot Beetroot Seeds has a chance to make the parrot start making an egg. After a few minutes, the parrot will pop out a Parrot Egg, which you throw like a normal egg to get a guaranteed parrot of the egg's color.<br><br>The color of the egg that is produced deepnds on the color of the parrot laying it. Every parrot can lay every color, but it's much more likely you'll get an egg of the same color.<br><br>There's also a secret parrot added...",
+				"image":"parrot-eggs.jpg",
+				"introduced":12
 			}
 		]
-	}
-
+	},
+	"oddities":{
+		"name":"Oddities",
+		"description":"Oddities is a special module, focused on features that don't quite fit the team for \"vanilla\" Quark which are designed to amplify the feel of gratification when completing a cool build.<br><br><span style='color:red'>The features in this module are NOT enabled by default. You need to install <a href='https://minecraft.curseforge.com/projects/quark-oddities'>Oddities</a> the same way you install Quark for them to be present in your game.</span>",
+		"disable_counter": true,
+		"features":[
+			{
+				"name":"Item Pipes",
+				"classname":"Pipes",
+				"description":"Item Pipes are crafted using some Iron and Glass. As you would expect, they transport items from point A to point B. To get items into a pipe simply use a Hopper, Dropper, or any other insertion means you may have handy.<br><br>The way items path around pipes is based on simple rules, the pipes can be controlled via redstone, and their output read by a dropper.<br><br>There isn't enough space in this card to describe the entire pipe featureset, so click the yellow album icon in the bottom-right corner of the card for a more in-depth explanation.",
+				"image":"pipes.jpg",
+				"album": "https://twitter.com/Vazkii/status/1029551677781815296",
+				"introduced":12
+			}
+		]
+	}		
 }

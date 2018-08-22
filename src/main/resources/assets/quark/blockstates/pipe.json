@@ -1,0 +1,82 @@
+{
+    "multipart": [
+        {   
+        	"apply": { "model": "quark:pipe_center" }
+        },
+
+        {   
+        	"when": { "north": "pipe|terminal" },
+            "apply": { "model": "quark:pipe_side" }
+        },
+        {   
+        	"when": { "south": "pipe|terminal" },
+            "apply": { "model": "quark:pipe_side", "y": 180 }
+        },
+        {   
+        	"when": { "east": "pipe|terminal" },
+            "apply": { "model": "quark:pipe_side", "y": 90 }
+        },
+        {   
+        	"when": { "west": "pipe|terminal" },
+            "apply": { "model": "quark:pipe_side", "y": 270 }
+        },
+		{   
+        	"when": { "down": "pipe|terminal" },
+            "apply": { "model": "quark:pipe_side", "x": 90 }
+        },
+        {   
+        	"when": { "up": "pipe|terminal" },
+            "apply": { "model": "quark:pipe_side", "x": 270 }
+        },
+
+        {   
+        	"when": { "north": "terminal" },
+            "apply": { "model": "quark:pipe_connector" }
+        },
+        {   
+        	"when": { "south": "terminal" },
+            "apply": { "model": "quark:pipe_connector", "y": 180 }
+        },
+        {   
+        	"when": { "east": "terminal" },
+            "apply": { "model": "quark:pipe_connector", "y": 90 }
+        },
+        {   
+        	"when": { "west": "terminal" },
+            "apply": { "model": "quark:pipe_connector", "y": 270 }
+        },
+        {   
+        	"when": { "down": "terminal" },
+            "apply": { "model": "quark:pipe_connector", "x": 90 }
+        },
+        {   
+        	"when": { "up": "terminal" },
+            "apply": { "model": "quark:pipe_connector", "x": 270 }
+        },
+
+        {   
+        	"when": { "north": "prop" },
+            "apply": { "model": "quark:pipe_prop" }
+        },
+        {   
+        	"when": { "south": "prop" },
+            "apply": { "model": "quark:pipe_prop", "y": 180 }
+        },
+        {   
+        	"when": { "east": "prop" },
+            "apply": { "model": "quark:pipe_prop", "y": 90 }
+        },
+        {   
+        	"when": { "west": "prop" },
+            "apply": { "model": "quark:pipe_prop", "y": 270 }
+        },
+        {   
+        	"when": { "down": "prop" },
+            "apply": { "model": "quark:pipe_prop", "x": 90 }
+        },
+        {   
+        	"when": { "up": "prop" },
+            "apply": { "model": "quark:pipe_prop", "x": 270 }
+        }
+    ]
+}

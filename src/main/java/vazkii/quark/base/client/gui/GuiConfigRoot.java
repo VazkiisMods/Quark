@@ -7,6 +7,7 @@ import java.util.TreeSet;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.translation.I18n;
+import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.base.module.Module;
 import vazkii.quark.base.module.ModuleLoader;
@@ -45,11 +46,16 @@ public class GuiConfigRoot extends GuiConfigBase {
 
 		x = width / 2;
 		y = startY + 113;
-		buttonList.add(new GuiButtonConfigSetting(x + 80, y, GlobalConfig.qButtonProp, true, I18n.translateToLocal("quark.config.enableq")));
-		buttonList.add(new GuiButton(1, x - 100, y + 22, 200, 20, I18n.translateToLocal("quark.config.general")));
-		buttonList.add(new GuiButton(2, x - 100, y + 44, 98, 20, I18n.translateToLocal("quark.config.import")));
-		buttonList.add(new GuiButton(3, x + 2, y + 44, 98, 20, I18n.translateToLocal("quark.config.opensite")));
-
+		buttonList.add(new GuiButtonConfigSetting(x + 155, y, GlobalConfig.qButtonProp, true, I18n.translateToLocal("quark.config.enableq")));
+		
+		buttonList.add(new GuiButton(1, x - 100, y + 22, 98, 20, I18n.translateToLocal("quark.config.general")));
+		buttonList.add(new GuiButton(2, x + 2, y + 22, 98, 20, I18n.translateToLocal("quark.config.import")));
+		
+		
+		buttonList.add(new GuiButtonColor(3, x - 100, y + 44, 64, I18n.translateToLocal("quark.config.opensite"), 0x48ddbc));
+		buttonList.add(new GuiButtonColor(4, x - 32, y + 44, 64, I18n.translateToLocal("quark.config.reddit"), 0x1f98e9));
+		buttonList.add(new GuiButtonColor(5, x + 36, y + 44, 64, I18n.translateToLocal("quark.config.donate"), 0xf96854));
+		
 		buttonList.add(backButton = new GuiButton(0, x - 100, y + 66, 200, 20, I18n.translateToLocal("gui.done")));
 	}
 	
@@ -82,10 +88,17 @@ public class GuiConfigRoot extends GuiConfigBase {
 		case 2: // Import Config
 			mc.displayGuiScreen(new GuiConfigImport(this));
 			break;
-		case 3: // Open Website
-			tryOpenWebsite();
+		case 3: // Open Quark Website
+			tryOpenWebsite(LibMisc.MOD_WEBSITE);
+			break;
+		case 4: // Open Reddit
+			tryOpenWebsite("https://old.reddit.com/r/QuarkMod/");
+			break;
+		case 5: // Open Donate Page
+			tryOpenWebsite("https://vazkii.us/#donate");
 			break;
 		}
 	}
 
 }
+

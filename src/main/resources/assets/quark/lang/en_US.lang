@@ -32,11 +32,13 @@ quarkmisc.panoramaSaved=Saved panorama as %s
 quark.config.title=Quark Configuration
 quark.config.import=Import Config
 quark.config.configure=Configure Quark
-quark.config.opensite=Quark Website
+quark.config.opensite=Quark Site
 quark.config.general=General Settings
 quark.config.close=Close Game
+quark.config.reddit=Reddit
+quark.config.donate=Donate
 quark.config.skip=Skip to Main Menu
-quark.config.enableq=Enable q button
+quark.config.enableq=Enable "q" Button
 quark.config.qdisabled=(If you disable the q button, you can access this menu from the Mods list)
 quark.config.needrestart=(Some settings you changed will require you to restart your game)
 quark.config.importinfo0=You can import a list of disabled features from the Quark Website
@@ -68,6 +70,7 @@ quark.config.module.misc=Miscellaneous
 quark.config.module.tweaks=Tweaks
 quark.config.module.vanity=Vanity
 quark.config.module.world=World
+quark.config.module.oddities=Oddities
 
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=Terracotta Shingles
@@ -506,6 +509,7 @@ tile.quark:stone_limestone_pavement.name=Limestone Pavement
 tile.quark:framed_glass.name=Framed Glass
 tile.quark:framed_glass_pane.name=Framed Glass Pane
 tile.quark:paper_lantern.name=Paper Lamp
+tile.quark:pipe.name=Item Pipe
 
 # ITEM NAMES
 item.quark:glass_shard.name=Glass Shard
@@ -594,7 +598,7 @@ item.quark:red_parrot_egg.name=Red Parrot Egg
 item.quark:blue_parrot_egg.name=Blue Parrot Egg
 item.quark:cyan_parrot_egg.name=Cyan Parrot Egg
 item.quark:green_parrot_egg.name=Green Parrot Egg
-item.quark:grey_parrot_egg.name=Grey Parrot Egg
+item.quark:gray_parrot_egg.name=Gray Parrot Egg
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Colored Item Frame

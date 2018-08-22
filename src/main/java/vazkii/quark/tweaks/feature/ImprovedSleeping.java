@@ -215,7 +215,7 @@ public class ImprovedSleeping extends Feature {
 	
 	@Override
 	public String[] getIncompatibleMods() {
-		return new String[] { "morpheus" };
+		return new String[] { "morpheus", "sleepingoverhaul" };
 	}
 
 }

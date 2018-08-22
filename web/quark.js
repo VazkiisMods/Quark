@@ -81,6 +81,7 @@ function loadFeatures(obj) {
 				feature.was_contributed = feature.contributor != null;
 				feature.is_in_vanilla = last != null;
 				feature.anchor = encodeURIComponent(module + '-' + feature.id);
+				feature.disable_counter = feature.disable_counter || feature.is_in_vanilla || moduleData.disable_counter;
 
 				if(last != null)
 					feature.implement_version = "Minecraft 1." + last;
@@ -104,7 +105,7 @@ function loadFeatures(obj) {
 			$(id).html(Mustache.to_html(data, moduleData));
 		}
 
-		$('#feature-counter').html($(document).find('.feature-card:not(.in-vanilla)').length);
+		$('#feature-counter').html($(document).find('.feature-card:not(.disable-counter)').length);
 		$(document).find('.lazyload-image').each(function(i) {
 			$(this).lazyload({
 				event: 'openmodule',

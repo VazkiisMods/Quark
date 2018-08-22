@@ -52,6 +52,11 @@ th {
 	height: inherit;
 }
 
+.mdl-layout__tab-bar-container {
+	width: 100%;
+	padding: 0;
+}
+
 .card {
 	padding: 20px;
 	background-color: #fff;
@@ -117,7 +122,7 @@ th {
 #download-section {
 	position: absolute;
 	top: 270px;
-	left: calc(50% + 60px);
+	left: calc(50% + 40px);
 }
 
 #btt-button {

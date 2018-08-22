@@ -109,5 +109,4 @@ public class VariedButtonsAndPressurePlates extends Feature {
 		return true;
 	}
 	
-	
 }

@@ -22,6 +22,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -38,27 +39,12 @@ import vazkii.quark.decoration.QuarkDecoration;
 import vazkii.quark.experimental.QuarkExperimental;
 import vazkii.quark.management.QuarkManagement;
 import vazkii.quark.misc.QuarkMisc;
+import vazkii.quark.oddities.QuarkOddities;
 import vazkii.quark.tweaks.QuarkTweaks;
 import vazkii.quark.vanity.QuarkVanity;
 import vazkii.quark.world.QuarkWorld;
 
 public final class ModuleLoader {
-
-	static {
-		moduleClasses = new ArrayList();
-
-		registerModule(QuarkTweaks.class);
-		registerModule(QuarkWorld.class);
-		registerModule(QuarkVanity.class);
-		registerModule(QuarkDecoration.class);
-		registerModule(QuarkBuilding.class);
-		registerModule(QuarkAutomation.class);
-		registerModule(QuarkManagement.class);
-		registerModule(QuarkClient.class);
-		registerModule(QuarkMisc.class);
-
-		registerModule(QuarkExperimental.class);
-	}
 	
 	// Checks if the Java Debug Wire Protocol is enabled
 	public static final boolean DEBUG_MODE = ManagementFactory.getRuntimeMXBean().getInputArguments().toString().contains("-agentlib:jdwp"); 
@@ -74,7 +60,27 @@ public final class ModuleLoader {
 	public static File configFile;
 	public static boolean firstLoad;
 
+	private static void setupModuleClasses() {
+		moduleClasses = new ArrayList();
+
+		registerModule(QuarkTweaks.class);
+		registerModule(QuarkWorld.class);
+		registerModule(QuarkVanity.class);
+		registerModule(QuarkDecoration.class);
+		registerModule(QuarkBuilding.class);
+		registerModule(QuarkAutomation.class);
+		registerModule(QuarkManagement.class);
+		registerModule(QuarkClient.class);
+		registerModule(QuarkMisc.class);
+
+		if(Loader.isModLoaded("quarkoddities"))
+			registerModule(QuarkOddities.class);
+		
+		registerModule(QuarkExperimental.class);
+	}
+	
 	public static void preInit(FMLPreInitializationEvent event) {
+		setupModuleClasses();
 		moduleClasses.forEach(clazz -> {
 			try {
 				moduleInstances.put(clazz, clazz.newInstance());
@@ -92,7 +98,7 @@ public final class ModuleLoader {
 		
 		WoodVariantReplacer.executeReplacements();
 	}
-
+	
 	public static void init(FMLInitializationEvent event) {
 		forEachEnabled(module -> module.init(event));
 	}

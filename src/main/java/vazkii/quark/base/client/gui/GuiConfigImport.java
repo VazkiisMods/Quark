@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import vazkii.quark.base.lib.LibMisc;
 import vazkii.quark.base.module.Feature;
 import vazkii.quark.base.module.ModuleLoader;
 
@@ -65,7 +66,10 @@ public class GuiConfigImport extends GuiConfigBase {
 			} else FMLCommonHandler.instance().exitJava(0, false);
 			break;
 		case 2: // Open Website
-			tryOpenWebsite();
+			tryOpenWebsite(LibMisc.MOD_WEBSITE);
+			break;
+		case 3: // Open Quark Website
+			tryOpenWebsite(LibMisc.MOD_WEBSITE);
 			break;
 		}
 	}

@@ -23,4 +23,9 @@ public class PaperLantern extends Feature {
 				'G', "glowstone");
 	}
 	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
+	}
+	
 }

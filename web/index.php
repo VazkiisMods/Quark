@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Quark</title>
+		<title>quark</title>
 
 		<meta name="theme-color" content="#48ddbc">
 		
@@ -16,7 +16,7 @@
 
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:description" content="A Minecraft Mod staying in the theme of Vanilla." />
-		<meta name="twitter:title" content="Quark" />
+		<meta name="twitter:title" content="quark" />
 		<meta name="twitter:site" content="@vazkii" />
 
 		<link rel="stylesheet" href="quark.css">
@@ -56,13 +56,14 @@
 						<a href="#module-world" data-module="world" class="mdl-layout__tab module-button">World</a>
 						<a href="#module-client" data-module="client" class="mdl-layout__tab module-button">Client</a>
 						<a href="#module-misc" data-module="misc" class="mdl-layout__tab module-button">Misc</a>
+						<a href="#module-oddities" data-module="oddities" class="mdl-layout__tab module-button">Oddities</a>
 					</div>
 				</header>
 
 				<div class="mdl-layout__content" id="content-holder">
 					<section class="mdl-layout__tab-panel is-active card info-card" id="module-info">
 						<div class="page-content">
-							<b>Quark</b> is a mod for Minecraft. It aims to create an experience akin to the "vanilla" experience, by having a very simple motto: <i>anything that would be added to Quark could also be added to the default game without compromising its gameplay style.</i> Quark currently has <b id="feature-counter"></b> features to spice up your game, all of which fitting the previous motto.
+							<b>Quark</b> is a mod for Minecraft. It aims to create an experience akin to the "vanilla" experience, by having a very simple motto: <i>anything that would be added to Quark could also be added to the default game without compromising its gameplay style.</i> Quark currently has <b id="feature-counter"></b> default features to spice up your game, all of which fitting the previous motto.
 							<br><br>
 							To that end, every feature added to Quark is simple and small. Hence the name of the mod, Quark, as a Quark is a very small thing. Quark is a <i>Modular</i> mod. Which means that its features are split within various modules. All of the modules can be disabled, and all the features can also be disabled individually if one wants to. Many of the features even have extra configuration options.
 							<br><br>
@@ -156,6 +157,7 @@
 					<section class="mdl-layout__tab-panel" id="module-world"></section>
 					<section class="mdl-layout__tab-panel" id="module-client"></section>
 					<section class="mdl-layout__tab-panel" id="module-misc"></section>
+					<section class="mdl-layout__tab-panel" id="module-oddities"></section>
 				</div>
 			</div>
 		</div>
@@ -182,7 +184,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.3/mustache.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
 		<script src="quark.js"></script>
-		<script src="https://widget.battleforthenet.com/widget.js" async></script>
 	</body>
 </html>
 

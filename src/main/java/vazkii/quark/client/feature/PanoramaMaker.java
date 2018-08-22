@@ -259,7 +259,7 @@ public class PanoramaMaker extends Feature {
 
 	@Override
 	public String getFeatureDescription() {
-		return "Shift-Ctrl-F12 for panorama screenshot.\nPanoramas show up in the main menu.\nRename a panorama folder to 'main_menu' and it'll always show that one.";
+		return "Shift-Ctrl-F2 for panorama screenshot.\nPanoramas show up in the main menu.\nRename a panorama folder to 'main_menu' and it'll always show that one.";
 	}
 
 }

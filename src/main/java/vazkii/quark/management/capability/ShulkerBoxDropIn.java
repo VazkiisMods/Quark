@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntityShulkerBox;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import vazkii.arl.util.AbstractDropIn;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.management.feature.RightClickAddToShulkerBox;

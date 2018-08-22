@@ -20,6 +20,7 @@ import vazkii.quark.world.feature.ClayGeneration;
 import vazkii.quark.world.feature.CrystalCaves;
 import vazkii.quark.world.feature.DefaultWorldOptions;
 import vazkii.quark.world.feature.DepthMobs;
+import vazkii.quark.world.feature.FairyRings;
 import vazkii.quark.world.feature.MushroomsInSwamps;
 import vazkii.quark.world.feature.NaturalBlazesInNether;
 import vazkii.quark.world.feature.NetherFossils;
@@ -56,6 +57,7 @@ public class QuarkWorld extends Module {
 		registerFeature(new NetherSmoker());
 		registerFeature(new NetherFossils());
 		registerFeature(new Speleothems());
+		registerFeature(new FairyRings());
 
 		registerFeature(new RealisticWorldType());
 		registerFeature(new DefaultWorldOptions());

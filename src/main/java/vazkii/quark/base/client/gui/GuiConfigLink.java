@@ -11,8 +11,8 @@ public class GuiConfigLink extends GuiConfirmOpenLink {
 	
 	GuiScreen parent;
 
-	public GuiConfigLink(GuiScreen parentScreenIn) {
-		super(parentScreenIn, LibMisc.MOD_WEBSITE, 0, true);
+	public GuiConfigLink(GuiScreen parentScreenIn, String url) {
+		super(parentScreenIn, url, 0, true);
 		parent = parentScreenIn;
 	}
 	

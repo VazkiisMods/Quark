@@ -28,5 +28,10 @@ public class FramedGlass extends Feature {
 				"GGG", "GGG",
 				'G', ProxyRegistry.newStack(framed_glass));
 	}
+
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
+	}
 	
 }

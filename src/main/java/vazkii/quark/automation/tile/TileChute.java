@@ -25,6 +25,11 @@ public class TileChute extends TileSimpleInventory {
 	}
 	
 	@Override
+	protected boolean needsToSyncInventory() {
+		return false;
+	}
+	
+	@Override
 	public boolean isAutomationEnabled() {
 		if(world.getBlockState(pos).getValue(BlockChute.ENABLED)) {
 			BlockPos below = pos.down();

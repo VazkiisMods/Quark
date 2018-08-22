@@ -23,4 +23,9 @@ public class ItemsFlashBeforeExpiring extends Feature {
 		RenderingRegistry.registerEntityRenderingHandler(EntityItem.class, RenderItemFlashing.factory());
 	}
 	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
+	}
+	
 }

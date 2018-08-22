@@ -26,5 +26,9 @@ public class RedstoneRandomizer extends Feature {
 				'S', "stone");
 	}
 	
+	@Override
+	public boolean requiresMinecraftRestartToEnable() {
+		return true;
+	}
 	
 }

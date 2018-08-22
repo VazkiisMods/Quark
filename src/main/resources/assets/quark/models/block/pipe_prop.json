@@ -1,0 +1,22 @@
+{
+	"__comment": "Designed by Wiiv with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "quark:blocks/pipe_prop",
+		"texture": "quark:blocks/pipe_prop"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Box1",
+			"from": [ 5, 5, 0 ],
+			"to": [ 11, 11, 5 ],
+			"faces": {
+				"down": { "uv": [ 5, 11, 11, 16 ], "texture": "#texture" },
+				"up": { "uv": [ 5, 0, 11, 5 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 0, 0, 1 ], "texture": "#texture" },
+				"south": { "uv": [ 5, 5, 11, 11 ], "texture": "#texture" },
+				"west": { "uv": [ 0, 5, 5, 11 ], "texture": "#texture" },
+				"east": { "uv": [ 11, 5, 16, 11 ], "texture": "#texture" }
+			}
+		}
+	]
+}

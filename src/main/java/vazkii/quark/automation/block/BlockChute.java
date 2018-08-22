@@ -40,7 +40,7 @@ public class BlockChute extends BlockModContainer implements IQuarkBlock {
         boolean flag = !worldIn.isBlockPowered(pos);
 
         if(flag != state.getValue(ENABLED))
-            worldIn.setBlockState(pos, state.withProperty(ENABLED, Boolean.valueOf(flag)), 4);
+            worldIn.setBlockState(pos, state.withProperty(ENABLED, Boolean.valueOf(flag)), 2 | 4);
     }
 	
 	@Override
@@ -70,12 +70,12 @@ public class BlockChute extends BlockModContainer implements IQuarkBlock {
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return (state.getValue(ENABLED) ? 0b1 : 0);
+		return (state.getValue(ENABLED) ? 0b0 : 1);
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(ENABLED, (meta & 0b1) != 0);
+		return getDefaultState().withProperty(ENABLED, (meta & 0b1) != 1);
 	}
 	
 	@Override

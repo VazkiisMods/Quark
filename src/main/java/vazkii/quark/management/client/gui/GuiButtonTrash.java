@@ -20,11 +20,14 @@ import vazkii.quark.management.feature.DeleteItems;
 public class GuiButtonTrash extends GuiButton implements IParentedGui {
 
 	public final GuiScreen parent;
+	public final int shiftX, shiftY;
 	public boolean ready;
 
-	public GuiButtonTrash(GuiScreen parent, int id, int par2, int par3) {
-		super(id, par2, par3, 16, 16, "");
+	public GuiButtonTrash(GuiScreen parent, int id, int shiftX, int shiftY) {
+		super(id, 0, 0, 16, 16, "");
 		this.parent = parent;
+		this.shiftX = shiftX;
+		this.shiftY = shiftY;
 	}
 	
 	@Override

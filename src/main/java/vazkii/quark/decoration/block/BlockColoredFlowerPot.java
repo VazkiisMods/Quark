@@ -3,12 +3,11 @@ package vazkii.quark.decoration.block;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlowerPot;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,8 +29,9 @@ import vazkii.arl.item.ItemModBlock;
 import vazkii.arl.util.ProxyRegistry;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.lib.LibMisc;
+import vazkii.quark.decoration.client.state.ColoredFlowerPotStateMapper;
 
-public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock, IBlockColorProvider, IRecipeGrouped {
+public class BlockColoredFlowerPot extends BlockCustomFlowerPot implements IQuarkBlock, IBlockColorProvider, IRecipeGrouped {
 
 	private final String[] variants;
 	private final String bareName;
@@ -40,11 +40,8 @@ public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock
 		String name = "colored_flowerpot_" + color.getName();
 		variants = new String[] { name };
 		bareName = name;
-		
-		setHardness(0.0F);
-		setSoundType(SoundType.STONE);
+
 		setCreativeTab(CreativeTabs.DECORATIONS);
-		
 		setUnlocalizedName(name);
 	}
 
@@ -98,8 +95,15 @@ public class BlockColoredFlowerPot extends BlockFlowerPot implements IQuarkBlock
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IProperty[] getIgnoredProperties() {
-		return new IProperty[] { LEGACY_DATA };
+		return null;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IStateMapper getStateMapper() {
+		return new ColoredFlowerPotStateMapper();
 	}
 
 	@Override

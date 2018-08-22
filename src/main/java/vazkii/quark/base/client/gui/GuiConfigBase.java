@@ -79,8 +79,8 @@ public class GuiConfigBase extends GuiScreen {
 			mc.setIngameFocus();
 	}
 
-	void tryOpenWebsite() {
-		GuiConfirmOpenLink gui = new GuiConfigLink(this);
+	void tryOpenWebsite(String url) {
+		GuiConfirmOpenLink gui = new GuiConfigLink(this, url);
 		mc.displayGuiScreen(gui);
 	}
 	
