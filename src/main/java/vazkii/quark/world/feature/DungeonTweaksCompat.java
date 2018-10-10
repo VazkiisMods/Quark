@@ -110,7 +110,7 @@ public class DungeonTweaksCompat
                 Method fireDungeonTweaks = Class.forName("com.evilnotch.dungeontweeks.main.world.worldgen.mobs.DungeonMobs").getMethod("fireDungeonTweaks", ResourceLocation.class, TileEntity.class,
                         Random.class, World.class);
                 fireDungeonTweaks.invoke(null, quark, tile, random, world);
-                System.out.println("Dungeon At:" + tile.getPos());
+                //System.out.println("Dungeon At:" + tile.getPos());
             }
             catch (Throwable t)
             {
