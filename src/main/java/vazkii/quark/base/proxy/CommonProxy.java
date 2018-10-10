@@ -21,6 +21,7 @@ import vazkii.quark.base.module.GlobalConfig;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.network.GuiHandler;
 import vazkii.quark.base.network.MessageRegister;
+import vazkii.quark.world.feature.DungeonTweaksCompat;
 
 public class CommonProxy {
 
@@ -36,6 +37,8 @@ public class CommonProxy {
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
+		DungeonTweaksCompat.legacyCheck();
+		DungeonTweaksCompat.registerDungeons();
 		ModuleLoader.postInit(event);
 	}
 	
