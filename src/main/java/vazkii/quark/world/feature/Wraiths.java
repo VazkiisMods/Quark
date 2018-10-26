@@ -25,6 +25,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -73,6 +74,7 @@ public class Wraiths extends Feature {
 
 		String wraithName = "quark:wraith";
 		EntityRegistry.registerModEntity(new ResourceLocation(wraithName), EntityWraith.class, wraithName, LibEntityIDs.WRAITH, Quark.instance, 80, 3, true, 0xececec, 0xbdbdbd);
+		LootTableList.register(EntityWraith.LOOT_TABLE);
 	}
 	
 	@Override

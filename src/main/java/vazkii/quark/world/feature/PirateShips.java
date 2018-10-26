@@ -12,6 +12,7 @@ package vazkii.quark.world.feature;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -54,6 +55,7 @@ public class PirateShips extends Feature {
 		EntityRegistry.registerModEntity(new ResourceLocation(pirateName), EntityPirate.class, pirateName, LibEntityIDs.PIRATE, Quark.instance, 80, 3, true, 0x4d1d14, 0xac9617);
 
 		GameRegistry.registerWorldGenerator(new PirateShipGenerator(dims), 0);
+		LootTableList.register(PIRATE_CHEST_LOOT_TABLE);
 	}
 
 	@Override

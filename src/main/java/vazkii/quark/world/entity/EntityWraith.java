@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 
 public class EntityWraith extends EntityZombie {
 
-	private static final ResourceLocation LOOT_TABLE = new ResourceLocation("quark:entities/wraith");
+	public static final ResourceLocation LOOT_TABLE = new ResourceLocation("quark:entities/wraith");
 
 	private static final DataParameter<Integer> SOUND_TYPE = EntityDataManager.<Integer>createKey(EntityWraith.class, DataSerializers.VARINT);
 	private static final String TAG_SOUND_TYPE = "SoundType";
