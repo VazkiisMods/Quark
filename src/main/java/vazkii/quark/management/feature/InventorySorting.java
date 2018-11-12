@@ -1,5 +1,9 @@
 package vazkii.quark.management.feature;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
@@ -27,6 +31,8 @@ public class InventorySorting extends Feature {
 	int xPosC, yPosC;
 	public static boolean enablePlayerButton;
 	
+	List<String> classnames;
+
 	@Override
 	public void setupConfig() {
 		xPos = loadPropInt("Position X", "", -20);
@@ -34,6 +40,9 @@ public class InventorySorting extends Feature {
 		xPosC = loadPropInt("Position X (Creative)", "", 8);
 		yPosC = loadPropInt("Position Y (Creative)", "", -20);
 		enablePlayerButton = loadPropBool("Enable Button in Player Inventory", "", true);
+
+		String[] classnamesArr = loadPropStringList("Forced GUIs", "GUIs in which the sort button should be forced to show up. Use the \"Debug Classnames\" option in chest buttons to find the names.", new String[0]);
+		classnames = new ArrayList(Arrays.asList(classnamesArr));
 	}
 	
 	@Override
@@ -45,7 +54,8 @@ public class InventorySorting extends Feature {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void initGui(GuiScreenEvent.InitGuiEvent.Post event) {
-		if(enablePlayerButton && event.getGui() instanceof GuiInventory || event.getGui() instanceof GuiContainerCreative) {
+		if(enablePlayerButton && event.getGui() instanceof GuiInventory || event.getGui() instanceof GuiContainerCreative
+				|| classnames.contains(event.getGui().getClass().getName())) {
 			GuiContainer guiInv = (GuiContainer) event.getGui();
 			GuiContainerCreative creativeInv = null;
 			if(guiInv instanceof GuiContainerCreative)

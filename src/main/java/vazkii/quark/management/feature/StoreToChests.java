@@ -10,6 +10,7 @@
  */
 package vazkii.quark.management.feature;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,8 @@ public class StoreToChests extends Feature {
 	int xPos, yPos;
 	int xPosC, yPosC;
 
+    List<String> classnames;
+
 	@Override
 	public void setupConfig() {
 		invert = loadPropBool("Invert button", "", false);
@@ -54,6 +57,9 @@ public class StoreToChests extends Feature {
 		yPos = loadPropInt("Position Y ", "", 30);
 		xPosC = loadPropInt("Position X (Creative)", "", 28);
 		yPosC = loadPropInt("Position Y (Creative)", "", -20);
+
+		String[] classnamesArr = loadPropStringList("Forced GUIs", "GUIs in which the drop off button should be forced to show up. Use the \"Debug Classnames\" option in chest buttons to find the names.", new String[0]);
+		classnames = new ArrayList(Arrays.asList(classnamesArr));
 	}
 
 	@Override
@@ -73,7 +79,8 @@ public class StoreToChests extends Feature {
 		if(Minecraft.getMinecraft().world == null)
 			clientDisabled = false;
 
-		if(event.getGui() instanceof GuiInventory || event.getGui() instanceof GuiContainerCreative) {
+		if(event.getGui() instanceof GuiInventory || event.getGui() instanceof GuiContainerCreative
+				|| classnames.contains(event.getGui().getClass().getName())) {
 			if(clientDisabled)
 				return;
 
