@@ -1153,7 +1153,8 @@
 				"classname":"EndermitesIntoShulkers",
 				"description":"Endermites will rarely bury into Purpur Blocks, much like how Silverfish bury into stone. When they do, they fuse with the block, forming a Shulker.",
 				"image":"endermites-into-shulkers.jpg",
-				"introduced":10
+				"introduced":10,
+				"overlap": ["Mite2Shulker"]
 			},
 			{
 				"name":"Snow Golem Heads",

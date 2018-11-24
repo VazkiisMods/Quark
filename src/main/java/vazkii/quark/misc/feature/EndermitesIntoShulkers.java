@@ -32,4 +32,9 @@ public class EndermitesIntoShulkers extends Feature {
 	public boolean hasSubscriptions() {
 		return true;
 	}
+
+	@Override
+	public String[] getIncompatibleMods() {
+		return new String[] { "mite2shulker" };
+	}
 }
