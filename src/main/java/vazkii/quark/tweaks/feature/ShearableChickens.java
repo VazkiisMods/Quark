@@ -48,6 +48,7 @@ public class ShearableChickens extends Feature {
 				target.attackEntityFrom(DamageSource.GENERIC, 1);
 				target.getEntityData().setBoolean(TAG_SHEARED, true);
 				stack.damageItem(1, event.getEntityPlayer());
+				event.getEntityPlayer().swingArm(event.getHand());
 			}
 		}
 	}
