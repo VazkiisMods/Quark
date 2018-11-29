@@ -577,7 +577,7 @@ item.quark:arrow_ender.name=Freccia dell'Ender
 item.quark:arrow_explosive.name=Freccia Esplosiva
 item.quark:arrow_torch.name=Freccia-Torcia
 item.quark:soul_powder.name=Polvere dell'Anima
-item.quark:glass_item_frame.name=Glass Item Frame
+item.quark:glass_item_frame.name=Cornice da Esposizione di Vetro
 item.quark:enderdragon_scale.name=Scaglia di Drago
 item.quark:trowel.name=Cazzuola
 item.quark:tallow.name=Sego
@@ -637,7 +637,7 @@ quark.keybind.chestRestock=Rifornisci
 quark.keybind.chestExtract=Estrai
 
 # GUI STUFF
-quark.gui.emotes=Emotes
+quark.gui.emotes=Emote
 quark.gui.favorited=Preferite
 quark.emote.wave=Saluto con Braccio
 quark.emote.yes=Si
