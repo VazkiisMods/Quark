@@ -2,22 +2,26 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Quark Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Quark
- * 
+ *
  * Quark is Open Source and distributed under the
  * CC-BY-NC-SA 3.0 License: https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_GB
- * 
+ *
  * File Created @ [17/07/2016, 03:52:18 (GMT)]
  */
 package vazkii.quark.misc.entity;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityEndermite;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityEndGateway;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -63,6 +67,28 @@ public class EntityArrowEnder extends EntityArrow {
 	@Override
 	protected void onHit(RayTraceResult raytraceResultIn) {
 		super.onHit(raytraceResultIn);
+
+		if (raytraceResultIn.typeOfHit == RayTraceResult.Type.BLOCK) {
+			BlockPos blockpos = raytraceResultIn.getBlockPos();
+			TileEntity tileentity = this.world.getTileEntity(blockpos);
+
+			if (tileentity instanceof TileEntityEndGateway) {
+				TileEntityEndGateway tileentityendgateway = (TileEntityEndGateway)tileentity;
+
+				if (shootingEntity != null) {
+					if (shootingEntity instanceof EntityPlayerMP) {
+						CriteriaTriggers.ENTER_BLOCK.trigger((EntityPlayerMP)shootingEntity, this.world.getBlockState(blockpos));
+					}
+
+					tileentityendgateway.teleportEntity(shootingEntity);
+					this.setDead();
+					return;
+				}
+
+				tileentityendgateway.teleportEntity(this);
+				return;
+			}
+		}
 
 		if(shootingEntity != null) {
 			if(shootingEntity instanceof EntityPlayerMP) {
