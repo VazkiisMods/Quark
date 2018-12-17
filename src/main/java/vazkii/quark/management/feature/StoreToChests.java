@@ -52,7 +52,7 @@ public class StoreToChests extends Feature {
 
 	@Override
 	public void setupConfig() {
-		invert = loadPropBool("Invert button", "", false);
+		invert = loadPropBool("Invert button", "If true the default will be to merge your items into nearby chests, otherwise hold shift for this functionality.", false);
 		xPos = loadPropInt("Position X", "", 0);
 		yPos = loadPropInt("Position Y ", "", 30);
 		xPosC = loadPropInt("Position X (Creative)", "", 28);
