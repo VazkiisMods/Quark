@@ -50,6 +50,9 @@ public class DeleteItems extends Feature {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void initGui(GuiScreenEvent.InitGuiEvent.Post event) {
+		if(event.getGui().getClass().toString().endsWith("GuiTinkerTabs"))
+			return;
+
 		trash = null;
 		if(event.getGui() instanceof GuiContainer && trashButton) {
 			GuiContainer guiInv = (GuiContainer) event.getGui();
