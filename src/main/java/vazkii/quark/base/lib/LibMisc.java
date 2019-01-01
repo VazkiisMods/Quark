@@ -22,7 +22,7 @@ public final class LibMisc {
 	public static final String MOD_NAME = MOD_ID;
 	public static final String BUILD = "GRADLE:BUILD";
 	public static final String VERSION = "GRADLE:VERSION-" + BUILD;
-	public static final String DEPENDENCIES = "required-before:autoreglib;";
+	public static final String DEPENDENCIES = "required-before:autoreglib;after:jei@[4.6.0,);";
 	public static final String PREFIX_MOD = MOD_ID + ":";
 
 	// Proxy Constants

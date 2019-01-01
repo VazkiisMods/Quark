@@ -1,5 +1,7 @@
 package vazkii.quark.management.feature;
 
+import javax.annotation.Nullable;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -31,7 +33,7 @@ public class DeleteItems extends Feature {
 
 	boolean keyboardDown = false;
 	boolean mouseDown = false;
-	GuiButtonTrash trash;
+	static GuiButtonTrash trash;
 
 	boolean trashButton, playerInvOnly, needsShift;
 	int trashButtonX, trashButtonY;
@@ -64,6 +66,7 @@ public class DeleteItems extends Feature {
 
 			trash = new GuiButtonTrash(guiInv, 82424, guiWidth, guiHeight + trashButtonY, needsShift);
 			event.getButtonList().add(trash);
+			updateTrashPos(guiInv);
 		}
 	}
 
@@ -113,11 +116,16 @@ public class DeleteItems extends Feature {
 		GuiScreen gui = Minecraft.getMinecraft().currentScreen;
 		if(gui instanceof GuiContainer && trash != null) {
 			GuiContainer inv = (GuiContainer) gui;
+			updateTrashPos(inv);
+		}
+	}
+
+	private void updateTrashPos(GuiContainer inv) {
+		if(trash != null) {
 			trash.x = inv.getGuiLeft() + trash.shiftX;
 			trash.y = inv.getGuiTop() + trash.shiftY;
 		}
 	}
-
 
 	public static void deleteItem(EntityPlayer player, int slot) {
 		if(slot > player.inventory.mainInventory.size())
@@ -147,4 +155,8 @@ public class DeleteItems extends Feature {
 		return "Delete Items";
 	}
 
+	@Nullable
+	public static GuiButtonTrash getTrash() {
+		return trash;
+	}
 }

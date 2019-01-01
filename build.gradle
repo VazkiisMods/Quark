@@ -30,10 +30,16 @@ repositories {
         name "blamejared"
         url "http://maven.blamejared.com/"
     }
+    maven {
+        // for JEI
+        name = "promwml16"
+        url "http://dvs1.progwml6.com/files/maven"
+    }
 }
 
 dependencies {
     compile "vazkii.autoreglib:AutoRegLib:${config.arl_version}"
+    deobfProvided "mezz.jei:jei_${config.mc_version}:${config.jei_version}:api"
 }
 
 minecraft {
