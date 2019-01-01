@@ -14,6 +14,7 @@ import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.management.client.gui.GuiButtonTrash;
 import vazkii.quark.management.feature.DeleteItems;
+import vazkii.quark.misc.recipe.ElytraDuplicationRecipe;
 
 @JEIPlugin
 public class QuarkJeiPlugin implements IModPlugin {
@@ -25,6 +26,8 @@ public class QuarkJeiPlugin implements IModPlugin {
 			// only JEI 4.14.0 or higher supports addGlobalGuiHandlers
 			// ignore failures here to let Quark work with older versions of JEI
 		}
+
+		registry.handleRecipes(ElytraDuplicationRecipe.class, ElytraDuplicationRecipeWrapper::new, VanillaRecipeCategoryUid.CRAFTING);
 	}
 
 	private static class GlobalTrashGuiHandler implements IGlobalGuiHandler {
