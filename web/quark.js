@@ -162,5 +162,5 @@ function copyToClipboard(str) {
     alert('Copied to clipboard!');
   } catch (err) { }
 
-  $('body').remove(textArea);
+  $('body').remove(area);
 }
