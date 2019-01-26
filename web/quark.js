@@ -156,11 +156,8 @@ function copyToClipboard(str) {
 
   $('body').append(area);
   area.select();
-
-  try {
-    document.execCommand('copy');
-    alert('Copied to clipboard!');
-  } catch (err) { }
-
-  $('body').remove(area);
+  
+  var coppied = function(){ try {document.execCommand('copy'); return true;} catch(e) {return false;} };
+  area.parentNode.removeChild(area);
+  if (coppied) alert("Copied to clipboard!");  
 }
