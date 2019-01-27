@@ -607,7 +607,7 @@ public class ClassTransformer implements IClassTransformer {
 		printer.print(new PrintWriter(sw));
 		printer.getText().clear();
 
-		return sw.toString().replaceAll("\n", "").trim();
+		return sw.toString().replace("\n", "").trim();
 	}
 
 	private static boolean checkDesc(String desc, String expected) {
@@ -643,7 +643,7 @@ public class ClassTransformer implements IClassTransformer {
 		private static String obfuscate(String desc) {
 			for(String s : CLASS_MAPPINGS.keySet())
 				if(desc.contains(s))
-					desc = desc.replaceAll(s, CLASS_MAPPINGS.get(s));
+					desc = desc.replace(s, CLASS_MAPPINGS.get(s));
 
 			return desc;
 		}
