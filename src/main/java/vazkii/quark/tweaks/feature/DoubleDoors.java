@@ -59,7 +59,7 @@ public class DoubleDoors extends Feature {
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onPlayerInteract(PlayerInteractEvent.RightClickBlock event) {
-		if(event.getEntityPlayer().isSneaking() || event.isCanceled() || event.getResult() == Result.DENY)
+		if(event.getEntityPlayer().isSneaking() || event.isCanceled() || event.getResult() == Result.DENY || event.getUseBlock() == Result.DENY)
 			return;
 
 		World world = event.getWorld();
