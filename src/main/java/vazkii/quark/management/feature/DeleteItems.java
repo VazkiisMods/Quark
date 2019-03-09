@@ -64,7 +64,7 @@ public class DeleteItems extends Feature {
 			int guiWidth = guiInv.getXSize();
 			int guiHeight = guiInv.getYSize();
 
-			trash = new GuiButtonTrash(guiInv, 82424, guiWidth, guiHeight + trashButtonY, needsShift);
+			trash = new GuiButtonTrash(guiInv, 82424, guiWidth + trashButtonX, guiHeight + trashButtonY, needsShift);
 			event.getButtonList().add(trash);
 			updateTrashPos(guiInv);
 		}
