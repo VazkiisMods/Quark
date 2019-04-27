@@ -37,6 +37,9 @@ quarkmisc.matrixMin=Min : %d
 quarkmisc.matrixUpgrade=Amélioration : %d/%d
 quarkmisc.pendingEnchants=A des enchantements en attente
 
+# COMMANDS
+commands.quarkconfig.usage=/quarkconfig <module> <category> <key> <value> [save?] [player]
+
 # CONFIG STRINGS
 quark.config.title=Configuration de Quark
 quark.config.import=Import. une config.
@@ -519,6 +522,27 @@ tile.quark:framed_glass.name=Verre encadré
 tile.quark:framed_glass_pane.name=Vitre encadrée
 tile.quark:paper_lantern.name=Lampe en papier
 tile.quark:pipe.name=Tuyau à objets
+tile.quark:turf.name=Bloc de gazon
+tile.quark:turf_stairs.name=Escaliers en gazon
+tile.quark:turf_slab.name=Dalle en gazon
+tile.quark:glowshroom_block.name=Glowshroom
+tile.quark:roots.name=Racines de cave
+tile.quark:roots_blue_flower.name=Racines de cave
+tile.quark:roots_black_flower.name=Racines de cave
+tile.quark:roots_white_flower.name=Racines de cave
+tile.quark:elder_prismarine.name=Prismarine ancienne
+tile.quark:elder_prismarine_bricks.name=Briques de prismarine ancienne
+tile.quark:elder_prismarine_dark.name=Prismarine sombre ancienne
+tile.quark:elder_sea_lantern.name=Lanterne aquatique ancienne
+tile.quark:elder_prismarine_stairs.name=Escaliers en prismarine ancienne
+tile.quark:elder_prismarine_bricks_stairs.name=Escaliers en briques de prismarine ancienne
+tile.quark:elder_prismarine_dark_stairs.name=Escaliers en prismarine sombre ancienne
+tile.quark:elder_prismarine_slab.name=Dalle de prismarine ancienne
+tile.quark:elder_prismarine_bricks_slab.name=Dalle en briques de prismarine ancienne
+tile.quark:elder_prismarine_dark_slab.name=Dalle en prismarine sombre ancienne
+tile.quark:elder_prismarine_wall.name=Muret de prismarine ancienne
+tile.quark:elder_prismarine_bricks_wall.name=Muret de briques de prismarine ancienne
+tile.quark:elder_prismarine_dark_wall.name=Muret de prismarine sombre ancienne
 
 # ITEM NAMES
 item.quark:glass_shard.name=Éclat de verre
@@ -610,6 +634,14 @@ item.quark:green_parrot_egg.name=Oeuf de perroquet vert
 item.quark:gray_parrot_egg.name=Oeuf de perroquet gris
 item.quark:backpack.name=Sac à dos
 item.quark:soul_compass.name=Boussole d'âme
+item.quark:root.name=Racine de cave
+item.quark:root_blue_flower.name=Germe bleu
+item.quark:root_black_flower.name=Germe noir
+item.quark:root_white_flower.name=Germe blanc
+item.quark:dye_blue.name=Teinture bleue
+item.quark:dye_black.name=Teinture noire
+item.quark:dye_white.name=Teinture blanche
+item.quark:archeologist_hat.name=Chapeau d'archéologue²
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Cadre coloré
@@ -621,6 +653,7 @@ entity.quark:pirate.name=Pirate
 entity.quark:wraith.name=Spectre
 entity.quark:chest_passenger.name=Coffre du bateau
 entity.quark:totem_of_holding.name=Totem de mort
+entity.quark:archeologist.name=Archéologue
 
 # POTION NAMES
 quark.potion.curse.name=Malédiction
