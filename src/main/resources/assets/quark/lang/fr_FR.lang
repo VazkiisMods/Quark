@@ -641,7 +641,7 @@ item.quark:root_white_flower.name=Germe blanc
 item.quark:dye_blue.name=Teinture bleue
 item.quark:dye_black.name=Teinture noire
 item.quark:dye_white.name=Teinture blanche
-item.quark:archeologist_hat.name=Chapeau d'archéologue²
+item.quark:archeologist_hat.name=Chapeau d'archéologue
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Cadre coloré
