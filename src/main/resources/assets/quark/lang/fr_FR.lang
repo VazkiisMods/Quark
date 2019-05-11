@@ -543,6 +543,7 @@ tile.quark:elder_prismarine_dark_slab.name=Dalle en prismarine sombre ancienne
 tile.quark:elder_prismarine_wall.name=Muret de prismarine ancienne
 tile.quark:elder_prismarine_bricks_wall.name=Muret de briques de prismarine ancienne
 tile.quark:elder_prismarine_dark_wall.name=Muret de prismarine sombre ancienne
+tile.quark:monster_box.name=Boîte de monstre
 
 # ITEM NAMES
 item.quark:glass_shard.name=Éclat de verre
