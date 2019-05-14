@@ -543,6 +543,7 @@ tile.quark:elder_prismarine_dark_slab.name=Dalle en prismarine sombre ancienne
 tile.quark:elder_prismarine_wall.name=Muret de prismarine ancienne
 tile.quark:elder_prismarine_bricks_wall.name=Muret de briques de prismarine ancienne
 tile.quark:elder_prismarine_dark_wall.name=Muret de prismarine sombre ancienne
+tile.quark:monster_box.name=Boîte de monstre
 
 # ITEM NAMES
 item.quark:glass_shard.name=Éclat de verre
@@ -642,6 +643,8 @@ item.quark:dye_blue.name=Teinture bleue
 item.quark:dye_black.name=Teinture noire
 item.quark:dye_white.name=Teinture blanche
 item.quark:archeologist_hat.name=Chapeau d'archéologue
+item.quark:diamond_heart.name=Coeur de diamant
+
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Cadre coloré
@@ -654,6 +657,7 @@ entity.quark:wraith.name=Spectre
 entity.quark:chest_passenger.name=Coffre du bateau
 entity.quark:totem_of_holding.name=Totem de mort
 entity.quark:archeologist.name=Archéologue
+entity.quark:stoneling.name=Stoneling
 
 # POTION NAMES
 quark.potion.curse.name=Malédiction
