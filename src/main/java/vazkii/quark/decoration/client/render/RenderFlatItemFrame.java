@@ -102,8 +102,9 @@ public class RenderFlatItemFrame extends RenderItemFrame {
 		IBakedModel ibakedmodel;
 		BlockRendererDispatcher blockrendererdispatcher = mc.getBlockRendererDispatcher();
 		ModelManager modelmanager = blockrendererdispatcher.getBlockModelShapes().getModelManager();
+		ItemStack displayStack = entity.getDisplayedItem();
 
-		if(!entity.getDisplayedItem().isEmpty() && entity.getDisplayedItem().getItem() == Items.FILLED_MAP) {
+		if(!displayStack.isEmpty() && displayStack.getItem() instanceof net.minecraft.item.ItemMap && Items.FILLED_MAP.getMapData(displayStack, mc.world) != null) {
 			ibakedmodel = modelmanager.getModel(mapModel);
 		} else {
 			ibakedmodel = modelmanager.getModel(itemFrameModel);
