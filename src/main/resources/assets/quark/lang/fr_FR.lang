@@ -36,6 +36,7 @@ quarkmisc.matrixMerge=Cliquer pour améliorer
 quarkmisc.matrixMin=Min : %d
 quarkmisc.matrixUpgrade=Amélioration : %d/%d
 quarkmisc.pendingEnchants=A des enchantements en attente
+quarkmisc.out_of_stock=%s n'a plus de stock, revenez plus tard
 
 # SUBTITLES
 quark.subtitles.soulpowder_scream=Fuites d'âmes
@@ -56,6 +57,10 @@ quark.subtitles.kill_stoneling=Stoneling cassant
 quark.subtitles.purr=Quelque chose "ronronne"
 quark.subtitles.hump_day=C'est mercredi, les amis
 quark.subtitles.throw_pickarang=Boomerang lancé
+quark.subtitles.frog_die=Grenouille tuée
+quark.subtitles.frog_hurt=Couinements de grenouille
+quark.subtitles.frog_idle=Croassement de grenouille
+quark.subtitles.frog_jump=Sauts de grenouille
 
 # COMMANDS
 commands.quarkconfig.usage=/quarkconfig <module> <category> <key> <value> [save?] [player]
@@ -679,6 +684,10 @@ item.quark:dye_white.name=Teinture blanche
 item.quark:archaeologist_hat.name=Chapeau d'archéologue
 item.quark:diamond_heart.name=Coeur de diamant
 item.quark:pickarang.name=Boomerang
+item.quark:frog_leg.name=Cuisse de grenouille
+item.quark:frog_maybe_leg.name="Cuisse" de grenouille
+item.quark:cooked_frog_leg.name=Cuisse de grenouille cuite
+item.quark:golden_frog_leg.name=Cuisse de grenouille dorée
 
 # ENTITY NAMES
 entity.quark:colored_item_frame.name=Cadre coloré
