@@ -31,17 +31,28 @@ public class EntityDragonBreathBottle extends EntityThrowable {
 	}
 
 	@Override
-	protected void onImpact(@Nonnull RayTraceResult pos) {
+	protected void onImpact(@Nonnull RayTraceResult result) {		
 		if(!world.isRemote) {
-			List<BlockPos> coordsList = getCoordsToPut(pos.getBlockPos());
-			for(BlockPos coords : coordsList) {
-				world.playEvent(2001, coords, Block.getStateId(world.getBlockState(coords)));
-				world.setBlockState(coords, Blocks.END_STONE.getDefaultState());
-			}
+			
+			if(result.typeOfHit != Type.BLOCK) {
+				
+				this.motionY *= -0.1;
+				this.motionY *= -0.1;
+				this.motionY *= -0.1;
+				
+			}else {
+				
+				List<BlockPos> coordsList = getCoordsToPut(result.getBlockPos());
+				for(BlockPos coords : coordsList) {
+					world.playEvent(2001, coords, Block.getStateId(world.getBlockState(coords)));
+					world.setBlockState(coords, Blocks.END_STONE.getDefaultState());
+				}
 
-			((WorldServer) world).spawnParticle(EnumParticleTypes.DRAGON_BREATH, posX, posY - 4, posZ, 500, 2, 2, 2, 0.03);
-			setDead();
-		}
+				((WorldServer) world).spawnParticle(EnumParticleTypes.DRAGON_BREATH, posX, posY - 4, posZ, 500, 2, 2, 2, 0.03);
+				setDead();
+				
+			}			
+		}		
 	}
 
 	private List<BlockPos> getCoordsToPut(BlockPos pos) {
