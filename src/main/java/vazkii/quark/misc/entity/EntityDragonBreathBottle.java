@@ -41,9 +41,16 @@ public class EntityDragonBreathBottle extends EntityThrowable {
 			
 			if(result.typeOfHit != Type.BLOCK) {
 				
+				if(bounceCount >= MAX_BOUNCE_COUNT) {
+					this.setDead();
+					return;
+				}
+				
 				this.motionY *= -0.1;
 				this.motionY *= -0.1;
 				this.motionY *= -0.1;
+				
+				bounceCount += 1;
 				
 			}else {
 				
