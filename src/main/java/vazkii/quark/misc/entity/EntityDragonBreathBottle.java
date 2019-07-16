@@ -22,12 +22,17 @@ import java.util.stream.Collectors;
 
 public class EntityDragonBreathBottle extends EntityThrowable {
 
+	private static final int MAX_BOUNCE_COUNT = 3;
+	private int bounceCount;
+	
 	public EntityDragonBreathBottle(World world) {
 		super(world);
+		this.bounceCount = 0;
 	}
 
 	public EntityDragonBreathBottle(World world, EntityLivingBase entity) {
 		super(world, entity);
+		this.bounceCount = 0;
 	}
 
 	@Override
