@@ -13,6 +13,6 @@ You can find me at most times on [my Discord Server](https://vazkii.us/discord),
 ---
 
 If you want to make a code Pull Request keep these in mind:
-* Do **not** use the github editor. Please test your PRs before you submit then (test on a server too).
+* Do **not** use the github editor. Please test your PRs before you submit them (test on a server too).
 * Syntax is important. Make sure your PR's syntax matches the syntax of the rest of the code. That includes the lack of spacing after if/for/(etc), proper bracket usage (no newline, no brackets on one-line blocks), camel casing, and tab indentation.
 * If your pull request edits very small chunks of code and isn't flawless I'll close it as it'll probably take less time to fix it myself rather than pull yours and change the code.
