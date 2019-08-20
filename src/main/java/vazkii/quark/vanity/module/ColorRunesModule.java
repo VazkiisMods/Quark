@@ -1,5 +1,6 @@
 package vazkii.quark.vanity.module;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,6 +10,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntry;
 import net.minecraft.world.storage.loot.LootTables;
 import net.minecraft.world.storage.loot.TagLootEntry;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AnvilUpdateEvent;
@@ -70,6 +73,18 @@ public class ColorRunesModule extends Module {
 		return proxyCap.orElse((s) -> color).getRuneColor(target);
 	}
 
+	@OnlyIn(Dist.CLIENT)
+	public static void applyColor() {
+		int color = changeColor(0xFF8040CC);
+		if (color != 0xFF8040CC) {
+			int a = (color >> 24) & 0xFF;
+			int r = (color >> 16) & 0xFF;
+			int g = (color >> 8) & 0xFF;
+			int b = color & 0xFF;
+
+			GlStateManager.color4f(r / 255f, g / 255f, b / 255f, a / 255f);
+		}
+	}
 
 	@Override
 	public void start() {

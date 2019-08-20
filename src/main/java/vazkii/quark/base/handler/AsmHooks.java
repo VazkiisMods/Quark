@@ -2,6 +2,8 @@ package vazkii.quark.base.handler;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.state.PistonBlockStructureHelper;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.PistonTileEntity;
 import net.minecraft.util.Direction;
@@ -24,6 +26,10 @@ public class AsmHooks {
 	// Color Runes
 	// ==========================================================================
 
+    public static void setColorRuneTargetStack(LivingEntity living, EquipmentSlotType slot) {
+        setColorRuneTargetStack(living.getItemStackFromSlot(slot));
+    }
+
     public static void setColorRuneTargetStack(ItemStack stack) {
         ColorRunesModule.setTargetStack(stack);
     }
@@ -33,6 +39,11 @@ public class AsmHooks {
             return ColorRunesModule.changeColor(color);
 
         return color;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void applyRuneColor() {
+        ColorRunesModule.applyColor();
     }
 
 	// ==========================================================================

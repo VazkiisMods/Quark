@@ -1,31 +1,45 @@
-function remapBlockState(method) {
+function injectForEachMethod(method, targetType, clazz, targetName, sig, callback) {
     var ASM = Java.type('net.minecraftforge.coremod.api.ASMAPI');
 
     var target = ASM.findFirstMethodCall(method,
-        ASM.MethodType.VIRTUAL,
-        "net/minecraft/world/World",
-        ASM.mapMethod("setBlockState"),
-        "(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z");
+        targetType,
+        clazz,
+        targetName,
+        sig);
 
     while (target !== null) {
         var index = method.instructions.indexOf(target);
-        method.instructions.insert(target, ASM.buildMethodCall(
-            "vazkii/quark/base/handler/AsmHooks",
-            "setPistonBlock",
-            "(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z",
-            ASM.MethodType.STATIC
-        ));
-        method.instructions.remove(target);
+        index += callback(target, index);
 
         target = ASM.findFirstMethodCallAfter(method,
-            ASM.MethodType.VIRTUAL,
-            "net/minecraft/world/World",
-            ASM.mapMethod("setBlockState"),
-            "(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z",
+            targetType,
+            clazz,
+            targetName,
+            sig,
             index);
     }
 
     return method;
+}
+
+function remapBlockState(method) {
+    var ASM = Java.type('net.minecraftforge.coremod.api.ASMAPI');
+
+    return injectForEachMethod(method,
+        ASM.MethodType.VIRTUAL,
+        "net/minecraft/world/World",
+        ASM.mapMethod("setBlockState"),
+        "(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z",
+        function (target) {
+            method.instructions.insert(target, ASM.buildMethodCall(
+                "vazkii/quark/base/handler/AsmHooks",
+                "setPistonBlock",
+                "(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z",
+                ASM.MethodType.STATIC
+            ));
+            method.instructions.remove(target);
+            return 0;
+        });
 }
 
 function initializeCoreMod() {
@@ -102,7 +116,7 @@ function initializeCoreMod() {
                 var target = ASM.findFirstMethodCall(method,
                     ASM.MethodType.VIRTUAL,
                     "net/minecraft/block/BlockState",
-                    "hasTileEntity",
+                    ASM.mapMethod("hasTileEntity"),
                     "()Z");
 
                 var newInstructions = new InsnList();
@@ -134,7 +148,7 @@ function initializeCoreMod() {
                 var target = ASM.findFirstMethodCall(method,
                     ASM.MethodType.VIRTUAL,
                     "net/minecraft/block/state/PistonBlockStructureHelper",
-                    "getBlocksToMove",
+                    ASM.mapMethod("getBlocksToMove"),
                     "()Ljava/util/List;");
 
                 var newInstructions = new InsnList();
