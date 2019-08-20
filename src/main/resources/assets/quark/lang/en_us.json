@@ -176,6 +176,11 @@
 	"block.quark.cyan_slime_block": "Cyan Slime Block",
 	"block.quark.magenta_slime_block": "Magenta Slime Block",
 	"block.quark.yellow_slime_block": "Yellow Slime Block",
-	"block.quark.sturdy_stone": "Sturdy Stone"
-		
+	"block.quark.sturdy_stone": "Sturdy Stone",
+	"block.quark.oak_bookshelf": "Oak Bookshelf",
+	"block.quark.spruce_bookshelf": "Spruce Bookshelf",
+	"block.quark.birch_bookshelf": "Birch Bookshelf",
+	"block.quark.jungle_bookshelf": "Jungle Bookshelf",
+	"block.quark.acacia_bookshelf": "Acacia Bookshelf",
+	"block.quark.dark_oak_bookshelf": "Dark Oak Bookshelf"
 }

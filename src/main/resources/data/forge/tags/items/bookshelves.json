@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "quark:acacia_bookshelf",
+    "quark:birch_bookshelf",
+    "quark:dark_oak_bookshelf",
+    "quark:jungle_bookshelf",
+    "quark:spruce_bookshelf"
+  ]
+}
