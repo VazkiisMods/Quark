@@ -11,6 +11,15 @@ quarkmisc.craftButton.balance=Gitter verteilen
 quarkmisc.shulkerBoxShift=Halte Shift, um Inhalt zu sehen
 quarkmisc.mapShift=Halte Shift, um Karte zu sehen
 
+quarkmisc.nowAfk=Du bist nun AFK (Away From Keyboard).
+quarkmisc.leftAfk=Du bist nicht länger AFK.
+quarkmisc.personSleeping=%s schläft nun.
+quarkmisc.personNotSleeping=%s ist aufgestanden.
+quarkmisc.personNapping=%s hält nun ein Schläfchen.
+quarkmisc.personNotNapping=%s ist wieder wach.
+quarkmisc.nightHasPassed=Die Nacht ist vorrüber.
+quarkmisc.dayHasPassed=Der Tag ist vorrüber.
+
 # BLOCK NAMES
 tile.quark:hardened_clay_tiles.name=Gebrannte Tonfliesen
 tile.quark:hardened_clay_tiles_slab.name=Gebrannte Tonfliesenstufe
