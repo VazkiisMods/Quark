@@ -438,8 +438,8 @@ quark.keybind.lockBuilding=Orientation sperren
 quark.keybind.changeHotbar=Hotbar ändern
 
 # GUI STUFF
-quark.gui.emotes=Emotionen
-quark.gui.keygroupEmote=Quark Emotionen
+quark.gui.emotes=Emotes
+quark.gui.keygroupEmote=Quark Emotes
 quark.gui.favorited=Favorisiert
 quark.emote.wave=Winken
 quark.emote.yes=Ja
