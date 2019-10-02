@@ -72,7 +72,7 @@ public class DyeItemNames extends Feature {
 				if (!name.trim().isEmpty())
 					out.setStackDisplayName(name.trim());
 
-				ItemNBTHelper.setInt(out, TAG_DYE, right.getItemDamage());
+				ItemNBTHelper.setInt(out, TAG_DYE, meta);
 				event.setOutput(out);
 				event.setMaterialCost(1);
 				event.setCost(3);
