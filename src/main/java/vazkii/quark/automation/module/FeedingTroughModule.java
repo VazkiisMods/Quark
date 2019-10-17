@@ -20,6 +20,7 @@ import net.minecraftforge.fml.LogicalSide;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.automation.block.FeedingTroughBlock;
 import vazkii.quark.automation.tile.FeedingTroughTileEntity;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.*;
 
 import java.util.HashSet;
@@ -74,7 +75,7 @@ public class FeedingTroughModule extends Module {
 
     @SubscribeEvent
     public void onOrbSpawn(EntityJoinWorldEvent event) {
-        if (breedingPos.get().equals(event.getEntity().getPositionVec())) {
+        if (breedingPos.get() != null && breedingPos.get().equals(event.getEntity().getPositionVec())) {
             event.setCanceled(true);
             breedingPos.remove();
         }
