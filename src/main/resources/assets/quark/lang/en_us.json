@@ -16,6 +16,8 @@
 	"quark.gui.qbutton_info.back": "Back",
 	"quark.gui.qbutton_info": "Ingame configuration in newer versions of the game is currently not possible. For now, this will only open the config folder. You'll have to find \"quark-common.toml\" and open it. This is a text file, so you can open it with any text editor (such as Notepad). Changes to the file will apply in real time to your world when you save it.",
 	
+	"quark.jei.makes_copy": "Makes copy",
+	
 	"quark.keybind.change_hotbar": "Hotbar Swapper",
 	"quark.keybind.lock_rotation": "Rotation Lock",
 	"quark.keybind.sort_container": "Sort Target Inventory",

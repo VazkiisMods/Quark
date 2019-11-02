@@ -40,7 +40,7 @@ public class ColorRunesModule extends Module {
 	public static final String TAG_RUNE_COLOR = Quark.MOD_ID + ":RuneColor";
 
 	private static final ThreadLocal<ItemStack> targetStack = new ThreadLocal<>();
-	private static Tag<Item> runesTag;
+	public static Tag<Item> runesTag;
 
 	@Config public static int dungeonWeight = 10;
 	@Config public static int netherFortressWeight = 8;
