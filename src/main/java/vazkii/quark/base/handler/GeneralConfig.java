@@ -53,6 +53,8 @@ public class GeneralConfig {
 	@Config(description = "Set to true to make the quark big worldgen features such as stone clusters or underground biomes generate as spheres rather than unique shapes. It's faster, but won't look as cool")
 	public static boolean useFastWorldgen = false;
 
+	public static List<String> ignoredScreensCode = Lists.newArrayList();
+
 	private GeneralConfig() {
 		// NO-OP
 	}
