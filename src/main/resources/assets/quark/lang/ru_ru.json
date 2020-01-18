@@ -238,12 +238,18 @@
 	"block.quark.jungle_chest": "Сундук из тропического дерева",
 	"block.quark.acacia_chest": "Акациевый сундук",
 	"block.quark.dark_oak_chest": "Сундук из тёмного дуба",
+	"block.quark.nether_brick_chest": "Сундук из незеритового кирпича",
+	"block.quark.purpur_chest": "Пурпурный сундук",
+	"block.quark.prismarine_chest": "Призмариновый сундук",
 	"block.quark.oak_trapped_chest": "Дубовый сундук-ловушка",
 	"block.quark.spruce_trapped_chest": "Еловый сундук-ловушка",
 	"block.quark.birch_trapped_chest": "Берёзовый сундук-ловушка",
 	"block.quark.jungle_trapped_chest": "Сундук-ловушка из тропического дерева",
 	"block.quark.acacia_trapped_chest": "Акациевый сундук-ловушка",
 	"block.quark.dark_oak_trapped_chest": "Сундук-ловушка из тёмного дуба",
+	"block.quark.nether_brick_trapped_chest": "Сундук-ловушка из незеритового кирпича",
+	"block.quark.purpur_trapped_chest": "Пурпурный сундук-ловушка",
+	"block.quark.prismarine_trapped_chest": "Призмариновый сундук-ловушка",
 	"block.quark.blaze_lantern": "Ифритовый фонарь",
 	"block.quark.sugar_cane_block": "Связка сахарного тростника",
 	"block.quark.brimstone": "Бримстоун",
@@ -502,6 +508,7 @@
 	"block.quark.cactus_block": "Связка кактусов",
 	"block.quark.chorus_fruit_block": "Связка плодов хоруса",
 	"block.quark.cocoa_beans_sack": "Мешок какао-бобов",
+	"block.quark.berry_sack": "Мешок сладких ягод",
 	"block.quark.golden_apple_crate": "Ящик золотых яблок",
 	"block.quark.gunpowder_sack": "Мешок пороха",
 	"block.quark.nether_wart_sack": "Ящик наростов из Незера",
@@ -759,7 +766,8 @@
 	"item.quark.stoneling_spawn_egg": "Яйцо призыва стоунлинга",
 	"item.quark.frog_spawn_egg": "Яйцо призыва лягушки",
 	"item.quark.crab_spawn_egg": "Яйцо призыва краба",
-	"item.quark.foxhound_spawn_egg": "Яйца призыва лисья гончая",
+	"item.quark.foxhound_spawn_egg": "Яйца призыва лисьей гончей",
+	"item.quark.wrapped_spawn_egg": "Яйца призыва окутанного",
 
 	"effect.quark.resilience": "Устойчивость",
 	"effect.quark.danger_sight": "Воззрение опасности",
@@ -772,6 +780,8 @@
 	"entity.quark.gravisand": "Падающий гравипесок",
 	"entity.quark.frog": "Лягушка",
 	"entity.quark.crab": "Краб",
-	"entity.quark.foxhound": "Лисья гончая"
+	"entity.quark.foxhound": "Лисья гончая",
+	"entity.quark.wrapped": "Окутанный"
 	
 }
+
