@@ -6,6 +6,15 @@
     "quark:birch_trapped_chest",
     "quark:jungle_trapped_chest",
     "quark:acacia_trapped_chest",
-    "quark:dark_oak_trapped_chest"
+    "quark:dark_oak_trapped_chest",
+    "quark:nether_brick_trapped_chest",
+    "quark:purpur_trapped_chest",
+    "quark:prismarine_trapped_chest",
+    "quark:mushroom_trapped_chest",
+    "quark:willow_trapped_chest",
+    "quark:poise_trapped_chest",
+    "quark:bamboo_trapped_chest",
+    "quark:wisteria_trapped_chest",
+    "quark:driftwood_trapped_chest"
   ]
 }

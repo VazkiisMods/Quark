@@ -7,11 +7,21 @@
     "quark:jungle_chest",
     "quark:acacia_chest",
     "quark:dark_oak_chest",
+    "quark:willow_chest",
+    "quark:poise_chest",
+    "quark:bamboo_chest",
+    "quark:wisteria_chest",
+    "quark:driftwood_chest",
     "quark:oak_trapped_chest",
     "quark:spruce_trapped_chest",
     "quark:birch_trapped_chest",
     "quark:jungle_trapped_chest",
     "quark:acacia_trapped_chest",
-    "quark:dark_oak_trapped_chest"
+    "quark:dark_oak_trapped_chest",
+    "quark:willow_trapped_chest",
+    "quark:poise_trapped_chest",
+    "quark:bamboo_trapped_chest",
+    "quark:wisteria_trapped_chest",
+    "quark:driftwood_trapped_chest"
   ]
 }
