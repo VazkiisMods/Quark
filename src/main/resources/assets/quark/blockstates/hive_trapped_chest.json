@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "quark:block/hive_chest" }
+    }
+}

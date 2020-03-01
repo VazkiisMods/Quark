@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hive_chest",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "buzzierbees:hive_planks"
+    }
+  },
+  "result": {
+    "item": "quark:hive_chest",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "buzzierbees"
+        },
+        {
+          "type": "quark:flag",
+          "flag": "variant_chests"
+        }
+      ]
+    }
+  ]
+} 

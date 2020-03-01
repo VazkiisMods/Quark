@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "quark:hive_chest"
+    },
+    {
+      "item": "minecraft:tripwire_hook"
+    }
+  ],
+  "result": {
+    "item": "quark:hive_trapped_chest"
+  },
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "buzzierbees"
+        },
+        {
+          "type": "quark:flag",
+          "flag": "variant_chests"
+        }
+      ]
+    }
+  ]
+}
