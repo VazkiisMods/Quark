@@ -81,13 +81,13 @@ public class VariantChestBlock extends ChestBlock implements IBlockItemProvider,
 	}
 	
 	@OnlyIn(Dist.CLIENT)
-	public static void setTEISR(Item.Properties props, Block block) {
-		props.setTEISR(() -> () -> new ItemStackTileEntityRenderer() {
+	public static void setISTER(Item.Properties props, Block block) {
+		props.setISTER(() -> () -> new ItemStackTileEntityRenderer() {
 			private final TileEntity tile = new VariantChestTileEntity();
 			
 			public void render(ItemStack stack, MatrixStack matrix, IRenderTypeBuffer buffer, int x, int y) {
 				VariantChestTileEntityRenderer.invBlock = block;
-	            TileEntityRendererDispatcher.instance.renderEntity(tile, matrix, buffer, x, y);
+	            TileEntityRendererDispatcher.instance.renderItem(tile, matrix, buffer, x, y);
 	            VariantChestTileEntityRenderer.invBlock = null;
 			}
 			
@@ -97,7 +97,7 @@ public class VariantChestBlock extends ChestBlock implements IBlockItemProvider,
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public BlockItem provideItemBlock(Block block, Item.Properties props) {
-		setTEISR(props, block);
+		setISTER(props, block);
 		return new BlockItem(block, props);
 	}
 	

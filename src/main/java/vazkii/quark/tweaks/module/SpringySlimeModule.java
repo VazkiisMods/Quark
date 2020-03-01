@@ -97,7 +97,7 @@ public class SpringySlimeModule extends Module {
 		if (!ModuleLoader.INSTANCE.isModuleEnabled(SpringySlimeModule.class))
 			return;
 
-		if (entity.isSneaking() || (entity instanceof PlayerEntity && ((PlayerEntity) entity).abilities.isFlying))
+		if (entity.isDiscrete() || (entity instanceof PlayerEntity && ((PlayerEntity) entity).abilities.isFlying))
 			return;
 
 		double attemptedX = attempted.x;

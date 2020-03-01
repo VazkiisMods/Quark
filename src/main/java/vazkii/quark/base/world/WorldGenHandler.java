@@ -36,7 +36,7 @@ public class WorldGenHandler {
 
 	public static void loadComplete() {
 		for(GenerationStage.Decoration stage : GenerationStage.Decoration.values()) {
-			ConfiguredFeature<?, ?> feature = new DeferedFeature(stage).configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(new ChunkCornerPlacement().configure(NoPlacementConfig.NO_PLACEMENT_CONFIG));
+			ConfiguredFeature<?, ?> feature = new DeferedFeature(stage).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(new ChunkCornerPlacement().configure(NoPlacementConfig.NO_PLACEMENT_CONFIG));
 			ForgeRegistries.BIOMES.forEach(biome -> biome.addFeature(stage, feature));
 		}
 	}

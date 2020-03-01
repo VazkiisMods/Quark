@@ -49,31 +49,31 @@ public abstract class GenericChestTERenderer<T extends TileEntity & IChestLid> e
 		}
 
 		this.field_228863_c_ = new ModelRenderer(64, 64, 0, 19);
-		this.field_228863_c_.addCuboid(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F, 0.0F);
+		this.field_228863_c_.addBox(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F, 0.0F);
 		this.field_228862_a_ = new ModelRenderer(64, 64, 0, 0);
-		this.field_228862_a_.addCuboid(1.0F, 0.0F, 0.0F, 14.0F, 5.0F, 14.0F, 0.0F);
+		this.field_228862_a_.addBox(1.0F, 0.0F, 0.0F, 14.0F, 5.0F, 14.0F, 0.0F);
 		this.field_228862_a_.rotationPointY = 9.0F;
 		this.field_228862_a_.rotationPointZ = 1.0F;
 		this.field_228864_d_ = new ModelRenderer(64, 64, 0, 0);
-		this.field_228864_d_.addCuboid(7.0F, -1.0F, 15.0F, 2.0F, 4.0F, 1.0F, 0.0F);
+		this.field_228864_d_.addBox(7.0F, -1.0F, 15.0F, 2.0F, 4.0F, 1.0F, 0.0F);
 		this.field_228864_d_.rotationPointY = 8.0F;
 		this.field_228866_f_ = new ModelRenderer(64, 64, 0, 19);
-		this.field_228866_f_.addCuboid(1.0F, 0.0F, 1.0F, 15.0F, 10.0F, 14.0F, 0.0F);
+		this.field_228866_f_.addBox(1.0F, 0.0F, 1.0F, 15.0F, 10.0F, 14.0F, 0.0F);
 		this.field_228865_e_ = new ModelRenderer(64, 64, 0, 0);
-		this.field_228865_e_.addCuboid(1.0F, 0.0F, 0.0F, 15.0F, 5.0F, 14.0F, 0.0F);
+		this.field_228865_e_.addBox(1.0F, 0.0F, 0.0F, 15.0F, 5.0F, 14.0F, 0.0F);
 		this.field_228865_e_.rotationPointY = 9.0F;
 		this.field_228865_e_.rotationPointZ = 1.0F;
 		this.field_228867_g_ = new ModelRenderer(64, 64, 0, 0);
-		this.field_228867_g_.addCuboid(15.0F, -1.0F, 15.0F, 1.0F, 4.0F, 1.0F, 0.0F);
+		this.field_228867_g_.addBox(15.0F, -1.0F, 15.0F, 1.0F, 4.0F, 1.0F, 0.0F);
 		this.field_228867_g_.rotationPointY = 8.0F;
 		this.field_228869_i_ = new ModelRenderer(64, 64, 0, 19);
-		this.field_228869_i_.addCuboid(0.0F, 0.0F, 1.0F, 15.0F, 10.0F, 14.0F, 0.0F);
+		this.field_228869_i_.addBox(0.0F, 0.0F, 1.0F, 15.0F, 10.0F, 14.0F, 0.0F);
 		this.field_228868_h_ = new ModelRenderer(64, 64, 0, 0);
-		this.field_228868_h_.addCuboid(0.0F, 0.0F, 0.0F, 15.0F, 5.0F, 14.0F, 0.0F);
+		this.field_228868_h_.addBox(0.0F, 0.0F, 0.0F, 15.0F, 5.0F, 14.0F, 0.0F);
 		this.field_228868_h_.rotationPointY = 9.0F;
 		this.field_228868_h_.rotationPointZ = 1.0F;
 		this.field_228870_j_ = new ModelRenderer(64, 64, 0, 0);
-		this.field_228870_j_.addCuboid(0.0F, -1.0F, 15.0F, 1.0F, 4.0F, 1.0F, 0.0F);
+		this.field_228870_j_.addBox(0.0F, -1.0F, 15.0F, 1.0F, 4.0F, 1.0F, 0.0F);
 		this.field_228870_j_.rotationPointY = 8.0F;
 	}
 
@@ -89,21 +89,22 @@ public abstract class GenericChestTERenderer<T extends TileEntity & IChestLid> e
 			p_225616_3_.push();
 			float f = blockstate.get(ChestBlock.FACING).getHorizontalAngle();
 			p_225616_3_.translate(0.5D, 0.5D, 0.5D);
-			p_225616_3_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(-f));
+			p_225616_3_.rotate(Vector3f.YP.rotationDegrees(-f));
 			p_225616_3_.translate(-0.5D, -0.5D, -0.5D);
 			TileEntityMerger.ICallbackWrapper<? extends ChestTileEntity> icallbackwrapper;
 			if (flag) {
-				icallbackwrapper = abstractchestblock.getBlockEntitySource(blockstate, world, p_225616_1_.getPos(), true);
+				icallbackwrapper = abstractchestblock.func_225536_a_(blockstate, world, p_225616_1_.getPos(), true); // getBlockEntitySource
 			} else {
-				icallbackwrapper = TileEntityMerger.ICallback::getFallback;
+				icallbackwrapper = TileEntityMerger.ICallback::func_225537_b_; // getFallback
 			}
-
-			float f1 = icallbackwrapper.apply(ChestBlock.getAnimationProgressRetriever((IChestLid)p_225616_1_)).get(p_225616_2_);
+			
+			// getAnimationProgressRetreiver
+			float f1 = icallbackwrapper.apply(ChestBlock.func_226917_a_((IChestLid)p_225616_1_)).get(p_225616_2_);
 			f1 = 1.0F - f1;
 			f1 = 1.0F - f1 * f1 * f1;
 			int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(p_225616_5_);
 			Material material = getMaterialFinal(p_225616_1_, chesttype); // <- Changed here
-			IVertexBuilder ivertexbuilder = material.getVertexConsumer(p_225616_4_, RenderType::getEntityCutout);
+			IVertexBuilder ivertexbuilder = material.getBuffer(p_225616_4_, RenderType::getEntityCutout);
 			if (flag1) {
 				if (chesttype == ChestType.LEFT) {
 					this.func_228871_a_(p_225616_3_, ivertexbuilder, this.field_228868_h_, this.field_228870_j_, this.field_228869_i_, f1, i, p_225616_6_);
@@ -120,7 +121,7 @@ public abstract class GenericChestTERenderer<T extends TileEntity & IChestLid> e
 	
 	public final Material getMaterialFinal(T t, ChestType type) {
 		if(isChristmas)
-			return Atlases.getChestTexture(t, type, this.isChristmas);
+			return Atlases.getChestMaterial(t, type, this.isChristmas);
 
 		return getMaterial(t, type);
 	}

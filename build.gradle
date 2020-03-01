@@ -85,11 +85,6 @@ repositories {
         name "progwml6"
         url "http://dvs1.progwml6.com/files/maven"
     }
-    maven {
-        // for Yarn2MCP
-        name "yarn2mcp"
-        url "https://maven.tterrag.com/"
-    }
 }
 
 dependencies {

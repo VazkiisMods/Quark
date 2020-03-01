@@ -25,7 +25,7 @@ public class MagmaBrickBlock extends QuarkBlock {
 	}
 	
 	@Override
-	public boolean hasEmissiveLighting(BlockState p_225543_1_) {
+	public boolean isEmissiveRendering(BlockState p_225543_1_) {
 		return true;
 	}
 	

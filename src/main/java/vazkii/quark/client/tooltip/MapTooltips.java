@@ -61,16 +61,16 @@ public class MapTooltips {
 			RenderSystem.scalef(scale, scale, scale);
 
 			buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			buffer.vertex(-pad, size, 0.0D).texture(0.0F, 1.0f).endVertex();
-			buffer.vertex(size, size, 0.0D).texture(1.0F, 1.0f).endVertex();
-			buffer.vertex(size, -pad, 0.0D).texture(1.0F, 0.0F).endVertex();
-			buffer.vertex(-pad, -pad, 0.0D).texture(0.0F, 0.0F).endVertex();
+			buffer.pos(-pad, size, 0.0D).tex(0.0F, 1.0f).endVertex();
+			buffer.pos(size, size, 0.0D).tex(1.0F, 1.0f).endVertex();
+			buffer.pos(size, -pad, 0.0D).tex(1.0F, 0.0F).endVertex();
+			buffer.pos(-pad, -pad, 0.0D).tex(0.0F, 0.0F).endVertex();
 			tessellator.draw();
 
-			IRenderTypeBuffer.Impl immediateBuffer = IRenderTypeBuffer.immediate(buffer);
+			IRenderTypeBuffer.Impl immediateBuffer = IRenderTypeBuffer.getImpl(buffer);
 			MatrixStack matrix = new MatrixStack();
-			mc.gameRenderer.getMapItemRenderer().draw(matrix, immediateBuffer, mapdata, true, 0xFFFFFF);
-			immediateBuffer.draw();
+			mc.gameRenderer.getMapItemRenderer().renderMap(matrix, immediateBuffer, mapdata, true, 0xFFFFFF);
+			immediateBuffer.finish();
 			
 			RenderSystem.enableLighting();
 			RenderSystem.popMatrix();

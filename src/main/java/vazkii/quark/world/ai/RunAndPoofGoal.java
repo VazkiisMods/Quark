@@ -78,7 +78,7 @@ public class RunAndPoofGoal<T extends Entity> extends Goal {
 				return false;
 			else {
 				if (target != null)
-					this.path = this.navigation.findPathTo(target.x, target.y, target.z, 0); // TODO CHECK
+					this.path = this.navigation.getPathToPos(target.x, target.y, target.z, 0); // TODO CHECK
 				return target == null || this.path != null;
 			}
 		}

@@ -130,7 +130,7 @@ public class HotbarChangerModule extends Module {
 			for(int i = 0; i < 3; i++)
 				mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + Integer.toString(i + 1), xStart - 9, yStart + i * 21 + 7, 0xFFFFFF);
 
-			RenderHelper.enable();
+			RenderHelper.enableStandardItemLighting();
 
 			RenderSystem.translatef(xStart, yStart, 0);
 			for(int i = 0; i < 27; i++) {

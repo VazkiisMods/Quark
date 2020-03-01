@@ -101,7 +101,7 @@ public class ActWaryGoal extends WaterAvoidingRandomWalkingGoal {
 			return false;
 
 		for (PlayerEntity player : playersAround) {
-			if (player.isSneaking()) {
+			if (player.isDiscrete()) {
 				if (scaredBySuddenMovement.getAsBoolean()) {
 					MutableVectorHolder lastSpeed = lastSpeeds.computeIfAbsent(player, p -> new MutableVectorHolder());
 					MutableVectorHolder lastPos = lastPositions.computeIfAbsent(player, ActWaryGoal::initPos);

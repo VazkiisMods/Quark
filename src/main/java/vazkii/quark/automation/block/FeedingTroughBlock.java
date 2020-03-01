@@ -90,7 +90,7 @@ public class FeedingTroughBlock extends QuarkBlock {
     @Override
     public void onFallenUpon(World world, BlockPos pos, Entity entity, float distance) {
         if (world.getBlockState(pos).get(FULL))
-            entity.handleFallDamage(distance, 0.2F);
+            entity.onLivingFall(distance, 0.2F);
         else
             super.onFallenUpon(world, pos, entity, distance);
     }
@@ -134,7 +134,7 @@ public class FeedingTroughBlock extends QuarkBlock {
     
     @Override
     @SuppressWarnings("deprecation")
-    public ActionResultType onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
         if (world.isRemote)
             return ActionResultType.SUCCESS;
         else {

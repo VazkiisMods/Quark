@@ -86,7 +86,7 @@ public class GrateBlock extends QuarkBlock implements IWaterLoggable {
 			GrateModule.RENDER_SHAPE.remove();
 			return SELECTION_SHAPE;
 		}
-		return context.getEntity().isSneaking() ? TRUE_SHAPE : SELECTION_SHAPE;
+		return context.getEntity().isDiscrete() ? TRUE_SHAPE : SELECTION_SHAPE;
 	}
 
 	@Nonnull
@@ -167,7 +167,7 @@ public class GrateBlock extends QuarkBlock implements IWaterLoggable {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public boolean canSuffocate(@Nonnull BlockState state, @Nonnull IBlockReader world, @Nonnull BlockPos pos) {
+	public boolean causesSuffocation(@Nonnull BlockState state, @Nonnull IBlockReader world, @Nonnull BlockPos pos) {
 		return false;
 	}
 

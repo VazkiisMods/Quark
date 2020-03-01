@@ -124,7 +124,7 @@ public class PassiveCreaturesModule extends Module {
 				.setCustomClientFactory((spawnEntity, world) -> new FrogEntity(frogType, world))
 				.build("frog");
 		RegistryHelper.register(frogType, "frog");
-		EntitySpawnHandler.registerSpawn(this, frogType, EntityClassification.CREATURE, PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::func_223316_b, frogConfig);
+		EntitySpawnHandler.registerSpawn(this, frogType, EntityClassification.CREATURE, PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn, frogConfig);
 		EntitySpawnHandler.addEgg(frogType, 0xbc9869, 0xffe6ad, frogConfig);
 
 		crabType = EntityType.Builder.<CrabEntity>create(CrabEntity::new, EntityClassification.CREATURE)

@@ -56,7 +56,7 @@ public class SignEditingModule extends Module {
 				&& (!requiresEmptyHand || stack.isEmpty()) 
 				&& !(stack.getItem() instanceof DyeItem) 
 				&& player.canPlayerEdit(event.getPos(), event.getFace(), event.getItemStack()) 
-				&& !event.getEntity().isSneaking()) {
+				&& !event.getEntity().isDiscrete()) {
 
 			SignTileEntity sign = (SignTileEntity) tile;
 			sign.setPlayer(player);

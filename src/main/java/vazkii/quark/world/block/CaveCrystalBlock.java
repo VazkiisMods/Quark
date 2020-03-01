@@ -66,7 +66,7 @@ public class CaveCrystalBlock extends QuarkGlassBlock {
 	}
 
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(canGrow(worldIn, pos) && random.nextInt(CaveCrystalUndergroundBiomeModule.caveCrystalGrowthChance) == 0)
 			worldIn.setBlockState(pos.up(), state);
 	}

@@ -56,7 +56,7 @@ public class EnhancedLaddersModule extends Module {
 		if (ladder instanceof LadderBlock) {
 			BlockPos offset = pos.offset(facing);
 			BlockState blockstate = world.getBlockState(offset);
-			return !blockstate.canProvidePower() && blockstate.isSideSolidFullSquare(world, offset, facing); 
+			return !blockstate.canProvidePower() && blockstate.isSolidSide(world, offset, facing); 
 		}
 
 		return false;
@@ -116,7 +116,7 @@ public class EnhancedLaddersModule extends Module {
 			PlayerEntity player = event.player;
 			if(player.isOnLadder()) {
 				boolean scaffold = player.world.getBlockState(player.getPosition()).getBlock() == Blocks.SCAFFOLDING;
-				if(player.isSneaking() == scaffold &&
+				if(player.isShiftKeyDown() == scaffold &&
 						player.moveForward == 0 &&
 						player.moveVertical <= 0 &&
 						player.moveStrafing == 0 &&
@@ -138,7 +138,7 @@ public class EnhancedLaddersModule extends Module {
 		if(player.isOnLadder() && Minecraft.getInstance().currentScreen != null && !(player.moveForward == 0 && player.rotationPitch > 70)) {
 			MovementInput input = event.getMovementInput();
 			if(input != null)
-				input.sneaking = true;
+				input.field_228350_h_ = true; // sneaking
 		}
 	}
 

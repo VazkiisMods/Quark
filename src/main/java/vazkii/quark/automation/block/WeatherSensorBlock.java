@@ -71,7 +71,7 @@ public class WeatherSensorBlock extends QuarkBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public boolean func_220074_n(BlockState p_220074_1_) { // blocksLight
+    public boolean isTransparent(BlockState p_220074_1_) { // blocksLight
         return true;
     }
 
@@ -96,7 +96,7 @@ public class WeatherSensorBlock extends QuarkBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public ActionResultType onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult ray) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult ray) {
         if (player.isAllowEdit()) {
             if (world.isRemote) {
                 return ActionResultType.SUCCESS;
@@ -107,7 +107,7 @@ public class WeatherSensorBlock extends QuarkBlock {
                 return ActionResultType.SUCCESS;
             }
         } else {
-            return super.onUse(state, world, pos, player, hand, ray);
+            return super.onBlockActivated(state, world, pos, player, hand, ray);
         }
     }
 }

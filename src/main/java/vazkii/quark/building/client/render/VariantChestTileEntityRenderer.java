@@ -40,7 +40,7 @@ public class VariantChestTileEntityRenderer extends GenericChestTERenderer<Chest
 	}
 
 	public static void accept(TextureStitchEvent.Pre event, Block chest) {
-		ResourceLocation atlas = event.getMap().getId();
+		ResourceLocation atlas = event.getMap().getTextureLocation();
 
 		if(chest instanceof IChestTextureProvider) {
 			IChestTextureProvider prov = (IChestTextureProvider) chest;

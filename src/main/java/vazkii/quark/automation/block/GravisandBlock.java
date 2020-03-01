@@ -68,7 +68,7 @@ public class GravisandBlock extends QuarkBlock {
 
 	@Override
 	@SuppressWarnings("deprecation")
-	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 		if(!worldIn.isRemote) {
 			if(checkFallable(worldIn, pos))
 				for(Direction face : Direction.values()) {

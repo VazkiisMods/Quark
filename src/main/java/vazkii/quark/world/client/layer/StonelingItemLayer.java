@@ -44,13 +44,13 @@ public class StonelingItemLayer extends LayerRenderer<StonelingEntity, Stoneling
 			matrix.push();
 			matrix.translate(0F, 0.5F, 0F);
 			if(!isBlock) {
-				matrix.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(stoneling.getItemAngle() + 180));
-				matrix.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(90F));
-			} else matrix.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(180F));
+				matrix.rotate(Vector3f.YP.rotationDegrees(stoneling.getItemAngle() + 180));
+				matrix.rotate(Vector3f.XP.rotationDegrees(90F));
+			} else matrix.rotate(Vector3f.XP.rotationDegrees(180F));
 			
 			matrix.scale(0.725F, 0.725F, 0.725F);
 			Minecraft mc = Minecraft.getInstance();
-			mc.getItemRenderer().renderItem(stack, TransformType.FIXED, light, OverlayTexture.DEFAULT_UV, matrix, buffer);
+			mc.getItemRenderer().renderItem(stack, TransformType.FIXED, light, OverlayTexture.NO_OVERLAY, matrix, buffer);
 			matrix.pop();
 		}
 	}

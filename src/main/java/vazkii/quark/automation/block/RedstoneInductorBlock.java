@@ -63,7 +63,7 @@ public class RedstoneInductorBlock extends QuarkBlock implements IBlockColorProv
 
     @Override
     @SuppressWarnings("deprecation")
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
         if (!isLocked(world, pos, state)) {
             int currentPower = state.get(POWER);
             int power = this.calculateInputStrength(world, pos, state);

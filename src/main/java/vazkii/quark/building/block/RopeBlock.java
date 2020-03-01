@@ -32,8 +32,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import vazkii.arl.interf.IBlockItemProvider;
@@ -66,10 +64,10 @@ public class RopeBlock extends QuarkBlock implements IBlockItemProvider {
 
 	@Override
 	@SuppressWarnings("deprecation")
-	public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
 		if(hand == Hand.MAIN_HAND) {
 			ItemStack stack = player.getHeldItem(hand);
-			if(stack.getItem() == asItem() && !player.isSneaking()) {
+			if(stack.getItem() == asItem() && !player.isDiscrete()) {
 				if(pullDown(worldIn, pos)) {
 					if(!player.isCreative())
 						stack.shrink(1);
@@ -224,7 +222,7 @@ public class RopeBlock extends QuarkBlock implements IBlockItemProvider {
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
 		BlockPos upPos = pos.up();
 		BlockState upState = worldIn.getBlockState(upPos);
-		return upState.getBlock() == this || upState.isSideSolidFullSquare(worldIn, upPos, Direction.DOWN);
+		return upState.getBlock() == this || upState.isSolidSide(worldIn, upPos, Direction.DOWN);
 	}
 
 	@Override

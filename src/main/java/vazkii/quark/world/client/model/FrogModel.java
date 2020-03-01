@@ -27,26 +27,26 @@ public class FrogModel extends EntityModel<FrogEntity> {
 		rightArm = new ModelRenderer(this, 33, 7);
 		rightArm.mirror = true;
 		rightArm.setRotationPoint(6.5F, 22.0F, 1.0F);
-		rightArm.addCuboid(-1.0F, -1.0F, -5.0F, 3, 3, 6, 0.0F);
+		rightArm.addBox(-1.0F, -1.0F, -5.0F, 3, 3, 6, 0.0F);
 		leftArm = new ModelRenderer(this, 33, 7);
 		leftArm.setRotationPoint(-6.5F, 22.0F, 1.0F);
-		leftArm.addCuboid(-2.0F, -1.0F, -5.0F, 3, 3, 6, 0.0F);
+		leftArm.addBox(-2.0F, -1.0F, -5.0F, 3, 3, 6, 0.0F);
 		body = new ModelRenderer(this, 0, 7);
 		body.setRotationPoint(0.0F, 20.0F, 0.0F);
-		body.addCuboid(-5.5F, -3.0F, 0.0F, 11, 7, 11, 0.0F);
+		body.addBox(-5.5F, -3.0F, 0.0F, 11, 7, 11, 0.0F);
 		headTop = new ModelRenderer(this, 0, 0);
 		headTop.setRotationPoint(0.0F, 18.0F, 0.0F);
-		headTop.addCuboid(-5.5F, -1.0F, -5.0F, 11, 2, 5, 0.0F);
+		headTop.addBox(-5.5F, -1.0F, -5.0F, 11, 2, 5, 0.0F);
 		headBottom = new ModelRenderer(this, 32, 0);
 		headBottom.setRotationPoint(0.0F, 18.0F, 0.0F);
-		headBottom.addCuboid(-5.5F, 1.0F, -5.0F, 11, 2, 5, 0.0F);
+		headBottom.addBox(-5.5F, 1.0F, -5.0F, 11, 2, 5, 0.0F);
 		rightEye = new ModelRenderer(this, 0, 0);
 		rightEye.mirror = true;
 		rightEye.setRotationPoint(0.0F, 18.0F, 0.0F);
-		rightEye.addCuboid(1.5F, -1.5F, -4.0F, 1, 1, 1, 0.0F);
+		rightEye.addBox(1.5F, -1.5F, -4.0F, 1, 1, 1, 0.0F);
 		leftEye = new ModelRenderer(this, 0, 0);
 		leftEye.setRotationPoint(0.0F, 18.0F, 0.0F);
-		leftEye.addCuboid(-2.5F, -1.5F, -4.0F, 1, 1, 1, 0.0F);
+		leftEye.addBox(-2.5F, -1.5F, -4.0F, 1, 1, 1, 0.0F);
 	}
 
 
@@ -66,7 +66,7 @@ public class FrogModel extends EntityModel<FrogEntity> {
 	}
 
 	@Override
-	public void setAngles(FrogEntity frog, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setRotationAngles(FrogEntity frog, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		frogSize = frog.getSizeModifier();
 		
 		rightArm.rotateAngleX = MathHelper.cos(limbSwing * 2 / 3) * 1F * limbSwingAmount;

@@ -85,8 +85,8 @@ public class BlossomSaplingBlock extends SaplingBlock implements IQuarkBlock {
 		}
 
 		@Override
-		protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random rand) {
-			return feature.configure(DefaultBiomeFeatures.FANCY_TREE_CONFIG);
+		protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hjskfsd) {
+			return feature.withConfiguration(DefaultBiomeFeatures.FANCY_TREE_CONFIG);
 		}
 		
 		public void setSapling(BlossomSaplingBlock sapling) {
@@ -104,7 +104,7 @@ public class BlossomSaplingBlock extends SaplingBlock implements IQuarkBlock {
 			public BlossomSaplingBlock sapling;
 
 			public BlossomTreeFeature(BlockState leaf) {
-				super(TreeFeatureConfig::deserialize);
+				super(TreeFeatureConfig::func_227338_a_); // deserialize
 				this.leaf = leaf;
 			}
 			
@@ -188,7 +188,7 @@ public class BlossomSaplingBlock extends SaplingBlock implements IQuarkBlock {
 				if (!isAirOrLeaves(p_227216_1_, p_227216_3_) && !isTallPlants(p_227216_1_, p_227216_3_) && !isWater(p_227216_1_, p_227216_3_)) {
 					return false;
 				} else {
-					this.setBlockState(p_227216_1_, p_227216_3_, state, p_227216_5_);
+					this.func_227217_a_(p_227216_1_, p_227216_3_, state, p_227216_5_); // setBlockState
 					p_227216_4_.add(p_227216_3_.toImmutable());
 					return true;
 				}
@@ -252,8 +252,8 @@ public class BlossomSaplingBlock extends SaplingBlock implements IQuarkBlock {
 				}
 			}
 
-			@Override
-			public boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> changedBlocks, Set<BlockPos> what, MutableBoundingBox boundsIn, TreeFeatureConfig config) {
+			@Override // generate
+			public boolean func_225557_a_(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> changedBlocks, Set<BlockPos> what, MutableBoundingBox boundsIn, TreeFeatureConfig config) {
 				Random random = new Random(rand.nextLong());
 				int i = this.checkLocation(changedBlocks, worldIn, position, 5 + random.nextInt(12), boundsIn);
 				if (i == -1) {
