@@ -99,12 +99,12 @@ public class ShulkerBoxTooltips {
 							currentY = event.getY() + event.getLines().size() * 10 + 5;
 
 						int right = currentX + texWidth;
-						MainWindow window = mc.getWindow();
+						MainWindow window = mc.getMainWindow();
 						if (right > window.getScaledWidth())
 							currentX -= (right - window.getScaledWidth());
 
 						RenderSystem.pushMatrix();
-						RenderHelper.enable();
+						RenderHelper.enableStandardItemLighting();
 						RenderSystem.enableRescaleNormal();
 						RenderSystem.color3f(1F, 1F, 1F);
 						RenderSystem.translatef(0, 0, 700);
@@ -128,7 +128,7 @@ public class ShulkerBoxTooltips {
 
 						ItemRenderer render = mc.getItemRenderer();
 
-						RenderHelper.enable();
+						RenderHelper.enableStandardItemLighting();
 						RenderSystem.enableDepthTest();
 						for (int i = 0; i < size; i++) {
 							ItemStack itemstack = capability.getStackInSlot(i);

@@ -60,7 +60,7 @@ public class RedstoneRandomizerBlock extends QuarkBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
         boolean isPowered = isPowered(state);
         boolean willBePowered = shouldBePowered(world, pos, state);
         if(isPowered != willBePowered) {

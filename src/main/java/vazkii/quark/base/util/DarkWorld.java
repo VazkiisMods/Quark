@@ -37,6 +37,7 @@ import net.minecraft.world.storage.WorldInfo;
 // TODO WIRE: I have no idea what you did with this but it don work
 
 public class DarkWorld implements IWorld {
+	
     private final IWorld parent;
     private final AbstractChunkProvider provider;
     private final WorldLightManager light;
@@ -47,23 +48,24 @@ public class DarkWorld implements IWorld {
         light = new DarkLightManager(parent.getChunkProvider());
     }
 
+    
 	@Override
-	public BiomeManager getBiomeAccess() {
-		return parent.getBiomeAccess();
+	public BiomeManager getBiomeManager() {
+		return parent.getBiomeManager();
 	}
-
+	
 	@Override
-	public Biome getGeneratorStoredBiome(int p_225604_1_, int p_225604_2_, int p_225604_3_) {
-		return parent.getGeneratorStoredBiome(p_225604_1_, p_225604_2_, p_225604_3_);
+	public Biome getNoiseBiomeRaw(int p_225604_1_, int p_225604_2_, int p_225604_3_) {
+		return parent.getNoiseBiomeRaw(p_225604_1_, p_225604_2_, p_225604_3_);
 	}
-
+	
 	@Override
-	public WorldLightManager getLightingProvider() {
+	public WorldLightManager getLightManager() {
 		return light;
 	}
 
-	@Override
-	public boolean breakBlock(BlockPos arg0, boolean arg1, Entity arg2) {
+	@Override // breakBlock
+	public boolean func_225521_a_(BlockPos arg0, boolean arg1, Entity arg2) {
 		return false;
 	}
     
@@ -253,7 +255,7 @@ public class DarkWorld implements IWorld {
 		}
 		
 		@Override
-		public int getLight(BlockPos p_227470_1_, int p_227470_2_) {
+		public int getLightSubtracted(BlockPos p_227470_1_, int p_227470_2_) {
 			return 0;
 		}
     	

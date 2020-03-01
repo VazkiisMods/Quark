@@ -74,7 +74,7 @@ public class ItemSharingModule extends Module {
 	public void keyboardEvent(GuiScreenEvent.KeyboardKeyPressedEvent.Pre event) {
 		Minecraft mc = Minecraft.getInstance();
 		GameSettings settings = mc.gameSettings;
-		if(InputMappings.isKeyDown(mc.getWindow().getHandle(), settings.keyBindChat.getKey().getKeyCode()) &&
+		if(InputMappings.isKeyDown(mc.getMainWindow().getHandle(), settings.keyBindChat.getKey().getKeyCode()) &&
 				event.getGui() instanceof ContainerScreen && Screen.hasShiftDown()) {
 			ContainerScreen gui = (ContainerScreen) event.getGui();
 
@@ -209,7 +209,7 @@ public class ItemSharingModule extends Module {
 				int y = chatY - mc.fontRenderer.FONT_HEIGHT * lineHeight;
 
 				if (alpha > 0) {
-					RenderHelper.enable();
+					RenderHelper.enableStandardItemLighting();
 					alphaValue = ((int) (alpha * 255) << 24);
 
 					renderItemIntoGUI(mc, mc.getItemRenderer(), stack, x, y);

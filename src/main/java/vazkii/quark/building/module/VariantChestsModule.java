@@ -109,8 +109,7 @@ public class VariantChestsModule extends Module {
 	
 	@Override
 	public void textureStitch(TextureStitchEvent.Pre event) {
-		if(event.getMap().getId().toString().equals("minecraft:textures/atlas/chest.png")) {
-			System.out.println("Its event time " + allChests);
+		if(event.getMap().getTextureLocation().toString().equals("minecraft:textures/atlas/chest.png")) {
 			for(Block b : allChests)
 				VariantChestTileEntityRenderer.accept(event, b);
 		}

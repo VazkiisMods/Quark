@@ -53,7 +53,7 @@ public class RootBlock extends VineBlock implements IQuarkBlock, IGrowable {
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(!worldIn.isRemote && worldIn.rand.nextInt(2) == 0)
 			grow(worldIn, random, pos, state);
 	}

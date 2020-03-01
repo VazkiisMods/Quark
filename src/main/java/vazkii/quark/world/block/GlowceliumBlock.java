@@ -37,7 +37,7 @@ public class GlowceliumBlock extends QuarkBlock {
 
 	@Override
 	@SuppressWarnings("deprecation")
-	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(!worldIn.isRemote) {
 			if(!canExist(state, worldIn, pos))
 				worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());

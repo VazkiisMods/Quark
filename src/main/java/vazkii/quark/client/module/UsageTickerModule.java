@@ -165,7 +165,7 @@ public class UsageTickerModule extends Module {
 				
 				RenderSystem.pushMatrix();
 				RenderSystem.translatef(x, y, 0);
-				RenderHelper.enable();
+				RenderHelper.enableStandardItemLighting();
 				mc.getItemRenderer().renderItemAndEffectIntoGUI(stack, 0, 0);
 				mc.getItemRenderer().renderItemOverlays(Minecraft.getInstance().fontRenderer, stack, 0, 0);
 				RenderHelper.disableStandardItemLighting();

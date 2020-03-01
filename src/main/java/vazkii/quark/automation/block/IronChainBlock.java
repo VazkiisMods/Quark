@@ -57,7 +57,7 @@ public class IronChainBlock extends QuarkBlock implements IWaterLoggable {
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
 		BlockPos upPos = pos.up();
 		BlockState upState = worldIn.getBlockState(upPos);
-		return upState.getBlock() == this || upState.isSideSolidFullSquare(worldIn, upPos, Direction.DOWN);
+		return upState.getBlock() == this || upState.isSolidSide(worldIn, upPos, Direction.DOWN);
 	}
 	
 	@Override

@@ -144,7 +144,7 @@ public class FrogEntity extends AnimalEntity implements IEntityAdditionalSpawnDa
 	}
 
 	@Override
-	public boolean handleFallDamage(float distance, float damageMultiplier) {
+	public boolean onLivingFall(float distance, float damageMultiplier) {
 		return false;
 	}
 

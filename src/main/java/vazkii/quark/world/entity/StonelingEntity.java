@@ -180,7 +180,7 @@ public class StonelingEntity extends CreatureEntity {
 
 			if(!world.isRemote) {
 				if (isPlayerMade()) {
-					if (!player.isSneaking() && !playerItem.isEmpty()) {
+					if (!player.isDiscrete() && !playerItem.isEmpty()) {
 
 						EnumStonelingVariant currentVariant = getVariant();
 						EnumStonelingVariant targetVariant = null;
@@ -315,7 +315,7 @@ public class StonelingEntity extends CreatureEntity {
 	}
 
 	@Override
-	public boolean handleFallDamage(float distance, float damageMultiplier) {
+	public boolean onLivingFall(float distance, float damageMultiplier) {
 		return false;
 	}
 
@@ -422,7 +422,7 @@ public class StonelingEntity extends CreatureEntity {
 
 
 	public static boolean validLight(IWorld world, BlockPos pos, Random rand) {
-		if (world.getLightLevel(LightType.SKY, pos) > rand.nextInt(32)) {
+		if (world.getLightFor(LightType.SKY, pos) > rand.nextInt(32)) {
 			return false;
 		} else {
 			int light = world.getWorld().isThundering() ? world.getNeighborAwareLightSubtracted(pos, 10) : world.getLight(pos);

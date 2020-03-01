@@ -79,7 +79,7 @@ public class ChainLinkageModule extends Module {
 
         Entity link = ChainHandler.getLinked(entity);
 
-        boolean sneaking = player.isSneaking();
+        boolean sneaking = player.isDiscrete();
 
         List<Entity> linkedToPlayer = new ArrayList<>();
 

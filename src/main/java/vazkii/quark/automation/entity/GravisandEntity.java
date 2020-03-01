@@ -127,7 +127,7 @@ public class GravisandEntity extends FallingBlockEntity {
 	}
 
 	@Override
-	public boolean handleFallDamage(float distance, float damageMultiplier) {
+	public boolean onLivingFall(float distance, float damageMultiplier) {
 		return false;
 	}
 

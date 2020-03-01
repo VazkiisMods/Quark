@@ -27,7 +27,7 @@ public class BiomeLocator {
 		AbstractChunkProvider provider = world.getChunkProvider();
 		if(provider != null && provider instanceof ServerChunkProvider) {
 			ServerChunkProvider sprovider = (ServerChunkProvider) provider;
-			BiomeManager manager = world.getBiomeAccess();
+			BiomeManager manager = world.getBiomeManager();
 			if(manager != null) {
 				int sampleSpacing = 4 << getBiomeSize(world, sprovider.generator);
 				int maxDist = sampleSpacing * 100;

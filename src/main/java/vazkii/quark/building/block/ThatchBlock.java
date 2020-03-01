@@ -23,7 +23,7 @@ public class ThatchBlock extends QuarkBlock {
 
 	@Override
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-		entityIn.handleFallDamage(fallDistance, (float) ThatchModule.fallDamageMultiplier);
+		entityIn.onLivingFall(fallDistance, (float) ThatchModule.fallDamageMultiplier);
 	}
 
 }

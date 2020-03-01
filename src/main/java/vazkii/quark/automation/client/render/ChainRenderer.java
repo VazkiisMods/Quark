@@ -50,8 +50,8 @@ public class ChainRenderer {
 			}
 
 			float amount = seg / 24.0F;
-			buf.vertex(x + offsetX * amount - centroid, y + offsetY * (amount * amount + amount) * 0.5D + ((24.0F - seg) / 18.0F + 0.125F) * height + xOff / 2 - zOff / 2, z + offsetZ * amount - xOff / 2).color(r, g, b, 1.0F).endVertex();
-			buf.vertex(x + offsetX * amount + centroid, y + offsetY * (amount * amount + amount) * 0.5D + ((24.0F - seg) / 18.0F + 0.125F) * height + zOff / 2 - xOff / 2, z + offsetZ * amount + xOff / 2).color(r, g, b, 1.0F).endVertex();
+			buf.pos(x + offsetX * amount - centroid, y + offsetY * (amount * amount + amount) * 0.5D + ((24.0F - seg) / 18.0F + 0.125F) * height + xOff / 2 - zOff / 2, z + offsetZ * amount - xOff / 2).color(r, g, b, 1.0F).endVertex();
+			buf.pos(x + offsetX * amount + centroid, y + offsetY * (amount * amount + amount) * 0.5D + ((24.0F - seg) / 18.0F + 0.125F) * height + zOff / 2 - xOff / 2, z + offsetZ * amount + xOff / 2).color(r, g, b, 1.0F).endVertex();
 		}
 
 		Tessellator.getInstance().draw();

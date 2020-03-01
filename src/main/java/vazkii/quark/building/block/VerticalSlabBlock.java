@@ -59,9 +59,9 @@ public class VerticalSlabBlock extends QuarkBlock implements IWaterLoggable, IBl
 
 		setDefaultState(getDefaultState().with(TYPE, VerticalSlabType.NORTH).with(WATERLOGGED, false));
 	}
-
+	
 	@Override
-	public boolean func_220074_n(BlockState state) {
+	public boolean isTransparent(BlockState state) {
 		return state.get(TYPE) != VerticalSlabType.DOUBLE;
 	}
 
@@ -143,8 +143,8 @@ public class VerticalSlabBlock extends QuarkBlock implements IWaterLoggable, IBl
 	}
 	
 	@Override
-	public boolean hasEmissiveLighting(BlockState p_225543_1_) {
-		return parent.getBlock().hasEmissiveLighting(p_225543_1_);
+	public boolean isEmissiveRendering(BlockState p_225543_1_) {
+		return parent.getBlock().isEmissiveRendering(p_225543_1_);
 	}
 
 	@Override

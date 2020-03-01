@@ -52,7 +52,7 @@ public class CandleBlock extends QuarkBlock {
 	}
 
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(!worldIn.isRemote && TallowAndCandlesModule.candlesFall)
 			checkFallable(worldIn, pos);
 	}

@@ -8,19 +8,19 @@
 </listAttribute>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
 <mapEntry key="FORGE_GROUP" value="net.minecraftforge"/>
-<mapEntry key="FORGE_VERSION" value="30.0.42"/>
-<mapEntry key="MCP_MAPPINGS" value="snapshot_20200120-mixed-1.15.1"/>
-<mapEntry key="MCP_VERSION" value="20191217.105819"/>
-<mapEntry key="MC_VERSION" value="1.15.1"/>
+<mapEntry key="FORGE_VERSION" value="31.1.18"/>
+<mapEntry key="MCP_MAPPINGS" value="snapshot_20200225-1.15.1"/>
+<mapEntry key="MCP_VERSION" value="20200122.131323"/>
+<mapEntry key="MC_VERSION" value="1.15.2"/>
 <mapEntry key="MOD_CLASSES" value="examplemod%%D:\MCPDev\Quark\bin\main;examplemod%%D:\MCPDev\Quark\bin\main"/>
 <mapEntry key="assetDirectory" value="C:\Users\VL\.gradle\caches\forge_gradle\assets"/>
-<mapEntry key="assetIndex" value="1.14"/>
+<mapEntry key="assetIndex" value="1.15"/>
 <mapEntry key="nativesDirectory" value="D:\MCPDev\Quark\build\natives"/>
 <mapEntry key="target" value="fmluserdevclient"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.buildship.core.classpathprovider"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="net.minecraftforge.userdev.LaunchTesting"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Quark"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dforge.logging.console.level=debug -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump &quot;-Dos.name=Windows 10&quot; -Dos.version=10.0"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dforge.logging.console.level=debug -Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump &quot;-Dos.name=Windows 10&quot; -Dos.version=10.0"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="D:\MCPDev\Quark\run"/>
 </launchConfiguration>

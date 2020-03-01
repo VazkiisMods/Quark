@@ -68,8 +68,8 @@ public class QuarkWallBlock extends WallBlock implements IQuarkBlock, IBlockColo
 	}
 
 	@Override
-	public boolean hasEmissiveLighting(BlockState p_225543_1_) {
-		return parent.getBlock().hasEmissiveLighting(p_225543_1_);
+	public boolean isEmissiveRendering(BlockState p_225543_1_) {
+		return parent.getBlock().isEmissiveRendering(p_225543_1_);
 	}
 	
 	@Override

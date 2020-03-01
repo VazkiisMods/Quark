@@ -53,7 +53,7 @@ public class GlowshroomBlock extends MushroomBlock implements IQuarkBlock {
 	}
 	
 	@Override
-	public void scheduledTick(@Nonnull BlockState state, @Nonnull ServerWorld worldIn, @Nonnull BlockPos pos, Random rand) {
+	public void tick(@Nonnull BlockState state, @Nonnull ServerWorld worldIn, @Nonnull BlockPos pos, Random rand) {
 		if(rand.nextInt(GlowshroomUndergroundBiomeModule.glowshroomGrowthRate) == 0) {
 			int i = 5;
 

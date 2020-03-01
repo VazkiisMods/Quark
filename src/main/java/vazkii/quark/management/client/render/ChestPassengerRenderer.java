@@ -47,7 +47,7 @@ public class ChestPassengerRenderer extends EntityRenderer<ChestPassengerEntity>
 
         matrix.push();
         matrix.translate(0, 0.375, 0);
-        matrix.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(rot));
+        matrix.rotate(Vector3f.YP.rotationDegrees(rot));
         float timeSinceHit = boat.getTimeSinceHit() - partialTicks;
         float damageTaken = boat.getDamageTaken() - partialTicks;
 
@@ -56,12 +56,12 @@ public class ChestPassengerRenderer extends EntityRenderer<ChestPassengerEntity>
 
         if (timeSinceHit > 0.0F) {
         	double angle = MathHelper.sin(timeSinceHit) * timeSinceHit * damageTaken / 10.0F * boat.getForwardDirection();
-            matrix.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion((float) angle));
+            matrix.rotate(Vector3f.XP.rotationDegrees((float) angle));
         }
 
         float rock = boat.getRockingAngle(partialTicks);
         if (!MathHelper.epsilonEquals(rock, 0.0F)) {
-        	 matrix.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(rock));
+        	 matrix.rotate(Vector3f.XP.rotationDegrees(rock));
         }
 
         if (riding.getPassengers().size() > 1)
@@ -73,7 +73,7 @@ public class ChestPassengerRenderer extends EntityRenderer<ChestPassengerEntity>
 
         matrix.scale(1.75F, 1.75F, 1.75F);
 
-        Minecraft.getInstance().getItemRenderer().renderItem(stack, TransformType.FIXED, light, OverlayTexture.DEFAULT_UV, matrix, buffer);
+        Minecraft.getInstance().getItemRenderer().renderItem(stack, TransformType.FIXED, light, OverlayTexture.NO_OVERLAY, matrix, buffer);
         matrix.pop();
     }
 

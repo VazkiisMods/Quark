@@ -25,7 +25,7 @@ public class DoubleDoorOpeningModule extends Module {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onPlayerInteract(PlayerInteractEvent.RightClickBlock event) {
-		if(!event.getWorld().isRemote || event.getPlayer().isSneaking() || event.isCanceled() || event.getResult() == Result.DENY || event.getUseBlock() == Result.DENY)
+		if(!event.getWorld().isRemote || event.getPlayer().isDiscrete() || event.isCanceled() || event.getResult() == Result.DENY || event.getUseBlock() == Result.DENY)
 			return;
 
 		World world = event.getWorld();

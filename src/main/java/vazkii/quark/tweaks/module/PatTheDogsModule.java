@@ -47,7 +47,7 @@ public class PatTheDogsModule extends Module {
             WolfEntity wolf = (WolfEntity) event.getTarget();
             PlayerEntity player = event.getPlayer();
 
-            if(player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
+            if(player.isDiscrete() && player.getHeldItemMainhand().isEmpty()) {
                 if(event.getHand() == Hand.MAIN_HAND && WantLoveGoal.canPet(wolf)) {
                     if(player.world instanceof ServerWorld) {
                     	Vec3d pos = wolf.getPositionVec();

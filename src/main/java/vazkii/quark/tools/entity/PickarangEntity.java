@@ -322,7 +322,7 @@ public class PickarangEntity extends Entity implements IProjectile {
 
 		Vec3d  vec3d = this.getMotion();
 
-		setPos(pos.x + vec3d.x, pos.y + vec3d.y, pos.z + vec3d.z);
+		setPosition(pos.x + vec3d.x, pos.y + vec3d.y, pos.z + vec3d.z);
 		float f = MathHelper.sqrt(horizontalMag(vec3d));
 		this.rotationYaw = (float)(MathHelper.atan2(vec3d.x, vec3d.z) * (180F / (float)Math.PI));
 

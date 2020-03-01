@@ -49,10 +49,10 @@ public class CustomEmoteIconResourcePack extends ResourcePack {
 		
 		return new FileInputStream(file);
 	}
-
+	
 	@Nonnull
 	@Override
-	public Collection<ResourceLocation> findResources(@Nonnull ResourcePackType type, @Nonnull String pathIn, String idk, int maxDepth, @Nonnull Predicate<String> filter) {
+	public Collection<ResourceLocation> getAllResourceLocations(@Nonnull ResourcePackType type, @Nonnull String pathIn, String idk, int maxDepth, @Nonnull Predicate<String> filter) {
 		File rootPath = new File(this.file, type.getDirectoryName());
 		List<ResourceLocation> allResources = Lists.newArrayList();
 

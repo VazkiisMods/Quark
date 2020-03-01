@@ -32,7 +32,7 @@ public class FoxhoundCollarLayer extends LayerRenderer<FoxhoundEntity, FoxhoundM
 	public void render(MatrixStack matrix, IRenderTypeBuffer buffer, int light, FoxhoundEntity foxhound,  float limbAngle, float limbDistance, float tickDelta, float customAngle, float headYaw, float headPitch) {
 		if (foxhound.isTamed() && !foxhound.isInvisible()) {
 			float[] afloat = foxhound.getCollarColor().getColorComponentValues();
-			renderModel(getEntityModel(), WOLF_COLLAR, matrix, buffer, light, foxhound, afloat[0], afloat[1], afloat[2]);
+			renderCutoutModel(getEntityModel(), WOLF_COLLAR, matrix, buffer, light, foxhound, afloat[0], afloat[1], afloat[2]);
 		}
 	}
 

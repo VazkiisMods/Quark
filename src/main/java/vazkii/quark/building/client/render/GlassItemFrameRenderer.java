@@ -1,42 +1,37 @@
 package vazkii.quark.building.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.Atlases;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.ItemFrameRenderer;
-import net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.model.ModelManager;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.tileentity.BannerTileEntityRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemFrameEntity;
-import net.minecraft.item.*;
-import net.minecraft.tileentity.BannerTileEntity;
+import net.minecraft.item.FilledMapItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShieldItem;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.storage.MapData;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.common.MinecraftForge;
-import org.lwjgl.opengl.GL11;
 import vazkii.quark.base.Quark;
-import vazkii.quark.building.entity.ColoredItemFrameEntity;
 import vazkii.quark.building.entity.GlassItemFrameEntity;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * @author WireSegal
@@ -67,11 +62,11 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrameEntity>
         super.render(p_225623_1_, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);
         p_225623_4_.push();
         Direction direction = p_225623_1_.getHorizontalFacing();
-        Vec3d vec3d = this.getPositionOffset(p_225623_1_, p_225623_3_);
+        Vec3d vec3d = this.getRenderOffset(p_225623_1_, p_225623_3_);
         p_225623_4_.translate(-vec3d.getX(), -vec3d.getY(), -vec3d.getZ());
         p_225623_4_.translate((double)direction.getXOffset() * 0.46875D, (double)direction.getYOffset() * 0.46875D, (double)direction.getZOffset() * 0.46875D);
-        p_225623_4_.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(p_225623_1_.rotationPitch));
-        p_225623_4_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(180.0F - p_225623_1_.rotationYaw));
+        p_225623_4_.rotate(Vector3f.XP.rotationDegrees(p_225623_1_.rotationPitch));
+        p_225623_4_.rotate(Vector3f.YP.rotationDegrees(180.0F - p_225623_1_.rotationYaw));
         BlockRendererDispatcher blockrendererdispatcher = this.mc.getBlockRendererDispatcher();
         ModelManager modelmanager = blockrendererdispatcher.getBlockModelShapes().getModelManager();
         
@@ -80,7 +75,7 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrameEntity>
         if (itemstack.isEmpty()) {
             p_225623_4_.push();
             p_225623_4_.translate(-0.5D, -0.5D, -0.5D);
-            blockrendererdispatcher.getBlockModelRenderer().render(p_225623_4_.peek(), p_225623_5_.getBuffer(Atlases.getEntityCutout()), (BlockState)null, modelmanager.getModel(LOCATION_MODEL), 1.0F, 1.0F, 1.0F, p_225623_6_, OverlayTexture.DEFAULT_UV);
+            blockrendererdispatcher.getBlockModelRenderer().renderModelBrightnessColor(p_225623_4_.getLast(), p_225623_5_.getBuffer(Atlases.getCutoutBlockType()), (BlockState)null, modelmanager.getModel(LOCATION_MODEL), 1.0F, 1.0F, 1.0F, p_225623_6_, OverlayTexture.NO_OVERLAY);
             p_225623_4_.pop();
         } else {
         	renderItemStack(p_225623_1_, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_, itemstack);
@@ -88,10 +83,10 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrameEntity>
 //           MapData mapdata = FilledMapItem.getMapData(itemstack, p_225623_1_.world);
 //           p_225623_4_.translate(0.0D, 0.0D, 0.4375D);
 //           int i = mapdata != null ? p_225623_1_.getRotation() % 4 * 2 : p_225623_1_.getRotation();
-//           p_225623_4_.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion((float)i * 360.0F / 8.0F));
+//           p_225623_4_.rotate(Vector3f.ZP.rotationDegrees((float)i * 360.0F / 8.0F));
 //           if (!net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderItemInFrameEvent(p_225623_1_, defaultRenderer))) {
 //           if (mapdata != null) {
-//              p_225623_4_.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(180.0F));
+//              p_225623_4_.rotate(Vector3f.ZP.rotationDegrees(180.0F));
 //              float f = 0.0078125F;
 //              p_225623_4_.scale(0.0078125F, 0.0078125F, 0.0078125F);
 //              p_225623_4_.translate(-64.0D, -64.0D, 0.0D);
@@ -101,7 +96,7 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrameEntity>
 //              }
 //           } else {
 //              p_225623_4_.scale(0.5F, 0.5F, 0.5F);
-//              this.itemRenderer.renderItem(itemstack, ItemCameraTransforms.TransformType.FIXED, p_225623_6_, OverlayTexture.DEFAULT_UV, p_225623_4_, p_225623_5_);
+//              this.itemRenderer.renderItem(itemstack, ItemCameraTransforms.TransformType.FIXED, p_225623_6_, OverlayTexture.NO_OVERLAY, p_225623_4_, p_225623_5_);
 //           }
 //           }
         }
@@ -109,26 +104,30 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrameEntity>
         p_225623_4_.pop();
      }
 
-     public Vec3d getPositionOffset(GlassItemFrameEntity p_225627_1_, float p_225627_2_) {
+    @Override
+     public Vec3d getRenderOffset(GlassItemFrameEntity p_225627_1_, float p_225627_2_) {
         return new Vec3d((double)((float)p_225627_1_.getHorizontalFacing().getXOffset() * 0.3F), -0.25D, (double)((float)p_225627_1_.getHorizontalFacing().getZOffset() * 0.3F));
      }
 
+    @Override
      public ResourceLocation getEntityTexture(GlassItemFrameEntity p_110775_1_) {
         return AtlasTexture.LOCATION_BLOCKS_TEXTURE;
      }
 
+    @Override
      protected boolean canRenderName(GlassItemFrameEntity p_177070_1_) {
         if (Minecraft.isGuiEnabled() && !p_177070_1_.getDisplayedItem().isEmpty() && p_177070_1_.getDisplayedItem().hasDisplayName() && this.renderManager.pointedEntity == p_177070_1_) {
-           double d0 = this.renderManager.getSquaredDistanceToCamera(p_177070_1_);
-           float f = p_177070_1_.isSneaky() ? 32.0F : 64.0F;
+           double d0 = this.renderManager.squareDistanceTo(p_177070_1_);
+           float f = p_177070_1_.isDiscrete() ? 32.0F : 64.0F;
            return d0 < (double)(f * f);
         } else {
            return false;
         }
      }
 
-     protected void renderLabelIfPresent(GlassItemFrameEntity p_225629_1_, String p_225629_2_, MatrixStack p_225629_3_, IRenderTypeBuffer p_225629_4_, int p_225629_5_) {
-        super.renderLabelIfPresent(p_225629_1_, p_225629_1_.getDisplayedItem().getDisplayName().getFormattedText(), p_225629_3_, p_225629_4_, p_225629_5_);
+    @Override
+     protected void renderName(GlassItemFrameEntity p_225629_1_, String p_225629_2_, MatrixStack p_225629_3_, IRenderTypeBuffer p_225629_4_, int p_225629_5_) {
+        super.renderName(p_225629_1_, p_225629_1_.getDisplayedItem().getDisplayName().getFormattedText(), p_225629_3_, p_225629_4_, p_225629_5_);
      }
     
 //    @Override
@@ -192,13 +191,13 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrameEntity>
             	matrix.push();
             	MapData mapdata = FilledMapItem.getMapData(stack, itemFrame.world);
                 int rotation = mapdata != null ? itemFrame.getRotation() % 4 * 2 : itemFrame.getRotation();
-                matrix.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion((float) rotation * 360.0F / 8.0F));
-                if (!MinecraftForge.EVENT_BUS.post(new RenderItemInFrameEvent(itemFrame, defaultRenderer))) {
+                matrix.rotate(Vector3f.ZP.rotationDegrees((float) rotation * 360.0F / 8.0F));
+                if (!MinecraftForge.EVENT_BUS.post(new RenderItemInFrameEvent(itemFrame, defaultRenderer, matrix, p_225623_5_, p_225623_6_))) {
                     if (mapdata != null) {
-                    	matrix.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(180.0F));
+                    	matrix.rotate(Vector3f.ZP.rotationDegrees(180.0F));
                        	matrix.scale(0.0078125F, 0.0078125F, 0.0078125F);
                         matrix.translate(-64.0F, -64.0F, 64F);
-                      this.mc.gameRenderer.getMapItemRenderer().draw(matrix, p_225623_5_, mapdata, true, p_225623_6_);
+                      this.mc.gameRenderer.getMapItemRenderer().renderMap(matrix, p_225623_5_, mapdata, true, p_225623_6_);
                     } else {
                         float s = 1.5F;
                         if (stack.getItem() instanceof ShieldItem) {
@@ -210,7 +209,7 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrameEntity>
                         	matrix.scale(s, s, s);
                         }
                         matrix.scale(0.5F, 0.5F, 0.5F);
-                        this.itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED, p_225623_6_, OverlayTexture.DEFAULT_UV, matrix, p_225623_5_);
+                        this.itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.FIXED, p_225623_6_, OverlayTexture.NO_OVERLAY, matrix, p_225623_5_);
                     }
                 }
 

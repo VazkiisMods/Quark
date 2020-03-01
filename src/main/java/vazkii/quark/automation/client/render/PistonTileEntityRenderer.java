@@ -35,12 +35,12 @@ public class PistonTileEntityRenderer {
 				return false;
 
 			RenderSystem.pushMatrix();
-			tile.setWorld(piston.getWorld(), piston.getPos());
+			tile.setWorldAndPos(piston.getWorld(), piston.getPos());
 			tile.validate();
 
 			RenderSystem.translated(x + piston.getOffsetX(pTicks), y + piston.getOffsetY(pTicks), z + piston.getOffsetZ(pTicks));
 
-			RenderHelper.enable();
+			RenderHelper.enableStandardItemLighting();
 			tile.cachedBlockState = state;
 			TileEntityRenderer<TileEntity> tileentityrenderer = TileEntityRendererDispatcher.instance.getRenderer(tile);
 			// TODO: WIRE: update the passed values

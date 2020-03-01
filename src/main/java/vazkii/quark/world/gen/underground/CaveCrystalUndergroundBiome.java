@@ -84,7 +84,7 @@ public class CaveCrystalUndergroundBiome extends BasicUndergroundBiome {
 
 				BlockPos shiftPos = pos.offset(dir);
 
-				if (!context.world.getBlockState(shiftPos).isSideSolidFullSquare(context.world, shiftPos, dir.getOpposite()))
+				if (!context.world.getBlockState(shiftPos).isSolidSide(context.world, shiftPos, dir.getOpposite()))
 					context.world.setBlockState(shiftPos, STONE, 2);
 			}
 		}
