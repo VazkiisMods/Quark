@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "quark:rosewood_chest"
+    },
+    {
+      "item": "minecraft:tripwire_hook"
+    }
+  ],
+  "result": {
+    "item": "quark:rosewood_trapped_chest"
+  },
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "atmospheric"
+        },
+        {
+          "type": "quark:flag",
+          "flag": "variant_chests"
+        }
+      ]
+    }
+  ]
+}

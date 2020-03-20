@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rosewood_chest",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "atmospheric:rosewood_planks"
+    }
+  },
+  "result": {
+    "item": "quark:rosewood_chest",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "atmospheric"
+        },
+        {
+          "type": "quark:flag",
+          "flag": "variant_chests"
+        }
+      ]
+    }
+  ]
+} 
