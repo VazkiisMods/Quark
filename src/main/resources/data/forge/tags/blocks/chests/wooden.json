@@ -13,6 +13,7 @@
     "quark:wisteria_chest",
     "quark:driftwood_chest",
     "quark:hive_chest",
+    "quark:rosewood_chest",
     "quark:oak_trapped_chest",
     "quark:spruce_trapped_chest",
     "quark:birch_trapped_chest",
@@ -24,6 +25,7 @@
     "quark:bamboo_trapped_chest",
     "quark:wisteria_trapped_chest",
     "quark:driftwood_trapped_chest",
-    "quark:hive_trapped_chest"
+    "quark:hive_trapped_chest",
+    "quark:rosewood_trapped_chest"
   ]
 }
