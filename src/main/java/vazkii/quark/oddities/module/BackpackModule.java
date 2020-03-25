@@ -37,6 +37,7 @@ import vazkii.quark.base.network.message.HandleBackpackMessage;
 import vazkii.quark.oddities.client.screen.BackpackInventoryScreen;
 import vazkii.quark.oddities.container.BackpackContainer;
 import vazkii.quark.oddities.item.BackpackItem;
+import vazkii.quark.oddities.item.EnderBackpackItem;
 
 @LoadModule(category = ModuleCategory.ODDITIES, hasSubscriptions = true, requiredMod = Quark.ODDITIES_ID)
 public class BackpackModule extends Module {
@@ -51,6 +52,7 @@ public class BackpackModule extends Module {
 	@Config public static double extraChancePerLooting = 0.5;
 
 	public static Item backpack;
+	public static Item ender_backpack;
 	public static Item ravager_hide;
 	
     public static ContainerType<BackpackContainer> container;
@@ -61,6 +63,7 @@ public class BackpackModule extends Module {
 	@Override
 	public void construct() {
 		backpack = new BackpackItem(this);
+		ender_backpack = new EnderBackpackItem(this);
 		ravager_hide = new QuarkItem("ravager_hide", this, new Item.Properties().rarity(Rarity.RARE).group(ItemGroup.MATERIALS)).setCondition(() -> enableRavagerHide);
 		
 		container = IForgeContainerType.create(BackpackContainer::fromNetwork);
@@ -117,7 +120,7 @@ public class BackpackModule extends Module {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public void removeCurseTooltip(ItemTooltipEvent event) {
-		if(!superOpMode && event.getItemStack().getItem() instanceof BackpackItem)
+		if(!superOpMode && isStackBackpack(event.getItemStack()))
 			for(ITextComponent s : event.getToolTip())
 				if(s.getUnformattedComponentText().equals(Enchantments.BINDING_CURSE.getDisplayName(1).getUnformattedComponentText())) {
 					event.getToolTip().remove(s);
@@ -134,7 +137,7 @@ public class BackpackModule extends Module {
 		if(e instanceof LivingEntity) {
 			LivingEntity living = (LivingEntity) e;
 			ItemStack chestArmor = living.getItemStackFromSlot(EquipmentSlotType.CHEST);
-			return chestArmor.getItem() instanceof BackpackItem;
+			return isStackBackpack(chestArmor);
 		}
 
 		return false;
@@ -150,4 +153,7 @@ public class BackpackModule extends Module {
 		return false;
 	}
 
+	private static boolean isStackBackpack(ItemStack stack) {
+		return stack.getItem() instanceof BackpackItem || stack.getItem() instanceof EnderBackpackItem;
+	}
 }

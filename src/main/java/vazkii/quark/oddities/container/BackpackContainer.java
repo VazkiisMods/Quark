@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.EquipmentSlotType.Group;
 import net.minecraft.inventory.container.ClickType;
@@ -32,13 +33,20 @@ public class BackpackContainer extends PlayerContainer {
 		int top = anchor.yPos - 58;
 
 		ItemStack backpack = player.inventory.armorInventory.get(2);
-		if(backpack.getItem() == BackpackModule.backpack) {
+		if (backpack.getItem() == BackpackModule.backpack) {
 			InventoryIIH inv = new InventoryIIH(backpack);
 
 			for(int i = 0; i < 3; ++i)
 				for(int j = 0; j < 9; ++j) {
 					int k = j + i * 9;
 					addSlot(new SlotCachingItemHandler(inv, k, left + j * 18, top + i * 18));
+				}
+		} else if (backpack.getItem() == BackpackModule.ender_backpack) {
+			EnderChestInventory inv = player.getInventoryEnderChest();
+			for(int i = 0; i < 3; ++i)
+				for(int j = 0; j < 9; ++j) {
+					int k = j + i * 9;
+					addSlot(new Slot(inv, k, left + j * 18, top + i * 18));
 				}
 		}
 	}
