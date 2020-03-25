@@ -171,6 +171,8 @@
 	"item.quark.root_item": "Пещерный корень",
 	"item.quark.dragon_scale": "Чешуя дракона",
 	"item.quark.cactus_paste": "Кактусовая паста",
+	"item.quark.backpack": "Рюкзак",
+	"item.quark.ravager_hide": "Шкура разорителя",
 	
 	"item.minecraft.potion.effect.quark.resilience": "Зелье стойкости",
 	"item.minecraft.splash_potion.effect.quark.resilience": "Взрывное зелье стойкости",
@@ -801,6 +803,7 @@
 	"block.quark.iron_plate_vertical_slab": "Вертикальная плита из листового железа",
 	"block.quark.rusty_iron_plate_vertical_slab": "Вертикальная плита из ржавого листового железа",
 	"block.quark.pipe": "Предметная труба",
+	"block.quark.magnet": "Магнит",
 	
 	"item.quark.stoneling_spawn_egg": "Яйцо призыва стоунлинга",
 	"item.quark.frog_spawn_egg": "Яйцо призыва лягушки",
