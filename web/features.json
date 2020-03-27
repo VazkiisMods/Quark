@@ -1153,18 +1153,45 @@
 			"image": "atmospheric.jpg",
 			"versions": "Friend",
 			"desc": [
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				"Atmospheric is a mod designed to create new and fun experiences in brand new biomes, each with specialized and unique content. With new forests, deserts, and more, there are tons of new things to discover. There are plenty of new wood types and other building blocks, and more biomes will always be planned."
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/atmospheric"
+		},
+				{
+			"name": "Buzzier Bees",
+			"image": "buzzier-bees.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Buzzier Bees is designed to expand upon 1.15 - the Buzzy Bees update. Introducing variant beehives for each wood type (with mod support), bee themed building blocks, bottles of bugs, candles (that don't interfere with Quark's), scented candles, and tons of new flowers to find throughout biomes."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/buzzier-bees"
+		},
+				{
+			"name": "The Endergetic Expansion",
+			"image": "endergetic.jpg",
+			"versions": "Friend",
+			"desc": [
+				"The Endergetic Expansion's aim is to improve every aspect of the end, despite being in early beta, it notably already adds an entire biome with unique mechanics and visuals, as well as visual improvements to the existing end well and end gateways used to teleport in vanilla. The poise forest can be located semi-rarely in the outer islands of the end (where the chorus biome can also spawn)."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/endergetic"
 		},
 		{
 			"name": "Swamp Expansion",
 			"image": "swamp-expansion.jpg",
 			"versions": "Friend",
 			"desc": [
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				"Swamp Expansion adds a new wood type which replaces swamp oaks - Willow. It also adds Cattails to Swamps and adds Large Mushrooms into Swamps for Minecraft Bedrock parity! On top of that, there are Mud Bricks - and much more to come, including Mud Pools and a new Swamp Creature - the Slabfish!"
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/swamp-expansion"
+		},
+				{
+			"name": "Bloomful",
+			"image": "bloomful.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Bloomful introduces the Wisteria Forest, a new Flower Forest that has a mystical new tree type! With leaves of many colors, a new light colored wood type, and new flowers, it offers many things to builders and explorers!"
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/bloomful"
 		}
 	]
 }
