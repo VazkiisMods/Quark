@@ -1198,7 +1198,7 @@
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/swamp-expansion"
 		},
-				{
+		{
 			"name": "Bloomful",
 			"image": "bloomful.jpg",
 			"versions": "Friend",
@@ -1206,6 +1206,15 @@
 				"Bloomful introduces the Wisteria Forest, a new Flower Forest that has a mystical new tree type! With leaves of many colors, a new light colored wood type, and new flowers, it offers many things to builders and explorers!"
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/bloomful"
+		},
+		{
+			"name": "Respawnable Pets",
+			"image": "respawnable-pets.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Respawnable Pets is a simple mod that allows your pets to respawn after death when you next sleep using a new item, the Etheric Gem."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/respawnable-pets"
 		}
 	]
 }
