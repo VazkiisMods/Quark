@@ -30,7 +30,6 @@ public class QuarkItem extends BasicItem {
 		return this;
 	}
 
-
 	public boolean isEnabled() {
 		return module != null && module.enabled && enabledSupplier.getAsBoolean();
 	}

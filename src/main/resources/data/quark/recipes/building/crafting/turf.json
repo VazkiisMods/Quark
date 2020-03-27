@@ -10,7 +10,8 @@
     }
   },
   "result": {
-    "item": "quark:turf"
+    "item": "quark:turf",
+    "count": 4
   },
   "conditions": [
     {

@@ -169,6 +169,8 @@ public class BigDungeonStructure extends ScatteredStructure<NoFeatureConfig> {
 				bounds.offset(0, shift, 0);
 				components.forEach(p -> p.offset(0, shift, 0));
 			}
+			
+			components.removeIf(c -> c.getBoundingBox().maxY >= maxTop);
 		}
 
 	}

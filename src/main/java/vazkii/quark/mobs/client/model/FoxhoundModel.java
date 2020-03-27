@@ -151,7 +151,7 @@ public class FoxhoundModel extends EntityModel<FoxhoundEntity> {
 		matrix.push();
 		
 		if (isChild)
-			matrix.translate(0.0F, 5.0F, 0F);
+			matrix.translate(0.0F, 5.0F / 16F, 0F);
 
 		head.render(matrix, vb, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
 		
@@ -159,7 +159,7 @@ public class FoxhoundModel extends EntityModel<FoxhoundEntity> {
 		
 		matrix.push();
 		if (isChild) {
-			matrix.translate(0.0F, 12.0F, 0F);
+			matrix.translate(0.0F, 12.0F / 16F, 0F);
 			matrix.scale(0.5F, 0.5F, 0.5F);
 		}
 		

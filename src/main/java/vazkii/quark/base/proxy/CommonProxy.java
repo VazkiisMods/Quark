@@ -1,5 +1,7 @@
 package vazkii.quark.base.proxy;
 
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.config.ModConfig.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;

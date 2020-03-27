@@ -172,6 +172,8 @@
 	"item.quark.root_item": "Cave Root",
 	"item.quark.dragon_scale": "Dragon Scale",
 	"item.quark.cactus_paste": "Cactus Paste",
+	"item.quark.backpack": "Backpack",
+	"item.quark.ravager_hide": "Ravager Hide",
 	
 	"item.minecraft.potion.effect.quark.resilience": "Potion of Stability",
 	"item.minecraft.splash_potion.effect.quark.resilience": "Splash Potion of Stability",
@@ -802,6 +804,7 @@
 	"block.quark.iron_plate_vertical_slab": "Iron Plate Vertical Slab",
 	"block.quark.rusty_iron_plate_vertical_slab": "Rusty Iron Plate Vertical Slab",
 	"block.quark.pipe": "Item Pipe",
+	"block.quark.magnet": "Magnet",
 
 	"item.quark.stoneling_spawn_egg": "Stoneling Spawn Egg",
 	"item.quark.frog_spawn_egg": "Frog Spawn Egg",

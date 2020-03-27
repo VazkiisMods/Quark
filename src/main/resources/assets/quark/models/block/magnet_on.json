@@ -1,0 +1,22 @@
+{
+    "parent": "block/block",
+    "textures": {
+        "bottom": "quark:block/magnet_south_on",
+        "side": "quark:block/magnet_side_on",
+        "front": "quark:block/magnet_north_on",
+        "particle": "quark:block/magnet_side_on"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "down", "rotation": 90 },
+                "up":    { "uv": [ 0, 16, 16, 0 ], "texture": "#side", "cullface": "up", "rotation": 270 },
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#front", "cullface": "north" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "south" },
+                "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "west", "rotation": 180 },
+                "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "east" }
+            }
+        }
+    ]
+}

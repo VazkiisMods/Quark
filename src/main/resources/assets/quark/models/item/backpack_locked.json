@@ -1,0 +1,8 @@
+{
+	"parent": "item/generated",
+	"textures": { 
+		"layer0": "quark:item/backpack",
+		"layer1": "quark:item/backpack_overlay",
+		"layer2": "quark:item/backpack_lock"
+	}
+}

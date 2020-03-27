@@ -13,5 +13,8 @@ public class QuarkCapabilities {
 	
 	@CapabilityInject(IPistonCallback.class)
 	public static final Capability<IPistonCallback> PISTON_CALLBACK = null;
+
+    @CapabilityInject(IMagnetTracker.class)
+    public static final Capability<IMagnetTracker> MAGNET_TRACKER_CAPABILITY = null;
     
 }

@@ -31,6 +31,7 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.InventoryTransferHandler;
 import vazkii.quark.base.module.Module;
+import vazkii.quark.oddities.client.screen.BackpackInventoryScreen;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = Quark.MOD_ID, value = Dist.CLIENT)
@@ -122,6 +123,9 @@ public final class InventoryButtonHandler {
 				if(slotPred.test(slot)) {
 					int x = slot.xPos + 6;
 					int y = slot.yPos - 13;
+					
+					if(screen instanceof BackpackInventoryScreen)
+						y -= 60;
 
 					for(ButtonProviderHolder holder : holders) {
 						Button button = holder.getButton(screen, x, y);

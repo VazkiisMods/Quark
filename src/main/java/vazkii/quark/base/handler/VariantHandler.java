@@ -16,6 +16,7 @@ import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.block.QuarkSlabBlock;
 import vazkii.quark.base.block.QuarkStairsBlock;
 import vazkii.quark.base.block.QuarkWallBlock;
+import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 
 public class VariantHandler {
 	
@@ -50,6 +51,7 @@ public class VariantHandler {
 		props = propertiesFunc.apply(props);
 		
 		Block potted = new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, block::getBlock, props);
+		RenderLayerHandler.setRenderType(potted, RenderTypeSkeleton.CUTOUT);
 		ResourceLocation resLoc = block.getBlock().getRegistryName();
 		if (resLoc == null)
 			resLoc = new ResourceLocation("missingno");

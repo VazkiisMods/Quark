@@ -27,9 +27,21 @@
 			pop();
 			$count = sizeof($category);
 
-			div('feature-count');
-				write("($count Features)");
-			pop();
+			$hide_count = false;
+			if($count > 0) {
+				$first = $category[0];
+				if(array_key_exists('addon', $first) && $first['addon'])
+					$count--;
+
+				if(array_key_exists('hide_count', $first) && $first['hide_count'])
+					$hide_count = true;
+			}
+
+			if(!$hide_count) {
+				div('feature-count');
+					write("($count Features)");
+				pop();
+			}
 
 			if($count == 0) {
 				push('h1');
@@ -60,6 +72,13 @@
 	}
 
 	function write_feature($feature, $category_name) {
+		if(array_key_exists('info', $feature)) {
+			div('info');
+				write($feature['info']);
+			pop();
+			return;
+		}
+
 		div('feature');
 			div('feature-image');
 				img("img/features/$category_name/{$feature['image']}");
@@ -69,6 +88,11 @@
 				div('feature-header');
 					div('feature-title');
 						write($feature['name']);
+						if(array_key_exists('removed', $feature) && $feature['removed']) {
+							span('feature-removed');
+								write(' (Removed)');
+							pop();
+						}
 					pop();
 
 					div('feature-version');
@@ -92,6 +116,18 @@
 							write('More Info');
 						pop();
 					pop();
+				} else {
+					$has_download = array_key_exists('download', $feature);
+
+					if($has_download) {
+						a($feature['download'], 'no-external friend-dl-container');
+							div('std-button button-download button-download-friend');
+								div('button-title');
+									write('Download ');
+								pop();
+							pop();
+						pop();
+					}
 				}
 			pop();
 		pop();
@@ -141,6 +177,9 @@
 	}
 
 	function cmp_features($f1, $f2) {
+		if((array_key_exists('addon', $f1) && $f1['addon']) || (array_key_exists('addon', $f2) && $f2['addon']))
+			return 0;	
+
 		return strcmp($f1['name'], $f2['name']);
 	}
 

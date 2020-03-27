@@ -159,6 +159,17 @@ public class ToretoiseModel extends EntityModel<ToretoiseEntity> {
 
     @Override
 	public void render(MatrixStack matrix, IVertexBuilder vb, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
+        matrix.push();
+        int bufferTime = 10;
+    	if(entity.angeryTicks > 0 && entity.angeryTicks < ToretoiseEntity.ANGERY_TIME - bufferTime) {
+    		double angeryTime = (entity.angeryTicks - ClientTicker.partialTicks) / (ToretoiseEntity.ANGERY_TIME - bufferTime) * Math.PI;
+    		angeryTime = Math.sin(angeryTime) * -20;
+    		
+    		matrix.translate(0, 1., 1);
+    		matrix.rotate(Vector3f.XP.rotationDegrees((float) angeryTime));
+    		matrix.translate(0, -1, -1);
+    	}
+    	
         float animSpeed = 30;
         float animPause = 12;
         
@@ -177,7 +188,6 @@ public class ToretoiseModel extends EntityModel<ToretoiseEntity> {
         
         bodyTrans *= (1F - rideMultiplier); 
         
-        matrix.push();
         matrix.translate(0, bodyTrans, 0);
         matrix.rotate(Vector3f.ZP.rotation((bodyTrans - scale) * 0.5F));
         

@@ -30,7 +30,7 @@ public class SlimeInABucketModule extends Module {
 	@SubscribeEvent
 	public void entityInteract(PlayerInteractEvent.EntityInteract event) {
 		if(event.getTarget() != null && !event.getWorld().isRemote) {
-			if(event.getTarget().getType() == EntityType.SLIME && ((SlimeEntity) event.getTarget()).getSlimeSize() == 1 && ((MobEntity) event.getTarget()).getHealth() > 0) {
+			if(event.getTarget().getType() == EntityType.SLIME && ((SlimeEntity) event.getTarget()).getSlimeSize() == 1 && event.getTarget().isAlive()) {
 				PlayerEntity player = event.getPlayer();
 				Hand hand = Hand.MAIN_HAND;
 				ItemStack stack = player.getHeldItemMainhand();

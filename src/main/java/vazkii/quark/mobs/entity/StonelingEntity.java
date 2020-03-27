@@ -17,7 +17,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.PrioritizedGoal;
@@ -49,7 +48,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.loot.LootContext;
@@ -58,12 +56,12 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.extensions.IForgeWorldServer;
 import net.minecraftforge.fml.network.NetworkHooks;
 import vazkii.quark.base.ai.IfFlagGoal;
+import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.mobs.ai.ActWaryGoal;
 import vazkii.quark.mobs.ai.FavorBlockGoal;
 import vazkii.quark.mobs.ai.RunAndPoofGoal;
-import vazkii.quark.mobs.module.CrabsModule;
 import vazkii.quark.mobs.module.FrogsModule;
 import vazkii.quark.mobs.module.StonelingsModule;
 
@@ -421,26 +419,8 @@ public class StonelingEntity extends CreatureEntity {
 		compound.putBoolean(TAG_PLAYER_MADE, isPlayerMade());
 	}
 
-
-	public static boolean validLight(IWorld world, BlockPos pos, Random rand) {
-		if (world.getLightFor(LightType.SKY, pos) > rand.nextInt(32)) {
-			return false;
-		} else {
-			int light = world.getWorld().isThundering() ? world.getNeighborAwareLightSubtracted(pos, 10) : world.getLight(pos);
-			return light <= rand.nextInt(8);
-		}
-	}
-
 	public static boolean spawnPredicate(EntityType<? extends StonelingEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
-		return world.getDifficulty() != Difficulty.PEACEFUL && pos.getY() <= StonelingsModule.maxYLevel && validLight(world, pos, rand) && validLocation(type, world, reason, pos);
-	}
-
-	public static boolean validLocation(@Nonnull EntityType<? extends MobEntity> type, @Nonnull IWorld world, SpawnReason reason, BlockPos pos) {
-		BlockPos below = pos.down();
-		if (reason == SpawnReason.SPAWNER)
-			return true;
-		BlockState state = world.getBlockState(below);
-		return state.getMaterial() == Material.ROCK && state.canEntitySpawn(world, below, type);
+		return world.getDifficulty() != Difficulty.PEACEFUL && pos.getY() <= StonelingsModule.maxYLevel && MiscUtil.validSpawnLight(world, pos, rand) && MiscUtil.validSpawnLocation(type, world, reason, pos);
 	}
 
 	@Override
@@ -448,6 +428,7 @@ public class StonelingEntity extends CreatureEntity {
 		BlockState state = world.getBlockState((new BlockPos(this)).down());
 		if (state.getMaterial() != Material.ROCK)
 			return false;
+		
 		return StonelingsModule.dimensions.canSpawnHere(world) && super.canSpawn(world, reason);
 	}
 

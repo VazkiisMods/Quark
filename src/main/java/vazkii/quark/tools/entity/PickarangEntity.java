@@ -52,6 +52,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 import vazkii.quark.base.handler.QuarkSounds;
+import vazkii.quark.mobs.entity.ToretoiseEntity;
 import vazkii.quark.tools.module.PickarangModule;
 
 public class PickarangEntity extends Entity implements IProjectile {
@@ -144,14 +145,14 @@ public class PickarangEntity extends Entity implements IProjectile {
 	protected void checkImpact() {
 		if(world.isRemote)
 			return;
-		
+
 		Vec3d motion = getMotion();
 		Vec3d position = getPositionVector();
 		Vec3d rayEnd = position.add(motion);
-		
+
 		boolean doEntities = true;
 		int tries = 100;
-		
+
 		while(isAlive() && !dataManager.get(RETURNING)) {
 			if(doEntities) {
 				EntityRayTraceResult result = raycastEntities(position, rayEnd);
@@ -164,7 +165,7 @@ public class PickarangEntity extends Entity implements IProjectile {
 					return;
 				else onImpact(result);
 			}
-			
+
 			if(tries-- <= 0) {
 				(new RuntimeException("Pickarang hit way too much, this shouldn't happen")).printStackTrace();
 				return;
@@ -237,13 +238,26 @@ public class PickarangEntity extends Entity implements IProjectile {
 
 						PickarangModule.setActivePickarang(this);
 
-						if (owner instanceof PlayerEntity)
-							((PlayerEntity) owner).attackTargetEntityWithCurrentItem(hit);
-						else
-							owner.attackEntityAsMob(hit);
+						hitEntity: {
+							if(hit instanceof ToretoiseEntity) {
+								ToretoiseEntity toretoise = (ToretoiseEntity) hit;
+								int ore = toretoise.getOreType();
+								
+								if(ore != 0) {
+									toretoise.dropOre(ore);
+									break hitEntity;
+								}
+							}
 
-						if (hit instanceof LivingEntity && ((LivingEntity) hit).getHealth() == prevHealth)
-							clank();
+							if (owner instanceof PlayerEntity)
+								((PlayerEntity) owner).attackTargetEntityWithCurrentItem(hit);
+							else
+								owner.attackEntityAsMob(hit);
+
+							if (hit instanceof LivingEntity && ((LivingEntity) hit).getHealth() == prevHealth)
+								clank();
+						}
+
 
 						PickarangModule.setActivePickarang(null);
 
@@ -309,7 +323,7 @@ public class PickarangEntity extends Entity implements IProjectile {
 	@Override
 	public void tick() {
 		Vec3d pos = getPositionVec();
-		
+
 		this.lastTickPosX = pos.x;
 		this.lastTickPosY = pos.y;
 		this.lastTickPosZ = pos.z;
@@ -320,7 +334,7 @@ public class PickarangEntity extends Entity implements IProjectile {
 
 		Vec3d vec3d = this.getMotion();
 		setPosition(pos.x + vec3d.x, pos.y + vec3d.y, pos.z + vec3d.z);
-		
+
 		float f = MathHelper.sqrt(horizontalMag(vec3d));
 		this.rotationYaw = (float)(MathHelper.atan2(vec3d.x, vec3d.z) * (180F / (float)Math.PI));
 

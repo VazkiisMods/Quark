@@ -157,6 +157,8 @@ public class ChestSearchingModule extends Module {
 	}
 
 	private void renderElements(Screen gui) {
+		RenderSystem.pushMatrix();
+		RenderSystem.translated(0, 0, 500);
 		drawBackground(gui, searchBar.x - 11, searchBar.y - 3);
 
 		if(!text.isEmpty()) {
@@ -186,6 +188,7 @@ public class ChestSearchingModule extends Module {
 		else searchBar.setTextColor(0xFFFFFF);
 
 		searchBar.render(0, 0, 0);
+		RenderSystem.popMatrix();
 	}
 
 	private void drawBackground(Screen gui, int x, int y) {

@@ -57,6 +57,11 @@ public class VariantTrappedChestBlock extends ChestBlock implements IBlockItemPr
 	}
 
 	@Override
+	public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+		return false;
+	}
+	
+	@Override
 	public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 		if(module.enabled || group == ItemGroup.SEARCH)
 			super.fillItemGroup(group, items);

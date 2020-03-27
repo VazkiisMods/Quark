@@ -60,7 +60,6 @@ public class PipeTileEntity extends TileSimpleInventory implements ITickableTile
 	public final List<PipeItem> pipeItems = new LinkedList<>();
 	public final List<PipeItem> queuedItems = new LinkedList<>();
 
-	@SuppressWarnings("MagicConstant")
 	public static boolean isTheGoodDay(World world) {
 		Calendar calendar = Calendar.getInstance();
 		return calendar.get(Calendar.MONTH) + 1 == 4 && calendar.get(Calendar.DAY_OF_MONTH) == 1;
@@ -74,8 +73,6 @@ public class PipeTileEntity extends TileSimpleInventory implements ITickableTile
 		BlockState blockAt = world.getBlockState(pos);
 		if (isPipeEnabled() && blockAt.getBlock() instanceof PipeBlock) {
 			for (Direction side : Direction.values()) {
-				BlockPos offset = pos.offset(side);
-
 				if (!world.isRemote && PipeBlock.getType(blockAt, side) == null) {
 					double minX = pos.getX() + 0.25 + 0.5 * Math.min(0, side.getXOffset());
 					double minY = pos.getY() + 0.25 + 0.5 * Math.min(0, side.getYOffset());

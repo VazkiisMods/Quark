@@ -13,6 +13,8 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.tileentity.PistonTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import vazkii.quark.automation.module.PistonsMoveTileEntitiesModule;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.ModuleLoader;
@@ -24,23 +26,28 @@ public class PistonTileEntityRenderer {
 			return false;
 
 		BlockState state = piston.getPistonState();
+		BlockPos truePos = piston.getPos();
+		TileEntity tile = PistonsMoveTileEntitiesModule.getMovement(piston.getWorld(), truePos);
+		Vec3d offset = new Vec3d(piston.getOffsetX(pTicks), piston.getOffsetY(pTicks), piston.getOffsetZ(pTicks));
+		
+		return renderTESafely(piston.getWorld(), truePos, state, tile, piston, pTicks, offset, matrix, bufferIn, combinedLightIn, combinedOverlayIn);
+	}
+	
+	public static boolean renderTESafely(World world, BlockPos truePos, BlockState state, TileEntity tile, TileEntity sourceTE, float pTicks, Vec3d offset, MatrixStack matrix, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
 		Block block = state.getBlock();
 		String id = Objects.toString(block.getRegistryName());
-		BlockPos truePos = piston.getPos();
-
+		
 		try {
-			TileEntity tile = PistonsMoveTileEntitiesModule.getMovement(piston.getWorld(), truePos);
-			
 			if(tile == null || PistonsMoveTileEntitiesModule.renderBlacklist.contains(id))
 				return false;
-
+			
 			TileEntityRenderer<TileEntity> tileentityrenderer = TileEntityRendererDispatcher.instance.getRenderer(tile);
 			if(tileentityrenderer != null) {
 				matrix.push();
-				tile.setWorldAndPos(piston.getWorld(), piston.getPos());
+				tile.setWorldAndPos(sourceTE.getWorld(), sourceTE.getPos());
 				tile.validate();
 
-				matrix.translate(piston.getOffsetX(pTicks), piston.getOffsetY(pTicks), piston.getOffsetZ(pTicks));
+				matrix.translate(offset.x, offset.y, offset.z);
 
 				tile.cachedBlockState = state;
 				tileentityrenderer.render(tile, pTicks, matrix, bufferIn, combinedLightIn, combinedOverlayIn);
@@ -53,7 +60,7 @@ public class PistonTileEntityRenderer {
 			PistonsMoveTileEntitiesModule.renderBlacklist.add(id);
 			return false;
 		}
-
+		
 		return state.getRenderType() != BlockRenderType.MODEL;
 	}
 

@@ -47,9 +47,9 @@
 					<img src="img/features/automation/pistons-move-tes.jpg"></img>
 					<img src="img/features/building/variant-chests.jpg"></img>
 					<img src="img/features/management/chests-in-boats.jpg"></img>
-					<img src="img/features/world/foxhounds.jpg"></img>
+					<img src="img/features/mobs/foxhounds.jpg"></img>
 					<img src="img/features/world/speleothems.jpg"></img>
-					<img src="img/features/world/stonelings.jpg"></img>
+					<img src="img/features/mobs/stonelings.jpg"></img>
 					<img src="img/features/world/underground-biome-crystal-cave.jpg"></img>
 				</div>
 
@@ -187,10 +187,18 @@
 				<div class="navbar-link category-navbar-link data-category-changer" data-category="building">Building</div>
 				<div class="navbar-link category-navbar-link data-category-changer" data-category="client">Client</div>
 				<div class="navbar-link category-navbar-link data-category-changer" data-category="management">Management</div>
+				<div class="navbar-link category-navbar-link data-category-changer" data-category="mobs">Mobs</div>
 				<div class="navbar-link category-navbar-link data-category-changer" data-category="tools">Tools</div>
 				<div class="navbar-link category-navbar-link data-category-changer" data-category="tweaks">Tweaks</div>
-				<div class="navbar-link category-navbar-link data-category-changer" data-category="vanity">Vanity</div>
 				<div class="navbar-link category-navbar-link data-category-changer last" data-category="world">World</div>
+
+				<div id="addon-strip">
+					<div id="addon-strip-content">
+						<div class="addon-info">Addons: </div>
+						<div class="navbar-link category-navbar-link data-category-changer" data-category="oddities">Oddities</div>
+						<div class="navbar-link category-navbar-link data-category-changer" data-category="friends">Friends</div>
+					</div>
+				</div>
 			</div>
 			
 			<?php include 'features.php'; ?>
@@ -202,20 +210,6 @@
 			<div class="warning">
 				The only website that hosts <i>official</i> versions of Quark is <b>CurseForge</b>. Make sure you get it from there only. Other websites such as <b>9minecraft</b> or <b>mc-mods</b> are distributing old or tampered versions that may contain bugs or malware.
 			</div>
-
-			<!--<div class="info">
-				Access to the Quark 1.14.4 beta is currently restricted to specific people. You can access it if you are one or more of...
-				<ul>
-					<li>A $5 or higher pleding patron on <a href="https://www.patreon.com/Vazkii">Vazkii's Patreon</a></li>
-					<li>A subscriber to <a href="https://www.twitch.tv/Vazkii">Vazkii's Twitch Channel</a> (Prime counts!)</li>
-					<li>Selected by Vazkii (That's what the "Nerd" role on the Discord Server represents)</li>
-				</ul>
-				If you have the appropriate roles, you can access the beta files in the <i>#betas</i> channel of <a href="https://vazkii.net/discord">the Discord server</a>.
-				<ul>
-					<li>As usual, AutoRegLib is required. The latest ARL version will be pinned in <i>#betas</i>.</li>
-					<li>If you're a patron and don't yet have the appropriate roles, please send a DM over patreon with your info so they can be sorted out. For twitch subs, make sure to link your twitch to discord and it's done automatically.</li>
-				</ul>
-			</div>-->
 
 			<div class="download-holder">
 				<div class="download-strip">
