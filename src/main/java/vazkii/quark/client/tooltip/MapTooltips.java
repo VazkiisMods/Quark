@@ -56,8 +56,9 @@ public class MapTooltips {
 			float size = 135;
 			float scale = 0.5F;
 
-			RenderSystem.translatef(event.getX(), event.getY() - size * scale - 5, 0);
-			RenderSystem.scalef(scale, scale, scale);
+			RenderSystem.translatef(event.getX(), event.getY() - size * scale - 5, 500);
+			RenderSystem.scalef(scale, scale, 1F);
+			RenderSystem.enableBlend();
 
 			buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 			buffer.pos(-pad, size, 0.0D).tex(0.0F, 1.0f).endVertex();
@@ -66,12 +67,12 @@ public class MapTooltips {
 			buffer.pos(-pad, -pad, 0.0D).tex(0.0F, 0.0F).endVertex();
 			tessellator.draw();
 
-			RenderSystem.translatef(0, 0, 500);
 			IRenderTypeBuffer.Impl immediateBuffer = IRenderTypeBuffer.getImpl(buffer);
 			MatrixStack matrix = new MatrixStack();
 			mc.gameRenderer.getMapItemRenderer().renderMap(matrix, immediateBuffer, mapdata, true, 240);
 			immediateBuffer.finish();
 
+			RenderSystem.disableBlend();
 			RenderSystem.enableLighting();
 			RenderSystem.popMatrix();
 		}

@@ -2,6 +2,7 @@ package vazkii.quark.mobs.entity;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -58,6 +59,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.NetworkHooks;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.QuarkSounds;
+import vazkii.quark.base.proxy.CommonProxy;
 import vazkii.quark.mobs.ai.FavorBlockGoal;
 import vazkii.quark.mobs.ai.PassivePassengerGoal;
 import vazkii.quark.mobs.ai.TemptGoalButNice;
@@ -165,11 +167,16 @@ public class FrogEntity extends AnimalEntity implements IEntityAdditionalSpawnDa
 	public float getSizeModifier() {
 		return dataManager.get(SIZE_MODIFIER);
 	}
+	
+	public static boolean canBeSweatered() {
+		Calendar calendar = Calendar.getInstance();
+		return calendar.get(Calendar.MONTH) + 1 == 4 && calendar.get(Calendar.DAY_OF_MONTH) == 1;
+	}
 
 	@Override
 	public void tick() {
 		if(!world.isRemote && !sweatered) {
-			setSweater(getUniqueID().getLeastSignificantBits() % 10 == 0);
+			setSweater(CommonProxy.jingleTheBells && (getUniqueID().getLeastSignificantBits() % 10 == 0));
 			sweatered = true;
 		}
 		

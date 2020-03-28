@@ -586,7 +586,21 @@
 			"image": "toretoises.jpg",
 			"versions": "1.15+",
             "desc": [
-                "Toretoise WIP"
+                "Toretoises are new neutral mobs that will spawn underground. When a Toretoise spawns, it'll come with a random type of ore (Coal, Iron, Lapis, or Redstone). You may attack the Toretoise with a pickaxe to have it drop that ore!",
+           		"If you hit a Toretoise without a pickaxe, or when it has no ore, it'll emit a shockwave attack. This will damage any non-Toretoise entities around, and redirect their aggro to you.",
+           		"With enough care, it's possible to carry a Toretoise home and feed it so it grows more ores, feel free to click More Info for some tips on how to do it."
+            ],
+            "expand": [
+            	"If you want to take these huge creatures home and use them to generate ores, there's some things you should know.",
+            	"*Feeding the Toretoise Cave Roots (from the World module) will sometimes have it regenerate its ores. (if Cave Roots is disabled, Cactus is used instead)",
+            	"*The Toretoise will regenerate a random ore each time.",
+            	"*If the Feeding Trough (from the Automation module) is enabled, the Toretoise will eat from it.",
+            	"*Toretoises do not breed. They do spawn like hostile mobs, so you can go back for more.",
+            	"*When a Toretoise generates ore, it will enter an eating cooldown for 1 minute.",
+            	"*Toretoises will sink in water, and are immune to drowning, fall, and fire damage.",
+            	"*Toretoises are 1 block tall, but grow to 1.4 blocks tall if they have an ore.",
+            	"*Toretoises move very slowly, and can't be leashed, using Minecarts is recommended.",
+            	"*If Iron Rods (from the Automation module) are enabled, pushing them onto a Toretoise with a piston will break its ore."
             ]
 		}
 	],
@@ -1122,7 +1136,16 @@
 			"image": "magnets.jpg",
 			"versions": "1.15+",
 			"desc": [
-				"Magnets WIP"
+				"Magnets are new technical blocks that can move metallic blocks. A metallic block is defined as block made of Iron Ingots, or made of things made of Iron Ingots. When powered, the front (red) side of the Magnet will push blocks forward like a piston, whereas the back side will pull blocks towards it.",
+				"When multiple Magnets are exerting force upon the same block, the one with the higest force wins. A magnet's force upon a block is the redstone level applied to it, minus the distance.",
+				"Check out More Info for blocks that do special things when moved."
+			],
+			"expand": [
+				"-",
+				"#Blocks with Custom Behaviours",
+				"*When a Hopper is moved, it'll drop one of its items directly in front of it. If this item is a seed, it'll plant it either directly in front or one block down.",
+				"*When a Stonecutter is moved, it'll break any block that's above it. Very hard blocks such as Obsidian can't be broken like this.",
+				"*When a Cauldron is moved, the items inside will move with it. (This isn't really a custom behaviour, because any concave block will do this, but it was worth noting)"
 			]
 		},
 		{
@@ -1130,7 +1153,36 @@
 			"image": "pipes.jpg",
 			"versions": "1.15+",
 			"desc": [
-				"Pipes WIP"
+				"Item Pipes are crafted using some Iron and Glass. As you would expect, they transport items from point A to point B. To get items into a pipe simply use a Hopper, Dropper, or any other insertion means you may have handy.",
+				"Item Pipes are rudimentary and don't include any filtering or pathing for items. The way items flow in pipes is based in a small set of rules.",
+				"If you want to know more about how Item Pipes work and how the items flow in them, press More Info."
+			],
+			"expand": [
+				"-",
+				"#Pathing Rules",
+				"Apply the following rules, in order, to determine where an item will go when in a pipe:",
+				"*Items will move down if possible:",
+				"!img/features/oddities/pipes/rule1.jpg",
+				"*Items will move forward if possible:",
+				"!img/features/oddities/pipes/rule2.jpg",
+				"*At an intersection, items will randomly flow left or right:",
+				"!img/features/oddities/pipes/rule3.jpg",
+				"*Items will not go upwards unless that's the only possibility:",
+				"!img/features/oddities/pipes/rule4.jpg",
+				"*Items attempting to enter a full container will bounce back:",
+				"!img/features/oddities/pipes/rule5.jpg",
+				"*Items will not flow into disabled (powered) pipes:",
+				"!img/features/oddities/pipes/rule6.jpg",
+				"*Items will fall out of pipes with momentum and enter pipes with open ends:",
+				"!img/features/oddities/pipes/rule7.jpg",
+				"-",
+				"#Other Tips",
+				"*Comparators can read how many items are in a pipe:",
+				"!img/features/oddities/pipes/tip1.jpg",
+				"*A pipe with 15 or more items inside at once will break:",
+				"!img/features/oddities/pipes/tip2.jpg",
+				"*If you connect walls to pipes, you'll get a structural tidbit:",
+				"!img/features/oddities/pipes/tip3.jpg"
 			]
 		},
 		{
@@ -1138,7 +1190,9 @@
 			"image": "backpack.jpg",
 			"versions": "1.15+",
 			"desc": [
-				"Backpack WIP"
+				"Should you find yourself slaying a Ravager in a raid, you'll get a rare drop of Ravager Hide. The Ravager will always drop one, but may drop more depending on your level of Fortune.",
+				"This Backpack can be worn in the Chest slot, and it'll give you a bunch of extra slots in your inventory to store all your stuff. Note that the backpack does not provide any protection, nor is it enchantable. Ravager Hide is extremely resistent, though, so it'll never break!",
+				"Beware however, if your backpack has items in it, you can't unequip it, and if you die with it, all the items will scatter. You may also dye the backpack just like any other leather armor."
 			]
 		}
 	],
@@ -1184,7 +1238,7 @@
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/swamp-expansion"
 		},
-				{
+		{
 			"name": "Bloomful",
 			"image": "bloomful.jpg",
 			"versions": "Friend",
@@ -1193,7 +1247,7 @@
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/bloomful"
 		},
-				{
+    {
 			"name": "Berry Good",
 			"image": "berry-good.jpg",
 			"versions": "Friend",
@@ -1202,7 +1256,7 @@
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/berry-good"
 		},
-				{
+		{
 			"name": "Extra Boats",
 			"image": "extra-boats.jpg",
 			"versions": "Friend",
@@ -1211,7 +1265,7 @@
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/extra-boats"
 		},
-				{
+		{
 			"name": "Incubation",
 			"image": "incubation.jpg",
 			"versions": "Friend",
@@ -1219,6 +1273,15 @@
 				"Incubation makes chickens just a bit better, by adding new recipes for eggs, as well as a nest that chickens will prefer to lay eggs in!"
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/incubation"
+    },
+		{
+			"name": "Respawnable Pets",
+			"image": "respawnable-pets.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Respawnable Pets is a simple mod that allows your pets to respawn after death when you next sleep using a new item, the Etheric Gem."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/respawnable-pets"
 		}
 	]
 }

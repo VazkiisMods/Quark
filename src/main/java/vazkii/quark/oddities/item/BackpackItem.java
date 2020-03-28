@@ -1,6 +1,7 @@
 package vazkii.quark.oddities.item;
 
 import java.util.Map;
+import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 
@@ -74,7 +75,7 @@ public class BackpackItem extends DyeableArmorItem implements IItemColorProvider
 
 		addPropertyOverride(new ResourceLocation("has_items"), (stack, world, entity) -> (!BackpackModule.superOpMode && doesBackpackHaveItems(stack)) ? 1 : 0);
 	}
-
+	
 	public static boolean doesBackpackHaveItems(ItemStack stack) {
 		LazyOptional<IItemHandler> handlerOpt  = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
@@ -87,6 +88,16 @@ public class BackpackItem extends DyeableArmorItem implements IItemColorProvider
 				return true;
 
 		return false;
+	}
+	
+	@Override
+	public boolean isDamageable() {
+		return false;
+	}
+	
+	@Override
+	public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+		return 0;
 	}
 
 	@Override
