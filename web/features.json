@@ -898,14 +898,6 @@
                 "Each emote is also assigned a key binding. Pressing that key will do the emote without you having to open the chat menu. By default all emote keybinds are unset and must be set manually.",
                 "A special language is provided to allow for custom emotes to be made. Here's <a href='https://www.youtube.com/watch?v=YBUXMf2juTQ'>an example</a> and <a href='https://www.youtube.com/watch?v=ourHUkan6aQ'>a tutorial</a> on how to do it."
             ]
-		},
-		{
-			"name": "V-Tweaks",
-			"image": "vtweaks.jpg",
-			"versions": "1.14+",
-			"desc": [
-				"Adds dozens of tweaks to the game without adding any new items. V-Tweaks accomplishes this by adding a couple of enchantments and adding new interactions that the player can have. These interactions vary from entity tweaks, block tweaks, item tweaks and overall improvements."
-			]
 		}
 	],
 	"world": [
@@ -1281,6 +1273,15 @@
 				"Respawnable Pets is a simple mod that allows your pets to respawn after death when you next sleep using a new item, the Etheric Gem."
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/respawnable-pets"
+		},
+		{
+			"name": "V-Tweaks",
+			"image": "vtweaks.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Adds dozens of tweaks to the game without adding any new items. V-Tweaks accomplishes this by adding a couple of enchantments and adding new interactions that the player can have. These interactions vary from entity tweaks, block tweaks, item tweaks and overall improvements."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/v-tweaks"
 		}
 	]
 }
