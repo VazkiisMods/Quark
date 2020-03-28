@@ -808,8 +808,9 @@
 	"item.quark.stoneling_spawn_egg": "Яйцо призыва стоунлинга",
 	"item.quark.frog_spawn_egg": "Яйцо призыва лягушки",
 	"item.quark.crab_spawn_egg": "Яйцо призыва краба",
-	"item.quark.foxhound_spawn_egg": "Яйца призыва лисьей гончей",
-	"item.quark.wrapped_spawn_egg": "Яйца призыва окутанного",
+	"item.quark.foxhound_spawn_egg": "Яйцо призыва лисьей гончей",
+	"item.quark.wrapped_spawn_egg": "Яйцо призыва окутанного",
+	"item.quark.toretoise_spawn_egg": "Яйцо призыва пещерипахи",
 
 	"effect.quark.resilience": "Устойчивость",
 	"effect.quark.danger_sight": "Воззрение опасности",
@@ -823,6 +824,7 @@
 	"entity.quark.frog": "Лягушка",
 	"entity.quark.crab": "Краб",
 	"entity.quark.foxhound": "Лисья гончая",
-	"entity.quark.wrapped": "Окутанный"
+	"entity.quark.wrapped": "Окутанный",
+	"entity.quark.toretoise": "Пещерипаха"
 	
 }
