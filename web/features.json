@@ -1282,6 +1282,24 @@
 				"Adds dozens of tweaks to the game without adding any new items. V-Tweaks accomplishes this by adding a couple of enchantments and adding new interactions that the player can have. These interactions vary from entity tweaks, block tweaks, item tweaks and overall improvements."
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/v-tweaks"
+		},
+		{	
+			"name": "The Endergetic Expansion",	
+			"image": "endergetic.jpg",	
+			"versions": "Friend",	
+			"desc": [	
+				"The Endergetic Expansion's aim is to improve every aspect of the end. It already adds an entire biome with unique mechanics, mobs, and visuals, as well as visual improvements to the existing end well and end gateways used to teleport in vanilla. The poise forest can be located semi-rarely in the outer islands of the end (where the chorus biome can also spawn)."	
+			],	
+			"download": "https://www.curseforge.com/minecraft/mc-mods/endergetic"	
+		},
+		{
+			"name": "Bamboo Blocks,
+			"image": "bamboo_blocks.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Bamboo Blocks is a small and simple mod which adds more uses to bamboo, by adding bamboo planks and decorations, including bamboo torches and Quark compatibility!"
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/bamboo-blocks"
 		}
 	]
 }
