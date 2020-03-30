@@ -1300,6 +1300,15 @@
 				"Bamboo Blocks is a small and simple mod which adds more uses to bamboo, by adding bamboo planks and decorations, including bamboo torches and Quark compatibility!"
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/bamboo-blocks"
+		},
+		{
+			"name": "Autumnity",
+			"image": "autumnity.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Autumnity adds a maple forest with many different colors of maple trees, each with falling leaves. Within this forest, snails can be found which can make snail slime. Maple trees can also produce maple sap which can be made to make maple syrup and pancakes."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/autumnity"
 		}
 	]
 }

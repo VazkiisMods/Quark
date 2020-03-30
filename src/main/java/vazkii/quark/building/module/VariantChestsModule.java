@@ -46,7 +46,7 @@ public class VariantChestsModule extends Module {
 			"oak", "spruce", "birch", "jungle", "acacia", "dark_oak");
 	
 	private static final ImmutableSet<String> MOD_WOODS = ImmutableSet.of(
-			"bambooblocks:bamboo", "upgrade_aquatic:driftwood", "endergetic:poise", "swampexpansion:willow", "bloomful:wisteria", "buzzierbees:hive", "atmospheric:rosewood");
+			"bambooblocks:bamboo", "upgrade_aquatic:driftwood", "endergetic:poise", "swampexpansion:willow", "bloomful:wisteria", "buzzierbees:hive", "autumnity:maple", "atmospheric:rosewood");
 
 	public static TileEntityType<VariantChestTileEntity> chestTEType;
 	public static TileEntityType<VariantTrappedChestTileEntity> trappedChestTEType;

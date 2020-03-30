@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "maple_chest",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "autumnity:maple_planks"
+    }
+  },
+  "result": {
+    "item": "quark:maple_chest",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "autumnity"
+        },
+        {
+          "type": "quark:flag",
+          "flag": "variant_chests"
+        }
+      ]
+    }
+  ]
+} 
