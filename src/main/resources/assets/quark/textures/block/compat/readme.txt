@@ -9,5 +9,6 @@ Rosewood: Atmospheric
 Yucca: Atmospheric #not yet implemented
 Kousa: Atmospheric #not yet implemented
 Aspen: Atmospheric #not yet implemented
+Maple: Autumnity
 
 They are simply included here so that the quark chest compat does not error when looking for a particle texture

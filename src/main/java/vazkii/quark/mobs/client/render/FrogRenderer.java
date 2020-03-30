@@ -3,7 +3,6 @@ package vazkii.quark.mobs.client.render;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
-import vazkii.quark.base.proxy.ClientProxy;
 import vazkii.quark.mobs.client.model.FrogModel;
 import vazkii.quark.mobs.entity.FrogEntity;
 
@@ -22,10 +21,13 @@ public class FrogRenderer extends MobRenderer<FrogEntity, FrogModel> {
 
 	@Override
 	public ResourceLocation getEntityTexture(@Nonnull FrogEntity entity) {
-		if(entity.hasCustomName() && (entity.getCustomName().getUnformattedComponentText().trim().equalsIgnoreCase("Alex") || entity.getCustomName().getUnformattedComponentText().trim().equalsIgnoreCase("Rat") || entity.getCustomName().getUnformattedComponentText().trim().equalsIgnoreCase("Funny Rat")))
-			return TEXTURE_FUNNY;
-		if(entity.hasCustomName() && (entity.getCustomName().getUnformattedComponentText().trim().equalsIgnoreCase("Snake") || entity.getCustomName().getUnformattedComponentText().trim().equalsIgnoreCase("SnakeBlock") || entity.getCustomName().getUnformattedComponentText().trim().equalsIgnoreCase("Snake Block")))
-			return TEXTURE_SNAKE;
+		if (entity.hasCustomName()) {
+			String name = entity.getCustomName().getUnformattedComponentText().trim();
+			if(name.equalsIgnoreCase("Alex") || name.equalsIgnoreCase("Rat") || name.equalsIgnoreCase("Funny Rat"))
+				return TEXTURE_FUNNY;
+			if(name.equalsIgnoreCase("Snake") || name.equalsIgnoreCase("SnakeBlock") || name.equalsIgnoreCase("Snake Block"))
+				return TEXTURE_SNAKE;
+		}
 		return entity.hasSweater() ? TEXTURE_SWEATER : TEXTURE;
 	}
 
