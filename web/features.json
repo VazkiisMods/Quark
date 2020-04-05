@@ -1336,6 +1336,15 @@
 				"Autumnity adds a maple forest with many different colors of maple trees, each with falling leaves. Within this forest, snails can be found which can make snail slime. Maple trees can also produce maple sap which can be made to make maple syrup and pancakes."
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/autumnity"
+		},
+		{
+			"name": "Upgrade Aquatic",
+			"image": "upgrade-aquatic.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Upgrade Aquatic extends and improves on the content added by 1.13. Improving oceans and fixing the implementation of insomnia, in addition to fleshing out rivers and providing new decorative options."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/upgrade-aquatic"
 		}
 	]
 }
