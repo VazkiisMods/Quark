@@ -23,7 +23,7 @@
 	"quark.gui.qbutton_info.title": "Información sobre botón q (LÉEME)",
 	"quark.gui.qbutton_info.open": "Abrir el archivo",
 	"quark.gui.qbutton_info.back": "Volver",
-	"quark.gui.qbutton_info": "En las versiones más recientes, no es posible configurar el mod mediante un menú en el juego. Por ahora, esta interfaz solo sirve para abrir la carpeta de configuración, en donde tenés que encontrar el archivo \"quark-common.toml\" y abrirlo. Se trata de un archivo de texto, por lo que se puede abrir con cualquier editor de texto (como el bloc de notas). Al guardar el archivo, los cambios se aplican a tu mundo en tiempo real.",
+ 	"quark.gui.qbutton_info": "En las versiones más recientes, no es posible configurar el mod desde un menú en el juego. Por el momento, esta interfaz solo sirve para abrir la carpeta de configuraciones, en donde tenés que encontrar el archivo \"quark-common.toml\" y abrirlo. Se trata de un archivo de texto, por lo que se puede abrir con cualquier editor (como el bloc de notas). Cuando guardes el archivo, los cambios se van a aplicar a tu mundo en tiempo real.",
 	
 	"quark.camera.filter": "Filtro: ",
 	"quark.camera.filter.none": "Ninguno",	
