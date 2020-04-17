@@ -1,9 +1,9 @@
 {
     "variants": {
-        "type=north": { "model": "quark:block/smooth_stone_vertical_slab", "y": 0, "uvlock": false },
-        "type=south": { "model": "quark:block/smooth_stone_vertical_slab", "y": 180, "uvlock": false },
-        "type=east": { "model": "quark:block/smooth_stone_vertical_slab", "y": 90, "uvlock": false },
-        "type=west": { "model": "quark:block/smooth_stone_vertical_slab", "y": 270, "uvlock": false },
-        "type=double": { "model": "block/smooth_stone" }
+        "type=north": { "model": "quark:block/smooth_stone_vertical_slab_north" },
+        "type=south": { "model": "quark:block/smooth_stone_vertical_slab_south" },
+        "type=east": { "model": "quark:block/smooth_stone_vertical_slab_east" },
+        "type=west": { "model": "quark:block/smooth_stone_vertical_slab_west" },
+        "type=double": { "model": "quark:block/smooth_stone_vertical_double_slab_west_east" }
     }
 }
