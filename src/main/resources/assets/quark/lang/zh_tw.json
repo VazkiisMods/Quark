@@ -1,6 +1,6 @@
 {
-#GUI
-  "quark.gui.button.sort": "存儲",
+
+        "quark.gui.button.sort": "存儲",
 	"quark.gui.button.sort_inventory": "Sort Inventory",
 	"quark.gui.button.sort_container": "Sort Container",
 	"quark.gui.button.insert": "存入",
@@ -9,7 +9,7 @@
 	"quark.gui.button.emotes": "表情",
 	"quark.gui.button.back": "返回",
   
-  "quark.gui.enchanting.min": "Min: %d",
+        "quark.gui.enchanting.min": "Min: %d",
 	"quark.gui.enchanting.influence": "Candle Influence: +%d%%",
 	"quark.gui.enchanting.upgrade": "Upgrade: %d/%d",
 	"quark.gui.enchanting.left_click": "Left Click to Select",
@@ -26,7 +26,7 @@
 	"quark.gui.qbutton_info.back": "Back",
 	"quark.gui.qbutton_info": "Ingame configuration in newer versions of the game is currently not possible. For now, this will only open the config folder. You'll have to find \"quark-common.toml\" and open it. This is a text file, so you can open it with any text editor (such as Notepad). Changes to the file will apply in real time to your world when you save it.",
 
- #相機
+ 
 	"quark.camera.filter": "Filter: ",
 	"quark.camera.filter.none": "None",	
 	"quark.camera.filter.grayscale": "Grayscale",
@@ -78,26 +78,26 @@
 	"quark.camera.reset": "Reset Settings (Must Sneak)",
 	"quark.camera.greetings": "Greetings from %s!",
 
-  #JEI
-  "quark.jei.makes_copy": "Makes Copy",
+  
+        "quark.jei.makes_copy": "Makes Copy",
 	
-  #控制
-  "quark.keybind.change_hotbar": "Hotbar Swapper",
-	"quark.keybind.lock_rotation": "Rotation Lock",
-	"quark.keybind.sort_container": "Sort Target Inventory",
-	"quark.keybind.sort_player": "Sort Player Inventory",
-	"quark.keybind.transfer_extract": "Extract Items",
-	"quark.keybind.transfer_insert": "Insert Items",
-	"quark.keybind.patreon_emote.dance": "Dance (Patreon)",
+  
+        "quark.keybind.change_hotbar": "切換快捷欄",
+	"quark.keybind.lock_rotation": "旋轉鎖定",
+	"quark.keybind.sort_container": "儲存至指定物品欄",
+	"quark.keybind.sort_player": "儲存至玩家物品欄",
+	"quark.keybind.transfer_extract": "取出物品",
+	"quark.keybind.transfer_insert": "存入物品",
+	"quark.keybind.patreon_emote.dance": "跳舞 (Patreon)",
 	"quark.keybind.patreon_emote.tpose": "T-Pose (Patreon)",
 	"quark.keybind.patreon_emote.dab": "Dab (Patreon)",
 	"quark.keybind.patreon_emote.jet": "Jet (Patreon)",
 	"quark.keybind.patreon_emote.exorcist": "Exorcist (Patreon)",
 	"quark.keybind.patreon_emote.zombie": "Zombie (Patreon)",
-	"quark.keybind.back": "Back",
+	"quark.keybind.back": "返回",
 	"quark.keybind.camera_mode": "相機模式",
 
-  #字幕
+  
   	"quark.subtitles.meep": "小石靈逃跑",
 	"quark.subtitles.give_stoneling": "小石靈撿拾物品",
 	"quark.subtitles.take_stoneling": "小石靈給予物品",
@@ -124,7 +124,7 @@
 	"quark.subtitles.pipe_pickup_lenny": "管道吸取",
 	"quark.subtitles.camera_shutter": "照相機拍攝",
 
-  #Msic
+  
    "quarkmisc.nowAfk": "你正在掛機。",
    "quarkmisc.leftAfk": "你已經沒有在掛機了。",
    "quarkmisc.personSleeping": "%s正在睡覺。",
@@ -146,7 +146,7 @@
    "quark.misc.map_shift": "按住Shift檢視地圖",
    "quark.misc.rotation_lock": "你已啟動相對位置鎖定，旋轉鎖定。您放置的任何方塊都將朝向您面向的方位。按 [%s]更改或重置它。此消息不會再出現。",
   
- #動作
+ 
   	"quark.emote.wave": "揮手",
 	"quark.emote.yes": "點頭",
 	"quark.emote.no": "搖頭",
@@ -166,10 +166,10 @@
 	"quark.emote.exorcist": "大法師姿勢",
 	"quark.emote.jet": "Jet",
 
- #Container
+ 
 	"quark.container.feeding_trough": "餵食器",
 
- #物品
+ 
 	"item.quark.trowel": "鏝刀",
 	"item.quark.tallow": "油脂",
 	"item.quark.black_rune": "黑色符文",
@@ -238,13 +238,13 @@
 	"item.quark.crab_shell": "蟹殼",
 	"item.quark.root_item": "穴根",
 	"item.quark.dragon_scale": "龍鱗",
-	"item.quark.cactus_paste": "仙人掌貼片",
+	"item.quark.cactus_paste": "仙人掌片",
 	"item.quark.backpack": "背包",
 	"item.quark.ravager_hide": "劫毀獸皮",
 	"item.quark.soul_compass": "靈魂羅盤",
 	"item.quark.camera": "照相機",
 
-#藥水
+
 	"item.minecraft.potion.effect.quark.resilience": "穩固藥水",
 	"item.minecraft.splash_potion.effect.quark.resilience": "飛濺穩固藥水",
 	"item.minecraft.lingering_potion.effect.quark.resilience": "滯留穩固藥水",
@@ -258,7 +258,7 @@
 	"item.minecraft.lingering_potion.effect.quark.resistance": "滯留抗性藥水",
 	"item.minecraft.tipped_arrow.effect.quark.resistance": "抗性之箭",
 
-#生態域地圖
+
 	"item.quark.biome_map.snowy_tundra": "積雪凍原開拓地圖",
 	"item.quark.biome_map.mountains": "山地開拓地圖",
 	"item.quark.biome_map.dark_forest": "黑森林開拓地圖",
@@ -273,7 +273,7 @@
 	"item.quark.biome_map.mushroom_fields": "魔菇地開拓地圖",
 	"item.quark.biome_map.ice_spikes": "冰刺平原開拓地圖",
 
-#Block
+
 	"block.quark.charcoal_block": "木炭塊",
 	"block.quark.black_quilted_wool": "黑色絎縫羊毛",
 	"block.quark.blue_quilted_wool": "藍色絎縫羊毛",
@@ -685,16 +685,16 @@
 	"block.quark.weather_sensor": "天氣感測器",
 	"block.quark.redstone_inductor": "紅石感應器",
 	"block.quark.redstone_randomizer": "紅石隨機器",
-	"block.quark.stone_speleothem": "石筍",
-	"block.quark.netherrack_speleothem": "地獄石石筍",
-	"block.quark.granite_speleothem": "花崗岩石筍",
-	"block.quark.andesite_speleothem": "安山岩石筍",
-	"block.quark.diorite_speleothem": "閃長岩石筍",
-	"block.quark.basalt_speleothem": "玄武岩石筍",
-	"block.quark.jasper_speleothem": "碧玉石筍",
-	"block.quark.limestone_speleothem": "石灰岩石筍",
-	"block.quark.marble_speleothem": "大理石石筍",
-	"block.quark.slate_speleothem": "板岩石筍",
+	"block.quark.stone_speleothem": "石頭鐘乳石",
+	"block.quark.netherrack_speleothem": "地獄石鐘乳石",
+	"block.quark.granite_speleothem": "花崗岩鐘乳石",
+	"block.quark.andesite_speleothem": "安山岩鐘乳石",
+	"block.quark.diorite_speleothem": "閃長岩鐘乳石",
+	"block.quark.basalt_speleothem": "玄武岩鐘乳石",
+	"block.quark.jasper_speleothem": "碧玉鐘乳石",
+	"block.quark.limestone_speleothem": "石灰岩鐘乳石",
+	"block.quark.marble_speleothem": "大理石鐘乳石",
+	"block.quark.slate_speleothem": "板岩鐘乳石",
 	"block.quark.grate": "鐵篦子",
 	"block.quark.gravisand": "終界沙",
 	"block.quark.red_crystal": "紅色洞穴水晶",
@@ -734,7 +734,7 @@
 	"block.quark.jungle_leaf_carpet": "叢林木樹葉地毯",
 	"block.quark.acacia_leaf_carpet": "相思木樹葉地毯",
 	"block.quark.dark_oak_leaf_carpet": "黑橡木樹葉地毯",
-	"block.quark.lit_lamp": "恆亮紅石燈",
+	"block.quark.lit_lamp": "點亮的紅石燈",
 	"block.quark.turf": "草皮",
 	"block.quark.turf_stairs": "草皮階梯",
 	"block.quark.turf_slab": "草皮半磚",
@@ -893,7 +893,7 @@
 	"block.quark.mossy_cobblestone_bricks_wall": "青苔鵝卵石磚牆",
 	"block.quark.gold_bars": "金欄杆",
 
-#生怪蛋
+
 	"item.quark.stoneling_spawn_egg": "小石靈生怪蛋",
 	"item.quark.frog_spawn_egg": "青蛙生怪蛋",
 	"item.quark.crab_spawn_egg": "螃蟹生怪蛋",
@@ -901,12 +901,12 @@
 	"item.quark.wrapped_spawn_egg": "Wrapped生怪蛋",
 	"item.quark.toretoise_spawn_egg": "陸龜生怪蛋",
 
-#狀態效果
+
 	"effect.quark.resilience": "抗擊",
 	"effect.quark.danger_sight": "先知",
 
-#生物實體
-"entity.quark.pickarang": "回力鏢",
+
+        "entity.quark.pickarang": "回力鏢",
 	"entity.quark.chest_passenger": "儲物箱船",
 	"entity.quark.glass_frame": "玻璃物品展示框",
 	"entity.quark.colored_frame": "染色物品展示框",
