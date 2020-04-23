@@ -906,6 +906,31 @@
 	"entity.quark.crab": "Crab",
 	"entity.quark.foxhound": "Foxhound",
 	"entity.quark.wrapped": "Wrapped",
-	"entity.quark.toretoise": "Toretoise"
+	"entity.quark.toretoise": "Toretoise",
+	
+	"block.quark.magnetized_block": "Magnetized Block",
+	"block.quark.potted_beetroot": "Potted Beetroots",
+	"block.quark.potted_berries": "Potted Sweet Berry Bush",
+	"block.quark.potted_blue_blossom_sapling": "Potted Frosty Blossom Sapling",
+	"block.quark.potted_carrot": "Potted Carrots",
+	"block.quark.potted_chorus": "Potted Chorus Tree",
+	"block.quark.potted_cocoa_bean": "Potted Cocoa",
+	"block.quark.potted_glowshroom": "Potted Glowshroom",
+	"block.quark.potted_grass": "Potted Grass",
+	"block.quark.potted_lavender_blossom_sapling": "Potted Serene Blossom Sapling",
+	"block.quark.potted_lilac": "Potted Lilac",
+	"block.quark.potted_melon": "Potted Melon",
+	"block.quark.potted_nether_wart": "Potted Nether Wart",
+	"block.quark.potted_orange_blossom_sapling": "Potted Warm Blossom Sapling",
+	"block.quark.potted_peony": "Potted Peony",
+	"block.quark.potted_pink_blossom_sapling": "Potted Sweet Blossom Sapling",
+	"block.quark.potted_potato": "Potted Potatoes",
+	"block.quark.potted_pumpkin": "Potted Pumpkin",
+	"block.quark.potted_rose": "Potted Rose",
+	"block.quark.potted_sea_pickle": "Potted Sea Pickle",
+	"block.quark.potted_sugar_cane": "Potted Sugar Cane",
+	"block.quark.potted_sunflower": "Potted Sunflower",
+	"block.quark.potted_wheat": "Potted Wheat",
+	"block.quark.potted_yellow_blossom_sapling": "Potted Sunny Blossom Sapling"
 	
 }
