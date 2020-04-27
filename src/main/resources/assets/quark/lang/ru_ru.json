@@ -906,6 +906,31 @@
 	"entity.quark.crab": "Краб",
 	"entity.quark.foxhound": "Лисья гончая",
 	"entity.quark.wrapped": "Окутанный",
-	"entity.quark.toretoise": "Пещерипаха"
+	"entity.quark.toretoise": "Пещерипаха",
+	
+	"block.quark.magnetized_block": "Намагниченный блок",
+	"block.quark.potted_beetroot": "Свёкла в горшке",
+	"block.quark.potted_berries": "Куст сладких ягод в горшке",
+	"block.quark.potted_blue_blossom_sapling": "Саженец морозного цветущего дерева в горшке",
+	"block.quark.potted_carrot": "Морковь в горшке",
+	"block.quark.potted_chorus": "Дерево хоруса в горшке",
+	"block.quark.potted_cocoa_bean": "Какао в горшке",
+	"block.quark.potted_glowshroom": "Светящийся гриб в горшке",
+	"block.quark.potted_grass": "Трава в горшке",
+	"block.quark.potted_lavender_blossom_sapling": "Саженец безмятежного цветущего дерева в горшке",
+	"block.quark.potted_lilac": "Сирень в горшке",
+	"block.quark.potted_melon": "Арбуз в горшке",
+	"block.quark.potted_nether_wart": "Нарост из Незера в горшке",
+	"block.quark.potted_orange_blossom_sapling": "Саженец теплого цветущего дерева в горшке",
+	"block.quark.potted_peony": "Пион в горшке",
+	"block.quark.potted_pink_blossom_sapling": "Саженец сладкого цветущего дерева в горшке",
+	"block.quark.potted_potato": "Картофель в горшке",
+	"block.quark.potted_pumpkin": "Тыква в горшке",
+	"block.quark.potted_rose": "Роза в горшке",
+	"block.quark.potted_sea_pickle": "Морской огурец в горшке",
+	"block.quark.potted_sugar_cane": "Сахарный тростник в горшке",
+	"block.quark.potted_sunflower": "Подсолнух в горшке",
+	"block.quark.potted_wheat": "Пшеница в горшке",
+	"block.quark.potted_yellow_blossom_sapling": "Саженец солнечного цветущего дерева в горшке"
 
 }
