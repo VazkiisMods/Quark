@@ -1410,6 +1410,15 @@
 				"Upgrade Aquatic extends and improves on the content added by 1.13. Improving oceans and fixing the implementation of insomnia, in addition to fleshing out rivers and providing new decorative options."
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/upgrade-aquatic"
+		},
+		{
+			"name": "Savage & Ravage",
+			"image": "savage-and-ravage.jpg",
+			"versions": "Friend",
+			"desc": [
+				"Savage and Ravage aims to improve and expand on everything Illager-related through new structures, enemies and challenges. So far it adds a better raid starting mechanic, changes to pillagers, creeper-related features and more."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/savage-ravage"
 		}
 	]
 }
