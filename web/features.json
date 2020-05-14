@@ -1419,6 +1419,15 @@
 				"Savage and Ravage aims to improve and expand on everything Illager-related through new structures, enemies and challenges. So far it adds a better raid starting mechanic, changes to pillagers, creeper-related features and more."
 			],
 			"download": "https://www.curseforge.com/minecraft/mc-mods/savage-and-ravage"
+		},
+		{
+			"name": "YUNG's Better Caves",
+			"image": "yungs-better-caves.jpg",
+			"versions": "Friend",
+			"desc": [
+				"YUNG's Better Caves is a powerful and customizable Minecraft cave mod. Completely overhauls cave generation to add vast lava seas, flooded caverns, and underground lakes and rivers."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/yungs-better-caves"
 		}
 	]
 }
