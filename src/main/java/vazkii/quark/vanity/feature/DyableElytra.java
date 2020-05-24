@@ -10,6 +10,9 @@
  */
 package vazkii.quark.vanity.feature;
 
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -33,34 +36,33 @@ import vazkii.quark.base.module.Feature;
 import vazkii.quark.vanity.client.layer.LayerBetterElytra;
 import vazkii.quark.vanity.recipe.ElytraDyeingRecipe;
 
-import java.util.List;
-import java.util.Map;
-
 public class DyableElytra extends Feature {
 
 	public static final String TAG_ELYTRA_DYE = "quark:elytraDye";
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		new ElytraDyeingRecipe();
+		if(this.enabled) { new ElytraDyeingRecipe(); }
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void postInitClient() {
-		Minecraft mc = Minecraft.getMinecraft();
-		RenderManager manager = mc.getRenderManager();
-		Map<String, RenderPlayer> renders = manager.getSkinMap();
-		for(RenderPlayer render : renders.values())
-			messWithRender(render);
+		if(this.enabled) {
+			Minecraft mc = Minecraft.getMinecraft();
+			RenderManager manager = mc.getRenderManager();
+			Map<String, RenderPlayer> renders = manager.getSkinMap();
+			for (RenderPlayer render : renders.values())
+				messWithRender(render);
 
-		mc.getItemColors().registerItemColorHandler((stack, tintIndex) -> {
-			int color = ItemNBTHelper.getInt(stack, TAG_ELYTRA_DYE, -1);
-			if(color == -1 || color == 15)
-				return -1;
+			mc.getItemColors().registerItemColorHandler((stack, tintIndex) -> {
+				int color = ItemNBTHelper.getInt(stack, TAG_ELYTRA_DYE, -1);
+				if (color == -1 || color == 15)
+					return -1;
 
-			return ItemDye.DYE_COLORS[color];
-		}, Items.ELYTRA);
+				return ItemDye.DYE_COLORS[color];
+			}, Items.ELYTRA);
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -81,7 +83,7 @@ public class DyableElytra extends Feature {
 	@SideOnly(Side.CLIENT)
 	public void onTooltip(ItemTooltipEvent event) {
 		ItemStack stack = event.getItemStack();
-		if(!stack.isEmpty() && stack.getItem() == Items.ELYTRA) {
+		if(!stack.isEmpty() && stack.getItem() == Items.ELYTRA && this.enabled) {
 			int color = ItemNBTHelper.getInt(stack, TAG_ELYTRA_DYE, 15);
 			EnumDyeColor dye = EnumDyeColor.byDyeDamage(color);
 			if(dye != EnumDyeColor.WHITE)
