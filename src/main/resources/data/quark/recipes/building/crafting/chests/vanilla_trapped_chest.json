@@ -15,6 +15,7 @@
     "quark:building/crafting/chests/compat/wisteria_trapped_chest",
     "quark:building/crafting/chests/compat/hive_trapped_chest",
     "quark:building/crafting/chests/compat/rosewood_trapped_chest",
+    "quark:building/crafting/chests/compat/yucca_trapped_chest",
     "quark:building/crafting/chests/compat/maple_trapped_chest"
   ],
   "ingredients": [

@@ -6,7 +6,7 @@ Willow: Swamp Expansion
 Wisteria: Bloomful
 Hive: Buzzier Bees
 Rosewood: Atmospheric
-Yucca: Atmospheric #not yet implemented
+Yucca: Atmospheric
 Kousa: Atmospheric #not yet implemented
 Aspen: Atmospheric #not yet implemented
 Maple: Autumnity
