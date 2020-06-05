@@ -1,5 +1,7 @@
 package vazkii.quark.base.handler;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
@@ -11,6 +13,7 @@ import javax.annotation.Nonnull;
 
 import com.google.common.base.Predicates;
 
+import com.google.common.base.Throwables;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.screen.MainMenuScreen;
@@ -54,6 +57,20 @@ public class MiscUtil {
 
 	public static final ResourceLocation GENERAL_ICONS = new ResourceLocation(Quark.MOD_ID, "textures/gui/general_icons.png");
 
+	private static final MethodHandle LOOT_TABLE_POOLS, LOOT_POOL_ENTRIES;
+
+	static {
+		MethodHandles.Lookup lookup = MethodHandles.lookup();
+		Field lootTablePools = ObfuscationReflectionHelper.findField(LootTable.class, "field_186466_c");
+		Field lootPoolEntries = ObfuscationReflectionHelper.findField(LootPool.class, "field_186453_a");
+		try {
+			LOOT_TABLE_POOLS = lookup.unreflectGetter(lootTablePools);
+			LOOT_POOL_ENTRIES = lookup.unreflectGetter(lootPoolEntries);
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public static final Direction[] HORIZONTALS = new Direction[] {
 			Direction.NORTH,
 			Direction.SOUTH,
@@ -79,12 +96,30 @@ public class MiscUtil {
 	};
 
 	public static void addToLootTable(LootTable table, LootEntry entry) {
-		if(table.pools == null)
-			return;
-		LootPool pool = table.pools.get(0);
-		if (pool.lootEntries == null)
-			return;
-		pool.lootEntries.add(entry);
+		List<LootPool> pools = getPools(table);
+		if (!pools.isEmpty()) {
+			getEntries(pools.get(0)).add(entry);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<LootPool> getPools(LootTable table) {
+		try {
+			return (List<LootPool>) LOOT_TABLE_POOLS.invokeExact(table);
+		} catch (Throwable throwable) {
+			Throwables.throwIfUnchecked(throwable);
+			throw new RuntimeException(throwable);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<LootEntry> getEntries(LootPool pool) {
+		try {
+			return (List<LootEntry>) LOOT_POOL_ENTRIES.invokeExact(pool);
+		} catch (Throwable throwable) {
+			Throwables.throwIfUnchecked(throwable);
+			throw new RuntimeException(throwable);
+		}
 	}
 
 	public static void damageStack(PlayerEntity player, Hand hand, ItemStack stack, int dmg) {
