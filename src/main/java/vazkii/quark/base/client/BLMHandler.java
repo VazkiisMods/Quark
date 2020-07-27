@@ -30,7 +30,7 @@ public class BLMHandler {
 	@OnlyIn(Dist.CLIENT)
 	public static void clientTick(ClientTickEvent event) {
 		Minecraft mc = Minecraft.getInstance();
-		if(!didTheThing && isEnglish(mc)) {
+		if(!didTheThing && isUnitedStatesOfAmerica(mc)) {
 			Screen curr = mc.currentScreen;
 
 			if(curr instanceof WorldSelectionScreen || curr instanceof MultiplayerScreen) {
@@ -42,11 +42,12 @@ public class BLMHandler {
 		}
 	}
 	
-	private static boolean isEnglish(Minecraft mc) {
+	private static boolean isUnitedStatesOfAmerica(Minecraft mc) {
 		return mc.getLanguageManager() != null
 				&& mc.getLanguageManager().getCurrentLanguage() != null
 				&& mc.getLanguageManager().getCurrentLanguage().getName() != null
-				&& mc.getLanguageManager().getCurrentLanguage().getName().equals("English");
+				&& mc.getLanguageManager().getCurrentLanguage().getName().equals("English")
+				&& mc.getLanguageManager().getCurrentLanguage().getRegion().equals("US");
 	}
 	
 	private static File getMarker() {
