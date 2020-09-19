@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:warped_planks",
+	"quark:vertical_warped_planks"
+  ]
+}

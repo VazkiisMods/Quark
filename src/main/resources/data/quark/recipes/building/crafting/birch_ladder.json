@@ -10,7 +10,7 @@
       "tag": "forge:rods/wooden"
     },
     "W": {
-      "item": "minecraft:birch_planks"
+      "tag": "quark:birch_planks"
     }
   },
   "result": {

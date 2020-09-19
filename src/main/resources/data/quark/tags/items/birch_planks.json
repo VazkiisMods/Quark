@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:birch_planks",
+	"quark:vertical_birch_planks"
+  ]
+}

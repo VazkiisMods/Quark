@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:dark_oak_planks"
+      "tag": "quark:dark_oak_planks"
     },
     "X": {
       "item": "minecraft:book"
