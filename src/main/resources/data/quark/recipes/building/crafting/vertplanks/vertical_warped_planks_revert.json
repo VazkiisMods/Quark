@@ -1,18 +1,23 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
       "item": "quark:vertical_warped_planks"
     }
-  ],
+  },
   "result": {
     "item": "minecraft:warped_planks",
-    "count": 1
+    "count": 3
   },
   "conditions": [
     {
       "type": "quark:flag",
-        "flag": "vertical_planks"
+      "flag": "vertical_planks"
     }
   ]
 } 

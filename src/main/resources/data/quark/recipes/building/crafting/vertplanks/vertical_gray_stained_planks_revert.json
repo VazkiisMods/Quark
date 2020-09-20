@@ -1,13 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
       "item": "quark:vertical_gray_stained_planks"
     }
-  ],
+  },
   "result": {
     "item": "quark:gray_stained_planks",
-    "count": 1
+    "count": 3
   },
   "conditions": [
     {
