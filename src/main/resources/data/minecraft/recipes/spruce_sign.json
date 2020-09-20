@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:spruce_planks"
+      "tag": "quark:spruce_planks"
     },
     "X": {
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

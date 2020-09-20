@@ -3,7 +3,7 @@
   "group": "wooden_button",
   "ingredients": [
     {
-      "item": "minecraft:spruce_planks"
+      "tag": "quark:spruce_planks"
     }
   ],
   "result": {
