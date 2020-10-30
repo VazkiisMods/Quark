@@ -1248,6 +1248,15 @@
 			"download": "https://www.curseforge.com/minecraft/mc-mods/berry-good"
 		},
 		{
+			"name": "Blocks, Tools, Realms and Beyond!",
+			"image": "brtb.jpg",
+			"versions": "Friend",
+			"desc": [
+				"BRTB is a massive mod that adds in 1000's of new blocks, including more variants of stones similar to those added in quark. It also adds in 4 new wood types and a new dimension called Alexandroth."
+			],
+			"download": "https://www.curseforge.com/minecraft/mc-mods/brtb"
+		},
+		{
 			"name": "Extra Boats",
 			"image": "extra-boats.jpg",
 			"versions": "Friend",
