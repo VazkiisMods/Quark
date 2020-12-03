@@ -97,6 +97,7 @@
 "quark.camera.greetings": "Привет от %s!",
 
 "quark.jei.makes_copy": "Делает копию",
+"quark.jei.any_enchanted": "Любой зачарованный предмет",
 
 "quark.keybind.change_hotbar": "Смена панели быстрого доступа",
 "quark.keybind.lock_rotation": "Блокировка вращения",
@@ -268,6 +269,7 @@
 "item.quark.soul_compass": "Компас души",
 "item.quark.bottled_cloud": "Облако в бутылочке",
 "item.quark.flamerang": "Пламеранг",
+"item.quark.seed_pouch": "Мешочек для семян",
 
 "item.minecraft.potion.effect.quark.resilience": "Зелье стойкости",
 "item.minecraft.splash_potion.effect.quark.resilience": "Взрывное зелье стойкости",
@@ -944,6 +946,15 @@
 "block.quark.biotite_bricks": "Биотитовые кирпичи",
 "block.quark.shallow_dirt": "Мелкая грязь",
 "block.quark.bamboo_mat": "Бамбуковый коврик",
+"block.quark.burnt_vine": "Сгоревшая лоза",
+"block.quark.oak_post": "Дубовый столб",
+"block.quark.spruce_post": "Еловый столб",
+"block.quark.birch_post": "Берёзовый столб",
+"block.quark.jungle_post": "Столб из тропического дерева",
+"block.quark.acacia_post": "Акациевый столб",
+"block.quark.dark_oak_post": "Столб из тёмного дуба",
+"block.quark.warped_post": "Искажённый столб",
+"block.quark.crimson_post": "Багровый столб",
 
 "item.quark.stoneling_spawn_egg": "Яйцо призыва стоунлинга",
 "item.quark.frog_spawn_egg": "Яйцо призыва лягушки",
