@@ -57,4 +57,21 @@
 		echo $txt;
 	}
 
+	function compare_semver($left, $right) {
+		$leftarr = explode(".", $left);
+		$rightarr = explode(".", $right);
+		$iters = min(count($leftarr), count($rightarr));
+		for ($i = 0; $i < $iters; $i++) {
+			$difference = intval($leftarr[$i]) - intval($rightarr[$i]);
+			if ($difference != 0) {
+				return $difference;
+			}
+		}
+		return count($leftarr) - count($rightarr);
+	}
+
+	function version_valid($version, $lower, $upper) {
+		return compare_semver($version, $lower) >= 0 && compare_semver($version, $upper) <= 0;
+	}
+
 ?>

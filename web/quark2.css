@@ -504,6 +504,10 @@ a:not(.no-external)::after, .show-external::after {
 	min-height: 279px;
 }
 
+.feature-info.removed-version {
+	color: #aaa;
+}
+
 .feature-info img {
 	max-width: 500px;
 }

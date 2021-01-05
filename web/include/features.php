@@ -1,4 +1,10 @@
 <?php
+	parse_str($query_string, $query);
+	$current_version = $query["version"];
+	if (!$current_version || !version_valid($current_version, $first_version, $latest_version)) {
+		$current_version = $latest_version;
+	}
+
 	function main_features() {
 		global $feature_data;
 		write_feature_data($feature_data);
@@ -72,6 +78,7 @@
 	}
 
 	function write_feature($feature, $category_name) {
+		global $current_version, $latest_version;
 		if(array_key_exists('info', $feature)) {
 			div('info');
 				write($feature['info']);
@@ -79,24 +86,37 @@
 			return;
 		}
 
+		$version_data = $feature['versions'];
+		if (is_string($version_data)) {
+			// Is this a Quark Friend or something? If so just call it valid lol
+			$version_string = $version_data;
+			$version_expired = false;
+		} else {
+			// Assume this is an assoc array
+			$first_version = $version_data['start'];
+			$last_version = $version_data['end'] ?: $latest_version;
+
+			$version_string = "$first_version-$last_version";
+			$version_expired = !version_valid($current_version, $first_version, $last_version);
+		}
 		div('feature');
 			div('feature-image');
 				img("img/features/$category_name/{$feature['image']}");
 			pop();
 
-			div('feature-info');
+			div($version_expired ? 'feature-info removed-version' : 'feature-info');
 				div('feature-header');
 					div('feature-title');
 						write($feature['name']);
-						if(array_key_exists('removed', $feature) && $feature['removed']) {
+						if($version_expired) {
 							span('feature-removed');
-								write(' (Removed)');
+								write(' (Unavailable)');
 							pop();
 						}
 					pop();
 
 					div('feature-version');
-						write($feature['versions']);
+						write($version_string);
 					pop();
 				pop();
 
