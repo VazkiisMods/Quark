@@ -88,11 +88,8 @@
 				div('feature-header');
 					div('feature-title');
 						write($feature['name']);
-						if(array_key_exists('removed', $feature) && $feature['removed']) {
-							span('feature-removed');
-								write(' (Removed)');
-							pop();
-						}
+						span('feature-removed');
+						pop();
 					pop();
 
 					div('feature-version');

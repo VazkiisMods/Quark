@@ -1,25 +1,30 @@
-var selectedEntry = "home";
-var selectedCategory = "automation";
-var transitioning = false;
+let selectedEntry = "home";
+let selectedCategory = "automation";
+let transitioning = false;
 
 $(function() {
-	var changed = false;
+	let changed = false;
 	if(window.location.hash) {
-		var target = window.location.hash.substring(1);
+		const target = window.location.hash.substring(1);
 		if($(`.navbar-link[data-entry=${target}]`).length > 0 && target != selectedEntry) {
 			selectedEntry = target;
 			changed = true;
 		}
 	}
+	const firstVersion = "1.14", lastVersion = "1.16.4";
+	let currentVersion = new URLSearchParams(window.location.search.substring(1)).get("version");
+	if (!currentVersion || !checkSemverBounds(currentVersion, firstVersion, lastVersion)) {
+		currentVersion = lastVersion;
+	}
+	$('.feature-info').filter((i, elem) => !checkSemverRange(currentVersion, elem.querySelector('.feature-version').innerText, lastVersion)).addClass('removed-version');
 
 	updateEntry(changed, false);
 	updateCategory(false);
 	updateBtt();
 
-	var images = $('#big-branding-background img');
+	const images = $('#big-branding-background img');
 	shuffle(images);
-	for(var i = 0; i < 4; i++)
-		$(images[i]).addClass('displayed-image');
+	images.addClass('displayed-image');
 });
 
 $(window).scroll(updateBtt);
@@ -155,9 +160,33 @@ function updateLazyImages() {
 }
 
 function updateBtt() {
-	var top = window.pageYOffset || document.documentElement.scrollTop;
-	var bttVisible = top > 200;
+	const top = window.pageYOffset || document.documentElement.scrollTop;
+	const bttVisible = top > 200;
 	$('#btt-holder').attr('data-enabled', bttVisible);
+}
+
+function compareSemver(l, r) {
+	const leftArr = l.split('.'), rightArr = r.split('.');
+	const rows = Math.min(leftArr.length, rightArr.length);
+	for (let i = 0; i < rows; i++) {
+		const difference = (+leftArr[i] || 0) - (+rightArr[i] || 0);
+		if (difference != 0)
+			return difference;
+	}
+	return leftArr.length - rightArr.length;
+}
+
+function checkSemverBounds(t, l, r) {
+	return compareSemver(t, l) >= 0 && compareSemver(t, r) <= 0;
+}
+
+function checkSemverRange(current, rangeStr, last) {
+	if (rangeStr.endsWith('+')) {
+		return checkSemverBounds(current, rangeStr.slice(0, -1), last);
+	} else {
+		const array = rangeStr.split('-');
+		return array.length == 1 || checkSemverBounds(current, array[0], array[1]);
+	}
 }
 
 // https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array

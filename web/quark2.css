@@ -504,6 +504,10 @@ a:not(.no-external)::after, .show-external::after {
 	min-height: 279px;
 }
 
+.feature-info.removed-version {
+	color: #aaa;
+}
+
 .feature-info img {
 	max-width: 500px;
 }
@@ -522,8 +526,9 @@ a:not(.no-external)::after, .show-external::after {
 	float: left;
 }
 
-.feature-removed {
-	color: #ff5555;
+.feature-info.removed-version .feature-removed::before {
+	color: #f55;
+	content: " (Unavailable)";
 }
 
 .feature-desc-header {

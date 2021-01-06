@@ -3,7 +3,7 @@
 		{
 			"name": "Chain Linking",
 			"image": "iron-chains.jpg",
-			"versions": "1.14+",
+			"versions": "1.14-1.15.2",
 			"desc": [
 				"When right clicking with Chains onto a boat or minecart, and then onto another, they'll link the two. Linked boats and minecarts will always remain at close distance, which allows you to make trains.",
 				"Prior to 1.16, an Iron Chain item was added by Quark. As Chains were added to the base game in 1.16, this item was removed.",
@@ -579,9 +579,10 @@
 		{
 			"name": "F To Switch",
 			"image": "f-to-switch.jpg",
-			"versions": "1.14+",
+			"versions": "1.14-1.15.2",
 			"desc": [
-				"Pressing F on an item in the inventory swaps it with your off-hand item, just as if you'd pressed F outside of the inventory. This uses the same keybind used for that purpose."
+				"Pressing F on an item in the inventory swaps it with your off-hand item, just as if you'd pressed F outside of the inventory. This uses the same keybind used for that purpose.",
+				"As of 1.16, this feature was added to the base game."
 			]
 		},
 		{
