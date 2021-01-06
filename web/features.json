@@ -3,7 +3,7 @@
 		{
 			"name": "Chain Linking",
 			"image": "iron-chains.jpg",
-			"versions": "1.14-1.15.2",
+			"versions": "1.14+",
 			"desc": [
 				"When right clicking with Chains onto a boat or minecart, and then onto another, they'll link the two. Linked boats and minecarts will always remain at close distance, which allows you to make trains.",
 				"Prior to 1.16, an Iron Chain item was added by Quark. As Chains were added to the base game in 1.16, this item was removed.",
