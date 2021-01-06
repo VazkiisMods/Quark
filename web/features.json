@@ -579,9 +579,10 @@
 		{
 			"name": "F To Switch",
 			"image": "f-to-switch.jpg",
-			"versions": {"start": "1.14"},
+			"versions": {"start": "1.14", "end": "1.15.2"},
 			"desc": [
-				"Pressing F on an item in the inventory swaps it with your off-hand item, just as if you'd pressed F outside of the inventory. This uses the same keybind used for that purpose."
+				"Pressing F on an item in the inventory swaps it with your off-hand item, just as if you'd pressed F outside of the inventory. This uses the same keybind used for that purpose.",
+				"As of 1.16, this feature was added to the base game."
 			]
 		},
 		{
