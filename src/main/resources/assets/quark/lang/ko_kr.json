@@ -218,6 +218,7 @@
 	"quark.misc.mod_disabled": "사용할 수 없습니다. 활성화하려면 %s을(를) 설치하세요.",
 	"quark.misc.repaired": "(수리됨)",
 	"quark.misc.celebration": "Vazkii의 모드 10주년 (2021)",
+	"quark.misc.ancient_tome_tooltip": "+I %s (최대 %s)",
 
 	"quark.misc.reloaded0": "Quark 컨피그가 새로고침되었습니다.",
 	"quark.misc.reloaded1": "- 만약 제작법과 관련한 사항을 변경하였을 경우, /reload를 실행하세요.",
@@ -283,6 +284,7 @@
  	"item.quark.white_rune": "하얀색 룬",
  	"item.quark.yellow_rune": "노란색 룬",
  	"item.quark.rainbow_rune": "무지개색 룬",
+	"item.quark.blank_rune": "투명 룬",
 	"item.quark.pickarang": "곡괘랑",
 	"item.quark.diamond_heart": "다이아몬드의 심장",
 	"item.quark.ancient_tome": "고대 서적",
