@@ -1418,7 +1418,7 @@
 	"quark.readout.no_item": "No item",
 
 
-	"comment.oddities.narrator_readout": "PIPES",
+	"comment.oddities.pipes": "PIPES",
 	"block.quark.pipe": "Copper Pipe",
 
 	"comment.pipe.subtitles": "Subtitles",
@@ -1447,7 +1447,6 @@
 	"block.quark.pallet": "Pallet",
 	"quark.misc.mod_disabled": "Disabled. Install %s to enable.",
 	"quark.misc.repaired": "(Was Repaired)",
-	"quark.misc.opened_screen": "Opened Screen %s",
 	"block.quark.iron_chain": "Iron Chain",
 	"quark.gui.button.back": "Back"
 
