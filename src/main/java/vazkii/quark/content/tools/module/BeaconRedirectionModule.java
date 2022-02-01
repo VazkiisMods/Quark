@@ -97,7 +97,9 @@ public class BeaconRedirectionModule extends QuarkModule {
 					currSegment = new ExtendedBeamSegment(currSegment.dir, currPos.subtract(beaconPos), mixedColor);
 				}
 			} else {
-				if (blockstate.getLightBlock(world, currPos) >= 15 || block == Blocks.BEDROCK) {
+				if (block == Blocks.BEDROCK)
+					continue; //Bedrock blocks don't stop beacon beams
+				else if (blockstate.getLightBlock(world, currPos) >= 15) {
 					broke = true;
 					break;
 				}
