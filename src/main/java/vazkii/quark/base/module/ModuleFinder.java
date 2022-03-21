@@ -3,6 +3,7 @@ package vazkii.quark.base.module;
 import com.google.common.collect.Lists;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 import net.minecraftforge.forgespi.language.ModFileScanData.AnnotationData;
@@ -53,6 +54,9 @@ public final class ModuleFinder {
 
 			if(vals.containsKey("antiOverlap"))
 				moduleObj.antiOverlap = (List<String>) vals.get("antiOverlap");
+
+			if(vals.containsKey("requiredMods"))
+				moduleObj.requiredMods = (List<String>) vals.get("requiredMods");
 
 			if(vals.containsKey("hasSubscriptions"))
 				moduleObj.hasSubscriptions = (boolean) vals.get("hasSubscriptions");

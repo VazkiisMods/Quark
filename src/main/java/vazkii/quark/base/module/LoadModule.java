@@ -16,6 +16,7 @@ public @interface LoadModule {
 	String name() default "";
 	String description() default "";
 	String[] antiOverlap() default { };
+	String[] requiredMods() default { };
 
 	boolean hasSubscriptions() default false;
 	Dist[] subscribeOn() default { Dist.CLIENT, Dist.DEDICATED_SERVER };

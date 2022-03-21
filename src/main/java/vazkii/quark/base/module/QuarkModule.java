@@ -22,6 +22,7 @@ public class QuarkModule {
 	public String lowercaseName = "";
 	public String description = "";
 	public List<String> antiOverlap = null;
+	public List<String> requiredMods = null;
 	public boolean hasSubscriptions = false;
 	public List<Dist> subscriptionTarget = Lists.newArrayList(Dist.CLIENT, Dist.DEDICATED_SERVER);
 	public boolean enabledByDefault = true;
@@ -117,6 +118,15 @@ public class QuarkModule {
 		if(firstLoad) {
 			Quark.LOG.info("Loading Module " + displayName);
 			MinecraftForge.EVENT_BUS.post(new ModuleLoadedEvent(lowercaseName));
+		}
+
+		if(requiredMods != null) {
+			ModList list = ModList.get();
+			for(String s : requiredMods)
+				if(!list.isLoaded(s)) {
+					missingDep = true;
+					break;
+				}
 		}
 
 		if(missingDep)

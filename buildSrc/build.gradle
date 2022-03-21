@@ -1,0 +1,8 @@
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.ow2.asm:asm:9.2'
+    implementation 'commons-io:commons-io:2.11.0'
+}

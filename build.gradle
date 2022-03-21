@@ -143,6 +143,9 @@ task incrementBuildNumber {
     //file("${config.dir_repo}/version/${minecraft.version}.txt").write("${version}")
 }
 
+
+import vazkii.quark.build.ModernModPackager
+
 import java.util.regex.Pattern
 task sortArtifacts(type: Copy) {
     from jar.destinationDir
@@ -192,6 +195,8 @@ jar {
     exclude "**/*.exe"
     exclude "**/unused"
     exclude "**/genscripts"
+
+    ModernModPackager.runOn((Jar) it)
 }
 
 task sourcesJar(type: Jar) {
