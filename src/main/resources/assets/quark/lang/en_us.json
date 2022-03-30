@@ -1,13 +1,14 @@
 {
-	"comment.donottranslate": "Please do not localize the comments. They are meant to help translaters.",
 	"#MISC": "Begin MISC section",
 
 
 
-	"comment.keybinds": "Keybinds + Controls",
 	"quark.gui.keygroup.misc": "Quark Misc",
 	"quark.gui.keygroup.inv": "Quark Inventory",
 	"quark.gui.keygroup.emote": "Quark Emotes",
+
+	"quark.misc.opened_screen": "Opened Screen %s",
+	"quark.misc.mod_disabled": "Disabled. Install %s to enable.",
 
 	"quark.keybind.change_hotbar": "Hotbar Swapper",
 	"quark.keybind.lock_rotation": "Rotation Lock",
@@ -22,6 +23,7 @@
 	"quark.keybind.patreon_emote.exorcist": "Exorcist (Patreon)",
 	"quark.keybind.patreon_emote.zombie": "Zombie (Patreon)",
 	"quark.keybind.back": "Back",
+	"quark.gui.button.back": "Back",
 	"quark.keybind.camera_mode": "Camera Mode",
 	"quark.keybind.narrator_readout": "Narrator Readout",
 	"quark.keybind.narrator_full_readout": "Narrator Full Readout",
@@ -29,12 +31,11 @@
 	"quark.keybind.autorun": "Walk Automatically",
 
 
-	"comment.jei.compat": "JEI COMPAT",
 	"quark.jei.makes_copy": "Makes Copy",
 	"quark.jei.any_enchanted": "Any Enchanted Item",
+	"quark.misc.repaired": "(Was Repaired)",
 
 
-	"comment.q.button": "Q BUTTON",
 	"quark.gui.config.save": "Save Changes",
 	"quark.gui.config.social.website": "Quark Website",
 	"quark.gui.config.social.discord": "Quark/Violet Moon Discord",
@@ -101,7 +102,6 @@
 	"quark.category.experimental": "Experimental",
 
 
-	"comment.reload.message": "RELOAD MESSAGE",
 	"quark.misc.reloaded0": "Your quark config has been reloaded.",
 	"quark.misc.reloaded1": "- If you changed anything that would change recipes, please run /reload.",
 	"quark.misc.reloaded2": "- If your changes aren't applied, try restarting the game.",
@@ -112,38 +112,30 @@
 
 
 
-	"comment.automation.chute": "CHUTE",
 	"block.quark.chute": "Chute",
 
 
-	"comment.automation.ender_watcher": "ENDER WATCHER",
 	"block.quark.ender_watcher": "Ender Watcher",
 
 
-	"comment.automation.feeding_trough": "FEEDING TROUGH",
 	"block.quark.feeding_trough": "Feeding Trough",
 	"quark.container.feeding_trough": "Feeding Trough",
 
 
-	"comment.automation.gravisand": "GRAVISAND",
 	"block.quark.gravisand": "Gravisand",
 	"entity.quark.gravisand": "Floating Gravisand",
 
 
-	"comment.automation.iron_rod": "IRON ROD",
 	"block.quark.iron_rod": "Iron Rod",
 
 
-	"comment.automation.metal_buttons": "METAL BUTTONS",
 	"block.quark.iron_button": "Iron Button",
 	"block.quark.gold_button": "Gold Button",
 
 
-	"comment.automation.obsidian_pressure_plate": "OBSIDIAN PRESSURE PLATE",
 	"block.quark.obsidian_pressure_plate": "Obsidian Pressure Plate",
 
 
-	"comment.automation.redstone_randomizer": "REDSTONE RANDOMIZER",
 	"block.quark.redstone_randomizer": "Redstone Randomizer",
 
 
@@ -152,16 +144,13 @@
 
 
 
-	"comment.building.celebratory_lamps": "CELEBRATORY LAMPS",
 	"block.quark.stone_lamp": "Stone Lamp",
 	"block.quark.stone_brick_lamp": "Stone Brick Lamp",
 	"quark.misc.celebration": "Celebrating 10 Years of Vazkii's Mods (2021)",
 
 
 
-	"comment.building.compressed_blocks": "COMPRESSED BLOCKS",
 
-	"comment.cb.crops": "CROPS",
 	"block.quark.potato_crate": "Potato Crate",
 	"block.quark.beetroot_crate": "Beetroot Crate",
 	"block.quark.carrot_crate": "Carrot Crate",
@@ -176,7 +165,6 @@
 	"block.quark.chorus_fruit_block": "Chorus Fruit Batch",
 	"block.quark.golden_apple_crate": "Golden Apple Crate",
 
-	"comment.cb.others": "OTHERS",
 	"block.quark.stick_block": "Stick Stack",
 	"block.quark.bonded_leather": "Bonded Leather",
 	"block.quark.bonded_rabbit_hide": "Bonded Rabbit Hide",
@@ -186,7 +174,6 @@
 
 
 
-	"comment.building.duskbound_blocks": "DUSKBOUND BLOCKS",
 	"block.quark.duskbound_lantern": "Duskbound Lantern",
 	"block.quark.duskbound_block": "Duskbound Block",
 	"block.quark.duskbound_block_stairs": "Duskbound Stairs",
@@ -194,7 +181,6 @@
 	"block.quark.duskbound_block_vertical_slab": "Duskbound Vertical Slab",
 
 
-	"comment.building.framed_glass": "FRAMED GLASS",
 
 	"block.quark.framed_glass": "Framed Glass",
 	"block.quark.black_framed_glass": "Black Framed Glass",
@@ -214,7 +200,6 @@
 	"block.quark.white_framed_glass": "White Framed Glass",
 	"block.quark.yellow_framed_glass": "Yellow Framed Glass",
 
-	"comment.framed_glass.panes": "Panes",
 	"block.quark.framed_glass_pane": "Framed Glass Pane",
 	"block.quark.black_framed_glass_pane": "Black Framed Glass Pane",
 	"block.quark.blue_framed_glass_pane": "Blue Framed Glass Pane",
@@ -234,13 +219,10 @@
 	"block.quark.yellow_framed_glass_pane": "Yellow Framed Glass Pane",
 
 
-	"comment.quark.building.gold_bars": "GOLD BARS",
 	"block.quark.gold_bars": "Gold Bars",
 
 
-	"comment.building.industrial_palette": "INDUSTRIAL PALETTE",
 
-	"comment.ip.iron_plates": "Iron Plates",
 	"block.quark.iron_plate": "Iron Plate",
 	"block.quark.iron_plate_stairs": "Iron Plate Stairs",
 	"block.quark.iron_plate_slab": "Iron Plate Slab",
@@ -250,18 +232,16 @@
 	"block.quark.rusty_iron_plate_slab": "Rusty Iron Plate Slab",
 	"block.quark.rusty_iron_plate_vertical_slab": "Rusty Iron Plate Vertical Slab",
 
-	"comment.ip.iron_pillars": "Iron Pillars",
 	"block.quark.iron_pillar": "Iron Pillar",
 
-	"comment.ip.iron_ladder": "Iron Ladders",
 	"block.quark.iron_ladder": "Iron Ladder",
 
+	"block.quark.iron_chain": "Iron Chain",
 
-	"comment.building.iron_grate": "IRON GRATE",
+
 	"block.quark.grate": "Iron Grate",
 
 
-	"comment.building.leaf_carpet": "LEAF CARPET",
 	"block.quark.oak_leaf_carpet": "Oak Leaf Carpet",
 	"block.quark.spruce_leaf_carpet": "Spruce Leaf Carpet",
 	"block.quark.birch_leaf_carpet": "Birch Leaf Carpet",
@@ -272,7 +252,6 @@
 	"block.quark.flowering_azalea_leaf_carpet": "Flowering Azalea Leaf Carpet",
 
 
-	"comment.building.leaf_hedge": "LEAF HEDGE",
 	"block.quark.oak_hedge": "Oak Leaf Hedge",
 	"block.quark.spruce_hedge": "Spruce Leaf Hedge",
 	"block.quark.birch_hedge": "Birch Leaf Hedge",
@@ -283,7 +262,6 @@
 	"block.quark.flowering_azalea_hedge": "Flowering Azalea Leaf Hedge",
 
 
-	"comment.building.midori": "MIDORI",
 	"item.quark.moss_paste": "Moss Paste",
 	"block.quark.midori_block": "Midori Block",
 	"block.quark.midori_block_slab": "Midori Slab",
@@ -292,13 +270,10 @@
 	"block.quark.midori_block_vertical_slab": "Midori Vertical Slab",
 
 
-	"comment.building.nether_brick_fence_gate": "NETHER BRICK FENCE GATE",
 	"block.quark.nether_brick_fence_gate": "Nether Brick Fence Gate",
 
 
-	"comment.building.more_brick_types": "MORE BRICK TYPES",
 
-	"comment.mbt.sandstone": "Sandstones",
 	"block.quark.sandstone_bricks": "Sandstone Bricks",
 	"block.quark.sandstone_bricks_stairs": "Sandstone Brick Stairs",
 	"block.quark.sandstone_bricks_slab": "Sandstone Brick Slab",
@@ -311,14 +286,12 @@
 	"block.quark.red_sandstone_bricks_vertical_slab": "Red Sandstone Brick Vertical Slab",
 	"block.quark.red_sandstone_bricks_wall": "Red Sandstone Brick Wall",
 
-	"comment.mbt.blue_nether_bricks": "Blue Nether Bricks",
 	"block.quark.blue_nether_bricks": "Blue Nether Bricks",
 	"block.quark.blue_nether_bricks_stairs": "Blue Nether Brick Stairs",
 	"block.quark.blue_nether_bricks_slab": "Blue Nether Brick Slab",
 	"block.quark.blue_nether_bricks_vertical_slab": "Blue Nether Brick Vertical Slab",
 	"block.quark.blue_nether_bricks_wall": "Blue Nether Brick Wall",
 
-	"comment.mbt.weird": "Weird bricks",
 	"block.quark.cobblestone_bricks": "Cobblestone Bricks",
 	"block.quark.cobblestone_bricks_stairs": "Cobblestone Brick Stairs",
 	"block.quark.cobblestone_bricks_slab": "Cobblestone Brick Slab",
@@ -346,7 +319,6 @@
 	"block.quark.blackstone_bricks_wall": "Blackstone Brick Wall",
 
 
-	"comment.building.more_potted_plants": "MORE POTTED PLANTS",
 	"block.quark.potted_beetroot": "Potted Beetroots",
 	"block.quark.potted_berries": "Potted Sweet Berry Bush",
 	"block.quark.potted_carrot": "Potted Carrots",
@@ -372,9 +344,7 @@
 	"block.quark.potted_wheat": "Potted Wheat",
 
 
-	"comment.building.more_stone_variants": "MORE STONE VARIANTS",
 
-	"comment.msv.andesite": "Andesite",
 	"block.quark.andesite_bricks": "Polished Andesite Bricks",
 	"block.quark.andesite_bricks_slab": "Polished Andesite Brick Slab",
 	"block.quark.andesite_bricks_stairs": "Polished Andesite Brick Stairs",
@@ -382,7 +352,6 @@
 	"block.quark.andesite_bricks_vertical_slab": "Polished Andesite Brick Vertical Slab",
 	"block.quark.chiseled_andesite_bricks": "Chiseled Polished Andesite Bricks",
 
-	"comment.msv.granite": "Granite",
 	"block.quark.granite_bricks": "Polished Granite Bricks",
 	"block.quark.granite_bricks_slab": "Polished Granite Brick Slab",
 	"block.quark.granite_bricks_stairs": "Polished Granite Brick Stairs",
@@ -390,7 +359,6 @@
 	"block.quark.granite_bricks_vertical_slab": "Polished Granite Brick Vertical Slab",
 	"block.quark.chiseled_granite_bricks": "Chiseled Polished Granite Bricks",
 
-	"comment.msv.diorite": "Diorite",
 	"block.quark.diorite_bricks": "Polished Diorite Bricks",
 	"block.quark.diorite_bricks_slab": "Polished Diorite Brick Slab",
 	"block.quark.diorite_bricks_stairs": "Polished Diorite Brick Stairs",
@@ -398,7 +366,6 @@
 	"block.quark.diorite_bricks_vertical_slab": "Polished Diorite Brick Vertical Slab",
 	"block.quark.chiseled_diorite_bricks": "Chiseled Polished Diorite Bricks",
 
-	"comment.msv.calcite": "Calcite",
 	"block.quark.calcite_stairs": "Calcite Stairs",
 	"block.quark.calcite_slab": "Calcite Slab",
 	"block.quark.polished_calcite": "Polished Calcite",
@@ -413,7 +380,6 @@
 	"block.quark.polished_calcite_slab": "Polished Calcite Slab",
 	"block.quark.polished_calcite_vertical_slab": "Polished Calcite Vertical Slab",
 
-	"comment.msv.tuff": "Tuff",
 	"block.quark.tuff_pillar": "Tuff Pillar",
 	"block.quark.tuff_bricks": "Polished Tuff Bricks",
 	"block.quark.chiseled_tuff_bricks": "Chiseled Polished Tuff Bricks",
@@ -430,7 +396,6 @@
 	"block.quark.tuff_wall": "Tuff Wall",
 	"block.quark.tuff_bricks_wall": "Polished Tuff Brick Wall",
 
-	"comment.msv.dripstone": "Dripstone",
 	"block.quark.dripstone_pillar": "Dripstone Pillar",
 	"block.quark.dripstone_bricks": "Polished Dripstone Bricks",
 	"block.quark.chiseled_dripstone_bricks": "Chiseled Polished Dripstone Bricks",
@@ -449,63 +414,51 @@
 
 
 
-	"comment.building.oriental_palette": "ORIENTAL PALETTE",
 
-	"comment.op.walls": "Walls",
 	"block.quark.paper_wall": "Paper Wall",
 	"block.quark.paper_wall_big": "Big Paper Wall",
 	"block.quark.paper_wall_sakura": "Decorated Paper Wall",
 
-	"comment.op.lanterns": "Lanterns",
 	"block.quark.paper_lantern": "Paper Lantern",
 	"block.quark.paper_lantern_sakura": "Decorated Paper Lantern",
 
-	"comment.op.bamboo_mat": "Bamboo mats",
 	"block.quark.bamboo_mat": "Bamboo Mat Block",
 	"block.quark.bamboo_mat_carpet": "Bamboo Mat",
 
 
 
-	"comment.building.shear_vine_tips": "SHEAR VINE TIPS",
 	"block.quark.cut_vine": "Cut Vines",
 
 
-	"comment.building.rope": "ROPE",
 	"block.quark.rope": "Rope Coil",
 
 
 
-	"comment.building.soul_sandstone": "SOUL SANDSTONE",
 	"block.quark.soul_sandstone": "Soul Sandstone",
 	"block.quark.soul_sandstone_slab": "Soul Sandstone Slab",
 	"block.quark.soul_sandstone_stairs": "Soul Sandstone Stairs",
 	"block.quark.soul_sandstone_wall": "Soul Sandstone Wall",
 	"block.quark.soul_sandstone_vertical_slab": "Soul Sandstone Vertical Slab",
 
-	"comment.soul_sandstone.cut": "Cut",
 	"block.quark.cut_soul_sandstone": "Cut Soul Sandstone",
 	"block.quark.cut_soul_sandstone_slab": "Cut Soul Sandstone Slab",
 	"block.quark.cut_soul_sandstone_vertical_slab": "Cut Soul Sandstone Vertical Slab",
 
-	"comment.soul_sandstone.smooth": "Smooth",
 	"block.quark.smooth_soul_sandstone": "Smooth Soul Sandstone",
 	"block.quark.smooth_soul_sandstone_stairs": "Smooth Soul Sandstone Stairs",
 	"block.quark.smooth_soul_sandstone_slab": "Smooth Soul Sandstone Slab",
 	"block.quark.smooth_soul_sandstone_vertical_slab": "Smooth Soul Sandstone Vertical Slab",
 
-	"comment.soul_sandstone.bricks": "Bricks",
 	"block.quark.soul_sandstone_bricks": "Soul Sandstone Bricks",
 	"block.quark.soul_sandstone_bricks_stairs": "Soul Sandstone Brick Stairs",
 	"block.quark.soul_sandstone_bricks_slab": "Soul Sandstone Brick Slab",
 	"block.quark.soul_sandstone_bricks_vertical_slab": "Soul Sandstone Brick Vertical Slab",
 	"block.quark.soul_sandstone_bricks_wall": "Soul Sandstone Brick Wall",
 
-	"comment.soul_sandstone.chiseled": "Chiseled",
 	"block.quark.chiseled_soul_sandstone": "Chiseled Soul Sandstone",
 
 
 
-	"comment.building.stool": "STOOL",
 	"block.quark.black_stool": "Black Stool",
 	"block.quark.blue_stool": "Blue Stool",
 	"block.quark.brown_stool": "Brown Stool",
@@ -524,12 +477,10 @@
 	"block.quark.yellow_stool": "Yellow Stool",
 
 
-	"comment.building.sturdy_stone": "STURDY STONE",
 	"block.quark.sturdy_stone": "Sturdy Stone",
 
 
 
-	"comment.building.terracotta_shingles": "TERRACOTTA SHINGLES",
 
 	"block.quark.shingles": "Terracotta Shingles",
 	"block.quark.shingles_stairs": "Terracotta Shingle Stairs",
@@ -617,14 +568,12 @@
 	"block.quark.yellow_shingles_vertical_slab": "Yellow Terracotta Shingle Vertical Slab",
 
 
-	"comment.building.thatch": "THATCH",
 	"block.quark.thatch": "Thatch",
 	"block.quark.thatch_slab": "Thatch Slab",
 	"block.quark.thatch_stairs": "Thatch Stairs",
 	"block.quark.thatch_vertical_slab": "Thatch Vertical Slab",
 
 
-	"comment.building.variant_bookshelves": "VARIANT BOOKSHELVES",
 	"block.quark.oak_bookshelf": "Oak Bookshelf",
 	"block.quark.spruce_bookshelf": "Spruce Bookshelf",
 	"block.quark.birch_bookshelf": "Birch Bookshelf",
@@ -636,7 +585,6 @@
 
 
 
-	"comment.building.variant.chests": "VARIANT CHESTS",
 	"block.quark.oak_chest": "Oak Chest",
 	"block.quark.oak_trapped_chest": "Oak Trapped Chest",
 
@@ -672,7 +620,6 @@
 
 
 
-	"comment.building.variant_item_frames": "VARIANT ITEM FRAMES",
 	"item.quark.glass_item_frame": "Glass Item Frame",
 	"item.quark.glowing_glass_item_frame": "Glowing Glass Item Frame",
 
@@ -681,12 +628,10 @@
 
 
 
-	"comment.building.variant_furnaces": "VARIANT FURNACES",
 	"block.quark.deepslate_furnace": "Deepslate Furnace",
 	"block.quark.blackstone_furnace": "Blackstone Furnace",
 
 
-	"comment.building.variant_ladders": "VARIANT LADDERS",
 	"block.quark.oak_ladder": "Oak Ladder",
 	"block.quark.spruce_ladder": "Spruce Ladder",
 	"block.quark.birch_ladder": "Birch Ladder",
@@ -698,8 +643,6 @@
 
 
 
-	"comment.building.vertical_slabs": "VERTICAL SLABS",
-	"comment.vertical_slab.place": "All vertical slabs of quark blocks are placed with their respetive block set",
 
 	"block.quark.acacia_vertical_slab": "Acacia Vertical Slab",
 	"block.quark.birch_vertical_slab": "Birch Vertical Slab",
@@ -758,7 +701,6 @@
 
 
 
-	"comment.building.wooden_posts": "WOODEN POSTS",
 	"block.quark.oak_post": "Oak Post",
 	"block.quark.stripped_oak_post": "Stripped Oak Post",
 	"block.quark.spruce_post": "Spruce Post",
@@ -783,7 +725,6 @@
 
 
 
-	"comment.inventory.easy.transfering": "EASY TRANSFERING",
 	"quark.gui.button.insert": "Insert",
 	"quark.gui.button.extract": "Extract",
 	"quark.gui.button.insert_filtered": "Insert (Filtered)",
@@ -791,12 +732,11 @@
 	"quark.gui.button.shift_lock": "Shift Lock",
 
 
-	"comment.management.expanded_item_interactions": "EXPANDED ITEM INTERACTIONS",
 	"quark.misc.shulker_box_shift": "Hold Shift to see contents",
 	"quark.misc.map_shift": "Hold Shift to see the map",
+	"quark.misc.trash_item": "Right-Click to Trash Item",
 
 
-	"comment.inventory.sorting": "INVENTORY SORTING",
 	"quark.gui.button.sort": "Sort",
 	"quark.gui.button.sort_inventory": "Sort Inventory",
 	"quark.gui.button.sort_container": "Sort Container",
@@ -807,11 +747,9 @@
 
 
 
-	"comment.tools.abacus": "ABACUS",
 	"item.quark.abacus": "Abacus",
 
 
-	"comment.tools.ambiance_discs": "AMBIANCE DISCS",
 	"item.quark.music_disc_drips": "Ambience Disc",
 	"item.quark.music_disc_drips.desc": "Water Droplets",
 	"item.quark.music_disc_ocean": "Ambience Disc",
@@ -829,7 +767,6 @@
 	"item.quark.music_disc_chatter": "Ambience Disc",
 	"item.quark.music_disc_chatter.desc": "Packed Venue",
 
-	"comment.ambiance_discs.subtitles": "Subtitles",
 	"quark.subtitles.ambient.drips": "Water dripping",
 	"quark.subtitles.ambient.ocean": "Light ocean waves",
 	"quark.subtitles.ambient.rain": "Heavy rain",
@@ -840,17 +777,14 @@
 	"quark.subtitles.ambient.chatter": "Bustling chatter",
 
 
-	"comment.tools.ancient_tome": "ANCIENT TOMES",
 	"item.quark.ancient_tome": "Ancient Tome",
 	"quark.misc.ancient_tome_tooltip": "+I %s (Max. %s)",
 
 
-	"comment.tools.cloud_in_a_bottle": "CLOUD IN A BOTTLE",
 	"item.quark.bottled_cloud": "Cloud in a Bottle",
 	"block.quark.cloud": "Cloud",
 
 
-	"comment.tools.colored_runes": "COLORED RUNES",
  	"item.quark.black_rune": "Black Rune",
  	"item.quark.blue_rune": "Blue Rune",
  	"item.quark.brown_rune": "Brown Rune",
@@ -871,12 +805,10 @@
  	"item.quark.blank_rune": "Blank Rune",
 
 
-	"comment.tools.endermosh": "ENDERMOSH MUSIC DISC",
 	"item.quark.music_disc_endermosh": "Music Disc",
 	"item.quark.music_disc_endermosh.desc": "Kain Vinosec - Endermosh",
 
 
-	"comment.tools.pathfinder_map": "PATHFINDER MAPS",
 	"item.quark.biome_map.snowy_plains": "Snowy Plains Pathfinder Map",
 	"item.quark.biome_map.windswept_hills": "Windswept Hills Pathfinder Map",
 	"item.quark.biome_map.dark_forest": "Dark Forest Pathfinder Map",
@@ -892,28 +824,23 @@
 	"item.quark.biome_map.ice_spikes": "Ice Spikes Pathfinder Map",
 
 
-	"comment.tools.pickarang": "PICKARANG",
 	"item.quark.pickarang": "Pickarang",
 	"item.quark.flamerang": "Flamarang",
 	"entity.quark.pickarang": "Pickarang",
 
-	"comment.pickarang.subtitles": "Subtitles",
 	"quark.subtitles.throw_pickarang": "Pickarang is flung",
 	"quark.subtitles.clank_pickarang": "Pickarang clanks",
 	"quark.subtitles.spark_pickarang": "Pickarang is reflected",
 	"quark.subtitles.pickup_pickarang": "Pickarang is taken",
 
 
-	"comment.tools.seed_pouch": "SEED POUCH",
 	"item.quark.seed_pouch": "Seed Pouch",
 
 
-	"comment.tools.slime_in_a_bucket": "SLIME BUCKET",
 	"item.quark.slime_in_a_bucket": "Bucket of Slime",
 	"item.quark.slime_in_a_bucket.named": "Bucket of %s",
 
 
-	"comment.tools.trowel": "TROWEL",
 	"item.quark.trowel": "Trowel",
 
 
@@ -921,11 +848,31 @@
 	"#TWEAKS": "End TOOLS section. Begin TWEAKS section",
 
 
-	"comment.tweaks.dragon_scale": "DRAGON SCALE",
+
+	"block.quark.azalea_planks": "Azalea Planks",
+	"block.quark.azalea_log": "Azalea Log",
+	"block.quark.stripped_azalea_log": "Stripped Azalea Log",
+	"block.quark.azalea_wood": "Azalea Wood",
+	"block.quark.stripped_azalea_wood": "Stripped Azalea Wood",
+	"block.quark.azalea_planks_stairs": "Azalea Stairs",
+	"block.quark.azalea_planks_slab": "Azalea Slab",
+	"block.quark.azalea_planks_vertical_slab": "Azalea Vertical Slab",
+	"block.quark.azalea_post": "Azalea Post",
+	"block.quark.stripped_azalea_post": "Stripped Azalea Post",
+	"block.quark.azalea_bookshelf": "Azalea Bookshelf",
+	"block.quark.azalea_chest": "Azalea Chest",
+	"block.quark.azalea_trapped_chest": "Azalea Trapped Chest",
+	"block.quark.azalea_ladder": "Azalea Ladder",
+	"block.quark.azalea_door": "Azalea Door",
+	"block.quark.azalea_trapdoor": "Azalea Trapdoor",
+	"block.quark.azalea_fence_gate": "Azalea Fence Gate",
+	"block.quark.azalea_fence": "Azalea Fence",
+	"item.quark.azalea_boat": "Azalea Boat",
+
+
 	"item.quark.dragon_scale": "Dragon Scale",
 
 
-	"comment.tweaks.glass_shards": "GLASS SHARDS",
 	"item.quark.black_shard": "Black Glass Shard",
 	"item.quark.blue_shard": "Blue Glass Shard",
 	"item.quark.brown_shard": "Brown Glass Shard",
@@ -949,12 +896,27 @@
 	"block.quark.dirty_glass_pane": "Dirty Glass Pane",
 
 
+	"item.quark.egg_parrot_red_blue": "Red Parrot Egg",
+	"item.quark.egg_parrot_blue": "Blue Parrot Egg",
+	"item.quark.egg_parrot_green": "Green Parrot Egg",
+	"item.quark.egg_parrot_yellow_blue": "Cyan Parrot Egg",
+	"item.quark.egg_parrot_grey": "Gray Parrot Egg",
+
+	"quark.subtitles.parrot_egg": "Parrot plops",
+
+
+
+	"quark.subtitles.pet.device": "Player beeps",
+	"quark.subtitles.pet.neko": "Player purrs",
+	"quark.subtitles.pet.slime": "Player squishes",
+	"quark.subtitles.pet.wire": "Player sighs",
+
+
 
 	"#WORLD": "End TWEAKS section. Begin WORLD section",
 
 
 
-	"comment.world.blossom_trees": "BLOSSOM TREES",
 
 	"block.quark.potted_blue_blossom_sapling": "Potted Frosty Blossom Oak Sapling",
 	"block.quark.blue_blossom_leaves": "Frosty Blossom Oak Leaves",
@@ -993,13 +955,33 @@
 	"block.quark.red_blossom_hedge": "Fiery Blossom Oak Leaf Hedge",
 
 
+	"block.quark.blossom_planks": "Blossom Planks",
+	"block.quark.blossom_log": "Blossom Log",
+	"block.quark.stripped_blossom_log": "Stripped Blossom Log",
+	"block.quark.blossom_wood": "Blossom Wood",
+	"block.quark.stripped_blossom_wood": "Stripped Blossom Wood",
+	"block.quark.blossom_planks_stairs": "Blossom Stairs",
+	"block.quark.blossom_planks_slab": "Blossom Slab",
+	"block.quark.blossom_planks_vertical_slab": "Blossom Vertical Slab",
+	"block.quark.blossom_post": "Blossom Post",
+	"block.quark.stripped_blossom_post": "Stripped Blossom Post",
+	"block.quark.blossom_bookshelf": "Blossom Bookshelf",
+	"block.quark.blossom_chest": "Blossom Chest",
+	"block.quark.blossom_trapped_chest": "Blossom Trapped Chest",
+	"block.quark.blossom_ladder": "Blossom Ladder",
+	"block.quark.blossom_door": "Blossom Door",
+	"block.quark.blossom_trapdoor": "Blossom Trapdoor",
+	"block.quark.blossom_fence_gate": "Blossom Fence Gate",
+	"block.quark.blossom_fence": "Blossom Fence",
+	"block.quark.blossom_sign": "Blossom Sign",
+	"item.quark.blossom_boat": "Blossom Boat",
 
-	"comment.world.chorus_vegetation": "CHORUS VEGETATION",
+
+
 	"block.quark.chorus_weeds": "Chorus Weeds",
 	"block.quark.chorus_twist": "Chorus Twist",
 
 
-	"comment.world.corundum": "CORUMDUMS",
 	"block.quark.red_corundum": "Red Corundum",
 	"block.quark.waxed_red_corundum": "Waxed Red Corundum",
 	"block.quark.red_corundum_pane": "Red Corundum Sheet",
@@ -1046,17 +1028,21 @@
 	"block.quark.black_corundum_cluster": "Black Corundum Cluster",
 
 
-	"comment.world.monster_box": "MONSTER BOXES",
 	"block.quark.monster_box": "Monster Box",
 
-	"comment.monster_box.subtitles": "Subtitles",
 	"quark.subtitles.growl": "Monsters arise",
 
 
 
-	"comment.world.new_stone_types": "NEW STONE TYPES",
+	"block.quark.glow_shroom": "Glow Shroom",
+	"block.quark.glow_shroom_stem": "Glow Shroom Stem",
+	"block.quark.glow_shroom_block": "Glow Shroom Block",
+	"block.quark.glow_shroom_ring": "Glow Shroom Ring",
+	"block.quark.potted_glow_lichen_growth": "Potted Glow Lichen",
+	"block.quark.potted_glow_shroom": "Potted Glow Shroom",
 
-	"comment.nst.shale": "Shale",
+
+
 	"block.quark.shale": "Shale",
 	"block.quark.shale_stairs": "Shale Stairs",
 	"block.quark.shale_slab": "Shale Slab",
@@ -1074,7 +1060,6 @@
 	"block.quark.shale_pillar": "Polished Shale Pillar",
 	"block.quark.chiseled_shale_bricks": "Chiseled Polished Shale Bricks",
 
-	"comment.nst.limestone": "Limestone",
 	"block.quark.limestone": "Limestone",
 	"block.quark.polished_limestone": "Polished Limestone",
 	"block.quark.limestone_stairs": "Limestone Stairs",
@@ -1092,7 +1077,6 @@
 	"block.quark.limestone_bricks_wall": "Polished Limestone Brick Wall",
 	"block.quark.limestone_pillar": "Polished Limestone Pillar",
 
-	"comment.nst.jasper": "Jasper",
 	"block.quark.jasper": "Jasper",
 	"block.quark.polished_jasper": "Polished Jasper",
 	"block.quark.jasper_stairs": "Jasper Stairs",
@@ -1110,7 +1094,6 @@
 	"block.quark.jasper_bricks_wall": "Polished Jasper Brick Wall",
 	"block.quark.jasper_pillar": "Polished Jasper Pillar",
 
-	"comment.nst.myalite": "Myalite",
 	"block.quark.myalite": "Myalite",
 	"block.quark.polished_myalite": "Polished Myalite",
 	"block.quark.myalite_stairs": "Myalite Stairs",
@@ -1133,7 +1116,6 @@
 
 
 
-	"comment.world.permafrost": "PERMAFROST",
 	"block.quark.permafrost": "Permafrost",
 	"block.quark.permafrost_stairs": "Permafrost Stairs",
 	"block.quark.permafrost_slab": "Permafrost Slab",
@@ -1151,19 +1133,16 @@
 
 
 
-	"comment.mobs.crab": "CRABS",
 	"entity.quark.crab": "Crab",
 	"item.quark.crab_spawn_egg": "Crab Spawn Egg",
 	"item.quark.crab_leg": "Raw Crab Leg",
 	"item.quark.cooked_crab_leg": "Cooked Crab Leg",
 	"item.quark.crab_shell": "Crab Shell",
 
-	"comment.crab.subtitles": "Subtitles",
 	"quark.subtitles.crab_die": "Shell crunches",
 	"quark.subtitles.crab_hurt": "Shell chips",
 	"quark.subtitles.crab_scuttle": "Crab scuttles",
 
-	"comment.crab.resilience_potion": "Resilience",
 	"effect.quark.resilience": "Resilience",
 	"item.minecraft.potion.effect.quark.resilience": "Potion of Stability",
 	"item.minecraft.splash_potion.effect.quark.resilience": "Splash Potion of Stability",
@@ -1175,11 +1154,9 @@
 	"item.minecraft.tipped_arrow.effect.quark.resistance": "Arrow of Fortitude",
 
 
-	"comment.mobs.foxhound": "FOXHOUNDS",
 	"entity.quark.foxhound": "Foxhound",
 	"item.quark.foxhound_spawn_egg": "Foxhound Spawn Egg",
 
-	"comment.foxhound.subtitles": "Subtitles",
 	"quark.subtitles.foxhound_ambient": "Foxhound embers",
 	"quark.subtitles.foxhound_death": "Foxhound disintegrates",
 	"quark.subtitles.foxhound_growl": "Foxhound grumbles",
@@ -1187,67 +1164,60 @@
 	"quark.subtitles.foxhound_shake": "Foxhound shudders",
 
 
-	"comment.mobs.forgotten": "FORGOTTEN",
 	"entity.quark.forgotten": "Forgotten",
 	"item.quark.forgotten_spawn_egg": "Forgotten Spawn Egg",
 	"item.quark.forgotten_hat": "Forgotten Hat",
 
 
-	"comment.mobs.frog": "FROGS",
 	"entity.quark.frog": "Frog",
 	"item.quark.frog_spawn_egg": "Frog Spawn Egg",
 	"item.quark.frog_leg": "Raw Frog Leg",
 	"item.quark.cooked_frog_leg": "Cooked Frog Leg",
 	"item.quark.golden_frog_leg": "Golden Frog Leg",
 
-	"comment.frog.subtitles": "Subtitles",
 	"quark.subtitles.frog_die": "Frog croaks",
 	"quark.subtitles.frog_hurt": "Frog squeaks",
 	"quark.subtitles.frog_idle": "Frog ribbits",
 	"quark.subtitles.frog_jump": "Frog hops",
 
 
-	"comment.mobs.shiba": "SHIBA INU",
 	"entity.quark.shiba": "Shiba",
 	"item.quark.shiba_spawn_egg": "Shiba Spawn Egg",
 
 
-	"comment.mobs.stonelings": "STONELINGS",
 	"entity.quark.stoneling": "Stoneling",
 	"item.quark.stoneling_spawn_egg": "Stoneling Spawn Egg",
 	"item.quark.diamond_heart": "Heart of Diamond",
 
-	"comment.stonelings.subtitles": "Subtitles",
 	"quark.subtitles.meep": "Stoneling runs away",
-	"quark.subtitles.give_stoneling": "Stoneling takes item",
-	"quark.subtitles.take_stoneling": "Stoneling gives item",
+	"quark.subtitles.give_stoneling": "Stoneling gives item",
+	"quark.subtitles.take_stoneling": "Stoneling takes item",
 	"quark.subtitles.feed_stoneling": "Stoneling is fed",
 	"quark.subtitles.hurt_stoneling": "Stoneling cries",
 	"quark.subtitles.kill_stoneling": "Stoneling breaks",
 	"quark.subtitles.purr": "Stoneling \"purrs\"",
 
 
-	"comment.mobs.toretoise": "TORETOISE",
 	"entity.quark.toretoise": "Toretoise",
 	"item.quark.toretoise_spawn_egg": "Toretoise Spawn Egg",
 
-	"comment.toretoise.subtitles": "Subtitles",
 	"quark.subtitles.toretoise_idle": "Toretoise chirps",
 	"quark.subtitles.toretoise_hurt": "Toretoise hurts",
 	"quark.subtitles.toretoise_die": "Toretoise crumbles",
-	"quark.subtitles.toretoise_angry": "Toretoise breaks",
+	"quark.subtitles.toretoise_angry": "Toretoise cracks",
+	"quark.subtitles.toretoise_eat_satiated": "Toretoise snacks",
+	"quark.subtitles.toretoise_eat": "Toretoise eats",
 	"quark.subtitles.toretoise_harvest": "Toretoise harvested",
 	"quark.subtitles.toretoise_regrow": "Toretoise regrows",
 
 
-	"comment.mobs.wraith": "WRAITH",
 	"entity.quark.wraith": "Wraith",
 	"item.quark.wraith_spawn_egg": "Wraith Spawn Egg",
 	"item.quark.soul_bead": "Soul Bead",
 	"entity.quark.soul_bead": "Soul Bead",
 
-	"comment.wraith.subtitles": "Subtitles",
 	"quark.subtitles.soul_bead.idle": "Soul bead emanates",
+	"quark.subtitles.soulpowder_scream": "Soul escapes",
 
 
 
@@ -1255,11 +1225,9 @@
 
 
 
-	"comment.client.auto_walk": "AUTO-WALK",
 	"quark.misc.autowalking": "Auto-Walking",
 
 
-	"comment.quark.client.camera_mode": "CAMERA MODE",
 
 	"_comment": "Filters",
 	"quark.camera.filter": "Filter: ",
@@ -1290,14 +1258,12 @@
 	"quark.camera.filter.tritanopia": "Simulated Tritanopia",
 	"quark.camera.filter.achromatopsia": "Simulated Achromatopsia",
 
-	"comment.rulers": "Rulers",
 	"quark.camera.rulers": "Rulers: ",
 	"quark.camera.rulers0": "None",
 	"quark.camera.rulers1": "Rule of Thirds",
 	"quark.camera.rulers2": "Golden Ratio",
 	"quark.camera.rulers3": "Crosshair",
 
-	"comment.borders": "Borders",
 	"quark.camera.borders": "Borders: ",
 	"quark.camera.borders0": "None",
 	"quark.camera.borders1": "Square",
@@ -1306,7 +1272,6 @@
 	"quark.camera.borders4": "21:9",
 	"quark.camera.borders5": "Polaroid",
 
-	"comment.overlays": "Overlays",
 	"quark.camera.overlay": "Overlay: ",
 	"quark.camera.overlay0": "None",
 	"quark.camera.overlay1": "Date",
@@ -1314,22 +1279,18 @@
 	"quark.camera.overlay3": "Watermark",
 	"quark.camera.overlay4": "Held Item",
 
-	"comment.camera": "Camera",
 	"quark.camera.header": "Camera Mode",
 	"quark.camera.info": "[%s to exit, ENTER to shoot]",
 	"quark.camera.reset": "Reset Settings (Must Sneak)",
 	"quark.camera.greetings": "Greetings from %s!",
 
-	"comment.camera_mode.subtitles": "Subtitles",
 	"quark.subtitles.camera_shutter": "Camera shoots",
 
 
 
-	"comment.quark.client.filter": "CHEST SEARCHING",
 	"quark.gui.button.filter": "Filter",
 
 
-	"comment.quark.client.emotes": "EMOTES",
 	"quark.gui.button.emotes": "Emotes",
 
 	"quark.emote.wave": "Wave",
@@ -1352,22 +1313,25 @@
 	"quark.emote.jet": "Jet",
 
 
-	"comment.client.improved_tooltip": "IMPROVED TOOLTIP",
 
-	"comment.itooltips.saturation": "SATURTION",
 	"quark.misc.saturation0": "Fulfilling Meal",
 	"quark.misc.saturation1": "Hearty Meal",
 	"quark.misc.saturation2": "Meal",
 	"quark.misc.saturation3": "Light Meal",
 	"quark.misc.saturation4": "Light Snack",
 
+	"quark.misc.bad_saturation0": "Worryingly Fulfilling",
+	"quark.misc.bad_saturation1": "Disturbingly Hearty",
+	"quark.misc.bad_saturation2": "Ill-Advised Meal",
+	"quark.misc.bad_saturation3": "Questionable Rations",
+	"quark.misc.bad_saturation4": "Disgusting Snack",
+	"quark.misc.bad_saturation5": "Dangerously Tantalizing",
 
 
-	"comment.client.microcrafting_helper": "MICROCRAFTING HELPER",
+
 	"quark.misc.rightclick_to_craft": "Right Click to Craft",
 
 
-	"comment.client.rotation_locks": "ROTATION LOCK",
 	"quark.misc.rotation_lock": "You have enabled Rotation Lock. Any blocks you place will be oriented in the direction you were looking. Press [%s] to change or reset it. This message won't appear again.",
 
 
@@ -1376,24 +1340,19 @@
 
 
 
-	"comment.oddities.backpack": "BACKPACK",
 	"item.quark.backpack": "Backpack",
 	"item.quark.ravager_hide": "Ravager Hide",
 	"block.quark.bonded_ravager_hide": "Bonded Ravager Hide",
 
 
-	"comment.oddities.crate": "CRATE",
 	"block.quark.crate": "Crate",
-	"comment.color.tooltip.crate": "Colors of gui text. Are in #RRGGBB format",
 	"quark.gui.color.crate_count": "#404040",
 
 
-	"comment.oddities.magnet": "MAGNET",
 	"block.quark.magnet": "Magnet",
 	"block.quark.magnetized_block": "Magnetized Block",
 
 
-	"comment.oddities.enchanting": "MATRIX ENCHANTING",
 	"block.quark.matrix_enchanter": "Matrix Enchanting Table",
 	"quark.gui.enchanting.min": "Min: %d",
 	"quark.gui.enchanting.influence": "Candle Influence: +%d%%",
@@ -1403,11 +1362,9 @@
 	"quark.gui.enchanting.merge": "Click to Upgrade",
 	"quark.gui.enchanting.pending": "Has Pending Enchantments",
 
-	"comment.color.tooltip.me": "Colors of gui text. Are in #RRGGBB format",
 	"quark.gui.color.matrix_enchanting": "#404040",
 
 
-	"comment.oddities.narrator_readout": "NARRATOR READOUTS",
 	"quark.readout.not_ingame": "Not ingame",
 	"quark.readout.looking": "Looking at %s",
 	"quark.readout.holding": "Holding %dx %s",
@@ -1418,36 +1375,49 @@
 	"quark.readout.no_item": "No item",
 
 
-	"comment.oddities.pipes": "PIPES",
 	"block.quark.pipe": "Copper Pipe",
 
-	"comment.pipe.subtitles": "Subtitles",
 	"quark.subtitles.pipe_shoot": "Pipe ejects",
 	"quark.subtitles.pipe_pickup": "Pipe absorbs",
 	"quark.subtitles.pipe_shoot_lenny": "Pipe nuts",
 	"quark.subtitles.pipe_pickup_lenny": "Pipe succ",
 
 
-	"comment.oddities.totem_of_holding": "TOTEM OF HOLDING",
+	"block.quark.tiny_potato": "Tiny Potato",
+	"block.quark.tiny_potato.angry": "Angry Potato",
+
+
 	"entity.quark.totem": "Totem of Holding",
 	"item.quark.soul_compass": "Soul Compass",
 
 
 
-	"#EXPERIMENTAL": "End ODDITIES section. Begin EXPERIMENTAL section.",
+	"#EXPERIMENTAL": "End ODDITIES section. Begin OTHER section.",
 
 
-
-
-
-	"Uhhh_help_needed": "Ok i couldn't find where these were supposed to go plz tell me when you review me pull request thanks vazkii",
 	"quark.subtitles.michael_here": "Michael is here",
-	"quark.subtitles.soulpowder_scream": "Soul escapes",
-	"quark.misc.opened_screen": "Opened Screen %s",
 	"block.quark.pallet": "Pallet",
-	"quark.misc.mod_disabled": "Disabled. Install %s to enable.",
-	"quark.misc.repaired": "(Was Repaired)",
-	"block.quark.iron_chain": "Iron Chain",
-	"quark.gui.button.back": "Back"
 
+	"quark.misc.my_son": "Don't talk to me or my son ever again.",
+	"quark.misc.my_daughter": "Don't talk to me or my daughter ever again.",
+	"quark.misc.my_child": "Don't talk to me or my child ever again.",
+	"quark.misc.my_children": "Don't talk to me or my children ever again.",
+
+	"quark.misc.you_came_to_the_wrong_neighborhood.0": "Six letter word just to get me along",
+	"quark.misc.you_came_to_the_wrong_neighborhood.1": "It's a intricacy and I'm coding on my mod and I,",
+	"quark.misc.you_came_to_the_wrong_neighborhood.2": "I keep fixin', and keepin' it together",
+	"quark.misc.you_came_to_the_wrong_neighborhood.3": "People around gotta find something to play now",
+	"quark.misc.you_came_to_the_wrong_neighborhood.4": "Holding back, every mod's the same",
+	"quark.misc.you_came_to_the_wrong_neighborhood.5": "Don't wanna be a loser",
+	"quark.misc.you_came_to_the_wrong_neighborhood.6": "Listen to me, oh no, I don't break anything at all",
+	"quark.misc.you_came_to_the_wrong_neighborhood.7": "But with nothing to consider they forget my name",
+	"quark.misc.you_came_to_the_wrong_neighborhood.8": "'ame, 'ame, 'ame",
+	"quark.misc.you_came_to_the_wrong_neighborhood.9": "They call me Vaskii",
+	"quark.misc.you_came_to_the_wrong_neighborhood.10": "They call me Vazki",
+	"quark.misc.you_came_to_the_wrong_neighborhood.11": "They call me Voskii",
+	"quark.misc.you_came_to_the_wrong_neighborhood.12": "They call me Vazkki",
+	"quark.misc.you_came_to_the_wrong_neighborhood.13": "That's not my name",
+	"quark.misc.you_came_to_the_wrong_neighborhood.14": "That's not my name",
+	"quark.misc.you_came_to_the_wrong_neighborhood.15": "That's not my name",
+	"quark.misc.you_came_to_the_wrong_neighborhood.16": "That's not my name"
 }
