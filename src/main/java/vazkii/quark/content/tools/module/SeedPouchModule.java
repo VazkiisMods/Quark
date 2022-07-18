@@ -53,7 +53,8 @@ public class SeedPouchModule extends QuarkModule {
 	public void clientSetup() {
 		enqueue(() -> ItemProperties.register(seed_pouch, new ResourceLocation("pouch_items"), SeedPouchItem::itemFraction));
 	}
-	
+
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
 		event.register(SeedPouchItem.Tooltip.class, t -> new SeedPouchClientTooltipComponent(t.stack()));
