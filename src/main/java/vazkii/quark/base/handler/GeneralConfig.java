@@ -24,7 +24,8 @@ public class GeneralConfig {
 		"com.resourcefulbees.resourcefulbees.client.gui.screen.CentrifugeScreen",
 		"com.resourcefulbees.resourcefulbees.client.gui.screen.MechanicalCentrifugeScreen",
 		"com.resourcefulbees.resourcefulbees.client.gui.screen.CentrifugeMultiblockScreen",
-		"com.refinedmods.refinedstorage.screen.FilterScreen"
+		"com.refinedmods.refinedstorage.screen.FilterScreen",
+		"de.markusbordihn.dailyrewards.client.screen.RewardScreen"
 	);
 	
 	@Config(name = "Enable 'q' Button")
