@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableSet;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -59,6 +60,9 @@ public class AncientWoodModule extends QuarkModule {
 		ancient_leaves = new QuarkLeavesBlock(woodSet.name, this, MaterialColor.PLANT);
 		ancient_sapling = new AncientSaplingBlock(this);
 		ancient_fruit = new AncientFruitItem(this);
+
+		AncientSaplingBlock.MultiFoliageStraightTrunkPlacer.Type.init();
+		AncientSaplingBlock.AncientTreeTopperDecorator.Type.init();
 
 		VariantHandler.addFlowerPot(ancient_sapling, RegistryHelper.getInternalName(ancient_sapling).getPath(), Functions.identity());
 		
