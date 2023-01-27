@@ -1,5 +1,6 @@
 package vazkii.quark.addons.oddities.block.pipe;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -116,25 +118,35 @@ public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 		return super.use(state, worldIn, pos, player, handIn, hit);
 	}
 
-
 	@Override
-	public void neighborChanged(BlockState state, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull Block blockIn, @Nonnull BlockPos fromPos, boolean isMoving) {
-		BlockState targetState = getTargetState(worldIn, pos, isPipeWaterlogged(state));
-		if(!targetState.equals(state))
-			worldIn.setBlock(pos, targetState, 2 | 4);
+	public BlockState updateShape(BlockState state, Direction facing, BlockState neighbor, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		if(world.getBlockEntity(pos) instanceof PipeBlockEntity tile){
+			var type = tile.updateConnection(facing);
+			BooleanProperty prop = CONNECTIONS[facing.ordinal()];
+			return state.setValue(prop, allowsFullConnection(type));
+		}
+		return super.updateShape(state, facing, neighbor, world, pos, neighborPos);
 	}
-	
+
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		return getTargetState(context.getLevel(), context.getClickedPos(), context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
 	}
-	
+
+	@Override
+	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+		if(world.getBlockEntity(pos) instanceof PipeBlockEntity tile){
+			Arrays.stream(Direction.values()).forEach(tile::updateConnection);
+		}
+		super.onPlace(state, world, pos, oldState, moving);
+	}
+
 	protected BlockState getTargetState(Level worldIn, BlockPos pos, boolean waterlog) {
 		BlockState newState = defaultBlockState();
 
 		for(Direction facing : Direction.values()) {
 			BooleanProperty prop = CONNECTIONS[facing.ordinal()];
-			PipeBlockEntity.ConnectionType type = PipeBlockEntity.getConnectionTo(worldIn, pos, facing);
+			PipeBlockEntity.ConnectionType type = PipeBlockEntity.computeConnectionTo(worldIn, pos, facing);
 
 			newState = newState.setValue(prop, allowsFullConnection(type));
 		}

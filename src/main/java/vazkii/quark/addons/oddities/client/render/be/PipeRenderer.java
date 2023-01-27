@@ -27,6 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import vazkii.quark.addons.oddities.block.be.PipeBlockEntity;
 import vazkii.quark.addons.oddities.block.be.PipeBlockEntity.ConnectionType;
 import vazkii.quark.addons.oddities.block.be.PipeBlockEntity.PipeItem;
+import vazkii.quark.addons.oddities.block.pipe.PipeBlock;
 import vazkii.quark.addons.oddities.module.PipesModule;
 import vazkii.quark.base.Quark;
 
@@ -61,7 +62,7 @@ public class PipeRenderer implements BlockEntityRenderer<PipeBlockEntity> {
 	}
 
 	private void renderFlare(PipeBlockEntity te, BlockRenderDispatcher disp, BakedModel model, PoseStack matrix, MultiBufferSource buffer, float partial, int light, int overlay, Direction dir) {
-		ConnectionType type = PipeBlockEntity.getConnectionTo(te.getLevel(), te.getBlockPos(), dir);
+		ConnectionType type = te.getConnectionTo(dir);
 		if(type.isFlared) {
 			matrix.pushPose();
 			switch (dir.getAxis()) {
