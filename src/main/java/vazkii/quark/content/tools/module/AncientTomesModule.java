@@ -209,7 +209,7 @@ public class AncientTomesModule extends QuarkModule {
 		String name = event.getName();
 
 		if(!left.isEmpty() && !right.isEmpty() ) {
-			if(right.is(ancient_tome)) {
+			if(!left.is(ENCHANTED_BOOK) && right.is(ancient_tome)) {
 				Enchantment ench = getTomeEnchantment(right);
 				Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(left);
 
@@ -231,7 +231,7 @@ public class AncientTomesModule extends QuarkModule {
 				}
 			}
 
-			else if(combineWithBooks && right.is(Items.ENCHANTED_BOOK)) {
+			else if(combineWithBooks && left.is(Items.ENCHANTED_BOOK) && right.is(ancient_tome)) {
 				Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(right);
 				Map<Enchantment, Integer> currentEnchants = EnchantmentHelper.getEnchantments(left);
 				boolean hasOverLevel = false;
