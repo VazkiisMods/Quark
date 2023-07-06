@@ -143,7 +143,7 @@ item=quark:myalite_crystal
 use_viaduct
 
 parent=minecraft:nether/brew_potion
-type=task 
+type=task
 flag=foxhound
 item=minecraft:coal
 tame_foxhound
@@ -164,4 +164,4 @@ parent=minecraft:husbandry/breed_an_animal
 type=task
 flag=poison_potato_usage
 item=minecraft:poisonous_potato
-posion_baby
+poison_baby

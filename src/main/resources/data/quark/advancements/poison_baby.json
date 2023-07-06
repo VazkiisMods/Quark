@@ -1,14 +1,14 @@
 {
   "parent": "minecraft:husbandry/breed_an_animal",
   "criteria": {
-    "posion_baby": {
+    "poison_baby": {
       "trigger": "quark:poison_baby"
     }
   },
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.quark.posion_baby.description"
+      "translate": "advancements.quark.poison_baby.description"
     },
     "frame": "task",
     "hidden": false,
@@ -17,12 +17,12 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.quark.posion_baby.title"
+      "translate": "advancements.quark.poison_baby.title"
     }
   },
   "requirements": [
     [
-      "posion_baby"
+      "poison_baby"
     ]
   ],
   "conditions": [

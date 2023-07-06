@@ -377,7 +377,7 @@
 	"item.quark.azalea_boat": "Азалієвий човен",
 	"item.quark.blossom_boat": "Квітучий човен",
 	"item.quark.azalea_chest_boat": "Азалієвий човен зі скринею",
-	"item.quark.blossom_chest_boat": "Квітучий човен зі скринею",	
+	"item.quark.blossom_chest_boat": "Квітучий човен зі скринею",
 	"item.quark.egg_parrot_red_blue": "Яйце червоного папуги",
 	"item.quark.egg_parrot_blue": "Яйце синього папуги",
 	"item.quark.egg_parrot_green": "Яйце зеленого папуги",
@@ -1282,6 +1282,6 @@
 	"advancements.quark.foxhound_speed_up_furnace.description": "Прискорте піч, дозволивши Гончому лису спати на ній",
 	"advancements.quark.shiba_help.title": "Розмалюй сірі будні",
 	"advancements.quark.shiba_help.description": "Очистіть темну пляму за допомогою Шиби, тримаючи факел",
-	"advancements.quark.posion_baby.title": "Молоді назавжди",
-	"advancements.quark.posion_baby.description": "Успішно отруїть дитинча тварини Отруйною картоплею"
+	"advancements.quark.poison_baby.title": "Молоді назавжди",
+	"advancements.quark.poison_baby.description": "Успішно отруїть дитинча тварини Отруйною картоплею"
 }

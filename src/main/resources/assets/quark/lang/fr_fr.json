@@ -387,7 +387,7 @@
 	"item.quark.azalea_boat": "Bateau en azalée",
 	"item.quark.blossom_boat": "Bateau en cerisier",
 	"item.quark.azalea_chest_boat": "Bateau de stockage en azalée",
-	"item.quark.blossom_chest_boat": "Bateau de stockage en cerisier",	
+	"item.quark.blossom_chest_boat": "Bateau de stockage en cerisier",
 	"item.quark.egg_parrot_red_blue": "Oeuf de perroquet rouge",
 	"item.quark.egg_parrot_blue": "Oeuf de perroquet bleu",
 	"item.quark.egg_parrot_green": "Oeuf de perroquet vert",
@@ -1393,6 +1393,6 @@
 	"advancements.quark.shiba_help.title": "Chasseur des ténèbres",
 	"advancements.quark.shiba_help.description": "Laissez un shiba vous guider vers un endroit mal éclairé, en tenant une torche, puis éclairez cet endroit",
 
-	"advancements.quark.posion_baby.title": "Jeunesse éternelle",
-	"advancements.quark.posion_baby.description": "Empoisonnez un bébé animal avec une pomme de terre empoisonnée"
+	"advancements.quark.poison_baby.title": "Jeunesse éternelle",
+	"advancements.quark.poison_baby.description": "Empoisonnez un bébé animal avec une pomme de terre empoisonnée"
 }

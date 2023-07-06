@@ -392,7 +392,7 @@
 	"item.quark.azalea_boat": "Azaliowa łódka",
 	"item.quark.blossom_boat": "Kwitnąca łódka",
 	"item.quark.azalea_chest_boat": "Azaliowa łódka ze skrzynią",
-	"item.quark.blossom_chest_boat": "Kwitnąca łódka ze skrzynią",	
+	"item.quark.blossom_chest_boat": "Kwitnąca łódka ze skrzynią",
 	"item.quark.egg_parrot_red_blue": "Jajko czerwonej papugi",
 	"item.quark.egg_parrot_blue": "Jajko niebieskiej papugi",
 	"item.quark.egg_parrot_green": "Jajko zielonej papugi",
@@ -1291,6 +1291,6 @@
 	"advancements.quark.foxhound_speed_up_furnace.description": "Pozwól lisiemu ogarowi przyspieszyć piec, pozwalając mu się na nim przespać",
 	"advancements.quark.shiba_help.title": "Najlepszy przyjaciel człowieka",
 	"advancements.quark.shiba_help.description": "Oczyść ciemne miejsce z pomocą trzymającego pochodnię shiby inu",
-	"advancements.quark.posion_baby.title": "Piękni i młodzi",
-	"advancements.quark.posion_baby.description": "Pomyślnie otruj małe zwierzątko trującym ziemniakiem"
+	"advancements.quark.poison_baby.title": "Piękni i młodzi",
+	"advancements.quark.poison_baby.description": "Pomyślnie otruj małe zwierzątko trującym ziemniakiem"
 }

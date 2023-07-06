@@ -107,7 +107,7 @@
 	"_quark.config.automation.feeding_trough.max_animals.desc": "Testerino with one line",
 	"_quark.config.automation.feeding_trough.love_chance.name": "This do be a test doe",
 	"_quark.config.automation.feeding_trough.love_chance.desc": "",
-	
+
 	"quark.camera.filter": "Filtro: ",
 	"quark.camera.filter.none": "Nenhum",
 	"quark.camera.filter.grayscale": "Escala cinza",
@@ -394,7 +394,7 @@
 	"item.quark.azalea_boat": "Azalea Boat",
 	"item.quark.blossom_boat": "Blossom Boat",
 	"item.quark.azalea_chest_boat": "Azalea Boat with Chest",
-	"item.quark.blossom_chest_boat": "Blossom Boat with Chest",	
+	"item.quark.blossom_chest_boat": "Blossom Boat with Chest",
 	"item.quark.egg_parrot_red_blue": "Red Parrot Egg",
 	"item.quark.egg_parrot_blue": "Blue Parrot Egg",
 	"item.quark.egg_parrot_green": "Green Parrot Egg",
@@ -445,7 +445,7 @@
 	"item.quark.biome_map.badlands": "Mapa de caminho para as terras áridas",
 	"item.quark.biome_map.mushroom_fields": "Mapa de caminho para os campos de cogumelo",
 	"item.quark.biome_map.ice_spikes": "Mapa de caminho para os picos de gelo",
-	
+
 	"block.quark.charcoal_block": "Bloco de carvão vegetal",
 	"block.quark.thatch": "Colmo de feno",
 	"block.quark.thatch_slab": "Laje de colmo de feno",
@@ -1293,6 +1293,6 @@
 	"advancements.quark.foxhound_speed_up_furnace.description": "Have a Foxhound speed up a Furnace by letting it sleep on it",
 	"advancements.quark.shiba_help.title": "Paint The Town",
 	"advancements.quark.shiba_help.description": "Clean up a dark spot with the help of a Shiba while holding a Torch",
-	"advancements.quark.posion_baby.title": "Forever Young",
-	"advancements.quark.posion_baby.description": "Successfully poison a baby animal with a Poisoned Potato"
+	"advancements.quark.poison_baby.title": "Forever Young",
+	"advancements.quark.poison_baby.description": "Successfully poison a baby animal with a Poisoned Potato"
 }

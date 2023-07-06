@@ -92,7 +92,7 @@
 	"quark.category.client": "Client",
 	"quark.category.oddities": "Oddities",
 	"quark.category.experimental": "Sperimentale",
-	
+
 	"_quark.config.tl_note1": "Additional translation keys for config elements can be added here",
 	"_quark.config.tl_note2": "The format is quark.config.[(category).]+.(name).<name|desc>",
 	"_quark.config.tl_note3": "where (name) is lower case, with spaces replaced with underscores, and all non alphanumerical characters stripped",
@@ -286,7 +286,7 @@
 	"quark.misc.bad_saturation2": "Pasto sconsiderato",
 	"quark.misc.bad_saturation3": "Cibo discutibile",
 	"quark.misc.bad_saturation4": "Spuntino disgustoto",
-	"quark.misc.bad_saturation5": "Pericolosamente allettante",	
+	"quark.misc.bad_saturation5": "Pericolosamente allettante",
 	"quark.misc.mod_disabled": "Disattivato. Installa %s per attivare.",
 	"quark.misc.repaired": "(Riparato)",
 	"quark.misc.celebration": "Festeggiando 10 anni di mod di Vazkii (2021)",
@@ -325,7 +325,7 @@
 	"quark.misc.you_came_to_the_wrong_neighborhood.14": "That's not my name",
 	"quark.misc.you_came_to_the_wrong_neighborhood.15": "That's not my name",
 	"quark.misc.you_came_to_the_wrong_neighborhood.16": "That's not my name",
-	
+
 	"quark.misc.reloaded0": "La tua configurazione di quark è stata ricaricata.",
 	"quark.misc.reloaded1": "- Se hai cambiato qualcosa che cambierebbe le ricette, esegui /ricarica.",
 	"quark.misc.reloaded2": "- Se le modifiche non sono state applicate, prova a riavviare il gioco.",
@@ -394,7 +394,7 @@
 	"item.quark.azalea_boat": "Barca di azalea",
 	"item.quark.blossom_boat": "Barca di fiore",
 	"item.quark.azalea_chest_boat": "Barca di azalea con baule",
-	"item.quark.blossom_chest_boat": "Barca di fiore con baule",	
+	"item.quark.blossom_chest_boat": "Barca di fiore con baule",
 	"item.quark.egg_parrot_red_blue": "Uovo di pappagallo rosso",
 	"item.quark.egg_parrot_blue": "Uovo di pappagallo blu",
 	"item.quark.egg_parrot_green": "Uovo di pappagallo verde",
@@ -427,7 +427,7 @@
 	"item.minecraft.splash_potion.effect.quark.resilience": "Pozione da lancio di stabilità",
 	"item.minecraft.lingering_potion.effect.quark.resilience": "Pozione persistente di stabilità",
 	"item.minecraft.tipped_arrow.effect.quark.resilience": "Freccia di stabilità",
-	
+
 	"item.quark.biome_map": "Mappa dell'esploratore %s",
 	"item.quark.biome_map.unknown": "Bioma sconosciuto",
 
@@ -1293,6 +1293,6 @@
 	"advancements.quark.foxhound_speed_up_furnace.description": "Permetti a una volpe infernale di velocizzare una fornace dormendone su",
 	"advancements.quark.shiba_help.title": "Dipingi il paese",
 	"advancements.quark.shiba_help.description": "Pulisci una macchia scura con l'aiuto di un shiba tenendo in mano una torcia",
-	"advancements.quark.posion_baby.title": "Giovane per sempre",
-	"advancements.quark.posion_baby.description": "Avvelena con successo un animale neonato con una patata velenosa"
+	"advancements.quark.poison_baby.title": "Giovane per sempre",
+	"advancements.quark.poison_baby.description": "Avvelena con successo un animale neonato con una patata velenosa"
 }
