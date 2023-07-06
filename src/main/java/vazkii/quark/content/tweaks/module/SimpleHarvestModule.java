@@ -39,7 +39,6 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -233,27 +232,9 @@ public class SimpleHarvestModule extends QuarkModule {
         BlockState worldBlock = player.level.getBlockState(pos);
         if (!worldBlock.is(simpleHarvestBlacklistedTag)) {
             //prevents firing event for non crop blocks
-
-            System.out.println("<<<<<<<<<<<<<<<<<<");
-            System.out.println(cropBlocks);
-            System.out.println(doRightClick);
-            System.out.println(rightClickCrops);
-            System.out.println(worldBlock.getBlock());
-            System.out.println(rightClickCrops.contains(worldBlock.getBlock()));
-            System.out.println(">>>>>>>>>>>>>>>>>>");
-
             if (cropBlocks.contains(worldBlock.getBlock()) || (doRightClick && rightClickCrops.contains(worldBlock.getBlock()))) {
-
-                /*System.out.println(crops);
-                System.out.println(rightClickableBlocks);
-                System.out.println(rightClickCrops);
-                System.out.println(worldBlock.getBlock());
-                System.out.println(rightClickCrops.contains(worldBlock.getBlock()));*/
-
                 //event stuff
                 ActionType action = getAction(worldBlock, doRightClick);
-
-                System.out.println(action);
 
                 SimpleHarvestEvent event = new SimpleHarvestEvent(worldBlock, pos, hand, player, isHoe, action);
                 MinecraftForge.EVENT_BUS.post(event);
