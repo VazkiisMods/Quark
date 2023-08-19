@@ -151,25 +151,6 @@ public class MiscUtil {
 		stack.hurtAndBreak(dmg, player, (p) -> p.broadcastBreakEvent(hand));
 	}
 
-	public static <T, V> void editFinalField(Class<T> clazz, String fieldName, Object obj, V value) {
-		Field f = ObfuscationReflectionHelper.findField(clazz, fieldName);
-		editFinalField(f, obj, value);
-	}
-
-	public static <T> void editFinalField(Field f, Object obj, T value) {
-		try {
-			f.setAccessible(true);
-
-			Field modifiers = Field.class.getDeclaredField("modifiers");
-			modifiers.setAccessible(true);
-			modifiers.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-
-			f.set(obj, value);
-		} catch(ReflectiveOperationException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
 	public static void initializeEnchantmentList(Iterable<String> enchantNames, List<Enchantment> enchants) {
 		enchants.clear();
 		for(String s : enchantNames) {
