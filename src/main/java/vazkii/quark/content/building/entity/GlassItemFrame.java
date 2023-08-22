@@ -83,13 +83,15 @@ public class GlassItemFrame extends ItemFrame implements IEntityAdditionalSpawnD
 	@Override
 	public void tick() {
 		super.tick();
-
+        boolean shouldUpdateMaps = GlassItemFrameModule.glassItemFramesUpdateMapsEveryTick;
 		//same update as normal frames
 		if(level.getGameTime() % 100 == 0) {
 			updateIsOnSign();
+			//not upating every tick otherwise lag
+			shouldUpdateMaps = true;
 		}
 
-		if(GlassItemFrameModule.glassItemFramesUpdateMaps) {
+		if(!level.isClientSide && GlassItemFrameModule.glassItemFramesUpdateMaps &&  shouldUpdateMaps) {
 			ItemStack stack = getItem();
 			if(stack.getItem() instanceof MapItem map && level instanceof ServerLevel sworld) {
 				ItemStack clone = stack.copy();

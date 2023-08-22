@@ -28,7 +28,9 @@ import vazkii.quark.content.building.item.QuarkItemFrameItem;
 public class GlassItemFrameModule extends QuarkModule {
 
 	@Config public static boolean glassItemFramesUpdateMaps = true;
-	
+	@Config(description = "Set to true for faster map updates. Default is every 3s")
+	public static boolean glassItemFramesUpdateMapsEveryTick = false;
+
 	@Hint public static Item glassFrame;
 	@Hint public static Item glowingGlassFrame;
 

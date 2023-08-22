@@ -71,7 +71,7 @@ public class SeedPouchModule extends QuarkModule {
 
 		ImmutableSet<ItemStack> stacks = ImmutableSet.of(main, off);
 		for(ItemStack heldStack : stacks)
-			if(heldStack.getItem() == seed_pouch) {
+			if(heldStack.getItem() == seed_pouch && heldStack.getCount() == 1) {
 				Pair<ItemStack, Integer> contents = SeedPouchItem.getContents(heldStack);
 				if(contents != null) {
 					ItemStack pouchStack = contents.getLeft();
