@@ -59,6 +59,7 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.network.NetworkHooks;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.content.mobs.ai.RaveGoal;
 import vazkii.quark.content.mobs.module.CrabsModule;
@@ -403,10 +404,8 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 
 	private Ingredient getTemptationItems() {
 		if(temptationItems == null)
-			temptationItems = Ingredient.merge(Lists.newArrayList(
-					Ingredient.of(Items.WHEAT, Items.CHICKEN),
-					Ingredient.of(ItemTags.FISHES)
-					));
+			temptationItems = Ingredient.of(
+					ItemTags.create(new ResourceLocation(Quark.MOD_ID, "crab_tempt_items")));
 
 		return temptationItems;
 	}
