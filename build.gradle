@@ -127,6 +127,10 @@ dependencies {
     implementation fg.deobf("curse.maven:jei-238222:${deps.jei}")
     implementation fg.deobf("curse.maven:flan-forge-493246:${deps.flan}")
     implementation fg.deobf("curse.maven:lootr-361276:${deps.lootr}")
+
+    implementation fg.deobf("curse.maven:elytra-slot-317716:${deps.elytraslot}")
+    implementation fg.deobf("curse.maven:caelus-308989:${deps.caelus}")
+    implementation fg.deobf("curse.maven:curios-309927:${deps.curios}")
 }
 
 spotless {
