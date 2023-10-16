@@ -1,5 +1,6 @@
 package vazkii.zeta.network;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 
 public abstract class ZetaNetworkHandler {
@@ -15,6 +16,14 @@ public abstract class ZetaNetworkHandler {
 
 	public ZetaMessageSerializer getSerializer() {
 		return serializer;
+	}
+
+	public void sendToPlayers(IZetaMessage msg, Iterable<ServerPlayer> players) {
+		for(ServerPlayer player : players) sendToPlayer(msg, player);
+	}
+
+	public void sendToAllPlayers(IZetaMessage msg, MinecraftServer server) {
+		sendToPlayers(msg, server.getPlayerList().getPlayers());
 	}
 
 	public abstract <T extends IZetaMessage> void register(Class<T> clazz, ZetaNetworkDirection dir);

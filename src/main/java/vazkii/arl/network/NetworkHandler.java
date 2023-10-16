@@ -10,10 +10,12 @@
  */
 package vazkii.arl.network;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.simple.SimpleChannel;
 import vazkii.quark.base.Quark;
+import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.ZetaMessageSerializer;
 import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zetaimplforge.network.ForgeZetaNetworkHandler;
@@ -30,7 +32,7 @@ public class NetworkHandler {
 		channel = ((ForgeZetaNetworkHandler) real).channel;
 	}
 	
-	public <T extends IMessage> void register(Class<T> clazz, NetworkDirection dir) {
+	public <T extends IZetaMessage> void register(Class<T> clazz, NetworkDirection dir) {
 		real.register(clazz, ForgeZetaNetworkHandler.fromForge(dir));
 	}
 
@@ -38,11 +40,19 @@ public class NetworkHandler {
 		return real.getSerializer();
 	}
 
-	public void sendToPlayer(IMessage msg, ServerPlayer player) {
+	public void sendToPlayer(IZetaMessage msg, ServerPlayer player) {
 		real.sendToPlayer(msg, player);
 	}
 
-	public void sendToServer(IMessage msg) {
+	public void sendToServer(IZetaMessage msg) {
 		real.sendToServer(msg);
+	}
+
+	public void sendToPlayers(IZetaMessage msg, Iterable<ServerPlayer> players) {
+		real.sendToPlayers(msg, players);
+	}
+
+	public void sendToAllPlayers(IMessage msg, MinecraftServer server) {
+		sendToPlayers(msg, server.getPlayerList().getPlayers());
 	}
 }

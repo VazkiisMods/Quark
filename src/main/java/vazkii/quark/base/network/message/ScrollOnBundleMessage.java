@@ -3,10 +3,12 @@ package vazkii.quark.base.network.message;
 import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
 import vazkii.quark.content.management.module.ExpandedItemInteractionsModule;
+import vazkii.zeta.network.IZetaMessage;
+import vazkii.zeta.network.IZetaNetworkEventContext;
 
 import java.io.Serial;
 
-public class ScrollOnBundleMessage implements IMessage {
+public class ScrollOnBundleMessage implements IZetaMessage {
 
 	@Serial
 	private static final long serialVersionUID = 5598418693967300303L;
@@ -26,7 +28,7 @@ public class ScrollOnBundleMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> ExpandedItemInteractionsModule.scrollOnBundle(context.getSender(), containerId, stateId, slotNum, scrollDelta));
 		return true;
 	}

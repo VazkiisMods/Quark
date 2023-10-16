@@ -54,7 +54,7 @@ public class ForgeZetaNetworkHandler extends ZetaNetworkHandler {
 			if(context.getDirection() != forgeDir)
 				return;
 
-			context.setPacketHandled(msg.receiveZ(new ForgeNetworkEventContextImpl(context)));
+			context.setPacketHandled(msg.receive(new ForgeNetworkEventContextImpl(context)));
 		};
 
 		channel.registerMessage(i, clazz, encoder, decoder, consumer);

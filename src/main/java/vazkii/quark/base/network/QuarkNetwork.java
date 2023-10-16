@@ -119,15 +119,14 @@ public final class QuarkNetwork {
 		if(network == null)
 			return;
 
-		for(ServerPlayer player : players)
-			network.sendToPlayer(msg, player);
+		network.sendToPlayers(msg, players);
 	}
 
 	public static void sendToAllPlayers(IMessage msg, MinecraftServer server) {
 		if(network == null)
 			return;
 
-		sendToPlayers(msg, server.getPlayerList().getPlayers());
+		network.sendToAllPlayers(msg, server);
 	}
 
 	public static Packet<?> toVanillaPacket(IMessage msg, NetworkDirection direction) {

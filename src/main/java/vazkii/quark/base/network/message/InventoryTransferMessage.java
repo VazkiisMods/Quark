@@ -3,10 +3,12 @@ package vazkii.quark.base.network.message;
 import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
 import vazkii.quark.base.handler.InventoryTransferHandler;
+import vazkii.zeta.network.IZetaMessage;
+import vazkii.zeta.network.IZetaNetworkEventContext;
 
 import java.io.Serial;
 
-public class InventoryTransferMessage implements IMessage {
+public class InventoryTransferMessage implements IZetaMessage {
 
 	@Serial
 	private static final long serialVersionUID = 3825599549474465007L;
@@ -21,7 +23,7 @@ public class InventoryTransferMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> InventoryTransferHandler.transfer(context.getSender(), restock, smart));
 		return true;
 	}

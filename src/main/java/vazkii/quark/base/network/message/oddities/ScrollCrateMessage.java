@@ -5,10 +5,12 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
 import vazkii.quark.addons.oddities.inventory.CrateMenu;
+import vazkii.zeta.network.IZetaMessage;
+import vazkii.zeta.network.IZetaNetworkEventContext;
 
 import java.io.Serial;
 
-public class ScrollCrateMessage implements IMessage {
+public class ScrollCrateMessage implements IZetaMessage {
 
 	@Serial
 	private static final long serialVersionUID = -921358009630134620L;
@@ -22,7 +24,7 @@ public class ScrollCrateMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> {
 			ServerPlayer player = context.getSender();
 			AbstractContainerMenu container = player.containerMenu;

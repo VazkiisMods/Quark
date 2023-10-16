@@ -8,8 +8,10 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
 import vazkii.quark.content.tweaks.module.DoubleDoorOpeningModule;
+import vazkii.zeta.network.IZetaMessage;
+import vazkii.zeta.network.IZetaNetworkEventContext;
 
-public class DoubleDoorMessage implements IMessage {
+public class DoubleDoorMessage implements IZetaMessage {
 
 	@Serial
 	private static final long serialVersionUID = 8024722624953236124L;
@@ -27,7 +29,7 @@ public class DoubleDoorMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> DoubleDoorOpeningModule.openBlock(extractWorld(context.getSender()), context.getSender(), pos));
 		return true;
 	}

@@ -9,10 +9,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
 import vazkii.quark.content.tweaks.module.SimpleHarvestModule;
+import vazkii.zeta.network.IZetaMessage;
+import vazkii.zeta.network.IZetaNetworkEventContext;
 
 import java.io.Serial;
 
-public class HarvestMessage implements IMessage {
+public class HarvestMessage implements IZetaMessage {
 
 	@Serial
 	private static final long serialVersionUID = -51788488328591145L;
@@ -28,7 +30,7 @@ public class HarvestMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> {
 			Player player = context.getSender();
 			if (player != null) {

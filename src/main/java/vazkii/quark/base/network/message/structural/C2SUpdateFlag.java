@@ -3,11 +3,13 @@ package vazkii.quark.base.network.message.structural;
 import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
 import vazkii.quark.base.module.sync.SyncedFlagHandler;
+import vazkii.zeta.network.IZetaMessage;
+import vazkii.zeta.network.IZetaNetworkEventContext;
 
 import java.io.Serial;
 import java.util.BitSet;
 
-public class C2SUpdateFlag implements IMessage {
+public class C2SUpdateFlag implements IZetaMessage {
 
 	@Serial
 	private static final long serialVersionUID = 5243197411999379903L;
@@ -17,7 +19,7 @@ public class C2SUpdateFlag implements IMessage {
 	public int expectedHash;
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public boolean receive(IZetaNetworkEventContext context) {
 		if (expectedLength == SyncedFlagHandler.expectedLength() && expectedHash == SyncedFlagHandler.expectedHash())
 			SyncedFlagHandler.receiveFlagInfoFromPlayer(context.getSender(), flags);
 		return true;

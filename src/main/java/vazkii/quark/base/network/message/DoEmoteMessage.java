@@ -11,8 +11,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
 import vazkii.quark.content.tweaks.client.emote.EmoteHandler;
+import vazkii.zeta.network.IZetaMessage;
+import vazkii.zeta.network.IZetaNetworkEventContext;
 
-public class DoEmoteMessage implements IMessage {
+public class DoEmoteMessage implements IZetaMessage {
 
 	@Serial
 	private static final long serialVersionUID = -7952633556330869633L;
@@ -31,7 +33,7 @@ public class DoEmoteMessage implements IMessage {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public boolean receive(NetworkEvent.Context context) {
+	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> {
 			Level world = Minecraft.getInstance().level;
 			Player player = world.getPlayerByUUID(playerUUID);
