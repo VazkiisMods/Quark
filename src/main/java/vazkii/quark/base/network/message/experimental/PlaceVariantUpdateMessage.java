@@ -1,12 +1,10 @@
 package vazkii.quark.base.network.message.experimental;
 
-import java.io.Serial;
-
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
 import vazkii.quark.content.experimental.module.VariantSelectorModule;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class PlaceVariantUpdateMessage implements IZetaMessage {
 
@@ -14,8 +12,8 @@ public class PlaceVariantUpdateMessage implements IZetaMessage {
 	private static final long serialVersionUID = -6123685825175210844L;
 
 	public String variant;
-	
-	public PlaceVariantUpdateMessage() { }
+
+	public PlaceVariantUpdateMessage() {}
 
 	public PlaceVariantUpdateMessage(String variant) {
 		this.variant = variant;

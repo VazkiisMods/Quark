@@ -1,7 +1,5 @@
 package vazkii.quark.base.network.message;
 
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
 import vazkii.quark.base.handler.SortingHandler;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
@@ -15,7 +13,7 @@ public class SortInventoryMessage implements IZetaMessage {
 
 	public boolean forcePlayer;
 
-	public SortInventoryMessage() { }
+	public SortInventoryMessage() {}
 
 	public SortInventoryMessage(boolean forcePlayer) {
 		this.forcePlayer = forcePlayer;

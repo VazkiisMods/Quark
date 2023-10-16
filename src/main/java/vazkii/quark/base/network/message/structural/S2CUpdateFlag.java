@@ -1,7 +1,5 @@
 package vazkii.quark.base.network.message.structural;
 
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
 import vazkii.quark.base.module.sync.SyncedFlagHandler;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
@@ -20,7 +18,7 @@ public class S2CUpdateFlag implements IZetaMessage {
 
 	@Override
 	public boolean receive(IZetaNetworkEventContext context) {
-		if (expectedLength == SyncedFlagHandler.expectedLength() && expectedHash == SyncedFlagHandler.expectedHash())
+		if(expectedLength == SyncedFlagHandler.expectedLength() && expectedHash == SyncedFlagHandler.expectedHash())
 			SyncedFlagHandler.receiveFlagInfoFromServer(flags);
 		return true;
 	}

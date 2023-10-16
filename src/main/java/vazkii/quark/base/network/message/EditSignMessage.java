@@ -1,8 +1,7 @@
 package vazkii.quark.base.network.message;
 
 import net.minecraft.core.BlockPos;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
+
 import vazkii.quark.content.tweaks.module.SignEditingModule;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
@@ -16,7 +15,7 @@ public class EditSignMessage implements IZetaMessage {
 
 	public BlockPos pos;
 
-	public EditSignMessage() { }
+	public EditSignMessage() {}
 
 	public EditSignMessage(BlockPos pos) {
 		this.pos = pos;

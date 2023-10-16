@@ -1,7 +1,5 @@
 package vazkii.quark.base.network.message;
 
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
 import vazkii.quark.base.handler.InventoryTransferHandler;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
@@ -15,7 +13,7 @@ public class InventoryTransferMessage implements IZetaMessage {
 
 	public boolean smart, restock;
 
-	public InventoryTransferMessage() { }
+	public InventoryTransferMessage() {}
 
 	public InventoryTransferMessage(boolean smart, boolean restock) {
 		this.smart = smart;

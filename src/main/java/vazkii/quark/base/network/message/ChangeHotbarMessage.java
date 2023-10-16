@@ -3,8 +3,7 @@ package vazkii.quark.base.network.message;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
+
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
 
@@ -17,7 +16,7 @@ public class ChangeHotbarMessage implements IZetaMessage {
 
 	public int bar;
 
-	public ChangeHotbarMessage() { }
+	public ChangeHotbarMessage() {}
 
 	public ChangeHotbarMessage(int bar) {
 		this.bar = bar;

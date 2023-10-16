@@ -2,8 +2,7 @@ package vazkii.quark.base.network.message.oddities;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
+
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.inventory.MatrixEnchantingMenu;
 import vazkii.zeta.network.IZetaMessage;
@@ -19,7 +18,7 @@ public class MatrixEnchanterOperationMessage implements IZetaMessage {
 	public int operation;
 	public int arg0, arg1, arg2;
 
-	public MatrixEnchanterOperationMessage() { }
+	public MatrixEnchanterOperationMessage() {}
 
 	public MatrixEnchanterOperationMessage(int operation, int arg0, int arg1, int arg2) {
 		this.operation = operation;

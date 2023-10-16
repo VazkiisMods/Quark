@@ -1,15 +1,14 @@
 package vazkii.quark.base.network.message;
 
-import java.io.Serial;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
+
 import vazkii.quark.content.tweaks.module.DoubleDoorOpeningModule;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class DoubleDoorMessage implements IZetaMessage {
 
@@ -18,7 +17,7 @@ public class DoubleDoorMessage implements IZetaMessage {
 
 	public BlockPos pos;
 
-	public DoubleDoorMessage() { }
+	public DoubleDoorMessage() {}
 
 	public DoubleDoorMessage(BlockPos pos) {
 		this.pos = pos;

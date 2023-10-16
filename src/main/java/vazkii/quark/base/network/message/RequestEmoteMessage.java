@@ -1,8 +1,7 @@
 package vazkii.quark.base.network.message;
 
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
+
 import vazkii.quark.base.handler.ContributorRewardHandler;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.zeta.network.IZetaMessage;
@@ -17,7 +16,7 @@ public class RequestEmoteMessage implements IZetaMessage {
 
 	public String emote;
 
-	public RequestEmoteMessage() { }
+	public RequestEmoteMessage() {}
 
 	public RequestEmoteMessage(String emote) {
 		this.emote = emote;
@@ -26,7 +25,7 @@ public class RequestEmoteMessage implements IZetaMessage {
 	@Override
 	public boolean receive(IZetaNetworkEventContext context) {
 		ServerPlayer player = context.getSender();
-		if (player != null && player.server != null)
+		if(player != null && player.server != null)
 			context.enqueueWork(() -> QuarkNetwork.sendToAllPlayers(
 					new DoEmoteMessage(emote, player.getUUID(), ContributorRewardHandler.getTier(player)),
 					player.server));

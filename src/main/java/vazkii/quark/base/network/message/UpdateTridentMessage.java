@@ -7,8 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
+
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
 
@@ -22,7 +21,7 @@ public class UpdateTridentMessage implements IZetaMessage {
 	public int tridentID;
 	public ItemStack stack;
 
-	public UpdateTridentMessage() { }
+	public UpdateTridentMessage() {}
 
 	public UpdateTridentMessage(int trident, ItemStack stack) {
 		this.tridentID = trident;
@@ -34,9 +33,9 @@ public class UpdateTridentMessage implements IZetaMessage {
 	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> {
 			Level level = Minecraft.getInstance().level;
-			if (level != null) {
+			if(level != null) {
 				Entity entity = level.getEntity(tridentID);
-				if (entity instanceof ThrownTrident trident) {
+				if(entity instanceof ThrownTrident trident) {
 					trident.tridentItem = stack;
 				}
 			}

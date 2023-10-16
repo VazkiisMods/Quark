@@ -1,7 +1,5 @@
 package vazkii.quark.base.network.message;
 
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
 import vazkii.quark.content.management.module.ExpandedItemInteractionsModule;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;

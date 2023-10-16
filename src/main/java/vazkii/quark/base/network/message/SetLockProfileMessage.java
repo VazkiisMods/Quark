@@ -1,7 +1,5 @@
 package vazkii.quark.base.network.message;
 
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
 import vazkii.quark.content.tweaks.module.LockRotationModule;
 import vazkii.quark.content.tweaks.module.LockRotationModule.LockProfile;
 import vazkii.zeta.network.IZetaMessage;
@@ -16,7 +14,7 @@ public class SetLockProfileMessage implements IZetaMessage {
 
 	public LockProfile profile;
 
-	public SetLockProfileMessage() { }
+	public SetLockProfileMessage() {}
 
 	public SetLockProfileMessage(LockProfile profile) {
 		this.profile = profile;

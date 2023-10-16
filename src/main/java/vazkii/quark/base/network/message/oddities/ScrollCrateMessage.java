@@ -2,8 +2,7 @@ package vazkii.quark.base.network.message.oddities;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
+
 import vazkii.quark.addons.oddities.inventory.CrateMenu;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
@@ -17,7 +16,7 @@ public class ScrollCrateMessage implements IZetaMessage {
 
 	public boolean down;
 
-	public ScrollCrateMessage() { }
+	public ScrollCrateMessage() {}
 
 	public ScrollCrateMessage(boolean down) {
 		this.down = down;
