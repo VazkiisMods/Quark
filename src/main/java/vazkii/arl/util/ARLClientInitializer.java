@@ -10,11 +10,11 @@ import vazkii.arl.AutoRegLib;
 public class ARLClientInitializer {
 	@SubscribeEvent
 	public static void registerBlockColors(RegisterColorHandlersEvent.Block evt) {
-		RegistryHelper.submitBlockColors(evt.getBlockColors()::register);
+		RegistryHelper.submitBlockColors(evt::register);
 	}
 
 	@SubscribeEvent
 	public static void registerItemColors(RegisterColorHandlersEvent.Item evt) {
-		RegistryHelper.submitItemColors(evt.getItemColors()::register);
+		RegistryHelper.submitItemColors(evt::register);
 	}
 }

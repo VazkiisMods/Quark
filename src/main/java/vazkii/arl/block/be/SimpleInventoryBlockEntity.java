@@ -12,19 +12,19 @@ package vazkii.arl.block.be;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 public abstract class SimpleInventoryBlockEntity extends ARLBlockEntity implements WorldlyContainer {
@@ -141,7 +141,7 @@ public abstract class SimpleInventoryBlockEntity extends ARLBlockEntity implemen
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, Direction facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		if(capability == ForgeCapabilities.ITEM_HANDLER)
 			return (LazyOptional<T>) LazyOptional.of(() -> new SidedInvWrapper(this, facing));
 		
 		return LazyOptional.empty();

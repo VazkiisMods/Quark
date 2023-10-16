@@ -3,8 +3,8 @@ package vazkii.arl.util;
 import javax.annotation.Nonnull;
 
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
@@ -15,7 +15,7 @@ public class InventoryIIH implements IItemHandlerModifiable {
 
 	public InventoryIIH(ItemStack stack) {
 		this.stack = stack;
-		LazyOptional<IItemHandler> opt = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null); 
+		LazyOptional<IItemHandler> opt = stack.getCapability(ForgeCapabilities.ITEM_HANDLER, null);
 		
 		if(opt.isPresent()) {
 			IItemHandler handler = opt.orElse(null);

@@ -1,14 +1,14 @@
 package vazkii.quark.base.handler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RenderLayerHandler {
 
@@ -35,10 +35,17 @@ public class RenderLayerHandler {
 		}
 
 		for(Block b : mapping.keySet())
-			ItemBlockRenderTypes.setRenderLayer(b, renderTypes.get(mapping.get(b)));
+			doSetRenderLayer(b, renderTypes.get(mapping.get(b)));
 
 		inheritances.clear();
 		mapping.clear();
+	}
+
+	//Forge has some weirdo extension, they want you to use json or something.
+	//Doing it from java is easier and more akin to how it happens on Fabric.
+	@SuppressWarnings("removal")
+	private static void doSetRenderLayer(Block block, RenderType type) {
+		ItemBlockRenderTypes.setRenderLayer(block, type);
 	}
 
 	@OnlyIn(Dist.CLIENT)
