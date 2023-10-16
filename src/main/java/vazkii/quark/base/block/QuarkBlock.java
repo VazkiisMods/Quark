@@ -7,8 +7,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import vazkii.arl.block.BasicBlock;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.handler.RequiredModTooltipHandler;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.module.QuarkModule;
@@ -17,13 +16,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.BooleanSupplier;
 
-public class QuarkBlock extends BasicBlock implements IQuarkBlock {
+public class QuarkBlock extends Block implements IQuarkBlock {
 
     private final QuarkModule module;
     private BooleanSupplier enabledSupplier = () -> true;
 
     public QuarkBlock(String regname, QuarkModule module, CreativeModeTab creativeTab, Properties properties) {
-        super(regname, properties);
+        super(properties);
+
+        Quark.REGISTRY.registerBlock(this, regname);
         this.module = module;
 
         CreativeTabHandler.addTab(this, creativeTab);
