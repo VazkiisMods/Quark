@@ -23,7 +23,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.registries.ForgeRegistries;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 
 /**
  * @author WireSegal

@@ -47,7 +47,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.network.NetworkHooks;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.content.mobs.module.ForgottenModule;

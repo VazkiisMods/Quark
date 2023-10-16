@@ -31,8 +31,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import vazkii.arl.interf.IItemColorProvider;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.inventory.BackpackMenu;
 import vazkii.quark.addons.oddities.module.BackpackModule;
@@ -42,12 +41,13 @@ import vazkii.quark.base.client.handler.RequiredModTooltipHandler;
 import vazkii.quark.base.handler.ProxiedItemStackHandler;
 import vazkii.quark.base.item.IQuarkItem;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.registry.IZetaItemColorProvider;
 
 import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class BackpackItem extends DyeableArmorItem implements IQuarkItem, IItemColorProvider, MenuProvider {
+public class BackpackItem extends DyeableArmorItem implements IQuarkItem, MenuProvider, IZetaItemColorProvider {
 
 	private static final String WORN_TEXTURE = Quark.MOD_ID + ":textures/misc/backpack_worn.png";
 	private static final String WORN_OVERLAY_TEXTURE = Quark.MOD_ID + ":textures/misc/backpack_worn_overlay.png";

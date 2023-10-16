@@ -8,7 +8,7 @@
  *
  * File Created @ [Jan 21, 2014, 9:18:28 PM (GMT)]
  */
-package vazkii.arl.block.be;
+package vazkii.zeta.block.be;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -19,9 +19,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class ARLBlockEntity extends BlockEntity {
+public abstract class ZetaBlockEntity extends BlockEntity {
 
-	public ARLBlockEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos pos, BlockState state) {
+	public ZetaBlockEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos pos, BlockState state) {
 		super(tileEntityTypeIn, pos, state);
 	}
 

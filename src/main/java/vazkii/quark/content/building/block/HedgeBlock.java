@@ -34,7 +34,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
-import vazkii.arl.interf.IBlockColorProvider;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
@@ -43,8 +42,9 @@ import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.module.HedgesModule;
 import vazkii.quark.content.world.block.BlossomLeavesBlock;
+import vazkii.zeta.registry.IZetaBlockColorProvider;
 
-public class HedgeBlock extends FenceBlock implements IQuarkBlock, IBlockColorProvider {
+public class HedgeBlock extends FenceBlock implements IQuarkBlock, IZetaBlockColorProvider {
 	
 	private static final VoxelShape WOOD_SHAPE = box(6F, 0F, 6F, 10F, 15F, 10F);
 	private static final VoxelShape HEDGE_CENTER_SHAPE = box(2F, 1F, 2F, 14F, 16F, 14F);

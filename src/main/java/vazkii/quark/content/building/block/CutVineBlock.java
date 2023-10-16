@@ -17,11 +17,11 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.interf.IBlockColorProvider;
 import vazkii.quark.base.block.QuarkVineBlock;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.registry.IZetaBlockColorProvider;
 
-public class CutVineBlock extends QuarkVineBlock implements IBlockColorProvider {
+public class CutVineBlock extends QuarkVineBlock implements IZetaBlockColorProvider {
 
 	public CutVineBlock(QuarkModule module) {
 		super(module, "cut_vine", false);

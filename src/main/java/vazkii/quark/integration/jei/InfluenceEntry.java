@@ -11,7 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.block.Block;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.util.Influence;
 import vazkii.quark.content.client.tooltip.EnchantedBookTooltips;
 import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;

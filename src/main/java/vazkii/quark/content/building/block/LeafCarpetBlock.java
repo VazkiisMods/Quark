@@ -23,13 +23,13 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.interf.IBlockColorProvider;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.registry.IZetaBlockColorProvider;
 
-public class LeafCarpetBlock extends QuarkBlock implements IBlockColorProvider {
+public class LeafCarpetBlock extends QuarkBlock implements IZetaBlockColorProvider {
 
 	private static final VoxelShape SHAPE = box(0, 0, 0, 16, 1, 16);
 

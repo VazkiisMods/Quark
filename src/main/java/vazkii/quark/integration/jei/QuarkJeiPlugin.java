@@ -30,7 +30,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.client.screen.BackpackInventoryScreen;
 import vazkii.quark.addons.oddities.client.screen.CrateScreen;

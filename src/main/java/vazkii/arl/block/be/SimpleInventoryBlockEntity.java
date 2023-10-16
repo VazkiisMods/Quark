@@ -26,8 +26,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import vazkii.zeta.block.be.ZetaBlockEntity;
 
-public abstract class SimpleInventoryBlockEntity extends ARLBlockEntity implements WorldlyContainer {
+public abstract class SimpleInventoryBlockEntity extends ZetaBlockEntity implements WorldlyContainer {
 
 	public SimpleInventoryBlockEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos pos, BlockState state) {
 		super(tileEntityTypeIn, pos, state);

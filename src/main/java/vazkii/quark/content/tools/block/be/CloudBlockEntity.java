@@ -8,10 +8,10 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import vazkii.arl.block.be.ARLBlockEntity;
+import vazkii.zeta.block.be.ZetaBlockEntity;
 import vazkii.quark.content.tools.module.BottledCloudModule;
 
-public class CloudBlockEntity extends ARLBlockEntity {
+public class CloudBlockEntity extends ZetaBlockEntity {
 
 	private static final String TAG_LIVE_TIME = "liveTime";
 	

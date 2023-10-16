@@ -12,15 +12,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
-import vazkii.arl.interf.IBlockItemProvider;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.item.QuarkDoubleHighBlockItem;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.registry.IZetaBlockItemProvider;
 
-public class QuarkDoorBlock extends DoorBlock implements IQuarkBlock, IBlockItemProvider {
+public class QuarkDoorBlock extends DoorBlock implements IQuarkBlock, IZetaBlockItemProvider {
 
 	private final QuarkModule module;
 	private BooleanSupplier enabledSupplier = () -> true;

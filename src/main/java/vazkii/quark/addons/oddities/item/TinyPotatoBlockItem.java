@@ -16,7 +16,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.TinyPotatoBlock;
 import vazkii.quark.addons.oddities.block.be.TinyPotatoBlockEntity;
 import vazkii.quark.addons.oddities.util.TinyPotatoInfo;

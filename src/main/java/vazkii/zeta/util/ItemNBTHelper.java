@@ -8,7 +8,7 @@
  *
  * File Created @ [8 Sep 2013, 19:36:25 (GMT)]
  */
-package vazkii.arl.util;
+package vazkii.zeta.util;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;

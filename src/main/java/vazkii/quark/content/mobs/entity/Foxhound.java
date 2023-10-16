@@ -81,7 +81,7 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.TinyPotatoBlock;
 import vazkii.quark.addons.oddities.module.TinyPotatoModule;
 import vazkii.quark.base.handler.QuarkSounds;

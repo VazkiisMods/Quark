@@ -12,11 +12,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.interf.IBlockColorProvider;
+import vazkii.zeta.registry.IZetaBlockColorProvider;
 
 import java.awt.*;
 
-public interface IMyaliteColorProvider extends IBlockColorProvider {
+public interface IMyaliteColorProvider extends IZetaBlockColorProvider {
 
 	PerlinSimplexNoise NOISE = new PerlinSimplexNoise(new LegacyRandomSource(4543543),
 			ImmutableList.of(-4, -3, -2, -1, 0, 1, 2, 3, 4));

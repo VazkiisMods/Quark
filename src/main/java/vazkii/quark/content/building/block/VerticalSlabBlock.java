@@ -32,8 +32,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.interf.IBlockColorProvider;
-import vazkii.arl.interf.IItemColorProvider;
+import vazkii.zeta.registry.IZetaBlockColorProvider;
+import vazkii.zeta.registry.IZetaItemColorProvider;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -42,7 +42,7 @@ import java.util.function.Supplier;
 /**
  * Base extensible class in case mods want to add their own slabs
  */
-public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, IBlockColorProvider {
+public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, IZetaBlockColorProvider {
 
 	public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.create("type", VerticalSlabType.class);
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -175,13 +175,13 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public BlockColor getBlockColor() {
-		return parent.get() instanceof IBlockColorProvider provider ? provider.getBlockColor() : null;
+		return parent.get() instanceof IZetaBlockColorProvider provider ? provider.getBlockColor() : null;
 	}
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public ItemColor getItemColor() {
-		return parent.get() instanceof IItemColorProvider provider ? provider.getItemColor() : null;
+		return parent.get() instanceof IZetaItemColorProvider provider ? provider.getItemColor() : null;
 	}
 
 	public enum VerticalSlabType implements StringRepresentable {

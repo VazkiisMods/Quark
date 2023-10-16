@@ -20,7 +20,7 @@ import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.content.tweaks.module.CompassesWorkEverywhereModule;
 
 import javax.annotation.Nonnull;

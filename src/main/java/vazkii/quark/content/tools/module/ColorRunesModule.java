@@ -26,7 +26,7 @@ import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.network.NetworkDirection;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.api.IRuneColorProvider;
 import vazkii.quark.api.QuarkCapabilities;
 import vazkii.quark.base.Quark;

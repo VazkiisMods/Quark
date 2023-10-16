@@ -26,9 +26,8 @@ import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.interf.IItemColorProvider;
 import vazkii.arl.util.ClientTicker;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
@@ -36,6 +35,7 @@ import vazkii.quark.content.mobs.module.StonelingsModule;
 import vazkii.quark.content.tools.module.PathfinderMapsModule;
 import vazkii.quark.content.tools.module.PathfinderMapsModule.TradeInfo;
 import vazkii.quark.content.world.module.GlimmeringWealdModule;
+import vazkii.zeta.registry.IZetaItemColorProvider;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -45,7 +45,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class PathfindersQuillItem extends QuarkItem implements IItemColorProvider {
+public class PathfindersQuillItem extends QuarkItem implements IZetaItemColorProvider {
 
     private static final Direction[] DIRECTIONS = new Direction[]{Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.NORTH};
 

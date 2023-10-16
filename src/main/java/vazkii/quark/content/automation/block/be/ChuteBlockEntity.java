@@ -9,7 +9,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
-import vazkii.arl.block.be.ARLBlockEntity;
+import vazkii.zeta.block.be.ZetaBlockEntity;
 import vazkii.quark.content.automation.block.ChuteBlock;
 import vazkii.quark.content.automation.module.ChuteModule;
 import vazkii.quark.content.building.module.GrateModule;
@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * @author WireSegal
  * Created at 10:18 AM on 9/29/19.
  */
-public class ChuteBlockEntity extends ARLBlockEntity {
+public class ChuteBlockEntity extends ZetaBlockEntity {
 
 	public ChuteBlockEntity(BlockPos pos, BlockState state) {
 		super(ChuteModule.blockEntityType, pos, state);

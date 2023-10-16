@@ -21,21 +21,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.ModList;
-import vazkii.arl.interf.IBlockItemProvider;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.block.be.VariantTrappedChestBlockEntity;
 import vazkii.quark.content.building.module.VariantChestsModule.IChestTextureProvider;
+import vazkii.zeta.registry.IZetaBlockItemProvider;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
-@OnlyIn(value = Dist.CLIENT, _interface = IBlockItemProvider.class)
-public class VariantTrappedChestBlock extends ChestBlock implements IBlockItemProvider, IQuarkBlock, IChestTextureProvider {
+@OnlyIn(value = Dist.CLIENT, _interface = IZetaBlockItemProvider.class)
+public class VariantTrappedChestBlock extends ChestBlock implements IZetaBlockItemProvider, IQuarkBlock, IChestTextureProvider {
 
 	public final String type;
 	private final QuarkModule module;

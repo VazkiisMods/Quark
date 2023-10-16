@@ -38,7 +38,7 @@ import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.api.IQuarkButtonAllowed;
 import vazkii.quark.base.client.handler.InventoryButtonHandler;
 import vazkii.quark.base.client.handler.InventoryButtonHandler.ButtonTargetType;

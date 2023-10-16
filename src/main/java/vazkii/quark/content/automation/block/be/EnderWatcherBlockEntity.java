@@ -18,14 +18,14 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import vazkii.arl.block.be.ARLBlockEntity;
+import vazkii.zeta.block.be.ZetaBlockEntity;
 import vazkii.quark.base.handler.RayTraceHandler;
 import vazkii.quark.content.automation.block.EnderWatcherBlock;
 import vazkii.quark.content.automation.module.EnderWatcherModule;
 
 import java.util.List;
 
-public class EnderWatcherBlockEntity extends ARLBlockEntity {
+public class EnderWatcherBlockEntity extends ZetaBlockEntity {
 
 	public EnderWatcherBlockEntity(BlockPos pos, BlockState state) {
 		super(EnderWatcherModule.blockEntityType, pos, state);

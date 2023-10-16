@@ -40,13 +40,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import vazkii.arl.interf.IBlockItemProvider;
-import vazkii.arl.util.ItemNBTHelper;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.be.TinyPotatoBlockEntity;
 import vazkii.quark.addons.oddities.item.TinyPotatoBlockItem;
 import vazkii.quark.addons.oddities.module.TinyPotatoModule;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.registry.IZetaBlockItemProvider;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * @author WireSegal
  * Created at 10:16 AM on 3/14/22.
  */
-public class TinyPotatoBlock extends QuarkBlock implements SimpleWaterloggedBlock, EntityBlock, IBlockItemProvider {
+public class TinyPotatoBlock extends QuarkBlock implements SimpleWaterloggedBlock, EntityBlock, IZetaBlockItemProvider {
 
 	public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

@@ -44,9 +44,9 @@ import noobanidus.mods.lootr.LootrTags;
 import noobanidus.mods.lootr.block.entities.LootrChestBlockEntity;
 import noobanidus.mods.lootr.config.ConfigManager;
 import noobanidus.mods.lootr.util.ChestUtil;
-import vazkii.arl.interf.IItemPropertiesFiller;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.block.VariantChestBlock;
+import vazkii.zeta.registry.IZetaItemPropertiesFiller;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -57,7 +57,7 @@ import java.util.function.Supplier;
  * Copy of https://github.com/noobanidus/Lootr/blob/ded29b761ebf271f53a1b976cf859e0f4bfc8d60/src/main/java/noobanidus/mods/lootr/block/LootrChestBlock.java
  * All modifications are made purely to integrate with VariantChestBlock/quark
  */
-public class LootrVariantChestBlock extends VariantChestBlock implements IItemPropertiesFiller {
+public class LootrVariantChestBlock extends VariantChestBlock implements IZetaItemPropertiesFiller {
 	public LootrVariantChestBlock(String type, QuarkModule module, Supplier<BlockEntityType<? extends ChestBlockEntity>> supplier, Properties properties) {
 		super("lootr", type, module, supplier, properties.strength(2.5f));
 	}
