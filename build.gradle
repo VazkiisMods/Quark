@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.diffplug.gradle.spotless' version '4.5.1'
+	id 'com.diffplug.spotless' version '6.22.0'
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -130,6 +130,8 @@ dependencies {
 }
 
 spotless {
+    ratchetFrom "a9ef6596eed547a6597897be6d9bb381ac56c53d" // <-- Remove to make spotlessApply format the world
+
     enforceCheck = false // workaround around jenkins having wrong line endings in some files
     java {
         target project.fileTree(dir: 'src/main/java/vazkii/quark', include: '**/*.java')

@@ -1,14 +1,14 @@
 package vazkii.quark.base.handler;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RenderLayerHandler {
 
