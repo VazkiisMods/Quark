@@ -5,8 +5,8 @@ import net.minecraft.server.level.ServerPlayer;
 public abstract class ZetaNetworkHandler {
 	public ZetaMessageSerializer serializer = new ZetaMessageSerializer();
 
-	private final String modid;
-	private final int protocolVersion;
+	protected final String modid;
+	protected final int protocolVersion;
 
 	public ZetaNetworkHandler(String modid, int protocolVersion) {
 		this.modid = modid;

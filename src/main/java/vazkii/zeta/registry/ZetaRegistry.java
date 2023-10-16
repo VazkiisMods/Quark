@@ -1,18 +1,14 @@
 package vazkii.zeta.registry;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.Registry;
@@ -37,8 +33,8 @@ public abstract class ZetaRegistry {
 	//the keys of this are things like "minecraft:block", "minecraft:item" and so on
 	private final Multimap<ResourceLocation, Supplier<Object>> defers = ArrayListMultimap.create();
 	private final Map<Object, ResourceLocation> internalNames = new IdentityHashMap<>();
-	private final List<Pair<Item, IItemColorProvider>> itemColors = new ArrayList<>(); //TODO: use a map instead
-	private final List<Pair<Block, IBlockColorProvider>> blockColors = new ArrayList<>(); //TODO: use a map instead
+	private final Map<Item, IItemColorProvider> itemColors = new IdentityHashMap<>();
+	private final Map<Block, IBlockColorProvider> blockColors = new IdentityHashMap<>();
 	private final Map<ResourceLocation, CreativeModeTab> groups = new LinkedHashMap<>();
 
 	public ZetaRegistry(String modid) {
@@ -89,7 +85,7 @@ public abstract class ZetaRegistry {
 		register(item, resloc, Registry.ITEM_REGISTRY);
 
 		if(item instanceof IItemColorProvider)
-			itemColors.add(Pair.of(item, (IItemColorProvider) item));
+			itemColors.put(item, (IItemColorProvider) item);
 	}
 
 	public void registerBlock(Block block, String resloc, boolean hasBlockItem) {
@@ -102,7 +98,7 @@ public abstract class ZetaRegistry {
 		}
 
 		if(block instanceof IBlockColorProvider)
-			blockColors.add(Pair.of(block, (IBlockColorProvider) block));
+			blockColors.put(block, (IBlockColorProvider) block);
 	}
 
 	public void setCreativeTab(Block block, CreativeModeTab group) {
@@ -130,7 +126,7 @@ public abstract class ZetaRegistry {
 		else blockitem = new BlockItem(block, props);
 
 		if(block instanceof IItemColorProvider)
-			itemColors.add(Pair.of(blockitem, (IItemColorProvider) block));
+			itemColors.put(blockitem, (IItemColorProvider) block);
 
 		setInternalName(blockitem, registryName);
 		return blockitem;
@@ -147,12 +143,12 @@ public abstract class ZetaRegistry {
 	}
 
 	public void submitBlockColors(BiConsumer<BlockColor, Block> consumer) {
-		blockColors.forEach(p -> consumer.accept(p.getSecond().getBlockColor(), p.getFirst()));
+		blockColors.forEach((k, v) -> consumer.accept(v.getBlockColor(), k));
 		blockColors.clear();
 	}
 
 	public void submitItemColors(BiConsumer<ItemColor, Item> consumer) {
-		itemColors.forEach(p -> consumer.accept(p.getSecond().getItemColor(), p.getFirst()));
+		itemColors.forEach((k, v) -> consumer.accept(v.getItemColor(), k));
 		itemColors.clear();
 	}
 }
