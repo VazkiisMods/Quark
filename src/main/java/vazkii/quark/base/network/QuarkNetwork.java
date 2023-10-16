@@ -13,7 +13,6 @@ import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.simple.SimpleChannel;
 
-import vazkii.arl.network.IMessage;
 import vazkii.arl.network.NetworkHandler;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.network.message.*;

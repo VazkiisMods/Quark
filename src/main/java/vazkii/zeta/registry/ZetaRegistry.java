@@ -18,10 +18,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import vazkii.arl.interf.IBlockColorProvider;
-import vazkii.arl.interf.IBlockItemProvider;
-import vazkii.arl.interf.IItemColorProvider;
-import vazkii.arl.interf.IItemPropertiesFiller;
 
 //Mash of arl's RegistryHelper and its ModData innerclass.
 //You're expected to create one of these per modid instead, avoiding a dependency on Forge's "current mod id" notion.
@@ -33,8 +29,8 @@ public abstract class ZetaRegistry {
 	//the keys of this are things like "minecraft:block", "minecraft:item" and so on
 	private final Multimap<ResourceLocation, Supplier<Object>> defers = ArrayListMultimap.create();
 	private final Map<Object, ResourceLocation> internalNames = new IdentityHashMap<>();
-	private final Map<Item, IItemColorProvider> itemColors = new IdentityHashMap<>();
-	private final Map<Block, IBlockColorProvider> blockColors = new IdentityHashMap<>();
+	private final Map<Item, IZetaItemColorProvider> itemColors = new IdentityHashMap<>();
+	private final Map<Block, IZetaBlockColorProvider> blockColors = new IdentityHashMap<>();
 	private final Map<ResourceLocation, CreativeModeTab> groups = new LinkedHashMap<>();
 
 	public ZetaRegistry(String modid) {
@@ -84,8 +80,8 @@ public abstract class ZetaRegistry {
 	public void registerItem(Item item, String resloc) {
 		register(item, resloc, Registry.ITEM_REGISTRY);
 
-		if(item instanceof IItemColorProvider)
-			itemColors.put(item, (IItemColorProvider) item);
+		if(item instanceof IZetaItemColorProvider)
+			itemColors.put(item, (IZetaItemColorProvider) item);
 	}
 
 	public void registerBlock(Block block, String resloc, boolean hasBlockItem) {
@@ -97,8 +93,8 @@ public abstract class ZetaRegistry {
 			defers.put(Registry.ITEM_REGISTRY.location(), () -> createItemBlock(block));
 		}
 
-		if(block instanceof IBlockColorProvider)
-			blockColors.put(block, (IBlockColorProvider) block);
+		if(block instanceof IZetaBlockColorProvider)
+			blockColors.put(block, (IZetaBlockColorProvider) block);
 	}
 
 	public void setCreativeTab(Block block, CreativeModeTab group) {
@@ -117,16 +113,16 @@ public abstract class ZetaRegistry {
 		if(group != null)
 			props = props.tab(group);
 
-		if(block instanceof IItemPropertiesFiller)
-			((IItemPropertiesFiller) block).fillItemProperties(props);
+		if(block instanceof IZetaItemPropertiesFiller)
+			((IZetaItemPropertiesFiller) block).fillItemProperties(props);
 
 		BlockItem blockitem;
-		if(block instanceof IBlockItemProvider)
-			blockitem = ((IBlockItemProvider) block).provideItemBlock(block, props);
+		if(block instanceof IZetaBlockItemProvider)
+			blockitem = ((IZetaBlockItemProvider) block).provideItemBlock(block, props);
 		else blockitem = new BlockItem(block, props);
 
-		if(block instanceof IItemColorProvider)
-			itemColors.put(blockitem, (IItemColorProvider) block);
+		if(block instanceof IZetaItemColorProvider)
+			itemColors.put(blockitem, (IZetaItemColorProvider) block);
 
 		setInternalName(blockitem, registryName);
 		return blockitem;

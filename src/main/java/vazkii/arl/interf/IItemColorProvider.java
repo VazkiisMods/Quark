@@ -1,12 +1,8 @@
 package vazkii.arl.interf;
 
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import vazkii.zeta.registry.IZetaItemColorProvider;
 
-public interface IItemColorProvider {
-
-	@OnlyIn(Dist.CLIENT)
-	public ItemColor getItemColor();
-
+//TODO ZETA: push through
+@Deprecated(since = "zeta")
+public interface IItemColorProvider extends IZetaItemColorProvider {
 }

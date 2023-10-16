@@ -1,11 +1,8 @@
 package vazkii.arl.interf;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
+import vazkii.zeta.registry.IZetaBlockItemProvider;
 
-public interface IBlockItemProvider {
-
-	BlockItem provideItemBlock(Block block, Item.Properties props);
-	
+//TODO ZETA: push through
+@Deprecated(since = "zeta")
+public interface IBlockItemProvider extends IZetaBlockItemProvider {
 }

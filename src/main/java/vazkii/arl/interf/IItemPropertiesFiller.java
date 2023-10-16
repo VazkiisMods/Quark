@@ -1,9 +1,8 @@
 package vazkii.arl.interf;
 
-import net.minecraft.world.item.Item;
+import vazkii.zeta.registry.IZetaItemPropertiesFiller;
 
-public interface IItemPropertiesFiller {
-
-	void fillItemProperties(Item.Properties props);
-	
+//TODO ZETA: push through
+@Deprecated(since = "zeta")
+public interface IItemPropertiesFiller extends IZetaItemPropertiesFiller {
 }
