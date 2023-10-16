@@ -14,10 +14,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import vazkii.arl.util.VanillaPacketDispatcher;
 
 public abstract class ARLBlockEntity extends BlockEntity {
 
@@ -48,7 +48,9 @@ public abstract class ARLBlockEntity extends BlockEntity {
 	}
 	
 	public void sync() {
-		VanillaPacketDispatcher.dispatchTEToNearbyPlayers(this);
+		if(getLevel() instanceof ServerLevel slevel) {
+			slevel.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+		}
 	}
 	
 	@Override

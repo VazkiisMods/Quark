@@ -12,4 +12,3 @@ You don't explicity provide a mod ID, the "current" modid is read out from Forge
 
 * Unused imports
 * `VanillaPacketDispatcher` is probably redundant due to `level.sendBlockUpdated`
-* Should it be stripped back to only what Quark uses? There's some stuff like `RenderHelper` that is not used by quark.
