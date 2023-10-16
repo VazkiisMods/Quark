@@ -23,6 +23,7 @@ import vazkii.quark.base.network.message.oddities.MatrixEnchanterOperationMessag
 import vazkii.quark.base.network.message.oddities.ScrollCrateMessage;
 import vazkii.quark.base.network.message.structural.*;
 import vazkii.quark.content.tweaks.module.LockRotationModule;
+import vazkii.zeta.network.IZetaMessage;
 
 import java.time.Instant;
 import java.util.BitSet;
@@ -100,7 +101,7 @@ public final class QuarkNetwork {
 		return HandshakeHandler.indexFirst((handler, msg, context) -> toWrap.accept(msg, context));
 	}
 
-	public static void sendToPlayer(IMessage msg, ServerPlayer player) {
+	public static void sendToPlayer(IZetaMessage msg, ServerPlayer player) {
 		if(network == null)
 			return;
 
@@ -108,28 +109,28 @@ public final class QuarkNetwork {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static void sendToServer(IMessage msg) {
+	public static void sendToServer(IZetaMessage msg) {
 		if(network == null || Minecraft.getInstance().getConnection() == null)
 			return;
 
 		network.sendToServer(msg);
 	}
 
-	public static void sendToPlayers(IMessage msg, Iterable<ServerPlayer> players) {
+	public static void sendToPlayers(IZetaMessage msg, Iterable<ServerPlayer> players) {
 		if(network == null)
 			return;
 
 		network.sendToPlayers(msg, players);
 	}
 
-	public static void sendToAllPlayers(IMessage msg, MinecraftServer server) {
+	public static void sendToAllPlayers(IZetaMessage msg, MinecraftServer server) {
 		if(network == null)
 			return;
 
 		network.sendToAllPlayers(msg, server);
 	}
 
-	public static Packet<?> toVanillaPacket(IMessage msg, NetworkDirection direction) {
+	public static Packet<?> toVanillaPacket(IZetaMessage msg, NetworkDirection direction) {
 		return network.channel.toVanillaPacket(msg, direction);
 	}
 

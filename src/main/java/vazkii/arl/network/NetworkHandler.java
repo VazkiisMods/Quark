@@ -52,7 +52,7 @@ public class NetworkHandler {
 		real.sendToPlayers(msg, players);
 	}
 
-	public void sendToAllPlayers(IMessage msg, MinecraftServer server) {
+	public void sendToAllPlayers(IZetaMessage msg, MinecraftServer server) {
 		sendToPlayers(msg, server.getPlayerList().getPlayers());
 	}
 }
