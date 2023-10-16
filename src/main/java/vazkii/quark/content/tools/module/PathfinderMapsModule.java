@@ -56,6 +56,7 @@ import vazkii.quark.content.tools.loot.InBiomeCondition;
 import javax.annotation.Nonnull;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -145,8 +146,8 @@ public class PathfinderMapsModule extends QuarkModule {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
-		enqueue(() -> ItemProperties.register(pathfinders_quill, new ResourceLocation("has_biome"),
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> ItemProperties.register(pathfinders_quill, new ResourceLocation("has_biome"),
 				(stack, world, entity, i) -> (PathfindersQuillItem.getTargetBiome(stack) != null) ? 1 : 0));
 	}
 

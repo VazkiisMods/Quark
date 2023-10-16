@@ -2,6 +2,7 @@ package vazkii.quark.content.building.module;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -40,8 +41,8 @@ public class LeafCarpetModule extends QuarkModule {
 	}
 
 	@Override
-	public void loadComplete() {
-		enqueue(() -> {
+	public void loadComplete(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> {
 			for(LeafCarpetBlock c : carpets) {
 				if(c.asItem() != null)
 					ComposterBlock.COMPOSTABLES.put(c.asItem(), 0.2F);

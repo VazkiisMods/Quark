@@ -35,6 +35,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
 import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
 import java.util.function.IntUnaryOperator;
 
 @LoadModule(category = ModuleCategory.CLIENT)
@@ -51,8 +52,8 @@ public class BucketsShowInhabitantsModule extends QuarkModule {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
-		enqueue(() -> {
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> {
 			ItemProperties.register(Items.AXOLOTL_BUCKET, new ResourceLocation(Quark.MOD_ID, "variant"),
 				new MobBucketVariantProperty(Axolotl.Variant.BY_ID.length, () -> showAxolotls));
 			ItemProperties.register(CrabsModule.crab_bucket, new ResourceLocation(Quark.MOD_ID, "variant"),

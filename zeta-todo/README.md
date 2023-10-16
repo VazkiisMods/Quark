@@ -2,7 +2,23 @@
 
 1. Leave AutoRegLib's external API surface basically the same, but start backing its implementation via Zeta.
 2. Some parts in ARL assume a "current" modid. If Zeta does away with that restriction, ARL's implementation will be hardcoded for the `quark` modid.
-3. WHen AutoRegLib is simply a hollow passthrough library, one big commit that inlines everything.
+3. When AutoRegLib is simply a hollow passthrough library, one big commit that inlines everything.
+
+## Module discovery
+
+entrypoint: ModuleLoader.start
+
+A forge modloader service finds all `LoadModule` annotations, these end up in `ModuleLoader.foundModules`. `construct` is called on each of them (theyre already constructed actually, `construct` is just a method)
+
+Config stuff happens, it's a maze of global singletons, i dont get it tbh
+
+On the first registry event (big hack to avoid registry freeze nonsense) REGISTER and POST_REGISTER is dispatched, CreativeTabHandler.finalizeTabs is called, more config stuff
+
+Many Forge events are threaded through the dispatching system
+
+### `private ParallelDispatchEvent event`
+
+Seems to be a hack so `enqueueWork` is accessible from setup/clientSetup/loadComplete without actually having to pass the parallel-dispatched event through.
 
 ## How does RegistryHelper work anyway
 
@@ -14,7 +30,7 @@ RegistryHelper is a singleton, everything is static.
 You don't explicity provide a mod ID, the "current" modid is read out from Forge.  
 -> I think this could be fixed by making everything non-static and requiring you to provide a modid when you create the RegistryHelper - so, closer to Forge's DeferredRegistry system
 
-## Handle-based registration system
+### Handle-based registration system
 
 This would be a large overhaul of the registration system (and it would make constructor registration impossible), but given the registry-freezing shenanigans Quark is just *barely* working around I think it might be a good change in the long run.
 

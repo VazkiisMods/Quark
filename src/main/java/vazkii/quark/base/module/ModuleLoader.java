@@ -1,6 +1,5 @@
 package vazkii.quark.base.module;
 
-import com.google.common.base.Preconditions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -45,7 +44,6 @@ public final class ModuleLoader {
 	private ConfigResolver config;
 	private Runnable onConfigReloadJEI;
 	private boolean clientTicked = false;
-	private ParallelDispatchEvent event;
 
 	private ModuleLoader() { }
 
@@ -102,15 +100,13 @@ public final class ModuleLoader {
 	}
 
 	public void setup(ParallelDispatchEvent event) {
-		this.event = event;
 		Quark.proxy.handleQuarkConfigChange();
-		dispatch(Step.SETUP, QuarkModule::setup);
+		dispatch(Step.SETUP, m -> m.setup(event::enqueueWork));
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void clientSetup(ParallelDispatchEvent event) {
-		this.event = event;
-		dispatch(Step.SETUP_CLIENT, QuarkModule::clientSetup);
+		dispatch(Step.SETUP_CLIENT, m -> m.clientSetup(event::enqueueWork));
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -164,8 +160,7 @@ public final class ModuleLoader {
 	}
 
 	public void loadComplete(ParallelDispatchEvent event) {
-		this.event = event;
-		dispatch(Step.LOAD_COMPLETE, QuarkModule::loadComplete);
+		dispatch(Step.LOAD_COMPLETE, m -> m.loadComplete(event::enqueueWork));
 	}
 
 	public void addStackInfo(BiConsumer<Item, Component> consumer) {
@@ -188,11 +183,6 @@ public final class ModuleLoader {
 		Quark.LOG.info("Dispatching Module Step " + step);
 		foundModules.values().forEach(run);
 		stepsHandled.add(step);
-	}
-
-	void enqueue(Runnable r) {
-		Preconditions.checkNotNull(event);
-		event.enqueueWork(r);
 	}
 
 	public boolean isModuleEnabled(Class<? extends QuarkModule> moduleClazz) {

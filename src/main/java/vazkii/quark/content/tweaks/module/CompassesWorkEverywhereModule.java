@@ -1,6 +1,7 @@
 package vazkii.quark.content.tweaks.module;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.network.chat.Component;
@@ -37,13 +38,13 @@ public class CompassesWorkEverywhereModule extends QuarkModule {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
 		// register = addPropertyOverride
 		if(enabled && (enableCompassNerf || enableNether || enableEnd))
-			enqueue(() -> ItemProperties.register(Items.COMPASS, new ResourceLocation("angle"), new CompassAngleGetter.Impl()));
+			enqueueWork.accept(() -> ItemProperties.register(Items.COMPASS, new ResourceLocation("angle"), new CompassAngleGetter.Impl()));
 
 		if(enabled && enableClockNerf)
-			enqueue(() -> ItemProperties.register(Items.CLOCK, new ResourceLocation("time"), new ClockTimeGetter.Impl()));
+			enqueueWork.accept(() -> ItemProperties.register(Items.CLOCK, new ResourceLocation("time"), new ClockTimeGetter.Impl()));
 	}
 	
 	@Override

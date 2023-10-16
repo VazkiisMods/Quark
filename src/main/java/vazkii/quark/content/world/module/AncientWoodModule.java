@@ -1,5 +1,7 @@
 package vazkii.quark.content.world.module;
 
+import java.util.function.Consumer;
+
 import com.google.common.base.Functions;
 import com.google.common.collect.ImmutableSet;
 
@@ -56,8 +58,8 @@ public class AncientWoodModule extends QuarkModule {
 	public static QuarkGenericTrigger ancientFruitTrigger;
 
 	@Override
-	public void setup() {
-		enqueue(() -> {
+	public void setup(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> {
 			ComposterBlock.COMPOSTABLES.put(ancient_sapling.asItem(), 0.3F);
 			ComposterBlock.COMPOSTABLES.put(ancient_leaves.asItem(), 0.3F);
 			ComposterBlock.COMPOSTABLES.put(ancient_fruit.asItem(), 0.65F);

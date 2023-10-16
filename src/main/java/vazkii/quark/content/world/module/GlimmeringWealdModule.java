@@ -1,6 +1,7 @@
 package vazkii.quark.content.world.module;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -119,10 +120,10 @@ public class GlimmeringWealdModule extends QuarkModule {
 	}
 
 	@Override
-	public void setup() {
+	public void setup(Consumer<Runnable> enqueueWork) {
 		glowShroomFeedablesTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "glow_shroom_feedables"));
 
-		enqueue(() -> {
+		enqueueWork.accept(() -> {
 			ComposterBlock.COMPOSTABLES.put(glow_shroom.asItem(), 0.65F);
 			ComposterBlock.COMPOSTABLES.put(glow_shroom_block.asItem(), 0.65F);
 			ComposterBlock.COMPOSTABLES.put(glow_shroom_stem.asItem(), 0.65F);

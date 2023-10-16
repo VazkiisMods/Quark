@@ -1,6 +1,7 @@
 package vazkii.quark.content.tools.module;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -50,8 +51,8 @@ public class AbacusModule extends QuarkModule {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
-		enqueue(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem::count));
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem::count));
 	}
 
 	@SubscribeEvent

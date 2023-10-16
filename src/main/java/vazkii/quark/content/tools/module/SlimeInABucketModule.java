@@ -1,5 +1,7 @@
 package vazkii.quark.content.tools.module;
 
+import java.util.function.Consumer;
+
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -35,8 +37,8 @@ public class SlimeInABucketModule extends QuarkModule {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
-		enqueue(() -> ItemProperties.register(slime_in_a_bucket, new ResourceLocation("excited"), 
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> ItemProperties.register(slime_in_a_bucket, new ResourceLocation("excited"),
 				(stack, world, e, id) -> ItemNBTHelper.getBoolean(stack, SlimeInABucketItem.TAG_EXCITED, false) ? 1 : 0));
 	}
 

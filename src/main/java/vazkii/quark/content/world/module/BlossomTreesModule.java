@@ -28,6 +28,7 @@ import vazkii.quark.content.world.gen.BlossomTreeGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 @LoadModule(category = ModuleCategory.WORLD)
 public class BlossomTreesModule extends QuarkModule {
@@ -58,11 +59,11 @@ public class BlossomTreesModule extends QuarkModule {
 	}
 
 	@Override
-	public void setup() {
+	public void setup(Consumer<Runnable> enqueueWork) {
 		for(BlossomTree tree : trees.keySet())
 			WorldGenHandler.addGenerator(this, new BlossomTreeGenerator(trees.get(tree), tree), Decoration.TOP_LAYER_MODIFICATION, WorldGenWeights.BLOSSOM_TREES);
 
-		enqueue(() -> {
+		enqueueWork.accept(() -> {
 			for(BlossomTree tree : trees.keySet()) {
 				if(tree.leaf.getBlock().asItem() != null)
 					ComposterBlock.COMPOSTABLES.put(tree.leaf.getBlock().asItem(), 0.3F);

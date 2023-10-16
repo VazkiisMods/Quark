@@ -1,5 +1,7 @@
 package vazkii.quark.content.automation.module;
 
+import java.util.function.Consumer;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
@@ -41,9 +43,9 @@ public class JukeboxAutomationModule extends QuarkModule {
 	private static final ResourceLocation JUKEBOX_ITEM_HANDLER = new ResourceLocation(Quark.MOD_ID, "jukebox_item_handler");
 
 	@Override
-	public void setup() {
+	public void setup(Consumer<Runnable> enqueueWork) {
 		MusicDiscBehaviour behaviour = new MusicDiscBehaviour();
-		enqueue(() -> ForgeRegistries.ITEMS.forEach(i -> {
+		enqueueWork.accept(() -> ForgeRegistries.ITEMS.forEach(i -> {
 			if (i instanceof RecordItem)
 				DispenserBlock.DISPENSER_REGISTRY.put(i, behaviour);
 		}));

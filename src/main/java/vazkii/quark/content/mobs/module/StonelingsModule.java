@@ -1,5 +1,7 @@
 package vazkii.quark.content.mobs.module;
 
+import java.util.function.Consumer;
+
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.Registry;
 import net.minecraft.tags.BiomeTags;

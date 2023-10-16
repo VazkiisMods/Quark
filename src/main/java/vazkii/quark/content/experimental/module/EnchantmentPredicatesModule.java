@@ -18,6 +18,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 @LoadModule(category = ModuleCategory.EXPERIMENTAL, enabledByDefault = false,
 description = "This feature generates Resource Pack Item Model predicates on the items defined in 'Items to Change'\n"
@@ -35,9 +36,9 @@ public class EnchantmentPredicatesModule extends QuarkModule {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
 		if(enabled) {
-			enqueue(() -> {
+			enqueueWork.accept(() -> {
 				List<Item> items = MiscUtil.massRegistryGet(itemsToChange, ForgeRegistries.ITEMS);
 				List<Enchantment> enchants = MiscUtil.massRegistryGet(enchantmentsToRegister, ForgeRegistries.ENCHANTMENTS);
 

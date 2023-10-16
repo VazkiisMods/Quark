@@ -1,5 +1,7 @@
 package vazkii.quark.addons.oddities.module;
 
+import java.util.function.Consumer;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
@@ -98,10 +100,10 @@ public class BackpackModule extends QuarkModule {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
 		MenuScreens.register(menyType, BackpackInventoryScreen::new);
 
-		enqueue(() -> ItemProperties.register(backpack, new ResourceLocation("has_items"),
+		enqueueWork.accept(() -> ItemProperties.register(backpack, new ResourceLocation("has_items"),
 				(stack, world, entity, i) -> (!BackpackModule.superOpMode && BackpackItem.doesBackpackHaveItems(stack)) ? 1 : 0));
 	}
 

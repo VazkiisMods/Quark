@@ -1,5 +1,7 @@
 package vazkii.quark.content.building.module;
 
+import java.util.function.Consumer;
+
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -32,8 +34,8 @@ public class MidoriModule extends QuarkModule {
 	}
 	
 	@Override
-	public void loadComplete() {
-		enqueue(() -> {
+	public void loadComplete(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> {
 			ComposterBlock.COMPOSTABLES.put(moss_paste, 0.5F);
 		});
 	}

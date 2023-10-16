@@ -2,6 +2,7 @@ package vazkii.quark.content.building.module;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
 
 import com.google.common.collect.Lists;
 
@@ -129,8 +130,8 @@ public class CompressedBlocksModule extends QuarkModule {
 	}
 
 	@Override
-	public void loadComplete() {
-		enqueue(() -> {
+	public void loadComplete(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> {
 			for(Block block : compostable)
 				if(block.asItem() != null)
 					ComposterBlock.COMPOSTABLES.put(block.asItem(), 1F);

@@ -1,5 +1,7 @@
 package vazkii.quark.content.tools.module;
 
+import java.util.function.Consumer;
+
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.ImmutableSet;
@@ -51,8 +53,8 @@ public class SeedPouchModule extends QuarkModule {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void clientSetup() {
-		enqueue(() -> ItemProperties.register(seed_pouch, new ResourceLocation("pouch_items"), SeedPouchItem::itemFraction));
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> ItemProperties.register(seed_pouch, new ResourceLocation("pouch_items"), SeedPouchItem::itemFraction));
 	}
 
 	@Override

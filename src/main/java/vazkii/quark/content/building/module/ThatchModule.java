@@ -1,5 +1,7 @@
 package vazkii.quark.content.building.module;
 
+import java.util.function.Consumer;
+
 import net.minecraft.world.level.block.ComposterBlock;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
@@ -24,8 +26,8 @@ public class ThatchModule extends QuarkModule {
 	}
 	
 	@Override
-	public void loadComplete() {
-		enqueue(() -> ComposterBlock.COMPOSTABLES.put(thatch.asItem(), 0.65F));
+	public void loadComplete(Consumer<Runnable> enqueueWork) {
+		enqueueWork.accept(() -> ComposterBlock.COMPOSTABLES.put(thatch.asItem(), 0.65F));
 	}
 	
 }

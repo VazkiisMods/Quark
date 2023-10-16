@@ -29,6 +29,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 @LoadModule(category = ModuleCategory.AUTOMATION)
 public class DispensersPlaceBlocksModule extends QuarkModule {
@@ -43,13 +44,13 @@ public class DispensersPlaceBlocksModule extends QuarkModule {
 	public static boolean wrapExistingBehaviors = true;
 
 	@Override
-	public void setup() {
+	public void setup(Consumer<Runnable> enqueueWork) {
 		if(!enabled)
 			return;
 
 		BlockBehavior baseBehavior = new BlockBehavior();
 
-		enqueue(() -> {
+		enqueueWork.accept(() -> {
 			Map<Item, DispenseItemBehavior> registry = DispenserBlock.DISPENSER_REGISTRY;
 
 			for(Block b : ForgeRegistries.BLOCKS) {

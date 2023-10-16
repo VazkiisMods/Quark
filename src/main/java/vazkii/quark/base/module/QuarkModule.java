@@ -73,8 +73,13 @@ public class QuarkModule {
 		// NO-OP
 	}
 
+	@Deprecated //use the one that takes enqueueWork
 	public void setup() {
 		// NO-OP
+	}
+
+	public void setup(Consumer<Runnable> enqueueWork) {
+		setup();
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -83,8 +88,14 @@ public class QuarkModule {
 	}
 
 	@OnlyIn(Dist.CLIENT)
+	@Deprecated //use the one that takes enqueueWork
 	public void clientSetup() {
 		// NO-OP
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public void clientSetup(Consumer<Runnable> enqueueWork) {
+		clientSetup();
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -132,8 +143,13 @@ public class QuarkModule {
 		// NO-OP
 	}
 
+	@Deprecated //use the one that takes enqueueWork
 	public void loadComplete() {
 		// NO-OP
+	}
+
+	public void loadComplete(Consumer<Runnable> enqueueWork) {
+		loadComplete();
 	}
 
 	public final void addStackInfo(BiConsumer<Item, Component> consumer) {
@@ -156,10 +172,6 @@ public class QuarkModule {
 
 	public void pushFlags(ConfigFlagManager manager) {
 		// NO-OP
-	}
-
-	protected void enqueue(Runnable r) {
-		ModuleLoader.INSTANCE.enqueue(r);
 	}
 
 	public final void setEnabled(boolean enabled) {
