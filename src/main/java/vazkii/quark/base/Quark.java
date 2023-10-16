@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import vazkii.quark.base.proxy.ClientProxy;
 import vazkii.quark.base.proxy.CommonProxy;
 import vazkii.zeta.Zeta;
+import vazkii.zeta.registry.ZetaRegistry;
 import vazkii.zetaimplforge.ZetaForge;
 
 @Mod(Quark.MOD_ID)
@@ -22,7 +23,8 @@ public class Quark {
 
 	public static final Logger LOG = LogManager.getLogger(MOD_ID);
 
-	public final Zeta zeta = new ZetaForge();
+	public static final Zeta ZETA = new ZetaForge();
+	public static final ZetaRegistry REGISTRY = ZETA.createRegistry(MOD_ID);
 
 	public Quark() {
 		instance = this;

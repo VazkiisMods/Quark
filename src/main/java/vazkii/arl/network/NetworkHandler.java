@@ -26,7 +26,7 @@ public class NetworkHandler {
 	public final SimpleChannel channel;
 
 	public NetworkHandler(String modid, int protocol) {
-		real = Quark.instance.zeta.createNetworkHandler(modid, protocol);
+		real = Quark.ZETA.createNetworkHandler(modid, protocol);
 		channel = ((ForgeZetaNetworkHandler) real).channel;
 	}
 	
