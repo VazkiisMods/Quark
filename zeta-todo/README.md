@@ -1,3 +1,9 @@
+## my (quat's) plans
+
+1. Leave AutoRegLib's external API surface basically the same, but start backing its implementation via Zeta.
+2. Some parts in ARL assume a "current" modid. If Zeta does away with that restriction, ARL's implementation will be hardcoded for the `quark` modid.
+3. WHen AutoRegLib is simply a hollow passthrough library, one big commit that inlines everything.
+
 ## How does RegistryHelper work anyway
 
 RegistryHelper is a singleton, everything is static.

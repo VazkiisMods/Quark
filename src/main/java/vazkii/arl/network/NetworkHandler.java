@@ -10,70 +10,39 @@
  */
 package vazkii.arl.network;
 
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
+import vazkii.quark.base.Quark;
+import vazkii.zeta.network.ZetaMessageSerializer;
+import vazkii.zeta.network.ZetaNetworkHandler;
+import vazkii.zetaimplforge.network.ForgeZetaNetworkHandler;
 
+@Deprecated(since = "zeta")
 public class NetworkHandler {
-	
+	private final ZetaNetworkHandler real;
+
+	@Deprecated(since = "zeta") //leaky abstraction - need to beef up the networking capabilities of ZetaNetworkHandler
 	public final SimpleChannel channel;
-	
-	private int i = 0;
-	
+
 	public NetworkHandler(String modid, int protocol) {
-		this(modid, "main", protocol);
-	}
-	
-	public NetworkHandler(String modid, String channelName, int protocol) {
-		String protocolStr = Integer.toString(protocol);
-		
-		channel = NetworkRegistry.ChannelBuilder
-				.named(new ResourceLocation(modid, channelName))
-				.networkProtocolVersion(() -> protocolStr)
-				.clientAcceptedVersions(protocolStr::equals)
-				.serverAcceptedVersions(protocolStr::equals)
-				.simpleChannel();
+		real = Quark.instance.zeta.createNetworkHandler(modid, protocol);
+		channel = ((ForgeZetaNetworkHandler) real).channel;
 	}
 	
 	public <T extends IMessage> void register(Class<T> clazz, NetworkDirection dir) {
-		BiConsumer<T, FriendlyByteBuf> encoder = MessageSerializer::writeObject;
-		
-		Function<FriendlyByteBuf, T> decoder = (buf) -> {
-			try {
-				T msg = clazz.getDeclaredConstructor().newInstance();
-				MessageSerializer.readObject(msg, buf);
-				return msg;
-			} catch (ReflectiveOperationException e) {
-				throw new RuntimeException(e);
-			} 
-		};
-		
-		BiConsumer<T, Supplier<NetworkEvent.Context>> consumer = (msg, supp) -> {
-			NetworkEvent.Context context = supp.get();
-			if(context.getDirection() != dir)
-				return;
-			
-			context.setPacketHandled(msg.receive(context));
-		};
-		
-		channel.registerMessage(i, clazz, encoder, decoder, consumer);
-		i++;
+		real.register(clazz, ForgeZetaNetworkHandler.fromForge(dir));
+	}
+
+	public ZetaMessageSerializer getSerializer() {
+		return real.getSerializer();
 	}
 
 	public void sendToPlayer(IMessage msg, ServerPlayer player) {
-		channel.sendTo(msg, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
+		real.sendToPlayer(msg, player);
 	}
-	
+
 	public void sendToServer(IMessage msg) {
-		channel.sendToServer(msg);
+		real.sendToServer(msg);
 	}
-	
 }

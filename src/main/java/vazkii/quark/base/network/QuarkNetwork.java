@@ -12,8 +12,8 @@ import net.minecraftforge.network.HandshakeHandler;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.simple.SimpleChannel;
+
 import vazkii.arl.network.IMessage;
-import vazkii.arl.network.MessageSerializer;
 import vazkii.arl.network.NetworkHandler;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.network.message.*;
@@ -22,6 +22,7 @@ import vazkii.quark.base.network.message.oddities.HandleBackpackMessage;
 import vazkii.quark.base.network.message.oddities.MatrixEnchanterOperationMessage;
 import vazkii.quark.base.network.message.oddities.ScrollCrateMessage;
 import vazkii.quark.base.network.message.structural.*;
+import vazkii.quark.content.tweaks.module.LockRotationModule;
 
 import java.time.Instant;
 import java.util.BitSet;
@@ -35,12 +36,12 @@ public final class QuarkNetwork {
 	private static NetworkHandler network;
 
 	public static void setup() {
-		MessageSerializer.mapHandlers(Instant.class, (buf, field) -> buf.readInstant(), (buf, field, instant) -> buf.writeInstant(instant));
-		MessageSerializer.mapHandlers(MessageSignature.class, (buf, field) -> new MessageSignature(buf), (buf, field, signature) -> signature.write(buf));
-		MessageSerializer.mapHandlers(LastSeenMessages.Update.class, (buf, field) -> new LastSeenMessages.Update(buf), (buf, field, update) -> update.write(buf));
-		MessageSerializer.mapHandlers(BitSet.class, (buf, field) -> BitSet.valueOf(buf.readLongArray()), (buf, field, bitSet) -> buf.writeLongArray(bitSet.toLongArray()));
-
 		network = new NetworkHandler(Quark.MOD_ID, PROTOCOL_VERSION);
+
+		network.getSerializer().mapHandlers(Instant.class, (buf, field) -> buf.readInstant(), (buf, field, instant) -> buf.writeInstant(instant));
+		network.getSerializer().mapHandlers(MessageSignature.class, (buf, field) -> new MessageSignature(buf), (buf, field, signature) -> signature.write(buf));
+		network.getSerializer().mapHandlers(LastSeenMessages.Update.class, (buf, field) -> new LastSeenMessages.Update(buf), (buf, field, update) -> update.write(buf));
+		network.getSerializer().mapHandlers(BitSet.class, (buf, field) -> BitSet.valueOf(buf.readLongArray()), (buf, field, bitSet) -> buf.writeLongArray(bitSet.toLongArray()));
 
 		// Base Quark
 		network.register(SortInventoryMessage.class, NetworkDirection.PLAY_TO_SERVER);
@@ -52,6 +53,7 @@ public final class QuarkNetwork {
 		network.register(SetLockProfileMessage.class, NetworkDirection.PLAY_TO_SERVER);
 		network.register(ShareItemMessage.class, NetworkDirection.PLAY_TO_SERVER);
 		network.register(ScrollOnBundleMessage.class, NetworkDirection.PLAY_TO_SERVER);
+		network.getSerializer().mapHandlers(LockRotationModule.LockProfile.class, LockRotationModule.LockProfile::readProfile, LockRotationModule.LockProfile::writeProfile);
 
 		// Oddities
 		network.register(HandleBackpackMessage.class, NetworkDirection.PLAY_TO_SERVER);
@@ -70,21 +72,21 @@ public final class QuarkNetwork {
 		network.register(S2CUpdateFlag.class, NetworkDirection.PLAY_TO_CLIENT);
 		network.register(C2SUpdateFlag.class, NetworkDirection.PLAY_TO_SERVER);
 		loginIndexedBuilder(S2CLoginFlag.class, 98, NetworkDirection.LOGIN_TO_CLIENT)
-			.decoder(S2CLoginFlag::new)
-			.consumerNetworkThread(loginPacketHandler())
-			.buildLoginPacketList(S2CLoginFlag::generateRegistryPackets)
-			.add();
+				.decoder(S2CLoginFlag::new)
+				.consumerNetworkThread(loginPacketHandler())
+				.buildLoginPacketList(S2CLoginFlag::generateRegistryPackets)
+				.add();
 		loginIndexedBuilder(C2SLoginFlag.class, 99, NetworkDirection.LOGIN_TO_SERVER)
-			.decoder(C2SLoginFlag::new)
-			.consumerNetworkThread(loginIndexFirst(loginPacketHandler()))
-			.noResponse()
-			.add();
+				.decoder(C2SLoginFlag::new)
+				.consumerNetworkThread(loginIndexFirst(loginPacketHandler()))
+				.noResponse()
+				.add();
 	}
 
 	private static <MSG extends HandshakeMessage> SimpleChannel.MessageBuilder<MSG> loginIndexedBuilder(Class<MSG> clazz, int id, NetworkDirection direction) {
 		return network.channel.messageBuilder(clazz, id, direction)
-			.loginIndex(HandshakeMessage::getLoginIndex, HandshakeMessage::setLoginIndex)
-			.encoder(HandshakeMessage::encode);
+				.loginIndex(HandshakeMessage::getLoginIndex, HandshakeMessage::setLoginIndex)
+				.encoder(HandshakeMessage::encode);
 	}
 
 	private static <MSG extends HandshakeMessage> BiConsumer<MSG, Supplier<NetworkEvent.Context>> loginPacketHandler() {

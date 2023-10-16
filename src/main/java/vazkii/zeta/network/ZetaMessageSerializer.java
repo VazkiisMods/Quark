@@ -1,4 +1,4 @@
-package vazkii.arl.network;
+package vazkii.zeta.network;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -11,44 +11,43 @@ import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import org.apache.commons.lang3.tuple.Pair;
-
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.BlockHitResult;
+import org.apache.commons.lang3.tuple.Pair;
 
 @SuppressWarnings({ "unchecked", "rawtypes", "unused" })
-public final class MessageSerializer {
+public final class ZetaMessageSerializer {
 
-	private static final HashMap<Class<?>, Pair<Reader, Writer>> handlers = new HashMap<>();
-	private static final HashMap<Class<?>, Field[]> fieldCache = new HashMap<>();
+	private final HashMap<Class<?>, Pair<Reader, Writer>> handlers = new HashMap<>();
+	private final HashMap<Class<?>, Field[]> fieldCache = new HashMap<>();
 
-	static {
-		MessageSerializer.<Byte> mapFunctions(byte.class, FriendlyByteBuf::readByte, FriendlyByteBuf::writeByte);
-		MessageSerializer.<Short> mapFunctions(short.class, FriendlyByteBuf::readShort, FriendlyByteBuf::writeShort);
-		MessageSerializer.<Integer> mapFunctions(int.class, FriendlyByteBuf::readInt, FriendlyByteBuf::writeInt);
-		MessageSerializer.<Long> mapFunctions(long.class, FriendlyByteBuf::readLong, FriendlyByteBuf::writeLong);
-		MessageSerializer.<Float> mapFunctions(float.class, FriendlyByteBuf::readFloat, FriendlyByteBuf::writeFloat);
-		MessageSerializer.<Double> mapFunctions(double.class, FriendlyByteBuf::readDouble, FriendlyByteBuf::writeDouble);
-		MessageSerializer.<Boolean> mapFunctions(boolean.class, FriendlyByteBuf::readBoolean, FriendlyByteBuf::writeBoolean);
-		MessageSerializer.<Character> mapFunctions(char.class, FriendlyByteBuf::readChar, FriendlyByteBuf::writeChar);
+	{
+		this.<Byte>mapFunctions(byte.class, FriendlyByteBuf::readByte, FriendlyByteBuf::writeByte);
+		this.<Short>mapFunctions(short.class, FriendlyByteBuf::readShort, FriendlyByteBuf::writeShort);
+		mapFunctions(int.class, FriendlyByteBuf::readInt, FriendlyByteBuf::writeInt);
+		mapFunctions(long.class, FriendlyByteBuf::readLong, FriendlyByteBuf::writeLong);
+		mapFunctions(float.class, FriendlyByteBuf::readFloat, FriendlyByteBuf::writeFloat);
+		mapFunctions(double.class, FriendlyByteBuf::readDouble, FriendlyByteBuf::writeDouble);
+		mapFunctions(boolean.class, FriendlyByteBuf::readBoolean, FriendlyByteBuf::writeBoolean);
+		this.<Character>mapFunctions(char.class, FriendlyByteBuf::readChar, FriendlyByteBuf::writeChar);
 
 		mapFunctions(BlockPos.class, FriendlyByteBuf::readBlockPos, FriendlyByteBuf::writeBlockPos);
 		mapFunctions(Component.class, FriendlyByteBuf::readComponent, FriendlyByteBuf::writeComponent);
 		mapFunctions(UUID.class, FriendlyByteBuf::readUUID, FriendlyByteBuf::writeUUID);
 		mapFunctions(CompoundTag.class, FriendlyByteBuf::readNbt, FriendlyByteBuf::writeNbt);
-		mapFunctions(ItemStack.class, FriendlyByteBuf::readItem, MessageSerializer::writeItemStack);
-		mapFunctions(String.class, MessageSerializer::readString, MessageSerializer::writeString);
+		mapFunctions(ItemStack.class, FriendlyByteBuf::readItem, ZetaMessageSerializer::writeItemStack);
+		mapFunctions(String.class, ZetaMessageSerializer::readString, ZetaMessageSerializer::writeString);
 		mapFunctions(ResourceLocation.class, FriendlyByteBuf::readResourceLocation, FriendlyByteBuf::writeResourceLocation);
 		mapFunctions(Date.class, FriendlyByteBuf::readDate, FriendlyByteBuf::writeDate);
 		mapFunctions(BlockHitResult.class, FriendlyByteBuf::readBlockHitResult, FriendlyByteBuf::writeBlockHitResult);
 	}
 	
-	public static void readObject(Object obj, FriendlyByteBuf buf) {
+	public void readObject(Object obj, FriendlyByteBuf buf) {
 		try {
 			Class<?> clazz = obj.getClass();
 			Field[] clFields = getClassFields(clazz);
@@ -62,7 +61,7 @@ public final class MessageSerializer {
 		}
 	}
 	
-	public static void writeObject(Object obj, FriendlyByteBuf buf) {
+	public void writeObject(Object obj, FriendlyByteBuf buf) {
 		try {
 			Class<?> clazz = obj.getClass();
 			Field[] clFields = getClassFields(clazz);
@@ -76,7 +75,7 @@ public final class MessageSerializer {
 		}
 	}
 
-	private static Field[] getClassFields(Class<?> clazz) {
+	private Field[] getClassFields(Class<?> clazz) {
 		if(fieldCache.containsKey(clazz))
 			return fieldCache.get(clazz);
 		else {
@@ -87,24 +86,24 @@ public final class MessageSerializer {
 		}
 	}
 
-	private static void writeField(Object obj, Field f, Class<?> clazz, FriendlyByteBuf buf) throws IllegalArgumentException, IllegalAccessException {
+	private void writeField(Object obj, Field f, Class<?> clazz, FriendlyByteBuf buf) throws IllegalArgumentException, IllegalAccessException {
 		Pair<Reader, Writer> handler = getHandler(clazz);
 		handler.getRight().write(buf, f, f.get(obj));
 	}
 
-	private static void readField(Object obj, Field f, Class<?> clazz, FriendlyByteBuf buf) throws IllegalArgumentException, IllegalAccessException {
+	private void readField(Object obj, Field f, Class<?> clazz, FriendlyByteBuf buf) throws IllegalArgumentException, IllegalAccessException {
 		Pair<Reader, Writer> handler = getHandler(clazz);
 		f.set(obj, handler.getLeft().read(buf, f));
 	}
 
-	private static Pair<Reader, Writer> getHandler(Class<?> clazz) {
+	private Pair<Reader, Writer> getHandler(Class<?> clazz) {
 		Pair<Reader, Writer> pair = handlers.get(clazz);
 		if(pair == null)
 			throw new RuntimeException("No R/W handler for  " + clazz);
 		return pair;
 	}
 
-	private static boolean acceptField(Field f, Class<?> type) {
+	private boolean acceptField(Field f, Class<?> type) {
 		int mods = f.getModifiers();
 		if(Modifier.isFinal(mods) || Modifier.isStatic(mods) || Modifier.isTransient(mods))
 			return false;
@@ -112,23 +111,23 @@ public final class MessageSerializer {
 		return  handlers.containsKey(type);
 	}
 
-	private static <T> void mapFunctions(Class<T> type, Function<FriendlyByteBuf, T> readerLower, BiConsumer<FriendlyByteBuf, T> writerLower) {
+	private <T> void mapFunctions(Class<T> type, Function<FriendlyByteBuf, T> readerLower, BiConsumer<FriendlyByteBuf, T> writerLower) {
 		Reader<T> reader = (buf, field) -> readerLower.apply(buf);
 		Writer<T> writer = (buf, field, t) -> writerLower.accept(buf, t);
 		mapHandlers(type, reader, writer);
 	}
 
-	private static <T> void mapWriterFunction(Class<T> type, Reader<T> reader, BiConsumer<FriendlyByteBuf, T> writerLower) {
+	private <T> void mapWriterFunction(Class<T> type, Reader<T> reader, BiConsumer<FriendlyByteBuf, T> writerLower) {
 		Writer<T> writer = (buf, field, t) -> writerLower.accept(buf, t);
 		mapHandlers(type, reader, writer);	
 	}
 
-	private static <T> void mapReaderFunction(Class<T> type, Function<FriendlyByteBuf, T> readerLower, Writer<T> writer) {
+	private <T> void mapReaderFunction(Class<T> type, Function<FriendlyByteBuf, T> readerLower, Writer<T> writer) {
 		Reader<T> reader = (buf, field) -> readerLower.apply(buf);
 		mapHandlers(type, reader, writer);
 	}
 
-	public static <T> void mapHandlers(Class<T> type, Reader<T> reader, Writer<T> writer) {
+	public <T> void mapHandlers(Class<T> type, Reader<T> reader, Writer<T> writer) {
 		Class<T[]> arrayType = (Class<T[]>) Array.newInstance(type, 0).getClass();
 
 		Reader<T[]> arrayReader = (buf, field) -> {
@@ -182,5 +181,4 @@ public final class MessageSerializer {
 	public static interface Writer<T> {
 		public void write(FriendlyByteBuf buf, Field field, T t);
 	}
-
 }
