@@ -66,14 +66,15 @@ public class ZetaModuleManager {
 	private ZetaModule construct(TentativeModule t) {
 		z.log.info("Constructing module " + t.id() + "...");
 
+		//construct, set properties, and subscribe to event busses
 		ZetaModule module = t.construct();
 		module.id = t.id();
-		module.enabled = t.enabledByDefault() && t.antiOverlap().stream().noneMatch(z::isModLoaded);
 
+		module.setEnabledAndManageSubscriptions(z, t.enabledByDefault() && t.antiOverlap().stream().noneMatch(z::isModLoaded));
+		z.loadBus.subscribe(module.getClass()).subscribe(module);
+
+		//post-construction callback
 		module.postConstruct();
-
-		z.loadBus.subscribe(module.getClass());
-		z.loadBus.subscribe(module);
 
 		return module;
 	}
