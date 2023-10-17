@@ -30,8 +30,7 @@ import java.util.function.Consumer;
 public final class ModuleLoader {
 
 	private enum Step {
-		CONSTRUCT, CONSTRUCT_CLIENT, REGISTER, POST_REGISTER, CONFIG_CHANGED, CONFIG_CHANGED_CLIENT, SETUP, SETUP_CLIENT,
-		REGISTER_RELOADABLE, MODEL_BAKE, MODEL_LAYERS, TEXTURE_STITCH, POST_TEXTURE_STITCH, LOAD_COMPLETE, GENERATE_HINTS,
+		POST_REGISTER, MODEL_BAKE, MODEL_LAYERS, TEXTURE_STITCH, POST_TEXTURE_STITCH, LOAD_COMPLETE, GENERATE_HINTS,
 		FIRST_CLIENT_TICK, REGISTER_KEYBINDS, REGISTER_ADDITIONAL_MODELS, REGISTER_TOOLTIP_COMPONENT_FACTORIES,
 		REGISTER_ITEM_COLORS, REGISTER_BLOCK_COLORS
 	}
@@ -49,20 +48,23 @@ public final class ModuleLoader {
 
 	public void start() {
 		findModules();
-		dispatch(Step.CONSTRUCT, QuarkModule::construct);
+		//dispatch(Step.CONSTRUCT, QuarkModule::construct);
 		resolveConfigSpec();
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void clientStart() {
-		dispatch(Step.CONSTRUCT_CLIENT, QuarkModule::constructClient);
+		//dispatch(Step.CONSTRUCT_CLIENT, QuarkModule::constructClient);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private void findModules() {
-		ModuleFinder finder = new ModuleFinder();
-		finder.findModules();
-		foundModules = finder.getFoundModules();
+//		ModuleFinder finder = new ModuleFinder();
+//		finder.findModules();
+//		foundModules = finder.getFoundModules();
+		Quark.ZETA.modules.getModules().forEach(module -> {
+			if(module instanceof QuarkModule qm) foundModules.put(qm.getClass(), qm);
+		});
 	}
 
 	private void resolveConfigSpec() {
@@ -75,8 +77,9 @@ public final class ModuleLoader {
 	}
 
 	public void register() {
-		dispatch(Step.REGISTER, QuarkModule::register);
-		dispatch(Step.POST_REGISTER, QuarkModule::postRegister);
+		//dispatch(Step.REGISTER, QuarkModule::register);
+		//dispatch(Step.POST_REGISTER, QuarkModule::postRegister);
+		stepsHandled.add(Step.POST_REGISTER);
 		CreativeTabHandler.finalizeTabs();
 		config.registerConfigBoundElements();
 	}
@@ -88,30 +91,33 @@ public final class ModuleLoader {
 		if (onConfigReloadJEI != null)
 			onConfigReloadJEI.run();
 		config.configChanged();
-		dispatch(Step.CONFIG_CHANGED, QuarkModule::configChanged);
+		//dispatch(Step.CONFIG_CHANGED, QuarkModule::configChanged);
 	}
 
+	@Deprecated
 	@OnlyIn(Dist.CLIENT)
 	public void configChangedClient() {
 		if(!stepsHandled.contains(Step.POST_REGISTER))
 			return; // We don't want to mess with changing config values before objects are registered
 
-		dispatch(Step.CONFIG_CHANGED_CLIENT, QuarkModule::configChangedClient);
+		//dispatch(Step.CONFIG_CHANGED_CLIENT, QuarkModule::configChangedClient);
 	}
 
 	public void setup(ParallelDispatchEvent event) {
 		Quark.proxy.handleQuarkConfigChange();
-		dispatch(Step.SETUP, m -> m.setup(event::enqueueWork));
+		//dispatch(Step.SETUP, m -> m.setup(event::enqueueWork));
 	}
 
+	@Deprecated
 	@OnlyIn(Dist.CLIENT)
 	public void clientSetup(ParallelDispatchEvent event) {
-		dispatch(Step.SETUP_CLIENT, m -> m.clientSetup(event::enqueueWork));
+		//dispatch(Step.SETUP_CLIENT, m -> m.clientSetup(event::enqueueWork));
 	}
 
+	@Deprecated
 	@OnlyIn(Dist.CLIENT)
 	public void registerReloadListeners(RegisterClientReloadListenersEvent event) {
-		dispatch(Step.SETUP_CLIENT, m -> m.registerReloadListeners(event::registerReloadListener));
+		//dispatch(Step.SETUP_CLIENT, m -> m.registerReloadListeners(event::registerReloadListener));
 	}
 
 	@OnlyIn(Dist.CLIENT)

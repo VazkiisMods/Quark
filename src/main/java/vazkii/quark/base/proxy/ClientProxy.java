@@ -31,6 +31,11 @@ import vazkii.quark.base.module.config.IConfigCallback;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.structural.C2SUpdateFlag;
 import vazkii.quark.mixin.client.accessor.AccessorMultiPlayerGameMode;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.client.ZClientModulesReady;
+import vazkii.zeta.event.client.ZConfigChangedClient;
+import vazkii.zeta.event.client.ZRegisterReloadListeners;
+import vazkii.zetaimplforge.event.ForgeZClientSetup;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,6 +58,7 @@ public class ClientProxy extends CommonProxy {
 		super.start();
 
 		ModuleLoader.INSTANCE.clientStart();
+		Quark.ZETA.loadBus.fire(new ZClientModulesReady());
 
 		ModLoadingContext.get().registerExtensionPoint(ConfigScreenFactory.class, () -> new ConfigScreenFactory((minecraft, screen) -> new QuarkConfigHomeScreen(screen)));
 
@@ -84,10 +90,12 @@ public class ClientProxy extends CommonProxy {
 		DyeHandler.clientSetup(event);
 
 		ModuleLoader.INSTANCE.clientSetup(event);
+		Quark.ZETA.loadBus.fire(new ForgeZClientSetup(event));
 	}
 
 	public void registerReloadListeners(RegisterClientReloadListenersEvent event) {
 		ModuleLoader.INSTANCE.registerReloadListeners(event);
+		Quark.ZETA.loadBus.fire(new ZRegisterReloadListeners(event::registerReloadListener));
 	}
 
 	public void modelBake(BakingCompleted event) {
@@ -132,6 +140,8 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void handleQuarkConfigChange() {
 		super.handleQuarkConfigChange();
+
+		Quark.ZETA.loadBus.fire(new ZConfigChangedClient());
 
 		ModuleLoader.INSTANCE.configChangedClient();
 		if (Minecraft.getInstance().getConnection() != null)

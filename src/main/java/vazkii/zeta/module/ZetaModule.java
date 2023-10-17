@@ -49,8 +49,7 @@ public class ZetaModule {
 		firstLoad = false;
 	}
 
-	//TODO: make final (QuarkModule needs it for its existing event bus)
-	public void setEnabledAndManageSubscriptions(Zeta z, boolean nowEnabled) {
+	public final void setEnabledAndManageSubscriptions(Zeta z, boolean nowEnabled) {
 		if(firstLoad || (this.enabled != nowEnabled)) {
 			legacySub(nowEnabled);
 			if(nowEnabled)
@@ -62,7 +61,7 @@ public class ZetaModule {
 		this.enabled = nowEnabled;
 	}
 
-	protected void legacySub(boolean subscribing) {
-
-	}
+	//Used in QuarkModule to add/remove from the Forge event bus
+	@Deprecated
+	protected void legacySub(boolean subscribing) { }
 }

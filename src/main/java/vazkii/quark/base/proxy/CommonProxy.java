@@ -28,8 +28,12 @@ import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.recipe.*;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.base.world.WorldGenHandler;
+import vazkii.quark.content_zeta.LegacyQuarkModuleFinder;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.module.ZetaCategory;
 import vazkii.zeta.module.ZetaModuleManager;
+import vazkii.zetaimplforge.event.ForgeZCommonSetup;
 import vazkii.zetaimplforge.module.ModFileScanDataModuleFinder;
 
 import java.time.LocalDateTime;
@@ -67,7 +71,8 @@ public class CommonProxy {
 
 			new ZetaCategory("testing", Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS.asItem())
 		));
-		Quark.ZETA.modules.load(new ModFileScanDataModuleFinder(Quark.MOD_ID));
+		Quark.ZETA.modules.load(new ModFileScanDataModuleFinder(Quark.MOD_ID)
+			.and(new LegacyQuarkModuleFinder())); //TODO: no
 
 		ModuleLoader.INSTANCE.start();
 
@@ -128,6 +133,7 @@ public class CommonProxy {
 
 	public void handleQuarkConfigChange() {
 		ModuleLoader.INSTANCE.configChanged();
+		Quark.ZETA.loadBus.fire(new ZConfigChanged());
 		EntitySpawnHandler.refresh();
 		SyncedFlagHandler.sendFlagInfoToPlayers();
 	}
@@ -161,6 +167,8 @@ public class CommonProxy {
 				return;
 			registerDone = true;
 
+			Quark.ZETA.loadBus.fire(new ZRegister());
+			Quark.ZETA.loadBus.fire(new ZRegister.Post());
 			ModuleLoader.INSTANCE.register();
 			WoodSetHandler.register();
 			WorldGenHandler.register();

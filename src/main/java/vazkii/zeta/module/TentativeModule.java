@@ -6,6 +6,7 @@ import java.util.function.Function;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+//TODO: this sucks lol
 public abstract class TentativeModule {
 	public abstract ZetaModule construct();
 	protected abstract String fullClassName();
@@ -34,9 +35,8 @@ public abstract class TentativeModule {
 		String simpleName = fullClassName();
 		simpleName = simpleName.substring(simpleName.lastIndexOf('.') + 1);
 
-		//TODO: rawName
 		if(rawName().isEmpty())
-			displayName = WordUtils.capitalizeFully(simpleName.replace("Module$", "").replaceAll("(?<=.)([A-Z])", " $1"));
+			displayName = WordUtils.capitalizeFully(simpleName.replaceAll("Module$", "").replaceAll("(?<=.)([A-Z])", " $1"));
 		else
 			displayName = rawName();
 

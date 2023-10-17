@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.jetbrains.annotations.Nullable;
+import vazkii.quark.base.module.QuarkModule;
 import vazkii.zeta.Zeta;
+import vazkii.zeta.event.ZModulesReady;
 
 /**
  * TODO: other forms of module discovery and replacement (like a Forge-only module, or other types of 'replacement' modules)
@@ -93,6 +95,8 @@ public class ZetaModuleManager {
 
 		for(TentativeModule t : toLoad)
 			modulesById.put(t.lowercaseName, construct(t));
+
+		z.loadBus.fire(new ZModulesReady());
 	}
 
 	private ZetaModule construct(TentativeModule t) {
@@ -119,6 +123,7 @@ public class ZetaModuleManager {
 
 		//category upkeep
 		modulesInCategory.computeIfAbsent(module.zetaCategory, __ -> new ArrayList<>()).add(module);
+		if(module instanceof QuarkModule qm) module.category.addModule(qm); //TODO LEGACY config
 
 		//post-construction callback
 		module.postConstruct();
