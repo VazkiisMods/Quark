@@ -2,7 +2,6 @@ package vazkii.zeta.module;
 
 import java.util.Objects;
 import java.util.ServiceLoader;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import vazkii.zeta.Zeta;
@@ -32,30 +31,53 @@ public class ServiceLoaderModuleFinder implements ModuleFinder {
 			.filter(Objects::nonNull);
 	}
 
-	record ServiceLoaderBackedTentativeModule(ServiceLoader.Provider<ZetaModule> provider, ZetaLoadModule annotation) implements TentativeModule {
+	public static class ServiceLoaderBackedTentativeModule extends TentativeModule {
+		private final ServiceLoader.Provider<ZetaModule> provider;
+		private final ZetaLoadModule annotation;
+
+		public ServiceLoaderBackedTentativeModule(ServiceLoader.Provider<ZetaModule> provider, ZetaLoadModule annotation) {
+			this.provider = provider;
+			this.annotation = annotation;
+		}
+
 		@Override
 		public ZetaModule construct() {
 			return provider.get();
 		}
 
 		@Override
-		public String id() {
-			return annotation.id();
+		protected String fullClassName() {
+			return provider.type().getName();
 		}
 
 		@Override
-		public String clientExtensionOf() {
-			return annotation.clientExtensionOf();
+		public String rawCategory() {
+			return annotation.category();
 		}
 
 		@Override
-		public boolean enabledByDefault() {
+		public String rawName() {
+			return annotation.name();
+		}
+
+		@Override
+		public String rawDescription() {
+			return annotation.description();
+		}
+
+		@Override
+		public String[] rawAntiOverlap() {
+			return annotation.antiOverlap();
+		}
+
+		@Override
+		public boolean rawEnabledByDefault() {
 			return annotation.enabledByDefault();
 		}
 
 		@Override
-		public Set<String> antiOverlap() {
-			return Set.of(annotation.antiOverlap());
+		public String rawClientExtensionOf() {
+			return annotation.clientExtensionOf();
 		}
 	}
 }

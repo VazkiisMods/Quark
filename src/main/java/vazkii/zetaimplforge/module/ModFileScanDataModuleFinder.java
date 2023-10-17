@@ -1,8 +1,6 @@
 package vazkii.zetaimplforge.module;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import net.minecraftforge.fml.ModList;
@@ -33,7 +31,13 @@ public class ModFileScanDataModuleFinder implements ModuleFinder {
 			.map(AnnotationDataBackedTentativeModule::new);
 	}
 
-	record AnnotationDataBackedTentativeModule(ModFileScanData.AnnotationData ad) implements TentativeModule {
+	public static class AnnotationDataBackedTentativeModule extends TentativeModule {
+		private final ModFileScanData.AnnotationData ad;
+
+		public AnnotationDataBackedTentativeModule(ModFileScanData.AnnotationData ad) {
+			this.ad = ad;
+		}
+
 		@Override
 		public ZetaModule construct() {
 			try {
@@ -45,28 +49,45 @@ public class ModFileScanDataModuleFinder implements ModuleFinder {
 		}
 
 		@Override
-		public String id() {
-			if(ad.annotationData().containsKey("id")) return (String) ad.annotationData().get("id");
+		protected String fullClassName() {
+			return ad.clazz().getClassName();
+		}
+
+		@Override
+		protected String rawCategory() {
+			if(ad.annotationData().containsKey("category")) return (String) ad.annotationData().get("category");
 			else return "";
 		}
 
 		@Override
-		public String clientExtensionOf() {
-			if(ad.annotationData().containsKey("clientExtensionOf")) return (String) ad.annotationData().get("clientExtensionOf");
+		protected String rawName() {
+			if(ad.annotationData().containsKey("name")) return (String) ad.annotationData().get("name");
 			else return "";
 		}
 
 		@Override
-		public boolean enabledByDefault() {
-			if(ad.annotationData().containsKey("enabledByDefault")) return (Boolean) ad.annotationData().get("enabledByDefault");
-			else return true;
+		protected String rawDescription() {
+			if(ad.annotationData().containsKey("description")) return (String) ad.annotationData().get("description");
+			else return "";
 		}
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public Set<String> antiOverlap() {
-			if(ad.annotationData().containsKey("antiOverlap")) return new HashSet<>((List<String>) ad.annotationData().get("antiOverlap"));
-			else return Set.of();
+		protected String[] rawAntiOverlap() {
+			if(ad.annotationData().containsKey("antiOverlap")) return ((List<String>) ad.annotationData().get("antiOverlap")).toArray(String[]::new);
+			else return new String[0];
+		}
+
+		@Override
+		protected boolean rawEnabledByDefault() {
+			if(ad.annotationData().containsKey("enabledByDefault")) return (Boolean) ad.annotationData().get("enabledByDefault");
+			else return true;
+		}
+
+		@Override
+		protected String rawClientExtensionOf() {
+			if(ad.annotationData().containsKey("clientExtensionOf")) return (String) ad.annotationData().get("clientExtensionOf");
+			else return "";
 		}
 	}
 }

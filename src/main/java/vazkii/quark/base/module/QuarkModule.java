@@ -8,36 +8,21 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLEnvironment;
-import vazkii.quark.api.event.ModuleLoadedEvent;
-import vazkii.quark.api.event.ModuleStateChangedEvent;
-import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.config.ConfigFlagManager;
 import vazkii.quark.base.module.hint.HintObject;
+import vazkii.zeta.module.ZetaModule;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class QuarkModule {
+public class QuarkModule extends ZetaModule {
 
-	public ModuleCategory category = null;
-	public String displayName = "";
-	public String lowercaseName = "";
-	public String description = "";
-	public List<String> antiOverlap = null;
 	public boolean hasSubscriptions = false;
 	public List<Dist> subscriptionTarget = Lists.newArrayList(Dist.CLIENT, Dist.DEDICATED_SERVER);
-	public boolean enabledByDefault = true;
-	public boolean missingDep = false;
-	public List<HintObject> hints = Lists.newArrayList();
 
-	private boolean firstLoad = true;
-	public boolean enabled = false;
-	public boolean disabledByOverlap = false;
-	public boolean configEnabled = false;
-	public boolean ignoreAntiOverlap = false;
+	public List<HintObject> hints = new ArrayList<>(); //TODO move to ZetaModule
 
 	public QuarkModule() {
 		// yep
@@ -174,49 +159,11 @@ public class QuarkModule {
 		// NO-OP
 	}
 
-	public final void setEnabled(boolean enabled) {
-		configEnabled = enabled;
-		if(firstLoad) {
-			Quark.LOG.info("Loading Module " + displayName);
-			MinecraftForge.EVENT_BUS.post(new ModuleLoadedEvent(lowercaseName));
-		}
-
-		disabledByOverlap = false;
-		if(missingDep)
-			enabled = false;
-		else if(!ignoreAntiOverlap && antiOverlap != null) {
-			ModList list = ModList.get();
-			for(String s : antiOverlap)
-				if(list.isLoaded(s)) {
-					disabledByOverlap = true;
-					enabled = false;
-					break;
-				}
-		}
-
-		setEnabledAndManageSubscriptions(firstLoad, enabled);
-		firstLoad = false;
+	@Override
+	protected void legacySub(boolean subscribing) {
+		if(subscribing)
+			MinecraftForge.EVENT_BUS.register(this);
+		else
+			MinecraftForge.EVENT_BUS.unregister(this);
 	}
-
-	private void setEnabledAndManageSubscriptions(boolean firstLoad, boolean enabled) {
-		if(MinecraftForge.EVENT_BUS.post(new ModuleStateChangedEvent(lowercaseName, enabled)))
-			enabled = false;
-
-		boolean wasEnabled = this.enabled;
-		this.enabled = enabled;
-
-		boolean changed = wasEnabled != enabled;
-
-		if(changed) {
-			if(hasSubscriptions && subscriptionTarget.contains(FMLEnvironment.dist)) {
-				if(enabled)
-					MinecraftForge.EVENT_BUS.register(this);
-				else if(!firstLoad)
-					MinecraftForge.EVENT_BUS.unregister(this);
-			}
-
-			enabledStatusChanged(firstLoad, wasEnabled, enabled);
-		}
-	}
-
 }

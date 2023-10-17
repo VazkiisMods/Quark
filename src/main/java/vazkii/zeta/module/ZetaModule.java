@@ -1,22 +1,58 @@
 package vazkii.zeta.module;
 
+import java.util.List;
+
+import vazkii.quark.base.module.ModuleCategory;
 import vazkii.zeta.Zeta;
 
 /**
  * @see vazkii.quark.base.module.QuarkModule
  */
 public class ZetaModule {
-	public String id = "";
+	//Need to move categories to a more flexible system than a hardcoded enum
+	public ZetaCategory zetaCategory = null;
+	@Deprecated public ModuleCategory category;
 
-	private boolean firstLoad = true;
-	public boolean enabled = true;
+	public String displayName = "";
+	public String lowercaseName = "";
+	public String description = "";
+
+	public List<String> antiOverlap = List.of();
+
+	public boolean enabledByDefault = true;
+	public boolean missingDep = false;
+
+	//TODO: Can I delete some of these flags?
+	protected boolean firstLoad = true;
+	public boolean enabled = false;
+	public boolean disabledByOverlap = false;
+	public boolean configEnabled = false;
+	public boolean ignoreAntiOverlap = false;
 
 	public void postConstruct() {
 		// NO-OP
 	}
 
-	public final void setEnabledAndManageSubscriptions(Zeta z, boolean nowEnabled) {
+	//TODO: tidy
+	public final void setEnabled(Zeta z, boolean willEnable) {
+		configEnabled = willEnable;
+
+		disabledByOverlap = false;
+		if(missingDep)
+			willEnable = false;
+		else if(!ignoreAntiOverlap && antiOverlap != null && antiOverlap.stream().anyMatch(z::isModLoaded)) {
+			disabledByOverlap = true;
+			willEnable = false;
+		}
+
+		setEnabledAndManageSubscriptions(z, willEnable);
+		firstLoad = false;
+	}
+
+	//TODO: make final (QuarkModule needs it for its existing event bus)
+	public void setEnabledAndManageSubscriptions(Zeta z, boolean nowEnabled) {
 		if(firstLoad || (this.enabled != nowEnabled)) {
+			legacySub(nowEnabled);
 			if(nowEnabled)
 				z.playBus.subscribe(this.getClass()).subscribe(this);
 			else
@@ -24,6 +60,9 @@ public class ZetaModule {
 		}
 
 		this.enabled = nowEnabled;
-		firstLoad = false;
+	}
+
+	protected void legacySub(boolean subscribing) {
+
 	}
 }

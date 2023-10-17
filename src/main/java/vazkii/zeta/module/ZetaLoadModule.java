@@ -11,9 +11,16 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface ZetaLoadModule {
-	String id(); //TODO: make it optional and default to simpleName? or something
-	String clientExtensionOf() default "";
+	String category() default "";
+
+	String name() default "";
+	String description() default "";
+	String[] antiOverlap() default {};
+
+	//omitted: hasSubscriptions/subscribeOn
 
 	boolean enabledByDefault() default true;
-	String[] antiOverlap() default {};
+
+	//zeta extensions to LoadModule
+	String clientExtensionOf() default "";
 }

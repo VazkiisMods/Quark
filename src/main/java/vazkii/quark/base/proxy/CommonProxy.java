@@ -3,7 +3,9 @@ package vazkii.quark.base.proxy;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -26,10 +28,13 @@ import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.recipe.*;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.base.world.WorldGenHandler;
+import vazkii.zeta.module.ZetaCategory;
+import vazkii.zeta.module.ZetaModuleManager;
 import vazkii.zetaimplforge.module.ModFileScanDataModuleFinder;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.List;
 
 public class CommonProxy {
 
@@ -45,6 +50,24 @@ public class CommonProxy {
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":maintaining_smoking", DataMaintainingSmokingRecipe.SERIALIZER);
 
 		QuarkSounds.start();
+
+		//TODO: maybe find a better place for Zeta module init
+		ZetaModuleManager modules = Quark.ZETA.modules;
+		modules.initCategories(List.of(
+			new ZetaCategory("automation", Items.REDSTONE),
+			new ZetaCategory("building", Items.BRICKS),
+			new ZetaCategory("management", Items.CHEST),
+			new ZetaCategory("tools", Items.IRON_PICKAXE),
+			new ZetaCategory("tweaks", Items.NAUTILUS_SHELL),
+			new ZetaCategory("world", Items.GRASS_BLOCK),
+			new ZetaCategory("mobs", Items.PIG_SPAWN_EGG),
+			new ZetaCategory("client", Items.ENDER_EYE),
+			new ZetaCategory("experimental", Items.TNT),
+			new ZetaCategory("oddities", Items.CHORUS_FRUIT, Quark.ODDITIES_ID),
+
+			new ZetaCategory("testing", Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS.asItem())
+		));
+		Quark.ZETA.modules.load(new ModFileScanDataModuleFinder(Quark.MOD_ID));
 
 		ModuleLoader.INSTANCE.start();
 

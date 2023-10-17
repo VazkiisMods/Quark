@@ -159,7 +159,7 @@ public class ConfigResolver {
             ForgeConfigSpec.ConfigValue<Boolean> value = builder.defineBool(module.displayName, () -> module.configEnabled, module.enabledByDefault);
 
             setEnabledRunnables.put(module, () -> {
-                module.setEnabled(value.get() && category.enabled);
+                module.setEnabled(Quark.ZETA, value.get() && category.enabled);
                 flagManager.putEnabledFlag(module);
             });
         }

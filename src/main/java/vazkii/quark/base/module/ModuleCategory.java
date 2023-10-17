@@ -5,8 +5,10 @@ import java.util.List;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.Nullable;
 import vazkii.quark.base.Quark;
 
+@Deprecated
 public enum ModuleCategory {
 
 	// Categories
@@ -51,5 +53,13 @@ public enum ModuleCategory {
 	public boolean isAddon() {
 		return requiredMod != null;
 	}
-	
+
+	//ZETA
+	public static @Nullable ModuleCategory getCategory(String id) {
+		for(ModuleCategory cat : ModuleCategory.values()) {
+			if(cat.name.equals(id)) return cat;
+		}
+
+		return null;
+	}
 }

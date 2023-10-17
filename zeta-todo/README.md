@@ -65,6 +65,10 @@ its literally autoreglib
 - [ ] Some notion of "client module extensions"
 - [ ] Kill as much `static` as possible
 
+Probably a good idea to split `TentativeModule` into two parts
+* one that handles "reading data out of the annotation" (actual annotation or Forge asm weirdness)
+* one that handles logic like "if the module is uncategorized, guess the category from the package name" / "if the module has no name, pick one from the class name"
+
 ## Module discovery
 
 entrypoint: ModuleLoader.start
