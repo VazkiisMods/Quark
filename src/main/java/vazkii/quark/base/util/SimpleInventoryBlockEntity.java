@@ -8,7 +8,7 @@
  *
  * File Created @ [10/01/2016, 15:13:46 (GMT)]
  */
-package vazkii.arl.block.be;
+package vazkii.quark.base.util;
 
 import javax.annotation.Nonnull;
 
@@ -28,6 +28,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import vazkii.zeta.block.be.ZetaBlockEntity;
 
+//formerly from AutoRegLib
 public abstract class SimpleInventoryBlockEntity extends ZetaBlockEntity implements WorldlyContainer {
 
 	public SimpleInventoryBlockEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos pos, BlockState state) {

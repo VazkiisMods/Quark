@@ -11,9 +11,9 @@ import com.google.common.collect.Multimap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
-import vazkii.arl.util.ClientTicker;
 import vazkii.quark.api.config.IExternalCategory;
 import vazkii.quark.api.config.IQuarkConfig;
+import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.client.config.ConfigCategory;
 
 public final class ExternalConfigHandler implements IQuarkConfig {
@@ -33,8 +33,8 @@ public final class ExternalConfigHandler implements IQuarkConfig {
 	@SubscribeEvent
 	public void configChanged(ModConfigEvent event) {
 		String modid = event.getConfig().getModId();
-		if(externalCategories.containsKey(modid) && ClientTicker.ticksInGame - lastConfigChange > 10) { 
-			lastConfigChange = ClientTicker.ticksInGame;
+		if(externalCategories.containsKey(modid) && QuarkClient.ZETA_CLIENT.ticker.ticksInGame - lastConfigChange > 10) {
+			lastConfigChange = QuarkClient.ZETA_CLIENT.ticker.ticksInGame;
 			for(IExternalCategory category : externalCategories.get(modid))
 				category.refresh();
 		}

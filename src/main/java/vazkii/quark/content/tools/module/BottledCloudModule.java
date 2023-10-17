@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -41,8 +41,8 @@ public class BottledCloudModule extends QuarkModule {
 		bottled_cloud = new BottledCloudItem(this);
 		
 		blockEntityType = BlockEntityType.Builder.of(CloudBlockEntity::new, cloud).build(null);
-		RegistryHelper.register(blockEntityType, "cloud", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
-	} 
+		Quark.ZETA.registry.register(blockEntityType, "cloud", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+	}
 	
 	@Override
 	public void clientSetup() {

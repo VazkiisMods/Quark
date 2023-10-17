@@ -1,7 +1,6 @@
 package vazkii.quark.content.world.module;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -36,7 +35,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.base.handler.UndergroundBiomeHandler;
@@ -108,7 +106,8 @@ public class GlimmeringWealdModule extends QuarkModule {
 
 	@LoadEvent
 	public void postRegister(ZRegister.Post e) {
-		RegistryHelper.register(makeBiome(), Registry.BIOME_REGISTRY);
+		Biome obj = makeBiome();
+		Quark.ZETA.registry.register(obj, Registry.BIOME_REGISTRY);
 		float wmin = (float) minDepthRange;
 		float wmax = (float) maxDepthRange;
 		if(wmin >= wmax){
@@ -144,7 +143,7 @@ public class GlimmeringWealdModule extends QuarkModule {
 	private static Holder<PlacedFeature> place(String featureName, Feature<NoneFeatureConfiguration> feature, List<PlacementModifier> placer) {
 		String name = Quark.MOD_ID + ":" + featureName;
 
-		RegistryHelper.register(feature, name, Registry.FEATURE_REGISTRY);
+		Quark.ZETA.registry.register(feature, name, Registry.FEATURE_REGISTRY);
 		Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> configured = FeatureUtils.register(name, feature, NoneFeatureConfiguration.NONE);
 		return PlacementUtils.register(name, configured, placer);
 	}
@@ -173,7 +172,7 @@ public class GlimmeringWealdModule extends QuarkModule {
 
 		Music music = Musics.createGameMusic(QuarkSounds.MUSIC_GLIMMERING_WEALD);
 		Biome biome = OverworldBiomes.biome(Biome.Precipitation.RAIN, 0.8F, 0.4F, mobs, settings, music);
-		RegistryHelper.setInternalName(biome, BIOME_NAME);
+		Quark.ZETA.registry.setInternalName(biome, BIOME_NAME);
 
 		return biome;
 	}

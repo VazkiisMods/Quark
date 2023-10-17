@@ -12,14 +12,14 @@ import vazkii.zeta.module.ZetaModule;
 @ZetaLoadModule(name = "quark_test")
 public class QuarkTestZetaModule extends ZetaModule {
 	public QuarkTestZetaModule() {
-		for(int i = 0; i < 10; i++)	Quark.LOG.info("QuarkZetaTestModule get constructed NERD!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		Quark.LOG.info("QuarkZetaTestModule get constructed NERD!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 	}
 
 	@LoadEvent
 	public void commonSetup(ZCommonSetup event) {
 		Quark.LOG.info("qwer {}", event);
 		event.enqueueWork(() -> {
-			for(int i = 0; i < 10; i++)	Quark.LOG.info("COMMON SETUP");
+			Quark.LOG.info("COMMON SETUP");
 			Quark.LOG.info("uiop {}", event);
 		});
 	}
@@ -28,7 +28,7 @@ public class QuarkTestZetaModule extends ZetaModule {
 	public void loadComplete(ZLoadComplete event) {
 		Quark.LOG.info("asdf {}", event);
 		event.enqueueWork(() -> {
-			for(int i = 0; i < 10; i++)	Quark.LOG.info("LOAD COMPLETE... enabled {}", enabled);
+			Quark.LOG.info("LOAD COMPLETE... enabled {}", enabled);
 			Quark.LOG.info("jkl; {}", event);
 		});
 	}

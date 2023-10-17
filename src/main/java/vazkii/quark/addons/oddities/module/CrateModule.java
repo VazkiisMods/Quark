@@ -8,11 +8,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeMenuType;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.CrateBlock;
 import vazkii.quark.addons.oddities.block.be.CrateBlockEntity;
 import vazkii.quark.addons.oddities.client.screen.CrateScreen;
 import vazkii.quark.addons.oddities.inventory.CrateMenu;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -36,10 +36,10 @@ public class CrateModule extends QuarkModule {
         crate = new CrateBlock(this);
 
         menuType = IForgeMenuType.create(CrateMenu::fromNetwork);
-        RegistryHelper.register(menuType, "crate", Registry.MENU_REGISTRY);
+	    Quark.ZETA.registry.register(menuType, "crate", Registry.MENU_REGISTRY);
 
-        blockEntityType = BlockEntityType.Builder.of(CrateBlockEntity::new, crate).build(null);
-        RegistryHelper.register(blockEntityType, "crate", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+	    blockEntityType = BlockEntityType.Builder.of(CrateBlockEntity::new, crate).build(null);
+	    Quark.ZETA.registry.register(blockEntityType, "crate", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
     }
 
     @Override

@@ -1,14 +1,11 @@
 package vazkii.quark.addons.oddities.module;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 
 import com.google.common.collect.Lists;
 
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.Registry;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,7 +13,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.MagnetBlock;
 import vazkii.quark.addons.oddities.block.MovingMagnetizedBlock;
 import vazkii.quark.addons.oddities.block.be.MagnetBlockEntity;
@@ -24,6 +20,7 @@ import vazkii.quark.addons.oddities.block.be.MagnetizedBlockBlockEntity;
 import vazkii.quark.addons.oddities.client.render.be.MagnetizedBlockRenderer;
 import vazkii.quark.addons.oddities.magnetsystem.MagnetSystem;
 import vazkii.quark.api.event.RecipeCrawlEvent;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -55,10 +52,10 @@ public class MagnetsModule extends QuarkModule {
 		magnetized_block = new MovingMagnetizedBlock(this);
 
 		magnetType = BlockEntityType.Builder.of(MagnetBlockEntity::new, magnet).build(null);
-		RegistryHelper.register(magnetType, "magnet", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(magnetType, "magnet", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 
 		magnetizedBlockType = BlockEntityType.Builder.of(MagnetizedBlockBlockEntity::new, magnetized_block).build(null);
-		RegistryHelper.register(magnetizedBlockType, "magnetized_block", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(magnetizedBlockType, "magnetized_block", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 	}
 
 	@Override

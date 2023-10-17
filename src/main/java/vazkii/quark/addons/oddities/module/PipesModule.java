@@ -10,8 +10,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ModelEvent.RegisterAdditional;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.be.PipeBlockEntity;
 import vazkii.quark.addons.oddities.block.pipe.EncasedPipeBlock;
 import vazkii.quark.addons.oddities.block.pipe.PipeBlock;
@@ -59,7 +57,7 @@ public class PipesModule extends QuarkModule {
 		encasedPipe = new EncasedPipeBlock(this);
 		
 		blockEntityType = BlockEntityType.Builder.of(PipeBlockEntity::new, pipe, encasedPipe).build(null);
-		RegistryHelper.register(blockEntityType, "pipe", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(blockEntityType, "pipe", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 	}
 	
 	@Override

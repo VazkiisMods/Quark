@@ -7,6 +7,7 @@ import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEv
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -33,6 +34,8 @@ public class ForgeZetaClient extends ZetaClient {
 	public void wireEvents() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+		bus.addListener(this::registerBlockColors);
+		bus.addListener(this::registerItemColors);
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::registerReloadListeners);
 		bus.addListener(this::modelBake);
@@ -41,8 +44,18 @@ public class ForgeZetaClient extends ZetaClient {
 		bus.addListener(this::registerKeybinds);
 		bus.addListener(this::registerAdditionalModels);
 		bus.addListener(this::registerClientTooltipComponentFactories);
-		bus.addListener(this::registerItemColors);
-		bus.addListener(this::clientTick);
+
+		MinecraftForge.EVENT_BUS.addListener(this::renderTick);
+		MinecraftForge.EVENT_BUS.addListener(this::clientTick);
+	}
+
+	public void registerBlockColors(RegisterColorHandlersEvent.Block evt) {
+		z.registry.submitBlockColors(evt::register);
+	}
+
+	public void registerItemColors(RegisterColorHandlersEvent.Item event) {
+		loadBus.fire(new ForgeZAddItemColorHandlers(event));
+		z.registry.submitItemColors(event::register);
 	}
 
 	public void clientSetup(FMLClientSetupEvent event) {
@@ -77,15 +90,22 @@ public class ForgeZetaClient extends ZetaClient {
 		loadBus.fire(new ForgeZTooltipComponents(event));
 	}
 
-	public void registerItemColors(RegisterColorHandlersEvent.Item event) {
-		loadBus.fire(new ForgeZAddItemColorHandlers(event));
+	public void renderTick(TickEvent.RenderTickEvent e) {
+		if(e.phase == TickEvent.Phase.START)
+			ticker.startRenderTick(e.renderTickTime);
+		else
+			ticker.endRenderTick();
 	}
 
 	boolean clientTicked = false;
 	public void clientTick(TickEvent.ClientTickEvent event) {
-		if(!clientTicked && event.phase == TickEvent.Phase.END) {
-			loadBus.fire(new ZFirstClientTick());
-			clientTicked = true;
+		if(event.phase == TickEvent.Phase.END) {
+			ticker.endClientTick();
+
+			if(!clientTicked) {
+				loadBus.fire(new ZFirstClientTick());
+				clientTicked = true;
+			}
 		}
 	}
 }

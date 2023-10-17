@@ -3,7 +3,6 @@ package vazkii.quark.base.handler;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 
@@ -23,7 +22,7 @@ public class CreativeTabHandler {
         if (finalized) {
             //if has been finalized we assign them immediately. This usually shouldn't happen with blocks from quark but other dependencies might. If it does conditions might not be taken into account
             try {
-                RegistryHelper.setCreativeTab((Block) block, creativeTab);
+	            Quark.ZETA.registry.setCreativeTab((Block) block, creativeTab);
             } catch (Exception e) {
                 Quark.LOG.error("Failed to assign tab to {}", block);
             }
@@ -41,7 +40,7 @@ public class CreativeTabHandler {
     public static void finalizeTabs() {
         TAB_INFOS.forEach(i -> {
             if (!GeneralConfig.hideDisabledContent || i.enabled.getAsBoolean()) {
-                RegistryHelper.setCreativeTab((Block) i.block, i.tab);
+	            Quark.ZETA.registry.setCreativeTab((Block) i.block, i.tab);
             }
         });
         TAB_INFOS.clear();

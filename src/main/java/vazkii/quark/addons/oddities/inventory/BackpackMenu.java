@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import vazkii.arl.util.InventoryIIH;
+import vazkii.quark.base.util.InventoryIIH;
 import vazkii.quark.addons.oddities.inventory.slot.BackpackSlot;
 import vazkii.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import vazkii.quark.addons.oddities.module.BackpackModule;

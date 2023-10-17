@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
@@ -95,7 +94,7 @@ public class PickarangModule extends QuarkModule {
 				.updateInterval(10)
 				.setCustomClientFactory((t, l) -> entityFactory.create(type.getEntityType(), l))
 				.build(name);
-		RegistryHelper.register(entityType, name, Registry.ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(entityType, name, Registry.ENTITY_TYPE_REGISTRY);
 
 		knownTypes.add(type);
 		type.setEntityType(entityType, thrownFactory);

@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.Tags;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.handler.WoodSetHandler;
 import vazkii.quark.base.handler.WoodSetHandler.WoodSet;
@@ -30,7 +30,6 @@ import vazkii.zeta.event.bus.LoadEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 @LoadModule(category = ModuleCategory.WORLD)
 public class BlossomTreesModule extends QuarkModule {
@@ -85,7 +84,7 @@ public class BlossomTreesModule extends QuarkModule {
 		BlossomLeavesBlock leaves = new BlossomLeavesBlock(colorName, this, color);
 		BlossomTree tree = new BlossomTree(leaves);
 		BlossomSaplingBlock sapling = new BlossomSaplingBlock(colorName, this, tree);
-		VariantHandler.addFlowerPot(sapling, RegistryHelper.getInternalName(sapling).getPath(), Functions.identity());
+		VariantHandler.addFlowerPot(sapling, Quark.ZETA.registry.getInternalName(sapling).getPath(), Functions.identity());
 
 		trees.put(tree, config);
 	}

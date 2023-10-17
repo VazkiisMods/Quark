@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.VariantHandler;
@@ -34,7 +34,8 @@ public class QuarkSlabBlock extends SlabBlock implements IQuarkBlock, IZetaBlock
 		super(VariantHandler.realStateCopy(parent));
 
 		this.parent = parent;
-		RegistryHelper.registerBlock(this, IQuarkBlock.inheritQuark(parent, "%s_slab"));
+		String resloc = IQuarkBlock.inheritQuark(parent, "%s_slab");
+		Quark.ZETA.registry.registerBlock(this, resloc, true);
 
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_BUILDING_BLOCKS);
 

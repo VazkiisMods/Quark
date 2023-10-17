@@ -13,7 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.tools.module.AmbientDiscsModule;
 
@@ -32,7 +32,7 @@ public class QuarkMusicDiscItem extends RecordItem implements IQuarkItem {
 	public QuarkMusicDiscItem(int comparatorValue, Supplier<SoundEvent> sound, String name, QuarkModule module, int lengthInTicks) {
 		super(comparatorValue, sound, (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE), lengthInTicks);
 
-		RegistryHelper.registerItem(this, "music_disc_" + name);
+		Quark.ZETA.registry.registerItem(this, "music_disc_" + name);
 		this.module = module;
 		this.isAmbient = lengthInTicks == Integer.MAX_VALUE;
 		this.soundSupplier = sound;

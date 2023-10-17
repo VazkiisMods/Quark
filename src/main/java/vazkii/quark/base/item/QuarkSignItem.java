@@ -10,7 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.Block;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.module.QuarkModule;
 
@@ -22,7 +22,8 @@ public class QuarkSignItem extends SignItem implements IQuarkItem {
 	public QuarkSignItem(QuarkModule module, Block sign, Block wallSign) {
 		super(new Item.Properties().stacksTo(16).tab(CreativeModeTab.TAB_DECORATIONS), sign, wallSign);
 
-		RegistryHelper.registerItem(this, IQuarkBlock.inherit(sign, "%s"));
+		String resloc = IQuarkBlock.inherit(sign, "%s");
+		Quark.ZETA.registry.registerItem(this, resloc);
 		this.module = module;
 	}
 

@@ -8,9 +8,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.world.generator.multichunk.ClusterBasedGenerator;
 import vazkii.quark.content.world.config.AirStoneClusterConfig;
 import vazkii.quark.content.world.config.BigStoneClusterConfig;
@@ -22,7 +23,7 @@ public class BigStoneClusterGenerator extends ClusterBasedGenerator {
 	private final BlockState placeState;
 
 	public BigStoneClusterGenerator(BigStoneClusterConfig config, BlockState placeState, BooleanSupplier condition) {
-		super(config.dimensions, () -> config.enabled && condition.getAsBoolean(), config, Objects.toString(RegistryHelper.getRegistryName(placeState.getBlock(), Registry.BLOCK)).hashCode());
+		super(config.dimensions, () -> config.enabled && condition.getAsBoolean(), config, Objects.toString(Quark.ZETA.registry.getRegistryName(placeState.getBlock(), Registry.BLOCK)).hashCode());
 		this.config = config;
 		this.placeState = placeState;
 	}

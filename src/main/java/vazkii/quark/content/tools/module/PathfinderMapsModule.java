@@ -39,7 +39,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.arl.util.ClientTicker;
+import vazkii.quark.base.QuarkClient;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
@@ -58,7 +58,6 @@ import vazkii.quark.content.tools.loot.InBiomeCondition;
 import javax.annotation.Nonnull;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -175,7 +174,7 @@ public class PathfinderMapsModule extends QuarkModule {
 				int qy = y - 15;
 
 				float speed = 0.1F;
-				float total = ClientTicker.total * speed;
+				float total = QuarkClient.ZETA_CLIENT.ticker.total * speed;
 
 				float offX = (float) (Math.sin(total) + 1) * 20;
 				float offY = (float) (Math.sin(total * 8) - 1);

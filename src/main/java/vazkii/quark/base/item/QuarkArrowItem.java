@@ -12,7 +12,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 
 public abstract class QuarkArrowItem extends ArrowItem implements IQuarkItem {
@@ -23,7 +23,7 @@ public abstract class QuarkArrowItem extends ArrowItem implements IQuarkItem {
 	public QuarkArrowItem(String name, QuarkModule module) {
 		super(new Item.Properties().tab(CreativeModeTab.TAB_COMBAT));
 
-		RegistryHelper.registerItem(this, name);
+		Quark.ZETA.registry.registerItem(this, name);
 		this.module = module;
 	}
 

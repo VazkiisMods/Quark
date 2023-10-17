@@ -19,7 +19,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import vazkii.arl.util.ClientTicker;
+import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.client.config.screen.QuarkConfigHomeScreen;
 import vazkii.quark.base.client.handler.TopLayerTooltipHandler;
 import vazkii.quark.base.handler.ContributorRewardHandler;
@@ -111,7 +111,7 @@ public class QButton extends Button {
 
 	@Override
 	public int getFGColor() {
-		return gay ? Color.HSBtoRGB((ClientTicker.total / 200F), 1F, 1F) : 0x48DDBC;
+		return gay ? Color.HSBtoRGB((QuarkClient.ZETA_CLIENT.ticker.total / 200F), 1F, 1F) : 0x48DDBC;
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class QButton extends Button {
 		if(showBubble && GeneralConfig.enableOnboarding) {
 			Font font = Minecraft.getInstance().font;
 			int cy = y - 2;
-			if(ClientTicker.total % 20 > 10)
+			if(QuarkClient.ZETA_CLIENT.ticker.total % 20 > 10)
 				cy++;
 			
 			MiscUtil.drawChatBubble(mstack, x + 16, cy, font, I18n.get("quark.misc.configure_quark_here"), alpha, true);			

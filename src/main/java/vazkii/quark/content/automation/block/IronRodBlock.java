@@ -15,8 +15,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.api.ICollateralMover;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
@@ -41,7 +41,7 @@ public class IronRodBlock extends EndRodBlock implements ICollateralMover, IQuar
 				.sound(SoundType.METAL)
 				.noOcclusion());
 
-		RegistryHelper.registerBlock(this, "iron_rod");
+		Quark.ZETA.registry.registerBlock(this, "iron_rod", true);
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);
 
 		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT);

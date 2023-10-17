@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import vazkii.arl.block.be.SimpleInventoryBlockEntity;
+import vazkii.quark.base.util.SimpleInventoryBlockEntity;
 import vazkii.quark.addons.oddities.block.TinyPotatoBlock;
 import vazkii.quark.addons.oddities.module.TinyPotatoModule;
 import vazkii.quark.addons.oddities.util.TinyPotatoInfo;

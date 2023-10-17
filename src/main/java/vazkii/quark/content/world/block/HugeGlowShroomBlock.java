@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.HugeMushroomBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.MiscUtil;
@@ -40,7 +40,7 @@ public class HugeGlowShroomBlock extends HugeMushroomBlock implements IQuarkBloc
 		this.module = module;
 		this.glowing = glowing;
 
-		RegistryHelper.registerBlock(this, name);
+		Quark.ZETA.registry.registerBlock(this, name, true);
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);
 	}
 

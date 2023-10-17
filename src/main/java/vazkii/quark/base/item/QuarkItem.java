@@ -19,7 +19,7 @@ public class QuarkItem extends Item implements IQuarkItem {
 	public QuarkItem(String regname, QuarkModule module, Properties properties) {
 		super(properties);
 
-		Quark.REGISTRY.registerItem(this, regname);
+		Quark.ZETA.registry.registerItem(this, regname);
 		this.module = module;
 
 		if(module != null && module.category.isAddon())

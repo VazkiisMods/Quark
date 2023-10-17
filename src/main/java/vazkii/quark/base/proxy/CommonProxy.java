@@ -17,8 +17,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
-import vazkii.arl.util.ClientTicker;
 import vazkii.quark.base.Quark;
+import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.capability.CapabilityHandler;
 import vazkii.quark.base.handler.*;
 import vazkii.quark.base.module.ModuleLoader;
@@ -33,7 +33,6 @@ import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.module.ZetaCategory;
 import vazkii.zeta.module.ZetaModuleManager;
-import vazkii.zetaimplforge.event.ForgeZCommonSetup;
 import vazkii.zetaimplforge.module.ModFileScanDataModuleFinder;
 
 import java.time.LocalDateTime;
@@ -113,16 +112,16 @@ public class CommonProxy {
 
 	public void configChanged(ModConfigEvent event) {
 		if(event.getConfig().getModId().equals(Quark.MOD_ID)
-				&& ClientTicker.ticksInGame - lastConfigChange > 10
+				&& QuarkClient.ZETA_CLIENT.ticker.ticksInGame - lastConfigChange > 10
 				&& !configGuiSaving) {
-			lastConfigChange = ClientTicker.ticksInGame;
+			lastConfigChange = QuarkClient.ZETA_CLIENT.ticker.ticksInGame;
 			handleQuarkConfigChange();
 		}
 	}
 
 	public void setConfigGuiSaving(boolean saving) {
 		configGuiSaving = saving;
-		lastConfigChange = ClientTicker.ticksInGame;
+		lastConfigChange = QuarkClient.ZETA_CLIENT.ticker.ticksInGame;
 	}
 
 	public void registerCapabilities(RegisterCapabilitiesEvent event) {

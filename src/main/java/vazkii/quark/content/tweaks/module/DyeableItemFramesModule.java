@@ -25,10 +25,8 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.DyeHandler;
 import vazkii.quark.base.module.LoadModule;
@@ -57,7 +55,7 @@ public class DyeableItemFramesModule extends QuarkModule {
 				.setShouldReceiveVelocityUpdates(false)
 				.setCustomClientFactory((spawnEntity, world) -> new DyedItemFrame(entityType, world))
 				.build("dyed_item_frame");
-		RegistryHelper.register(entityType, "dyed_item_frame", Registry.ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(entityType, "dyed_item_frame", Registry.ENTITY_TYPE_REGISTRY);
 
 		DyeHandler.addDyeable(Items.ITEM_FRAME, this);
 		DyeHandler.addDyeable(Items.GLOW_ITEM_FRAME, this);

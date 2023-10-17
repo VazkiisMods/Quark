@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 
 public class QuarkWallSignBlock extends WallSignBlock implements IQuarkBlock {
@@ -18,7 +18,7 @@ public class QuarkWallSignBlock extends WallSignBlock implements IQuarkBlock {
 		super(properties, type);
 		this.module = module;
 
-		RegistryHelper.registerBlock(this, regname, false);
+		Quark.ZETA.registry.registerBlock(this, regname, false);
 	}
 
 	@Override

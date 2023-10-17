@@ -16,7 +16,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeMod;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.handler.ModelHandler;
 import vazkii.quark.base.item.IQuarkItem;
@@ -41,7 +40,7 @@ public class ForgottenHatItem extends ArmorItem implements IQuarkItem {
 				.tab(CreativeModeTab.TAB_TOOLS)
 				.rarity(Rarity.RARE));
 
-		RegistryHelper.registerItem(this, "forgotten_hat");
+		Quark.ZETA.registry.registerItem(this, "forgotten_hat");
 		this.module = module;
 	}
 

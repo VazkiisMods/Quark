@@ -11,12 +11,16 @@ public abstract class ZetaClient {
 		this.loadBus = z.loadBus;
 		this.playBus = z.playBus;
 
+		this.ticker = new ClientTicker2();
+
 		wireEvents();
 	}
 
 	protected final Zeta z;
-	public final ZetaEventBus<IZetaLoadEvent> loadBus;
-	public final ZetaEventBus<IZetaPlayEvent> playBus;
+	protected final ZetaEventBus<IZetaLoadEvent> loadBus;
+	protected final ZetaEventBus<IZetaPlayEvent> playBus;
+
+	public final ClientTicker2 ticker;
 
 	public abstract void wireEvents();
 }

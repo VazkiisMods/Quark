@@ -10,7 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.ConfigFlagManager;
@@ -60,7 +59,7 @@ public class HintManager {
 
 	public static void hintItem(BiConsumer<Item, Component> consumer, ItemLike itemLike, Object... extraContent) {
 		Item item = itemLike.asItem();
-		ResourceLocation res = RegistryHelper.getRegistryName(item, Registry.ITEM);
+		ResourceLocation res = Quark.ZETA.registry.getRegistryName(item, Registry.ITEM);
 		String ns = res.getNamespace();
 		String path = res.getPath();
 

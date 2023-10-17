@@ -26,7 +26,7 @@ import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.util.ClientTicker;
+import vazkii.quark.base.QuarkClient;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.module.ModuleLoader;
@@ -364,7 +364,7 @@ public class PathfindersQuillItem extends QuarkItem implements IZetaItemColorPro
     public static MutableComponent getSearchingComponent() {
         MutableComponent comp = Component.translatable("quark.misc.quill_searching");
 
-        int dots = ((ClientTicker.ticksInGame / 10) % 4);
+        int dots = ((QuarkClient.ZETA_CLIENT.ticker.ticksInGame / 10) % 4);
         for (int i = 0; i < dots; i++)
             comp.append(".");
 

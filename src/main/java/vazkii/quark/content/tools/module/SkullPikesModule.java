@@ -20,7 +20,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
@@ -51,7 +50,7 @@ public class SkullPikesModule extends QuarkModule {
 				.setShouldReceiveVelocityUpdates(false)
 				.setCustomClientFactory((spawnEntity, world) -> new SkullPike(skullPikeType, world))
 				.build("skull_pike");
-		RegistryHelper.register(skullPikeType, "skull_pike", Registry.ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(skullPikeType, "skull_pike", Registry.ENTITY_TYPE_REGISTRY);
 	}
 
 	@Override

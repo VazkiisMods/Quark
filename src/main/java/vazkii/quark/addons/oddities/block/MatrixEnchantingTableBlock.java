@@ -33,10 +33,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.module.MatrixEnchantingModule;
 import vazkii.quark.api.IEnchantmentInfluencer;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.module.ModuleLoader;
@@ -52,7 +52,7 @@ public class MatrixEnchantingTableBlock extends EnchantmentTableBlock implements
 
 		this.module = module;
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);
-		RegistryHelper.registerBlock(this, "matrix_enchanter");
+		Quark.ZETA.registry.registerBlock(this, "matrix_enchanter", true);
 	}
 
 	@Nonnull

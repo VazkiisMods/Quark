@@ -44,7 +44,6 @@ import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.zeta.util.ItemNBTHelper;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.MiscUtil;
@@ -88,7 +87,7 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 	@Override
 	public void register() {
 		heldShulkerBoxMenuType = IForgeMenuType.create(HeldShulkerBoxMenu::fromNetwork);
-		RegistryHelper.register(heldShulkerBoxMenuType, "held_shulker_box", Registry.MENU_REGISTRY);
+		Quark.ZETA.registry.register(heldShulkerBoxMenuType, "held_shulker_box", Registry.MENU_REGISTRY);
 	}
 
 	@Override

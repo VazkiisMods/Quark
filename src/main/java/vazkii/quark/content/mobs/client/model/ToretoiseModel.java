@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import vazkii.arl.util.ClientTicker;
+import vazkii.quark.base.QuarkClient;
 import vazkii.quark.content.mobs.entity.Toretoise;
 
 import javax.annotation.Nonnull;
@@ -232,7 +232,7 @@ public class ToretoiseModel extends EntityModel<Toretoise> {
 		matrix.pushPose();
 		int bufferTime = 10;
 		if(entity.angeryTicks > 0 && entity.angeryTicks < Toretoise.ANGERY_TIME - bufferTime) {
-			double angeryTime = (entity.angeryTicks - ClientTicker.partialTicks) / (Toretoise.ANGERY_TIME - bufferTime) * Math.PI;
+			double angeryTime = (entity.angeryTicks - QuarkClient.ZETA_CLIENT.ticker.partialTicks) / (Toretoise.ANGERY_TIME - bufferTime) * Math.PI;
 			angeryTime = Math.sin(angeryTime) * -20;
 
 			matrix.translate(0, 1., 1);
@@ -254,7 +254,7 @@ public class ToretoiseModel extends EntityModel<Toretoise> {
 		float rideMultiplier = 0;
 
 		if(entity.rideTime > 0)
-			rideMultiplier = Math.min(30, entity.rideTime - 1 + ClientTicker.partialTicks) / 30.0F;
+			rideMultiplier = Math.min(30, entity.rideTime - 1 + QuarkClient.ZETA_CLIENT.ticker.partialTicks) / 30.0F;
 
 		bodyTrans *= (1F - rideMultiplier);
 

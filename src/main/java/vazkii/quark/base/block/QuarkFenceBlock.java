@@ -9,7 +9,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.FenceBlock;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.module.QuarkModule;
 
@@ -22,7 +22,7 @@ public class QuarkFenceBlock extends FenceBlock implements IQuarkBlock {
 		super(properties);
 		this.module = module;
 
-		RegistryHelper.registerBlock(this, regname);
+		Quark.ZETA.registry.registerBlock(this, regname, true);
 		CreativeTabHandler.addTab(this, creativeTab);
 	}
 

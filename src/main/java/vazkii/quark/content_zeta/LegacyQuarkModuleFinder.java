@@ -25,7 +25,6 @@ import vazkii.zeta.module.ZetaModule;
 //Based on ModuleFinder (quark's, not mine)
 public class LegacyQuarkModuleFinder implements ModuleFinder {
 	private static final Type LOAD_MODULE_TYPE = Type.getType(LoadModule.class);
-	private static final Pattern MODULE_CLASS_PATTERN = Pattern.compile("vazkii\\.quark\\.(?:content|addons)\\.(\\w+)\\.module.\\w+Module");
 
 	@Override
 	public Stream<? extends TentativeModule> get() {

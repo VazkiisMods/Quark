@@ -24,11 +24,10 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.arl.util.ClientTicker;
+import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
@@ -92,7 +91,7 @@ public class NarratorReadoutModule extends QuarkModule {
 	private void acceptInput(boolean down, boolean full) {
 		Minecraft mc = Minecraft.getInstance();
 
-		float curr = ClientTicker.total;
+		float curr = QuarkClient.ZETA_CLIENT.ticker.total;
 		if(down && (curr - last) > 10) {
 			Narrator narrator = Narrator.getNarrator();
 			String readout = getReadout(mc, full);

@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.module.QuarkModule;
@@ -28,7 +28,7 @@ public class VariantFurnaceBlock extends FurnaceBlock implements IQuarkBlock {
 	public VariantFurnaceBlock(String type, QuarkModule module, Properties props) {
 		super(props);
 
-		RegistryHelper.registerBlock(this, type + "_furnace");
+		Quark.ZETA.registry.registerBlock(this, type + "_furnace", true);
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);
 
 		this.module = module;

@@ -1,7 +1,5 @@
 package vazkii.quark.content.world.module;
 
-import java.util.function.Consumer;
-
 import com.google.common.base.Functions;
 import com.google.common.collect.ImmutableSet;
 
@@ -14,7 +12,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.QuarkLeavesBlock;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.VariantHandler;
@@ -75,7 +73,7 @@ public class AncientWoodModule extends QuarkModule {
 		ancient_sapling = new AncientSaplingBlock(this);
 		ancient_fruit = new AncientFruitItem(this);
 
-		VariantHandler.addFlowerPot(ancient_sapling, RegistryHelper.getInternalName(ancient_sapling).getPath(), Functions.identity());
+		VariantHandler.addFlowerPot(ancient_sapling, Quark.ZETA.registry.getInternalName(ancient_sapling).getPath(), Functions.identity());
 
 		QuarkAdvancementHandler.addModifier(new BalancedDietModifier(this, ImmutableSet.of(ancient_fruit)));
 

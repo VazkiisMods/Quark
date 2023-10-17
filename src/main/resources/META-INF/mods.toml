@@ -10,13 +10,6 @@ version="${file.jarVersion}"
 authors="Vazkii, WireSegal, MCVinnyq, Sully"
 description='''Small things, improving Minecraft bit by bit.'''
 
-[[mods]]
-modId="autoreglib"
-displayName="AutoRegLib"
-version="${file.jarVersion}"
-authors="Vazkii"
-description='''Automatically item, block, and model registration for mods.'''
-
 [[dependencies.quark]]
     modId="forge"
     mandatory=true

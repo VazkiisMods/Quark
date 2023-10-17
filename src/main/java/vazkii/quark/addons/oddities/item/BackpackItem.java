@@ -32,7 +32,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import vazkii.zeta.util.ItemNBTHelper;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.inventory.BackpackMenu;
 import vazkii.quark.addons.oddities.module.BackpackModule;
 import vazkii.quark.base.Quark;
@@ -66,7 +65,7 @@ public class BackpackItem extends DyeableArmorItem implements IQuarkItem, MenuPr
 				.tab(CreativeModeTab.TAB_TOOLS)
 				.rarity(Rarity.RARE));
 
-		RegistryHelper.registerItem(this, "backpack");
+		Quark.ZETA.registry.registerItem(this, "backpack");
 		this.module = module;
 
 		if(module.category.isAddon())

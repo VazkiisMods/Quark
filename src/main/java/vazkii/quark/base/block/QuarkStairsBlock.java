@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.VariantHandler;
@@ -35,7 +35,8 @@ public class QuarkStairsBlock extends StairBlock implements IQuarkBlock, IZetaBl
 		super(parent.getBlock()::defaultBlockState, VariantHandler.realStateCopy(parent));
 
 		this.parent = parent;
-		RegistryHelper.registerBlock(this, IQuarkBlock.inheritQuark(parent, "%s_stairs"));
+		String resloc = IQuarkBlock.inheritQuark(parent, "%s_stairs");
+		Quark.ZETA.registry.registerBlock(this, resloc, true);
 
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_BUILDING_BLOCKS);
 

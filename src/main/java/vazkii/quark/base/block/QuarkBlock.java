@@ -24,7 +24,7 @@ public class QuarkBlock extends Block implements IQuarkBlock {
     public QuarkBlock(String regname, QuarkModule module, CreativeModeTab creativeTab, Properties properties) {
         super(properties);
 
-        Quark.REGISTRY.registerBlock(this, regname);
+        Quark.ZETA.registry.registerBlock(this, regname);
         this.module = module;
 
         CreativeTabHandler.addTab(this, creativeTab);

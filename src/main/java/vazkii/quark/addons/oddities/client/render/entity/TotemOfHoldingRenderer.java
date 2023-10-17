@@ -21,9 +21,9 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.arl.util.ClientTicker;
 import vazkii.quark.addons.oddities.entity.TotemOfHoldingEntity;
 import vazkii.quark.base.Quark;
+import vazkii.quark.base.QuarkClient;
 
 /**
  * @author WireSegal
@@ -42,7 +42,7 @@ public class TotemOfHoldingRenderer extends EntityRenderer<TotemOfHoldingEntity>
 	public void render(TotemOfHoldingEntity entity, float entityYaw, float partialTicks, @Nonnull PoseStack matrixStackIn, @Nonnull MultiBufferSource bufferIn, int packedLightIn) {
 		int deathTicks = entity.getDeathTicks();
 		boolean dying = entity.isDying();
-		float time = ClientTicker.ticksInGame + partialTicks;
+		float time = QuarkClient.ZETA_CLIENT.ticker.ticksInGame + partialTicks;
 		float scale = !dying ? 1F : Math.max(0, TotemOfHoldingEntity.DEATH_TIME - (deathTicks + partialTicks)) / TotemOfHoldingEntity.DEATH_TIME;
 		float rotation = time + (!dying ? 0 : (deathTicks + partialTicks) * 5);
 		double translation = !dying ? (Math.sin(time * 0.03) * 0.1) : ((deathTicks + partialTicks) / TotemOfHoldingEntity.DEATH_TIME * 5);

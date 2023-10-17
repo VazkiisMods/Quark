@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
@@ -33,7 +33,7 @@ public class QuarkVineBlock extends VineBlock implements IQuarkBlock {
 		super(Block.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.GRASS));
 		this.module = module;
 
-		RegistryHelper.registerBlock(this, name);
+		Quark.ZETA.registry.registerBlock(this, name, true);
 		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT);
 
 		if (creative) CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);

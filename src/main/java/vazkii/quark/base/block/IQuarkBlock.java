@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.extensions.IForgeBlock;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 
@@ -70,12 +69,12 @@ public interface IQuarkBlock extends IForgeBlock {
 	}
 	
 	static String inherit(Block parent, String format) {
-		ResourceLocation parentName = RegistryHelper.getRegistryName(parent, Registry.BLOCK);
+		ResourceLocation parentName = Quark.ZETA.registry.getRegistryName(parent, Registry.BLOCK);
 		return String.format(String.format("%s:%s", Quark.MOD_ID, format), parentName.getPath());
 	}
 	
 	static String inherit(Block parent, Function<String, String> fun) {
-		ResourceLocation parentName = RegistryHelper.getRegistryName(parent, Registry.BLOCK);
+		ResourceLocation parentName = Quark.ZETA.registry.getRegistryName(parent, Registry.BLOCK);
 		return String.format(String.format("%s:%s", Quark.MOD_ID, fun.apply(parentName.getPath())));
 	}
 }

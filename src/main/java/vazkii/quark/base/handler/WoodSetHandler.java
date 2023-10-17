@@ -23,7 +23,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.*;
 import vazkii.quark.base.client.render.QuarkBoatRenderer;
@@ -63,8 +62,8 @@ public class WoodSetHandler {
 				.setCustomClientFactory((spawnEntity, world) -> new QuarkChestBoat(quarkChestBoatEntityType, world))
 				.build("quark_chest_boat");
 
-		RegistryHelper.register(quarkBoatEntityType, "quark_boat", Registry.ENTITY_TYPE_REGISTRY);
-		RegistryHelper.register(quarkChestBoatEntityType, "quark_chest_boat", Registry.ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(quarkBoatEntityType, "quark_boat", Registry.ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(quarkChestBoatEntityType, "quark_chest_boat", Registry.ENTITY_TYPE_REGISTRY);
 	}
 
 	public static void setup(FMLCommonSetupEvent event) {

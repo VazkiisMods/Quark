@@ -5,7 +5,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.block.QuarkSlabBlock;
 import vazkii.quark.base.client.handler.RequiredModTooltipHandler;
@@ -23,9 +23,10 @@ public class QuarkVerticalSlabBlock extends VerticalSlabBlock implements IQuarkB
 
     public QuarkVerticalSlabBlock(Block parent, QuarkModule module) {
         super(() -> parent, Block.Properties.copy(parent));
-        RegistryHelper.registerBlock(this, IQuarkBlock.inherit(parent, s -> s.replace("_slab", "_vertical_slab")));
+	    String resloc = IQuarkBlock.inherit(parent, s -> s.replace("_slab", "_vertical_slab"));
+	    Quark.ZETA.registry.registerBlock(this, resloc, true);
 
-        this.module = module;
+	    this.module = module;
 
         CreativeTabHandler.addTab(this, CreativeModeTab.TAB_BUILDING_BLOCKS);
 

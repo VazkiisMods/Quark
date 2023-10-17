@@ -145,11 +145,13 @@ public abstract class ZetaRegistry {
 		defers.removeAll(resourceLocation);
 	}
 
+	//TODO: sided woes
 	public void submitBlockColors(BiConsumer<BlockColor, Block> consumer) {
 		blockColors.forEach((k, v) -> consumer.accept(v.getBlockColor(), k));
 		blockColors.clear();
 	}
 
+	//TODO: sided woes
 	public void submitItemColors(BiConsumer<ItemColor, Item> consumer) {
 		itemColors.forEach((k, v) -> consumer.accept(v.getItemColor(), k));
 		itemColors.clear();

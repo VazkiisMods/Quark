@@ -6,7 +6,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.GameData;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 
 import java.util.List;
 
@@ -96,14 +96,14 @@ public class QuarkSounds {
 
 	public static void start() {
 		for (SoundEvent event : REGISTRY_DEFERENCE)
-			RegistryHelper.register(event, Registry.SOUND_EVENT_REGISTRY);
+			Quark.ZETA.registry.register(event, Registry.SOUND_EVENT_REGISTRY);
 		REGISTRY_DEFERENCE.clear();
 	}
 
 	public static SoundEvent register(String name) {
 		ResourceLocation loc = GameData.checkPrefix(name, false);
 		SoundEvent event = new SoundEvent(loc);
-		RegistryHelper.setInternalName(event, loc);
+		Quark.ZETA.registry.setInternalName(event, loc);
 		REGISTRY_DEFERENCE.add(event);
 		return event;
 	}

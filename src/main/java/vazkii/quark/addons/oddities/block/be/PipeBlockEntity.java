@@ -29,7 +29,7 @@ import net.minecraft.world.level.gameevent.GameEvent.Context;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import vazkii.arl.block.be.SimpleInventoryBlockEntity;
+import vazkii.quark.base.util.SimpleInventoryBlockEntity;
 import vazkii.quark.addons.oddities.block.pipe.BasePipeBlock;
 import vazkii.quark.addons.oddities.module.PipesModule;
 import vazkii.quark.base.client.handler.NetworkProfilingHandler;

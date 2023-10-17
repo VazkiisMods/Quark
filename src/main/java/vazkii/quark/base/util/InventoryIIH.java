@@ -1,4 +1,4 @@
-package vazkii.arl.util;
+package vazkii.quark.base.util;
 
 import javax.annotation.Nonnull;
 
@@ -8,6 +8,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
+//formerly from AutoRegLib
 public class InventoryIIH implements IItemHandlerModifiable {
 
 	private final IItemHandlerModifiable iih;

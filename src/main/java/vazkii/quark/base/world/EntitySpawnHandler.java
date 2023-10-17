@@ -19,7 +19,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
 import net.minecraftforge.common.world.ModifiableBiomeInfo;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.item.QuarkSpawnEggItem;
 import vazkii.quark.base.module.QuarkModule;
@@ -46,7 +45,7 @@ public class EntitySpawnHandler {
 	}
 
 	public static void addEgg(EntityType<? extends Mob> entityType, int color1, int color2, QuarkModule module, BooleanSupplier enabledSupplier) {
-		new QuarkSpawnEggItem(() -> entityType, color1, color2, RegistryHelper.getInternalName(entityType) + "_spawn_egg", module,
+		new QuarkSpawnEggItem(() -> entityType, color1, color2, Quark.ZETA.registry.getInternalName(entityType) + "_spawn_egg", module,
 				new Item.Properties().tab(CreativeModeTab.TAB_MISC))
 		.setCondition(enabledSupplier);
 	}

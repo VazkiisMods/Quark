@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import vazkii.arl.block.be.SimpleInventoryBlockEntity;
+import vazkii.quark.base.util.SimpleInventoryBlockEntity;
 import vazkii.quark.base.handler.MiscUtil;
 
 public abstract class AbstractEnchantingTableBlockEntity extends SimpleInventoryBlockEntity implements Nameable {

@@ -6,7 +6,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import vazkii.arl.util.RegistryHelper;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 
 import javax.annotation.Nonnull;
@@ -21,7 +21,7 @@ public class QuarkSpawnEggItem extends ForgeSpawnEggItem implements IQuarkItem {
 	public QuarkSpawnEggItem(Supplier<EntityType<? extends Mob>> type, int primaryColor, int secondaryColor, String regname, QuarkModule module, Properties properties) {
 		super(type, primaryColor, secondaryColor, properties);
 
-		RegistryHelper.registerItem(this, regname);
+		Quark.ZETA.registry.registerItem(this, regname);
 		this.module = module;
 	}
 

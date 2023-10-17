@@ -28,7 +28,6 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.zeta.util.ItemNBTHelper;
-import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.MatrixEnchantingTableBlock;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.client.render.be.MatrixEnchantingTableRenderer;
@@ -169,10 +168,10 @@ public class MatrixEnchantingModule extends QuarkModule {
 		matrixEnchanter = new MatrixEnchantingTableBlock(this);
 
 		menuType = IForgeMenuType.create(MatrixEnchantingMenu::fromNetwork);
-		RegistryHelper.register(menuType, "matrix_enchanting", Registry.MENU_REGISTRY);
+		Quark.ZETA.registry.register(menuType, "matrix_enchanting", Registry.MENU_REGISTRY);
 
 		blockEntityType = BlockEntityType.Builder.of(MatrixEnchantingTableBlockEntity::new, matrixEnchanter).build(null);
-		RegistryHelper.register(blockEntityType, "matrix_enchanting", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		Quark.ZETA.registry.register(blockEntityType, "matrix_enchanting", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 
 		influenceTrigger = QuarkAdvancementHandler.registerGenericTrigger("influence");
 	}
