@@ -19,7 +19,7 @@ public class EventBusTestingBlahblah {
 
 	}
 
-	public static class Subcribe {
+	public static class TestSubscriber {
 		String me = "goodbbye world";
 
 		@ZetaSubscribe
@@ -47,19 +47,34 @@ public class EventBusTestingBlahblah {
 	}
 
 	public static void main(String... args) {
+		TestSubscriber subscriberA = new TestSubscriber();
+		subscriberA.me = "sub a";
+		TestSubscriber subscriberB = new TestSubscriber();
+		subscriberB.me = "sub b";
+
 		ZetaEventBus imagineABus = new ZetaEventBus();
 
-		Subcribe subscruber = new Subcribe();
-		imagineABus.register(subscruber);
-		imagineABus.register(Subcribe.class);
+		imagineABus.subscribe(subscriberA)
+			.subscribe(subscriberB)
+			.subscribe(TestSubscriber.class);
 
 		imagineABus.fire(new MyEvent());
 		imagineABus.fire(new MyEvent().setMessage("MESSAGE"));
 		imagineABus.fire(new MySubclass());
 		imagineABus.fire(new MySubclass().setMessage("MAESSAGE"));
 
-		System.out.println("yeah");
+		imagineABus.unsubscribe(subscriberA);
 
-		imagineABus.register(new Wrong());
+		imagineABus.fire(new MySubclass().setMessage("UNSUBSCRIBED from subscriber A"));
+
+		imagineABus.unsubscribe(TestSubscriber.class);
+
+		imagineABus.fire(new MySubclass().setMessage("UNSUBSCRIBED from TestSubscriber"));
+
+		imagineABus.unsubscribe(subscriberB);
+
+		imagineABus.fire(new MySubclass().setMessage("UNSUBSCRIBED from subscriber B"));
+
+		System.out.println("yeah");
 	}
 }

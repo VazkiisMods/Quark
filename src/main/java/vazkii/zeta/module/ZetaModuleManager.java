@@ -71,8 +71,8 @@ public class ZetaModuleManager {
 
 		module.postConstruct();
 
-		bus.register(module.getClass());
-		bus.register(module);
+		bus.subscribe(module.getClass());
+		bus.subscribe(module);
 
 		return module;
 	}
