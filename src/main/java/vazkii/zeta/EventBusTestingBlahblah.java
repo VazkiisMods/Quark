@@ -1,10 +1,10 @@
 package vazkii.zeta;
 
-import vazkii.zeta.event.IZetaLoadEvent;
-import vazkii.zeta.event.IZetaPlayEvent;
-import vazkii.zeta.event.LoadEvent;
-import vazkii.zeta.event.ZetaEventBus;
-import vazkii.zeta.event.PlayEvent;
+import vazkii.zeta.event.bus.IZetaLoadEvent;
+import vazkii.zeta.event.bus.IZetaPlayEvent;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.ZetaEventBus;
+import vazkii.zeta.event.bus.PlayEvent;
 
 @SuppressWarnings("PMD.SystemPrintln")
 public class EventBusTestingBlahblah {

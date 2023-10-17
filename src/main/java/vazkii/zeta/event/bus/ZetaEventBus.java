@@ -1,4 +1,4 @@
-package vazkii.zeta.event;
+package vazkii.zeta.event.bus;
 
 import java.lang.annotation.Annotation;
 import java.lang.invoke.MethodHandle;
@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -143,19 +144,32 @@ public class ZetaEventBus<E extends IZetaEvent> {
 	}
 
 	/**
-	 * Walks up the superclass hierarchy until finding a class that *directly* implements IZetaEvent.
-	 * Used to "normalize" events, so firing `FabricMyEvent` will locate subscribers for `MyEvent`
+	 * Walks the superclass/superinterface hierarchy until finding a class that *directly* implements this bus's event root.
+	 * Used to "normalize" events, so firing `FabricMyEvent` will locate subscribers for `MyEvent`.
 	 */
-	@SuppressWarnings("unchecked")
 	private Class<? extends E> findDirectImpl(Class<?> clazz) {
-		Class<?> cursor = clazz;
-		do {
-			if(Set.of(cursor.getInterfaces()).contains(eventRoot))
-				return (Class<? extends E>) cursor;
-			cursor = cursor.getSuperclass();
-		} while(cursor != null && cursor != Object.class);
+		return findDirectImpl2(clazz).orElseThrow(() -> new RuntimeException("Class " + clazz.getName() + " does not implement " + eventRoot));
+	}
 
-		throw new RuntimeException("Class " + clazz.getName() + " does not implement ZetaEvent");
+	@SuppressWarnings("unchecked")
+	private Optional<Class<? extends E>> findDirectImpl2(Class<?> clazz) {
+		Set<Class<?>> interfaces = Set.of(clazz.getInterfaces());
+		if(interfaces.contains(eventRoot))
+			return Optional.of((Class<? extends E>) clazz);
+
+		//recurse into interfaces
+		for(Class<?> itf : interfaces) {
+			Optional<Class<? extends E>> recurse = findDirectImpl2(itf);
+			if(recurse.isPresent())
+				return recurse;
+		}
+
+		//recurse into superclass
+		Class<?> superclass = clazz.getSuperclass();
+		if(superclass != null && superclass != Object.class)
+			return findDirectImpl2(superclass);
+		else
+			return Optional.empty();
 	}
 
 	/**

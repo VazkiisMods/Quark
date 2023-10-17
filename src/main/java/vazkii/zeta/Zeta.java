@@ -1,11 +1,11 @@
 package vazkii.zeta;
 
 import org.apache.logging.log4j.Logger;
-import vazkii.zeta.event.IZetaLoadEvent;
-import vazkii.zeta.event.IZetaPlayEvent;
-import vazkii.zeta.event.LoadEvent;
-import vazkii.zeta.event.ZetaEventBus;
-import vazkii.zeta.event.PlayEvent;
+import vazkii.zeta.event.bus.IZetaLoadEvent;
+import vazkii.zeta.event.bus.IZetaPlayEvent;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.ZetaEventBus;
+import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaModuleManager;
 import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zeta.registry.ZetaRegistry;

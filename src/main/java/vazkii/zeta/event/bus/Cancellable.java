@@ -1,4 +1,4 @@
-package vazkii.zeta.event;
+package vazkii.zeta.event.bus;
 
 public interface Cancellable {
 	boolean isCancelled();

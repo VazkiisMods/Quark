@@ -1,4 +1,4 @@
-package vazkii.zeta.event;
+package vazkii.zeta.event.bus;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface PlayEvent {
+public @interface LoadEvent {
 }

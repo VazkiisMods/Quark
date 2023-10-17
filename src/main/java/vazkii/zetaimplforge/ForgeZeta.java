@@ -16,7 +16,11 @@ import vazkii.zetaimplforge.registry.ForgeZetaRegistry;
 public class ForgeZeta extends Zeta {
 	public ForgeZeta(Logger log) {
 		super(log);
+
+		this.eventPassage = new ForgeEventPassage(this);
 	}
+
+	private final ForgeEventPassage eventPassage;
 
 	@Override
 	public ZetaSide getSide() {
