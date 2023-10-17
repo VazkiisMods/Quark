@@ -18,6 +18,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
@@ -35,10 +37,10 @@ public class SlimeInABucketModule extends QuarkModule {
 		slime_in_a_bucket = new SlimeInABucketItem(this);
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(Consumer<Runnable> enqueueWork) {
-		enqueueWork.accept(() -> ItemProperties.register(slime_in_a_bucket, new ResourceLocation("excited"),
+	public void clientSetup(ZClientSetup event) {
+		event.enqueueWork(() -> ItemProperties.register(slime_in_a_bucket, new ResourceLocation("excited"),
 				(stack, world, e, id) -> ItemNBTHelper.getBoolean(stack, SlimeInABucketItem.TAG_EXCITED, false) ? 1 : 0));
 	}
 

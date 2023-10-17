@@ -33,6 +33,8 @@ import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZKeyMapping;
 
 @LoadModule(category = ModuleCategory.EXPERIMENTAL, enabledByDefault = false, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class NarratorReadoutModule extends QuarkModule {
@@ -45,9 +47,9 @@ public class NarratorReadoutModule extends QuarkModule {
 
 	private float last;
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerKeybinds(RegisterKeyMappingsEvent event) {
+	public void registerKeybinds(ZKeyMapping event) {
 		if(enabled) {
 			keybind = ModKeybindHandler.init(event, "narrator_readout", null, ModKeybindHandler.MISC_GROUP);
 			keybindFull = ModKeybindHandler.init(event, "narrator_full_readout", null, ModKeybindHandler.MISC_GROUP);

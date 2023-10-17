@@ -19,6 +19,8 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.client.render.entity.GlassItemFrameRenderer;
 import vazkii.quark.content.building.entity.GlassItemFrame;
 import vazkii.quark.content.building.item.QuarkItemFrameItem;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZAddModels;
 
 /**
  * @author WireSegal
@@ -65,9 +67,9 @@ public class GlassItemFrameModule extends QuarkModule {
 		EntityRenderers.register(glassFrameEntity, GlassItemFrameRenderer::new);
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)	
-	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+	public void registerAdditionalModels(ZAddModels event) {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/glass_item_frame", "inventory"));
 	}
 }

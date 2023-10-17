@@ -40,6 +40,8 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.arl.util.ClientTicker;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
@@ -144,10 +146,10 @@ public class PathfinderMapsModule extends QuarkModule {
 		pathfinders_quill = new PathfindersQuillItem(this);
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(Consumer<Runnable> enqueueWork) {
-		enqueueWork.accept(() -> ItemProperties.register(pathfinders_quill, new ResourceLocation("has_biome"),
+	public void clientSetup(ZClientSetup e) {
+		e.enqueueWork(() -> ItemProperties.register(pathfinders_quill, new ResourceLocation("has_biome"),
 				(stack, world, entity, i) -> (PathfindersQuillItem.getTargetBiome(stack) != null) ? 1 : 0));
 	}
 

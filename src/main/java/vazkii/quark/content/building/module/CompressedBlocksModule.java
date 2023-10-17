@@ -24,6 +24,8 @@ import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.ZLoadComplete;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = ModuleCategory.BUILDING)
 public class CompressedBlocksModule extends QuarkModule {
@@ -129,9 +131,9 @@ public class CompressedBlocksModule extends QuarkModule {
 		ToolInteractionHandler.registerInteraction(ToolActions.AXE_STRIP, bamboo, stripped_bamboo);
 	}
 
-	@Override
-	public void loadComplete(Consumer<Runnable> enqueueWork) {
-		enqueueWork.accept(() -> {
+	@LoadEvent
+	public void loadComplete(ZLoadComplete event) {
+		event.enqueueWork(() -> {
 			for(Block block : compostable)
 				if(block.asItem() != null)
 					ComposterBlock.COMPOSTABLES.put(block.asItem(), 1F);

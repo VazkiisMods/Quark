@@ -23,6 +23,8 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tweaks.client.item.ClockTimeGetter;
 import vazkii.quark.content.tweaks.client.item.CompassAngleGetter;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
 public class CompassesWorkEverywhereModule extends QuarkModule {
@@ -36,15 +38,15 @@ public class CompassesWorkEverywhereModule extends QuarkModule {
 	
 	@Hint("clock_nerf") Item clock = Items.CLOCK;
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(Consumer<Runnable> enqueueWork) {
+	public void clientSetup(ZClientSetup e) {
 		// register = addPropertyOverride
 		if(enabled && (enableCompassNerf || enableNether || enableEnd))
-			enqueueWork.accept(() -> ItemProperties.register(Items.COMPASS, new ResourceLocation("angle"), new CompassAngleGetter.Impl()));
+			e.enqueueWork(() -> ItemProperties.register(Items.COMPASS, new ResourceLocation("angle"), new CompassAngleGetter.Impl()));
 
 		if(enabled && enableClockNerf)
-			enqueueWork.accept(() -> ItemProperties.register(Items.CLOCK, new ResourceLocation("time"), new ClockTimeGetter.Impl()));
+			e.enqueueWork(() -> ItemProperties.register(Items.CLOCK, new ResourceLocation("time"), new ClockTimeGetter.Impl()));
 	}
 	
 	@Override

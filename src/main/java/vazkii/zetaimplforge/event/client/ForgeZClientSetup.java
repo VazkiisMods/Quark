@@ -1,4 +1,4 @@
-package vazkii.zetaimplforge.event;
+package vazkii.zetaimplforge.event.client;
 
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import vazkii.zeta.event.client.ZClientSetup;

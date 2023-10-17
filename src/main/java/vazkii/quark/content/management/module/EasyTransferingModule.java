@@ -14,6 +14,8 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.InventoryTransferMessage;
 import vazkii.quark.content.management.client.screen.widgets.MiniInventoryButton;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZKeyMapping;
 
 @LoadModule(category = ModuleCategory.MANAGEMENT)
 public class EasyTransferingModule extends QuarkModule {
@@ -22,9 +24,9 @@ public class EasyTransferingModule extends QuarkModule {
 
 	@Config public static boolean enableShiftLock = true;
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerKeybinds(RegisterKeyMappingsEvent event) {
+	public void registerKeybinds(ZKeyMapping event) {
 		addButton(event, 1, "insert", false);
 		addButton(event, 2, "extract", true);
 
@@ -38,7 +40,7 @@ public class EasyTransferingModule extends QuarkModule {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	private void addButton(RegisterKeyMappingsEvent event, int priority, String name, boolean restock) {
+	private void addButton(ZKeyMapping event, int priority, String name, boolean restock) {
 		InventoryButtonHandler.addButtonProvider(event, this, ButtonTargetType.CONTAINER_PLAYER_INVENTORY, priority,
 				"transfer_" + name,
 				(screen) -> QuarkNetwork.sendToServer(new InventoryTransferMessage(Screen.hasShiftDown(), restock)),

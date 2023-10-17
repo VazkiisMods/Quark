@@ -33,6 +33,8 @@ import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.experimental.module.OverlayShaderModule;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZKeyMapping;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -114,8 +116,8 @@ public class CameraModule extends QuarkModule {
 
 	private static boolean cameraMode;
 
-	@Override
-	public void registerKeybinds(RegisterKeyMappingsEvent event) {
+	@LoadEvent
+	public void registerKeybinds(ZKeyMapping event) {
 		cameraModeKey = ModKeybindHandler.init(event, "camera_mode", "f12", ModKeybindHandler.MISC_GROUP);
 	}
 

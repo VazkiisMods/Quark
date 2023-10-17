@@ -24,6 +24,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -43,14 +45,14 @@ public class DispensersPlaceBlocksModule extends QuarkModule {
 			+ "Requires a game restart to re-apply.")
 	public static boolean wrapExistingBehaviors = true;
 
-	@Override
-	public void setup(Consumer<Runnable> enqueueWork) {
+	@LoadEvent
+	public void setup(ZCommonSetup e) {
 		if(!enabled)
 			return;
 
 		BlockBehavior baseBehavior = new BlockBehavior();
 
-		enqueueWork.accept(() -> {
+		e.enqueueWork(() -> {
 			Map<Item, DispenseItemBehavior> registry = DispenserBlock.DISPENSER_REGISTRY;
 
 			for(Block b : ForgeRegistries.BLOCKS) {

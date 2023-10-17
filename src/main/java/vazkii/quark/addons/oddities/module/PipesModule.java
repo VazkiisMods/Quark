@@ -22,6 +22,8 @@ import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZAddModels;
 
 @LoadModule(category = ModuleCategory.ODDITIES)
 public class PipesModule extends QuarkModule {
@@ -75,10 +77,10 @@ public class PipesModule extends QuarkModule {
 	public void clientSetup() {
 		BlockEntityRenderers.register(blockEntityType, PipeRenderer::new);
 	}
-	
-	@Override
+
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerAdditionalModels(RegisterAdditional event) {
+	public void registerAdditionalModels(ZAddModels event) {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/pipe_flare", "inventory"));
 	}
 	

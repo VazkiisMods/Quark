@@ -23,6 +23,8 @@ import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZKeyMapping;
 
 @LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class BackButtonKeybindModule extends QuarkModule {
@@ -33,9 +35,9 @@ public class BackButtonKeybindModule extends QuarkModule {
 	@OnlyIn(Dist.CLIENT)
 	private static List<GuiEventListener> listeners;
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerKeybinds(RegisterKeyMappingsEvent event) {
+	public void registerKeybinds(ZKeyMapping event) {
 		backKey = ModKeybindHandler.initMouse(event, "back", 4, ModKeybindHandler.MISC_GROUP, (modifier, key) -> key.getType() != Type.MOUSE || key.getValue() != 0);
 	}
 	

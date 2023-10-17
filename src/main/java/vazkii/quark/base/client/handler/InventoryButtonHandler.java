@@ -39,6 +39,7 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.InventoryTransferHandler;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.event.client.ZKeyMapping;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = Quark.MOD_ID, value = Dist.CLIENT)
@@ -166,7 +167,7 @@ public final class InventoryButtonHandler {
 		providers.put(type, new ButtonProviderHolder(module, priority, provider, binding, onKeybind, enableCond));
 	}
 
-	public static void addButtonProvider(RegisterKeyMappingsEvent event, QuarkModule module, ButtonTargetType type, int priority, String keybindName, Consumer<AbstractContainerScreen<?>> onKeybind, ButtonProvider provider, Supplier<Boolean> enableCond) {
+	public static void addButtonProvider(ZKeyMapping event, QuarkModule module, ButtonTargetType type, int priority, String keybindName, Consumer<AbstractContainerScreen<?>> onKeybind, ButtonProvider provider, Supplier<Boolean> enableCond) {
 		KeyMapping keybind = ModKeybindHandler.init(event, keybindName, null, ModKeybindHandler.INV_GROUP);
 		keybind.setKeyConflictContext(KeyConflictContext.GUI);
 		addButtonProvider(module, type, priority, keybind, onKeybind, provider, enableCond);

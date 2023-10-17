@@ -12,7 +12,7 @@ public abstract class AbstractUndergroundStyleModule<T extends UndergroundStyle>
 	public UndergroundStyleConfig<T> generationSettings;
 
 	@Override
-	public void construct() {
+	public void postConstruct() {
 		generationSettings = getStyleConfig();
 	}
 

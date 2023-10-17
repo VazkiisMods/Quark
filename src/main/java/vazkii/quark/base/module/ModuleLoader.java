@@ -6,8 +6,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.client.event.ModelEvent.BakingCompleted;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
@@ -30,9 +28,7 @@ import java.util.function.Consumer;
 public final class ModuleLoader {
 
 	private enum Step {
-		POST_REGISTER, MODEL_BAKE, MODEL_LAYERS, TEXTURE_STITCH, POST_TEXTURE_STITCH, LOAD_COMPLETE, GENERATE_HINTS,
-		FIRST_CLIENT_TICK, REGISTER_KEYBINDS, REGISTER_ADDITIONAL_MODELS, REGISTER_TOOLTIP_COMPONENT_FACTORIES,
-		REGISTER_ITEM_COLORS, REGISTER_BLOCK_COLORS
+		POST_REGISTER, GENERATE_HINTS, FIRST_CLIENT_TICK
 	}
 
 	public static final ModuleLoader INSTANCE = new ModuleLoader();
@@ -47,29 +43,17 @@ public final class ModuleLoader {
 	private ModuleLoader() { }
 
 	public void start() {
-		findModules();
-		//dispatch(Step.CONSTRUCT, QuarkModule::construct);
-		resolveConfigSpec();
+		Quark.ZETA.modules.getModules().forEach(module -> {
+			if(module instanceof QuarkModule qm) foundModules.put(qm.getClass(), qm);
+		});
+
+		config = new ConfigResolver();
+		config.makeSpec();
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void clientStart() {
-		//dispatch(Step.CONSTRUCT_CLIENT, QuarkModule::constructClient);
 		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	private void findModules() {
-//		ModuleFinder finder = new ModuleFinder();
-//		finder.findModules();
-//		foundModules = finder.getFoundModules();
-		Quark.ZETA.modules.getModules().forEach(module -> {
-			if(module instanceof QuarkModule qm) foundModules.put(qm.getClass(), qm);
-		});
-	}
-
-	private void resolveConfigSpec() {
-		config = new ConfigResolver();
-		config.makeSpec();
 	}
 
 	public ModConfig getConfig() {
@@ -77,8 +61,6 @@ public final class ModuleLoader {
 	}
 
 	public void register() {
-		//dispatch(Step.REGISTER, QuarkModule::register);
-		//dispatch(Step.POST_REGISTER, QuarkModule::postRegister);
 		stepsHandled.add(Step.POST_REGISTER);
 		CreativeTabHandler.finalizeTabs();
 		config.registerConfigBoundElements();
@@ -94,79 +76,8 @@ public final class ModuleLoader {
 		//dispatch(Step.CONFIG_CHANGED, QuarkModule::configChanged);
 	}
 
-	@Deprecated
-	@OnlyIn(Dist.CLIENT)
-	public void configChangedClient() {
-		if(!stepsHandled.contains(Step.POST_REGISTER))
-			return; // We don't want to mess with changing config values before objects are registered
-
-		//dispatch(Step.CONFIG_CHANGED_CLIENT, QuarkModule::configChangedClient);
-	}
-
-	public void setup(ParallelDispatchEvent event) {
+	public void setup() {
 		Quark.proxy.handleQuarkConfigChange();
-		//dispatch(Step.SETUP, m -> m.setup(event::enqueueWork));
-	}
-
-	@Deprecated
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(ParallelDispatchEvent event) {
-		//dispatch(Step.SETUP_CLIENT, m -> m.clientSetup(event::enqueueWork));
-	}
-
-	@Deprecated
-	@OnlyIn(Dist.CLIENT)
-	public void registerReloadListeners(RegisterClientReloadListenersEvent event) {
-		//dispatch(Step.SETUP_CLIENT, m -> m.registerReloadListeners(event::registerReloadListener));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void modelBake(BakingCompleted event) {
-		dispatch(Step.MODEL_BAKE, m -> m.modelBake(event));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void modelLayers(EntityRenderersEvent.AddLayers event) {
-		dispatch(Step.MODEL_LAYERS, m -> m.modelLayers(event));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void textureStitch(TextureStitchEvent.Pre event) {
-		dispatch(Step.TEXTURE_STITCH, m -> m.textureStitch(event));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void postTextureStitch(TextureStitchEvent.Post event) {
-		dispatch(Step.POST_TEXTURE_STITCH, m -> m.postTextureStitch(event));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void registerKeybinds(RegisterKeyMappingsEvent event) {
-		dispatch(Step.REGISTER_KEYBINDS, m -> m.registerKeybinds(event));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
-		dispatch(Step.REGISTER_ADDITIONAL_MODELS, m -> m.registerAdditionalModels(event));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
-		dispatch(Step.REGISTER_TOOLTIP_COMPONENT_FACTORIES, m -> m.registerClientTooltipComponentFactories(event));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void registerItemColors(RegisterColorHandlersEvent.Item event) {
-		dispatch(Step.REGISTER_ITEM_COLORS, m -> m.registerItemColors(event));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-		dispatch(Step.REGISTER_BLOCK_COLORS, m -> m.registerBlockColors(event));
-	}
-
-	public void loadComplete(ParallelDispatchEvent event) {
-		dispatch(Step.LOAD_COMPLETE, m -> m.loadComplete(event::enqueueWork));
 	}
 
 	public void addStackInfo(BiConsumer<Item, Component> consumer) {

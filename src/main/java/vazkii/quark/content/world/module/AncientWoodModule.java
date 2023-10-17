@@ -31,6 +31,8 @@ import vazkii.quark.base.module.config.Config.Min;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.world.block.AncientSaplingBlock;
 import vazkii.quark.content.world.item.AncientFruitItem;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = ModuleCategory.WORLD, hasSubscriptions = true)
 public class AncientWoodModule extends QuarkModule {
@@ -57,9 +59,9 @@ public class AncientWoodModule extends QuarkModule {
 
 	public static QuarkGenericTrigger ancientFruitTrigger;
 
-	@Override
-	public void setup(Consumer<Runnable> enqueueWork) {
-		enqueueWork.accept(() -> {
+	@LoadEvent
+	public void setup(ZCommonSetup e) {
+		e.enqueueWork(() -> {
 			ComposterBlock.COMPOSTABLES.put(ancient_sapling.asItem(), 0.3F);
 			ComposterBlock.COMPOSTABLES.put(ancient_leaves.asItem(), 0.3F);
 			ComposterBlock.COMPOSTABLES.put(ancient_fruit.asItem(), 0.65F);

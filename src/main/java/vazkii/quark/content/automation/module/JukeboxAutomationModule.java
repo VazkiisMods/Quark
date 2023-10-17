@@ -32,6 +32,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import javax.annotation.Nonnull;
 
@@ -42,10 +44,10 @@ public class JukeboxAutomationModule extends QuarkModule {
 
 	private static final ResourceLocation JUKEBOX_ITEM_HANDLER = new ResourceLocation(Quark.MOD_ID, "jukebox_item_handler");
 
-	@Override
-	public void setup(Consumer<Runnable> enqueueWork) {
+	@LoadEvent
+	public void setup(ZCommonSetup e) {
 		MusicDiscBehaviour behaviour = new MusicDiscBehaviour();
-		enqueueWork.accept(() -> ForgeRegistries.ITEMS.forEach(i -> {
+		e.enqueueWork(() -> ForgeRegistries.ITEMS.forEach(i -> {
 			if (i instanceof RecordItem)
 				DispenserBlock.DISPENSER_REGISTRY.put(i, behaviour);
 		}));

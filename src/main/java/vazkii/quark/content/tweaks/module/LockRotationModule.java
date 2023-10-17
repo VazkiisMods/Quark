@@ -52,6 +52,8 @@ import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.SetLockProfileMessage;
 import vazkii.quark.content.building.block.QuarkVerticalSlabBlock;
 import vazkii.quark.content.building.block.VerticalSlabBlock;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZKeyMapping;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -82,9 +84,9 @@ public class LockRotationModule extends QuarkModule {
 		//MessageSerializer.mapHandlers(LockProfile.class, LockProfile::readProfile, LockProfile::writeProfile);
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerKeybinds(RegisterKeyMappingsEvent event) {
+	public void registerKeybinds(ZKeyMapping event) {
 		keybind = ModKeybindHandler.init(event, "lock_rotation", "k", ModKeybindHandler.MISC_GROUP);
 	}
 

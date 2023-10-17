@@ -99,7 +99,7 @@ public class CommonProxy {
 		QuarkNetwork.setup();
 		BrewingHandler.setup();
 
-		ModuleLoader.INSTANCE.setup(event);
+		ModuleLoader.INSTANCE.setup();
 		initContributorRewards();
 
 		WoodSetHandler.setup(event);
@@ -107,8 +107,6 @@ public class CommonProxy {
 	}
 
 	public void loadComplete(FMLLoadCompleteEvent event) {
-		ModuleLoader.INSTANCE.loadComplete(event);
-
 		FuelHandler.addAllWoods();
 		UndergroundBiomeHandler.init(event);
 	}

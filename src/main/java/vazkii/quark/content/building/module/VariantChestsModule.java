@@ -53,6 +53,10 @@ import vazkii.quark.content.building.client.render.be.VariantChestRenderer;
 import vazkii.quark.content.building.recipe.MixedExclusionRecipe;
 import vazkii.quark.integration.lootr.ILootrIntegration;
 import vazkii.quark.mixin.accessor.AccessorAbstractChestedHorse;
+import vazkii.zeta.event.ZLoadComplete;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZPreTextureStitch;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -107,8 +111,8 @@ public class VariantChestsModule extends QuarkModule {
 		StructureBlockReplacementHandler.addReplacement(VariantChestsModule::getGenerationChestBlockState);
 	}
 
-	@Override
-	public void postRegister() {
+	@LoadEvent
+	public void postRegister(ZRegister.Post e) {
 		chestTEType = registerChests(VariantChestBlockEntity::new, () -> chestTEType,
 			VariantChestBlock::new, VariantChestBlock.Compat::new, chestMappings,
 			allChests::addAll, chests::addAll);
@@ -122,8 +126,8 @@ public class VariantChestsModule extends QuarkModule {
 		ILootrIntegration.INSTANCE.postRegister();
 	}
 
-	@Override
-	public void loadComplete() {
+	@LoadEvent
+	public void loadComplete(ZLoadComplete e) {
 		ILootrIntegration.INSTANCE.loadComplete();
 	}
 
@@ -249,8 +253,8 @@ public class VariantChestsModule extends QuarkModule {
 		return BlockEntityType.Builder.<T>of(factory, blockTypes.toArray(new Block[0])).build(null);
 	}
 
-	@Override
-	public void textureStitch(TextureStitchEvent.Pre event) {
+	@LoadEvent
+	public void textureStitch(ZPreTextureStitch event) {
 		if (event.getAtlas().location().toString().equals("minecraft:textures/atlas/chest.png")) {
 			for (Block b : allChests)
 				VariantChestRenderer.accept(event, b);

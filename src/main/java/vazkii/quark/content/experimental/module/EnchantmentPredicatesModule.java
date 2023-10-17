@@ -16,6 +16,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -34,11 +36,11 @@ public class EnchantmentPredicatesModule extends QuarkModule {
 	@Config
 	public static List<String> enchantmentsToRegister = Lists.newArrayList();
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(Consumer<Runnable> enqueueWork) {
+	public void clientSetup(ZClientSetup e) {
 		if(enabled) {
-			enqueueWork.accept(() -> {
+			e.enqueueWork(() -> {
 				List<Item> items = MiscUtil.massRegistryGet(itemsToChange, ForgeRegistries.ITEMS);
 				List<Enchantment> enchants = MiscUtil.massRegistryGet(enchantmentsToRegister, ForgeRegistries.ENCHANTMENTS);
 

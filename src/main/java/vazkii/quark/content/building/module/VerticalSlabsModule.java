@@ -31,6 +31,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.QuarkVerticalSlabBlock;
 import vazkii.quark.content.building.block.WeatheringCopperVerticalSlabBlock;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = ModuleCategory.BUILDING)
 public class VerticalSlabsModule extends QuarkModule {
@@ -41,9 +43,9 @@ public class VerticalSlabsModule extends QuarkModule {
 	public static boolean staticEnabled;
 	
 	public static TagKey<Block> verticalSlabTag;
-	
-	@Override
-	public void postRegister() { 
+
+	@LoadEvent
+	public void postRegister(ZRegister.Post e) {
 		ImmutableSet.of(
 				// Old
 				Blocks.ACACIA_SLAB, Blocks.ANDESITE_SLAB, Blocks.BIRCH_SLAB, Blocks.BRICK_SLAB, Blocks.COBBLESTONE_SLAB,

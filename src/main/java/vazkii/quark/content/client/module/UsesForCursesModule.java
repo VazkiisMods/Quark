@@ -21,6 +21,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tweaks.client.layer.ArmorStandFakePlayerLayer;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZAddModelLayers;
 
 @LoadModule(category = ModuleCategory.CLIENT)
 public class UsesForCursesModule extends QuarkModule {
@@ -46,9 +48,9 @@ public class UsesForCursesModule extends QuarkModule {
 		staticEnabled = enabled;
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void modelLayers(AddLayers event) {
+	public void modelLayers(ZAddModelLayers event) {
 		ArmorStandRenderer render = event.getRenderer(EntityType.ARMOR_STAND);
 		render.addLayer(new ArmorStandFakePlayerLayer<>(render, event.getEntityModels()));
 	}

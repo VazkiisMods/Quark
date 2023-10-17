@@ -31,6 +31,8 @@ import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.ChangeHotbarMessage;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZKeyMapping;
 
 @LoadModule(category = ModuleCategory.MANAGEMENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class HotbarChangerModule extends QuarkModule {
@@ -50,8 +52,8 @@ public class HotbarChangerModule extends QuarkModule {
 	public static boolean keyDown;
 	public static boolean hotbarChangeOpen, shifting;
 
-	@Override
-	public void registerKeybinds(RegisterKeyMappingsEvent event) {
+	@LoadEvent
+	public void registerKeybinds(ZKeyMapping event) {
 		changeHotbarKey = ModKeybindHandler.init(event, "change_hotbar", "z", ModKeybindHandler.MISC_GROUP);
 	}
 

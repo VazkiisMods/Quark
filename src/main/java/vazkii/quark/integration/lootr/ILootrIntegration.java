@@ -8,6 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.ModList;
+import vazkii.zeta.event.client.ZPreTextureStitch;
 
 import javax.annotation.Nullable;
 
@@ -53,7 +54,7 @@ public interface ILootrIntegration {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	default void stitch(TextureStitchEvent.Pre event) {
+	default void stitch(ZPreTextureStitch event) {
 
 	}
 }

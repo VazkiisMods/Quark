@@ -13,6 +13,7 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.render.GenericChestBERenderer;
 import vazkii.quark.content.building.module.VariantChestsModule;
 import vazkii.quark.integration.lootr.LootrVariantChestBlockEntity;
+import vazkii.zeta.event.client.ZPreTextureStitch;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class LootrVariantChestRenderer<T extends LootrVariantChestBlockEntity> e
 		}
 	}
 
-	public static void accept(TextureStitchEvent.Pre event, Block chest) {
+	public static void accept(ZPreTextureStitch event, Block chest) {
 		ResourceLocation atlas = event.getAtlas().location();
 
 		if(chest instanceof VariantChestsModule.IChestTextureProvider prov) {
@@ -69,7 +70,7 @@ public class LootrVariantChestRenderer<T extends LootrVariantChestBlockEntity> e
 		}
 	}
 
-	private static void add(TextureStitchEvent.Pre event, ResourceLocation atlas, Block chest, String path, String baseSuffix, String unopenedSuffix, String openedSuffix) {
+	private static void add(ZPreTextureStitch event, ResourceLocation atlas, Block chest, String path, String baseSuffix, String unopenedSuffix, String openedSuffix) {
 		ResourceLocation resBase = new ResourceLocation(Quark.MOD_ID, path + baseSuffix);
 		ResourceLocation resUnopened = new ResourceLocation(Quark.MOD_ID, path + unopenedSuffix);
 		ResourceLocation resOpened = new ResourceLocation(Quark.MOD_ID, path + openedSuffix);

@@ -12,6 +12,7 @@ import noobanidus.mods.lootr.init.ModBlocks;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.content.building.module.VariantChestsModule;
 import vazkii.quark.integration.lootr.client.LootrVariantChestRenderer;
+import vazkii.zeta.event.client.ZPreTextureStitch;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -84,7 +85,7 @@ public class LootrIntegration implements ILootrIntegration {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void stitch(TextureStitchEvent.Pre event) {
+	public void stitch(ZPreTextureStitch event) {
 		for (Block b : allChests)
 			LootrVariantChestRenderer.accept(event, b);
 	}

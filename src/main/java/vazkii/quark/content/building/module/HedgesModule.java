@@ -16,6 +16,8 @@ import vazkii.quark.content.building.block.HedgeBlock;
 import vazkii.quark.content.world.block.BlossomSaplingBlock.BlossomTree;
 import vazkii.quark.content.world.module.AncientWoodModule;
 import vazkii.quark.content.world.module.BlossomTreesModule;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = ModuleCategory.BUILDING)
 public class HedgesModule extends QuarkModule {
@@ -31,8 +33,8 @@ public class HedgesModule extends QuarkModule {
 		new HedgeBlock(this, Blocks.OAK_FENCE, Blocks.FLOWERING_AZALEA_LEAVES);
 	}
 
-	@Override
-	public void postRegister() {
+	@LoadEvent
+	public void postRegister(ZRegister.Post e) {
 		for (BlossomTree tree : BlossomTreesModule.trees.keySet())
 			new HedgeBlock(this, BlossomTreesModule.woodSet.fence, tree.leaf.getBlock()).setCondition(tree.sapling::isEnabled);
 		

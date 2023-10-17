@@ -29,6 +29,9 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.client.tooltip.SeedPouchClientTooltipComponent;
 import vazkii.quark.content.tools.item.SeedPouchItem;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
+import vazkii.zeta.event.client.ZTooltipComponents;
 
 @LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true)
 public class SeedPouchModule extends QuarkModule {
@@ -51,15 +54,15 @@ public class SeedPouchModule extends QuarkModule {
 		seedPouchHoldableTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "seed_pouch_holdable"));
 	}
 
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	@Override
-	public void clientSetup(Consumer<Runnable> enqueueWork) {
-		enqueueWork.accept(() -> ItemProperties.register(seed_pouch, new ResourceLocation("pouch_items"), SeedPouchItem::itemFraction));
+	public void clientSetup(ZClientSetup e) {
+		e.enqueueWork(() -> ItemProperties.register(seed_pouch, new ResourceLocation("pouch_items"), SeedPouchItem::itemFraction));
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
+	public void registerClientTooltipComponentFactories(ZTooltipComponents event) {
 		event.register(SeedPouchItem.Tooltip.class, t -> new SeedPouchClientTooltipComponent(t.stack()));
 	}
 

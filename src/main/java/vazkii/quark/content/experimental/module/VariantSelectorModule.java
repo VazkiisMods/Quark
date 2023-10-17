@@ -61,6 +61,9 @@ import vazkii.quark.content.experimental.client.screen.VariantSelectorScreen;
 import vazkii.quark.content.experimental.client.tooltip.VariantsComponent;
 import vazkii.quark.content.experimental.config.BlockSuffixConfig;
 import vazkii.quark.content.experimental.item.HammerItem;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZKeyMapping;
+import vazkii.zeta.event.client.ZTooltipComponents;
 
 @LoadModule(category = ModuleCategory.EXPERIMENTAL, hasSubscriptions = true, enabledByDefault = false,
 		description = "Allows placing variant blocks automatically via a selector menu triggered from a keybind")
@@ -101,8 +104,8 @@ public class VariantSelectorModule extends QuarkModule {
 		hammer = new HammerItem(this).setCondition(() -> enableHammer);
 	}
 
-	@Override
-	public void registerKeybinds(RegisterKeyMappingsEvent event) {
+	@LoadEvent
+	public void registerKeybinds(ZKeyMapping event) {
 		variantSelectorKey = ModKeybindHandler.init(event, "variant_selector", "r", ModKeybindHandler.MISC_GROUP);
 	}
 
@@ -188,11 +191,11 @@ public class VariantSelectorModule extends QuarkModule {
 			}
 		}
 	}
-	
-	@Override
+
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
-		event.register(VariantsComponent.class, Function.identity());
+	public void registerClientTooltipComponentFactories(ZTooltipComponents event) {
+		event.register(VariantsComponent.class);
 	}
 	
 	@SubscribeEvent

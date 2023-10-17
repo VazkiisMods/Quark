@@ -37,6 +37,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tweaks.client.render.entity.DyedItemFrameRenderer;
 import vazkii.quark.content.tweaks.entity.DyedItemFrame;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZAddModels;
 
 @LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
 public class DyeableItemFramesModule extends QuarkModule {
@@ -61,9 +63,9 @@ public class DyeableItemFramesModule extends QuarkModule {
 		DyeHandler.addDyeable(Items.GLOW_ITEM_FRAME, this);
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)	
-	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+	public void registerAdditionalModels(ZAddModels event) {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/dyed_item_frame", "inventory"));
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/dyed_item_frame_map", "inventory"));
 	}

@@ -37,6 +37,8 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.RGBAColorConfig;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.item.AbacusItem;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class AbacusModule extends QuarkModule {
@@ -49,10 +51,10 @@ public class AbacusModule extends QuarkModule {
 		abacus = new AbacusItem(this);
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(Consumer<Runnable> enqueueWork) {
-		enqueueWork.accept(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem::count));
+	public void clientSetup(ZClientSetup e) {
+		e.enqueueWork(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem::count));
 	}
 
 	@SubscribeEvent

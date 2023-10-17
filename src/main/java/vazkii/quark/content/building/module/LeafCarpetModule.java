@@ -18,6 +18,9 @@ import vazkii.quark.content.building.block.LeafCarpetBlock;
 import vazkii.quark.content.world.block.BlossomLeavesBlock;
 import vazkii.quark.content.world.module.AncientWoodModule;
 import vazkii.quark.content.world.module.BlossomTreesModule;
+import vazkii.zeta.event.ZLoadComplete;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = ModuleCategory.BUILDING, antiOverlap = { "woodworks", "immersive_weathering" })
 public class LeafCarpetModule extends QuarkModule {
@@ -33,16 +36,16 @@ public class LeafCarpetModule extends QuarkModule {
 		carpet(Blocks.FLOWERING_AZALEA_LEAVES);
 	}
 
-	@Override
-	public void postRegister() {
+	@LoadEvent
+	public void postRegister(ZRegister.Post e) {
 		BlossomTreesModule.trees.keySet().stream().map(t -> (BlossomLeavesBlock) t.leaf.getBlock()).forEach(this::blossomCarpet);
 		
 		carpetBlock(AncientWoodModule.ancient_leaves).setCondition(() -> ModuleLoader.INSTANCE.isModuleEnabled(AncientWoodModule.class));
 	}
 
-	@Override
-	public void loadComplete(Consumer<Runnable> enqueueWork) {
-		enqueueWork.accept(() -> {
+	@LoadEvent
+	public void loadComplete(ZLoadComplete event) {
+		event.enqueueWork(() -> {
 			for(LeafCarpetBlock c : carpets) {
 				if(c.asItem() != null)
 					ComposterBlock.COMPOSTABLES.put(c.asItem(), 0.2F);

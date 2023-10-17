@@ -2,19 +2,18 @@ package vazkii.quark.content.client.module;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
-import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZRegisterReloadListeners;
+import vazkii.zeta.event.client.ZTooltipComponents;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
@@ -78,20 +77,20 @@ public class ImprovedTooltipsModule extends QuarkModule {
 
 	public static boolean staticEnabled;
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
-		register(event, AttributeTooltips.AttributeComponent.class);
-		register(event, FoodTooltips.FoodComponent.class);
-		register(event, ShulkerBoxTooltips.ShulkerComponent.class);
-		register(event, MapTooltips.MapComponent.class);
-		register(event, EnchantedBookTooltips.EnchantedBookComponent.class);
-		register(event, FuelTooltips.FuelComponent.class);
+	public void registerClientTooltipComponentFactories(ZTooltipComponents event) {
+		event.register(AttributeTooltips.AttributeComponent.class);
+		event.register(FoodTooltips.FoodComponent.class);
+		event.register(ShulkerBoxTooltips.ShulkerComponent.class);
+		event.register(MapTooltips.MapComponent.class);
+		event.register(EnchantedBookTooltips.EnchantedBookComponent.class);
+		event.register(FuelTooltips.FuelComponent.class);
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerReloadListeners(Consumer<PreparableReloadListener> registry) {
+	public void registerReloadListeners(ZRegisterReloadListeners registry) {
 		registry.accept(new AttributeTooltipManager());
 	}
 
@@ -103,11 +102,6 @@ public class ImprovedTooltipsModule extends QuarkModule {
 
 	private static boolean ignore(ItemStack stack) {
 		return ItemNBTHelper.getBoolean(stack, IGNORE_TAG, false);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	private static <T extends ClientTooltipComponent & TooltipComponent> void register(RegisterClientTooltipComponentFactoriesEvent event, Class<T> clazz) {
-		event.register(clazz, Function.identity());
 	}
 
 	@SubscribeEvent

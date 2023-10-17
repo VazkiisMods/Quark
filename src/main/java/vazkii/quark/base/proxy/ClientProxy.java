@@ -31,11 +31,17 @@ import vazkii.quark.base.module.config.IConfigCallback;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.structural.C2SUpdateFlag;
 import vazkii.quark.mixin.client.accessor.AccessorMultiPlayerGameMode;
-import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.client.ZClientModulesReady;
 import vazkii.zeta.event.client.ZConfigChangedClient;
 import vazkii.zeta.event.client.ZRegisterReloadListeners;
-import vazkii.zetaimplforge.event.ForgeZClientSetup;
+import vazkii.zetaimplforge.event.client.ForgeZAddItemColorHandlers;
+import vazkii.zetaimplforge.event.client.ForgeZAddModelLayers;
+import vazkii.zetaimplforge.event.client.ForgeZAddModels;
+import vazkii.zetaimplforge.event.client.ForgeZClientSetup;
+import vazkii.zetaimplforge.event.client.ForgeZKeyMapping;
+import vazkii.zetaimplforge.event.client.ForgeZModelBakingCompleted;
+import vazkii.zetaimplforge.event.client.ForgeZPreTextureStitch;
+import vazkii.zetaimplforge.event.client.ForgeZTooltipComponents;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -76,12 +82,10 @@ public class ClientProxy extends CommonProxy {
 		bus.addListener(this::modelBake);
 		bus.addListener(this::modelLayers);
 		bus.addListener(this::textureStitch);
-		bus.addListener(this::postTextureStitch);
 		bus.addListener(this::registerKeybinds);
 		bus.addListener(this::registerAdditionalModels);
 		bus.addListener(this::registerClientTooltipComponentFactories);
 		bus.addListener(this::registerItemColors);
-		bus.addListener(this::registerBlockColors);
 	}
 
 	public void clientSetup(FMLClientSetupEvent event) {
@@ -89,52 +93,47 @@ public class ClientProxy extends CommonProxy {
 		WoodSetHandler.clientSetup(event);
 		DyeHandler.clientSetup(event);
 
-		ModuleLoader.INSTANCE.clientSetup(event);
 		Quark.ZETA.loadBus.fire(new ForgeZClientSetup(event));
 	}
 
 	public void registerReloadListeners(RegisterClientReloadListenersEvent event) {
-		ModuleLoader.INSTANCE.registerReloadListeners(event);
 		Quark.ZETA.loadBus.fire(new ZRegisterReloadListeners(event::registerReloadListener));
 	}
 
 	public void modelBake(BakingCompleted event) {
-		ModuleLoader.INSTANCE.modelBake(event);
+		//ModuleLoader.INSTANCE.modelBake(event);
+		Quark.ZETA.loadBus.fire(new ForgeZModelBakingCompleted(event));
 	}
 
 	public void modelLayers(EntityRenderersEvent.AddLayers event) {
-		ModuleLoader.INSTANCE.modelLayers(event);
+		//ModuleLoader.INSTANCE.modelLayers(event);
+		Quark.ZETA.loadBus.fire(new ForgeZAddModelLayers(event));
 	}
 
 	public void textureStitch(TextureStitchEvent.Pre event) {
-		ModuleLoader.INSTANCE.textureStitch(event);
-	}
-
-	public void postTextureStitch(TextureStitchEvent.Post event) {
-		ModuleLoader.INSTANCE.postTextureStitch(event);
+		//ModuleLoader.INSTANCE.textureStitch(event);
+		Quark.ZETA.loadBus.fire(new ForgeZPreTextureStitch(event));
 	}
 
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
-		ModuleLoader.INSTANCE.registerKeybinds(event);
+		//ModuleLoader.INSTANCE.registerKeybinds(event);
+		Quark.ZETA.loadBus.fire(new ForgeZKeyMapping(event));
 	}
 
 	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
-		ModuleLoader.INSTANCE.registerAdditionalModels(event);
+		//ModuleLoader.INSTANCE.registerAdditionalModels(event);
+		Quark.ZETA.loadBus.fire(new ForgeZAddModels(event));
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
-		ModuleLoader.INSTANCE.registerClientTooltipComponentFactories(event);
+		//ModuleLoader.INSTANCE.registerClientTooltipComponentFactories(event);
+		Quark.ZETA.loadBus.fire(new ForgeZTooltipComponents(event));
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void registerItemColors(RegisterColorHandlersEvent.Item event) {
-		ModuleLoader.INSTANCE.registerItemColors(event);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-		ModuleLoader.INSTANCE.registerBlockColors(event);
+		Quark.ZETA.loadBus.fire(new ForgeZAddItemColorHandlers(event));
 	}
 
 	@Override
@@ -143,7 +142,6 @@ public class ClientProxy extends CommonProxy {
 
 		Quark.ZETA.loadBus.fire(new ZConfigChangedClient());
 
-		ModuleLoader.INSTANCE.configChangedClient();
 		if (Minecraft.getInstance().getConnection() != null)
 			QuarkNetwork.sendToServer(C2SUpdateFlag.createPacket());
 		IngameConfigHandler.INSTANCE.refresh();

@@ -24,6 +24,8 @@ import vazkii.quark.content.world.block.BlossomSaplingBlock;
 import vazkii.quark.content.world.block.BlossomSaplingBlock.BlossomTree;
 import vazkii.quark.content.world.config.BlossomTreeConfig;
 import vazkii.quark.content.world.gen.BlossomTreeGenerator;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,12 +60,12 @@ public class BlossomTreesModule extends QuarkModule {
 		add("red", MaterialColor.COLOR_RED, red);
 	}
 
-	@Override
-	public void setup(Consumer<Runnable> enqueueWork) {
+	@LoadEvent
+	public void setup(ZCommonSetup e) {
 		for(BlossomTree tree : trees.keySet())
 			WorldGenHandler.addGenerator(this, new BlossomTreeGenerator(trees.get(tree), tree), Decoration.TOP_LAYER_MODIFICATION, WorldGenWeights.BLOSSOM_TREES);
 
-		enqueueWork.accept(() -> {
+		e.enqueueWork(() -> {
 			for(BlossomTree tree : trees.keySet()) {
 				if(tree.leaf.getBlock().asItem() != null)
 					ComposterBlock.COMPOSTABLES.put(tree.leaf.getBlock().asItem(), 0.3F);

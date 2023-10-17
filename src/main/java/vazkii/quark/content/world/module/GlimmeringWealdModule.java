@@ -56,6 +56,9 @@ import vazkii.quark.content.world.block.GlowShroomRingBlock;
 import vazkii.quark.content.world.block.HugeGlowShroomBlock;
 import vazkii.quark.content.world.feature.GlowExtrasFeature;
 import vazkii.quark.content.world.feature.GlowShroomsFeature;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = ModuleCategory.WORLD)
 public class GlimmeringWealdModule extends QuarkModule {
@@ -103,8 +106,8 @@ public class GlimmeringWealdModule extends QuarkModule {
 
 	}
 
-	@Override
-	public void postRegister() {
+	@LoadEvent
+	public void postRegister(ZRegister.Post e) {
 		RegistryHelper.register(makeBiome(), Registry.BIOME_REGISTRY);
 		float wmin = (float) minDepthRange;
 		float wmax = (float) maxDepthRange;
@@ -119,11 +122,11 @@ public class GlimmeringWealdModule extends QuarkModule {
 		QuarkAdvancementHandler.addModifier(new AdventuringTimeModifier(this, ImmutableSet.of(BIOME_KEY)));
 	}
 
-	@Override
-	public void setup(Consumer<Runnable> enqueueWork) {
+	@LoadEvent
+	public void setup(ZCommonSetup e) {
 		glowShroomFeedablesTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "glow_shroom_feedables"));
 
-		enqueueWork.accept(() -> {
+		e.enqueueWork(() -> {
 			ComposterBlock.COMPOSTABLES.put(glow_shroom.asItem(), 0.65F);
 			ComposterBlock.COMPOSTABLES.put(glow_shroom_block.asItem(), 0.65F);
 			ComposterBlock.COMPOSTABLES.put(glow_shroom_stem.asItem(), 0.65F);

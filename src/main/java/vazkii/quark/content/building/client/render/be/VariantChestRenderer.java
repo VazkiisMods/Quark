@@ -10,6 +10,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.render.GenericChestBERenderer;
 import vazkii.quark.content.building.module.VariantChestsModule.IChestTextureProvider;
+import vazkii.zeta.event.client.ZPreTextureStitch;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class VariantChestRenderer extends GenericChestBERenderer<ChestBlockEntit
 		};
 	}
 
-	public static void accept(TextureStitchEvent.Pre event, Block chest) {
+	public static void accept(ZPreTextureStitch event, Block chest) {
 		ResourceLocation atlas = event.getAtlas().location();
 
 		if(chest instanceof IChestTextureProvider prov) {
@@ -50,7 +51,7 @@ public class VariantChestRenderer extends GenericChestBERenderer<ChestBlockEntit
 		}
 	}
 
-	private static void add(TextureStitchEvent.Pre event, ResourceLocation atlas, Block chest, String path, String normal, String left, String right) {
+	private static void add(ZPreTextureStitch event, ResourceLocation atlas, Block chest, String path, String normal, String left, String right) {
 		ResourceLocation resNormal = new ResourceLocation(Quark.MOD_ID, path + normal);
 		ResourceLocation resLeft = new ResourceLocation(Quark.MOD_ID, path + left);
 		ResourceLocation resRight = new ResourceLocation(Quark.MOD_ID, path + right);

@@ -30,6 +30,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZAddModels;
 
 /**
  * @author WireSegal
@@ -78,9 +80,9 @@ public class TotemOfHoldingModule extends QuarkModule {
 		EntityRenderers.register(totemType, TotemOfHoldingRenderer::new);
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+	public void registerAdditionalModels(ZAddModels event) {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/totem_of_holding", "inventory"));
 	}
 	

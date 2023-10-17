@@ -48,6 +48,8 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.oddities.HandleBackpackMessage;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = ModuleCategory.ODDITIES, hasSubscriptions = true)
 public class BackpackModule extends QuarkModule {
@@ -98,12 +100,12 @@ public class BackpackModule extends QuarkModule {
 		backpackBlockedTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "backpack_blocked"));
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(Consumer<Runnable> enqueueWork) {
+	public void clientSetup(ZClientSetup e) {
 		MenuScreens.register(menyType, BackpackInventoryScreen::new);
 
-		enqueueWork.accept(() -> ItemProperties.register(backpack, new ResourceLocation("has_items"),
+		e.enqueueWork(() -> ItemProperties.register(backpack, new ResourceLocation("has_items"),
 				(stack, world, entity, i) -> (!BackpackModule.superOpMode && BackpackItem.doesBackpackHaveItems(stack)) ? 1 : 0));
 	}
 

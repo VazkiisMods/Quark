@@ -29,6 +29,9 @@ import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZAddModels;
+import vazkii.zeta.event.client.ZModelBakingCompleted;
 
 @LoadModule(category = ModuleCategory.ODDITIES, antiOverlap = "botania", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class TinyPotatoModule extends QuarkModule {
@@ -51,18 +54,18 @@ public class TinyPotatoModule extends QuarkModule {
 		patPotatoTrigger = QuarkAdvancementHandler.registerGenericTrigger("pat_potato");
 	}
 
-	@Override
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void modelBake(ModelEvent.BakingCompleted event) {
+	public void modelBake(ZModelBakingCompleted event) {
 		ResourceLocation tinyPotato = new ModelResourceLocation(new ResourceLocation("quark", "tiny_potato"), "inventory");
 		Map<ResourceLocation, BakedModel> map = event.getModels();
 		BakedModel originalPotato = map.get(tinyPotato);
 		map.put(tinyPotato, new TinyPotatoModel(originalPotato));
 	}
-	
-	@Override
+
+	@LoadEvent
 	@OnlyIn(Dist.CLIENT)
-	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+	public void registerAdditionalModels(ZAddModels event) {
 		ResourceManager rm = Minecraft.getInstance().getResourceManager();
 		Set<String> usedNames = new HashSet<>(); 
 
@@ -72,7 +75,7 @@ public class TinyPotatoModule extends QuarkModule {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	private void registerTaters(ModelEvent.RegisterAdditional event, String mod, Set<String> usedNames, ResourceManager rm) {
+	private void registerTaters(ZAddModels event, String mod, Set<String> usedNames, ResourceManager rm) {
 		Map<ResourceLocation, Resource> resources = rm.listResources("models/tiny_potato", r -> r.getPath().endsWith(".json")); 
 		for (ResourceLocation model : resources.keySet()) {
 			if (mod.equals(model.getNamespace())) {
