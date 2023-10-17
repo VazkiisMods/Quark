@@ -23,8 +23,8 @@ public class Quark {
 
 	public static final Logger LOG = LogManager.getLogger(MOD_ID);
 
-	public static final Zeta ZETA = new ForgeZeta(LogManager.getLogger("quark-zeta"));
-	public static final ZetaRegistry REGISTRY = ZETA.createRegistry(MOD_ID); //TODO: push into Zeta probably
+	public static final Zeta ZETA = new ForgeZeta(MOD_ID, LogManager.getLogger("quark-zeta"));
+	public static final ZetaRegistry REGISTRY = ZETA.createRegistry(MOD_ID);
 
 	public Quark() {
 		instance = this;

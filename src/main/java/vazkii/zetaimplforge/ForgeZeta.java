@@ -7,6 +7,7 @@ import vazkii.zeta.Zeta;
 import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zeta.registry.ZetaRegistry;
 import vazkii.zeta.util.ZetaSide;
+import vazkii.zetaimplforge.module.ModFileScanDataModuleFinder;
 import vazkii.zetaimplforge.network.ForgeZetaNetworkHandler;
 import vazkii.zetaimplforge.registry.ForgeZetaRegistry;
 
@@ -14,11 +15,13 @@ import vazkii.zetaimplforge.registry.ForgeZetaRegistry;
  * ideally do not touch quark from this package, it will later be split off
  */
 public class ForgeZeta extends Zeta {
-	public ForgeZeta(Logger log) {
+	public ForgeZeta(String modid, Logger log) {
 		super(log);
 
 		this.loadEvents = new ForgeLoadEventBusPassage(this);
 		this.playEvents = new ForgePlayEventBusPassage(this);
+
+		modules.load(new ModFileScanDataModuleFinder(modid));
 	}
 
 	private final ForgeLoadEventBusPassage loadEvents;

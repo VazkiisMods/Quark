@@ -46,9 +46,6 @@ public class CommonProxy {
 
 		QuarkSounds.start();
 
-		//TODO ZETA: module loading
-		Quark.ZETA.modules.load(new ModFileScanDataModuleFinder(Quark.MOD_ID));
-
 		ModuleLoader.INSTANCE.start();
 
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

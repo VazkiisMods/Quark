@@ -20,7 +20,6 @@ public abstract class Zeta {
 
 		this.loadBus = new ZetaEventBus<>(LoadEvent.class, IZetaLoadEvent.class);
 		this.playBus = new ZetaEventBus<>(PlayEvent.class, IZetaPlayEvent.class);
-
 		this.modules = new ZetaModuleManager(this);
 	}
 
