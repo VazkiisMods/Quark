@@ -13,8 +13,8 @@ import vazkii.zetaimplforge.registry.ForgeZetaRegistry;
 /**
  * ideally do not touch quark from this package, it will later be split off
  */
-public class ZetaForge extends Zeta {
-	public ZetaForge(Logger log) {
+public class ForgeZeta extends Zeta {
+	public ForgeZeta(Logger log) {
 		super(log);
 	}
 
@@ -33,7 +33,7 @@ public class ZetaForge extends Zeta {
 
 	@Override
 	public ZetaRegistry createRegistry(String modid) {
-		return new ForgeZetaRegistry(modid);
+		return new ForgeZetaRegistry(this, modid);
 	}
 
 	@Override

@@ -34,7 +34,9 @@ import org.jetbrains.annotations.Nullable;
  * However, if you call .fire() using a ForgeMyEvent, listeners for MyEvent will be invoked.
  * This allows events to be backed by different classes on different platforms.
  * <p>
- * There is currently no support for generic events (like forge's RegistryEvent<T>). It would be nice.
+ * TODO: There is currently no support for generic events (like forge's RegistryEvent<T>). It would be nice.
+ *
+ * TODO: It'd also be nice to subscribe to non-direct implementors, for loader-only events
  */
 public class ZetaEventBus {
 	private final Map<Class<? extends IZetaEvent>, List<MethodHandle>> listeners = new HashMap<>();

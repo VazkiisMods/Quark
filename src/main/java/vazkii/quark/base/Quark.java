@@ -10,7 +10,7 @@ import vazkii.quark.base.proxy.ClientProxy;
 import vazkii.quark.base.proxy.CommonProxy;
 import vazkii.zeta.Zeta;
 import vazkii.zeta.registry.ZetaRegistry;
-import vazkii.zetaimplforge.ZetaForge;
+import vazkii.zetaimplforge.ForgeZeta;
 
 @Mod(Quark.MOD_ID)
 public class Quark {
@@ -23,7 +23,7 @@ public class Quark {
 
 	public static final Logger LOG = LogManager.getLogger(MOD_ID);
 
-	public static final Zeta ZETA = new ZetaForge(LOG);
+	public static final Zeta ZETA = new ForgeZeta(LOG);
 	public static final ZetaRegistry REGISTRY = ZETA.createRegistry(MOD_ID);
 
 	public Quark() {

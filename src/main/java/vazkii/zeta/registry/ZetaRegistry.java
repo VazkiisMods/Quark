@@ -18,13 +18,15 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import vazkii.zeta.Zeta;
 
 //Mash of arl's RegistryHelper and its ModData innerclass.
 //You're expected to create one of these per modid instead, avoiding a dependency on Forge's "current mod id" notion.
 //
-//TODO: Tidy up this API a bit.
+//TODO: Tidy up this API a bit - it might be nice to use a "proper" deferredregister on Forge
 public abstract class ZetaRegistry {
-	private final String modid;
+	protected final Zeta z;
+	protected final String modid;
 
 	//the keys of this are things like "minecraft:block", "minecraft:item" and so on
 	private final Multimap<ResourceLocation, Supplier<Object>> defers = ArrayListMultimap.create();
@@ -33,7 +35,8 @@ public abstract class ZetaRegistry {
 	private final Map<Block, IZetaBlockColorProvider> blockColors = new IdentityHashMap<>();
 	private final Map<ResourceLocation, CreativeModeTab> groups = new LinkedHashMap<>();
 
-	public ZetaRegistry(String modid) {
+	public ZetaRegistry(Zeta z, String modid) {
+		this.z = z;
 		this.modid = modid;
 	}
 

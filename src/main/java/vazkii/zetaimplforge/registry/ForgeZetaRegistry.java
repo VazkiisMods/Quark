@@ -9,16 +9,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegisterEvent;
-import vazkii.arl.AutoRegLib;
 import vazkii.zeta.registry.ZetaRegistry;
+import vazkii.zetaimplforge.ForgeZeta;
 
 public class ForgeZetaRegistry extends ZetaRegistry {
-	public ForgeZetaRegistry(String modid) {
-		super(modid);
+	public ForgeZetaRegistry(ForgeZeta z, String modid) {
+		super(z, modid);
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener((RegisterEvent e) -> {
-			register(e.getRegistryKey(), e.getForgeRegistry());
-		});
+		FMLJavaModLoadingContext.get().getModEventBus().addListener((RegisterEvent e) ->
+			register(e.getRegistryKey(), e.getForgeRegistry()));
 	}
 
 	@SuppressWarnings({ "unchecked" })
@@ -28,14 +27,14 @@ public class ForgeZetaRegistry extends ZetaRegistry {
 		Collection<Supplier<Object>> ourEntries = getDefers(registryRes);
 		if(ourEntries != null && !ourEntries.isEmpty()) {
 			if(registry == null) {
-				AutoRegLib.LOGGER.error(registryRes + " does not have a forge registry");
+				z.log.error(registryRes + " does not have a forge registry");
 				return;
 			}
 
 			for(Supplier<Object> supplier : ourEntries) {
 				Object entry = supplier.get();
 				ResourceLocation name = getInternalName(entry);
-				AutoRegLib.LOGGER.debug("Registering to " + registryRes + " - " + name);
+				z.log.debug("Registering to " + registryRes + " - " + name);
 				registry.register(name, (T) entry);
 			}
 
