@@ -4,14 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent.ClientTickEvent;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
@@ -25,10 +18,11 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+//TODO ZETA: im in the process of stripping this class for parts
 public final class ModuleLoader {
 
 	private enum Step {
-		POST_REGISTER, GENERATE_HINTS, FIRST_CLIENT_TICK
+		POST_REGISTER, GENERATE_HINTS
 	}
 
 	public static final ModuleLoader INSTANCE = new ModuleLoader();
@@ -38,7 +32,6 @@ public final class ModuleLoader {
 
 	private ConfigResolver config;
 	private Runnable onConfigReloadJEI;
-	private boolean clientTicked = false;
 
 	private ModuleLoader() { }
 
@@ -49,11 +42,6 @@ public final class ModuleLoader {
 
 		config = new ConfigResolver();
 		config.makeSpec();
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void clientStart() {
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public ModConfig getConfig() {
@@ -80,20 +68,13 @@ public final class ModuleLoader {
 		Quark.proxy.handleQuarkConfigChange();
 	}
 
+	//TODO: this could be some sort of GatherHintsEvent, fired on the play bus (because of that enabled() check)
+	// Stick one in QuarkModule that scans its own class for @Hint annotations too or something
 	public void addStackInfo(BiConsumer<Item, Component> consumer) {
 		dispatch(Step.GENERATE_HINTS, m -> {
 			if(m.enabled)
 				m.addStackInfo(consumer);
 		});
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	@SubscribeEvent
-	public void firstClientTick(ClientTickEvent event) {
-		if(!clientTicked && event.phase == Phase.END) {
-			dispatch(Step.FIRST_CLIENT_TICK, QuarkModule::firstClientTick);
-			clientTicked = true;
-		}
 	}
 
 	private void dispatch(Step step, Consumer<QuarkModule> run) {

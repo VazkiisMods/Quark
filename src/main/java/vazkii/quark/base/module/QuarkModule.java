@@ -100,12 +100,6 @@ public class QuarkModule extends ZetaModule {
 	}
 	// </HINTS>
 
-	@Deprecated //QuarkModule
-	@OnlyIn(Dist.CLIENT)
-	public void firstClientTick() {
-		// NO-OP
-	}
-
 	public void pushFlags(ConfigFlagManager manager) {
 		// NO-OP
 	}

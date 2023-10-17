@@ -21,6 +21,8 @@ public abstract class Zeta {
 		this.loadBus = new ZetaEventBus<>(LoadEvent.class, IZetaLoadEvent.class);
 		this.playBus = new ZetaEventBus<>(PlayEvent.class, IZetaPlayEvent.class);
 		this.modules = new ZetaModuleManager(this);
+
+		wireEvents();
 	}
 
 	public final Logger log;
@@ -33,4 +35,5 @@ public abstract class Zeta {
 
 	public abstract ZetaRegistry createRegistry(String modid);
 	public abstract ZetaNetworkHandler createNetworkHandler(String modid, int protocolVersion);
+	public abstract void wireEvents();
 }
