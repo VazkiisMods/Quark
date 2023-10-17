@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface ZetaLoadModule {
-	String id();
+	String id(); //TODO: make it optional and default to simpleName? or something
 	String clientExtensionOf() default "";
 
 	boolean enabledByDefault() default true;

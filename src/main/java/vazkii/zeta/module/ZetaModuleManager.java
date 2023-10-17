@@ -1,9 +1,11 @@
 package vazkii.zeta.module;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import org.jetbrains.annotations.Nullable;
 import vazkii.zeta.Zeta;
@@ -24,10 +26,12 @@ public class ZetaModuleManager {
 		return modulesById.get(id);
 	}
 
-	public void load(Supplier<Collection<TentativeModule>> finder) {
-		Collection<TentativeModule> tentative = finder.get();
+	public void load(ModuleFinder finder) {
+		Collection<? extends TentativeModule> tentative = finder.get()
+			.sorted(Comparator.comparing(TentativeModule::id))
+			.toList();
 
-		Collection<TentativeModule> toLoad = switch(z.getSide()) {
+		Collection<? extends TentativeModule> toLoad = switch(z.getSide()) {
 			case SERVER -> tentative.stream().filter(TentativeModule::isCommon).toList();
 			case CLIENT -> {
 				Map<String, TentativeModule> map = new LinkedHashMap<>();

@@ -26,6 +26,7 @@ import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.recipe.*;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.base.world.WorldGenHandler;
+import vazkii.zetaimplforge.module.ModFileScanDataModuleFinder;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -44,6 +45,10 @@ public class CommonProxy {
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":maintaining_smoking", DataMaintainingSmokingRecipe.SERIALIZER);
 
 		QuarkSounds.start();
+
+		//TODO ZETA: module loading
+		Quark.ZETA.modules.load(new ModFileScanDataModuleFinder(Quark.MOD_ID));
+
 		ModuleLoader.INSTANCE.start();
 
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

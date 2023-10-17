@@ -8,7 +8,7 @@ public class ZetaModule {
 
 	public boolean enabled = true;
 
-	void postConstruct() {
+	public void postConstruct() {
 		// NO-OP
 	}
 }
