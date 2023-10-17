@@ -19,36 +19,24 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A slightly unusual event bus.
- * It is associated with an "event root" type, and when firing an event, Zeta will look for the first
- * superclass of that event that *directly* implements the event root.
- *
- * Say you have this structure:
- *
- * <pre>
- * abstract class MyEvent implements IZetaEvent {
- *   void register(); //or whatever
- * }
- * class ForgeMyEvent extends MyEvent {
- *   //impl for Forge
- * }
- * class FabricMyEvent extends MyEvent {
- *   //impl for Fabric
- * }
- * </pre>
- *
- * Subscribers are only permitted to @ZetaSubscribe to MyEvent, because it directly implements IZetaEvent.
- * Subscribers are *not* permitted to @ZetaSubscribe to ForgeMyEvent. An exception will be thrown.
- *
- * However, if you call .fire() using a ForgeMyEvent, listeners for MyEvent will be invoked.
- * This allows events to be implemented and *fired* by different classes on different platforms, but *subscribed to*
- * using a unified interface
+ * A polymorphic event bus, associated with an "event root" type.
  * <p>
- * TODO: There is currently no support for generic events (like forge's RegistryEvent<T>). It would be nice.
- *
+ * Subscribers are only permitted to subscribe to events that *directly* implement the event root.
+ * If A implements the event root, and B extends A, you can subscribe to A, but not B.
+ * <p>
+ * When firing an event, its superclass hierarchy will be walked until locating a direct implementer
+ * of the event root interface. Listeners for *that* will be invoked. (If you fire B, it will get
+ * passed to listeners looking for A.)
+ * <p>
+ * This constructions allows you to API/impl split your events.
+ * A might be a "common" event, and B might be a Forge-only implementation of the event.
+ */
+/*
+ * TODO: No support for generic events (like forge's RegistryEvent<T>). It would be nice.
+ * TODO: No support for Consumer events (like forge's addListener).
  * TODO: It'd also be nice to subscribe to non-direct implementors, for loader-only events
  */
-public class ZetaEventBus<E extends IZetaEvent> {
+public class ZetaEventBus<E> {
 	private final Class<? extends Annotation> subscriberAnnotation;
 	private final Class<? extends E> eventRoot;
 
@@ -60,6 +48,8 @@ public class ZetaEventBus<E extends IZetaEvent> {
 	 * @param eventRoot The superinterface of all events fired on this bus.
 	 */
 	public ZetaEventBus(Class<? extends Annotation> subscriberAnnotation, Class<? extends E> eventRoot) {
+		Preconditions.checkArgument(eventRoot.isInterface(), "Event roots should be an interface");
+
 		this.subscriberAnnotation = subscriberAnnotation;
 		this.eventRoot = eventRoot;
 	}
@@ -82,7 +72,7 @@ public class ZetaEventBus<E extends IZetaEvent> {
 			owningClazz = target.getClass();
 		}
 
-		streamZetaSubscribeMethods(owningClazz, receiver == null).forEach(m -> getListenersFor(m).subscribe(receiver, owningClazz, m));
+		streamAnnotatedMethods(owningClazz, receiver == null).forEach(m -> getListenersFor(m).subscribe(receiver, owningClazz, m));
 		return this;
 	}
 
@@ -103,7 +93,7 @@ public class ZetaEventBus<E extends IZetaEvent> {
 			owningClazz = target.getClass();
 		}
 
-		streamZetaSubscribeMethods(owningClazz, receiver == null).forEach(m -> getListenersFor(m).unsubscribe(receiver, owningClazz, m));
+		streamAnnotatedMethods(owningClazz, receiver == null).forEach(m -> getListenersFor(m).unsubscribe(receiver, owningClazz, m));
 		return this;
 	}
 
@@ -123,9 +113,9 @@ public class ZetaEventBus<E extends IZetaEvent> {
 	 * Grabs methods from this class (and its superclasses, recursively) that are annotated with this bus's
 	 * annotation; and of the requested staticness.
 	 */
-	private Stream<Method> streamZetaSubscribeMethods(Class<?> owningClazz, boolean wantStatic) {
+	private Stream<Method> streamAnnotatedMethods(Class<?> owningClazz, boolean wantStatic) {
 		return Arrays.stream(owningClazz.getMethods())
-			.filter(m -> m.isAnnotationPresent(subscriberAnnotation) && ((m.getModifiers() & Modifier.STATIC) != 0) == wantStatic);
+			.filter(m -> m.isAnnotationPresent(subscriberAnnotation) &&((m.getModifiers() & Modifier.STATIC) != 0) == wantStatic);
 	}
 
 	/**
@@ -148,11 +138,12 @@ public class ZetaEventBus<E extends IZetaEvent> {
 	 * Used to "normalize" events, so firing `FabricMyEvent` will locate subscribers for `MyEvent`.
 	 */
 	private Class<? extends E> findDirectImpl(Class<?> clazz) {
-		return findDirectImpl2(clazz).orElseThrow(() -> new RuntimeException("Class " + clazz.getName() + " does not implement " + eventRoot));
+		return findDirectImpl2(clazz).orElseThrow(() -> findImplERR(clazz));
 	}
 
 	@SuppressWarnings("unchecked")
 	private Optional<Class<? extends E>> findDirectImpl2(Class<?> clazz) {
+		//does it directly implement the interface?
 		Set<Class<?>> interfaces = Set.of(clazz.getInterfaces());
 		if(interfaces.contains(eventRoot))
 			return Optional.of((Class<? extends E>) clazz);
@@ -223,7 +214,7 @@ public class ZetaEventBus<E extends IZetaEvent> {
 			handles.remove(new Subscriber(receiver, owningClazz, method));
 		}
 
-		//just hoisting the instanceof out of the loop
+		//just hoisting the instanceof out of the loop.. No profiling just vibes <3
 		void doFire(E event) {
 			try {
 				if(event instanceof Cancellable cancellable)
@@ -248,16 +239,24 @@ public class ZetaEventBus<E extends IZetaEvent> {
 		}
 	}
 
+	private RuntimeException findImplERR(Class<?> clazz) {
+		return new RuntimeException("Couldn't find a direct implementer of " + eventRoot.getName() +
+			" in " + clazz.getName() + "'s type hierarchy."); //You might just need to fix findDirectImpl2.
+	}
+
 	private RuntimeException arityERR(Method method) {
-		return methodProblem("Method annotated with @" + subscriberAnnotation.getSimpleName() + " should take 1 parameter.", method, null);
+		return methodProblem("Method annotated with @" + subscriberAnnotation.getSimpleName() +
+			" should take 1 parameter.", method, null);
 	}
 
 	private RuntimeException typeERR(Method method) {
-		return methodProblem("Method annotated with @" + subscriberAnnotation.getSimpleName() + " should take a *direct* implementor of " + eventRoot.getSimpleName() + ".", method, null);
+		return methodProblem("Method annotated with @" + subscriberAnnotation.getSimpleName() +
+			" should take a *direct* implementor of " + eventRoot.getSimpleName() + ".", method, null);
 	}
 
 	private RuntimeException unreflectERR(Method method, Throwable cause) {
-		return methodProblem("Exception unreflecting a @" + subscriberAnnotation.getSimpleName() + " method, is it public?", method, cause);
+		return methodProblem("Exception unreflecting a @" + subscriberAnnotation.getSimpleName() +
+			" method, is it public?", method, cause);
 	}
 
 	private static RuntimeException methodProblem(String problem, Method method, @Nullable Throwable cause) {
