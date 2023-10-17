@@ -1,5 +1,6 @@
 package vazkii.zetaimplforge;
 
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -8,11 +9,13 @@ import vazkii.zeta.Zeta;
 import vazkii.zetaimplforge.event.ForgeZCommonSetup;
 import vazkii.zetaimplforge.event.ForgeZLoadComplete;
 
-public class ForgeEventPassage {
-	public ForgeEventPassage(Zeta z) {
+public class ForgeLoadEventBusPassage {
+	public ForgeLoadEventBusPassage(Zeta z) {
 		this.z = z;
 
-		FMLJavaModLoadingContext.get().getModEventBus().register(this);
+		IEventBus heck = FMLJavaModLoadingContext.get().getModEventBus();
+		heck.addListener(this::commonSetup);
+		heck.addListener(this::loadComplete);
 	}
 
 	private final Zeta z;

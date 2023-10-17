@@ -17,10 +17,12 @@ public class ForgeZeta extends Zeta {
 	public ForgeZeta(Logger log) {
 		super(log);
 
-		this.eventPassage = new ForgeEventPassage(this);
+		this.loadEvents = new ForgeLoadEventBusPassage(this);
+		this.playEvents = new ForgePlayEventBusPassage(this);
 	}
 
-	private final ForgeEventPassage eventPassage;
+	private final ForgeLoadEventBusPassage loadEvents;
+	private final ForgePlayEventBusPassage playEvents;
 
 	@Override
 	public ZetaSide getSide() {
