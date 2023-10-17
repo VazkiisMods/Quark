@@ -17,6 +17,7 @@ public class ServiceLoaderModuleFinder implements ModuleFinder {
 
 	private final Zeta z;
 
+	@Override
 	public Stream<? extends TentativeModule> get() {
 		return ServiceLoader.load(ZetaModule.class)
 			.stream()

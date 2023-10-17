@@ -26,6 +26,7 @@ public class ModFileScanDataModuleFinder implements ModuleFinder {
 		this(ModList.get().getModFileById(modid).getFile().getScanResult());
 	}
 
+	@Override
 	public Stream<? extends TentativeModule> get() {
 		return mfsd.getAnnotations().stream()
 			.filter(ad -> ad.annotationType().equals(ZLM_TYPE))
