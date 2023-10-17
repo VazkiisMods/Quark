@@ -7,20 +7,17 @@ import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
 import vazkii.zeta.Zeta;
-import vazkii.zeta.event.ZetaEventBus;
 
 /**
  * TODO: other forms of module discovery and replacement (like a Forge-only module, or other types of 'replacement' modules)
  */
 public class ZetaModuleManager {
 	private final Zeta z;
-	private final ZetaEventBus bus;
 
 	private final Map<String, ZetaModule> modulesById = new LinkedHashMap<>();
 
-	public ZetaModuleManager(Zeta z, ZetaEventBus bus) {
+	public ZetaModuleManager(Zeta z) {
 		this.z = z;
-		this.bus = bus;
 	}
 
 	public @Nullable ZetaModule get(String id) {
@@ -71,8 +68,8 @@ public class ZetaModuleManager {
 
 		module.postConstruct();
 
-		bus.subscribe(module.getClass());
-		bus.subscribe(module);
+		z.loadBus.subscribe(module.getClass());
+		z.loadBus.subscribe(module);
 
 		return module;
 	}

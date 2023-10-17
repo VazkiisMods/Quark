@@ -1,12 +1,14 @@
 package vazkii.zeta;
 
-import vazkii.zeta.event.IZetaEvent;
+import vazkii.zeta.event.IZetaLoadEvent;
+import vazkii.zeta.event.IZetaPlayEvent;
+import vazkii.zeta.event.LoadEvent;
 import vazkii.zeta.event.ZetaEventBus;
-import vazkii.zeta.event.ZetaSubscribe;
+import vazkii.zeta.event.PlayEvent;
 
 @SuppressWarnings("PMD.SystemPrintln")
 public class EventBusTestingBlahblah {
-	public static class MyEvent implements IZetaEvent {
+	public static class MyEvent implements IZetaPlayEvent {
 		public MyEvent setMessage(String asd) {
 			message = asd;
 			return this;
@@ -19,10 +21,13 @@ public class EventBusTestingBlahblah {
 
 	}
 
+	public static class TestLoadEvent implements IZetaLoadEvent {}
+	public static class TestLoadEventSubclass extends TestLoadEvent {}
+
 	public static class TestSubscriber {
 		String me = "goodbbye world";
 
-		@ZetaSubscribe
+		@PlayEvent
 		public void doIt(MyEvent e) {
 			System.out.println("ME: " + me);
 			System.out.println("MSG: " + e.message);
@@ -30,19 +35,17 @@ public class EventBusTestingBlahblah {
 			System.out.println();
 		}
 
-		@ZetaSubscribe
+		@PlayEvent
 		public static void myStatic(MyEvent e) {
 			System.out.println("im static!");
 			System.out.println("MSG: " + e.message);
 			System.out.println("EVENT TYPE: " + e.getClass());
 			System.out.println();
 		}
-	}
 
-	public static class Wrong {
-		@ZetaSubscribe
-		private void blah(MyEvent what) {
-
+		@LoadEvent
+		public void load(TestLoadEvent e) {
+			System.out.println("got LOAD EVENT ! " + this.me + " " + e);
 		}
 	}
 
@@ -52,28 +55,33 @@ public class EventBusTestingBlahblah {
 		TestSubscriber subscriberB = new TestSubscriber();
 		subscriberB.me = "sub b";
 
-		ZetaEventBus imagineABus = new ZetaEventBus();
+		ZetaEventBus<IZetaLoadEvent> loadBus = new ZetaEventBus<>(LoadEvent.class, IZetaLoadEvent.class);
+		ZetaEventBus<IZetaPlayEvent> playBus = new ZetaEventBus<>(PlayEvent.class, IZetaPlayEvent.class);
 
-		imagineABus.subscribe(subscriberA)
+		loadBus.subscribe(subscriberA);
+
+		playBus.subscribe(subscriberA)
 			.subscribe(subscriberB)
 			.subscribe(TestSubscriber.class);
 
-		imagineABus.fire(new MyEvent());
-		imagineABus.fire(new MyEvent().setMessage("MESSAGE"));
-		imagineABus.fire(new MySubclass());
-		imagineABus.fire(new MySubclass().setMessage("MAESSAGE"));
+		playBus.fire(new MyEvent());
+		playBus.fire(new MyEvent().setMessage("MESSAGE"));
+		playBus.fire(new MySubclass());
+		playBus.fire(new MySubclass().setMessage("MAESSAGE"));
 
-		imagineABus.unsubscribe(subscriberA);
+		loadBus.fire(new TestLoadEventSubclass());
 
-		imagineABus.fire(new MySubclass().setMessage("UNSUBSCRIBED from subscriber A"));
+		playBus.unsubscribe(subscriberA);
 
-		imagineABus.unsubscribe(TestSubscriber.class);
+		playBus.fire(new MySubclass().setMessage("UNSUBSCRIBED from subscriber A"));
 
-		imagineABus.fire(new MySubclass().setMessage("UNSUBSCRIBED from TestSubscriber"));
+		playBus.unsubscribe(TestSubscriber.class);
 
-		imagineABus.unsubscribe(subscriberB);
+		playBus.fire(new MySubclass().setMessage("UNSUBSCRIBED from TestSubscriber"));
 
-		imagineABus.fire(new MySubclass().setMessage("UNSUBSCRIBED from subscriber B"));
+		playBus.unsubscribe(subscriberB);
+
+		playBus.fire(new MySubclass().setMessage("UNSUBSCRIBED from subscriber B"));
 
 		System.out.println("yeah");
 	}

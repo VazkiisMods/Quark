@@ -1,7 +1,11 @@
 package vazkii.zeta;
 
 import org.apache.logging.log4j.Logger;
+import vazkii.zeta.event.IZetaLoadEvent;
+import vazkii.zeta.event.IZetaPlayEvent;
+import vazkii.zeta.event.LoadEvent;
 import vazkii.zeta.event.ZetaEventBus;
+import vazkii.zeta.event.PlayEvent;
 import vazkii.zeta.module.ZetaModuleManager;
 import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zeta.registry.ZetaRegistry;
@@ -14,12 +18,15 @@ public abstract class Zeta {
 	public Zeta(Logger log) {
 		this.log = log;
 
-		this.eventBus = new ZetaEventBus();
-		this.modules = new ZetaModuleManager(this, eventBus);
+		this.loadBus = new ZetaEventBus<>(LoadEvent.class, IZetaLoadEvent.class);
+		this.playBus = new ZetaEventBus<>(PlayEvent.class, IZetaPlayEvent.class);
+
+		this.modules = new ZetaModuleManager(this);
 	}
 
 	public final Logger log;
-	public final ZetaEventBus eventBus;
+	public final ZetaEventBus<IZetaLoadEvent> loadBus;
+	public final ZetaEventBus<IZetaPlayEvent> playBus;
 	public final ZetaModuleManager modules;
 
 	public abstract ZetaSide getSide();
