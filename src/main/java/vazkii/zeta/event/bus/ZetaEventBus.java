@@ -138,7 +138,7 @@ public class ZetaEventBus<E> {
 			throw arityERR(method);
 
 		Class<?> eventType = method.getParameterTypes()[0];
-		if(!Arrays.asList(eventType.getInterfaces()).contains(eventRoot))
+		if(!eventRoot.isAssignableFrom(eventType))
 			throw typeERR(method);
 
 		return listenerMap.computeIfAbsent((Class<? extends E>) eventType, __ -> new Listeners());
@@ -254,7 +254,7 @@ public class ZetaEventBus<E> {
 
 	private RuntimeException typeERR(Method method) {
 		return methodProblem("Method annotated with @" + subscriberAnnotation.getSimpleName() +
-			" should take a *direct* implementor of " + eventRoot.getSimpleName() + ".", method, null);
+			" should take an implementor of " + eventRoot.getSimpleName() + ".", method, null);
 	}
 
 	private RuntimeException unreflectERR(Method method, Throwable cause) {
