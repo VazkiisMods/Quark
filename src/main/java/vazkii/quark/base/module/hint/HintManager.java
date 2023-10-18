@@ -11,13 +11,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.ConfigFlagManager;
+import vazkii.quark.base.module.config.ConfigObjectSerializer;
+import vazkii.zeta.module.ZetaModule;
 
 public class HintManager {
 
-	public static List<HintObject> gatherHintAnnotations(ConfigFlagManager flagManager, QuarkModule module) {
-		Field[] fields = module.getClass().getFields();
+	public static List<HintObject> gatherHintAnnotations(ConfigFlagManager flagManager, ZetaModule module) {
+		List<Field> fields = ConfigObjectSerializer.recursivelyGetFields(module.getClass()); //getDeclaredFields also gets non-public fields... yeah
 		List<HintObject> loadedHints = new ArrayList<>();
 
 		for(Field f : fields) {

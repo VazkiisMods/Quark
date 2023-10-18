@@ -20,7 +20,7 @@ The first module ported to `@ZetaLoadModule` is `DoubleDoorOpeningModule` if you
   * It is recommended to make fewer things `static`. It's easy to obtain module instances with `Quark.ZETA.modules.get`.
   * Some things (most importantly, anything and everything relating to config) are unchanged for now. In due time.
 
-In the interim period `QuarkModule` extends `ZetaModule`, and some of the remaining features (subscribing to `MinecraftForge.EVENT_BUS`, method-based lifecycle events) are implemented in terms of ZetaModule or in scattered `instanceof QuarkModule` blocks. This is just to keep the rest of the mod on life support.
+In the interim period `QuarkModule` extends `ZetaModule`, and some of the remaining features (subscribing to `MinecraftForge.EVENT_BUS`, method-based lifecycle events) are implemented in terms of ZetaModule or in scattered `instanceof QuarkModule` blocks. This is just to keep the rest of the mod on life support and it *is* imperfect - many QuarkModules are broken on the dedicated server (it's not safe to subscribe *at all* to *any* annotation-based event bus - even Zeta's - if you have even one `@OnlyIn` method, so Zeta can't subscribe these modules to the *load* event bus either, so they don't receive lifecycle events or register blocks...)
 
 So tl;dr for zeta-fying a module:
 

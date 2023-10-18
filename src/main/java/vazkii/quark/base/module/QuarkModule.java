@@ -6,18 +6,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import vazkii.quark.base.module.config.ConfigFlagManager;
-import vazkii.quark.base.module.hint.HintManager;
-import vazkii.quark.base.module.hint.HintObject;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.module.ZetaModule;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class QuarkModule extends ZetaModule {
@@ -26,8 +21,6 @@ public class QuarkModule extends ZetaModule {
 	public boolean hasSubscriptions = false;
 	@Deprecated
 	public List<Dist> subscriptionTarget = Lists.newArrayList(Dist.CLIENT, Dist.DEDICATED_SERVER);
-
-	private List<HintObject> annotationHints = new ArrayList<>();
 
 	public QuarkModule() {
 		// yep
@@ -89,12 +82,15 @@ public class QuarkModule extends ZetaModule {
 		// NO-OP
 	}
 
-	@PlayEvent
-	public final void addAnnotationHints(ZGatherHints event) {
-		if(annotationHints == null)
-			annotationHints = HintManager.gatherHintAnnotations(ModuleLoader.INSTANCE.getConfigFlagManager(), this);
+	@Override
+	protected boolean legacySubscribe(boolean nowEnabled) {
+		if(hasSubscriptions && subscriptionTarget.contains(FMLEnvironment.dist)) {
+			if(nowEnabled)
+				MinecraftForge.EVENT_BUS.register(this);
+			else
+				MinecraftForge.EVENT_BUS.unregister(this);
+		}
 
-		for(HintObject hint : annotationHints)
-			hint.apply(event);
+		return subscriptionTarget.contains(FMLEnvironment.dist);
 	}
 }

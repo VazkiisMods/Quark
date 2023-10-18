@@ -149,6 +149,13 @@ public class ZetaEventBus<E> {
 	 */
 	@SuppressWarnings("unchecked")
 	private Class<? extends E> getFiredAs(Class<?> clazz) {
+		//hacky fix for "fire(new IEvent() { ... })"
+		//note - this can't handle lambdas (arrow functions)
+		//apparently it's possible to reify types from lambdas, but Forge needs a
+		//whole library to do it... sun.misc.Unsafe is involved... it's a mess
+		if(clazz.isAnonymousClass())
+			return getFiredAs(clazz.getInterfaces()[0]);
+
 		FiredAs annot = clazz.getAnnotation(FiredAs.class);
 		if(annot == null) {
 			//safety: this method's only called from fire(), which statically checks this invariant
