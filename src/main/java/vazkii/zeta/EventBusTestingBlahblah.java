@@ -55,8 +55,8 @@ public class EventBusTestingBlahblah {
 		TestSubscriber subscriberB = new TestSubscriber();
 		subscriberB.me = "sub b";
 
-		ZetaEventBus<IZetaLoadEvent> loadBus = new ZetaEventBus<>(LoadEvent.class, IZetaLoadEvent.class);
-		ZetaEventBus<IZetaPlayEvent> playBus = new ZetaEventBus<>(PlayEvent.class, IZetaPlayEvent.class);
+		ZetaEventBus<IZetaLoadEvent> loadBus = new ZetaEventBus<>(LoadEvent.class, IZetaLoadEvent.class, null);
+		ZetaEventBus<IZetaPlayEvent> playBus = new ZetaEventBus<>(PlayEvent.class, IZetaPlayEvent.class, null);
 
 		loadBus.subscribe(subscriberA);
 

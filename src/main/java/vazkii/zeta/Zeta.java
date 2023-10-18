@@ -24,8 +24,8 @@ public abstract class Zeta {
 		this.log = log;
 
 		this.side = getSide();
-		this.loadBus = new ZetaEventBus<>(LoadEvent.class, IZetaLoadEvent.class);
-		this.playBus = new ZetaEventBus<>(PlayEvent.class, IZetaPlayEvent.class);
+		this.loadBus = new ZetaEventBus<>(LoadEvent.class, IZetaLoadEvent.class, log);
+		this.playBus = new ZetaEventBus<>(PlayEvent.class, IZetaPlayEvent.class, null);
 		this.modules = new ZetaModuleManager(this);
 		this.registry = createRegistry(modid);
 

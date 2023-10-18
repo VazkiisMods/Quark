@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 import com.google.common.base.Preconditions;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,6 +34,7 @@ import org.jetbrains.annotations.Nullable;
 public class ZetaEventBus<E> {
 	private final Class<? extends Annotation> subscriberAnnotation;
 	private final Class<? extends E> eventRoot;
+	private final @Nullable Logger logSpam;
 
 	private final Map<Class<? extends E>, Listeners> listenerMap = new HashMap<>();
 	private final Map<Class<?>, Class<? extends E>> firedAsCache = new HashMap<>(); //Optimization for .fire()
@@ -41,11 +43,12 @@ public class ZetaEventBus<E> {
 	 * @param subscriberAnnotation The annotation that subscribe()/unsubscribe() will pay attention to.
 	 * @param eventRoot The superinterface of all events fired on this bus.
 	 */
-	public ZetaEventBus(Class<? extends Annotation> subscriberAnnotation, Class<? extends E> eventRoot) {
+	public ZetaEventBus(Class<? extends Annotation> subscriberAnnotation, Class<? extends E> eventRoot, @Nullable Logger logSpam) {
 		Preconditions.checkArgument(eventRoot.isInterface(), "Event roots should be an interface");
 
 		this.subscriberAnnotation = subscriberAnnotation;
 		this.eventRoot = eventRoot;
+		this.logSpam = logSpam;
 	}
 
 	/**
@@ -97,10 +100,24 @@ public class ZetaEventBus<E> {
 	public <T extends E> T fire(@NotNull T event) {
 		Class<? extends E> firedAs = firedAsCache.computeIfAbsent(event.getClass(), this::getFiredAs);
 		Listeners subs = listenerMap.get(firedAs);
-		if(subs != null)
+		if(subs != null) {
+			if(logSpam != null) {
+				logSpam.info("Dispatching {} (as {}) to {} listener{}",
+					logspamSimpleName(event.getClass()),
+					logspamSimpleName(firedAs),
+					subs.size(), subs.size() > 1 ? "s" : "");
+			}
+
 			subs.doFire(event);
+		}
 
 		return event;
+	}
+
+	//this is really silly
+	private String logspamSimpleName(Class<?> clazz) {
+		String[] split = clazz.getName().split("\\.");
+		return split[split.length - 1];
 	}
 
 	/**
@@ -194,6 +211,10 @@ public class ZetaEventBus<E> {
 
 		void unsubscribe(@Nullable Object receiver, Class<?> owningClazz, Method method) {
 			handles.remove(new Subscriber(receiver, owningClazz, method));
+		}
+
+		int size() {
+			return handles.size();
 		}
 
 		//just hoisting the instanceof out of the loop.. No profiling just vibes <3
