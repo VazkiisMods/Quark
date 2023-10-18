@@ -32,6 +32,7 @@ public class ForgeZRightClickBlock implements ZRightClickBlock {
 		return e.getPos();
 	}
 
+	@Override
 	public ZResult getUseBlock() {
 		return ForgeZeta.from(e.getUseBlock());
 	}

@@ -189,8 +189,8 @@ public class ZetaModuleManager {
 		try {
 			Constructor<Z> cons = clazz.getConstructor();
 			return cons.newInstance();
-		} catch (NoSuchMethodException expected) {
-			throw new RuntimeException("Module class " + clazz.getName() + " should have a public zero-argument constructor");
+		} catch (NoSuchMethodException e) {
+			throw new RuntimeException("Module class " + clazz.getName() + " should have a public zero-argument constructor", e);
 		} catch (Exception e) {
 			throw new RuntimeException("Could not construct ZetaModule " + clazz.getName(), e);
 		}
