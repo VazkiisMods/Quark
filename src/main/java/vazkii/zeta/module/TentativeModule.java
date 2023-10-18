@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import net.minecraftforge.api.distmarker.Dist;
 import org.apache.commons.lang3.text.WordUtils;
@@ -17,6 +16,7 @@ import vazkii.zeta.util.ZetaSide;
  */
 public record TentativeModule(
 	Class<? extends ZetaModule> clazz,
+	Class<? extends ZetaModule> keyClass,
 
 	ZetaCategory category,
 	ModuleSide side,
@@ -32,7 +32,8 @@ public record TentativeModule(
 	@Deprecated List<Dist> LEGACY_subscribeOn
 ) {
 	public static TentativeModule from(ZetaLoadModuleAnnotationData data, Function<String, ZetaCategory> categoryResolver) {
-		String simpleName = data.clazz().getSimpleName();
+		Class<? extends ZetaModule> clazz = data.clazz();
+		String simpleName = clazz.getSimpleName();
 
 		String displayName;
 		if(data.name().isEmpty())
@@ -42,17 +43,23 @@ public record TentativeModule(
 
 		String lowercaseName = displayName.toLowerCase(Locale.ROOT).replace(" ", "_");
 
-		ModuleSide side = data.side();
-		Class<? extends ZetaModule> clientReplacementOf = data.clientReplacementOf();
-		if(clientReplacementOf == null || clientReplacementOf == ZetaModule.class) {
-			//just cause you can't put "null" in annotations for some reason
+		Class<? extends ZetaModule> keyClass;
+		ModuleSide side;
+		Class<? extends ZetaModule> clientReplacementOf;
+
+		if(data.clientReplacementOf() == null || data.clientReplacementOf() == ZetaModule.class) { //just cause you can't put "null" in annotations for some reason
+			keyClass = clazz;
+			side = data.side();
 			clientReplacementOf = null;
 		} else {
+			keyClass = data.clientReplacementOf();
 			side = ModuleSide.CLIENT_ONLY;
+			clientReplacementOf = data.clientReplacementOf();
 		}
 
 		return new TentativeModule(
-			data.clazz(),
+			clazz,
+			keyClass,
 			categoryResolver.apply(data.category()),
 			side,
 			displayName,
@@ -69,6 +76,7 @@ public record TentativeModule(
 	public TentativeModule replaceWith(TentativeModule replacement) {
 		return new TentativeModule(
 			replacement.clazz,
+			this.keyClass,
 			this.category,
 			replacement.side,
 			this.displayName,

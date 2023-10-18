@@ -8,7 +8,7 @@ import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 
-@ZetaLoadModule(name = "Client Replacement Test", category = "testing")
+@ZetaLoadModule(category = "testing")
 public class ClientReplacementTest extends ZetaModule {
 	protected boolean foo = false;
 	protected Object wow = this;

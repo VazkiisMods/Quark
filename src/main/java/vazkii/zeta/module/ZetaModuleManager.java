@@ -1,9 +1,7 @@
 package vazkii.zeta.module;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -11,10 +9,10 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import org.jetbrains.annotations.Nullable;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.zeta.Zeta;
 import vazkii.zeta.event.ZModulesReady;
@@ -26,7 +24,7 @@ import vazkii.zeta.util.ZetaSide;
 public class ZetaModuleManager {
 	private final Zeta z;
 
-	private final Map<String, ZetaModule> modulesById = new LinkedHashMap<>();
+	private final Map<Class<? extends ZetaModule>, ZetaModule> modulesByKey = new LinkedHashMap<>();
 	private final Map<String, ZetaCategory> categoriesById = new LinkedHashMap<>();
 	private final Map<ZetaCategory, List<ZetaModule>> modulesInCategory = new HashMap<>();
 
@@ -41,12 +39,21 @@ public class ZetaModuleManager {
 
 	// Modules //
 
-	public @Nullable ZetaModule get(String lowercaseName) {
-		return modulesById.get(lowercaseName);
+	public Collection<ZetaModule> getModules() {
+		return modulesByKey.values();
 	}
 
-	public Collection<ZetaModule> getModules() {
-		return modulesById.values();
+	//SAFETY: check how TentativeModule.keyClass is assigned.
+	// It's either set to the *same* class as the module implementation,
+	// or set to the target of a clientReplacementOf operation, which is
+	// checked to be assignableFrom the module implementation during loading.
+	@SuppressWarnings("unchecked")
+	public <M extends ZetaModule> M get(Class<M> keyClass) {
+		return (M) modulesByKey.get(keyClass);
+	}
+
+	public <M extends ZetaModule> Optional<M> getOptional(Class<M> keyClass) {
+		return Optional.ofNullable(get(keyClass));
 	}
 
 	// Categories //
@@ -112,9 +119,13 @@ public class ZetaModuleManager {
 			for(TentativeModule tm : tentative) {
 				if(tm.clientReplacementOf() != null) {
 					TentativeModule existing = byClazz.get(tm.clientReplacementOf());
-					if(existing == null) {
-						throw new RuntimeException("Module " + tm.clazz() + " wants to replace " + tm.clientReplacementOf() + ", but that module isn't registered");
-					}
+					if(existing == null)
+						throw new RuntimeException("Module " + tm.clazz().getName() + " wants to replace " + tm.clientReplacementOf().getName() + ", but that module isn't registered");
+					else if(existing.clientReplacementOf() != null)
+						throw new RuntimeException("clientReplacementOf operations can only go one level deep, sorry " + tm.clazz().getName() + ".");
+					else if(!existing.clazz().isAssignableFrom(tm.clazz()))
+						throw new IllegalStateException("Module " + tm.clazz().getName() + " should extend the module it replaces, " + existing.clazz().getName());
+
 					byClazz.put(tm.clientReplacementOf(), existing.replaceWith(tm));
 				}
 			}
@@ -125,7 +136,7 @@ public class ZetaModuleManager {
 		z.log.info("Discovered " + tentative.size() + " modules to load");
 
 		for(TentativeModule t : tentative)
-			modulesById.put(t.lowercaseName(), constructAndSetup(t));
+			modulesByKey.put(t.keyClass(), constructAndSetup(t));
 
 		z.loadBus.fire(new ZModulesReady());
 	}

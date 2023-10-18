@@ -1,6 +1,7 @@
 package vazkii.quark.content_zeta.testing.module;
 
 import vazkii.quark.base.Quark;
+import vazkii.quark.content.tweaks.module.DoubleDoorOpeningModule;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZLoadComplete;
 import vazkii.zeta.event.ZPlayNoteBlock;
@@ -30,6 +31,9 @@ public class QuarkTestZetaModule extends ZetaModule {
 		event.enqueueWork(() -> {
 			Quark.LOG.info("LOAD COMPLETE... enabled {}", enabled);
 			Quark.LOG.info("jkl; {}", event);
+
+			Quark.LOG.info("DoubleDoorOpeningModule LOADED? {}", Quark.ZETA.modules.getOptional(DoubleDoorOpeningModule.class).isPresent());
+			Quark.LOG.info("ClientReplacementTest   LOADED? {}", Quark.ZETA.modules.getOptional(ClientReplacementTest.class).isPresent());
 		});
 	}
 

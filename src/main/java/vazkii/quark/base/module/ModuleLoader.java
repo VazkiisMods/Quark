@@ -62,17 +62,15 @@ public final class ModuleLoader {
 		config.configChanged();
 	}
 
-	@Deprecated //ZetaModuleManager doesn't handle identifying modules by class very well
+	@Deprecated
 	public boolean isModuleEnabled(Class<? extends QuarkModule> moduleClazz) {
-		String lowercaseName = TentativeModule.guessLowercaseName(moduleClazz);
-		ZetaModule module = Quark.ZETA.modules.get(lowercaseName);
+		ZetaModule module = Quark.ZETA.modules.get(moduleClazz);
 		return module != null && module.enabled;
 	}
 
-	@Deprecated //ZetaModuleManager doesn't handle identifying modules by class very well
+	@Deprecated
 	public boolean isModuleEnabledOrOverlapping(Class<? extends QuarkModule> moduleClazz) {
-		String lowercaseName = TentativeModule.guessLowercaseName(moduleClazz);
-		ZetaModule module = Quark.ZETA.modules.get(lowercaseName);
+		ZetaModule module = Quark.ZETA.modules.get(moduleClazz);
 		return module != null && (module.enabled || module.disabledByOverlap);
 	}
 
