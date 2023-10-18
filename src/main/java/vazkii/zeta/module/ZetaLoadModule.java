@@ -15,7 +15,7 @@ public @interface ZetaLoadModule {
 	 * The name of the category this module belongs to.
 	 * See ZetaModuleManager.addCategories.
 	 */
-	String category();
+	String category() default "";
 
 	/**
 	 * Which physical side this module will be loaded on.
@@ -38,6 +38,6 @@ public @interface ZetaLoadModule {
 
 	boolean enabledByDefault() default true;
 
-	//zeta extensions to LoadModule
-	String clientReplacementOf() default "";
+	//nonsense default since annotaitons can't be "null" :/
+	Class<? extends ZetaModule> clientReplacementOf() default ZetaModule.class;
 }

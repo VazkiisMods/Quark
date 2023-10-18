@@ -16,7 +16,7 @@ import vazkii.zeta.util.ZetaSide;
  * performs some common data-munging of the data straight off a ZetaLoadModule annotation
  */
 public record TentativeModule(
-	Supplier<ZetaModule> constructor,
+	Class<? extends ZetaModule> clazz,
 
 	ZetaCategory category,
 	ModuleSide side,
@@ -26,14 +26,13 @@ public record TentativeModule(
 	Set<String> antiOverlap,
 	boolean enabledByDefault,
 
-	@Nullable String clientReplacementOf,
+	@Nullable Class<? extends ZetaModule> clientReplacementOf,
 
 	@Deprecated boolean LEGACY_hasSubscriptions,
 	@Deprecated List<Dist> LEGACY_subscribeOn
 ) {
 	public static TentativeModule from(ZetaLoadModuleAnnotationData data, Function<String, ZetaCategory> categoryResolver) {
-		String simpleName = data.fullClassName();
-		simpleName = simpleName.substring(simpleName.lastIndexOf('.') + 1);
+		String simpleName = data.clazz().getSimpleName();
 
 		String displayName;
 		if(data.name().isEmpty())
@@ -43,14 +42,19 @@ public record TentativeModule(
 
 		String lowercaseName = displayName.toLowerCase(Locale.ROOT).replace(" ", "_");
 
-		String clientReplacementOf = data.clientReplacementOf().trim();
-		if(clientReplacementOf.isEmpty())
+		ModuleSide side = data.side();
+		Class<? extends ZetaModule> clientReplacementOf = data.clientReplacementOf();
+		if(clientReplacementOf == null || clientReplacementOf == ZetaModule.class) {
+			//just cause you can't put "null" in annotations for some reason
 			clientReplacementOf = null;
+		} else {
+			side = ModuleSide.CLIENT_ONLY;
+		}
 
 		return new TentativeModule(
-			data.constructor(),
+			data.clazz(),
 			categoryResolver.apply(data.category()),
-			data.side(),
+			side,
 			displayName,
 			lowercaseName,
 			data.description(),
@@ -59,6 +63,22 @@ public record TentativeModule(
 			clientReplacementOf,
 			data.LEGACY_hasSubscriptions(),
 			data.LEGACY_subscribeOn()
+		);
+	}
+
+	public TentativeModule replaceWith(TentativeModule replacement) {
+		return new TentativeModule(
+			replacement.clazz,
+			this.category,
+			replacement.side,
+			this.displayName,
+			this.lowercaseName,
+			this.description,
+			this.antiOverlap,
+			this.enabledByDefault,
+			null,
+			this.LEGACY_hasSubscriptions,
+			this.LEGACY_subscribeOn
 		);
 	}
 

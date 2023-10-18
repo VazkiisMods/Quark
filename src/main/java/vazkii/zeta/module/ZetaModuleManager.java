@@ -1,6 +1,9 @@
 package vazkii.zeta.module;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -10,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.jetbrains.annotations.Nullable;
 import vazkii.quark.base.module.QuarkModule;
@@ -99,34 +101,44 @@ public class ZetaModuleManager {
 
 		//this is the part where we handle "client replacement" modules !!
 		if(z.side == ZetaSide.CLIENT) {
-			Map<String, TentativeModule> byName = new LinkedHashMap<>();
+			Map<Class<? extends ZetaModule>, TentativeModule> byClazz = new LinkedHashMap<>();
 
 			//first, lay down all modules that are not client replacements
 			for(TentativeModule tm : tentative)
 				if(tm.clientReplacementOf() == null)
-					byName.put(tm.lowercaseName(), tm);
+					byClazz.put(tm.clazz(), tm);
 
 			//then overlay with the client replacements
-			for(TentativeModule tm : tentative)
-				if(tm.clientReplacementOf() != null)
-					byName.put(tm.clientReplacementOf(), tm);
+			for(TentativeModule tm : tentative) {
+				if(tm.clientReplacementOf() != null) {
+					TentativeModule existing = byClazz.get(tm.clientReplacementOf());
+					if(existing == null) {
+						throw new RuntimeException("Module " + tm.clazz() + " wants to replace " + tm.clientReplacementOf() + ", but that module isn't registered");
+					}
+					byClazz.put(tm.clientReplacementOf(), existing.replaceWith(tm));
+				}
+			}
 
-			tentative = byName.values();
+			tentative = byClazz.values();
 		}
 
 		z.log.info("Discovered " + tentative.size() + " modules to load");
 
 		for(TentativeModule t : tentative)
-			modulesById.put(t.lowercaseName(), construct(t));
+			modulesById.put(t.lowercaseName(), constructAndSetup(t));
 
 		z.loadBus.fire(new ZModulesReady());
 	}
 
-	private ZetaModule construct(TentativeModule t) {
+	private ZetaModule constructAndSetup(TentativeModule t) {
 		z.log.info("Constructing module " + t.displayName() + "...");
 
 		//construct, set properties
-		ZetaModule module = t.constructor().get();
+		Class<? extends ZetaModule> clazz = t.clazz();
+		if(!ZetaModule.class.isAssignableFrom(clazz)) {
+			throw new RuntimeException("Class " + clazz.getName() + " does not extend ZetaModule!");
+		}
+		ZetaModule module = construct(clazz);
 
 		//TODO: Cheap hack for managing QuarkModule's Forge event bus subscriptions.
 		// The main purpose of these is preventing client modules from trying to subscribe to events on the server.
@@ -160,5 +172,16 @@ public class ZetaModuleManager {
 		module.postConstruct();
 
 		return module;
+	}
+
+	private <Z extends ZetaModule> Z construct(Class<Z> clazz) {
+		try {
+			Constructor<Z> cons = clazz.getConstructor();
+			return cons.newInstance();
+		} catch (NoSuchMethodException expected) {
+			throw new RuntimeException("Module class " + clazz.getName() + " should have a public zero-argument constructor");
+		} catch (Exception e) {
+			throw new RuntimeException("Could not construct ZetaModule " + clazz.getName(), e);
+		}
 	}
 }

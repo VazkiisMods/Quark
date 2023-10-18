@@ -142,5 +142,4 @@ public class DoubleDoorOpeningModule extends QuarkModule {
 		
 		return false;
 	}
-
 }

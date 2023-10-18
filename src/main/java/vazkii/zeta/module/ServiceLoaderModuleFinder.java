@@ -27,7 +27,7 @@ public class ServiceLoaderModuleFinder implements ModuleFinder {
 					return null;
 				}
 
-				return ZetaLoadModuleAnnotationData.fromAnnotation(provider, provider.type().getName(), annotation);
+				return ZetaLoadModuleAnnotationData.fromAnnotation(provider.type(), annotation);
 			})
 			.filter(Objects::nonNull);
 	}
