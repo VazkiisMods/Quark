@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 
+import vazkii.quark.base.Quark;
 import vazkii.quark.content.tweaks.module.DoubleDoorOpeningModule;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.IZetaNetworkEventContext;
@@ -29,7 +30,7 @@ public class DoubleDoorMessage implements IZetaMessage {
 
 	@Override
 	public boolean receive(IZetaNetworkEventContext context) {
-		context.enqueueWork(() -> DoubleDoorOpeningModule.openBlock(extractWorld(context.getSender()), context.getSender(), pos));
+		context.enqueueWork(() -> Quark.ZETA.modules.get(DoubleDoorOpeningModule.class).openBlock(extractWorld(context.getSender()), context.getSender(), pos));
 		return true;
 	}
 

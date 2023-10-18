@@ -26,25 +26,22 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
-import net.minecraftforge.eventbus.api.Event.Result;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleLoader;
-import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.DoubleDoorMessage;
 import vazkii.quark.integration.claim.IClaimIntegration;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRightClickBlock;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.event.bus.ZResult;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true, subscribeOn = Dist.CLIENT, antiOverlap = "utilitix")
-public class DoubleDoorOpeningModule extends QuarkModule {
+@ZetaLoadModule(category = "tweaks", antiOverlap = "utilitix")
+public class DoubleDoorOpeningModule extends ZetaModule {
 
 	@Config(flag = "doors_open_together")
 	public static boolean enableDoors = true;
@@ -61,33 +58,13 @@ public class DoubleDoorOpeningModule extends QuarkModule {
 	@Hint(key = "fence_gates_open_together", value = "fence_gates_open_together") 
 	TagKey<Block> fence_gates = BlockTags.FENCE_GATES;
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public void setup(ZCommonSetup e) {
 		nonDoubleDoorTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "non_double_door"));
 	}
-	
-	@SubscribeEvent(priority = EventPriority.LOW)
-	public void onPlayerInteract(PlayerInteractEvent.RightClickBlock event) {
-		Player player = event.getEntity();
-		if(!event.getLevel().isClientSide || player.isDiscrete() || event.isCanceled() || event.getResult() == Result.DENY || event.getUseBlock() == Result.DENY || handling)
-			return;
 
-		Level world = event.getLevel();
-		BlockPos pos = event.getPos();
-
-		if(!IClaimIntegration.INSTANCE.canInteract(player, pos))
-			return;
-
-		handling = true;
-		boolean opened = openBlock(world, player, pos);
-		handling = false;
-		
-		if(opened)
-			QuarkNetwork.sendToServer(new DoubleDoorMessage(pos));
-	}
-
-	public static boolean openBlock(Level world, Player player, BlockPos pos) {
-		if(!ModuleLoader.INSTANCE.isModuleEnabled(DoubleDoorOpeningModule.class) || world == null)
+	public boolean openBlock(Level world, Player player, BlockPos pos) {
+		if(!this.enabled || world == null)
 			return false;
 
 		BlockState state = world.getBlockState(pos);
@@ -103,7 +80,7 @@ public class DoubleDoorOpeningModule extends QuarkModule {
 		return false;
 	}
 	
-	private static boolean openDoor(BlockPos pos, Level level, Player player, BlockState state) {
+	private boolean openDoor(BlockPos pos, Level level, Player player, BlockState state) {
 		Direction direction = state.getValue(HorizontalDirectionalBlock.FACING);
 		boolean isOpen = state.getValue(BlockStateProperties.OPEN);
 		DoorHingeSide isMirrored = state.getValue(DoorBlock.HINGE);
@@ -114,7 +91,7 @@ public class DoubleDoorOpeningModule extends QuarkModule {
 		return tryOpen(level, player, state, doorPos, direction, isOpen, test -> test.getValue(DoorBlock.HINGE) != isMirrored);
 	}
 	
-	private static boolean openFenceGate(BlockPos pos, Level level, Player player, BlockState state) {
+	private boolean openFenceGate(BlockPos pos, Level level, Player player, BlockState state) {
 		Direction direction = state.getValue(FenceGateBlock.FACING);
 		boolean isOpen = state.getValue(BlockStateProperties.OPEN);
 		
@@ -124,14 +101,13 @@ public class DoubleDoorOpeningModule extends QuarkModule {
 		return tryOpen(level, player, state, pos.above(), direction, isOpen, Predicates.alwaysTrue());
 	}
 	
-	private static boolean tryOpen(Level level, Player player, BlockState state, BlockPos otherPos, Direction direction, boolean isOpen, Predicate<BlockState> pred) {
+	private boolean tryOpen(Level level, Player player, BlockState state, BlockPos otherPos, Direction direction, boolean isOpen, Predicate<BlockState> pred) {
 		BlockState other = level.getBlockState(otherPos);
 		if(state.getMaterial() != Material.METAL && other.getBlock() == state.getBlock() && other.getValue(HorizontalDirectionalBlock.FACING) == direction && other.getValue(BlockStateProperties.OPEN) == isOpen && pred.apply(other)) {
 			BlockHitResult res = new BlockHitResult(new Vec3(otherPos.getX() + 0.5, otherPos.getY() + 0.5, otherPos.getZ() + 0.5), direction, otherPos, false);
 
 			if(res.getType() == HitResult.Type.BLOCK) {
-				RightClickBlock event = new PlayerInteractEvent.RightClickBlock(player, InteractionHand.MAIN_HAND, otherPos, res);
-				boolean eventRes = MinecraftForge.EVENT_BUS.post(event);
+				boolean eventRes = Quark.ZETA.fireRightClickBlock(player, InteractionHand.MAIN_HAND, otherPos, res);
 				
 				if(!eventRes) {
 					InteractionResult interaction = other.use(level, player, InteractionHand.MAIN_HAND, res);
@@ -141,5 +117,28 @@ public class DoubleDoorOpeningModule extends QuarkModule {
 		}
 		
 		return false;
+	}
+
+	@ZetaLoadModule(clientReplacementOf = DoubleDoorOpeningModule.class)
+	public static class Client extends DoubleDoorOpeningModule {
+		@PlayEvent
+		public void onPlayerInteract(ZRightClickBlock.Low event) {
+			Player player = event.getEntity();
+			if(!event.getLevel().isClientSide || player.isDiscrete() || event.isCanceled() || event.getResult() == ZResult.DENY || event.getUseBlock() == ZResult.DENY || handling)
+				return;
+
+			Level world = event.getLevel();
+			BlockPos pos = event.getPos();
+
+			if(!IClaimIntegration.INSTANCE.canInteract(player, pos))
+				return;
+
+			handling = true;
+			boolean opened = openBlock(world, player, pos);
+			handling = false;
+
+			if(opened)
+				QuarkNetwork.sendToServer(new DoubleDoorMessage(pos));
+		}
 	}
 }

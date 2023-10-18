@@ -1,5 +1,9 @@
 package vazkii.zeta;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.BlockHitResult;
 import org.apache.logging.log4j.Logger;
 import vazkii.zeta.client.ClientTicker;
 import vazkii.zeta.event.bus.IZetaLoadEvent;
@@ -46,5 +50,9 @@ public abstract class Zeta {
 
 	public abstract ZetaRegistry createRegistry(String modid);
 	public abstract ZetaNetworkHandler createNetworkHandler(String modid, int protocolVersion);
+
+	//time for JANK - "fire this on the forge event bus and tell me whether it was cancelled"
+	public abstract boolean fireRightClickBlock(Player player, InteractionHand hand, BlockPos pos, BlockHitResult bhr);
+
 	public abstract void wireEvents();
 }

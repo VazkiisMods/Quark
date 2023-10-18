@@ -1,7 +1,14 @@
 package vazkii.zetaimplforge;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.NoteBlockEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -10,12 +17,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.Logger;
 import vazkii.zeta.Zeta;
+import vazkii.zeta.event.bus.ZResult;
 import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zeta.registry.ZetaRegistry;
 import vazkii.zeta.util.ZetaSide;
 import vazkii.zetaimplforge.event.ForgeZCommonSetup;
 import vazkii.zetaimplforge.event.ForgeZLoadComplete;
 import vazkii.zetaimplforge.event.ForgeZPlayNoteBlock;
+import vazkii.zetaimplforge.event.ForgeZRightClickBlock;
 import vazkii.zetaimplforge.network.ForgeZetaNetworkHandler;
 import vazkii.zetaimplforge.registry.ForgeZetaRegistry;
 
@@ -51,11 +60,17 @@ public class ForgeZeta extends Zeta {
 	}
 
 	@Override
+	public boolean fireRightClickBlock(Player player, InteractionHand hand, BlockPos pos, BlockHitResult bhr) {
+		return MinecraftForge.EVENT_BUS.post(new PlayerInteractEvent.RightClickBlock(player, hand, pos, bhr));
+	}
+
+	@Override
 	public void wireEvents() {
 		IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 		modbus.addListener(this::commonSetup);
 		modbus.addListener(this::loadComplete);
 
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOW, this::rightClickBlockLow);
 		MinecraftForge.EVENT_BUS.addListener(this::playNoteBlock);
 	}
 
@@ -67,7 +82,27 @@ public class ForgeZeta extends Zeta {
 		loadBus.fire(new ForgeZLoadComplete(e));
 	}
 
+	public void rightClickBlockLow(PlayerInteractEvent.RightClickBlock e) {
+		playBus.fire(new ForgeZRightClickBlock.Low(e));
+	}
+
 	public void playNoteBlock(NoteBlockEvent.Play e) {
 		playBus.fire(new ForgeZPlayNoteBlock(e));
+	}
+
+	public static ZResult from(Event.Result r) {
+		return switch(r) {
+			case DENY -> ZResult.DENY;
+			case DEFAULT -> ZResult.DEFAULT;
+			case ALLOW -> ZResult.ALLOW;
+		};
+	}
+
+	public static Event.Result to(ZResult r) {
+		return switch(r) {
+			case DENY -> Event.Result.DENY;
+			case DEFAULT -> Event.Result.DEFAULT;
+			case ALLOW -> Event.Result.ALLOW;
+		};
 	}
 }

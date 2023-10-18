@@ -34,7 +34,7 @@ public record ForgeZPlayNoteBlock(NoteBlockEvent.Play e) implements ZPlayNoteBlo
 	}
 
 	@Override
-	public boolean isCancelled() {
+	public boolean isCanceled() {
 		return e.isCanceled();
 	}
 

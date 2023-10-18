@@ -229,7 +229,7 @@ public class ZetaEventBus<E> {
 		void doFireCancellable(Cancellable event) throws Throwable {
 			for(MethodHandle handle : handles.values()) {
 				handle.invoke(event);
-				if(event.isCancelled()) break;
+				if(event.isCanceled()) break;
 			}
 		}
 

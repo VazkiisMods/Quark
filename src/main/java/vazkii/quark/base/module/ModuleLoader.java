@@ -63,13 +63,13 @@ public final class ModuleLoader {
 	}
 
 	@Deprecated
-	public boolean isModuleEnabled(Class<? extends QuarkModule> moduleClazz) {
+	public boolean isModuleEnabled(Class<? extends ZetaModule> moduleClazz) {
 		ZetaModule module = Quark.ZETA.modules.get(moduleClazz);
 		return module != null && module.enabled;
 	}
 
 	@Deprecated
-	public boolean isModuleEnabledOrOverlapping(Class<? extends QuarkModule> moduleClazz) {
+	public boolean isModuleEnabledOrOverlapping(Class<? extends ZetaModule> moduleClazz) {
 		ZetaModule module = Quark.ZETA.modules.get(moduleClazz);
 		return module != null && (module.enabled || module.disabledByOverlap);
 	}
