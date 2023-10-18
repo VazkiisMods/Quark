@@ -18,7 +18,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.capability.CapabilityHandler;
 import vazkii.quark.base.handler.*;
 import vazkii.quark.base.module.ModuleLoader;
@@ -97,7 +96,7 @@ public class CommonProxy {
 		QuarkNetwork.setup();
 		BrewingHandler.setup();
 
-		ModuleLoader.INSTANCE.setup();
+		handleQuarkConfigChange();
 		initContributorRewards();
 
 		WoodSetHandler.setup(event);

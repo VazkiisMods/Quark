@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 import net.minecraftforge.api.distmarker.Dist;
 import org.apache.commons.lang3.text.WordUtils;
 import org.jetbrains.annotations.Nullable;
+import vazkii.quark.base.module.LoadModule;
 import vazkii.zeta.util.ZetaSide;
 
 /**
@@ -59,6 +60,22 @@ public record TentativeModule(
 			data.LEGACY_hasSubscriptions(),
 			data.LEGACY_subscribeOn()
 		);
+	}
+
+	//TODO ZETA: dumb hack for deprecated ModuleLoader stuff, i dont really know why it's here
+	@Deprecated
+	public static String guessLowercaseName(Class<?> clazz) {
+		String simpleName = clazz.getSimpleName();
+		String annotName;
+		LoadModule lm = clazz.getAnnotation(LoadModule.class);
+		if(lm != null) {
+			annotName = lm.name();
+		} else {
+			ZetaLoadModule zlm = clazz.getAnnotation(ZetaLoadModule.class);
+			annotName = zlm.name();
+		}
+		assert annotName != null;
+		return (annotName.isEmpty() ? WordUtils.capitalizeFully(simpleName.replaceAll("Module$", "").replaceAll("(?<=.)([A-Z])", " $1")) : annotName).toLowerCase(Locale.ROOT).replace(" ", "_");
 	}
 
 	public boolean appliesTo(ZetaSide side) {

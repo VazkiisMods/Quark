@@ -10,13 +10,14 @@ import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.item.IQuarkItem;
 import vazkii.quark.base.module.config.ConfigFlagManager;
 import vazkii.quark.base.module.config.ConfigResolver;
+import vazkii.zeta.module.TentativeModule;
+import vazkii.zeta.module.ZetaModule;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 //TODO ZETA: im in the process of stripping this class for parts
+@Deprecated
 public final class ModuleLoader {
 
 	private enum Step {
@@ -25,7 +26,6 @@ public final class ModuleLoader {
 
 	public static final ModuleLoader INSTANCE = new ModuleLoader();
 
-	private Map<Class<? extends QuarkModule>, QuarkModule> foundModules = new HashMap<>();
 	private final List<Step> stepsHandled = new ArrayList<>();
 
 	private ConfigResolver config;
@@ -34,11 +34,6 @@ public final class ModuleLoader {
 	private ModuleLoader() { }
 
 	public void start() {
-		//import modules from the Zeta module loader
-		Quark.ZETA.modules.getModules().forEach(module -> {
-			if(module instanceof QuarkModule qm) foundModules.put(qm.getClass(), qm);
-		});
-
 		config = new ConfigResolver();
 		config.makeSpec();
 	}
@@ -67,22 +62,18 @@ public final class ModuleLoader {
 		config.configChanged();
 	}
 
-	public void setup() {
-		Quark.proxy.handleQuarkConfigChange();
-	}
-
+	@Deprecated //ZetaModuleManager doesn't handle identifying modules by class very well
 	public boolean isModuleEnabled(Class<? extends QuarkModule> moduleClazz) {
-		QuarkModule module = getModuleInstance(moduleClazz);
+		String lowercaseName = TentativeModule.guessLowercaseName(moduleClazz);
+		ZetaModule module = Quark.ZETA.modules.get(lowercaseName);
 		return module != null && module.enabled;
 	}
 
+	@Deprecated //ZetaModuleManager doesn't handle identifying modules by class very well
 	public boolean isModuleEnabledOrOverlapping(Class<? extends QuarkModule> moduleClazz) {
-		QuarkModule module = getModuleInstance(moduleClazz);
+		String lowercaseName = TentativeModule.guessLowercaseName(moduleClazz);
+		ZetaModule module = Quark.ZETA.modules.get(lowercaseName);
 		return module != null && (module.enabled || module.disabledByOverlap);
-	}
-
-	public QuarkModule getModuleInstance(Class<? extends QuarkModule> moduleClazz) {
-		return foundModules.get(moduleClazz);
 	}
 
 	public boolean isItemEnabled(Item i) {
