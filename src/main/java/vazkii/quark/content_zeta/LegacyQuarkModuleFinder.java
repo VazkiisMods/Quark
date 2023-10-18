@@ -1,23 +1,13 @@
 package vazkii.quark.content_zeta;
 
 import java.util.Comparator;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import com.google.common.collect.Lists;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 import org.objectweb.asm.Type;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.QuarkModule;
 import vazkii.zeta.module.ModuleFinder;
 import vazkii.zeta.module.ModuleSide;
 import vazkii.zeta.module.ZetaLoadModuleAnnotationData;
