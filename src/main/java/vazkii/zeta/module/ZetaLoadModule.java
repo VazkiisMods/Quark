@@ -38,6 +38,8 @@ public @interface ZetaLoadModule {
 
 	boolean enabledByDefault() default true;
 
-	//nonsense default since annotaitons can't be "null" :/
-	Class<? extends ZetaModule> clientReplacementOf() default ZetaModule.class;
+	/**
+	 * If "t
+	 */
+	boolean clientReplacement() default false;
 }

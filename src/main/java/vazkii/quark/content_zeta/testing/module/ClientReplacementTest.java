@@ -22,7 +22,7 @@ public class ClientReplacementTest extends ZetaModule {
 		});
 	}
 
-	@ZetaLoadModule(clientReplacementOf = ClientReplacementTest.class)
+	@ZetaLoadModule(clientReplacement = true)
 	public static class Client extends ClientReplacementTest {
 		public Client() {
 			foo = true;

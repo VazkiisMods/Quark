@@ -7,8 +7,6 @@ import java.util.function.Function;
 
 import net.minecraftforge.api.distmarker.Dist;
 import org.apache.commons.lang3.text.WordUtils;
-import org.jetbrains.annotations.Nullable;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.zeta.util.ZetaSide;
 
 /**
@@ -26,35 +24,44 @@ public record TentativeModule(
 	Set<String> antiOverlap,
 	boolean enabledByDefault,
 
-	@Nullable Class<? extends ZetaModule> clientReplacementOf,
+	boolean clientReplacement,
 
 	@Deprecated boolean LEGACY_hasSubscriptions,
 	@Deprecated List<Dist> LEGACY_subscribeOn
 ) {
+	@SuppressWarnings("unchecked")
 	public static TentativeModule from(ZetaLoadModuleAnnotationData data, Function<String, ZetaCategory> categoryResolver) {
-		Class<? extends ZetaModule> clazz = data.clazz();
-		String simpleName = clazz.getSimpleName();
+		Class<?> clazzUnchecked = data.clazz();
+		if(!ZetaModule.class.isAssignableFrom(clazzUnchecked))
+			throw new RuntimeException("Class " + clazzUnchecked.getName() + " does not extend ZetaModule");
+		Class<? extends ZetaModule> clazz = (Class<? extends ZetaModule>) clazzUnchecked;
 
 		String displayName;
 		if(data.name().isEmpty())
-			displayName = WordUtils.capitalizeFully(simpleName.replaceAll("Module$", "").replaceAll("(?<=.)([A-Z])", " $1"));
+			displayName = WordUtils.capitalizeFully(clazz.getSimpleName().replaceAll("Module$", "").replaceAll("(?<=.)([A-Z])", " $1"));
 		else
 			displayName = data.name();
-
 		String lowercaseName = displayName.toLowerCase(Locale.ROOT).replace(" ", "_");
 
+		boolean clientReplacement = data.clientReplacement();
 		Class<? extends ZetaModule> keyClass;
 		ModuleSide side;
-		Class<? extends ZetaModule> clientReplacementOf;
+		if(clientReplacement) {
+			Class<?> sup = clazz.getSuperclass();
+			if(ZetaModule.class.isAssignableFrom(sup) && ZetaModule.class != sup)
+				keyClass = (Class<? extends ZetaModule>) clazz.getSuperclass();
+			else
+				throw new RuntimeException("Client extension module " + clazz.getName() + " should `extend` the module it's an extension of");
 
-		if(data.clientReplacementOf() == null || data.clientReplacementOf() == ZetaModule.class) { //just cause you can't put "null" in annotations for some reason
+			side = ModuleSide.CLIENT_ONLY;
+		} else {
 			keyClass = clazz;
 			side = data.side();
-			clientReplacementOf = null;
-		} else {
-			keyClass = data.clientReplacementOf();
-			side = ModuleSide.CLIENT_ONLY;
-			clientReplacementOf = data.clientReplacementOf();
+
+			//leaving the category out of the annotation is only valid for client replacements
+			//TODO: maybe guess the category from the package name isntead ^^
+			if(data.category() == null || data.category().isEmpty())
+				throw new RuntimeException("Module " + clazz.getName() + " should specify a category");
 		}
 
 		return new TentativeModule(
@@ -67,7 +74,7 @@ public record TentativeModule(
 			data.description(),
 			Set.of(data.antiOverlap()),
 			data.enabledByDefault(),
-			clientReplacementOf,
+			clientReplacement,
 			data.LEGACY_hasSubscriptions(),
 			data.LEGACY_subscribeOn()
 		);
@@ -84,26 +91,10 @@ public record TentativeModule(
 			this.description,
 			this.antiOverlap,
 			this.enabledByDefault,
-			null,
+			false,
 			this.LEGACY_hasSubscriptions,
 			this.LEGACY_subscribeOn
 		);
-	}
-
-	//TODO ZETA: dumb hack for deprecated ModuleLoader stuff, i dont really know why it's here
-	@Deprecated
-	public static String guessLowercaseName(Class<?> clazz) {
-		String simpleName = clazz.getSimpleName();
-		String annotName;
-		LoadModule lm = clazz.getAnnotation(LoadModule.class);
-		if(lm != null) {
-			annotName = lm.name();
-		} else {
-			ZetaLoadModule zlm = clazz.getAnnotation(ZetaLoadModule.class);
-			annotName = zlm.name();
-		}
-		assert annotName != null;
-		return (annotName.isEmpty() ? WordUtils.capitalizeFully(simpleName.replaceAll("Module$", "").replaceAll("(?<=.)([A-Z])", " $1")) : annotName).toLowerCase(Locale.ROOT).replace(" ", "_");
 	}
 
 	public boolean appliesTo(ZetaSide side) {

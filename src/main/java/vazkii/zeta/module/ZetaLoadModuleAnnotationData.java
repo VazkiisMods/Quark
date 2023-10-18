@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraftforge.api.distmarker.Dist;
-import org.jetbrains.annotations.Nullable;
-import org.objectweb.asm.Type;
 
 /**
  * Exists mainly because Forge ModFileScanData doesn't give you the annotation itself :S
@@ -14,7 +12,7 @@ import org.objectweb.asm.Type;
  * @see vazkii.zeta.module.ZetaLoadModule
  */
 public record ZetaLoadModuleAnnotationData(
-	Class<? extends ZetaModule> clazz,
+	Class<?> clazz,
 
 	//and the rest is from ZetaLoadModule
 	String category,
@@ -23,13 +21,13 @@ public record ZetaLoadModuleAnnotationData(
 	String description,
 	String[] antiOverlap,
 	boolean enabledByDefault,
-	@Nullable Class<? extends ZetaModule> clientReplacementOf,
+	boolean clientReplacement,
 
 	//TOOD: just emulating Quark's hasSubscriptions/subscribeOn to not totally kaboom the dedicated server yet
 	@Deprecated boolean LEGACY_hasSubscriptions,
 	@Deprecated List<Dist> LEGACY_subscribeOn
 ) {
-	public static ZetaLoadModuleAnnotationData fromAnnotation(Class<? extends ZetaModule> clazz, ZetaLoadModule annotation) {
+	public static ZetaLoadModuleAnnotationData fromAnnotation(Class<?> clazz, ZetaLoadModule annotation) {
 		return new ZetaLoadModuleAnnotationData(
 			clazz,
 			annotation.category(),
@@ -38,7 +36,7 @@ public record ZetaLoadModuleAnnotationData(
 			annotation.description(),
 			annotation.antiOverlap(),
 			annotation.enabledByDefault(),
-			annotation.clientReplacementOf(),
+			annotation.clientReplacement(),
 			false,
 			List.of()
 		);
@@ -46,7 +44,7 @@ public record ZetaLoadModuleAnnotationData(
 
 	//clunky
 	@SuppressWarnings("unchecked")
-	public static ZetaLoadModuleAnnotationData fromForgeThing(Class<? extends ZetaModule> clazz, Map<String, Object> data, ModuleSide enumPls) {
+	public static ZetaLoadModuleAnnotationData fromForgeThing(Class<?> clazz, Map<String, Object> data, ModuleSide enumPls) {
 		return new ZetaLoadModuleAnnotationData(
 			clazz,
 			(String) data.get("category"),
@@ -55,19 +53,10 @@ public record ZetaLoadModuleAnnotationData(
 			(String) data.getOrDefault("description", ""),
 			((List<String>) data.getOrDefault("antiOverlap", new ArrayList<String>())).toArray(new String[0]),
 			(boolean) data.getOrDefault("enabledByDefault", true),
-			(Class<? extends ZetaModule>) resolveClassAugh((Type) data.getOrDefault("clientReplacementOf", null)),
+			(boolean) data.getOrDefault("clientReplacement", false),
 
 			(boolean) data.getOrDefault("hasSubscriptions", false),
 			data.containsKey("subscribeOn") ? List.of(Dist.CLIENT) : List.of(Dist.CLIENT, Dist.DEDICATED_SERVER)
 		);
-	}
-
-	private static Class<?> resolveClassAugh(org.objectweb.asm.Type type) {
-		if(type == null) return ZetaModule.class;
-		try {
-			return Class.forName(type.getClassName(), false, ZetaLoadModuleAnnotationData.class.getClassLoader());
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("cant find class: " + type.getClassName(), e);
-		}
 	}
 }

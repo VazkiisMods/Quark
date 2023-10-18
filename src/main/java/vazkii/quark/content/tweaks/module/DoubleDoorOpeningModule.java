@@ -119,7 +119,7 @@ public class DoubleDoorOpeningModule extends ZetaModule {
 		return false;
 	}
 
-	@ZetaLoadModule(clientReplacementOf = DoubleDoorOpeningModule.class)
+	@ZetaLoadModule(clientReplacement = true)
 	public static class Client extends DoubleDoorOpeningModule {
 		@PlayEvent
 		public void onPlayerInteract(ZRightClickBlock.Low event) {

@@ -112,21 +112,21 @@ public class ZetaModuleManager {
 
 			//first, lay down all modules that are not client replacements
 			for(TentativeModule tm : tentative)
-				if(tm.clientReplacementOf() == null)
+				if(!tm.clientReplacement())
 					byClazz.put(tm.clazz(), tm);
 
 			//then overlay with the client replacements
 			for(TentativeModule tm : tentative) {
-				if(tm.clientReplacementOf() != null) {
-					TentativeModule existing = byClazz.get(tm.clientReplacementOf());
-					if(existing == null)
-						throw new RuntimeException("Module " + tm.clazz().getName() + " wants to replace " + tm.clientReplacementOf().getName() + ", but that module isn't registered");
-					else if(existing.clientReplacementOf() != null)
-						throw new RuntimeException("clientReplacementOf operations can only go one level deep, sorry " + tm.clazz().getName() + ".");
-					else if(!existing.clazz().isAssignableFrom(tm.clazz()))
-						throw new IllegalStateException("Module " + tm.clazz().getName() + " should extend the module it replaces, " + existing.clazz().getName());
+				if(tm.clientReplacement()) {
+					//SAFETY: already checked isAssignableFrom in TentativeModule
+					@SuppressWarnings("unchecked")
+					Class<? extends ZetaModule> superclass = (Class<? extends ZetaModule>) tm.clazz().getSuperclass();
 
-					byClazz.put(tm.clientReplacementOf(), existing.replaceWith(tm));
+					TentativeModule existing = byClazz.get(superclass);
+					if(existing == null)
+						throw new RuntimeException("Module " + tm.clazz().getName() + " wants to replace " + superclass.getName() + ", but that module isn't registered");
+
+					byClazz.put(superclass, existing.replaceWith(tm));
 				}
 			}
 
@@ -145,11 +145,7 @@ public class ZetaModuleManager {
 		z.log.info("Constructing module " + t.displayName() + "...");
 
 		//construct, set properties
-		Class<? extends ZetaModule> clazz = t.clazz();
-		if(!ZetaModule.class.isAssignableFrom(clazz)) {
-			throw new RuntimeException("Class " + clazz.getName() + " does not extend ZetaModule!");
-		}
-		ZetaModule module = construct(clazz);
+		ZetaModule module = construct(t.clazz());
 
 		//TODO: Cheap hack for managing QuarkModule's Forge event bus subscriptions.
 		// The main purpose of these is preventing client modules from trying to subscribe to events on the server.
