@@ -4,11 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event;
 import vazkii.zeta.event.ZRightClickBlock;
+import vazkii.zeta.event.bus.FiredAs;
 import vazkii.zeta.event.bus.ZResult;
 import vazkii.zetaimplforge.ForgeZeta;
 
+@FiredAs(ZRightClickBlock.class)
 public class ForgeZRightClickBlock implements ZRightClickBlock {
 	private final PlayerInteractEvent.RightClickBlock e;
 
@@ -55,6 +56,7 @@ public class ForgeZRightClickBlock implements ZRightClickBlock {
 		e.setResult(ForgeZeta.to(value));
 	}
 
+	@FiredAs(ZRightClickBlock.Low.class)
 	public static class Low extends ForgeZRightClickBlock implements ZRightClickBlock.Low {
 		public Low(PlayerInteractEvent.RightClickBlock e) {
 			super(e);

@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import com.google.common.base.Preconditions;
@@ -19,29 +17,25 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A polymorphic event bus, associated with an "event root" type.
+ * A polymorphic event bus.
  * <p>
- * Subscribers are only permitted to subscribe to events that *directly* implement the event root.
- * If A implements the event root, and B extends A, you can subscribe to A, but not B.
+ * If an event type B is annotated with @FiredAs(A), firing B on the event bus
+ * will trigger event listeners for A. This is legal if B extends A.
  * <p>
- * When firing an event, its superclass hierarchy will be walked until locating a direct implementer
- * of the event root interface. Listeners for *that* will be invoked. (If you fire B, it will get
- * passed to listeners looking for A.)
- * <p>
- * This constructions allows you to API/impl split your events.
- * A might be a "common" event, and B might be a Forge-only implementation of the event.
+ * This construction allows you to API/impl split your events.
+ * here, A might be a "common" event, and B might be a Forge-only implementation of the event.
  */
 /*
  * TODO: No support for generic events (like forge's RegistryEvent<T>). It would be nice.
  * TODO: No support for Consumer events (like forge's addListener).
- * TODO: It'd also be nice to subscribe to non-direct implementors, for loader-only events
+ * TODO: loader-only event subscribing? (subscribe to ForgeZWhatever directly)
  */
 public class ZetaEventBus<E> {
 	private final Class<? extends Annotation> subscriberAnnotation;
 	private final Class<? extends E> eventRoot;
 
 	private final Map<Class<? extends E>, Listeners> listenerMap = new HashMap<>();
-	private final Map<Class<?>, Class<? extends E>> directImplCache = new HashMap<>(); //Optimization for .fire()
+	private final Map<Class<?>, Class<? extends E>> firedAsCache = new HashMap<>(); //Optimization for .fire()
 
 	/**
 	 * @param subscriberAnnotation The annotation that subscribe()/unsubscribe() will pay attention to.
@@ -101,8 +95,8 @@ public class ZetaEventBus<E> {
 	 * Fires an event on the event bus. Each subscriber will be visited in order.
 	 */
 	public <T extends E> T fire(@NotNull T event) {
-		Class<? extends E> directImpl = directImplCache.computeIfAbsent(event.getClass(), this::findDirectImpl);
-		Listeners subs = listenerMap.get(directImpl);
+		Class<? extends E> firedAs = firedAsCache.computeIfAbsent(event.getClass(), this::getFiredAs);
+		Listeners subs = listenerMap.get(firedAs);
 		if(subs != null)
 			subs.doFire(event);
 
@@ -134,33 +128,21 @@ public class ZetaEventBus<E> {
 	}
 
 	/**
-	 * Walks the superclass/superinterface hierarchy until finding a class that *directly* implements this bus's event root.
-	 * Used to "normalize" events, so firing `FabricMyEvent` will locate subscribers for `MyEvent`.
+	 * If this event type is @FiredAs something else, gets that type.
 	 */
-	private Class<? extends E> findDirectImpl(Class<?> clazz) {
-		return findDirectImpl2(clazz).orElseThrow(() -> findImplERR(clazz));
-	}
-
 	@SuppressWarnings("unchecked")
-	private Optional<Class<? extends E>> findDirectImpl2(Class<?> clazz) {
-		//does it directly implement the interface?
-		Set<Class<?>> interfaces = Set.of(clazz.getInterfaces());
-		if(interfaces.contains(eventRoot))
-			return Optional.of((Class<? extends E>) clazz);
-
-		//recurse into interfaces
-		for(Class<?> itf : interfaces) {
-			Optional<Class<? extends E>> recurse = findDirectImpl2(itf);
-			if(recurse.isPresent())
-				return recurse;
+	private Class<? extends E> getFiredAs(Class<?> clazz) {
+		FiredAs annot = clazz.getAnnotation(FiredAs.class);
+		if(annot == null) {
+			//safety: this method's only called from fire(), which statically checks this invariant
+			return (Class<? extends E>) clazz;
 		}
 
-		//recurse into superclass
-		Class<?> superclass = clazz.getSuperclass();
-		if(superclass != null && superclass != Object.class)
-			return findDirectImpl2(superclass);
-		else
-			return Optional.empty();
+		Class<?> firedAs = annot.value();
+		if(!eventRoot.isAssignableFrom(firedAs) || !firedAs.isAssignableFrom(clazz))
+			throw weirdFiredAsERR(clazz, firedAs);
+
+		return (Class<? extends E>) firedAs;
 	}
 
 	/**
@@ -239,9 +221,9 @@ public class ZetaEventBus<E> {
 		}
 	}
 
-	private RuntimeException findImplERR(Class<?> clazz) {
-		return new RuntimeException("Couldn't find a direct implementer of " + eventRoot.getName() +
-			" in " + clazz.getName() + "'s type hierarchy."); //You might just need to fix findDirectImpl2.
+	private RuntimeException weirdFiredAsERR(Class<?> clazz, Class<?> firedAs) {
+		return new RuntimeException(firedAs.getName() + " should be a subtype of " + clazz.getName() +
+			", which should be a subtype of this bus's event root, " + eventRoot.getName() + ".");
 	}
 
 	private RuntimeException arityERR(Method method) {
