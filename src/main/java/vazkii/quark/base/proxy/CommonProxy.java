@@ -111,16 +111,16 @@ public class CommonProxy {
 
 	public void configChanged(ModConfigEvent event) {
 		if(event.getConfig().getModId().equals(Quark.MOD_ID)
-				&& QuarkClient.ticker.ticksInGame - lastConfigChange > 10
+				&& Quark.ZETA.ticker_SHOULD_NOT_BE_HERE.ticksInGame - lastConfigChange > 10
 				&& !configGuiSaving) {
-			lastConfigChange = QuarkClient.ticker.ticksInGame;
+			lastConfigChange = Quark.ZETA.ticker_SHOULD_NOT_BE_HERE.ticksInGame;
 			handleQuarkConfigChange();
 		}
 	}
 
 	public void setConfigGuiSaving(boolean saving) {
 		configGuiSaving = saving;
-		lastConfigChange = QuarkClient.ticker.ticksInGame;
+		lastConfigChange = Quark.ZETA.ticker_SHOULD_NOT_BE_HERE.ticksInGame;
 	}
 
 	public void registerCapabilities(RegisterCapabilitiesEvent event) {

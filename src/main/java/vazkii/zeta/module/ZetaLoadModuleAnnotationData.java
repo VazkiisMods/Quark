@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import net.minecraftforge.api.distmarker.Dist;
+
 /**
  * Exists mainly because Forge ModFileScanData doesn't give you the annotation itself :S
  *
@@ -21,7 +23,11 @@ public record ZetaLoadModuleAnnotationData(
 	String description,
 	String[] antiOverlap,
 	boolean enabledByDefault,
-	String clientReplacementOf
+	String clientReplacementOf,
+
+	//TOOD: just emulating Quark's hasSubscriptions/subscribeOn to not totally kaboom the dedicated server yet
+	@Deprecated boolean LEGACY_hasSubscriptions,
+	@Deprecated List<Dist> LEGACY_subscribeOn
 ) {
 	public static ZetaLoadModuleAnnotationData fromAnnotation(Supplier<ZetaModule> constructor, String fullClassName, ZetaLoadModule annotation) {
 		return new ZetaLoadModuleAnnotationData(
@@ -33,7 +39,9 @@ public record ZetaLoadModuleAnnotationData(
 			annotation.description(),
 			annotation.antiOverlap(),
 			annotation.enabledByDefault(),
-			annotation.clientReplacementOf()
+			annotation.clientReplacementOf(),
+			false,
+			List.of()
 		);
 	}
 
@@ -49,7 +57,10 @@ public record ZetaLoadModuleAnnotationData(
 			(String) data.getOrDefault("description", ""),
 			((List<String>) data.getOrDefault("antiOverlap", new ArrayList<String>())).toArray(new String[0]),
 			(boolean) data.getOrDefault("enabledByDefault", true),
-			(String) data.getOrDefault("clientReplacementOf", "")
+			(String) data.getOrDefault("clientReplacementOf", ""),
+
+			(boolean) data.getOrDefault("hasSubscriptions", false),
+			data.containsKey("subscribeOn") ? List.of(Dist.CLIENT) : List.of(Dist.CLIENT, Dist.DEDICATED_SERVER)
 		);
 	}
 }

@@ -11,7 +11,8 @@ public abstract class ZetaClient {
 		this.loadBus = z.loadBus;
 		this.playBus = z.playBus;
 
-		this.ticker = new ClientTicker();
+		//this.ticker = new ClientTicker();
+		this.ticker = z.ticker_SHOULD_NOT_BE_HERE; //TODO, move ClientTicker into actual client code
 
 		wireEvents();
 	}

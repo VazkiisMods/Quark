@@ -3,6 +3,7 @@ package vazkii.quark.content_zeta;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -36,25 +37,7 @@ public class LegacyQuarkModuleFinder implements ModuleFinder {
 				Supplier<ZetaModule> constructor = () -> {
 					try {
 						Class<?> clazz = Class.forName(ad.clazz().getClassName(), false, LegacyQuarkModuleFinder.class.getClassLoader());
-						QuarkModule cork = (QuarkModule) clazz.getConstructor().newInstance();
-
-						//This concept doesn't exist in Zeta's module system, or it shouldn't anyway...
-						//ideally Zeta will have real client modules
-						Map<String, Object> vals = ad.annotationData();
-						if(vals.containsKey("hasSubscriptions"))
-							cork.hasSubscriptions = (boolean) vals.get("hasSubscriptions");
-						if(vals.containsKey("subscribeOn")) {
-							Set<Dist> subscribeTargets = EnumSet.noneOf(Dist.class);
-
-							@SuppressWarnings("unchecked")
-							List<ModAnnotation.EnumHolder> holders = (List<ModAnnotation.EnumHolder>) vals.get("subscribeOn");
-							for (ModAnnotation.EnumHolder holder : holders)
-								subscribeTargets.add(Dist.valueOf(holder.getValue()));
-
-							cork.subscriptionTarget = Lists.newArrayList(subscribeTargets);
-						}
-
-						return cork;
+						return (QuarkModule) clazz.getConstructor().newInstance();
 					} catch (ReflectiveOperationException e) {
 						throw new RuntimeException("Exception creating QuarkModule (legacy)", e);
 					}
@@ -62,8 +45,9 @@ public class LegacyQuarkModuleFinder implements ModuleFinder {
 
 				String fullClassName = ad.clazz().getClassName();
 
-				ModuleSide weird = ModuleSide.ANY; //Doesn't exist in Quark's annotation, quark doesnt have client-only modules
-				return ZetaLoadModuleAnnotationData.fromForgeThing(constructor, fullClassName, ad.annotationData(), weird);
+				//quark doesnt have client-only modules so just load everything on the server too
+				//its hasSubscriptions/subscribeOn behavior is emulated to not break the dedi server for now
+				return ZetaLoadModuleAnnotationData.fromForgeThing(constructor, fullClassName, ad.annotationData(), ModuleSide.ANY);
 			});
 	}
 }

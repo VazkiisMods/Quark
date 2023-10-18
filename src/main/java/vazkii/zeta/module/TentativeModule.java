@@ -1,10 +1,12 @@
 package vazkii.zeta.module;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import net.minecraftforge.api.distmarker.Dist;
 import org.apache.commons.lang3.text.WordUtils;
 import org.jetbrains.annotations.Nullable;
 import vazkii.zeta.util.ZetaSide;
@@ -23,7 +25,10 @@ public record TentativeModule(
 	Set<String> antiOverlap,
 	boolean enabledByDefault,
 
-	@Nullable String clientReplacementOf
+	@Nullable String clientReplacementOf,
+
+	@Deprecated boolean LEGACY_hasSubscriptions,
+	@Deprecated List<Dist> LEGACY_subscribeOn
 ) {
 	public static TentativeModule from(ZetaLoadModuleAnnotationData data, Function<String, ZetaCategory> categoryResolver) {
 		String simpleName = data.fullClassName();
@@ -50,7 +55,9 @@ public record TentativeModule(
 			data.description(),
 			Set.of(data.antiOverlap()),
 			data.enabledByDefault(),
-			clientReplacementOf
+			clientReplacementOf,
+			data.LEGACY_hasSubscriptions(),
+			data.LEGACY_subscribeOn()
 		);
 	}
 

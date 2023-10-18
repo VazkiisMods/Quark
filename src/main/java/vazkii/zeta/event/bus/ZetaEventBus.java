@@ -115,7 +115,7 @@ public class ZetaEventBus<E> {
 	 */
 	private Stream<Method> streamAnnotatedMethods(Class<?> owningClazz, boolean wantStatic) {
 		return Arrays.stream(owningClazz.getMethods())
-			.filter(m -> m.isAnnotationPresent(subscriberAnnotation) &&((m.getModifiers() & Modifier.STATIC) != 0) == wantStatic);
+			.filter(m -> m.isAnnotationPresent(subscriberAnnotation) && ((m.getModifiers() & Modifier.STATIC) != 0) == wantStatic);
 	}
 
 	/**

@@ -89,17 +89,6 @@ public class QuarkModule extends ZetaModule {
 		// NO-OP
 	}
 
-	@Override
-	@Deprecated
-	protected void legacySub(boolean subscribing) {
-		if(hasSubscriptions && subscriptionTarget.contains(FMLEnvironment.dist)) {
-			if(subscribing)
-				MinecraftForge.EVENT_BUS.register(this);
-			else
-				MinecraftForge.EVENT_BUS.unregister(this);
-		}
-	}
-
 	@PlayEvent
 	public final void addAnnotationHints(ZGatherHints event) {
 		if(annotationHints == null)

@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.jetbrains.annotations.Nullable;
+import vazkii.quark.base.module.QuarkModule;
 import vazkii.zeta.Zeta;
 import vazkii.zeta.event.ZModulesReady;
 import vazkii.zeta.util.ZetaSide;
@@ -125,6 +128,16 @@ public class ZetaModuleManager {
 		//construct, set properties
 		ZetaModule module = t.constructor().get();
 
+		//TODO: Cheap hack for managing QuarkModule's Forge event bus subscriptions.
+		// The main purpose of these is preventing client modules from trying to subscribe to events on the server.
+		// Once Zeta has real client-only modules, there is not much purpose for this feature anymore, i dont think
+		boolean LEGACY_actuallySubscribe = true;
+		if(module instanceof QuarkModule qm) {
+			qm.hasSubscriptions = t.LEGACY_hasSubscriptions();
+			qm.subscriptionTarget = t.LEGACY_subscribeOn();
+			LEGACY_actuallySubscribe = qm.subscriptionTarget.contains(FMLEnvironment.dist);
+		}
+
 		module.category = t.category();
 
 		module.displayName = t.displayName();
@@ -138,7 +151,7 @@ public class ZetaModuleManager {
 
 		//event busses
 		module.setEnabled(z, t.enabledByDefault());
-		z.loadBus.subscribe(module.getClass()).subscribe(module);
+		if(LEGACY_actuallySubscribe) z.loadBus.subscribe(module.getClass()).subscribe(module);
 
 		//category upkeep
 		modulesInCategory.computeIfAbsent(module.category, __ -> new ArrayList<>()).add(module);

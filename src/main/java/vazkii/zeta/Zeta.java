@@ -1,6 +1,7 @@
 package vazkii.zeta;
 
 import org.apache.logging.log4j.Logger;
+import vazkii.zeta.client.ClientTicker;
 import vazkii.zeta.event.bus.IZetaLoadEvent;
 import vazkii.zeta.event.bus.IZetaPlayEvent;
 import vazkii.zeta.event.bus.LoadEvent;
@@ -24,6 +25,8 @@ public abstract class Zeta {
 		this.modules = new ZetaModuleManager(this);
 		this.registry = createRegistry(modid);
 
+		this.ticker_SHOULD_NOT_BE_HERE = new ClientTicker();
+
 		wireEvents();
 	}
 
@@ -34,6 +37,9 @@ public abstract class Zeta {
 	public final ZetaEventBus<IZetaPlayEvent> playBus;
 	public final ZetaModuleManager modules;
 	public final ZetaRegistry registry;
+
+	//TODO: move to ZetaClient. Some bits of the server *do* actually need this for some raisin (config code)
+	@Deprecated public final ClientTicker ticker_SHOULD_NOT_BE_HERE;
 
 	public abstract ZetaSide getSide();
 	public abstract boolean isModLoaded(String modid);
