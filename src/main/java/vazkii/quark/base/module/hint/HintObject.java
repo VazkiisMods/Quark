@@ -11,14 +11,13 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import vazkii.quark.base.handler.MiscUtil;
-import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.ConfigFlagManager;
-import vazkii.quark.content.tweaks.module.GoldToolsHaveFortuneModule;
+import vazkii.zeta.module.ZetaModule;
 
 public class HintObject {
 
 	private final ConfigFlagManager flagManager;
-	private final QuarkModule module;
+	private final ZetaModule module;
 	private final String flag;
 	private boolean negateFlag;
 	private List<Supplier<Object>> extraContent;
@@ -26,7 +25,7 @@ public class HintObject {
 	
 	private String key;
 
-	public HintObject(ConfigFlagManager flagManager, QuarkModule module, Hint hint,
+	public HintObject(ConfigFlagManager flagManager, ZetaModule module, Hint hint,
 					  List<Supplier<Object>> extraContent,
 					  Supplier<Optional<Object>> fieldGetter) {
 		this.flagManager = flagManager;

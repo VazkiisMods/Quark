@@ -3,7 +3,6 @@ package vazkii.quark.content.tools.module;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.function.BiConsumer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -35,6 +34,8 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.module.hint.HintManager;
 import vazkii.quark.content.world.block.CorundumClusterBlock;
 import vazkii.quark.content.world.module.CorundumModule;
+import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.PlayEvent;
 
 @LoadModule(category = ModuleCategory.TOOLS)
 public class BeaconRedirectionModule extends QuarkModule {
@@ -63,8 +64,8 @@ public class BeaconRedirectionModule extends QuarkModule {
 		staticEnabled = enabled;
 	}
 
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		final String redirectHint = "beacon_redirect_item";
 		String type = "amethyst";
 

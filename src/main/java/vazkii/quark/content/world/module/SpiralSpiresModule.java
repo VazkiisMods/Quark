@@ -40,6 +40,8 @@ import vazkii.quark.base.world.WorldGenHandler;
 import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.block.MyaliteCrystalBlock;
 import vazkii.quark.content.world.gen.SpiralSpireGenerator;
+import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.PlayEvent;
 
 @LoadModule(category = ModuleCategory.WORLD, hasSubscriptions = true)
 public class SpiralSpiresModule extends QuarkModule {
@@ -85,9 +87,9 @@ public class SpiralSpiresModule extends QuarkModule {
 	public void setup() {
 		WorldGenHandler.addGenerator(this, new SpiralSpireGenerator(dimensions), Decoration.SURFACE_STRUCTURES, WorldGenWeights.SPIRAL_SPIRES);
 	}
-	
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		MutableComponent comp = Component.translatable("quark.jei.hint.myalite_crystal_get");
 		
 		if(enableMyaliteViaducts)

@@ -16,7 +16,10 @@ import vazkii.quark.base.module.config.ConfigFlagManager;
 
 public class HintManager {
 
-	public static void loadHints(List<Field> fields, ConfigFlagManager flagManager, QuarkModule module) {
+	public static List<HintObject> gatherHintAnnotations(ConfigFlagManager flagManager, QuarkModule module) {
+		Field[] fields = module.getClass().getFields();
+		List<HintObject> loadedHints = new ArrayList<>();
+
 		for(Field f : fields) {
 			f.setAccessible(true);
 			Hint hint = f.getDeclaredAnnotation(Hint.class);
@@ -52,9 +55,11 @@ public class HintManager {
 					}
 				});
 
-				module.hints.add(hintObj);
+				loadedHints.add(hintObj);
 			}
 		}
+
+		return loadedHints;
 	}
 
 	public static void hintItem(BiConsumer<Item, Component> consumer, ItemLike itemLike, Object... extraContent) {

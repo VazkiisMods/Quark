@@ -69,6 +69,20 @@ Probably a good idea to split `TentativeModule` into two parts
 * one that handles "reading data out of the annotation" (actual annotation or Forge asm weirdness)
 * one that handles logic like "if the module is uncategorized, guess the category from the package name" / "if the module has no name, pick one from the class name"
 
+## Hints
+
+Hints pipeline
+
+* `HintManager.loadHints` is called from uhh, somewhere deep in config code
+* It iterates over all `@Hint` fields and adds them to `module.hints`
+* `ModuleLoader.INSTANCE.addStackInfo` is called from JEI integration, calls `addStackInfo` on all enabled quark modules
+* QuarkModule `addStackInfo` then appends hints from `module.hints` (which is the only usage of this field)
+
+Some things that might make this easier?
+
+* Modules could be in charge of loading their own hints. This'd let `module.hints` be a private field
+* It could be moved from "module step that only looks at enabled modules" to an event on Zeta's play bus
+
 ## Module discovery
 
 entrypoint: ModuleLoader.start

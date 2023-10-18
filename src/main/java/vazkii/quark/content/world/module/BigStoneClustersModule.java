@@ -30,6 +30,8 @@ import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.config.AirStoneClusterConfig;
 import vazkii.quark.content.world.config.BigStoneClusterConfig;
 import vazkii.quark.content.world.gen.BigStoneClusterGenerator;
+import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.PlayEvent;
 
 @LoadModule(category = ModuleCategory.WORLD)
 public class BigStoneClustersModule extends QuarkModule {
@@ -62,9 +64,9 @@ public class BigStoneClustersModule extends QuarkModule {
 		add(shale, NewStoneTypesModule.shaleBlock, () -> NewStoneTypesModule.enabledWithShale);
 		add(myalite, NewStoneTypesModule.myaliteBlock, () -> NewStoneTypesModule.enabledWithMyalite);
 	}
-	
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		if(calcite.enabled)
 			HintManager.hintItem(consumer, Items.CALCITE);
 	}

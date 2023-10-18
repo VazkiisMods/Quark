@@ -27,6 +27,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
+import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.MatrixEnchantingTableBlock;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
@@ -176,8 +178,8 @@ public class MatrixEnchantingModule extends QuarkModule {
 		influenceTrigger = QuarkAdvancementHandler.registerGenericTrigger("influence");
 	}
 
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		MutableComponent comp = Component.translatable("quark.jei.hint.matrix_enchanting");
 		if(allowInfluencing)
 			comp = comp.append(" ").append(Component.translatable("quark.jei.hint.matrix_influencing"));

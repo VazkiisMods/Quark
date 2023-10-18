@@ -23,7 +23,9 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tweaks.client.item.ClockTimeGetter;
 import vazkii.quark.content.tweaks.client.item.CompassAngleGetter;
+import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
@@ -48,9 +50,9 @@ public class CompassesWorkEverywhereModule extends QuarkModule {
 		if(enabled && enableClockNerf)
 			e.enqueueWork(() -> ItemProperties.register(Items.CLOCK, new ResourceLocation("time"), new ClockTimeGetter.Impl()));
 	}
-	
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		if(!enableNether && !enableEnd && !enableCompassNerf)
 			return;
 		

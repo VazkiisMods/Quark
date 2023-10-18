@@ -1,6 +1,5 @@
 package vazkii.quark.base.module;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -9,20 +8,19 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.item.IQuarkItem;
+import vazkii.quark.base.module.config.ConfigFlagManager;
 import vazkii.quark.base.module.config.ConfigResolver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 //TODO ZETA: im in the process of stripping this class for parts
 public final class ModuleLoader {
 
 	private enum Step {
-		POST_REGISTER, GENERATE_HINTS
+		POST_REGISTER
 	}
 
 	public static final ModuleLoader INSTANCE = new ModuleLoader();
@@ -36,6 +34,7 @@ public final class ModuleLoader {
 	private ModuleLoader() { }
 
 	public void start() {
+		//import modules from the Zeta module loader
 		Quark.ZETA.modules.getModules().forEach(module -> {
 			if(module instanceof QuarkModule qm) foundModules.put(qm.getClass(), qm);
 		});
@@ -46,6 +45,11 @@ public final class ModuleLoader {
 
 	public ModConfig getConfig() {
 		return config.getConfig();
+	}
+
+	//TODO ZETA: bad hack that allows separating hints from the rest of the module system
+	public ConfigFlagManager getConfigFlagManager() {
+		return config.flagManager;
 	}
 
 	public void register() {
@@ -61,26 +65,10 @@ public final class ModuleLoader {
 		if (onConfigReloadJEI != null)
 			onConfigReloadJEI.run();
 		config.configChanged();
-		//dispatch(Step.CONFIG_CHANGED, QuarkModule::configChanged);
 	}
 
 	public void setup() {
 		Quark.proxy.handleQuarkConfigChange();
-	}
-
-	//TODO: this could be some sort of GatherHintsEvent, fired on the play bus (because of that enabled() check)
-	// Stick one in QuarkModule that scans its own class for @Hint annotations too or something
-	public void addStackInfo(BiConsumer<Item, Component> consumer) {
-		dispatch(Step.GENERATE_HINTS, m -> {
-			if(m.enabled)
-				m.addStackInfo(consumer);
-		});
-	}
-
-	private void dispatch(Step step, Consumer<QuarkModule> run) {
-		Quark.LOG.info("Dispatching Module Step " + step);
-		foundModules.values().forEach(run);
-		stepsHandled.add(step);
 	}
 
 	public boolean isModuleEnabled(Class<? extends QuarkModule> moduleClazz) {

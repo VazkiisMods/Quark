@@ -34,6 +34,8 @@ import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.module.SturdyStoneModule;
+import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.PlayEvent;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -88,8 +90,8 @@ public class PistonsMoveTileEntitiesModule extends QuarkModule {
 		delays.clear();
 	}
 
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		MutableComponent comp = Component.translatable("quark.jei.hint.piston_te");
 
 		if(ModuleLoader.INSTANCE.isModuleEnabled(SturdyStoneModule.class))

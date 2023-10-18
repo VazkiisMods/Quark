@@ -46,6 +46,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.PlayEvent;
 
 @LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
 public class EnhancedLaddersModule extends QuarkModule {
@@ -71,9 +73,9 @@ public class EnhancedLaddersModule extends QuarkModule {
 	public void configChanged() {
 		staticEnabled = enabled;
 	}
-	
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		if(!allowFreestanding && !allowDroppingDown && !allowSliding && !allowInventorySneak)
 			return;
 		

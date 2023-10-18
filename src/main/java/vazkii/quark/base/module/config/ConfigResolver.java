@@ -31,7 +31,8 @@ public class ConfigResolver {
     private static final Method SETUP_CONFIG_FILE = ObfuscationReflectionHelper.findMethod(ConfigFileTypeHandler.class,
             "setupConfigFile", ModConfig.class, Path.class, ConfigFormat.class);
 
-    private final ConfigFlagManager flagManager;
+    //TODO ZETA: made this public (sorry) to simplify hints
+    public final ConfigFlagManager flagManager;
 
     private final List<Runnable> refreshRunnables = new LinkedList<>();
     private ModConfig config;
@@ -180,7 +181,6 @@ public class ConfigResolver {
 
         try {
             ConfigObjectSerializer.serialize(builder, flagManager, refreshRunnables, module);
-            ConfigObjectSerializer.loadHints(flagManager, module);
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException("Failed to create config spec for module " + module.displayName, e);
         }

@@ -1,24 +1,24 @@
 package vazkii.quark.base.module;
 
 import com.google.common.collect.Lists;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import vazkii.quark.base.module.config.ConfigFlagManager;
+import vazkii.quark.base.module.hint.HintManager;
 import vazkii.quark.base.module.hint.HintObject;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.module.ZetaModule;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 public class QuarkModule extends ZetaModule {
 
@@ -27,7 +27,7 @@ public class QuarkModule extends ZetaModule {
 	@Deprecated
 	public List<Dist> subscriptionTarget = Lists.newArrayList(Dist.CLIENT, Dist.DEDICATED_SERVER);
 
-	public List<HintObject> hints = new ArrayList<>(); //TODO move to ZetaModule maybe
+	private List<HintObject> annotationHints = new ArrayList<>();
 
 	public QuarkModule() {
 		// yep
@@ -85,21 +85,6 @@ public class QuarkModule extends ZetaModule {
 		clientSetup();
 	}
 
-	// <HINTS>
-	public final void addStackInfo(BiConsumer<Item, Component> consumer) {
-		if(!enabled)
-			return;
-
-		for(HintObject hint : hints)
-			hint.apply(consumer);
-		addAdditionalHints(consumer);
-	}
-
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
-
-	}
-	// </HINTS>
-
 	public void pushFlags(ConfigFlagManager manager) {
 		// NO-OP
 	}
@@ -113,5 +98,14 @@ public class QuarkModule extends ZetaModule {
 			else
 				MinecraftForge.EVENT_BUS.unregister(this);
 		}
+	}
+
+	@PlayEvent
+	public final void addAnnotationHints(ZGatherHints event) {
+		if(annotationHints == null)
+			annotationHints = HintManager.gatherHintAnnotations(ModuleLoader.INSTANCE.getConfigFlagManager(), this);
+
+		for(HintObject hint : annotationHints)
+			hint.apply(event);
 	}
 }

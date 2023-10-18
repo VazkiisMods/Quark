@@ -13,6 +13,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.PlayEvent;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -77,8 +79,8 @@ public class DiamondRepairModule extends QuarkModule {
 		unrepairableItems = MiscUtil.massRegistryGet(unrepairableItemsList, ForgeRegistries.ITEMS);
 	}
 
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		if(!enableJeiHints)
 			return;
 

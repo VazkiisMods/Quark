@@ -5,7 +5,6 @@ import org.apache.commons.lang3.text.WordUtils;
 import org.jetbrains.annotations.Nullable;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.type.IConfigType;
-import vazkii.quark.base.module.hint.HintManager;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -32,11 +31,6 @@ public final class ConfigObjectSerializer {
 			if(config != null)
 				pushConfig(builder, flagManager, callbacks, object, root, f, config);
 		}
-	}
-
-	public static void loadHints(ConfigFlagManager flagManager, QuarkModule module) {
-		List<Field> fields = recursivelyGetFields(module.getClass());
-		HintManager.loadHints(fields, flagManager, module);
 	}
 
 	public static List<Field> recursivelyGetFields(Class<?> clazz) {

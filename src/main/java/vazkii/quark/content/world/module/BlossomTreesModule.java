@@ -25,7 +25,9 @@ import vazkii.quark.content.world.block.BlossomSaplingBlock.BlossomTree;
 import vazkii.quark.content.world.config.BlossomTreeConfig;
 import vazkii.quark.content.world.gen.BlossomTreeGenerator;
 import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -74,8 +76,8 @@ public class BlossomTreesModule extends QuarkModule {
 		});
 	}
 
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		for(BlossomTree tree : trees.keySet())
 			HintManager.hintItem(consumer, tree.sapling.asItem());
 	}

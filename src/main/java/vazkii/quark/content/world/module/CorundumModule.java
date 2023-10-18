@@ -30,6 +30,8 @@ import vazkii.quark.content.world.block.CorundumClusterBlock;
 import vazkii.quark.content.world.undergroundstyle.CorundumStyle;
 import vazkii.quark.content.world.undergroundstyle.base.AbstractUndergroundStyleModule;
 import vazkii.quark.content.world.undergroundstyle.base.UndergroundStyleConfig;
+import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.PlayEvent;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -84,8 +86,8 @@ public class CorundumModule extends AbstractUndergroundStyleModule<CorundumStyle
 		staticEnabled = enabled;
 	}
 
-	@Override
-	public void addAdditionalHints(BiConsumer<Item, Component> consumer) {
+	@PlayEvent
+	public void addAdditionalHints(ZGatherHints consumer) {
 		MutableComponent comp = Component.translatable("quark.jei.hint.corundum_cluster_grow");
 
 		if(ModuleLoader.INSTANCE.isModuleEnabled(BeaconRedirectionModule.class))

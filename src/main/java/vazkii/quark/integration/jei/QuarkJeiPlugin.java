@@ -30,6 +30,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
+import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.client.screen.BackpackInventoryScreen;
@@ -162,18 +163,18 @@ public class QuarkJeiPlugin implements IModPlugin {
 			registerCustomAnvilRecipes(registration, factory);
 
 		if(GeneralConfig.enableJeiItemInfo) {
-			MutableComponent hint = Component.translatable("quark.jei.hint_preamble");
-			hint.setStyle(hint.getStyle().withColor(0x0b5d4b));
+			MutableComponent externalPreamble = Component.translatable("quark.jei.hint_preamble");
+			externalPreamble.setStyle(externalPreamble.getStyle().withColor(0x0b5d4b));
 
 			List<Item> blacklist = MiscUtil.massRegistryGet(GeneralConfig.suppressedInfo, ForgeRegistries.ITEMS);
 
-			ModuleLoader.INSTANCE.addStackInfo((i, c) -> {
+			Quark.ZETA.playBus.fire((ZGatherHints) (i, c) -> {
 				if(blacklist.contains(i))
 					return;
 
 				MutableComponent compound = Component.literal("");
 				if(!ForgeRegistries.ITEMS.getKey(i).getNamespace().equals(Quark.MOD_ID))
-					compound = compound.append(hint);
+					compound = compound.append(externalPreamble);
 				compound = compound.append(c);
 
 				registration.addItemStackInfo(new ItemStack(i), compound);
