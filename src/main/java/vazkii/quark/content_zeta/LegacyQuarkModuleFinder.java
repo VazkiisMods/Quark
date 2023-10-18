@@ -77,6 +77,8 @@ public class LegacyQuarkModuleFinder implements ModuleFinder {
 
 		@Override
 		protected String rawCategory() {
+			//Zeta uses freeform string categories, Quark uses an annotation.
+			//I haven't changed the annotations yet because there's a lot of them.
 			if(ad.annotationData().containsKey("category")) return ((ModAnnotation.EnumHolder) ad.annotationData().get("category")).getValue().toLowerCase(Locale.ROOT);
 			else return "";
 		}

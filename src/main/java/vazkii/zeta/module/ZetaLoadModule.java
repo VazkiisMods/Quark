@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface ZetaLoadModule {
-	String category() default "";
+	String category();
 
 	String name() default "";
 	String description() default "";

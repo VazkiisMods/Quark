@@ -54,7 +54,6 @@ public class CommonProxy {
 
 		QuarkSounds.start();
 
-		//TODO: maybe find a better place for Zeta module init
 		ZetaModuleManager modules = Quark.ZETA.modules;
 		modules.initCategories(List.of(
 			new ZetaCategory("automation", Items.REDSTONE),

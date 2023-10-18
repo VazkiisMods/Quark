@@ -1,5 +1,7 @@
 package vazkii.quark.base.client.config.screen;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
 import org.apache.commons.lang3.text.WordUtils;
@@ -16,7 +18,6 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.ModList;
 import vazkii.quark.api.config.IConfigCategory;
 import vazkii.quark.base.Quark;
@@ -27,7 +28,7 @@ import vazkii.quark.base.client.config.screen.widgets.IconButton;
 import vazkii.quark.base.client.config.screen.widgets.SocialButton;
 import vazkii.quark.base.handler.ContributorRewardHandler;
 import vazkii.quark.base.handler.GeneralConfig;
-import vazkii.quark.base.module.ModuleCategory;
+import vazkii.zeta.module.ZetaCategory;
 
 public class QuarkConfigHomeScreen extends AbstractQScreen {
 
@@ -53,14 +54,17 @@ public class QuarkConfigHomeScreen extends AbstractQScreen {
 		int vStart = 70;
 
 		int i = 0;
-		int catCount = ModuleCategory.values().length + 1;
+
+		List<ZetaCategory> categories = Quark.ZETA.modules.getInhabitedCategories();
+
+		int catCount = categories.size() + 1;
 		if(addExternal)
 			catCount++;
 
 		boolean shiftedLeft = false;
 		int useLeft = left;
 
-		for(ModuleCategory category : ModuleCategory.values()) {
+		for(ZetaCategory category : categories) {
 			if(!shiftedLeft && catCount - i < perLine) {
 				useLeft = width / 2 - ((bWidth + pad) * (catCount - i) / 2);
 				shiftedLeft = true;
@@ -72,7 +76,7 @@ public class QuarkConfigHomeScreen extends AbstractQScreen {
 			IConfigCategory configCategory = IngameConfigHandler.INSTANCE.getConfigCategory(category);
 			Component comp = componentFor(configCategory);
 
-			Button icon = new IconButton(x, y, bWidth - 20, 20, comp, new ItemStack(category.item), categoryLink(configCategory));
+			Button icon = new IconButton(x, y, bWidth - 20, 20, comp, category.icon.get(), categoryLink(configCategory));
 			Button checkbox = new CheckboxButton(x + bWidth - 20, y, IngameConfigHandler.INSTANCE.getCategoryEnabledObject(category));
 
 			addRenderableWidget(icon);

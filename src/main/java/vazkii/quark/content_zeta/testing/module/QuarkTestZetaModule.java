@@ -9,7 +9,7 @@ import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 
-@ZetaLoadModule(name = "quark_test")
+@ZetaLoadModule(name = "quark_test", category = "testing")
 public class QuarkTestZetaModule extends ZetaModule {
 	public QuarkTestZetaModule() {
 		Quark.LOG.info("QuarkZetaTestModule get constructed NERD!!!!!!!!!!!!!!!!!!!!!!!!!!!");

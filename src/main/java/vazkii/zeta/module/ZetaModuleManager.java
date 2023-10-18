@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.jetbrains.annotations.Nullable;
-import vazkii.quark.base.module.QuarkModule;
 import vazkii.zeta.Zeta;
 import vazkii.zeta.event.ZModulesReady;
 
@@ -22,6 +23,11 @@ public class ZetaModuleManager {
 	private final Map<String, ZetaModule> modulesById = new LinkedHashMap<>();
 	private final Map<String, ZetaCategory> categoriesById = new LinkedHashMap<>();
 	private final Map<ZetaCategory, List<ZetaModule>> modulesInCategory = new HashMap<>();
+
+	//TODO ZETA (Very important): move this state to some sort of "config" area
+	// It's only here since it's stored *on* the category *enum* in current Quark
+	@Deprecated
+	private final Set<ZetaCategory> MOVE_TO_CONFIG_enabledCategoires = new HashSet<>();
 
 	public ZetaModuleManager(Zeta z) {
 		this.z = z;
@@ -40,6 +46,8 @@ public class ZetaModuleManager {
 	// Categories //
 
 	public ZetaCategory getCategory(String id) {
+		if(id == null || id.isEmpty()) id = "Unknown";
+
 		return categoriesById.computeIfAbsent(id, ZetaCategory::unknownCategory);
 	}
 
@@ -47,15 +55,34 @@ public class ZetaModuleManager {
 		return categoriesById.values();
 	}
 
+	public List<ZetaCategory> getInhabitedCategories() {
+		return categoriesById.values().stream()
+			.filter(c -> !modulesInCategory(c).isEmpty())
+			.toList();
+	}
+
 	public List<ZetaModule> modulesInCategory(ZetaCategory cat) {
-		return modulesInCategory.get(cat);
+		return modulesInCategory.computeIfAbsent(cat, __ -> new ArrayList<>());
+	}
+
+	@Deprecated
+	public boolean MOVE_TO_CONFIG_categoryIsEnabled(ZetaCategory cat) {
+		return MOVE_TO_CONFIG_enabledCategoires.contains(cat);
+	}
+
+	@Deprecated
+	public void MOVE_TO_CONFIG_setCategoryEnabled(ZetaCategory cat, boolean enabled) {
+		if(enabled)
+			MOVE_TO_CONFIG_enabledCategoires.add(cat);
+		else
+			MOVE_TO_CONFIG_enabledCategoires.remove(cat);
 	}
 
 	// Loading //
 
 	//first call this
 	public void initCategories(Iterable<ZetaCategory> cats) {
-		for(ZetaCategory cat : cats) categoriesById.put(cat.id(), cat);
+		for(ZetaCategory cat : cats) categoriesById.put(cat.name, cat);
 	}
 
 	//then call this
@@ -105,8 +132,7 @@ public class ZetaModuleManager {
 		//construct, set properties
 		ZetaModule module = t.construct();
 
-		module.zetaCategory = t.category;
-		module.category = module.zetaCategory.legacy();
+		module.category = t.category;
 
 		module.displayName = t.displayName;
 		module.lowercaseName = t.lowercaseName;
@@ -122,8 +148,7 @@ public class ZetaModuleManager {
 		z.loadBus.subscribe(module.getClass()).subscribe(module);
 
 		//category upkeep
-		modulesInCategory.computeIfAbsent(module.zetaCategory, __ -> new ArrayList<>()).add(module);
-		if(module instanceof QuarkModule qm) module.category.addModule(qm); //TODO LEGACY config
+		modulesInCategory.computeIfAbsent(module.category, __ -> new ArrayList<>()).add(module);
 
 		//post-construction callback
 		module.postConstruct();

@@ -2,16 +2,13 @@ package vazkii.zeta.module;
 
 import java.util.List;
 
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.zeta.Zeta;
 
 /**
  * @see vazkii.quark.base.module.QuarkModule
  */
 public class ZetaModule {
-	//Need to move categories to a more flexible system than a hardcoded enum
-	public ZetaCategory zetaCategory = null;
-	@Deprecated public ModuleCategory category;
+	public ZetaCategory category = null;
 
 	public String displayName = "";
 	public String lowercaseName = "";
