@@ -1,6 +1,7 @@
 package vazkii.zeta.module;
 
 import java.util.List;
+import java.util.Set;
 
 import vazkii.zeta.Zeta;
 
@@ -14,7 +15,7 @@ public class ZetaModule {
 	public String lowercaseName = "";
 	public String description = "";
 
-	public List<String> antiOverlap = List.of();
+	public Set<String> antiOverlap = Set.of();
 
 	public boolean enabledByDefault = true;
 	public boolean missingDep = false;

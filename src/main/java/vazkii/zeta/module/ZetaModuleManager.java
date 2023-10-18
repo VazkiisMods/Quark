@@ -131,7 +131,7 @@ public class ZetaModuleManager {
 		module.lowercaseName = t.lowercaseName();
 		module.description = t.description();
 
-		module.antiOverlap = t.antiOverlap().stream().toList(); //TODO make it a Set
+		module.antiOverlap = t.antiOverlap();
 
 		module.enabledByDefault = t.enabledByDefault();
 		module.missingDep = !t.category().modsLoaded(z);
