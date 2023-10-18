@@ -13,6 +13,7 @@ import java.util.Set;
 import org.jetbrains.annotations.Nullable;
 import vazkii.zeta.Zeta;
 import vazkii.zeta.event.ZModulesReady;
+import vazkii.zeta.util.ZetaSide;
 
 /**
  * TODO: other forms of module discovery and replacement (like a Forge-only module, or other types of 'replacement' modules)
@@ -87,64 +88,56 @@ public class ZetaModuleManager {
 
 	//then call this
 	public void load(ModuleFinder finder) {
-		Collection<? extends TentativeModule> tentative = finder.get()
-			.peek(t -> t.derive(this::getCategory))
-			.sorted(Comparator.comparing(t -> t.displayName))
+		Collection<TentativeModule> tentative = finder.get()
+			.map(data -> TentativeModule.from(data, this::getCategory))
+			.filter(tm -> tm.appliesTo(z.side))
+			.sorted(Comparator.comparing(TentativeModule::displayName))
 			.toList();
 
-		Collection<? extends TentativeModule> toLoad = switch(z.getSide()) {
-			case SERVER -> tentative.stream().filter(TentativeModule::isCommon).toList();
-			case CLIENT -> {
-				Map<String, TentativeModule> map = new LinkedHashMap<>();
+		//this is the part where we handle "client replacement" modules !!
+		if(z.side == ZetaSide.CLIENT) {
+			Map<String, TentativeModule> byName = new LinkedHashMap<>();
 
-				//fill the map with all common modules
-				tentative.stream()
-					.filter(TentativeModule::isCommon)
-					.forEach(t -> map.put(t.lowercaseName, t));
+			//first, lay down all modules that are not client replacements
+			for(TentativeModule tm : tentative)
+				if(tm.clientReplacementOf() == null)
+					byName.put(tm.lowercaseName(), tm);
 
-				//if a module has a client component, load that one instead
-				tentative.stream()
-					.filter(TentativeModule::isClientOnly)
-					.forEach(t -> {
-						TentativeModule existing = map.get(t.clientExtensionOf);
+			//then overlay with the client replacements
+			for(TentativeModule tm : tentative)
+				if(tm.clientReplacementOf() != null)
+					byName.put(tm.clientReplacementOf(), tm);
 
-						if(existing != null && existing.isCommon())
-							map.put(t.clientExtensionOf, t);
-						else
-							z.log.warn("illegal client module replacement: " + t + " replacing " + existing);
-					});
+			tentative = byName.values();
+		}
 
-				yield map.values();
-			}
-		};
+		z.log.info("Discovered " + tentative.size() + " modules to load");
 
-		z.log.info("Discovered " + toLoad.size() + " modules to load");
-
-		for(TentativeModule t : toLoad)
-			modulesById.put(t.lowercaseName, construct(t));
+		for(TentativeModule t : tentative)
+			modulesById.put(t.lowercaseName(), construct(t));
 
 		z.loadBus.fire(new ZModulesReady());
 	}
 
 	private ZetaModule construct(TentativeModule t) {
-		z.log.info("Constructing module " + t.displayName + "...");
+		z.log.info("Constructing module " + t.displayName() + "...");
 
 		//construct, set properties
-		ZetaModule module = t.construct();
+		ZetaModule module = t.constructor().get();
 
-		module.category = t.category;
+		module.category = t.category();
 
-		module.displayName = t.displayName;
-		module.lowercaseName = t.lowercaseName;
-		module.description = t.description;
+		module.displayName = t.displayName();
+		module.lowercaseName = t.lowercaseName();
+		module.description = t.description();
 
-		module.antiOverlap = t.antiOverlap.stream().toList(); //TODO make it a Set
+		module.antiOverlap = t.antiOverlap().stream().toList(); //TODO make it a Set
 
-		module.enabledByDefault = t.enabledByDefault;
-		module.missingDep = !t.category.modsLoaded(z);
+		module.enabledByDefault = t.enabledByDefault();
+		module.missingDep = !t.category().modsLoaded(z);
 
 		//event busses
-		module.setEnabled(z, t.enabledByDefault);
+		module.setEnabled(z, t.enabledByDefault());
 		z.loadBus.subscribe(module.getClass()).subscribe(module);
 
 		//category upkeep

@@ -3,57 +3,58 @@ package vazkii.zeta.module;
 import java.util.Locale;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.apache.commons.lang3.text.WordUtils;
+import org.jetbrains.annotations.Nullable;
+import vazkii.zeta.util.ZetaSide;
 
-//TODO: this sucks lol
-public abstract class TentativeModule {
-	public abstract ZetaModule construct();
-	protected abstract String fullClassName();
+/**
+ * performs some common data-munging of the data straight off a ZetaLoadModule annotation
+ */
+public record TentativeModule(
+	Supplier<ZetaModule> constructor,
 
-	protected abstract String rawCategory();
-	protected abstract String rawName();
-	protected abstract String rawDescription();
-	protected abstract String[] rawAntiOverlap();
-	protected abstract boolean rawEnabledByDefault();
-	protected abstract String rawClientExtensionOf();
+	ZetaCategory category,
+	ModuleSide side,
+	String displayName,
+	String lowercaseName,
+	String description,
+	Set<String> antiOverlap,
+	boolean enabledByDefault,
 
-	public ZetaCategory category;
-
-	public String displayName;
-	public String lowercaseName; //"id"
-
-	public String description;
-	public Set<String> antiOverlap;
-	public boolean enabledByDefault;
-
-	String clientExtensionOf;
-
-	void derive(Function<String, ZetaCategory> categoryGetter) {
-		category = categoryGetter.apply(rawCategory());
-
-		String simpleName = fullClassName();
+	@Nullable String clientReplacementOf
+) {
+	public static TentativeModule from(ZetaLoadModuleAnnotationData data, Function<String, ZetaCategory> categoryResolver) {
+		String simpleName = data.fullClassName();
 		simpleName = simpleName.substring(simpleName.lastIndexOf('.') + 1);
 
-		if(rawName().isEmpty())
+		String displayName;
+		if(data.name().isEmpty())
 			displayName = WordUtils.capitalizeFully(simpleName.replaceAll("Module$", "").replaceAll("(?<=.)([A-Z])", " $1"));
 		else
-			displayName = rawName();
+			displayName = data.name();
 
-		lowercaseName = displayName.toLowerCase(Locale.ROOT).replace(" ", "_");
+		String lowercaseName = displayName.toLowerCase(Locale.ROOT).replace(" ", "_");
 
-		description = rawDescription();
-		antiOverlap = Set.of(rawAntiOverlap());
-		enabledByDefault = rawEnabledByDefault();
+		String clientReplacementOf = data.clientReplacementOf().trim();
+		if(clientReplacementOf.isEmpty())
+			clientReplacementOf = null;
 
-		clientExtensionOf = rawClientExtensionOf();
+		return new TentativeModule(
+			data.constructor(),
+			categoryResolver.apply(data.category()),
+			data.side(),
+			displayName,
+			lowercaseName,
+			data.description(),
+			Set.of(data.antiOverlap()),
+			data.enabledByDefault(),
+			clientReplacementOf
+		);
 	}
 
-	public boolean isCommon() {
-		return clientExtensionOf.isEmpty();
-	}
-
-	public boolean isClientOnly() {
-		return !isCommon();
+	public boolean appliesTo(ZetaSide side) {
+		return this.side.appliesTo(side);
 	}
 }
