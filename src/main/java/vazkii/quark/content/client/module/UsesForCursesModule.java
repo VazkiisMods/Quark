@@ -14,9 +14,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.EntityRenderersEvent.AddLayers;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -24,7 +22,7 @@ import vazkii.quark.content.tweaks.client.layer.ArmorStandFakePlayerLayer;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZAddModelLayers;
 
-@LoadModule(category = ModuleCategory.CLIENT)
+@LoadModule(category = "client")
 public class UsesForCursesModule extends QuarkModule {
 
 	private static final ResourceLocation PUMPKIN_OVERLAY = new ResourceLocation("textures/misc/pumpkinblur.png");

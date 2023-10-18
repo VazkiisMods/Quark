@@ -34,7 +34,6 @@ import vazkii.quark.base.handler.advancement.mod.TwoByTwoModifier;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.item.QuarkMobBucketItem;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
@@ -49,7 +48,7 @@ import vazkii.quark.content.mobs.entity.Crab;
  * @author WireSegal
  * Created at 7:28 PM on 9/22/19.
  */
-@LoadModule(category = ModuleCategory.MOBS, hasSubscriptions = true)
+@LoadModule(category = "mobs", hasSubscriptions = true)
 public class CrabsModule extends QuarkModule {
 
 	public static EntityType<Crab> crabType;

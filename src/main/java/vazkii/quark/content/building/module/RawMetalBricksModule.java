@@ -9,10 +9,9 @@ import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class RawMetalBricksModule extends QuarkModule {
 
 	@Override

@@ -8,7 +8,6 @@ import vazkii.quark.api.config.IConfigElement;
 import vazkii.quark.api.config.IConfigObject;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.config.external.ExternalConfigHandler;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.config.IConfigCallback;
 import vazkii.zeta.module.ZetaCategory;
 

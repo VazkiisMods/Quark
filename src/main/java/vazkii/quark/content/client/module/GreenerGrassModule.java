@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.ConvulsionMatrixConfig;
@@ -25,7 +24,7 @@ import vazkii.quark.mixin.client.accessor.AccessorBlockColors;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZFirstClientTick;
 
-@LoadModule(category = ModuleCategory.CLIENT)
+@LoadModule(category = "client")
 public class GreenerGrassModule extends QuarkModule {
 
 	private static final String[] GRASS_PRESET_NAMES = { "Dreary", "Vibrant" };

@@ -8,14 +8,13 @@ import net.minecraft.world.level.material.MaterialColor;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.world.undergroundstyle.PermafrostStyle;
 import vazkii.quark.content.world.undergroundstyle.base.AbstractUndergroundStyleModule;
 import vazkii.quark.content.world.undergroundstyle.base.UndergroundStyleConfig;
 
-@LoadModule(category = ModuleCategory.WORLD)
+@LoadModule(category = "world")
 public class PermafrostModule extends AbstractUndergroundStyleModule<PermafrostStyle> {
 
 	@Hint public static QuarkBlock permafrost;

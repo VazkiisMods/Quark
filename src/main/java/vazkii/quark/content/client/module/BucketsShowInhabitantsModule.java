@@ -17,7 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZAddItemColorHandlers;
@@ -25,7 +24,6 @@ import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.mobs.entity.Crab;
@@ -38,10 +36,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
 import java.util.function.BooleanSupplier;
-import java.util.function.Consumer;
 import java.util.function.IntUnaryOperator;
 
-@LoadModule(category = ModuleCategory.CLIENT)
+@LoadModule(category = "client")
 public class BucketsShowInhabitantsModule extends QuarkModule {
 
 	@Config

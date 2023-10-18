@@ -14,7 +14,6 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import org.apache.commons.lang3.text.WordUtils;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.zeta.module.ZetaCategory;
 import vazkii.zeta.module.ZetaModule;

@@ -14,7 +14,6 @@ import java.util.function.BooleanSupplier;
 
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.BambooMatBlock;
@@ -22,7 +21,7 @@ import vazkii.quark.content.building.block.BambooMatCarpetBlock;
 import vazkii.quark.content.building.block.PaperLanternBlock;
 import vazkii.quark.content.building.block.PaperWallBlock;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class JapanesePaletteModule extends QuarkModule {
 
 	@Config(flag = "paper_decor")

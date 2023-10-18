@@ -35,7 +35,6 @@ import net.minecraftforge.client.event.ScreenEvent.MouseButtonPressed;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -47,7 +46,7 @@ import vazkii.quark.mixin.client.accessor.AccessorLocalPlayer;
 import java.time.Instant;
 import java.util.List;
 
-@LoadModule(category = ModuleCategory.MANAGEMENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "management", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class ItemSharingModule extends QuarkModule {
 
 	@Config

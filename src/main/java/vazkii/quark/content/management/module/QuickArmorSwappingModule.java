@@ -10,11 +10,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
-@LoadModule(category = ModuleCategory.MANAGEMENT, hasSubscriptions = true)
+@LoadModule(category = "management", hasSubscriptions = true)
 public class QuickArmorSwappingModule extends QuarkModule {
 
 	@Config public static boolean swapOffHand = true;

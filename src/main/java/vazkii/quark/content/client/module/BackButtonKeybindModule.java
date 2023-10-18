@@ -14,19 +14,17 @@ import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent.KeyPressed;
 import net.minecraftforge.client.event.ScreenEvent.MouseButtonPressed;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZKeyMapping;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "client", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class BackButtonKeybindModule extends QuarkModule {
 
 	@OnlyIn(Dist.CLIENT)

@@ -17,7 +17,6 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.DimensionConfig;
@@ -28,7 +27,7 @@ import vazkii.quark.content.world.block.be.MonsterBoxBlockEntity;
 import vazkii.quark.content.world.gen.MonsterBoxGenerator;
 import vazkii.quark.mixin.accessor.AccessorLivingEntity;
 
-@LoadModule(category = ModuleCategory.WORLD, hasSubscriptions = true)
+@LoadModule(category = "world", hasSubscriptions = true)
 public class MonsterBoxModule extends QuarkModule {
 
 	public static final String TAG_MONSTER_BOX_SPAWNED = "quark:monster_box_spawned";

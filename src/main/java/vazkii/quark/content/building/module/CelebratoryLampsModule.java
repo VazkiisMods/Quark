@@ -13,11 +13,10 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
-@LoadModule(category = ModuleCategory.BUILDING, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "building", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class CelebratoryLampsModule extends QuarkModule {
 
 	@Config

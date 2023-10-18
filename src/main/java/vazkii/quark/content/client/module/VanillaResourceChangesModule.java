@@ -15,7 +15,7 @@ package vazkii.quark.content.client.module;
 //import vazkii.quark.base.module.Module;
 //import vazkii.quark.base.module.ModuleCategory;
 //
-//@LoadModule(category = ModuleCategory.CLIENT)
+//@LoadModule(category = "client")
 //public class VanillaResourceChangesModule extends Module {
 //
 //	private static final Pattern FILE_PATTERN = Pattern.compile("([^\\/]+)\\/(.+)\\/(.+)");

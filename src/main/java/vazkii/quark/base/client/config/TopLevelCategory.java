@@ -3,7 +3,6 @@ package vazkii.quark.base.client.config;
 import org.apache.commons.lang3.text.WordUtils;
 import vazkii.quark.api.config.IConfigCategory;
 import vazkii.quark.api.config.IConfigObject;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.zeta.module.ZetaCategory;
 
 import java.util.HashMap;

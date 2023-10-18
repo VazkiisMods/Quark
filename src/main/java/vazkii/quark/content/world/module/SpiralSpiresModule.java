@@ -2,7 +2,6 @@ package vazkii.quark.content.world.module;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,7 +14,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
@@ -27,7 +25,6 @@ import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -43,7 +40,7 @@ import vazkii.quark.content.world.gen.SpiralSpireGenerator;
 import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.bus.PlayEvent;
 
-@LoadModule(category = ModuleCategory.WORLD, hasSubscriptions = true)
+@LoadModule(category = "world", hasSubscriptions = true)
 public class SpiralSpiresModule extends QuarkModule {
 
 	@Config

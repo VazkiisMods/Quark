@@ -17,12 +17,11 @@ import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.base.item.QuarkMusicDiscItem;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 
-@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true)
+@LoadModule(category = "tools", hasSubscriptions = true)
 public class EndermoshMusicDiscModule extends QuarkModule {
 
 	@Config private boolean playEndermoshDuringEnderdragonFight = false;

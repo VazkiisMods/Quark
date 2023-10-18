@@ -1,11 +1,10 @@
 package vazkii.quark.content.experimental.module;
 
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
-@LoadModule(category = ModuleCategory.EXPERIMENTAL, enabledByDefault = false)
+@LoadModule(category = "experimental", enabledByDefault = false)
 public class OverlayShaderModule extends QuarkModule {
 
 	

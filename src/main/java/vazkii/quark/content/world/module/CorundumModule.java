@@ -8,7 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,7 +18,6 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.QuarkInheritedPaneBlock;
 import vazkii.quark.base.handler.ToolInteractionHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -34,9 +32,8 @@ import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.bus.PlayEvent;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 
-@LoadModule(category = ModuleCategory.WORLD)
+@LoadModule(category = "world")
 public class CorundumModule extends AbstractUndergroundStyleModule<CorundumStyle> {
 
 	@Config

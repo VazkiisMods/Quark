@@ -1,11 +1,9 @@
 package vazkii.quark.content.client.module;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -16,7 +14,6 @@ import vazkii.zeta.event.client.ZRegisterReloadListeners;
 import vazkii.zeta.event.client.ZTooltipComponents;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.client.resources.AttributeTooltipManager;
@@ -31,7 +28,7 @@ import vazkii.quark.content.client.tooltip.ShulkerBoxTooltips;
  * @author WireSegal
  * Created at 6:19 PM on 8/31/19.
  */
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "client", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class ImprovedTooltipsModule extends QuarkModule {
 
 	@Config public static boolean attributeTooltips = true;

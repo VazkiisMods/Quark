@@ -2,12 +2,11 @@ package vazkii.quark.content.building.module;
 
 import net.minecraft.world.level.block.Block;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.block.SturdyStoneBlock;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class SturdyStoneModule extends QuarkModule {
 
 	@Hint Block sturdy_stone;

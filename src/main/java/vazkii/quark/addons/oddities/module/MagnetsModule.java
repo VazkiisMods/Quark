@@ -22,12 +22,11 @@ import vazkii.quark.addons.oddities.magnetsystem.MagnetSystem;
 import vazkii.quark.api.event.RecipeCrawlEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 
-@LoadModule(category = ModuleCategory.ODDITIES, hasSubscriptions = true)
+@LoadModule(category = "oddities", hasSubscriptions = true)
 public class MagnetsModule extends QuarkModule {
 
 	public static BlockEntityType<MagnetBlockEntity> magnetType;

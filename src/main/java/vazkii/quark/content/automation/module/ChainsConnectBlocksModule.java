@@ -14,11 +14,10 @@ import net.minecraft.world.level.block.ChainBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import vazkii.quark.api.IIndirectConnector;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 
-@LoadModule(category = ModuleCategory.AUTOMATION)
+@LoadModule(category = "automation")
 public class ChainsConnectBlocksModule extends QuarkModule {
 
 	@Hint Item chain = Items.CHAIN;

@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.util.VanillaWoods;
@@ -19,7 +18,7 @@ import vazkii.quark.content.world.module.BlossomTreesModule;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class HedgesModule extends QuarkModule {
 
 	public static TagKey<Block> hedgesTag;

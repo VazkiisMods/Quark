@@ -13,10 +13,9 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.living.LivingConversionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
+@LoadModule(category = "tweaks", hasSubscriptions = true)
 public class ZombieVillagersOnNormalModule extends QuarkModule {
 
 	@SubscribeEvent

@@ -8,12 +8,11 @@ import net.minecraft.world.level.block.Blocks;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class MoreBrickTypesModule extends QuarkModule {
 
 	@Config(flag = "blue_nether_bricks", description = "This also comes with a utility recipe for Red Nether Bricks") 

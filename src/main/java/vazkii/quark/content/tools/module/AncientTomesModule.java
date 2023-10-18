@@ -52,7 +52,6 @@ import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -68,7 +67,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true)
+@LoadModule(category = "tools", hasSubscriptions = true)
 public class AncientTomesModule extends QuarkModule {
 
 	private static final Object mutex = new Object();

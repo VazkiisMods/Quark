@@ -7,14 +7,13 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import vazkii.quark.base.block.QuarkFenceGateBlock;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 
 /**
  * @author WireSegal
  * Created at 10:51 AM on 10/9/19.
  */
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class NetherBrickFenceGateModule extends QuarkModule {
 	@Override
 	public void register() {

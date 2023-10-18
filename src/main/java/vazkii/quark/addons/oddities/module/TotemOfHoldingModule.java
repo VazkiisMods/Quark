@@ -25,7 +25,6 @@ import vazkii.quark.addons.oddities.client.render.entity.TotemOfHoldingRenderer;
 import vazkii.quark.addons.oddities.entity.TotemOfHoldingEntity;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.bus.LoadEvent;
@@ -35,7 +34,7 @@ import vazkii.zeta.event.client.ZAddModels;
  * @author WireSegal
  * Created at 1:21 PM on 3/30/20.
  */
-@LoadModule(category = ModuleCategory.ODDITIES, hasSubscriptions = true)
+@LoadModule(category = "oddities", hasSubscriptions = true)
 public class TotemOfHoldingModule extends QuarkModule {
 	private static final String TAG_LAST_TOTEM = "quark:lastTotemOfHolding";
 

@@ -25,7 +25,6 @@ import vazkii.quark.base.handler.EntityAttributeHandler;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.mod.MonsterHunterModifier;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -34,7 +33,7 @@ import vazkii.quark.content.mobs.client.render.entity.ForgottenRenderer;
 import vazkii.quark.content.mobs.entity.Forgotten;
 import vazkii.quark.content.mobs.item.ForgottenHatItem;
 
-@LoadModule(category = ModuleCategory.MOBS, hasSubscriptions = true)
+@LoadModule(category = "mobs", hasSubscriptions = true)
 public class ForgottenModule extends QuarkModule {
 
 	public static EntityType<Forgotten> forgottenType;

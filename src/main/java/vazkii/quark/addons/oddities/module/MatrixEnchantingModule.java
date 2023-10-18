@@ -10,7 +10,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -42,7 +41,6 @@ import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
@@ -50,9 +48,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
-@LoadModule(category = ModuleCategory.ODDITIES, hasSubscriptions = true)
+@LoadModule(category = "oddities", hasSubscriptions = true)
 public class MatrixEnchantingModule extends QuarkModule {
 
 	public static BlockEntityType<MatrixEnchantingTableBlockEntity> blockEntityType;

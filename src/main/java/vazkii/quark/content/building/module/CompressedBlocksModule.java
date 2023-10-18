@@ -2,7 +2,6 @@ package vazkii.quark.content.building.module;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import java.util.function.Consumer;
 
 import com.google.common.collect.Lists;
 
@@ -20,14 +19,13 @@ import vazkii.quark.base.block.QuarkFlammablePillarBlock;
 import vazkii.quark.base.handler.FuelHandler;
 import vazkii.quark.base.handler.ToolInteractionHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.zeta.event.ZLoadComplete;
 import vazkii.zeta.event.bus.LoadEvent;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class CompressedBlocksModule extends QuarkModule {
 
 	@Config(name = "Charcoal Block and Blaze Lantern Stay On Fire Forever", flag = "compressed_blocks_burn_forever")

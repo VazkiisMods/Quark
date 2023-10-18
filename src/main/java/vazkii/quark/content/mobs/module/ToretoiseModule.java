@@ -19,7 +19,6 @@ import vazkii.quark.base.handler.EntityAttributeHandler;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
@@ -29,7 +28,7 @@ import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.ToretoiseRenderer;
 import vazkii.quark.content.mobs.entity.Toretoise;
 
-@LoadModule(category = ModuleCategory.MOBS, hasSubscriptions = true)
+@LoadModule(category = "mobs", hasSubscriptions = true)
 public class ToretoiseModule extends QuarkModule {
 
 	public static EntityType<Toretoise> toretoiseType;

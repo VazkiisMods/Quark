@@ -14,7 +14,6 @@ import net.minecraftforge.common.ToolActions;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.ToolInteractionHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
@@ -22,7 +21,7 @@ import vazkii.quark.base.util.VanillaWoods;
 import vazkii.quark.base.util.VanillaWoods.Wood;
 import vazkii.quark.content.building.block.WoodPostBlock;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class WoodenPostsModule extends QuarkModule {
 
 	@Hint TagKey<Item> postsTag;

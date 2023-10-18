@@ -20,7 +20,6 @@ import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.handler.advancement.mod.TwoByTwoModifier;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
@@ -30,7 +29,7 @@ import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.ShibaRenderer;
 import vazkii.quark.content.mobs.entity.Shiba;
 
-@LoadModule(category = ModuleCategory.MOBS)
+@LoadModule(category = "mobs")
 public class ShibaModule extends QuarkModule {
 
 	public static EntityType<Shiba> shibaType;

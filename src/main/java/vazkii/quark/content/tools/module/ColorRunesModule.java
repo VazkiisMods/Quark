@@ -34,7 +34,6 @@ import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -52,7 +51,7 @@ import java.util.function.Supplier;
  * Hacked by svenhjol
  * Created at 1:52 PM on 8/17/19.
  */
-@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true)
+@LoadModule(category = "tools", hasSubscriptions = true)
 public class ColorRunesModule extends QuarkModule {
 
 	public static final String TAG_RUNE_ATTACHED = Quark.MOD_ID + ":RuneAttached";

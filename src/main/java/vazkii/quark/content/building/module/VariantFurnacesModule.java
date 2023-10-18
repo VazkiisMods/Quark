@@ -11,14 +11,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.block.SoulFurnaceBlock;
 import vazkii.quark.content.building.block.VariantFurnaceBlock;
 import vazkii.quark.content.building.block.be.VariantFurnaceBlockEntity;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class VariantFurnacesModule extends QuarkModule {
 
 	public static BlockEntityType<VariantFurnaceBlockEntity> blockEntityType;

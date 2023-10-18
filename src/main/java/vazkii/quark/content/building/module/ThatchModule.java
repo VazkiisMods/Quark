@@ -1,18 +1,15 @@
 package vazkii.quark.content.building.module;
 
-import java.util.function.Consumer;
-
 import net.minecraft.world.level.block.ComposterBlock;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.ThatchBlock;
 import vazkii.zeta.event.ZLoadComplete;
 import vazkii.zeta.event.bus.LoadEvent;
 
-@LoadModule(category = ModuleCategory.BUILDING, antiOverlap = {"goated", "environmental"})
+@LoadModule(category = "building", antiOverlap = {"goated", "environmental"})
 public class ThatchModule extends QuarkModule {
 
 	@Config.Min(0)

@@ -1,7 +1,6 @@
 package vazkii.quark.content.tools.module;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -31,7 +30,6 @@ import net.minecraftforge.client.event.RenderHighlightEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.RGBAColorConfig;
@@ -40,7 +38,7 @@ import vazkii.quark.content.tools.item.AbacusItem;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 
-@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "tools", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class AbacusModule extends QuarkModule {
 
 	@Hint public static Item abacus;

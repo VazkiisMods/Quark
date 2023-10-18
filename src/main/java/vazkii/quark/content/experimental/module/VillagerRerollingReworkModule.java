@@ -12,13 +12,12 @@ import net.minecraftforge.event.entity.living.LivingConversionEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.experimental.hax.PseudoAccessorMerchantOffer;
 import vazkii.quark.mixin.accessor.AccessorMerchantOffer;
 
-@LoadModule(category = ModuleCategory.EXPERIMENTAL, enabledByDefault = false, hasSubscriptions = true)
+@LoadModule(category = "experimental", enabledByDefault = false, hasSubscriptions = true)
 public class VillagerRerollingReworkModule extends QuarkModule {
 
 	public static final String TAG_VILLAGER_SEED = "quark:MerchantInitialSeed";

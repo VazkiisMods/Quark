@@ -42,14 +42,13 @@ import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.entity.ParrotEgg;
 import vazkii.quark.content.tools.item.ParrotEggItem;
 
-@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true)
+@LoadModule(category = "tools", hasSubscriptions = true)
 public class ParrotEggsModule extends QuarkModule {
 
 	private static final ResourceLocation KOTO = new ResourceLocation("quark", "textures/model/entity/variants/kotobirb.png");

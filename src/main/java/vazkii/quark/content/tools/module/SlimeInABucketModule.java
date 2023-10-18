@@ -1,7 +1,5 @@
 package vazkii.quark.content.tools.module;
 
-import java.util.function.Consumer;
-
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -22,12 +20,11 @@ import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.item.SlimeInABucketItem;
 
-@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true)
+@LoadModule(category = "tools", hasSubscriptions = true)
 public class SlimeInABucketModule extends QuarkModule {
 
 	@Hint public static Item slime_in_a_bucket;

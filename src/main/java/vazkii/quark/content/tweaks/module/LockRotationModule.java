@@ -32,7 +32,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -45,7 +44,6 @@ import vazkii.quark.api.IRotationLockable;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.network.QuarkNetwork;
@@ -60,7 +58,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
+@LoadModule(category = "tweaks", hasSubscriptions = true)
 public class LockRotationModule extends QuarkModule {
 
 	private static final String TAG_LOCKED_ONCE = "quark:locked_once";

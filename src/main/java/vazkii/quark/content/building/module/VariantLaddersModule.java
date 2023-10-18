@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import vazkii.quark.base.handler.FuelHandler;
 import vazkii.quark.base.handler.ItemOverrideHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.util.VanillaWoods;
@@ -22,7 +21,7 @@ import vazkii.quark.content.building.block.VariantLadderBlock;
 import vazkii.zeta.event.ZLoadComplete;
 import vazkii.zeta.event.bus.LoadEvent;
 
-@LoadModule(category = ModuleCategory.BUILDING, antiOverlap = { "woodworks" })
+@LoadModule(category = "building", antiOverlap = { "woodworks" })
 public class VariantLaddersModule extends QuarkModule {
 
 	@Config public static boolean changeNames = true;

@@ -40,7 +40,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.RayTraceHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.RGBColorConfig;
@@ -48,7 +47,7 @@ import vazkii.quark.integration.claim.IClaimIntegration;
 
 import java.util.List;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
+@LoadModule(category = "tweaks", hasSubscriptions = true)
 public class ReacharoundPlacingModule extends QuarkModule {
 
 	@Config

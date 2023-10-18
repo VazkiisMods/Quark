@@ -10,7 +10,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@LoadModule(category = ModuleCategory.EXPERIMENTAL, enabledByDefault = false)
+@LoadModule(category = "experimental", enabledByDefault = false)
 public class SpawnerReplacerModule extends QuarkModule {
 
 	@Config(description = "Mobs to be replaced with other mobs.\n" +

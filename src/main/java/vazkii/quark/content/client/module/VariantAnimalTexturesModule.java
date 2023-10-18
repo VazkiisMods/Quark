@@ -18,7 +18,6 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
@@ -26,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Supplier;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "client", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class VariantAnimalTexturesModule extends QuarkModule {
 
 	private static ListMultimap<VariantTextureType, ResourceLocation> textures;

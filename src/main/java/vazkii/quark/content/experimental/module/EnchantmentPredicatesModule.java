@@ -13,16 +13,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 
 import java.util.List;
-import java.util.function.Consumer;
 
-@LoadModule(category = ModuleCategory.EXPERIMENTAL, enabledByDefault = false,
+@LoadModule(category = "experimental", enabledByDefault = false,
 description = "This feature generates Resource Pack Item Model predicates on the items defined in 'Items to Change'\n"
 		+ "for the Enchantments defined in 'Enchantments to Register'.\n\n"
 		+ "Example: if 'minecraft:silk_touch' is added to 'Enchantments to Register', and 'minecraft:netherite_pickaxe'\n"

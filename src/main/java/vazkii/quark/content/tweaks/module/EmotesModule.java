@@ -33,7 +33,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.ScreenEvent;
@@ -45,7 +44,6 @@ import vazkii.aurelienribon.tweenengine.Tween;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.handler.ContributorRewardHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.network.QuarkNetwork;
@@ -62,7 +60,7 @@ import vazkii.zeta.event.client.ZClientModulesReady;
 import vazkii.zeta.event.client.ZConfigChangedClient;
 import vazkii.zeta.event.client.ZKeyMapping;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "tweaks", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class EmotesModule extends QuarkModule {
 
 	private static final Set<String> DEFAULT_EMOTE_NAMES = ImmutableSet.of(

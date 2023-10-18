@@ -1,7 +1,5 @@
 package vazkii.quark.content.automation.module;
 
-import java.util.function.Consumer;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
@@ -29,7 +27,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.zeta.event.ZCommonSetup;
@@ -37,7 +34,7 @@ import vazkii.zeta.event.bus.LoadEvent;
 
 import javax.annotation.Nonnull;
 
-@LoadModule(category = ModuleCategory.AUTOMATION, hasSubscriptions = true)
+@LoadModule(category = "automation", hasSubscriptions = true)
 public class JukeboxAutomationModule extends QuarkModule {
 
 	@Hint Item jukebox = Items.JUKEBOX;

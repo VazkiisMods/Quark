@@ -21,7 +21,6 @@ import net.minecraftforge.event.level.NoteBlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -29,7 +28,7 @@ import vazkii.quark.base.module.hint.Hint;
 import java.util.Arrays;
 import java.util.List;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
+@LoadModule(category = "tweaks", hasSubscriptions = true)
 public class MoreNoteBlockSoundsModule extends QuarkModule {
 
 	@Config(flag = "skull_note_block")

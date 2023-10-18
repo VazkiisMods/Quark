@@ -12,7 +12,6 @@ import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.block.QuarkPillarBlock;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.ConfigFlagManager;
@@ -20,7 +19,7 @@ import vazkii.quark.content.building.block.MyalitePillarBlock;
 import vazkii.quark.content.world.block.MyaliteBlock;
 import vazkii.quark.content.world.module.NewStoneTypesModule;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class MoreStoneVariantsModule extends QuarkModule {
 
 	@Config(flag = "stone_bricks") public boolean enableBricks = true;

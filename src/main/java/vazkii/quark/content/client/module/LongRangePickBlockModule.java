@@ -13,10 +13,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.handler.RayTraceHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 
-@LoadModule(category = ModuleCategory.CLIENT)
+@LoadModule(category = "client")
 public class LongRangePickBlockModule extends QuarkModule {
 
 	public static boolean staticEnabled;

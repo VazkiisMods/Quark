@@ -23,7 +23,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -31,7 +30,7 @@ import vazkii.quark.content.tools.ai.RunAwayFromPikesGoal;
 import vazkii.quark.content.tools.client.render.entity.SkullPikeRenderer;
 import vazkii.quark.content.tools.entity.SkullPike;
 
-@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true)
+@LoadModule(category = "tools", hasSubscriptions = true)
 public class SkullPikesModule extends QuarkModule {
 
 	public static EntityType<SkullPike> skullPikeType;

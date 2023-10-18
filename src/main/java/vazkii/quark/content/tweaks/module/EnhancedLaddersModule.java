@@ -1,7 +1,6 @@
 package vazkii.quark.content.tweaks.module;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
@@ -22,7 +21,6 @@ import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -43,13 +41,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.bus.PlayEvent;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
+@LoadModule(category = "tweaks", hasSubscriptions = true)
 public class EnhancedLaddersModule extends QuarkModule {
 
 	@Config.Max(0)

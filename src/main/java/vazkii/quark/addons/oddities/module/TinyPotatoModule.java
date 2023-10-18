@@ -24,7 +24,6 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -32,7 +31,7 @@ import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZAddModels;
 import vazkii.zeta.event.client.ZModelBakingCompleted;
 
-@LoadModule(category = ModuleCategory.ODDITIES, antiOverlap = "botania", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "oddities", antiOverlap = "botania", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class TinyPotatoModule extends QuarkModule {
 
 	public static BlockEntityType<TinyPotatoBlockEntity> blockEntityType;

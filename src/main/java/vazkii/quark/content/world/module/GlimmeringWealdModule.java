@@ -42,7 +42,6 @@ import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.mod.AdventuringTimeModifier;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -58,7 +57,7 @@ import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
-@LoadModule(category = ModuleCategory.WORLD)
+@LoadModule(category = "world")
 public class GlimmeringWealdModule extends QuarkModule {
 
 	private static final Climate.Parameter FULL_RANGE = Climate.Parameter.span(-1.0F, 1.0F);

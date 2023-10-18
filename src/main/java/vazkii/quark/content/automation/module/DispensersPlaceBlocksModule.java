@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZCommonSetup;
@@ -31,9 +30,8 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 
-@LoadModule(category = ModuleCategory.AUTOMATION)
+@LoadModule(category = "automation")
 public class DispensersPlaceBlocksModule extends QuarkModule {
 
 	@Config public static List<String> blacklist = Lists.newArrayList("minecraft:water", "minecraft:lava", "minecraft:fire");

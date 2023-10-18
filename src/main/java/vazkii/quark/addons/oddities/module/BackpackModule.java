@@ -39,7 +39,6 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -48,7 +47,7 @@ import vazkii.quark.base.network.message.oddities.HandleBackpackMessage;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 
-@LoadModule(category = ModuleCategory.ODDITIES, hasSubscriptions = true)
+@LoadModule(category = "oddities", hasSubscriptions = true)
 public class BackpackModule extends QuarkModule {
 
 	@Config(description = "Set this to true to allow the backpacks to be unequipped even with items in them")

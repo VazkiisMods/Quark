@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.automation.block.RedstoneRandomizerBlock;
@@ -14,7 +13,7 @@ import vazkii.quark.content.automation.block.RedstoneRandomizerBlock;
  * @author WireSegal
  * Created at 10:34 AM on 8/26/19.
  */
-@LoadModule(category = ModuleCategory.AUTOMATION)
+@LoadModule(category = "automation")
 public class RedstoneRandomizerModule extends QuarkModule {
 
 	@Hint Block redstone_randomizer;

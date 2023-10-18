@@ -6,7 +6,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -14,7 +13,7 @@ import vazkii.quark.base.util.CorundumColor;
 import vazkii.quark.content.building.block.RainbowLampBlock;
 import vazkii.quark.content.world.module.CorundumModule;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class RainbowLampsModule extends QuarkModule {
 
 	@Config

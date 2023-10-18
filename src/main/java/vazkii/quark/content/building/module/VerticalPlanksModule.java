@@ -4,12 +4,11 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.util.VanillaWoods;
 import vazkii.quark.base.util.VanillaWoods.Wood;
 
-@LoadModule(category = ModuleCategory.BUILDING, antiOverlap = { "woodworks" })
+@LoadModule(category = "building", antiOverlap = { "woodworks" })
 public class VerticalPlanksModule extends QuarkModule {
 
 	@Override

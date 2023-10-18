@@ -30,7 +30,6 @@ import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.handler.advancement.mod.MonsterHunterModifier;
 import vazkii.quark.base.handler.advancement.mod.TwoByTwoModifier;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
@@ -44,7 +43,7 @@ import vazkii.quark.content.mobs.entity.Foxhound;
  * @author WireSegal
  * Created at 5:00 PM on 9/26/19.
  */
-@LoadModule(category = ModuleCategory.MOBS, hasSubscriptions = true)
+@LoadModule(category = "mobs", hasSubscriptions = true)
 public class FoxhoundModule extends QuarkModule {
 
 	public static EntityType<Foxhound> foxhoundType;

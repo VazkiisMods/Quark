@@ -18,14 +18,13 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBloc
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.block.StoolBlock;
 import vazkii.quark.content.building.client.render.entity.StoolEntityRenderer;
 import vazkii.quark.content.building.entity.Stool;
 
-@LoadModule(category = ModuleCategory.BUILDING, hasSubscriptions = true)
+@LoadModule(category = "building", hasSubscriptions = true)
 public class StoolsModule extends QuarkModule {
 
 	public static EntityType<Stool> stoolEntity;

@@ -6,7 +6,6 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 
@@ -14,7 +13,7 @@ import vazkii.quark.base.module.hint.Hint;
  * @author WireSegal
  * Created at 8:40 AM on 8/27/19.
  */
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
+@LoadModule(category = "tweaks", hasSubscriptions = true)
 public class ArmedArmorStandsModule extends QuarkModule {
 
 	@Hint Item armor_stand = Items.ARMOR_STAND;

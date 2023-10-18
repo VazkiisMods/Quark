@@ -23,7 +23,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -31,7 +30,7 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.EditSignMessage;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
+@LoadModule(category = "tweaks", hasSubscriptions = true)
 public class SignEditingModule extends QuarkModule {
 
 	@Hint(key = "sign_editing") TagKey<Item> signs = ItemTags.SIGNS;

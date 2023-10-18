@@ -37,7 +37,6 @@ import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.StructureBlockReplacementHandler;
 import vazkii.quark.base.handler.StructureBlockReplacementHandler.StructureHolder;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -62,7 +61,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-@LoadModule(category = ModuleCategory.BUILDING, hasSubscriptions = true, antiOverlap = { "woodworks" })
+@LoadModule(category = "building", hasSubscriptions = true, antiOverlap = { "woodworks" })
 public class VariantChestsModule extends QuarkModule {
 
 	private static final String DONK_CHEST = "Quark:DonkChest";

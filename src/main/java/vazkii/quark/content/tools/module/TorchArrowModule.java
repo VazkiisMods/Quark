@@ -13,14 +13,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.item.QuarkArrowItem;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.client.render.entity.TorchArrowRenderer;
 import vazkii.quark.content.tools.entity.TorchArrow;
 
-@LoadModule(category = ModuleCategory.TOOLS)
+@LoadModule(category = "tools")
 public class TorchArrowModule extends QuarkModule {
 
 	@Config public static boolean extinguishOnMiss = false;

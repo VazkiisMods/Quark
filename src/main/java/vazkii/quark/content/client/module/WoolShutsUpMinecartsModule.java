@@ -8,11 +8,10 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 
-@LoadModule(category = ModuleCategory.CLIENT)
+@LoadModule(category = "client")
 public class WoolShutsUpMinecartsModule extends QuarkModule {
 
 	private static boolean staticEnabled;

@@ -18,7 +18,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent.Key;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.ScreenshotEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.RenderTickEvent;
@@ -28,7 +27,6 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -40,7 +38,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.function.Predicate;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "client", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class CameraModule extends QuarkModule {
 
 	@Config(description = "Date format that will be displayed in screenshots. Must be a valid one (i.e. MM/dd/yyyy)")

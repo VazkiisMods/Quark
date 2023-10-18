@@ -18,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.NamedGuiOverlay;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -27,14 +26,13 @@ import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.ChangeHotbarMessage;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZKeyMapping;
 
-@LoadModule(category = ModuleCategory.MANAGEMENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "management", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class HotbarChangerModule extends QuarkModule {
 
 	@OnlyIn(Dist.CLIENT)

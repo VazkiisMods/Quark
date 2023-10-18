@@ -12,13 +12,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.automation.block.GravisandBlock;
 import vazkii.quark.content.automation.entity.Gravisand;
 
-@LoadModule(category = ModuleCategory.AUTOMATION)
+@LoadModule(category = "automation")
 public class GravisandModule extends QuarkModule {
 
 	public static EntityType<Gravisand> gravisandType;

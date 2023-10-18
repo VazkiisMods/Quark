@@ -2,7 +2,6 @@ package vazkii.quark.content.world.module;
 
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.DimensionConfig;
@@ -10,7 +9,7 @@ import vazkii.quark.base.world.WorldGenHandler;
 import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.gen.ObsidianSpikeGenerator;
 
-@LoadModule(category = ModuleCategory.WORLD)
+@LoadModule(category = "world")
 public class NetherObsidianSpikesModule extends QuarkModule {
 
 	@Config(description = "The chance for a chunk to contain spikes (1 is 100%, 0 is 0%)")

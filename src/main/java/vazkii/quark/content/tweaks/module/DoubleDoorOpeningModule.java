@@ -35,7 +35,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -44,7 +43,7 @@ import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.DoubleDoorMessage;
 import vazkii.quark.integration.claim.IClaimIntegration;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true, subscribeOn = Dist.CLIENT, antiOverlap = "utilitix")
+@LoadModule(category = "tweaks", hasSubscriptions = true, subscribeOn = Dist.CLIENT, antiOverlap = "utilitix")
 public class DoubleDoorOpeningModule extends QuarkModule {
 
 	@Config(flag = "doors_open_together")

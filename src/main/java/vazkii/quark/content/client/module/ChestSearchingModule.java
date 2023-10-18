@@ -47,7 +47,6 @@ import vazkii.quark.base.handler.InventoryTransferHandler;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.SimilarBlockTypeHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.RGBAColorConfig;
@@ -57,7 +56,7 @@ import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.regex.Pattern;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "client", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class ChestSearchingModule extends QuarkModule {
 
 	@Config

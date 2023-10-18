@@ -9,10 +9,9 @@ import net.minecraft.world.level.material.MaterialColor;
 import vazkii.quark.base.handler.WoodSetHandler;
 import vazkii.quark.base.handler.WoodSetHandler.WoodSet;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 
-@LoadModule(category = ModuleCategory.WORLD, antiOverlap = { "caverns_and_chasms" })
+@LoadModule(category = "world", antiOverlap = { "caverns_and_chasms" })
 public class AzaleaWoodModule extends QuarkModule {
 
 	public static WoodSet woodSet;

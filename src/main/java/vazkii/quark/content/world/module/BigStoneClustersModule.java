@@ -1,17 +1,14 @@
 package vazkii.quark.content.world.module;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 import java.util.function.BooleanSupplier;
 
 import com.google.common.collect.Lists;
 
 import net.minecraft.core.Registry;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -19,7 +16,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraftforge.common.Tags;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
@@ -33,7 +29,7 @@ import vazkii.quark.content.world.gen.BigStoneClusterGenerator;
 import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.bus.PlayEvent;
 
-@LoadModule(category = ModuleCategory.WORLD)
+@LoadModule(category = "world")
 public class BigStoneClustersModule extends QuarkModule {
 
 	@Config public static BigStoneClusterConfig calcite = new BigStoneClusterConfig(BiomeTags.IS_MOUNTAIN);

@@ -2,7 +2,6 @@ package vazkii.quark.content.experimental.module;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
@@ -39,8 +38,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent.Key;
-import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -52,7 +49,6 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.network.QuarkNetwork;
@@ -65,7 +61,7 @@ import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZKeyMapping;
 import vazkii.zeta.event.client.ZTooltipComponents;
 
-@LoadModule(category = ModuleCategory.EXPERIMENTAL, hasSubscriptions = true, enabledByDefault = false,
+@LoadModule(category = "experimental", hasSubscriptions = true, enabledByDefault = false,
 		description = "Allows placing variant blocks automatically via a selector menu triggered from a keybind")
 public class VariantSelectorModule extends QuarkModule {
 

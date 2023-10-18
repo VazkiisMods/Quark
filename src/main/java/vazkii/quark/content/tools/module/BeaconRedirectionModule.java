@@ -26,7 +26,6 @@ import net.minecraft.world.phys.AABB;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
@@ -37,7 +36,7 @@ import vazkii.quark.content.world.module.CorundumModule;
 import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.bus.PlayEvent;
 
-@LoadModule(category = ModuleCategory.TOOLS)
+@LoadModule(category = "tools")
 public class BeaconRedirectionModule extends QuarkModule {
 
 	private static final TagKey<Block> BEACON_TRANSPARENT = BlockTags.create(new ResourceLocation("quark:beacon_transparent"));

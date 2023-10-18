@@ -1,9 +1,7 @@
 package vazkii.quark.content.world.module;
 
 import com.google.common.base.Functions;
-import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.material.MaterialColor;
@@ -13,7 +11,6 @@ import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.handler.WoodSetHandler;
 import vazkii.quark.base.handler.WoodSetHandler.WoodSet;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.HintManager;
@@ -31,9 +28,8 @@ import vazkii.zeta.event.bus.PlayEvent;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
-@LoadModule(category = ModuleCategory.WORLD)
+@LoadModule(category = "world")
 public class BlossomTreesModule extends QuarkModule {
 
 	@Config public BlossomTreeConfig blue = new BlossomTreeConfig(200, Tags.Biomes.IS_SNOWY);

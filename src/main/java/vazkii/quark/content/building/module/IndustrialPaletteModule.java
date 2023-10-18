@@ -11,14 +11,13 @@ import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.block.QuarkPillarBlock;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.VariantLadderBlock;
 
 import java.util.function.BooleanSupplier;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class IndustrialPaletteModule extends QuarkModule {
 
 	private static final SoundType IRON_LADDER_SOUND_TYPE = new ForgeSoundType(1.0F, 1.0F,

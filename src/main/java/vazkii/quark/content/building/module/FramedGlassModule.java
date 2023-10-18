@@ -8,10 +8,9 @@ import net.minecraft.world.level.material.Material;
 import vazkii.quark.base.block.QuarkGlassBlock;
 import vazkii.quark.base.block.QuarkInheritedPaneBlock;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 
-@LoadModule(category = ModuleCategory.BUILDING)
+@LoadModule(category = "building")
 public class FramedGlassModule extends QuarkModule {
 
 	@Override

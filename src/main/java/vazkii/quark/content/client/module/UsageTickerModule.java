@@ -24,7 +24,6 @@ import vazkii.quark.api.event.UsageTickerEvent;
 import vazkii.quark.api.event.UsageTickerEvent.GetCount;
 import vazkii.quark.api.event.UsageTickerEvent.GetStack;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "client", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class UsageTickerModule extends QuarkModule {
 
 	public static List<TickerElement> elements = new ArrayList<>();

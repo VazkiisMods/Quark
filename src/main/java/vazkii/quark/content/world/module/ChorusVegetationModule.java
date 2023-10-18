@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
@@ -15,7 +14,7 @@ import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.block.ChorusVegetationBlock;
 import vazkii.quark.content.world.gen.ChorusVegetationGenerator;
 
-@LoadModule(category = ModuleCategory.WORLD)
+@LoadModule(category = "world")
 public class ChorusVegetationModule extends QuarkModule {
 
 	@Config public static int rarity = 150;

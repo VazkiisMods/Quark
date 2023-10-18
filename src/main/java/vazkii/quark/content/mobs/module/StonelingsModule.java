@@ -17,7 +17,6 @@ import vazkii.quark.base.handler.EntityAttributeHandler;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
@@ -29,7 +28,7 @@ import vazkii.quark.content.mobs.client.render.entity.StonelingRenderer;
 import vazkii.quark.content.mobs.entity.Stoneling;
 import vazkii.quark.content.mobs.item.DiamondHeartItem;
 
-@LoadModule(category = ModuleCategory.MOBS, hasSubscriptions = true)
+@LoadModule(category = "mobs", hasSubscriptions = true)
 public class StonelingsModule extends QuarkModule {
 
 	public static EntityType<Stoneling> stonelingType;

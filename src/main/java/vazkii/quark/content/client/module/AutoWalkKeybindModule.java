@@ -19,13 +19,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZKeyMapping;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = "client", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class AutoWalkKeybindModule extends QuarkModule {
 
 	@Config public static boolean drawHud = true;

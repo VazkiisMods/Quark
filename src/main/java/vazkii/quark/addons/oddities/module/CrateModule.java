@@ -14,12 +14,11 @@ import vazkii.quark.addons.oddities.client.screen.CrateScreen;
 import vazkii.quark.addons.oddities.inventory.CrateMenu;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 
-@LoadModule(category = ModuleCategory.ODDITIES)
+@LoadModule(category = "oddities")
 public class CrateModule extends QuarkModule {
 
     public static BlockEntityType<CrateBlockEntity> blockEntityType;

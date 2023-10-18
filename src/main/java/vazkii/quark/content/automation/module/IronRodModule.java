@@ -6,13 +6,12 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.automation.block.IronRodBlock;
 
-@LoadModule(category = ModuleCategory.AUTOMATION)
+@LoadModule(category = "automation")
 public class IronRodModule extends QuarkModule {
 
 	public static TagKey<Block> ironRodImmuneTag;

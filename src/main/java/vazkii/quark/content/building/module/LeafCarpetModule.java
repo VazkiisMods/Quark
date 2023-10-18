@@ -2,14 +2,12 @@ package vazkii.quark.content.building.module;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.util.VanillaWoods;
@@ -22,7 +20,7 @@ import vazkii.zeta.event.ZLoadComplete;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
-@LoadModule(category = ModuleCategory.BUILDING, antiOverlap = { "woodworks", "immersive_weathering" })
+@LoadModule(category = "building", antiOverlap = { "woodworks", "immersive_weathering" })
 public class LeafCarpetModule extends QuarkModule {
 
 	public static List<LeafCarpetBlock> carpets = new LinkedList<>();
