@@ -130,8 +130,6 @@ dependencies {
 }
 
 spotless {
-    ratchetFrom "3e81649438ebb5cc2d0aa2ed6f387e1e76510b4a" // <-- Remove to make spotlessApply format the world
-
     enforceCheck = false // workaround around jenkins having wrong line endings in some files
     java {
         target project.fileTree(dir: 'src/main/java/vazkii/quark', include: '**/*.java')
