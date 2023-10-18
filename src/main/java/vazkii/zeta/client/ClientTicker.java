@@ -3,7 +3,7 @@ package vazkii.zeta.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 
-public final class ClientTicker2 {
+public final class ClientTicker {
 	public int ticksInGame = 0;
 	public float partialTicks = 0;
 	public float delta = 0;

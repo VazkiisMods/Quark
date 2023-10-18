@@ -90,7 +90,7 @@ public class NarratorReadoutModule extends QuarkModule {
 	private void acceptInput(boolean down, boolean full) {
 		Minecraft mc = Minecraft.getInstance();
 
-		float curr = QuarkClient.ZETA_CLIENT.ticker.total;
+		float curr = QuarkClient.ticker.total;
 		if(down && (curr - last) > 10) {
 			Narrator narrator = Narrator.getNarrator();
 			String readout = getReadout(mc, full);

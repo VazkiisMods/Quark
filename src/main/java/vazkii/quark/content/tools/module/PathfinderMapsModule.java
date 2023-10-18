@@ -173,7 +173,7 @@ public class PathfinderMapsModule extends QuarkModule {
 				int qy = y - 15;
 
 				float speed = 0.1F;
-				float total = QuarkClient.ZETA_CLIENT.ticker.total * speed;
+				float total = QuarkClient.ticker.total * speed;
 
 				float offX = (float) (Math.sin(total) + 1) * 20;
 				float offY = (float) (Math.sin(total * 8) - 1);

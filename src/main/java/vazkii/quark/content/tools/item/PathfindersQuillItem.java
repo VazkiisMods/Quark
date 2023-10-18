@@ -364,7 +364,7 @@ public class PathfindersQuillItem extends QuarkItem implements IZetaItemColorPro
     public static MutableComponent getSearchingComponent() {
         MutableComponent comp = Component.translatable("quark.misc.quill_searching");
 
-        int dots = ((QuarkClient.ZETA_CLIENT.ticker.ticksInGame / 10) % 4);
+        int dots = ((QuarkClient.ticker.ticksInGame / 10) % 4);
         for (int i = 0; i < dots; i++)
             comp.append(".");
 

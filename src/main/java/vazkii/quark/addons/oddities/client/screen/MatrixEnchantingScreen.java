@@ -265,7 +265,7 @@ public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchan
 
 				float a = 0.2F;
 				if(matrix.canPlace(piece, gridHoverX, gridHoverY))
-					a = (float) ((Math.sin(QuarkClient.ZETA_CLIENT.ticker.total * 0.2) + 1) * 0.4 + 0.4);
+					a = (float) ((Math.sin(QuarkClient.ticker.total * 0.2) + 1) * 0.4 + 0.4);
 
 				renderPiece(stack, piece, a);
 				stack.popPose();

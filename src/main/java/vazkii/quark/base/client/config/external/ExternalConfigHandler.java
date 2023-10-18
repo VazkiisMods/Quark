@@ -33,8 +33,8 @@ public final class ExternalConfigHandler implements IQuarkConfig {
 	@SubscribeEvent
 	public void configChanged(ModConfigEvent event) {
 		String modid = event.getConfig().getModId();
-		if(externalCategories.containsKey(modid) && QuarkClient.ZETA_CLIENT.ticker.ticksInGame - lastConfigChange > 10) {
-			lastConfigChange = QuarkClient.ZETA_CLIENT.ticker.ticksInGame;
+		if(externalCategories.containsKey(modid) && QuarkClient.ticker.ticksInGame - lastConfigChange > 10) {
+			lastConfigChange = QuarkClient.ticker.ticksInGame;
 			for(IExternalCategory category : externalCategories.get(modid))
 				category.refresh();
 		}

@@ -232,7 +232,7 @@ public class ToretoiseModel extends EntityModel<Toretoise> {
 		matrix.pushPose();
 		int bufferTime = 10;
 		if(entity.angeryTicks > 0 && entity.angeryTicks < Toretoise.ANGERY_TIME - bufferTime) {
-			double angeryTime = (entity.angeryTicks - QuarkClient.ZETA_CLIENT.ticker.partialTicks) / (Toretoise.ANGERY_TIME - bufferTime) * Math.PI;
+			double angeryTime = (entity.angeryTicks - QuarkClient.ticker.partialTicks) / (Toretoise.ANGERY_TIME - bufferTime) * Math.PI;
 			angeryTime = Math.sin(angeryTime) * -20;
 
 			matrix.translate(0, 1., 1);
@@ -254,7 +254,7 @@ public class ToretoiseModel extends EntityModel<Toretoise> {
 		float rideMultiplier = 0;
 
 		if(entity.rideTime > 0)
-			rideMultiplier = Math.min(30, entity.rideTime - 1 + QuarkClient.ZETA_CLIENT.ticker.partialTicks) / 30.0F;
+			rideMultiplier = Math.min(30, entity.rideTime - 1 + QuarkClient.ticker.partialTicks) / 30.0F;
 
 		bodyTrans *= (1F - rideMultiplier);
 
