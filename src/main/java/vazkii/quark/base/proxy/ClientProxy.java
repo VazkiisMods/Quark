@@ -61,12 +61,15 @@ public class ClientProxy extends CommonProxy {
 		//initialize ZetaClient
 		QuarkClient.start();
 
-		Quark.ZETA.loadBus.subscribe(WoodSetHandler.Client.class)
+		Quark.ZETA.loadBus
+			.subscribe(ContributorRewardHandler.Client.class)
 			.subscribe(DyeHandler.Client.class)
-			.subscribe(RenderLayerHandler.Client.class);
+			.subscribe(RenderLayerHandler.Client.class)
+			.subscribe(WoodSetHandler.Client.class);
 
 		//Formerly @EventBusSubscribers - gathered here to make them more visible
 		FMLJavaModLoadingContext.get().getModEventBus().register(ModelHandler.class);
+		MinecraftForge.EVENT_BUS.register(ContributorRewardHandler.Client.class);
 		MinecraftForge.EVENT_BUS.register(InventoryButtonHandler.class);
 		MinecraftForge.EVENT_BUS.register(MiscUtil.Client.class);
 		MinecraftForge.EVENT_BUS.register(NetworkProfilingHandler.class);
@@ -115,12 +118,6 @@ public class ClientProxy extends CommonProxy {
 			}
 		}
 		return InteractionResult.PASS;
-	}
-
-	@Override
-	protected void initContributorRewards() {
-		ContributorRewardHandler.getLocalName();
-		super.initContributorRewards();
 	}
 
 	@Override

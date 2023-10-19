@@ -11,7 +11,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
@@ -26,7 +25,9 @@ import vazkii.quark.base.recipe.*;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.base.world.WorldGenHandler;
 import vazkii.quark.content_zeta.LegacyQuarkModuleFinder;
+import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.module.ZetaCategory;
 import vazkii.zeta.module.ZetaModuleManager;
 import vazkii.zetaimplforge.module.ModFileScanDataModuleFinder;
@@ -48,7 +49,9 @@ public class CommonProxy {
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":maintaining_campfire", DataMaintainingCampfireRecipe.SERIALIZER);
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":maintaining_smoking", DataMaintainingSmokingRecipe.SERIALIZER);
 
-		Quark.ZETA.loadBus.subscribe(BrewingHandler.class)
+		Quark.ZETA.loadBus
+			.subscribe(BrewingHandler.class)
+			.subscribe(ContributorRewardHandler.class)
 			.subscribe(CreativeTabHandler.class)
 			.subscribe(DyeHandler.class)
 			.subscribe(ModuleLoader.INSTANCE)
@@ -58,7 +61,8 @@ public class CommonProxy {
 			.subscribe(WoodSetHandler.class)
 			.subscribe(WorldGenHandler.class)
 			.subscribe(FuelHandler.class)
-			.subscribe(UndergroundBiomeHandler.class);
+			.subscribe(UndergroundBiomeHandler.class)
+			.subscribe(this);
 
 		//Formerly @EventBusSubscribers - gathered here to make them more visible
 		FMLJavaModLoadingContext.get().getModEventBus().register(EntityAttributeHandler.class);
@@ -87,33 +91,29 @@ public class CommonProxy {
 		Quark.ZETA.modules.load(new ModFileScanDataModuleFinder(Quark.MOD_ID)
 			.and(new LegacyQuarkModuleFinder())); //TODO: no
 
+		//legacy stuff at this point (notably, all the configuration is in here)
 		ModuleLoader.INSTANCE.start();
 
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-		registerListeners(bus);
+		bus.addListener(this::configChanged);
+		bus.addListener(this::registerCapabilities);
+		WorldGenHandler.registerBiomeModifier(bus);
 
 		LocalDateTime now = LocalDateTime.now();
 		if (now.getMonth() == Month.DECEMBER && now.getDayOfMonth() >= 16 || now.getMonth() == Month.JANUARY && now.getDayOfMonth() <= 2)
 			jingleTheBells = true;
 	}
 
-	public void registerListeners(IEventBus bus) {
-		bus.addListener(this::setup);
-		bus.addListener(this::configChanged);
-		bus.addListener(this::registerCapabilities);
-
-		WorldGenHandler.registerBiomeModifier(bus);
-	}
-
-	public void setup(FMLCommonSetupEvent event) {
+	@LoadEvent
+	public void setup(ZCommonSetup event) {
 		handleQuarkConfigChange();
-		initContributorRewards();
 	}
 
+	//forge event
 	public void configChanged(ModConfigEvent event) {
 		if(event.getConfig().getModId().equals(Quark.MOD_ID)
-				&& Quark.ZETA.ticker_SHOULD_NOT_BE_HERE.ticksInGame - lastConfigChange > 10
-				&& !configGuiSaving) {
+			&& Quark.ZETA.ticker_SHOULD_NOT_BE_HERE.ticksInGame - lastConfigChange > 10
+			&& !configGuiSaving) {
 			lastConfigChange = Quark.ZETA.ticker_SHOULD_NOT_BE_HERE.ticksInGame;
 			handleQuarkConfigChange();
 		}
@@ -124,10 +124,6 @@ public class CommonProxy {
 		lastConfigChange = Quark.ZETA.ticker_SHOULD_NOT_BE_HERE.ticksInGame;
 	}
 
-	public void registerCapabilities(RegisterCapabilitiesEvent event) {
-		CapabilityHandler.registerCapabilities(event);
-	}
-
 	public void handleQuarkConfigChange() {
 		ModuleLoader.INSTANCE.configChanged();
 		Quark.ZETA.loadBus.fire(new ZConfigChanged());
@@ -135,15 +131,16 @@ public class CommonProxy {
 		SyncedFlagHandler.sendFlagInfoToPlayers();
 	}
 
+	//forge event
+	public void registerCapabilities(RegisterCapabilitiesEvent event) {
+		CapabilityHandler.registerCapabilities(event);
+	}
+
 	/**
 	 * Use an item WITHOUT sending the use to the server. This will cause ghost interactions if used incorrectly!
 	 */
 	public InteractionResult clientUseItem(Player player, Level level, InteractionHand hand, BlockHitResult hit) {
 		return InteractionResult.PASS;
-	}
-
-	protected void initContributorRewards() {
-		ContributorRewardHandler.init();
 	}
 
 	public IConfigCallback getConfigCallback() {

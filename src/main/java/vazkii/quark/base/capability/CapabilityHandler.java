@@ -17,7 +17,6 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import vazkii.quark.addons.oddities.capability.MagnetTracker;
 import vazkii.quark.api.ICustomSorting;
 import vazkii.quark.api.IMagnetTracker;

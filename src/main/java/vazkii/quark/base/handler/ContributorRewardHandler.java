@@ -28,6 +28,8 @@ import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 public class ContributorRewardHandler {
 
@@ -48,9 +50,16 @@ public class ContributorRewardHandler {
 	public static int localPatronTier = 0;
 	public static String featuredPatron = "N/A";
 
-	@OnlyIn(Dist.CLIENT)
-	public static void getLocalName() {
-		name = Minecraft.getInstance().getUser().getName().toLowerCase(Locale.ROOT);
+	@LoadEvent
+	public static void init(ZCommonSetup event) {
+		init();
+	}
+
+	@SubscribeEvent
+	@OnlyIn(Dist.DEDICATED_SERVER)
+	public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+		//refresh the contributor list on login
+		init();
 	}
 
 	public static void init() {
@@ -66,29 +75,6 @@ public class ContributorRewardHandler {
 
 	public static int getTier(String name) {
 		return tiers.getOrDefault(name.toLowerCase(Locale.ROOT), 0);
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public static void onRenderPlayer(RenderPlayerEvent.Post event) {
-		Player player = event.getEntity();
-		String uuid = player.getUUID().toString();
-		if(player instanceof AbstractClientPlayer clientPlayer && DEV_UUID.contains(uuid) && !done.contains(uuid)) {
-			if(clientPlayer.isCapeLoaded()) {
-				PlayerInfo info = clientPlayer.playerInfo;
-				Map<MinecraftProfileTexture.Type, ResourceLocation> textures = info.textureLocations;
-				ResourceLocation loc = new ResourceLocation("quark", "textures/misc/dev_cape.png");
-				textures.put(MinecraftProfileTexture.Type.CAPE, loc);
-				textures.put(MinecraftProfileTexture.Type.ELYTRA, loc);
-				done.add(uuid);
-			}
-		}
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.DEDICATED_SERVER)
-	public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-		ContributorRewardHandler.init();
 	}
 
 	private static void load(Properties props) {
@@ -139,4 +125,27 @@ public class ContributorRewardHandler {
 
 	}
 
+	public static class Client {
+		@LoadEvent
+		public static void getLocalName(ZCommonSetup event) {
+			name = Minecraft.getInstance().getUser().getName().toLowerCase(Locale.ROOT);
+		}
+
+		@SubscribeEvent
+		@OnlyIn(Dist.CLIENT)
+		public static void onRenderPlayer(RenderPlayerEvent.Post event) {
+			Player player = event.getEntity();
+			String uuid = player.getUUID().toString();
+			if(player instanceof AbstractClientPlayer clientPlayer && DEV_UUID.contains(uuid) && !done.contains(uuid)) {
+				if(clientPlayer.isCapeLoaded()) {
+					PlayerInfo info = clientPlayer.playerInfo;
+					Map<MinecraftProfileTexture.Type, ResourceLocation> textures = info.textureLocations;
+					ResourceLocation loc = new ResourceLocation("quark", "textures/misc/dev_cape.png");
+					textures.put(MinecraftProfileTexture.Type.CAPE, loc);
+					textures.put(MinecraftProfileTexture.Type.ELYTRA, loc);
+					done.add(uuid);
+				}
+			}
+		}
+	}
 }
