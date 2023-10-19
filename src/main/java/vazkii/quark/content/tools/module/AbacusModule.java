@@ -31,8 +31,8 @@ import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.event.client.ZClientSetup;
-import vazkii.zeta.event.client.ZHighlightBlockEvent;
-import vazkii.zeta.event.client.ZRenderCrosshairEvent;
+import vazkii.zeta.event.client.ZHighlightBlock;
+import vazkii.zeta.event.client.ZRenderCrosshair;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 
@@ -57,7 +57,7 @@ public class AbacusModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onHUDRender(ZRenderCrosshairEvent event) {
+		public void onHUDRender(ZRenderCrosshair event) {
 			Minecraft mc = Minecraft.getInstance();
 			Player player = mc.player;
 			if(player != null) {
@@ -82,7 +82,7 @@ public class AbacusModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onHighlightBlock(ZHighlightBlockEvent event) {
+		public void onHighlightBlock(ZHighlightBlock event) {
 			VertexConsumer bufferIn = event.getMultiBufferSource().getBuffer(RenderType.lines());
 
 			Minecraft mc = Minecraft.getInstance();

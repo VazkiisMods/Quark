@@ -16,6 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.tools.module.AmbientDiscsModule;
+import vazkii.zeta.module.ZetaModule;
 
 import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
@@ -23,13 +24,13 @@ import java.util.function.Supplier;
 
 public class QuarkMusicDiscItem extends RecordItem implements IQuarkItem {
 
-	private final QuarkModule module;
+	private final ZetaModule module;
 	private final boolean isAmbient;
 	private final Supplier<SoundEvent> soundSupplier;
 
 	private BooleanSupplier enabledSupplier = () -> true;
 
-	public QuarkMusicDiscItem(int comparatorValue, Supplier<SoundEvent> sound, String name, QuarkModule module, int lengthInTicks) {
+	public QuarkMusicDiscItem(int comparatorValue, Supplier<SoundEvent> sound, String name, ZetaModule module, int lengthInTicks) {
 		super(comparatorValue, sound, (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE), lengthInTicks);
 
 		Quark.ZETA.registry.registerItem(this, "music_disc_" + name);
@@ -51,7 +52,7 @@ public class QuarkMusicDiscItem extends RecordItem implements IQuarkItem {
 	}
 
 	@Override
-	public QuarkModule getModule() {
+	public ZetaModule getModule() {
 		return module;
 	}
 

@@ -5,10 +5,10 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraftforge.client.event.RenderHighlightEvent;
 import vazkii.zeta.event.bus.FiredAs;
-import vazkii.zeta.event.client.ZHighlightBlockEvent;
+import vazkii.zeta.event.client.ZHighlightBlock;
 
-@FiredAs(ZHighlightBlockEvent.class)
-public record ForgeZHighlightBlockEvent(RenderHighlightEvent.Block e) implements ZHighlightBlockEvent {
+@FiredAs(ZHighlightBlock.class)
+public record ForgeZHighlightBlock(RenderHighlightEvent.Block e) implements ZHighlightBlock {
 	@Override
 	public Camera getCamera() {
 		return e.getCamera();

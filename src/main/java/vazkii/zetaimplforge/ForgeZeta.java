@@ -5,6 +5,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.NoteBlockEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -24,6 +25,7 @@ import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zeta.registry.ZetaRegistry;
 import vazkii.zeta.util.ZetaSide;
 import vazkii.zetaimplforge.event.ForgeZCommonSetup;
+import vazkii.zetaimplforge.event.ForgeZLivingDeath;
 import vazkii.zetaimplforge.event.ForgeZLoadComplete;
 import vazkii.zetaimplforge.event.ForgeZPlayNoteBlock;
 import vazkii.zetaimplforge.event.ForgeZRightClickBlock;
@@ -74,6 +76,7 @@ public class ForgeZeta extends Zeta {
 		modbus.addListener(this::loadComplete);
 
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOW, this::rightClickBlockLow);
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::livingDeathLowest);
 		MinecraftForge.EVENT_BUS.addListener(this::playNoteBlock);
 	}
 
@@ -98,6 +101,10 @@ public class ForgeZeta extends Zeta {
 
 	public void rightClickBlockLow(PlayerInteractEvent.RightClickBlock e) {
 		playBus.fire(new ForgeZRightClickBlock.Low(e));
+	}
+
+	public void livingDeathLowest(LivingDeathEvent e) {
+		playBus.fire(new ForgeZLivingDeath.Lowest(e));
 	}
 
 	public void playNoteBlock(NoteBlockEvent.Play e) {

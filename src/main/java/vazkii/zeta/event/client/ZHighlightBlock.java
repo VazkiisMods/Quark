@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import vazkii.zeta.event.bus.Cancellable;
 import vazkii.zeta.event.bus.IZetaPlayEvent;
 
-public interface ZHighlightBlockEvent extends IZetaPlayEvent, Cancellable {
+public interface ZHighlightBlock extends IZetaPlayEvent, Cancellable {
 	MultiBufferSource getMultiBufferSource();
 	Camera getCamera();
 	PoseStack getPoseStack();

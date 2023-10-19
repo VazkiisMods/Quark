@@ -9,8 +9,6 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderHighlightEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.client.gui.overlay.GuiOverlayManager;
-import net.minecraftforge.client.gui.overlay.NamedGuiOverlay;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
@@ -25,11 +23,12 @@ import vazkii.zetaimplforge.event.client.ForgeZAddItemColorHandlers;
 import vazkii.zetaimplforge.event.client.ForgeZAddModelLayers;
 import vazkii.zetaimplforge.event.client.ForgeZAddModels;
 import vazkii.zetaimplforge.event.client.ForgeZClientSetup;
-import vazkii.zetaimplforge.event.client.ForgeZHighlightBlockEvent;
+import vazkii.zetaimplforge.event.client.ForgeZHighlightBlock;
 import vazkii.zetaimplforge.event.client.ForgeZKeyMapping;
 import vazkii.zetaimplforge.event.client.ForgeZModelBakingCompleted;
 import vazkii.zetaimplforge.event.client.ForgeZPreTextureStitch;
-import vazkii.zetaimplforge.event.client.ForgeZRenderCrosshairEvent;
+import vazkii.zetaimplforge.event.client.ForgeZRenderChat;
+import vazkii.zetaimplforge.event.client.ForgeZRenderCrosshair;
 import vazkii.zetaimplforge.event.client.ForgeZTooltipComponents;
 
 public class ForgeZetaClient extends ZetaClient {
@@ -56,6 +55,8 @@ public class ForgeZetaClient extends ZetaClient {
 		MinecraftForge.EVENT_BUS.addListener(this::clientTick);
 		MinecraftForge.EVENT_BUS.addListener(this::renderBlockHighlight);
 		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlay);
+		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlayPre);
+		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlayPost);
 	}
 
 	public void registerBlockColors(RegisterColorHandlersEvent.Block evt) {
@@ -119,11 +120,22 @@ public class ForgeZetaClient extends ZetaClient {
 	}
 
 	public void renderBlockHighlight(RenderHighlightEvent.Block e) {
-		playBus.fire(new ForgeZHighlightBlockEvent(e));
+		playBus.fire(new ForgeZHighlightBlock(e));
 	}
 
+	//TODO: This probably should have been a PRE/POST event (just copying quark here)
 	public void renderGameOverlay(RenderGuiOverlayEvent e) {
 		if(e.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
-			playBus.fire(new ForgeZRenderCrosshairEvent(e));
+			playBus.fire(new ForgeZRenderCrosshair(e));
+	}
+
+	public void renderGameOverlayPre(RenderGuiOverlayEvent.Pre e) {
+		if(e.getOverlay() == VanillaGuiOverlay.CHAT_PANEL.type())
+			playBus.fire(new ForgeZRenderChat.Pre(e));
+	}
+
+	public void renderGameOverlayPost(RenderGuiOverlayEvent.Post e) {
+		if(e.getOverlay() == VanillaGuiOverlay.CHAT_PANEL.type())
+			playBus.fire(new ForgeZRenderChat.Post(e));
 	}
 }

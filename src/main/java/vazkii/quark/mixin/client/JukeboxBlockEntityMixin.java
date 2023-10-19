@@ -14,7 +14,7 @@ public class JukeboxBlockEntityMixin {
 
 	@Inject(method = "load", at = @At("TAIL"))
 	public void load(CompoundTag nbt, CallbackInfo info) {
-		AmbientDiscsModule.onJukeboxLoad((JukeboxBlockEntity) (Object) this);
+		AmbientDiscsModule.Client.onJukeboxLoad((JukeboxBlockEntity) (Object) this);
 	}
 	
 }
