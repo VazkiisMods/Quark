@@ -10,6 +10,9 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.automation.block.IronRodBlock;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "automation")
 public class IronRodModule extends QuarkModule {
@@ -21,13 +24,13 @@ public class IronRodModule extends QuarkModule {
 
 	@Hint public static Block iron_rod;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		iron_rod = new IronRodBlock(this);
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		ironRodImmuneTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "iron_rod_immune"));
 	}
 }

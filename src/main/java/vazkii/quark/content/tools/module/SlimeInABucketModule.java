@@ -16,6 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
@@ -29,8 +30,8 @@ public class SlimeInABucketModule extends QuarkModule {
 
 	@Hint public static Item slime_in_a_bucket;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		slime_in_a_bucket = new SlimeInABucketItem(this);
 	}
 

@@ -26,6 +26,9 @@ import vazkii.quark.content.world.block.MonsterBoxBlock;
 import vazkii.quark.content.world.block.be.MonsterBoxBlockEntity;
 import vazkii.quark.content.world.gen.MonsterBoxGenerator;
 import vazkii.quark.mixin.accessor.AccessorLivingEntity;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "world", hasSubscriptions = true)
 public class MonsterBoxModule extends QuarkModule {
@@ -52,16 +55,16 @@ public class MonsterBoxModule extends QuarkModule {
 
 	public static Block monster_box = null;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		monster_box = new MonsterBoxBlock(this);
 
 		blockEntityType = BlockEntityType.Builder.of(MonsterBoxBlockEntity::new, monster_box).build(null);
 		Quark.ZETA.registry.register(blockEntityType, "monster_box", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		WorldGenHandler.addGenerator(this, new MonsterBoxGenerator(dimensions), Decoration.UNDERGROUND_DECORATION, WorldGenWeights.MONSTER_BOXES);
 	}
 

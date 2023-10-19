@@ -47,6 +47,8 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.automation.block.FeedingTroughBlock;
 import vazkii.quark.content.automation.block.be.FeedingTroughBlockEntity;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 /**
  * @author WireSegal
@@ -156,8 +158,8 @@ public class FeedingTroughModule extends QuarkModule {
 		return null;
 	}
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		feeding_trough = new FeedingTroughBlock("feeding_trough", this, CreativeModeTab.TAB_DECORATIONS,
 				Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD));
 

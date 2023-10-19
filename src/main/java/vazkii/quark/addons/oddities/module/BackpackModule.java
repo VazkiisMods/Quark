@@ -44,6 +44,8 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.oddities.HandleBackpackMessage;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 
@@ -75,8 +77,8 @@ public class BackpackModule extends QuarkModule {
 	@OnlyIn(Dist.CLIENT)
 	private static boolean backpackRequested;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		backpack = new BackpackItem(this);
 		ravager_hide = new QuarkItem("ravager_hide", this, new Item.Properties().rarity(Rarity.RARE).tab(CreativeModeTab.TAB_MATERIALS)).setCondition(() -> enableRavagerHide);
 
@@ -91,8 +93,8 @@ public class BackpackModule extends QuarkModule {
 		CauldronInteraction.WATER.put(backpack, CauldronInteraction.DYED_ITEM);
 	}
 	
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		backpackBlockedTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "backpack_blocked"));
 	}
 

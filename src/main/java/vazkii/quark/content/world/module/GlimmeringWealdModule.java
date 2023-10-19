@@ -87,8 +87,8 @@ public class GlimmeringWealdModule extends QuarkModule {
 	@Config.Max(2)
 	public static double maxDepthRange = 2;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		glow_shroom = new GlowShroomBlock(this);
 		glow_lichen_growth = new GlowLichenGrowthBlock(this);
 		glow_shroom_block = new HugeGlowShroomBlock("glow_shroom_block", this, true);

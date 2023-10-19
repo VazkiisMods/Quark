@@ -28,6 +28,9 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.ShibaRenderer;
 import vazkii.quark.content.mobs.entity.Shiba;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "mobs")
 public class ShibaModule extends QuarkModule {
@@ -43,8 +46,8 @@ public class ShibaModule extends QuarkModule {
 
 	public static QuarkGenericTrigger shibaHelpTrigger;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		shibaType = EntityType.Builder.of(Shiba::new, MobCategory.CREATURE)
 				.sized(0.8F, 0.8F)
 				.clientTrackingRange(8)
@@ -62,9 +65,8 @@ public class ShibaModule extends QuarkModule {
 		shibaHelpTrigger = QuarkAdvancementHandler.registerGenericTrigger("shiba_help");
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(shibaType, ShibaRenderer::new);
 	}
 

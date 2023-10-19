@@ -16,6 +16,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.experimental.hax.PseudoAccessorMerchantOffer;
 import vazkii.quark.mixin.accessor.AccessorMerchantOffer;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "experimental", enabledByDefault = false, hasSubscriptions = true)
 public class VillagerRerollingReworkModule extends QuarkModule {
@@ -49,8 +51,8 @@ public class VillagerRerollingReworkModule extends QuarkModule {
 	@Config(description = "If enabled, villagers will be able to reroll any trade that has been used AT ALL since the last restock.")
 	public static boolean rerollEvenIfNotOutOfStock = false;
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

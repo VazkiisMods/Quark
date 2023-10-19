@@ -38,6 +38,8 @@ import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.api.IQuarkButtonAllowed;
 import vazkii.quark.base.client.handler.InventoryButtonHandler;
@@ -70,9 +72,8 @@ public class ChestSearchingModule extends QuarkModule {
 	private static long lastClick;
 	private static int matched;
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		InventoryButtonHandler.addButtonProvider(this, ButtonTargetType.CONTAINER_INVENTORY, 1, (parent, x, y) ->
 				new MiniInventoryButton(parent, 3, x, y, "quark.gui.button.filter", (b) -> {
 					searchEnabled = !searchEnabled;

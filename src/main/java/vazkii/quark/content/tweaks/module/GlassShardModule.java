@@ -17,6 +17,9 @@ import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.tweaks.block.DirtyGlassBlock;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,8 +40,8 @@ public class GlassShardModule extends QuarkModule {
 
 	public static final Map<DyeColor, Item> shardColors = new HashMap<>();
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		dirtyGlass = new DirtyGlassBlock("dirty_glass", this, CreativeModeTab.TAB_BUILDING_BLOCKS,
 				Block.Properties.of(Material.GLASS, MaterialColor.COLOR_BROWN).strength(0.3F).sound(SoundType.GLASS));
 		new QuarkInheritedPaneBlock(dirtyGlass);
@@ -50,8 +53,8 @@ public class GlassShardModule extends QuarkModule {
 			shardColors.put(color, new QuarkItem(color.getSerializedName() + "_shard", this, new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		shardTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "shards"));
 	}
 }

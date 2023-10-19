@@ -11,6 +11,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building")
 public class MoreBrickTypesModule extends QuarkModule {
@@ -33,8 +35,8 @@ public class MoreBrickTypesModule extends QuarkModule {
 	@Config(flag = "netherrack_bricks", description = "Requires Cobblestone Bricks to be enabled")
 	private static boolean enableNetherrackBricks = true;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		add("blue_nether", Blocks.NETHER_BRICKS, () -> enableBlueNetherBricks);
 		
 		add("sandstone", Blocks.SANDSTONE, () -> enableSandstoneBricks);

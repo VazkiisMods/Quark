@@ -5,6 +5,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.block.GrateBlock;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 /**
  * @author WireSegal
@@ -15,8 +17,8 @@ public class GrateModule extends QuarkModule {
 
 	@Hint public static Block grate;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		grate = new GrateBlock(this);
 	}
 	

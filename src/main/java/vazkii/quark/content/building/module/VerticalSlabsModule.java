@@ -30,6 +30,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.QuarkVerticalSlabBlock;
 import vazkii.quark.content.building.block.WeatheringCopperVerticalSlabBlock;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
@@ -103,13 +105,13 @@ public class VerticalSlabsModule extends QuarkModule {
 		});
 	}
 	
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		verticalSlabTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "vertical_slabs"));
 	}
 	
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 	

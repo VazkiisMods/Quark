@@ -50,6 +50,8 @@ import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.SetLockProfileMessage;
 import vazkii.quark.content.building.block.QuarkVerticalSlabBlock;
 import vazkii.quark.content.building.block.VerticalSlabBlock;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZKeyMapping;
 
@@ -71,13 +73,13 @@ public class LockRotationModule extends QuarkModule {
 	@OnlyIn(Dist.CLIENT)
 	private KeyMapping keybind;
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		lockProfiles.clear();
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		//TODO ZETA: moved to the non-static system
 		//MessageSerializer.mapHandlers(LockProfile.class, LockProfile::readProfile, LockProfile::writeProfile);
 	}

@@ -8,6 +8,8 @@ import vazkii.quark.base.module.config.type.DimensionConfig;
 import vazkii.quark.base.world.WorldGenHandler;
 import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.gen.ObsidianSpikeGenerator;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "world")
 public class NetherObsidianSpikesModule extends QuarkModule {
@@ -25,8 +27,8 @@ public class NetherObsidianSpikesModule extends QuarkModule {
 	
 	@Config public static DimensionConfig dimensions = DimensionConfig.nether(false);
 	
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		WorldGenHandler.addGenerator(this, new ObsidianSpikeGenerator(dimensions), Decoration.UNDERGROUND_DECORATION, WorldGenWeights.OBSIDIAN_SPIKES);
 	}
 	

@@ -19,8 +19,12 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZAddModels;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "oddities")
 public class PipesModule extends QuarkModule {
@@ -50,8 +54,8 @@ public class PipesModule extends QuarkModule {
 	
 	public static int effectivePipeSpeed;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		pipe = new PipeBlock(this);
 		encasedPipe = new EncasedPipeBlock(this);
 		
@@ -59,19 +63,18 @@ public class PipesModule extends QuarkModule {
 		Quark.ZETA.registry.register(blockEntityType, "pipe", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 	}
 	
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		pipesTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "pipes"));
 	}
 	
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		effectivePipeSpeed = pipeSpeed * 2;
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		BlockEntityRenderers.register(blockEntityType, PipeRenderer::new);
 	}
 

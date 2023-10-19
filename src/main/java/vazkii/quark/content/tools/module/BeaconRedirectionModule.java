@@ -33,7 +33,10 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.module.hint.HintManager;
 import vazkii.quark.content.world.block.CorundumClusterBlock;
 import vazkii.quark.content.world.module.CorundumModule;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 
 @LoadModule(category = "tools")
@@ -53,13 +56,13 @@ public class BeaconRedirectionModule extends QuarkModule {
 
 	public static QuarkGenericTrigger redirectTrigger;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		redirectTrigger = QuarkAdvancementHandler.registerGenericTrigger("redirect_beacon");
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

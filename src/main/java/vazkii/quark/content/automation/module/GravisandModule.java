@@ -16,6 +16,9 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.automation.block.GravisandBlock;
 import vazkii.quark.content.automation.entity.Gravisand;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "automation")
 public class GravisandModule extends QuarkModule {
@@ -24,8 +27,8 @@ public class GravisandModule extends QuarkModule {
 
 	@Hint public static Block gravisand;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		gravisand = new GravisandBlock("gravisand", this, CreativeModeTab.TAB_REDSTONE, Block.Properties.copy(Blocks.SAND));
 
 		gravisandType = EntityType.Builder.<Gravisand>of(Gravisand::new, MobCategory.MISC)
@@ -37,9 +40,8 @@ public class GravisandModule extends QuarkModule {
 		Quark.ZETA.registry.register(gravisandType, "gravisand", Registry.ENTITY_TYPE_REGISTRY);
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(gravisandType, FallingBlockRenderer::new);
 	}
 }

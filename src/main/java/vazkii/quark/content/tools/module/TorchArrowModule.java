@@ -18,6 +18,9 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.client.render.entity.TorchArrowRenderer;
 import vazkii.quark.content.tools.entity.TorchArrow;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "tools")
 public class TorchArrowModule extends QuarkModule {
@@ -30,8 +33,8 @@ public class TorchArrowModule extends QuarkModule {
 
 	public static final TagKey<Item> ignoreMultishot = ItemTags.create(new ResourceLocation( "quark:ignore_multishot"));
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		torch_arrow = new QuarkArrowItem.Impl("torch_arrow", this, (level, stack, living) -> new TorchArrow(level, living));
 		
 		torchArrowType = EntityType.Builder.<TorchArrow>of(TorchArrow::new, MobCategory.MISC)
@@ -42,9 +45,8 @@ public class TorchArrowModule extends QuarkModule {
 		Quark.ZETA.registry.register(torchArrowType, "torch_arrow", Registry.ENTITY_TYPE_REGISTRY);
 	}
 	
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(torchArrowType, TorchArrowRenderer::new);
 	}
 	

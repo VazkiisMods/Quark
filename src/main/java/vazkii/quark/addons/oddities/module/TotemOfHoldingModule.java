@@ -27,8 +27,10 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZAddModels;
+import vazkii.zeta.event.client.ZClientSetup;
 
 /**
  * @author WireSegal
@@ -59,8 +61,8 @@ public class TotemOfHoldingModule extends QuarkModule {
 	@Config(flag = "soul_compass")
 	public static boolean enableSoulCompass = true;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		totemType = EntityType.Builder.of(TotemOfHoldingEntity::new, MobCategory.MISC)
 				.sized(0.5F, 1F)
 				.updateInterval(128) // update interval
@@ -71,9 +73,8 @@ public class TotemOfHoldingModule extends QuarkModule {
 		Quark.ZETA.registry.register(totemType, "totem", Registry.ENTITY_TYPE_REGISTRY);
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(totemType, TotemOfHoldingRenderer::new);
 	}
 

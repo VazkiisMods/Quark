@@ -25,6 +25,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.block.CutVineBlock;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building", hasSubscriptions = true)
 public class ShearVinesModule extends QuarkModule {
@@ -33,8 +35,8 @@ public class ShearVinesModule extends QuarkModule {
 
 	@Hint Item vine = Items.VINE;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		cut_vine = new CutVineBlock(this);
 	}
 	

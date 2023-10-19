@@ -55,6 +55,9 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.HarvestMessage;
 import vazkii.quark.integration.claim.IClaimIntegration;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.Collection;
 import java.util.List;
@@ -100,13 +103,13 @@ public class SimpleHarvestModule extends QuarkModule {
 
     public static boolean staticEnabled;
 
-    @Override
-    public void setup() {
+    @LoadEvent
+    public void setup(ZCommonSetup event) {
         simpleHarvestBlacklistedTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "simple_harvest_blacklisted"));
     }
 
-    @Override
-    public void configChanged() {
+    @LoadEvent
+    public void configChanged(ZConfigChanged event) {
         crops.clear();
         cropBlocks.clear();
         rightClickCrops.clear();

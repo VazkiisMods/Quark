@@ -16,8 +16,10 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.client.render.entity.GlassItemFrameRenderer;
 import vazkii.quark.content.building.entity.GlassItemFrame;
 import vazkii.quark.content.building.item.QuarkItemFrameItem;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZAddModels;
+import vazkii.zeta.event.client.ZClientSetup;
 
 /**
  * @author WireSegal
@@ -38,8 +40,8 @@ public class GlassItemFrameModule extends QuarkModule {
 	@Config(description = "The scale at which items render in the Glass Item Frame. To match the vanilla Item Frame size, set to 1.0")
 	public static double itemRenderScale = 1.5;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		glassFrameEntity = EntityType.Builder.<GlassItemFrame>of(GlassItemFrame::new, MobCategory.MISC)
 				.sized(0.5F, 0.5F)
 				.clientTrackingRange(10)
@@ -58,9 +60,8 @@ public class GlassItemFrameModule extends QuarkModule {
 				});
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(glassFrameEntity, GlassItemFrameRenderer::new);
 	}
 

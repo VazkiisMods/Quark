@@ -20,6 +20,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "tools", hasSubscriptions = true)
 public class EndermoshMusicDiscModule extends QuarkModule {
@@ -36,8 +38,8 @@ public class EndermoshMusicDiscModule extends QuarkModule {
 	@OnlyIn(Dist.CLIENT) private int delay;
 	@OnlyIn(Dist.CLIENT) private SimpleSoundInstance sound;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		endermosh = new QuarkMusicDiscItem(14, () -> QuarkSounds.MUSIC_ENDERMOSH, "endermosh", this, 3783); // Tick length calculated from endermosh.ogg - 3:09.150
 	}
 

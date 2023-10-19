@@ -10,6 +10,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "tweaks", hasSubscriptions = true)
 public class SlimesToMagmaCubesModule extends QuarkModule {
@@ -20,8 +22,8 @@ public class SlimesToMagmaCubesModule extends QuarkModule {
 
 	public static boolean staticEnabled;
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

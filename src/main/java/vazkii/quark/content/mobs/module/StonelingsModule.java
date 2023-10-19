@@ -27,6 +27,10 @@ import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.StonelingRenderer;
 import vazkii.quark.content.mobs.entity.Stoneling;
 import vazkii.quark.content.mobs.item.DiamondHeartItem;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "mobs", hasSubscriptions = true)
 public class StonelingsModule extends QuarkModule {
@@ -53,15 +57,15 @@ public class StonelingsModule extends QuarkModule {
 	
 	@Hint("stoneling_drop_diamond_heart") public static Item diamondHeart;
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		makeStonelingTrigger = QuarkAdvancementHandler.registerGenericTrigger("make_stoneling");
 	}
 	
 	public boolean registered = false;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		this.registered = true;
 		diamondHeart = new DiamondHeartItem("diamond_heart", this, new Item.Properties().tab(CreativeModeTab.TAB_MISC));
 
@@ -78,9 +82,8 @@ public class StonelingsModule extends QuarkModule {
 		EntityAttributeHandler.put(stonelingType, Stoneling::prepareAttributes);
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(stonelingType, StonelingRenderer::new);
 	}
 

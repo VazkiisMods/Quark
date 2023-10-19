@@ -25,8 +25,8 @@ public class LeafCarpetModule extends QuarkModule {
 
 	public static List<LeafCarpetBlock> carpets = new LinkedList<>();
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		for(Wood wood : VanillaWoods.OVERWORLD)
 			carpet(wood.leaf());
 		

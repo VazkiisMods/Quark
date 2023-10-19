@@ -40,6 +40,8 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.QuarkClient;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
@@ -119,8 +121,8 @@ public class PathfinderMapsModule extends QuarkModule {
 	@Config public static boolean drawHud = true;
 	@Config public static boolean hudOnTop = false;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		loadTradeInfo(Biomes.SNOWY_PLAINS, true, 4, 8, 14, 0x7FE4FF);
 		loadTradeInfo(Biomes.WINDSWEPT_HILLS, true, 4, 8, 14, 0x8A8A8A);
 		loadTradeInfo(Biomes.DARK_FOREST, true, 4, 8, 14, 0x00590A);
@@ -284,8 +286,8 @@ public class PathfinderMapsModule extends QuarkModule {
 		return false;
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		synchronized (mutex) {
 			tradeList.clear();
 			customTrades.clear();

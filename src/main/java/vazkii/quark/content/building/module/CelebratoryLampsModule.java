@@ -15,6 +15,8 @@ import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class CelebratoryLampsModule extends QuarkModule {
@@ -24,8 +26,8 @@ public class CelebratoryLampsModule extends QuarkModule {
 	
 	private static Block stone_lamp, stone_brick_lamp;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		stone_lamp = new QuarkBlock("stone_lamp", this, CreativeModeTab.TAB_BUILDING_BLOCKS, Block.Properties.copy(Blocks.STONE).lightLevel(s -> lightLevel));
 		stone_brick_lamp = new QuarkBlock("stone_brick_lamp", this, CreativeModeTab.TAB_BUILDING_BLOCKS, Block.Properties.copy(Blocks.STONE_BRICKS).lightLevel(s -> lightLevel));
 	}

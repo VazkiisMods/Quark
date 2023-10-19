@@ -28,6 +28,10 @@ import vazkii.quark.base.world.generator.OreGenerator;
 import vazkii.quark.content.world.block.MyaliteBlock;
 import vazkii.quark.content.world.config.BigStoneClusterConfig;
 import vazkii.quark.content.world.config.StoneTypeConfig;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "world", hasSubscriptions = true)
 public class NewStoneTypesModule extends QuarkModule {
@@ -53,8 +57,8 @@ public class NewStoneTypesModule extends QuarkModule {
 
 	private static Queue<Runnable> defers = new ArrayDeque<>();
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		limestoneBlock = makeStone(this, "limestone", limestone, BigStoneClustersModule.limestone, () -> enableLimestone, MaterialColor.STONE);
 		jasperBlock = makeStone(this, "jasper", jasper, BigStoneClustersModule.jasper, () -> enableJasper, MaterialColor.TERRACOTTA_RED);
 		shaleBlock = makeStone(this, "shale", shale, BigStoneClustersModule.shale, () -> enableShale, MaterialColor.ICE);
@@ -98,16 +102,16 @@ public class NewStoneTypesModule extends QuarkModule {
 		return normal;
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		enabledWithLimestone = enableLimestone && this.enabled;
 		enabledWithJasper = enableJasper && this.enabled;
 		enabledWithShale = enableShale && this.enabled;
 		enabledWithMyalite = enableMyalite && this.enabled;
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		while(!defers.isEmpty())
 			defers.poll().run();
 	}

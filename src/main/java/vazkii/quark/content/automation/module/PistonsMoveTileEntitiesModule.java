@@ -32,7 +32,10 @@ import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.module.SturdyStoneModule;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 
 import javax.annotation.Nullable;
@@ -57,13 +60,13 @@ public class PistonsMoveTileEntitiesModule extends QuarkModule {
 	@Config
 	public static List<String> delayedUpdateList = Lists.newArrayList("minecraft:dispenser", "minecraft:dropper");
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		IIndirectConnector.INDIRECT_STICKY_BLOCKS.add(Pair.of(ChestConnection.PREDICATE, ChestConnection.INSTANCE));
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

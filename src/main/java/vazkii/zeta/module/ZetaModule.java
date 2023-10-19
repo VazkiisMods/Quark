@@ -27,6 +27,7 @@ public class ZetaModule {
 	public boolean missingDep = false;
 
 	//TODO: Can I delete some of these flags? (maybe some sort of "DisabledReason"?)
+	// The config should probably be the source of *truth* for this state, but having flags here *is* convenient
 	private boolean firstLoad = true;
 	public boolean enabled = false;
 	public boolean disabledByOverlap = false;

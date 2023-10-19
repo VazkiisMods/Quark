@@ -19,6 +19,9 @@ import vazkii.quark.base.handler.VariantHandler;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "building")
 public class MorePottedPlantsModule extends QuarkModule {
@@ -28,8 +31,8 @@ public class MorePottedPlantsModule extends QuarkModule {
 	@Hint(key = "pottable_stuff")
 	List<Block> pottableBlocks = Lists.newArrayList();
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		add(Blocks.BEETROOTS, "beetroot");
 		add(Blocks.SWEET_BERRY_BUSH, "berries");
 		add(Blocks.CARROTS, "carrot");
@@ -67,9 +70,8 @@ public class MorePottedPlantsModule extends QuarkModule {
 		return VariantHandler.addFlowerPot(block, name, Functions.identity());
 	}
 	
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		for(Block b : tintedBlocks.keySet()) {
 			BlockState tState = tintedBlocks.get(b).defaultBlockState();
 			BlockColor color = (state, worldIn, pos, tintIndex) -> Minecraft.getInstance().getBlockColors().getColor(tState, worldIn, pos, tintIndex);

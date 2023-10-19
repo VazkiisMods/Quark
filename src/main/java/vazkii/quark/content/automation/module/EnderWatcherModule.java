@@ -11,6 +11,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.automation.block.EnderWatcherBlock;
 import vazkii.quark.content.automation.block.be.EnderWatcherBlockEntity;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "automation")
 public class EnderWatcherModule extends QuarkModule {
@@ -20,8 +22,8 @@ public class EnderWatcherModule extends QuarkModule {
 	public static QuarkGenericTrigger watcherCenterTrigger;
 	@Hint Block ender_watcher;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		ender_watcher = new EnderWatcherBlock(this);
 		blockEntityType = BlockEntityType.Builder.of(EnderWatcherBlockEntity::new, ender_watcher).build(null);
 		Quark.ZETA.registry.register(blockEntityType, "ender_watcher", Registry.BLOCK_ENTITY_TYPE_REGISTRY);

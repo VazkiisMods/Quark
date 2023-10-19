@@ -50,9 +50,11 @@ import vazkii.quark.content.building.client.render.be.VariantChestRenderer;
 import vazkii.quark.content.building.recipe.MixedExclusionRecipe;
 import vazkii.quark.integration.lootr.ILootrIntegration;
 import vazkii.quark.mixin.accessor.AccessorAbstractChestedHorse;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZLoadComplete;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.event.client.ZPreTextureStitch;
 
 import javax.annotation.Nullable;
@@ -94,8 +96,8 @@ public class VariantChestsModule extends QuarkModule {
 	@Config(description = "Chests to put in structures. It's preferred to use worldgen tags for this. The format per entry is \"structure=chest\", where \"structure\" is a structure ID, and \"chest\" is a block ID, which must correspond to a standard chest block.")
 	public static List<String> structureChests = new ArrayList<>();
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":mixed_exclusion", MixedExclusionRecipe.SERIALIZER);
 
 		VANILLA_WOODS.forEach(s -> addChest(s.name(), Blocks.CHEST));
@@ -128,19 +130,16 @@ public class VariantChestsModule extends QuarkModule {
 		ILootrIntegration.INSTANCE.loadComplete();
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		BlockEntityRenderers.register(chestTEType, VariantChestRenderer::new);
 		BlockEntityRenderers.register(trappedChestTEType, VariantChestRenderer::new);
 
 		ILootrIntegration.INSTANCE.clientSetup();
 	}
 
-	@Override
-	public void configChanged() {
-		super.configChanged();
-
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 
 		manualChestMappings.clear();

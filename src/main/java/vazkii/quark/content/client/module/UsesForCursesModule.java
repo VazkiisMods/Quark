@@ -19,6 +19,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tweaks.client.layer.ArmorStandFakePlayerLayer;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZAddModelLayers;
 
@@ -41,8 +42,8 @@ public class UsesForCursesModule extends QuarkModule {
 	@Hint(key = "use_for_binding", value = "use_for_binding")
 	List<Item> bindingItems = Arrays.asList(Items.ARMOR_STAND, Items.PLAYER_HEAD);
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

@@ -27,6 +27,9 @@ import vazkii.quark.base.module.config.type.EntitySpawnConfig;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.ToretoiseRenderer;
 import vazkii.quark.content.mobs.entity.Toretoise;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "mobs", hasSubscriptions = true)
 public class ToretoiseModule extends QuarkModule {
@@ -57,8 +60,8 @@ public class ToretoiseModule extends QuarkModule {
 	public static QuarkGenericTrigger mineToretoiseTrigger;
 	public static QuarkGenericTrigger mineFedToretoiseTrigger;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		toretoiseType = EntityType.Builder.of(Toretoise::new, MobCategory.CREATURE)
 				.sized(2F, 1F)
 				.clientTrackingRange(8)
@@ -77,9 +80,8 @@ public class ToretoiseModule extends QuarkModule {
 		mineFedToretoiseTrigger = QuarkAdvancementHandler.registerGenericTrigger("mine_fed_toretoise");
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(toretoiseType, ToretoiseRenderer::new);
 	}
 

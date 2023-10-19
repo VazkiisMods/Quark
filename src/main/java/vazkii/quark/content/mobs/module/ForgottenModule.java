@@ -32,6 +32,9 @@ import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.ForgottenRenderer;
 import vazkii.quark.content.mobs.entity.Forgotten;
 import vazkii.quark.content.mobs.item.ForgottenHatItem;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "mobs", hasSubscriptions = true)
 public class ForgottenModule extends QuarkModule {
@@ -45,8 +48,8 @@ public class ForgottenModule extends QuarkModule {
 
 	@Config public int maxHeightForSpawn = 0;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		forgotten_hat = new ForgottenHatItem(this);
 
 		forgottenType = EntityType.Builder.of(Forgotten::new, MobCategory.MONSTER)
@@ -63,9 +66,8 @@ public class ForgottenModule extends QuarkModule {
 		QuarkAdvancementHandler.addModifier(new MonsterHunterModifier(this, ImmutableSet.of(forgottenType)));
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(forgottenType, ForgottenRenderer::new);
 	}
 

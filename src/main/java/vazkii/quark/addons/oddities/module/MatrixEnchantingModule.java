@@ -26,8 +26,12 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.MatrixEnchantingTableBlock;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
@@ -162,8 +166,8 @@ public class MatrixEnchantingModule extends QuarkModule {
 
 	public static QuarkGenericTrigger influenceTrigger;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		matrixEnchanter = new MatrixEnchantingTableBlock(this);
 
 		menuType = IForgeMenuType.create(MatrixEnchantingMenu::fromNetwork);
@@ -185,9 +189,8 @@ public class MatrixEnchantingModule extends QuarkModule {
 		consumer.accept(matrixEnchanter.asItem(), comp);
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		MenuScreens.register(menuType, MatrixEnchantingScreen::new);
 		BlockEntityRenderers.register(blockEntityType, MatrixEnchantingTableRenderer::new);
 	}
@@ -215,8 +218,8 @@ public class MatrixEnchantingModule extends QuarkModule {
 			event.getLevel().setBlock(event.getPos(), matrixEnchanter.defaultBlockState(), 3);
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		parseInfluences();
 	}
 

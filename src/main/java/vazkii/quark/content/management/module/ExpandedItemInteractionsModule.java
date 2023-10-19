@@ -43,6 +43,10 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.registries.ForgeRegistries;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
@@ -83,19 +87,19 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 
 	public static MenuType<HeldShulkerBoxMenu> heldShulkerBoxMenuType;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		heldShulkerBoxMenuType = IForgeMenuType.create(HeldShulkerBoxMenu::fromNetwork);
 		Quark.ZETA.registry.register(heldShulkerBoxMenuType, "held_shulker_box", Registry.MENU_REGISTRY);
 	}
 
-	@Override
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		MenuScreens.register(heldShulkerBoxMenuType, HeldShulkerBoxScreen::new);
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = configEnabled;
 
 		shulkers = MiscUtil.massRegistryGet(GeneralConfig.shulkerBoxes, ForgeRegistries.ITEMS);

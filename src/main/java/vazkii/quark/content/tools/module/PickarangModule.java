@@ -32,6 +32,11 @@ import vazkii.quark.content.tools.entity.rang.Echorang;
 import vazkii.quark.content.tools.entity.rang.Flamerang;
 import vazkii.quark.content.tools.entity.rang.Pickarang;
 import vazkii.quark.content.tools.item.PickarangItem;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +77,8 @@ public class PickarangModule extends QuarkModule {
 	public static QuarkGenericTrigger throwPickarangTrigger;
 	public static QuarkGenericTrigger useFlamerangTrigger;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		pickarang = makePickarang(pickarangType, "pickarang", Pickarang::new, Pickarang::new, () -> true);
 		flamerang = makePickarang(flamerangType, "flamerang", Flamerang::new, Flamerang::new, () -> enableFlamerang);
 		echorang = makePickarang(echorangType, "echorang", Echorang::new, Echorang::new, () -> enableEchorang);
@@ -114,21 +119,20 @@ public class PickarangModule extends QuarkModule {
 		return properties;
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		pickarangImmuneTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "pickarang_immune"));
 		echorangBreaksAnywayTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "echorang_breaks_anyway"));
 		echorangCanListenTag = TagKey.create(Registry.GAME_EVENT_REGISTRY, new ResourceLocation(Quark.MOD_ID, "echorang_can_listen"));
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		knownTypes.forEach(t -> EntityRenderers.register(t.getEntityType(), PickarangRenderer::new));
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		// Pass over to a static reference for easier computing the coremod hook
 		isEnabled = this.enabled;
 	}

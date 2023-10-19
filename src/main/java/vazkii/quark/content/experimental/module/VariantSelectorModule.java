@@ -57,6 +57,8 @@ import vazkii.quark.content.experimental.client.screen.VariantSelectorScreen;
 import vazkii.quark.content.experimental.client.tooltip.VariantsComponent;
 import vazkii.quark.content.experimental.config.BlockSuffixConfig;
 import vazkii.quark.content.experimental.item.HammerItem;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZKeyMapping;
 import vazkii.zeta.event.client.ZTooltipComponents;
@@ -95,8 +97,8 @@ public class VariantSelectorModule extends QuarkModule {
 	@OnlyIn(Dist.CLIENT)
 	private static KeyMapping variantSelectorKey;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		hammer = new HammerItem(this).setCondition(() -> enableHammer);
 	}
 
@@ -105,8 +107,8 @@ public class VariantSelectorModule extends QuarkModule {
 		variantSelectorKey = ModKeybindHandler.init(event, "variant_selector", "r", ModKeybindHandler.MISC_GROUP);
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

@@ -9,12 +9,14 @@ import vazkii.quark.base.block.QuarkGlassBlock;
 import vazkii.quark.base.block.QuarkInheritedPaneBlock;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building")
 public class FramedGlassModule extends QuarkModule {
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		Block.Properties props = Block.Properties.of(Material.GLASS)
 				.strength(3F, 10F)
 				.sound(SoundType.GLASS);

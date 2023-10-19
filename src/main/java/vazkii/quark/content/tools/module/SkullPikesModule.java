@@ -29,6 +29,10 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.ai.RunAwayFromPikesGoal;
 import vazkii.quark.content.tools.client.render.entity.SkullPikeRenderer;
 import vazkii.quark.content.tools.entity.SkullPike;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "tools", hasSubscriptions = true)
 public class SkullPikesModule extends QuarkModule {
@@ -40,8 +44,8 @@ public class SkullPikesModule extends QuarkModule {
 
 	@Config public static double pikeRange = 5;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		skullPikeType = EntityType.Builder.of(SkullPike::new, MobCategory.MISC)
 				.sized(0.5F, 0.5F)
 				.clientTrackingRange(3)
@@ -52,14 +56,13 @@ public class SkullPikesModule extends QuarkModule {
 		Quark.ZETA.registry.register(skullPikeType, "skull_pike", Registry.ENTITY_TYPE_REGISTRY);
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		pikeTrophiesTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "pike_trophies"));
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(skullPikeType, SkullPikeRenderer::new);
 	}
 

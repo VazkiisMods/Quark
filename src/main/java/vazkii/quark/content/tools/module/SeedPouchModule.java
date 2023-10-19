@@ -25,6 +25,8 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.client.tooltip.SeedPouchClientTooltipComponent;
 import vazkii.quark.content.tools.item.SeedPouchItem;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.event.client.ZTooltipComponents;
@@ -40,13 +42,13 @@ public class SeedPouchModule extends QuarkModule {
 	@Config public static boolean showAllVariantsInCreative = true;
 	@Config public static int shiftRange = 3;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		seed_pouch = new SeedPouchItem(this);
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		seedPouchHoldableTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "seed_pouch_holdable"));
 	}
 

@@ -23,6 +23,7 @@ import vazkii.quark.content.world.config.BlossomTreeConfig;
 import vazkii.quark.content.world.gen.BlossomTreeGenerator;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 
@@ -45,8 +46,8 @@ public class BlossomTreesModule extends QuarkModule {
 
 	public static WoodSet woodSet;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		woodSet = WoodSetHandler.addWoodSet(this, "blossom", MaterialColor.COLOR_RED, MaterialColor.COLOR_BROWN, true);
 
 		add("blue", MaterialColor.COLOR_LIGHT_BLUE, blue);

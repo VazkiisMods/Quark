@@ -29,6 +29,8 @@ import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.sync.SyncedFlagHandler;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -79,8 +81,8 @@ public class AutomaticToolRestockModule extends QuarkModule {
 
 	private Object mutex = new Object();
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		importantEnchants = MiscUtil.massRegistryGet(enchantNames, ForgeRegistries.ENCHANTMENTS);
 		itemsToIgnore = MiscUtil.massRegistryGet(ignoredItems, ForgeRegistries.ITEMS);
 	}

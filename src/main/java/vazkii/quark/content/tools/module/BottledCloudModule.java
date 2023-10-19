@@ -20,6 +20,9 @@ import vazkii.quark.content.tools.block.CloudBlock;
 import vazkii.quark.content.tools.block.be.CloudBlockEntity;
 import vazkii.quark.content.tools.client.render.be.CloudRenderer;
 import vazkii.quark.content.tools.item.BottledCloudItem;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "tools", hasSubscriptions = true)
 public class BottledCloudModule extends QuarkModule {
@@ -34,8 +37,8 @@ public class BottledCloudModule extends QuarkModule {
 	@Config 
 	public static int cloudLevelTop = 196;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		cloud = new CloudBlock(this);
 		bottled_cloud = new BottledCloudItem(this);
 		
@@ -43,8 +46,8 @@ public class BottledCloudModule extends QuarkModule {
 		Quark.ZETA.registry.register(blockEntityType, "cloud", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 	}
 	
-	@Override
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		BlockEntityRenderers.register(blockEntityType, CloudRenderer::new);
 	}
 	

@@ -21,6 +21,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.ConvulsionMatrixConfig;
 import vazkii.quark.mixin.client.accessor.AccessorBlockColors;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZFirstClientTick;
 
@@ -109,8 +110,8 @@ public class GreenerGrassModule extends QuarkModule {
 	@Config public static ConvulsionMatrixConfig colorMatrix = new ConvulsionMatrixConfig(GRASS_PARAMS);
 	@Config public static ConvulsionMatrixConfig waterMatrix = new ConvulsionMatrixConfig(WATER_PARAMS);
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 	

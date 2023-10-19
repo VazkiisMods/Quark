@@ -18,6 +18,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "client", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class ElytraIndicatorModule extends QuarkModule {
@@ -25,8 +27,8 @@ public class ElytraIndicatorModule extends QuarkModule {
 	private static int shift = 0;
 	private static boolean staticEnabled;
 	
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

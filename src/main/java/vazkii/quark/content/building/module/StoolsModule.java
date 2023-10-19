@@ -23,6 +23,10 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.block.StoolBlock;
 import vazkii.quark.content.building.client.render.entity.StoolEntityRenderer;
 import vazkii.quark.content.building.entity.Stool;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "building", hasSubscriptions = true)
 public class StoolsModule extends QuarkModule {
@@ -31,8 +35,8 @@ public class StoolsModule extends QuarkModule {
 	
 	@Hint TagKey<Item> stoolsTag;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		for(DyeColor dye : DyeColor.values())
 			new StoolBlock(this, dye);
 
@@ -46,8 +50,8 @@ public class StoolsModule extends QuarkModule {
 		Quark.ZETA.registry.register(stoolEntity, "stool", Registry.ENTITY_TYPE_REGISTRY);
 	}
 	
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		stoolsTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "stools"));
 	}
 
@@ -60,9 +64,8 @@ public class StoolsModule extends QuarkModule {
 		}
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(stoolEntity, StoolEntityRenderer::new);
 	}
 

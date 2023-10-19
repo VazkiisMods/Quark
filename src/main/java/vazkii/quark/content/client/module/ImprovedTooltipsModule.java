@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZRegisterReloadListeners;
 import vazkii.zeta.event.client.ZTooltipComponents;
@@ -91,8 +92,8 @@ public class ImprovedTooltipsModule extends QuarkModule {
 		registry.accept(new AttributeTooltipManager());
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 		EnchantedBookTooltips.reloaded();
 	}

@@ -22,6 +22,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "tweaks", hasSubscriptions = true)
 public class PoisonPotatoUsageModule extends QuarkModule {
@@ -35,8 +37,8 @@ public class PoisonPotatoUsageModule extends QuarkModule {
 	
 	public static QuarkGenericTrigger poisonBabyTrigger;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		poisonBabyTrigger = QuarkAdvancementHandler.registerGenericTrigger("poison_baby");
 	}
 

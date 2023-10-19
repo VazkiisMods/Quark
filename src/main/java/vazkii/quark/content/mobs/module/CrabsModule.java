@@ -43,6 +43,10 @@ import vazkii.quark.base.util.QuarkEffect;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.CrabRenderer;
 import vazkii.quark.content.mobs.entity.Crab;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 /**
  * @author WireSegal
@@ -70,8 +74,8 @@ public class CrabsModule extends QuarkModule {
 	@Hint(key = "crab_info") Item crab_shell;
 	@Hint(key = "crab_info") public static Item crab_bucket;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		crab_leg = new QuarkItem("crab_leg", this, new Item.Properties()
 				.tab(CreativeModeTab.TAB_FOOD)
 				.food(new FoodProperties.Builder()
@@ -116,14 +120,13 @@ public class CrabsModule extends QuarkModule {
 		QuarkAdvancementHandler.addModifier(new BalancedDietModifier(this, ImmutableSet.of(crab_leg, cookedCrabLeg)));
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		crabSpawnableTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "crab_spawnable"));
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(crabType, CrabRenderer::new);
 	}
 }

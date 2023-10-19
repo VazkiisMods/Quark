@@ -26,7 +26,10 @@ import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.config.AirStoneClusterConfig;
 import vazkii.quark.content.world.config.BigStoneClusterConfig;
 import vazkii.quark.content.world.gen.BigStoneClusterGenerator;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 
 @LoadModule(category = "world")
@@ -50,8 +53,8 @@ public class BigStoneClustersModule extends QuarkModule {
 	
 	public static BiPredicate<Level, Block> blockReplacePredicate = (w, b) -> false;
 	
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		BooleanSupplier alwaysTrue = () -> true;
 		add(calcite, Blocks.CALCITE, alwaysTrue);
 		
@@ -71,8 +74,8 @@ public class BigStoneClustersModule extends QuarkModule {
 		WorldGenHandler.addGenerator(this, new BigStoneClusterGenerator(config, block.defaultBlockState(), condition), Decoration.UNDERGROUND_DECORATION, WorldGenWeights.BIG_STONE_CLUSTERS);
 	}
 	
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		blockReplacePredicate = (b, w) -> false;
 		
 		for(String s : blocksToReplace) {

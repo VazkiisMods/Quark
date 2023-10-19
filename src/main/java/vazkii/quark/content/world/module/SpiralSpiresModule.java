@@ -37,7 +37,10 @@ import vazkii.quark.base.world.WorldGenHandler;
 import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.block.MyaliteCrystalBlock;
 import vazkii.quark.content.world.gen.SpiralSpireGenerator;
+import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 
 @LoadModule(category = "world", hasSubscriptions = true)
@@ -68,8 +71,8 @@ public class SpiralSpiresModule extends QuarkModule {
 
 	public static QuarkGenericTrigger useViaductTrigger;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		Block.Properties props = Block.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PURPLE)
 				.requiresCorrectToolForDrops()
 				.strength(1.5F, 6.0F);
@@ -80,8 +83,8 @@ public class SpiralSpiresModule extends QuarkModule {
 		useViaductTrigger = QuarkAdvancementHandler.registerGenericTrigger("use_viaduct");
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		WorldGenHandler.addGenerator(this, new SpiralSpireGenerator(dimensions), Decoration.SURFACE_STRUCTURES, WorldGenWeights.SPIRAL_SPIRES);
 	}
 

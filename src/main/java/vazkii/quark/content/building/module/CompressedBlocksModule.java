@@ -23,6 +23,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.zeta.event.ZLoadComplete;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building")
@@ -80,8 +81,8 @@ public class CompressedBlocksModule extends QuarkModule {
 
 	private final List<Block> compostable = Lists.newArrayList();
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		charcoal_block = new QuarkBlock("charcoal_block", this, CreativeModeTab.TAB_BUILDING_BLOCKS,
 				Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK)
 						.requiresCorrectToolForDrops()

@@ -38,6 +38,11 @@ import vazkii.quark.content.mobs.client.render.entity.WraithRenderer;
 import vazkii.quark.content.mobs.entity.SoulBead;
 import vazkii.quark.content.mobs.entity.Wraith;
 import vazkii.quark.content.mobs.item.SoulBeadItem;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "mobs")
 public class WraithModule extends QuarkModule {
@@ -80,8 +85,8 @@ public class WraithModule extends QuarkModule {
 	
 	@Hint Item soul_bead;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		soul_bead = new SoulBeadItem(this);
 
 		wraithType = EntityType.Builder.of(Wraith::new, MobCategory.MONSTER)
@@ -109,21 +114,20 @@ public class WraithModule extends QuarkModule {
 		QuarkAdvancementHandler.addModifier(new MonsterHunterModifier(this, ImmutableSet.of(wraithType)));
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		wraithSpawnableTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "wraith_spawnable"));
 		soulBeadTargetTag = TagKey.create(Registry.STRUCTURE_REGISTRY, new ResourceLocation(Quark.MOD_ID, "soul_bead_target"));
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(wraithType, WraithRenderer::new);
 		EntityRenderers.register(soulBeadType, SoulBeadRenderer::new);
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		validWraithSounds = wraithSounds.stream().filter((s) -> s.split("\\|").length == 3).collect(Collectors.toList());
 	}
 

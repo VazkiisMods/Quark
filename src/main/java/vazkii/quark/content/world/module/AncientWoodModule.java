@@ -29,6 +29,7 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.world.block.AncientSaplingBlock;
 import vazkii.quark.content.world.item.AncientFruitItem;
 import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "world", hasSubscriptions = true)
@@ -65,8 +66,8 @@ public class AncientWoodModule extends QuarkModule {
 		});
 	}
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public void register(ZRegister event) {
 		woodSet = WoodSetHandler.addWoodSet(this, "ancient", MaterialColor.TERRACOTTA_WHITE, MaterialColor.TERRACOTTA_WHITE, true);
 		ancient_leaves = new QuarkLeavesBlock(woodSet.name, this, MaterialColor.PLANT);
 		ancient_sapling = new AncientSaplingBlock(this);

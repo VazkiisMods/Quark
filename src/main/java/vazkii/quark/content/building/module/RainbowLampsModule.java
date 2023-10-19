@@ -12,6 +12,9 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.util.CorundumColor;
 import vazkii.quark.content.building.block.RainbowLampBlock;
 import vazkii.quark.content.world.module.CorundumModule;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building")
 public class RainbowLampsModule extends QuarkModule {
@@ -29,14 +32,13 @@ public class RainbowLampsModule extends QuarkModule {
 		return CorundumModule.staticEnabled && useCorundum;
 	}
 
-	@Override
-	public void setup() {
-		super.setup();
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		lampTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "crystal_lamp"));
 	}
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		for(CorundumColor color : CorundumColor.values())
 			new RainbowLampBlock(color.name + "_crystal_lamp", color.beaconColor, this, color.materialColor);
 	}

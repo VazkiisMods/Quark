@@ -20,6 +20,8 @@ import vazkii.quark.content.building.block.BambooMatBlock;
 import vazkii.quark.content.building.block.BambooMatCarpetBlock;
 import vazkii.quark.content.building.block.PaperLanternBlock;
 import vazkii.quark.content.building.block.PaperWallBlock;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building")
 public class JapanesePaletteModule extends QuarkModule {
@@ -30,8 +32,8 @@ public class JapanesePaletteModule extends QuarkModule {
 	@Config(flag = "bamboo_mat")
 	public static boolean enableBambooMats = true;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		BooleanSupplier paperBlockCond = () -> enablePaperBlocks;
 		BooleanSupplier bambooMatCond = () -> enableBambooMats;
 

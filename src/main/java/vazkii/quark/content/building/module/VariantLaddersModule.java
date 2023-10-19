@@ -18,7 +18,9 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.util.VanillaWoods;
 import vazkii.quark.base.util.VanillaWoods.Wood;
 import vazkii.quark.content.building.block.VariantLadderBlock;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZLoadComplete;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building", antiOverlap = { "woodworks" })
@@ -30,8 +32,8 @@ public class VariantLaddersModule extends QuarkModule {
 
 	public static boolean moduleEnabled;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		for(Wood type : VanillaWoods.NON_OAK)
 			variantLadders.add(new VariantLadderBlock(type.name(), this, !type.nether()));
 	}
@@ -41,8 +43,8 @@ public class VariantLaddersModule extends QuarkModule {
 		variantLadders.forEach(FuelHandler::addWood);
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		moduleEnabled = this.enabled;
 		ItemOverrideHandler.changeBlockLocalizationKey(Blocks.LADDER, "block.quark.oak_ladder", changeNames && enabled);
 	}

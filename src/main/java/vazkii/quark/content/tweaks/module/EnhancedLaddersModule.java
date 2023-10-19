@@ -43,7 +43,10 @@ import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 
 @LoadModule(category = "tweaks", hasSubscriptions = true)
@@ -61,13 +64,13 @@ public class EnhancedLaddersModule extends QuarkModule {
 	private static boolean staticEnabled;
 	private static TagKey<Item> laddersTag;
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		laddersTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "ladders"));
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

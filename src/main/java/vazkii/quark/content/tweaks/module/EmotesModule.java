@@ -57,6 +57,7 @@ import vazkii.quark.content.tweaks.client.screen.widgets.EmoteButton;
 import vazkii.quark.content.tweaks.client.screen.widgets.TranslucentButton;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZClientModulesReady;
+import vazkii.zeta.event.client.ZClientSetup;
 import vazkii.zeta.event.client.ZConfigChangedClient;
 import vazkii.zeta.event.client.ZKeyMapping;
 
@@ -132,8 +133,8 @@ public class EmotesModule extends QuarkModule {
 		});
 	}
 
-	@Override
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		Tween.registerAccessor(HumanoidModel.class, ModelAccessor.INSTANCE);
 	}
 

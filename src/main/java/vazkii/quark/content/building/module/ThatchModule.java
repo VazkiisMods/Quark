@@ -7,6 +7,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.ThatchBlock;
 import vazkii.zeta.event.ZLoadComplete;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building", antiOverlap = {"goated", "environmental"})
@@ -18,8 +19,8 @@ public class ThatchModule extends QuarkModule {
 	
 	public static ThatchBlock thatch;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		thatch = new ThatchBlock(this);
 		VariantHandler.addSlabAndStairs(thatch);
 	}

@@ -15,6 +15,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.List;
 import java.util.Map;
@@ -31,8 +33,8 @@ public class EnchantmentsBegoneModule extends QuarkModule {
 
 	private static final List<Enchantment> enchantments = Lists.newArrayList();
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 
 		enchantments.clear();

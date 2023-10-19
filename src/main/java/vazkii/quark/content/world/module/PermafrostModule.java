@@ -13,14 +13,16 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.world.undergroundstyle.PermafrostStyle;
 import vazkii.quark.content.world.undergroundstyle.base.AbstractUndergroundStyleModule;
 import vazkii.quark.content.world.undergroundstyle.base.UndergroundStyleConfig;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "world")
 public class PermafrostModule extends AbstractUndergroundStyleModule<PermafrostStyle> {
 
 	@Hint public static QuarkBlock permafrost;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		permafrost = new QuarkBlock("permafrost", this, CreativeModeTab.TAB_BUILDING_BLOCKS, 
 				Block.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE)
 				.requiresCorrectToolForDrops()
@@ -31,8 +33,6 @@ public class PermafrostModule extends AbstractUndergroundStyleModule<PermafrostS
 		VariantHandler.addSlabStairsWall(new QuarkBlock("permafrost_bricks", this, CreativeModeTab.TAB_BUILDING_BLOCKS, Block.Properties.copy(permafrost)));
 		
 		generationSettings.biomeObj.setBlock(permafrost.defaultBlockState());
-		
-		super.register();
 	}
 	
 	@Override

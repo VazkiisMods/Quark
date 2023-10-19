@@ -12,6 +12,8 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.tweaks.recipe.SlabToBlockRecipe;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,8 +23,8 @@ public class SlabsToBlocksModule extends QuarkModule {
 
 	public static Map<Item, Item> recipes = new HashMap<>();
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":slab_to_block", SlabToBlockRecipe.SERIALIZER);
 	}
 

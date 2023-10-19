@@ -13,6 +13,9 @@ import vazkii.quark.base.handler.StructureBlockReplacementHandler.StructureHolde
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building")
 public class GoldBarsModule extends QuarkModule {
@@ -23,15 +26,15 @@ public class GoldBarsModule extends QuarkModule {
 
 	public static Block gold_bars;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		gold_bars = new QuarkPaneBlock("gold_bars", this, Properties.copy(Blocks.IRON_BARS), RenderLayerHandler.RenderTypeSkeleton.CUTOUT);
 
 		StructureBlockReplacementHandler.addReplacement(GoldBarsModule::getGenerationBarBlockState);
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 	}
 

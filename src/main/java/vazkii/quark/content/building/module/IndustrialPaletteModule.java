@@ -14,6 +14,8 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.VariantLadderBlock;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.function.BooleanSupplier;
 
@@ -33,8 +35,8 @@ public class IndustrialPaletteModule extends QuarkModule {
 	@Config(flag = "iron_ladder")
 	public static boolean enableIronLadder = true;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		Block.Properties props = Block.Properties.copy(Blocks.IRON_BLOCK);
 
 		BooleanSupplier ironPlateCond = () -> enableIronPlates;

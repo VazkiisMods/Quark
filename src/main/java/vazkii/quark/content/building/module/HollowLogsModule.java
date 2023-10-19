@@ -25,6 +25,9 @@ import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.base.util.VanillaWoods;
 import vazkii.quark.base.util.VanillaWoods.Wood;
 import vazkii.quark.content.building.block.HollowLogBlock;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building", hasSubscriptions = true)
 public class HollowLogsModule extends QuarkModule {
@@ -39,8 +42,8 @@ public class HollowLogsModule extends QuarkModule {
 	@Hint(key = "hollow_logs", value = "hollow_log_auto_crawl")
 	TagKey<Block> hollowLogsTag;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		for(Wood wood : VanillaWoods.ALL) {
 			new HollowLogBlock(wood.log(), this, !wood.nether());
 //			new HollowWoodBlock(wood.wood(), this, !wood.nether());
@@ -49,8 +52,8 @@ public class HollowLogsModule extends QuarkModule {
 		crawlTrigger = QuarkAdvancementHandler.registerGenericTrigger("hollow_log_crawl");
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		hollowLogsTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "hollow_logs"));
 	}
 

@@ -34,8 +34,10 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tweaks.client.render.entity.DyedItemFrameRenderer;
 import vazkii.quark.content.tweaks.entity.DyedItemFrame;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.client.ZAddModels;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "tweaks", hasSubscriptions = true)
 public class DyeableItemFramesModule extends QuarkModule {
@@ -45,8 +47,8 @@ public class DyeableItemFramesModule extends QuarkModule {
 	@Hint(key = "item_frame_dyeing") 
 	List<Item> itemFrames = Arrays.asList(Items.ITEM_FRAME, Items.GLOW_ITEM_FRAME);
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		entityType = EntityType.Builder.<DyedItemFrame>of(DyedItemFrame::new, MobCategory.MISC)
 				.sized(0.5F, 0.5F)
 				.clientTrackingRange(10)
@@ -67,9 +69,8 @@ public class DyeableItemFramesModule extends QuarkModule {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/dyed_item_frame_map", "inventory"));
 	}
 	
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup() {
+	@LoadEvent
+	public final void clientSetup(ZClientSetup event) {
 		EntityRenderers.register(entityType, DyedItemFrameRenderer::new);
 	}
 

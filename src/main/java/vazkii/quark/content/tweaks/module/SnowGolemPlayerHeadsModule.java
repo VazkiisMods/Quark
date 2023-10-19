@@ -15,6 +15,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
@@ -30,8 +32,8 @@ public class SnowGolemPlayerHeadsModule extends QuarkModule {
 	@Hint(key = "snow_golem_player_heads")
 	List<Item> items = Arrays.asList(Items.PLAYER_HEAD, Items.NAME_TAG, Items.CARVED_PUMPKIN);
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		getOwnHeadTrigger = QuarkAdvancementHandler.registerGenericTrigger("own_head");
 	}
 	

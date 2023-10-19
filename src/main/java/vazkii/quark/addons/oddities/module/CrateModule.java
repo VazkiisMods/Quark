@@ -17,6 +17,9 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 @LoadModule(category = "oddities")
 public class CrateModule extends QuarkModule {
@@ -30,8 +33,8 @@ public class CrateModule extends QuarkModule {
     @Config
     public static int maxItems = 640;
 
-    @Override
-    public void register() {
+    @LoadEvent
+    public void register(ZRegister event) {
         crate = new CrateBlock(this);
 
         menuType = IForgeMenuType.create(CrateMenu::fromNetwork);
@@ -41,9 +44,9 @@ public class CrateModule extends QuarkModule {
 	    Quark.ZETA.registry.register(blockEntityType, "crate", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
     }
 
-    @Override
+    @LoadEvent
     @OnlyIn(Dist.CLIENT)
-    public void clientSetup() {
+    public void clientSetup(ZClientSetup event) {
         MenuScreens.register(menuType, CrateScreen::new);
     }
 

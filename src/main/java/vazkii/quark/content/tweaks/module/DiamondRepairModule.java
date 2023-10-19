@@ -12,7 +12,9 @@ import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 
 import java.util.Arrays;
@@ -48,8 +50,8 @@ public class DiamondRepairModule extends QuarkModule {
 	public static Multimap<Item, Item> repairChanges = HashMultimap.create();
 	public static List<Item> unrepairableItems;
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
 
 		repairChanges.clear();

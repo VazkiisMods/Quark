@@ -10,20 +10,22 @@ import vazkii.quark.base.handler.WoodSetHandler;
 import vazkii.quark.base.handler.WoodSetHandler.WoodSet;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "world", antiOverlap = { "caverns_and_chasms" })
 public class AzaleaWoodModule extends QuarkModule {
 
 	public static WoodSet woodSet;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		woodSet = WoodSetHandler.addWoodSet(this, "azalea", MaterialColor.COLOR_LIGHT_GREEN, MaterialColor.COLOR_BROWN, true);
 		//ugly I know but config is fired before this now
+		//TODO: not actually fired by the config lol
 		enabledStatusChanged(true, this.enabled, this.enabled);
 	}
 
-	@Override
 	public void enabledStatusChanged(boolean firstLoad, boolean oldStatus, boolean newStatus) {
 		ConfiguredFeature<TreeConfiguration, ?> configured = null;
 		try {

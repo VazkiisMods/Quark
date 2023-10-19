@@ -11,6 +11,8 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "tweaks", hasSubscriptions = true)
 public class NoDurabilityOnCosmeticsModule extends QuarkModule {
@@ -20,8 +22,8 @@ public class NoDurabilityOnCosmeticsModule extends QuarkModule {
 	
 	public static TagKey<Item> cosmeticTag;
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		cosmeticTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "cosmetic_anvil_items"));
 	}
 	

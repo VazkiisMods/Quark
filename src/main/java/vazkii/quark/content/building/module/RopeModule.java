@@ -21,6 +21,9 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.building.block.RopeBlock;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 @LoadModule(category = "building")
 public class RopeModule extends QuarkModule {
@@ -33,16 +36,16 @@ public class RopeModule extends QuarkModule {
 	@Config
 	public static boolean enableDispenserBehavior = true;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		rope = new RopeBlock("rope", this, CreativeModeTab.TAB_DECORATIONS,
 				Block.Properties.of(Material.WOOL, MaterialColor.COLOR_BROWN)
 						.strength(0.5f)
 						.sound(SoundType.WOOL));
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		if(enableDispenserBehavior)
 			DispenserBlock.DISPENSER_REGISTRY.put(rope.asItem(), new BehaviourRope());
 		else

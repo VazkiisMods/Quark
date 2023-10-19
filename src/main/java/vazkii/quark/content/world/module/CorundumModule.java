@@ -28,7 +28,11 @@ import vazkii.quark.content.world.block.CorundumClusterBlock;
 import vazkii.quark.content.world.undergroundstyle.CorundumStyle;
 import vazkii.quark.content.world.undergroundstyle.base.AbstractUndergroundStyleModule;
 import vazkii.quark.content.world.undergroundstyle.base.UndergroundStyleConfig;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZGatherHints;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 
 import java.util.List;
@@ -70,17 +74,20 @@ public class CorundumModule extends AbstractUndergroundStyleModule<CorundumStyle
 	public static List<CorundumClusterBlock> clusters = Lists.newArrayList();
 	@Hint public static TagKey<Block> corundumTag;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		for (CorundumColor color : CorundumColor.values())
 			add(color.name, color.beaconColor, color.materialColor);
-
-		super.register();
 	}
 
-	@Override
-	public void configChanged() {
+	@LoadEvent
+	public final void configChanged(ZConfigChanged event) {
 		staticEnabled = enabled;
+	}
+
+	@LoadEvent
+	public final void mySetup(ZCommonSetup event) {
+		corundumTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "corundum"));
 	}
 
 	@PlayEvent
@@ -107,12 +114,6 @@ public class CorundumModule extends AbstractUndergroundStyleModule<CorundumStyle
 
 		ClusterConnection connection = new ClusterConnection(cluster);
 		IIndirectConnector.INDIRECT_STICKY_BLOCKS.add(Pair.of(connection::isValidState, connection));
-	}
-
-	@Override
-	public void setup() {
-		super.setup();
-		corundumTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "corundum"));
 	}
 
 	@Override

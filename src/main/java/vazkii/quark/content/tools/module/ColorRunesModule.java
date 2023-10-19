@@ -26,6 +26,9 @@ import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.network.NetworkDirection;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.api.IRuneColorProvider;
 import vazkii.quark.api.QuarkCapabilities;
@@ -174,8 +177,8 @@ public class ColorRunesModule extends QuarkModule {
 		return withRune(stack, new ItemStack(runes.get(color.getId())));
 	}
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		runes = Arrays.stream(DyeColor.values()).map(color -> new RuneItem(color.getSerializedName() + "_rune", this, color.getId(), true)).toList();
 
 		rainbow_rune = new RuneItem("rainbow_rune", this, 16, true);
@@ -185,8 +188,8 @@ public class ColorRunesModule extends QuarkModule {
 		fullRainbowTrigger = QuarkAdvancementHandler.registerGenericTrigger("full_rainbow");
 	}
 
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		runesTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "runes"));
 		runesLootableTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "runes_lootable"));
 	}

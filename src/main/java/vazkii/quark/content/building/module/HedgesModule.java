@@ -15,6 +15,7 @@ import vazkii.quark.content.building.block.HedgeBlock;
 import vazkii.quark.content.world.block.BlossomSaplingBlock.BlossomTree;
 import vazkii.quark.content.world.module.AncientWoodModule;
 import vazkii.quark.content.world.module.BlossomTreesModule;
+import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 
@@ -23,8 +24,8 @@ public class HedgesModule extends QuarkModule {
 
 	public static TagKey<Block> hedgesTag;
 	
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		for(Wood wood : VanillaWoods.OVERWORLD)
 			new HedgeBlock(this, wood.fence(), wood.leaf());
 		
@@ -40,8 +41,8 @@ public class HedgesModule extends QuarkModule {
 		new HedgeBlock(this, AncientWoodModule.woodSet.fence, AncientWoodModule.ancient_leaves).setCondition(() -> ModuleLoader.INSTANCE.isModuleEnabled(AncientWoodModule.class));
 	}
 	
-	@Override
-	public void setup() {
+	@LoadEvent
+	public final void setup(ZCommonSetup event) {
 		hedgesTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "hedges"));
 	}
 	

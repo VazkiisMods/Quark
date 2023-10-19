@@ -12,6 +12,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.automation.block.ChuteBlock;
 import vazkii.quark.content.automation.block.be.ChuteBlockEntity;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 /**
  * @author WireSegal
@@ -23,8 +25,8 @@ public class ChuteModule extends QuarkModule {
 	public static BlockEntityType<ChuteBlockEntity> blockEntityType;
 	@Hint Block chute;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public final void register(ZRegister event) {
 		chute = new ChuteBlock("chute", this, CreativeModeTab.TAB_REDSTONE,
 				Block.Properties.of(Material.WOOD)
 						.strength(2.5F)
