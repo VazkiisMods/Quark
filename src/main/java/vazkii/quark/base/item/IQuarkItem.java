@@ -5,12 +5,12 @@ import java.util.function.BooleanSupplier;
 import javax.annotation.Nullable;
 
 import net.minecraft.world.item.Item;
-import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.module.ZetaModule;
 
 public interface IQuarkItem {
 
 	@Nullable
-	QuarkModule getModule();
+	ZetaModule getModule();
 
 	default IQuarkItem setCondition(BooleanSupplier condition) {
 		return this;
@@ -25,7 +25,7 @@ public interface IQuarkItem {
 	}
 
 	default boolean isEnabled() {
-		QuarkModule module = getModule();
+		ZetaModule module = getModule();
 		return module != null && module.enabled && doesConditionApply();
 	}
 	

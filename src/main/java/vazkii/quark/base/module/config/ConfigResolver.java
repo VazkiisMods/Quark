@@ -167,9 +167,8 @@ public class ConfigResolver {
             setEnabledRunnables.put(module, () -> {
                 module.setEnabled(Quark.ZETA, value.get() && Quark.ZETA.modules.MOVE_TO_CONFIG_categoryIsEnabled(category));
 
-                //TODO ZETA: figure out how flags interact with modules
-                if(module instanceof QuarkModule qm)
-                    flagManager.putEnabledFlag(qm);
+                //TODO: zetamodule flags and stuff
+                flagManager.putEnabledFlag(module);
             });
         }
 

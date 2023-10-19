@@ -23,42 +23,41 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.client.event.RenderHighlightEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.RGBAColorConfig;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.item.AbacusItem;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.event.client.ZClientSetup;
+import vazkii.zeta.event.client.ZHighlightBlockEvent;
+import vazkii.zeta.event.client.ZRenderCrosshairEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "tools", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
-public class AbacusModule extends QuarkModule {
+@ZetaLoadModule(category = "tools")
+public class AbacusModule extends ZetaModule {
 
-	@Hint public static Item abacus;
-	@Config RGBAColorConfig highlightColor = RGBAColorConfig.forColor(0, 0, 0, 0.4);
+	@Hint public Item abacus;
 
-	@Override
-	public void register() {
+	@LoadEvent
+	public void register(ZRegister event) {
 		abacus = new AbacusItem(this);
 	}
 
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(ZClientSetup e) {
-		e.enqueueWork(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem::count));
-	}
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends AbacusModule {
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onHUDRender(RenderGuiOverlayEvent event) {
-		if(event.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type()) {
+		@Config RGBAColorConfig highlightColor = RGBAColorConfig.forColor(0, 0, 0, 0.4);
+
+		@LoadEvent
+		public void clientSetup(ZClientSetup e) {
+			e.enqueueWork(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem.Client::count));
+		}
+
+		@PlayEvent
+		public void onHUDRender(ZRenderCrosshairEvent event) {
 			Minecraft mc = Minecraft.getInstance();
 			Player player = mc.player;
 			if(player != null) {
@@ -67,7 +66,7 @@ public class AbacusModule extends QuarkModule {
 					stack = player.getOffhandItem();
 
 				if(stack.getItem() instanceof AbacusItem) {
-					int distance = AbacusItem.getCount(stack, player);
+					int distance = AbacusItem.Client.getCount(stack, player);
 					if(distance > -1) {
 						Window window = event.getWindow();
 						int x = window.getGuiScaledWidth() / 2 + 10;
@@ -81,85 +80,84 @@ public class AbacusModule extends QuarkModule {
 				}
 			}
 		}
-	}
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onHighlightBlock(RenderHighlightEvent.Block event) {
-		VertexConsumer bufferIn = event.getMultiBufferSource().getBuffer(RenderType.lines());
 
-		Minecraft mc = Minecraft.getInstance();
-		Player player = mc.player;
-		if(player != null) {
-			ItemStack stack = player.getMainHandItem();
-			if(!(stack.getItem() instanceof AbacusItem))
-				stack = player.getOffhandItem();
+		@PlayEvent
+		public void onHighlightBlock(ZHighlightBlockEvent event) {
+			VertexConsumer bufferIn = event.getMultiBufferSource().getBuffer(RenderType.lines());
 
-			if(stack.getItem() instanceof AbacusItem) {
-				int distance = AbacusItem.getCount(stack, player);
-				if(distance > -1 && distance <= AbacusItem.MAX_COUNT) {
-					BlockPos target = AbacusItem.getBlockPos(stack);
-					if (target != null) {
+			Minecraft mc = Minecraft.getInstance();
+			Player player = mc.player;
+			if(player != null) {
+				ItemStack stack = player.getMainHandItem();
+				if(!(stack.getItem() instanceof AbacusItem))
+					stack = player.getOffhandItem();
 
-						Camera info = event.getCamera();
-						Vec3 view = info.getPosition();
+				if(stack.getItem() instanceof AbacusItem) {
+					int distance = AbacusItem.Client.getCount(stack, player);
+					if(distance > -1 && distance <= AbacusItem.MAX_COUNT) {
+						BlockPos target = AbacusItem.getBlockPos(stack);
+						if (target != null) {
 
-						VoxelShape shape = Shapes.create(new AABB(target));
+							Camera info = event.getCamera();
+							Vec3 view = info.getPosition();
 
-						HitResult result = mc.hitResult;
-						if (result != null && result.getType() == HitResult.Type.BLOCK) {
-							BlockPos source = ((BlockHitResult) result).getBlockPos();
+							VoxelShape shape = Shapes.create(new AABB(target));
 
-							int diffX = source.getX() - target.getX();
-							int diffY = source.getY() - target.getY();
-							int diffZ = source.getZ() - target.getZ();
+							HitResult result = mc.hitResult;
+							if (result != null && result.getType() == HitResult.Type.BLOCK) {
+								BlockPos source = ((BlockHitResult) result).getBlockPos();
 
-							if (diffX != 0)
-								shape = Shapes.or(shape, Shapes.create(new AABB(target).expandTowards(diffX, 0, 0)));
-							if (diffY != 0)
-								shape = Shapes.or(shape, Shapes.create(new AABB(target.offset(diffX, 0, 0)).expandTowards(0, diffY, 0)));
-							if (diffZ != 0)
-								shape = Shapes.or(shape, Shapes.create(new AABB(target.offset(diffX, diffY, 0)).expandTowards(0, 0, diffZ)));
-						}
+								int diffX = source.getX() - target.getX();
+								int diffY = source.getY() - target.getY();
+								int diffZ = source.getZ() - target.getZ();
 
-						if (shape != null) {
-							List<AABB> list = shape.toAabbs();
-							PoseStack poseStack = event.getPoseStack();
-
-							// everything from here is a vanilla copy pasta but tweaked to have the same colors
-
-							double xIn = -view.x;
-							double yIn = -view.y;
-							double zIn = -view.z;
-
-							for (AABB aabb : list) {
-								float r = (float) highlightColor.getElement(0);
-								float g = (float) highlightColor.getElement(1);
-								float b = (float) highlightColor.getElement(2);
-								float a = (float) highlightColor.getElement(3);
-
-								VoxelShape individual = Shapes.create(aabb.move(0.0D, 0.0D, 0.0D));
-								PoseStack.Pose pose = poseStack.last();
-								Matrix4f matrix4f = pose.pose();
-								individual.forAllEdges((minX, minY, minZ, maxX, maxY, maxZ) -> {
-									float f = (float) (maxX - minX);
-									float f1 = (float) (maxY - minY);
-									float f2 = (float) (maxZ - minZ);
-									float f3 = Mth.sqrt(f * f + f1 * f1 + f2 * f2);
-									f /= f3;
-									f1 /= f3;
-									f2 /= f3;
-
-									bufferIn.vertex(matrix4f, (float) (minX + xIn), (float) (minY + yIn), (float) (minZ + zIn)).color(r, g, b, a).normal(pose.normal(), f, f1, f2).endVertex();
-									bufferIn.vertex(matrix4f, (float) (maxX + xIn), (float) (maxY + yIn), (float) (maxZ + zIn)).color(r, g, b, a).normal(pose.normal(), f, f1, f2).endVertex();
-								});
+								if (diffX != 0)
+									shape = Shapes.or(shape, Shapes.create(new AABB(target).expandTowards(diffX, 0, 0)));
+								if (diffY != 0)
+									shape = Shapes.or(shape, Shapes.create(new AABB(target.offset(diffX, 0, 0)).expandTowards(0, diffY, 0)));
+								if (diffZ != 0)
+									shape = Shapes.or(shape, Shapes.create(new AABB(target.offset(diffX, diffY, 0)).expandTowards(0, 0, diffZ)));
 							}
 
-							event.setCanceled(true);
+							if (shape != null) {
+								List<AABB> list = shape.toAabbs();
+								PoseStack poseStack = event.getPoseStack();
+
+								// everything from here is a vanilla copy pasta but tweaked to have the same colors
+
+								double xIn = -view.x;
+								double yIn = -view.y;
+								double zIn = -view.z;
+
+								for (AABB aabb : list) {
+									float r = (float) highlightColor.getElement(0);
+									float g = (float) highlightColor.getElement(1);
+									float b = (float) highlightColor.getElement(2);
+									float a = (float) highlightColor.getElement(3);
+
+									VoxelShape individual = Shapes.create(aabb.move(0.0D, 0.0D, 0.0D));
+									PoseStack.Pose pose = poseStack.last();
+									Matrix4f matrix4f = pose.pose();
+									individual.forAllEdges((minX, minY, minZ, maxX, maxY, maxZ) -> {
+										float f = (float) (maxX - minX);
+										float f1 = (float) (maxY - minY);
+										float f2 = (float) (maxZ - minZ);
+										float f3 = Mth.sqrt(f * f + f1 * f1 + f2 * f2);
+										f /= f3;
+										f1 /= f3;
+										f2 /= f3;
+
+										bufferIn.vertex(matrix4f, (float) (minX + xIn), (float) (minY + yIn), (float) (minZ + zIn)).color(r, g, b, a).normal(pose.normal(), f, f1, f2).endVertex();
+										bufferIn.vertex(matrix4f, (float) (maxX + xIn), (float) (maxY + yIn), (float) (maxZ + zIn)).color(r, g, b, a).normal(pose.normal(), f, f1, f2).endVertex();
+									});
+								}
+
+								event.setCanceled(true);
+							}
 						}
 					}
 				}
 			}
 		}
 	}
-
 }

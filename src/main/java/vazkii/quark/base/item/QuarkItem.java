@@ -6,17 +6,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.handler.RequiredModTooltipHandler;
-import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.module.ZetaModule;
 
 import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 
 public class QuarkItem extends Item implements IQuarkItem {
 
-	private final QuarkModule module;
+	private final ZetaModule module;
 	private BooleanSupplier enabledSupplier = () -> true;
 
-	public QuarkItem(String regname, QuarkModule module, Properties properties) {
+	public QuarkItem(String regname, ZetaModule module, Properties properties) {
 		super(properties);
 
 		Quark.ZETA.registry.registerItem(this, regname);
@@ -39,7 +39,7 @@ public class QuarkItem extends Item implements IQuarkItem {
 	}
 
 	@Override
-	public QuarkModule getModule() {
+	public ZetaModule getModule() {
 		return module;
 	}
 

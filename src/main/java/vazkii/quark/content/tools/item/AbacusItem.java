@@ -13,11 +13,9 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.item.QuarkItem;
-import vazkii.quark.base.module.QuarkModule;
 
 import javax.annotation.Nonnull;
 
@@ -30,7 +28,7 @@ public class AbacusItem extends QuarkItem {
 	public static int MAX_COUNT = 48;
 	private static final int DEFAULT_Y = -999;
 
-	public AbacusItem(QuarkModule module) {
+	public AbacusItem(ZetaModule module) {
 		super("abacus", module, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).stacksTo(1));
 	}
 
@@ -75,30 +73,29 @@ public class AbacusItem extends QuarkItem {
 		return -1;
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public static int getCount(ItemStack stack, LivingEntity entityIn) {
-		int count = -1;
-		Minecraft mc = Minecraft.getInstance();
-		Player player = mc.player;
+	public static class Client {
+		public static int getCount(ItemStack stack, LivingEntity entityIn) {
+			int count = -1;
+			Minecraft mc = Minecraft.getInstance();
+			Player player = mc.player;
 
-		if(entityIn == player && player != null) {
-			HitResult result = mc.hitResult;
-			if(result instanceof BlockHitResult) {
-				BlockPos target = ((BlockHitResult) result).getBlockPos();
-				count = getCount(stack, target, player.level);
+			if(entityIn == player && player != null) {
+				HitResult result = mc.hitResult;
+				if(result instanceof BlockHitResult) {
+					BlockPos target = ((BlockHitResult) result).getBlockPos();
+					count = AbacusItem.getCount(stack, target, player.level);
+				}
 			}
+
+			return count;
 		}
 
-		return count;
+		public static float count(ItemStack stack, ClientLevel world, LivingEntity entityIn, int id) {
+			int count = getCount(stack, entityIn);
+			if(count == -1)
+				return 9999;
+
+			return 0.01F * count + 0.005F;
+		}
 	}
-
-	@OnlyIn(Dist.CLIENT)
-	public static float count(ItemStack stack, ClientLevel world, LivingEntity entityIn, int id) {
-		int count = getCount(stack, entityIn);
-		if(count == -1)
-			return 9999;
-
-		return 0.01F * count + 0.005F;
-	}
-
 }

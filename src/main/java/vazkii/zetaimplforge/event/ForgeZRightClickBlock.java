@@ -43,8 +43,8 @@ public class ForgeZRightClickBlock implements ZRightClickBlock {
 	}
 
 	@Override
-	public void cancel() {
-		e.setCanceled(true);
+	public void setCanceled(boolean cancel) {
+		e.setCanceled(cancel);
 	}
 
 	@Override

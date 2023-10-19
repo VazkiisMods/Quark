@@ -142,7 +142,11 @@ public class ZetaModuleManager {
 	}
 
 	private ZetaModule constructAndSetup(TentativeModule t) {
-		z.log.info("Constructing module " + t.displayName() + "...");
+		if(QuarkModule.class.isAssignableFrom(t.clazz()))
+			z.log.info("Constructing module {}... (is a QuarkModule)", t.displayName());
+		else
+			z.log.info("Constructing module {}...", t.displayName());
+
 
 		//construct, set properties
 		ZetaModule module = construct(t.clazz());

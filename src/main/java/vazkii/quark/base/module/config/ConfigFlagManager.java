@@ -9,6 +9,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.sync.SyncedFlagHandler;
 import vazkii.quark.base.recipe.ingredient.FlagIngredient;
 import vazkii.quark.base.recipe.ingredient.PotionIngredient;
+import vazkii.zeta.module.ZetaModule;
 
 import java.util.*;
 
@@ -44,7 +45,7 @@ public final class ConfigFlagManager {
 		flags.clear();
 	}
 
-	public void putFlag(QuarkModule module, String flag, boolean value) {
+	public void putFlag(ZetaModule module, String flag, boolean value) {
 		flags.put(flag, value && module.enabled);
 		if (!allFlags.contains(flag)) {
 			orderedFlags.add(flag);
@@ -52,7 +53,7 @@ public final class ConfigFlagManager {
 		}
 	}
 
-	public void putEnabledFlag(QuarkModule module) {
+	public void putEnabledFlag(ZetaModule module) {
 		putFlag(module, module.lowercaseName, true);
 	}
 

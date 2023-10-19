@@ -6,7 +6,12 @@ import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.event.RenderHighlightEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.gui.overlay.GuiOverlayManager;
+import net.minecraftforge.client.gui.overlay.NamedGuiOverlay;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,9 +25,11 @@ import vazkii.zetaimplforge.event.client.ForgeZAddItemColorHandlers;
 import vazkii.zetaimplforge.event.client.ForgeZAddModelLayers;
 import vazkii.zetaimplforge.event.client.ForgeZAddModels;
 import vazkii.zetaimplforge.event.client.ForgeZClientSetup;
+import vazkii.zetaimplforge.event.client.ForgeZHighlightBlockEvent;
 import vazkii.zetaimplforge.event.client.ForgeZKeyMapping;
 import vazkii.zetaimplforge.event.client.ForgeZModelBakingCompleted;
 import vazkii.zetaimplforge.event.client.ForgeZPreTextureStitch;
+import vazkii.zetaimplforge.event.client.ForgeZRenderCrosshairEvent;
 import vazkii.zetaimplforge.event.client.ForgeZTooltipComponents;
 
 public class ForgeZetaClient extends ZetaClient {
@@ -47,6 +54,8 @@ public class ForgeZetaClient extends ZetaClient {
 
 		MinecraftForge.EVENT_BUS.addListener(this::renderTick);
 		MinecraftForge.EVENT_BUS.addListener(this::clientTick);
+		MinecraftForge.EVENT_BUS.addListener(this::renderBlockHighlight);
+		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlay);
 	}
 
 	public void registerBlockColors(RegisterColorHandlersEvent.Block evt) {
@@ -107,5 +116,14 @@ public class ForgeZetaClient extends ZetaClient {
 				clientTicked = true;
 			}
 		}
+	}
+
+	public void renderBlockHighlight(RenderHighlightEvent.Block e) {
+		playBus.fire(new ForgeZHighlightBlockEvent(e));
+	}
+
+	public void renderGameOverlay(RenderGuiOverlayEvent e) {
+		if(e.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
+			playBus.fire(new ForgeZRenderCrosshairEvent(e));
 	}
 }
