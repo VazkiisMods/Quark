@@ -15,11 +15,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 
-@EventBusSubscriber(modid = Quark.MOD_ID, value = Dist.CLIENT)
 public class RequiredModTooltipHandler {
 
 	private static final Map<Item, String> ITEMS = new HashMap<>();

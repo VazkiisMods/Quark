@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 public class HollowLogBlock extends HollowPillarBlock {
@@ -26,7 +25,7 @@ public class HollowLogBlock extends HollowPillarBlock {
                         .isSuffocating((s, g, p) -> false));
 
         this.flammable = flammable;
-        RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT_MIPPED);
+        RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT_MIPPED);
     }
 
 

@@ -21,5 +21,7 @@ public class QuarkClient {
 
 	public static void start() {
 		instance = new QuarkClient();
+
+		ZETA_CLIENT.start();
 	}
 }

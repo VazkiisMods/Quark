@@ -27,7 +27,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 
 public class CorundumClusterBlock extends QuarkBlock implements SimpleWaterloggedBlock {
 
@@ -62,7 +61,7 @@ public class CorundumClusterBlock extends QuarkBlock implements SimpleWaterlogge
 		this.base = base;
 		base.cluster = this;
 
-		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT);
+		RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT);
 		registerDefaultState(defaultBlockState().setValue(FACING, Direction.DOWN).setValue(WATERLOGGED, false));
 	}
 

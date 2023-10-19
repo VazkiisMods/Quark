@@ -18,14 +18,12 @@ import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
 import net.minecraftforge.common.world.ModifiableBiomeInfo;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.item.QuarkSpawnEggItem;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.type.CostSensitiveEntitySpawnConfig;
 import vazkii.quark.base.module.config.type.EntitySpawnConfig;
 
-@EventBusSubscriber(modid = Quark.MOD_ID)
 public class EntitySpawnHandler {
 
 	private static final List<TrackedSpawnConfig> trackedSpawnConfigs = new LinkedList<>();

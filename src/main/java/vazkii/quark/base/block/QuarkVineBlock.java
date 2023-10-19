@@ -21,7 +21,6 @@ import net.minecraft.world.level.material.Material;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 public class QuarkVineBlock extends VineBlock implements IQuarkBlock {
@@ -34,7 +33,7 @@ public class QuarkVineBlock extends VineBlock implements IQuarkBlock {
 		this.module = module;
 
 		Quark.ZETA.registry.registerBlock(this, name, true);
-		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT);
+		RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT);
 
 		if (creative) CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);
 	}

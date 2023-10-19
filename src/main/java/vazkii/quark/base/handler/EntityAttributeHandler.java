@@ -9,11 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import vazkii.quark.base.Quark;
 
-@EventBusSubscriber(modid = Quark.MOD_ID, bus = Bus.MOD)
 public final class EntityAttributeHandler {
 	
 	private static Map<EntityType<? extends LivingEntity>, Supplier<Builder>> attributeSuppliers = new HashMap<>();

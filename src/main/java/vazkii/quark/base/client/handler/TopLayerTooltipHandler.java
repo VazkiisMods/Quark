@@ -10,14 +10,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.RenderTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import vazkii.quark.base.Quark;
 
-@EventBusSubscriber(modid = Quark.MOD_ID, value = Dist.CLIENT)
 public class TopLayerTooltipHandler {
 
 	private static List<Component> tooltip;

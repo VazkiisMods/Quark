@@ -25,7 +25,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 import javax.annotation.Nonnull;
@@ -46,7 +45,7 @@ public class GlowShroomRingBlock extends QuarkBlock implements SimpleWaterlogged
 				.instabreak()
 				.sound(SoundType.FUNGUS));
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);
-		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT);
+		RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT);
 		registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
 	}
 

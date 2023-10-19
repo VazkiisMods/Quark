@@ -13,15 +13,17 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.OverworldBiomeBuilder;
-import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.event.ZLoadComplete;
+import vazkii.zeta.event.bus.LoadEvent;
 
 public final class UndergroundBiomeHandler {
 
 	private static Proxy proxy = null;
 
-	public static void init(ParallelDispatchEvent event) {
+	@LoadEvent
+	public static void init(ZLoadComplete event) {
 		proxy().init(event);
 	}
 
@@ -62,7 +64,7 @@ public final class UndergroundBiomeHandler {
 
 		public List<UndergroundBiomeSkeleton> skeletons = new ArrayList<>();
 
-		public void init(ParallelDispatchEvent event) {
+		public void init(ZLoadComplete event) {
 			// NO-OP
 		}
 

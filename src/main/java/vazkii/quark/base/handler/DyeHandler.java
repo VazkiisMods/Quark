@@ -18,15 +18,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.recipe.DyeRecipe;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZAddItemColorHandlers;
+import vazkii.zeta.event.client.ZClientSetup;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -34,38 +33,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = Quark.MOD_ID, bus = Bus.MOD, value = Dist.CLIENT)
 public final class DyeHandler {
 
 	private static final Map<Item, Supplier<Boolean>> dyeableConditions = new HashMap<>();
-	private static final DyeSurrogate SURROGATE = new DyeSurrogate();
 
-	public static void register() {
+	private static final DyeableLeatherItem SURROGATE = new DyeableLeatherItem() {};
+
+	@LoadEvent
+	public static void register(ZRegister event) {
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":dye_item", DyeRecipe.SERIALIZER);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public static void clientSetup(ParallelDispatchEvent event) {
-		ResourceLocation res = new ResourceLocation("quark_dyed");
-		ItemColors colors = Minecraft.getInstance().getItemColors();
-
-		ItemPropertyFunction fun = (s, e, l, i) -> DyeHandler.isDyed(s) ? 1 : 0;
-		ItemColor color = (s, l) -> {
-			if(l != 0 || !isDyed(s))
-				return 0xFFFFFF;
-
-			return SURROGATE.getColor(s);
-		};
-
-		event.enqueueWork(() -> {
-			for(Item item : dyeableConditions.keySet()) {
-				ItemProperties.register(item, res, fun);
-
-				colors.register(color, item);
-
-				CauldronInteraction.WATER.put(item, DyeHandler::cauldronInteract);
-			}
-		});
 	}
 
 	@Nonnull
@@ -164,6 +140,25 @@ public final class DyeHandler {
 	      return ItemStack.EMPTY;
 	   }
 
-	private static class DyeSurrogate implements DyeableLeatherItem {}
+	public static class Client {
+		@LoadEvent
+		public static void colorHandlers(ZAddItemColorHandlers event) {
+			ItemPropertyFunction fun = (s, e, l, i) -> DyeHandler.isDyed(s) ? 1 : 0;
+			ItemColor color = (s, l) -> {
+				if(l != 0 || !isDyed(s))
+					return 0xFFFFFF;
 
+				return SURROGATE.getColor(s);
+			};
+
+			ResourceLocation res = new ResourceLocation("quark_dyed");
+			for(Item item : dyeableConditions.keySet()) {
+				ItemProperties.register(item, res, fun);
+
+				event.register(color, item);
+
+				CauldronInteraction.WATER.put(item, DyeHandler::cauldronInteract);
+			}
+		}
+	}
 }

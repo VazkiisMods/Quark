@@ -5,6 +5,8 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class CreativeTabHandler {
             try {
 	            Quark.ZETA.registry.setCreativeTab((Block) block, creativeTab);
             } catch (Exception e) {
-                Quark.LOG.error("Failed to assign tab to {}", block);
+                Quark.LOG.error("Failed to assign tab to {}", block, e);
             }
         }
         if (creativeTab != null) {
@@ -37,7 +39,8 @@ public class CreativeTabHandler {
     }
 
     //actually registers the tabs
-    public static void finalizeTabs() {
+    @LoadEvent
+    public static void finalizeTabs(ZRegister.Post event) {
         TAB_INFOS.forEach(i -> {
             if (!GeneralConfig.hideDisabledContent || i.enabled.getAsBoolean()) {
 	            Quark.ZETA.registry.setCreativeTab((Block) i.block, i.tab);

@@ -27,7 +27,6 @@ import vazkii.quark.addons.oddities.block.be.PipeBlockEntity;
 import vazkii.quark.addons.oddities.module.PipesModule;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 import javax.annotation.Nonnull;
@@ -64,7 +63,7 @@ public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 						.noOcclusion());
 
 		registerDefaultState(getDefaultPipeState());
-		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT);
+		RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT);
 	}
 
 	public BlockState getDefaultPipeState() {

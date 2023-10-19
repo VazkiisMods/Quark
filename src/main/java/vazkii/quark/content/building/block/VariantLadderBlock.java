@@ -14,7 +14,6 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 import javax.annotation.Nonnull;
@@ -34,7 +33,7 @@ public class VariantLadderBlock extends LadderBlock implements IQuarkBlock {
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);
 
 		this.module = module;
-		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT);
+		RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT);
 
 		this.flammable = flammable;
 	}

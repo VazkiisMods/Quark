@@ -17,12 +17,8 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import vazkii.quark.addons.oddities.client.model.BackpackModel;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.render.QuarkArmorModel;
@@ -34,8 +30,6 @@ import vazkii.quark.content.mobs.client.model.StonelingModel;
 import vazkii.quark.content.mobs.client.model.ToretoiseModel;
 import vazkii.quark.content.mobs.client.model.WraithModel;
 
-@EventBusSubscriber(modid = Quark.MOD_ID, bus = Bus.MOD, value = Dist.CLIENT)
-@OnlyIn(Dist.CLIENT)
 public class ModelHandler {
 
 	private static final Map<ModelLayerLocation, Layer> layers = new HashMap<>();

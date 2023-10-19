@@ -19,16 +19,15 @@ import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.apache.commons.lang3.tuple.Pair;
-import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.mod.WaxModifier;
 import vazkii.quark.base.module.QuarkModule;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.*;
 
-@EventBusSubscriber(modid = Quark.MOD_ID)
 public final class ToolInteractionHandler {
 
 	private static final Map<Block, Block> cleanToWaxMap = HashBiMap.create();
@@ -51,7 +50,8 @@ public final class ToolInteractionHandler {
 		map.put(in, out);
 	}
 
-	public static void addModifiers() {
+	@LoadEvent
+	public static void addModifiers(ZCommonSetup event) {
 		for(QuarkModule module : waxingByModule.keySet()) {
 			Collection<Pair<Block, Block>> pairs = waxingByModule.get(module);
 			Set<Block> unwaxed = new HashSet<>();

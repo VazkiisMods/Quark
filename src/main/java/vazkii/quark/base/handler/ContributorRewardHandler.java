@@ -27,10 +27,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import vazkii.quark.base.Quark;
 
-@Mod.EventBusSubscriber(modid = Quark.MOD_ID)
 public class ContributorRewardHandler {
 
 	private static final ImmutableSet<String> DEV_UUID = ImmutableSet.of(

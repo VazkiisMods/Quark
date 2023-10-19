@@ -6,11 +6,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fml.config.ModConfig;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
-import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.item.IQuarkItem;
 import vazkii.quark.base.module.config.ConfigFlagManager;
 import vazkii.quark.base.module.config.ConfigResolver;
-import vazkii.zeta.module.TentativeModule;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.module.ZetaModule;
 
 import java.util.ArrayList;
@@ -47,9 +47,9 @@ public final class ModuleLoader {
 		return config.flagManager;
 	}
 
-	public void register() {
+	@LoadEvent
+	public void register(ZRegister event) {
 		stepsHandled.add(Step.POST_REGISTER);
-		CreativeTabHandler.finalizeTabs();
 		config.registerConfigBoundElements();
 	}
 
@@ -62,18 +62,22 @@ public final class ModuleLoader {
 		config.configChanged();
 	}
 
+	//tempting to push this method directly through to Quark.ZETA.modules...
+	//but i think it's more appropriate to have this stored in a configuration class
 	@Deprecated
 	public boolean isModuleEnabled(Class<? extends ZetaModule> moduleClazz) {
 		ZetaModule module = Quark.ZETA.modules.get(moduleClazz);
 		return module != null && module.enabled;
 	}
 
+	//same for this
 	@Deprecated
 	public boolean isModuleEnabledOrOverlapping(Class<? extends ZetaModule> moduleClazz) {
 		ZetaModule module = Quark.ZETA.modules.get(moduleClazz);
 		return module != null && (module.enabled || module.disabledByOverlap);
 	}
 
+	//and this
 	public boolean isItemEnabled(Item i) {
 		if(i instanceof IQuarkItem qi) {
 			return qi.isEnabled();

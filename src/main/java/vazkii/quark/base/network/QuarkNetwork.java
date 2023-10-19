@@ -21,6 +21,8 @@ import vazkii.quark.base.network.message.oddities.MatrixEnchanterOperationMessag
 import vazkii.quark.base.network.message.oddities.ScrollCrateMessage;
 import vazkii.quark.base.network.message.structural.*;
 import vazkii.quark.content.tweaks.module.LockRotationModule;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.network.IZetaMessage;
 import vazkii.zeta.network.ZetaNetworkDirection;
 import vazkii.zeta.network.ZetaNetworkHandler;
@@ -40,7 +42,8 @@ public final class QuarkNetwork {
 	@Deprecated(forRemoval = true)
 	private static SimpleChannel channel;
 
-	public static void setup() {
+	@LoadEvent
+	public static void setup(ZCommonSetup event) {
 		network = Quark.ZETA.createNetworkHandler(Quark.MOD_ID, PROTOCOL_VERSION);
 		channel = ((ForgeZetaNetworkHandler) network).channel; //TODO: LEAKY ABSTRACTION
 

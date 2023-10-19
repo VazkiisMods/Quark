@@ -12,6 +12,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.Climate.ParameterPoint;
 import net.minecraft.world.level.biome.OverworldBiomeBuilder;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
@@ -21,6 +22,7 @@ import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.UndergroundBiomeHandler;
 import vazkii.quark.base.handler.UndergroundBiomeHandler.Proxy;
 import vazkii.quark.base.handler.UndergroundBiomeHandler.UndergroundBiomeSkeleton;
+import vazkii.zeta.event.ZLoadComplete;
 
 public class TerraBlenderIntegration implements Supplier<UndergroundBiomeHandler.Proxy> {
 
@@ -63,7 +65,7 @@ public class TerraBlenderIntegration implements Supplier<UndergroundBiomeHandler
 	class TBProxy extends UndergroundBiomeHandler.Proxy {
 
 		@Override
-		public void init(ParallelDispatchEvent event) {
+		public void init(ZLoadComplete event) {
 			event.enqueueWork(() -> {
 				for(UndergroundBiomeSkeleton skeleton : skeletons)
 					if(skeleton.module().enabled) {

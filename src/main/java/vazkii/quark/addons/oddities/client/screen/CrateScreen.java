@@ -153,14 +153,14 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu> {
 		if(!ChestSearchingModule.searchEnabled) {
 			String s = menu.getTotal() + "/" + CrateModule.maxItems;
 
-			int color = MiscUtil.getGuiTextColor("crate_count");
+			int color = MiscUtil.Client.getGuiTextColor("crate_count");
 			font.draw(matrixStack, s, i + this.imageWidth - font.width(s) - 8 - InventoryButtonHandler.getActiveButtons(ButtonTargetType.CONTAINER_INVENTORY).size() * 12, j + 6, color);
 		}
 	}
 
 	@Override
 	protected void renderLabels(@Nonnull PoseStack poseStack, int mouseX, int mouseY) {
-		int color = MiscUtil.getGuiTextColor("crate_count");
+		int color = MiscUtil.Client.getGuiTextColor("crate_count");
 
 		this.font.draw(poseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, color);
 		this.font.draw(poseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, color);

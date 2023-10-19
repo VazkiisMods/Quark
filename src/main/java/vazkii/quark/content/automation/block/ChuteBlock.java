@@ -20,7 +20,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.automation.block.be.ChuteBlockEntity;
 
@@ -37,7 +36,7 @@ public class ChuteBlock extends QuarkBlock implements EntityBlock {
 		super(regname, module, creativeTab, properties);
 		registerDefaultState(defaultBlockState().setValue(ENABLED, true));
 
-		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT_MIPPED);
+		RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT_MIPPED);
 	}
 
 	@Override

@@ -27,6 +27,8 @@ public class Quark {
 	public Quark() {
 		instance = this;
 
+		ZETA.start();
+
 		proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 		proxy.start();
 	}

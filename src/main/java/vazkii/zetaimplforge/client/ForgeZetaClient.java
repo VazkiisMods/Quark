@@ -31,7 +31,7 @@ public class ForgeZetaClient extends ZetaClient {
 	}
 
 	@Override
-	public void wireEvents() {
+	public void start() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		bus.addListener(this::registerBlockColors);

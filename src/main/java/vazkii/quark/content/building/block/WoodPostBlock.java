@@ -27,7 +27,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 public class WoodPostBlock extends QuarkBlock implements SimpleWaterloggedBlock {
@@ -58,7 +57,7 @@ public class WoodPostBlock extends QuarkBlock implements SimpleWaterloggedBlock 
 			state = state.setValue(prop, false);
 		registerDefaultState(state);
 
-		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT);
+		RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT);
 	}
 
 	@Nonnull

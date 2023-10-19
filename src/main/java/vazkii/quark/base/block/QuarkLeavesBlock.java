@@ -13,7 +13,6 @@ import net.minecraft.world.level.material.MaterialColor;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.CreativeTabHandler;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 public class QuarkLeavesBlock extends LeavesBlock implements IQuarkBlock {
@@ -36,7 +35,7 @@ public class QuarkLeavesBlock extends LeavesBlock implements IQuarkBlock {
 		Quark.ZETA.registry.registerBlock(this, name + "_leaves", true);
 		CreativeTabHandler.addTab(this, CreativeModeTab.TAB_DECORATIONS);
 
-		RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT_MIPPED);
+		RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT_MIPPED);
 	}
 	
 	@Nullable

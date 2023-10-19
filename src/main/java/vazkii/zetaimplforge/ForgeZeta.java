@@ -15,8 +15,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.Logger;
 import vazkii.zeta.Zeta;
+import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.ZResult;
 import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zeta.registry.ZetaRegistry;
@@ -65,13 +67,25 @@ public class ForgeZeta extends Zeta {
 	}
 
 	@Override
-	public void wireEvents() {
+	public void start() {
 		IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
+		modbus.addListener(EventPriority.HIGHEST, this::registerHighest);
 		modbus.addListener(this::commonSetup);
 		modbus.addListener(this::loadComplete);
 
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOW, this::rightClickBlockLow);
 		MinecraftForge.EVENT_BUS.addListener(this::playNoteBlock);
+	}
+
+	boolean registerDone = false;
+	public void registerHighest(RegisterEvent e) {
+		if(registerDone)
+			return;
+
+		loadBus.fire(new ZRegister());
+		loadBus.fire(new ZRegister.Post());
+
+		registerDone = true;
 	}
 
 	public void commonSetup(FMLCommonSetupEvent e) {

@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BooleanSupplier;
 
-import com.google.common.base.Supplier;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
@@ -18,15 +17,12 @@ import net.minecraft.server.ServerAdvancementManager;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import vazkii.quark.api.IAdvancementModifier;
 import vazkii.quark.api.IAdvancementModifierDelegate;
 import vazkii.quark.api.event.GatherAdvancementModifiersEvent;
@@ -34,7 +30,6 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.advancement.mod.*;
 
-@EventBusSubscriber(bus = Bus.FORGE, modid = Quark.MOD_ID)
 public final class QuarkAdvancementHandler {
 
 	private static Multimap<ResourceLocation, IAdvancementModifier> modifiers = HashMultimap.create();

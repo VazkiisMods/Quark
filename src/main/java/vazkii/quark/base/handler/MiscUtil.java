@@ -58,7 +58,6 @@ import net.minecraftforge.client.event.ScreenEvent.KeyPressed;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
@@ -75,7 +74,6 @@ import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@EventBusSubscriber(modid = Quark.MOD_ID)
 public class MiscUtil {
 
 	public static final ResourceLocation GENERAL_ICONS = new ResourceLocation(Quark.MOD_ID, "textures/gui/general_icons.png");
@@ -313,44 +311,6 @@ public class MiscUtil {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public static int getGuiTextColor(String name) {
-		return getGuiTextColor(name, BASIC_GUI_TEXT_COLOR);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public static int getGuiTextColor(String name, int base) {
-		int ret = base;
-
-		String hex = I18n.get("quark.gui.color." + name);
-		if(hex.matches("#[A-F0-9]{6}"))
-			ret = Integer.valueOf(hex.substring(1), 16);
-		return ret;
-	}
-
-	private static int progress;
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public static void onKeystroke(KeyPressed.Pre event) {
-		final String[] ids = new String[] {
-				"-FCYE87P5L0","mybsDDymrsc","6a4BWpBJppI","thpTOAS1Vgg","ZNcBZM5SvbY","_qJEoSa3Ie0",
-				"RWeyOyY_puQ","VBbeuXW8Nko","LIDe-yTxda0","BVVfMFS3mgc","m5qwcYL8a0o","UkY8HvgvBJ8",
-				"4K4b9Z9lSwc","tyInv6RWL0Q","tIWpr3tHzII","AFJPFfnzZ7w","846cjX0ZTrk","XEOCbFJjRw0",
-				"GEo5bmUKFvI","b6li05zh3Kg", "_EEo-iE5u_A", "SPYX2y4NzTU"
-		};
-		final int[] keys = new int[] { 265, 265, 264, 264, 263, 262, 263, 262, 66, 65 };
-		if(event.getScreen() instanceof AbstractQScreen) {
-			if(keys[progress] == event.getKeyCode()) {
-				progress++;
-
-				if(progress >= keys.length) {
-					progress = 0;
-					Util.getPlatform().openUri("https://www.youtube.com/watch?v=" + ids[new Random().nextInt(ids.length)]);
-				}
-			} else progress = 0;
-		}
-	}
-
 	//gets rid of lambdas that could contain references to blockstate properties we might not have
 	public static BlockBehaviour.Properties copyPropertySafe(BlockBehaviour blockBehaviour) {
 		BlockBehaviour.Properties p = BlockBehaviour.Properties.copy(blockBehaviour);
@@ -360,4 +320,40 @@ public class MiscUtil {
 		return p;
 	}
 
+	public static class Client {
+		private static int progress;
+		@SubscribeEvent
+		public static void onKeystroke(KeyPressed.Pre event) {
+			final String[] ids = new String[] {
+				"-FCYE87P5L0","mybsDDymrsc","6a4BWpBJppI","thpTOAS1Vgg","ZNcBZM5SvbY","_qJEoSa3Ie0",
+				"RWeyOyY_puQ","VBbeuXW8Nko","LIDe-yTxda0","BVVfMFS3mgc","m5qwcYL8a0o","UkY8HvgvBJ8",
+				"4K4b9Z9lSwc","tyInv6RWL0Q","tIWpr3tHzII","AFJPFfnzZ7w","846cjX0ZTrk","XEOCbFJjRw0",
+				"GEo5bmUKFvI","b6li05zh3Kg", "_EEo-iE5u_A", "SPYX2y4NzTU"
+			};
+			final int[] keys = new int[] { 265, 265, 264, 264, 263, 262, 263, 262, 66, 65 };
+			if(event.getScreen() instanceof AbstractQScreen) {
+				if(keys[progress] == event.getKeyCode()) {
+					progress++;
+
+					if(progress >= keys.length) {
+						progress = 0;
+						Util.getPlatform().openUri("https://www.youtube.com/watch?v=" + ids[new Random().nextInt(ids.length)]);
+					}
+				} else progress = 0;
+			}
+		}
+
+		public static int getGuiTextColor(String name) {
+			return getGuiTextColor(name, BASIC_GUI_TEXT_COLOR);
+		}
+
+		public static int getGuiTextColor(String name, int base) {
+			int ret = base;
+
+			String hex = I18n.get("quark.gui.color." + name);
+			if(hex.matches("#[A-F0-9]{6}"))
+				ret = Integer.valueOf(hex.substring(1), 16);
+			return ret;
+		}
+	}
 }

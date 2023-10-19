@@ -10,8 +10,6 @@ import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.event.TickEvent.ServerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.api.event.RecipeCrawlEvent;
 import vazkii.quark.api.event.RecipeCrawlEvent.Visit;
@@ -25,7 +23,6 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
-@EventBusSubscriber(bus = Bus.FORGE, modid = Quark.MOD_ID)
 public class RecipeCrawlHandler {
 
 	private static List<Recipe<?>> recipesToLazyDigest = new ArrayList<>();

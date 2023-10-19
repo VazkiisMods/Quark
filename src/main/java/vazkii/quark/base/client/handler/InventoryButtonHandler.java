@@ -25,14 +25,10 @@ import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import vazkii.quark.addons.oddities.client.screen.BackpackInventoryScreen;
 import vazkii.quark.api.IQuarkButtonAllowed;
 import vazkii.quark.base.Quark;
@@ -41,8 +37,6 @@ import vazkii.quark.base.handler.InventoryTransferHandler;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.zeta.event.client.ZKeyMapping;
 
-@OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = Quark.MOD_ID, value = Dist.CLIENT)
 public final class InventoryButtonHandler {
 
 	private static final Multimap<ButtonTargetType, ButtonProviderHolder> providers = Multimaps.newSetMultimap(new HashMap<>(), TreeSet::new);

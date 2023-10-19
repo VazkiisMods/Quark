@@ -10,11 +10,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.CustomizeGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 
-@EventBusSubscriber(modid = Quark.MOD_ID, value = Dist.CLIENT)
 public class NetworkProfilingHandler {
 
 	private static final Map<String, Info> map = new HashMap<>();

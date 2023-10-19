@@ -31,7 +31,6 @@ import vazkii.quark.base.capability.dummy.DummyPistonCallback;
 import vazkii.quark.base.capability.dummy.DummyRuneColor;
 import vazkii.quark.base.capability.dummy.DummySorting;
 
-@Mod.EventBusSubscriber(modid = Quark.MOD_ID)
 public class CapabilityHandler {
 	
 	public static void registerCapabilities(RegisterCapabilitiesEvent event) {

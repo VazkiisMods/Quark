@@ -20,6 +20,8 @@ import org.apache.commons.lang3.tuple.Triple;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.recipe.ingredient.FlagIngredient;
 import vazkii.quark.mixin.accessor.AccessorPotionBrewing;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -114,7 +116,8 @@ public class BrewingHandler {
 	private static boolean isInjectionPrepared = false;
 	private static final List<Triple<Potion, Supplier<Ingredient>, Potion>> toRegister = Lists.newArrayList();
 
-	public static void setup() {
+	@LoadEvent
+	public static void setup(ZCommonSetup event) {
 		isInjectionPrepared = true;
 		for (Triple<Potion, Supplier<Ingredient>, Potion> triple : toRegister)
 			addBrewingRecipe(triple.getLeft(), triple.getMiddle().get(), triple.getRight());

@@ -38,7 +38,6 @@ import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ModifiableBiomeInfo;
 import net.minecraftforge.common.world.ModifiableBiomeInfo.BiomeInfo.Builder;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -46,14 +45,16 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.world.generator.IGenerator;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
-@EventBusSubscriber(modid = Quark.MOD_ID)
 public class WorldGenHandler {
 
 	private static final Map<GenerationStep.Decoration, Holder<PlacedFeature>> defers = new HashMap<>();
 	private static final Map<GenerationStep.Decoration, SortedSet<WeightedGenerator>> generators = new HashMap<>();
 
-	public static void register() {
+	@LoadEvent
+	public static void register(ZRegister event) {
 		for(GenerationStep.Decoration stage : GenerationStep.Decoration.values()) {
 			Feature<NoneFeatureConfiguration> deferredFeature = new DeferredFeature(stage);
 

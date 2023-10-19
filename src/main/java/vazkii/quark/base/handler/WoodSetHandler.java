@@ -35,13 +35,17 @@ import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.block.*;
 import vazkii.quark.content.building.module.*;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.client.ZClientSetup;
 
 import java.util.*;
 import java.util.stream.Stream;
 
 public class WoodSetHandler {
 
-	public static record QuarkBoatType(String name, Item boat, Item chestBoat, Block planks) {}
+	public record QuarkBoatType(String name, Item boat, Item chestBoat, Block planks) {}
 	private static final Map<String, QuarkBoatType> quarkBoatTypes = new HashMap<>();
 
 	public static EntityType<QuarkBoat> quarkBoatEntityType = null;
@@ -49,7 +53,8 @@ public class WoodSetHandler {
 
 	private static final List<WoodSet> woodSets = new ArrayList<>();
 
-	public static void register() {
+	@LoadEvent
+	public static void register(ZRegister event) {
 		quarkBoatEntityType = EntityType.Builder.<QuarkBoat>of(QuarkBoat::new, MobCategory.MISC)
 				.sized(1.375F, 0.5625F)
 				.clientTrackingRange(10)
@@ -66,24 +71,13 @@ public class WoodSetHandler {
 		Quark.ZETA.registry.register(quarkChestBoatEntityType, "quark_chest_boat", Registry.ENTITY_TYPE_REGISTRY);
 	}
 
-	public static void setup(FMLCommonSetupEvent event) {
+	@LoadEvent
+	public static void setup(ZCommonSetup event) {
 		event.enqueueWork(() -> {
 			Map<Item, DispenseItemBehavior> registry = DispenserBlock.DISPENSER_REGISTRY;
 			for(WoodSet set : woodSets) {
 				registry.put(set.boatItem, new QuarkBoatDispenseItemBehavior(set.name, false));
 				registry.put(set.chestBoatItem, new QuarkBoatDispenseItemBehavior(set.name, true));
-			}
-		});
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public static void clientSetup(FMLClientSetupEvent event) {
-		EntityRenderers.register(quarkBoatEntityType, r -> new QuarkBoatRenderer(r, false));
-		EntityRenderers.register(quarkChestBoatEntityType, r -> new QuarkBoatRenderer(r, true));
-
-		event.enqueueWork(() -> {
-			for (WoodSet set : woodSets) {
-				Sheets.addWoodType(set.type);
 			}
 		});
 	}
@@ -211,4 +205,17 @@ public class WoodSetHandler {
 
 	}
 
+	public static class Client {
+		@LoadEvent
+		public static void clientSetup(ZClientSetup event) {
+			EntityRenderers.register(quarkBoatEntityType, r -> new QuarkBoatRenderer(r, false));
+			EntityRenderers.register(quarkChestBoatEntityType, r -> new QuarkBoatRenderer(r, true));
+
+			event.enqueueWork(() -> {
+				for (WoodSet set : woodSets) {
+					Sheets.addWoodType(set.type);
+				}
+			});
+		}
+	}
 }

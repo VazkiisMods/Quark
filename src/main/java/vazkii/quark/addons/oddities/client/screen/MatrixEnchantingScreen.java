@@ -128,7 +128,7 @@ public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchan
 
 	@Override
 	protected void renderLabels(@Nonnull PoseStack matrix, int mouseX, int mouseY) {
-		int color = MiscUtil.getGuiTextColor("matrix_enchanting");
+		int color = MiscUtil.Client.getGuiTextColor("matrix_enchanting");
 
 		font.draw(matrix, enchanter.getDisplayName().getString(), 12, 5, color);
 		font.draw(matrix, playerInv.getDisplayName().getString(), 8, imageHeight - 96 + 2, color);

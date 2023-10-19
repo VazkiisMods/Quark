@@ -30,8 +30,6 @@ public abstract class Zeta {
 		this.registry = createRegistry(modid);
 
 		this.ticker_SHOULD_NOT_BE_HERE = new ClientTicker();
-
-		wireEvents();
 	}
 
 	public final Logger log;
@@ -54,5 +52,5 @@ public abstract class Zeta {
 	//time for JANK - "fire this on the forge event bus and tell me whether it was cancelled"
 	public abstract boolean fireRightClickBlock(Player player, InteractionHand hand, BlockPos pos, BlockHitResult bhr);
 
-	public abstract void wireEvents();
+	public abstract void start();
 }

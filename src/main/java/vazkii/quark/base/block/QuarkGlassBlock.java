@@ -15,7 +15,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 /**
@@ -32,7 +31,7 @@ public class QuarkGlassBlock extends QuarkBlock {
 				.isSuffocating((state, world, pos) -> false)
 				.isViewBlocking((state, world, pos) -> false));
 		
-		RenderLayerHandler.setRenderType(this, translucent ? RenderTypeSkeleton.TRANSLUCENT : RenderTypeSkeleton.CUTOUT);
+		RenderLayerHandler.setRenderType(this, translucent ? RenderLayerHandler.RenderTypeSkeleton.TRANSLUCENT : RenderLayerHandler.RenderTypeSkeleton.CUTOUT);
 	}
 
 	@Override

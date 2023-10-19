@@ -20,7 +20,6 @@ import org.jetbrains.annotations.Nullable;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.RenderLayerHandler;
-import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
 import javax.annotation.Nonnull;
@@ -51,7 +50,7 @@ public class HollowWoodBlock extends HollowFrameBlock {
                         .isSuffocating((s, g, p) -> false));
 
         this.flammable = flammable;
-        RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT_MIPPED);
+        RenderLayerHandler.setRenderType(this, RenderLayerHandler.RenderTypeSkeleton.CUTOUT_MIPPED);
         registerDefaultState(defaultBlockState()
             .setValue(DOWN, true)
             .setValue(UP, true)

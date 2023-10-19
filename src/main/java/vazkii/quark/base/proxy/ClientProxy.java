@@ -13,19 +13,26 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.client.config.IngameConfigHandler;
+import vazkii.quark.base.client.config.QButtonHandler;
 import vazkii.quark.base.client.config.external.ExternalConfigHandler;
 import vazkii.quark.base.client.config.screen.QuarkConfigHomeScreen;
+import vazkii.quark.base.client.handler.InventoryButtonHandler;
+import vazkii.quark.base.client.handler.ModelHandler;
+import vazkii.quark.base.client.handler.NetworkProfilingHandler;
+import vazkii.quark.base.client.handler.RequiredModTooltipHandler;
+import vazkii.quark.base.client.handler.TopLayerTooltipHandler;
 import vazkii.quark.base.handler.ContributorRewardHandler;
 import vazkii.quark.base.handler.DyeHandler;
+import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.WoodSetHandler;
-import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.config.IConfigCallback;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.structural.C2SUpdateFlag;
@@ -47,14 +54,27 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void start() {
-		QuarkClient.start();
-
 		LocalDateTime now = LocalDateTime.now();
 		if(now.getMonth() == Month.DECEMBER && now.getDayOfMonth() >= 16 || now.getMonth() == Month.JANUARY && now.getDayOfMonth() <= 6)
 			jingleBellsMotherfucker = true;
 
-		super.start();
+		//initialize ZetaClient
+		QuarkClient.start();
 
+		Quark.ZETA.loadBus.subscribe(WoodSetHandler.Client.class)
+			.subscribe(DyeHandler.Client.class)
+			.subscribe(RenderLayerHandler.Client.class);
+
+		//Formerly @EventBusSubscribers - gathered here to make them more visible
+		FMLJavaModLoadingContext.get().getModEventBus().register(ModelHandler.class);
+		MinecraftForge.EVENT_BUS.register(InventoryButtonHandler.class);
+		MinecraftForge.EVENT_BUS.register(MiscUtil.Client.class);
+		MinecraftForge.EVENT_BUS.register(NetworkProfilingHandler.class);
+		MinecraftForge.EVENT_BUS.register(QButtonHandler.class);
+		MinecraftForge.EVENT_BUS.register(RequiredModTooltipHandler.class);
+		MinecraftForge.EVENT_BUS.register(TopLayerTooltipHandler.class);
+
+		super.start(); //<- loads and initializes modules
 		Quark.ZETA.loadBus.fire(new ZClientModulesReady());
 
 		ModLoadingContext.get().registerExtensionPoint(ConfigScreenFactory.class, () -> new ConfigScreenFactory((minecraft, screen) -> new QuarkConfigHomeScreen(screen)));
@@ -62,19 +82,6 @@ public class ClientProxy extends CommonProxy {
 		copyProgrammerArtIfMissing();
 
 		(new ExternalConfigHandler()).setAPIHandler();
-	}
-
-	@Override
-	public void registerListeners(IEventBus bus) {
-		super.registerListeners(bus);
-
-		bus.addListener(this::clientSetup);
-	}
-
-	public void clientSetup(FMLClientSetupEvent event) {
-		RenderLayerHandler.init();
-		WoodSetHandler.clientSetup(event);
-		DyeHandler.clientSetup(event);
 	}
 
 	@Override

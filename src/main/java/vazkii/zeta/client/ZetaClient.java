@@ -13,8 +13,6 @@ public abstract class ZetaClient {
 
 		//this.ticker = new ClientTicker();
 		this.ticker = z.ticker_SHOULD_NOT_BE_HERE; //TODO, move ClientTicker into actual client code
-
-		wireEvents();
 	}
 
 	protected final Zeta z;
@@ -23,5 +21,5 @@ public abstract class ZetaClient {
 
 	public final ClientTicker ticker;
 
-	public abstract void wireEvents();
+	public abstract void start();
 }

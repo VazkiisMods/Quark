@@ -7,6 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.GameData;
 import vazkii.quark.base.Quark;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.List;
 
@@ -94,7 +96,8 @@ public class QuarkSounds {
 	public static final SoundEvent MUSIC_ENDERMOSH = register("music.endermosh");
 	public static final SoundEvent MUSIC_GLIMMERING_WEALD = register("music.glimmering_weald");
 
-	public static void start() {
+	@LoadEvent
+	public static void start(ZRegister e) {
 		for (SoundEvent event : REGISTRY_DEFERENCE)
 			Quark.ZETA.registry.register(event, Registry.SOUND_EVENT_REGISTRY);
 		REGISTRY_DEFERENCE.clear();
