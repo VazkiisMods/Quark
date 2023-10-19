@@ -1,4 +1,4 @@
-package vazkii.quark.content_zeta;
+package vazkii.quark.base.module;
 
 import java.util.Comparator;
 import java.util.stream.Stream;
@@ -7,7 +7,6 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 import org.objectweb.asm.Type;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.zeta.module.ModuleFinder;
 import vazkii.zeta.module.ModuleSide;
 import vazkii.zeta.module.ZetaLoadModuleAnnotationData;

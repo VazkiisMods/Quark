@@ -24,7 +24,7 @@ import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.recipe.*;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.base.world.WorldGenHandler;
-import vazkii.quark.content_zeta.LegacyQuarkModuleFinder;
+import vazkii.quark.base.module.LegacyQuarkModuleFinder;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
@@ -84,9 +84,7 @@ public class CommonProxy {
 			new ZetaCategory("mobs", Items.PIG_SPAWN_EGG),
 			new ZetaCategory("client", Items.ENDER_EYE),
 			new ZetaCategory("experimental", Items.TNT),
-			new ZetaCategory("oddities", Items.CHORUS_FRUIT, Quark.ODDITIES_ID),
-
-			new ZetaCategory("testing", Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS.asItem())
+			new ZetaCategory("oddities", Items.CHORUS_FRUIT, Quark.ODDITIES_ID)
 		));
 		Quark.ZETA.modules.load(new ModFileScanDataModuleFinder(Quark.MOD_ID)
 			.and(new LegacyQuarkModuleFinder())); //TODO: no

@@ -34,7 +34,7 @@ public class CrateModule extends QuarkModule {
     public static int maxItems = 640;
 
     @LoadEvent
-    public void register(ZRegister event) {
+    public final void register(ZRegister event) {
         crate = new CrateBlock(this);
 
         menuType = IForgeMenuType.create(CrateMenu::fromNetwork);
@@ -46,7 +46,7 @@ public class CrateModule extends QuarkModule {
 
     @LoadEvent
     @OnlyIn(Dist.CLIENT)
-    public void clientSetup(ZClientSetup event) {
+    public final void clientSetup(ZClientSetup event) {
         MenuScreens.register(menuType, CrateScreen::new);
     }
 
