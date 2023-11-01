@@ -20,8 +20,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.eventbus.api.Event.Result;
 
-import net.minecraftforge.eventbus.api.Event;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.*;
@@ -136,7 +136,7 @@ public class GameNerfsModule extends ZetaModule {
 
 		String name = Registry.ENTITY_TYPE.getKey(event.getEntity().getType()).toString();
 		if(nonGriefingEntities.contains(name))
-			event.setResult(Event.Result.DENY);
+			event.setResult(Result.DENY);
 	}
 
 	public static Predicate<ItemStack> limitMendingItems(Predicate<ItemStack> base) {
