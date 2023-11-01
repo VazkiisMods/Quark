@@ -13,6 +13,8 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.event.ZAnvilUpdate;
+import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZConfigChanged;
@@ -46,8 +48,8 @@ public class EnchantmentsBegoneModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void stripAnvilEnchantments(AnvilUpdateEvent event) {
+	@PlayEvent
+	public void stripAnvilEnchantments(ZAnvilUpdate.Lowest event) {
 		event.setOutput(begoneEnchantmentsFromItem(event.getOutput()));
 	}
 
