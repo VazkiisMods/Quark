@@ -14,6 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.zeta.event.ZLivingConversion;
 import vazkii.zeta.event.ZLivingTick;
+import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
@@ -59,7 +60,7 @@ public class VillagerRerollingReworkModule extends ZetaModule {
 		staticEnabled = enabled;
 	}
 
-	@LoadEvent
+	@PlayEvent
 	public void assignSeedIfUnassigned(ZLivingTick event) {
 		LivingEntity entity = event.getEntity();
 		if (canUseSeededRandom(entity)) {
@@ -70,7 +71,7 @@ public class VillagerRerollingReworkModule extends ZetaModule {
 		}
 	}
 
-	@LoadEvent
+	@PlayEvent
 	public void keepSeedOnConversion(ZLivingConversion.Post event) {
 		LivingEntity original = event.getEntity();
 		LivingEntity outcome = event.getOutcome();
