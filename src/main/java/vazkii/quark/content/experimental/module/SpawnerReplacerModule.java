@@ -9,17 +9,17 @@ import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@LoadModule(category = "experimental", enabledByDefault = false)
+@ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class SpawnerReplacerModule extends ZetaModule {
 
 	@Config(description = "Mobs to be replaced with other mobs.\n" +
