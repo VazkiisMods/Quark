@@ -12,6 +12,9 @@ import net.minecraftforge.event.entity.living.LivingConversionEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.event.ZLivingConversion;
+import vazkii.zeta.event.ZLivingTick;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.experimental.hax.PseudoAccessorMerchantOffer;
@@ -19,7 +22,7 @@ import vazkii.quark.mixin.accessor.AccessorMerchantOffer;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
 
-@LoadModule(category = "experimental", enabledByDefault = false, hasSubscriptions = true)
+@ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class VillagerRerollingReworkModule extends ZetaModule {
 
 	public static final String TAG_VILLAGER_SEED = "quark:MerchantInitialSeed";
@@ -56,8 +59,8 @@ public class VillagerRerollingReworkModule extends ZetaModule {
 		staticEnabled = enabled;
 	}
 
-	@SubscribeEvent
-	public void assignSeedIfUnassigned(LivingEvent.LivingTickEvent event) {
+	@LoadEvent
+	public void assignSeedIfUnassigned(ZLivingTick event) {
 		LivingEntity entity = event.getEntity();
 		if (canUseSeededRandom(entity)) {
 			CompoundTag persistent = entity.getPersistentData();
@@ -67,8 +70,8 @@ public class VillagerRerollingReworkModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void keepSeedOnConversion(LivingConversionEvent.Post event) {
+	@LoadEvent
+	public void keepSeedOnConversion(ZLivingConversion.Post event) {
 		LivingEntity original = event.getEntity();
 		LivingEntity outcome = event.getOutcome();
 		if (canUseSeededRandom(original) || canUseSeededRandom(outcome)) {
