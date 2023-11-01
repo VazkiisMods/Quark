@@ -14,6 +14,7 @@ import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.living.LivingConversionEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -30,22 +31,11 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
-import vazkii.zeta.event.ZAddReloadListener;
-import vazkii.zeta.event.ZCommonSetup;
-import vazkii.zeta.event.ZEntityAttributeCreation;
-import vazkii.zeta.event.ZLivingDeath;
-import vazkii.zeta.event.ZLivingTick;
-import vazkii.zeta.event.ZLoadComplete;
-import vazkii.zeta.event.ZLootTableLoad;
-import vazkii.zeta.event.ZPlayNoteBlock;
-import vazkii.zeta.event.ZPlayerLoggedIn;
-import vazkii.zeta.event.ZRightClickBlock;
-import vazkii.zeta.event.ZTagsUpdated;
+import vazkii.zeta.event.*;
 import vazkii.zeta.registry.BrewingRegistry;
 import vazkii.zeta.Zeta;
 import vazkii.zeta.config.IZetaConfigInternals;
 import vazkii.zeta.config.SectionDefinition;
-import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.ZResult;
 import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zeta.registry.CraftingExtensionsRegistry;
@@ -53,16 +43,7 @@ import vazkii.zeta.registry.ZetaRegistry;
 import vazkii.zeta.util.ZetaSide;
 import vazkii.zetaimplforge.config.ForgeBackedConfig;
 import vazkii.zetaimplforge.config.TerribleForgeConfigHackery;
-import vazkii.zetaimplforge.event.ForgeZAddReloadListener;
-import vazkii.zetaimplforge.event.ForgeZCommonSetup;
-import vazkii.zetaimplforge.event.ForgeZEntityAttributeCreation;
-import vazkii.zetaimplforge.event.ForgeZLivingDeath;
-import vazkii.zetaimplforge.event.ForgeZLivingTick;
-import vazkii.zetaimplforge.event.ForgeZLoadComplete;
-import vazkii.zetaimplforge.event.ForgeZLootTableLoad;
-import vazkii.zetaimplforge.event.ForgeZPlayNoteBlock;
-import vazkii.zetaimplforge.event.ForgeZPlayerLoggedIn;
-import vazkii.zetaimplforge.event.ForgeZRightClickBlock;
+import vazkii.zetaimplforge.event.*;
 import vazkii.zetaimplforge.network.ForgeZetaNetworkHandler;
 import vazkii.zetaimplforge.registry.ForgeBrewingRegistry;
 import vazkii.zetaimplforge.registry.ForgeCraftingExtensionsRegistry;
@@ -151,6 +132,7 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::livingTick);
 		MinecraftForge.EVENT_BUS.addListener(this::playNoteBlock);
 		MinecraftForge.EVENT_BUS.addListener(this::lootTableLoad);
+		MinecraftForge.EVENT_BUS.addListener(this::livingConversion);
 	}
 
 	boolean registerDone = false;
@@ -210,6 +192,10 @@ public class ForgeZeta extends Zeta {
 
 	public void lootTableLoad(LootTableLoadEvent e) {
 		playBus.fire(new ForgeZLootTableLoad(e), ZLootTableLoad.class);
+	}
+
+	public void livingConversion(LivingConversionEvent e) {
+		playBus.fire(new ForgeZLivingConversion(e), ZLivingConversion.class);
 	}
 
 	public static ZResult from(Event.Result r) {
