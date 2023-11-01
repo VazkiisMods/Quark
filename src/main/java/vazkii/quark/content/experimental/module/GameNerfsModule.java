@@ -1,6 +1,7 @@
 package vazkii.quark.content.experimental.module;
 
 import com.mojang.serialization.Dynamic;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -19,20 +20,15 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.entity.EntityMobGriefingEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+
 import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.*;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,12 +41,16 @@ public class GameNerfsModule extends ZetaModule {
 
 	private static final String TAG_TRADES_ADJUSTED = "quark:zombie_trades_adjusted";
 
-	@Config(description = "Makes Mending act like the Unmending mod\n"
-			+ "https://www.curseforge.com/minecraft/mc-mods/unmending")
+	@Config(
+		description = "Makes Mending act like the Unmending mod\n"
+				+ "https://www.curseforge.com/minecraft/mc-mods/unmending"
+	)
 	public static boolean nerfMending = true;
 
-	@Config(name = "No Nerf for Mending II", description = "Makes Mending II still work even if mending is nerfed.\n" +
-		"If you want Mending II, disable the sanity check on Ancient Tomes and add minecraft:mending to the tomes.")
+	@Config(
+		name = "No Nerf for Mending II", description = "Makes Mending II still work even if mending is nerfed.\n" +
+				"If you want Mending II, disable the sanity check on Ancient Tomes and add minecraft:mending to the tomes."
+	)
 	public static boolean noNerfForMendingTwo = false;
 
 	@Config(description = "Resets all villager discounts when zombified to prevent reducing prices to ridiculous levels")
@@ -129,8 +129,8 @@ public class GameNerfsModule extends ZetaModule {
 		return staticEnabled && disableTripwireHookDupe;
 	}
 
-	@SubscribeEvent
-	public void onMobGriefing(EntityMobGriefingEvent event) {
+	@PlayEvent
+	public void onMobGriefing(ZEntityMobGriefing event) {
 		if(!enableSelectiveMobGriefing || event.getEntity() == null)
 			return;
 
@@ -140,10 +140,10 @@ public class GameNerfsModule extends ZetaModule {
 	}
 
 	public static Predicate<ItemStack> limitMendingItems(Predicate<ItemStack> base) {
-		if (!staticEnabled || !nerfMending)
+		if(!staticEnabled || !nerfMending)
 			return base;
 
-		if (noNerfForMendingTwo)
+		if(noNerfForMendingTwo)
 			return (stack) -> base.test(stack) && stack.getEnchantmentLevel(Enchantments.MENDING) > 1;
 		return (stack) -> false;
 	}
@@ -152,8 +152,8 @@ public class GameNerfsModule extends ZetaModule {
 		return enchantments.containsKey(Enchantments.MENDING) && (!noNerfForMendingTwo || enchantments.get(Enchantments.MENDING) < 2);
 	}
 
-	@SubscribeEvent
-	public void onAnvilUpdate(AnvilUpdateEvent event) {
+	@PlayEvent
+	public void onAnvilUpdate(ZAnvilUpdate event) {
 		if(!nerfMending)
 			return;
 
@@ -185,21 +185,21 @@ public class GameNerfsModule extends ZetaModule {
 				out.setTag(new CompoundTag());
 
 			Map<Enchantment, Integer> enchOutput = EnchantmentHelper.getEnchantments(out);
-			for (Enchantment enchantment : enchRight.keySet()) {
-				if (enchantment.canEnchant(out)) {
+			for(Enchantment enchantment : enchRight.keySet()) {
+				if(enchantment.canEnchant(out)) {
 					int level = enchRight.get(enchantment);
-					if (enchOutput.containsKey(enchantment)) {
+					if(enchOutput.containsKey(enchantment)) {
 						int levelPresent = enchOutput.get(enchantment);
-						if (level > levelPresent)
+						if(level > levelPresent)
 							enchOutput.put(enchantment, level);
-						else if (level == levelPresent && enchantment.getMaxLevel() > level)
+						else if(level == levelPresent && enchantment.getMaxLevel() > level)
 							enchOutput.put(enchantment, level + 1);
 					} else {
 						enchOutput.put(enchantment, level);
 					}
 				}
 			}
-			if (isMending(enchOutput))
+			if(isMending(enchOutput))
 				enchOutput.remove(Enchantments.MENDING);
 
 			EnchantmentHelper.setEnchantments(enchOutput, out);
@@ -213,20 +213,23 @@ public class GameNerfsModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onTooltip(ItemTooltipEvent event) {
-		if(!nerfMending)
-			return;
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends GameNerfsModule {
 
-		Component itemgotmodified = Component.translatable("quark.misc.repaired").withStyle(ChatFormatting.YELLOW);
-		int repairCost = event.getItemStack().getBaseRepairCost();
-		if(repairCost > 0)
-			event.getToolTip().add(itemgotmodified);
+		@PlayEvent
+		public void onTooltip(ZItemTooltip event) {
+			if(!nerfMending)
+				return;
+
+			Component itemgotmodified = Component.translatable("quark.misc.repaired").withStyle(ChatFormatting.YELLOW);
+			int repairCost = event.getItemStack().getBaseRepairCost();
+			if(repairCost > 0)
+				event.getToolTip().add(itemgotmodified);
+		}
 	}
 
-	@SubscribeEvent
-	public void onTick(LivingTickEvent event) {
+	@PlayEvent
+	public void onTick(ZLivingTick event) {
 		if(nerfVillagerDiscount && event.getEntity().getType() == EntityType.ZOMBIE_VILLAGER && !event.getEntity().getPersistentData().contains(TAG_TRADES_ADJUSTED)) {
 			ZombieVillager zombie = (ZombieVillager) event.getEntity();
 
@@ -245,8 +248,8 @@ public class GameNerfsModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void onLoot(LivingDropsEvent event) {
+	@PlayEvent
+	public void onLoot(ZLivingDrops event) {
 		if(disableIronFarms && event.getEntity().getType() == EntityType.IRON_GOLEM)
 			event.getDrops().removeIf(e -> e.getItem().getItem() == Items.IRON_INGOT);
 
@@ -255,4 +258,3 @@ public class GameNerfsModule extends ZetaModule {
 	}
 
 }
-

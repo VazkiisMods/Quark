@@ -11,11 +11,14 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import net.minecraftforge.event.entity.living.LivingConversionEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -115,6 +118,7 @@ public class ForgeZeta extends Zeta {
 		return stack.canElytraFly(entity);
 	}
 
+	@SuppressWarnings("duplicates")
 	@Override
 	public void start() {
 		IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -133,6 +137,11 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::playNoteBlock);
 		MinecraftForge.EVENT_BUS.addListener(this::lootTableLoad);
 		MinecraftForge.EVENT_BUS.addListener(this::livingConversion);
+		MinecraftForge.EVENT_BUS.addListener(this::livingConversionPost);
+		MinecraftForge.EVENT_BUS.addListener(this::anvilUpdate);
+		MinecraftForge.EVENT_BUS.addListener(this::anvilUpdateLowest);
+		MinecraftForge.EVENT_BUS.addListener(this::entityMobGriefing);
+		MinecraftForge.EVENT_BUS.addListener(this::livingDrops);
 	}
 
 	boolean registerDone = false;
@@ -197,6 +206,27 @@ public class ForgeZeta extends Zeta {
 	public void livingConversion(LivingConversionEvent e) {
 		playBus.fire(new ForgeZLivingConversion(e), ZLivingConversion.class);
 	}
+
+	public void livingConversionPost(LivingConversionEvent.Post e) {
+		playBus.fire(new ForgeZLivingConversion.Post(e), ZLivingConversion.Post.class);
+	}
+
+	public void anvilUpdate(AnvilUpdateEvent e) {
+		playBus.fire(new ForgeZAnvilUpdate(e), ZAnvilUpdate.class);
+	}
+
+	public void anvilUpdateLowest(AnvilUpdateEvent e) {
+		playBus.fire(new ForgeZAnvilUpdate.Lowest(e), ZAnvilUpdate.Lowest.class);
+	}
+
+	public void entityMobGriefing(EntityMobGriefingEvent e) {
+		playBus.fire(new ForgeZEntityMobGriefing(e), ZEntityMobGriefing.class);
+	}
+
+	public void livingDrops(LivingDropsEvent e) {
+		playBus.fire(new ForgeZLivingDrops(e), ZLivingDrops.class);
+	}
+
 
 	public static ZResult from(Event.Result r) {
 		return switch(r) {
