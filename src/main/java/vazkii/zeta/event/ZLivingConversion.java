@@ -6,7 +6,7 @@ import vazkii.zeta.event.bus.IZetaPlayEvent;
 public interface ZLivingConversion extends IZetaPlayEvent {
     LivingEntity getEntity();
 
-    interface Post extends IZetaPlayEvent, ZLivingConversion {
+    interface Post extends ZLivingConversion {
         LivingEntity getOutcome();
     }
 }

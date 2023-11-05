@@ -29,16 +29,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import org.jetbrains.annotations.Nullable;
-import vazkii.zeta.client.event.ZRenderContainerScreen;
-import vazkii.zeta.client.event.ZScreenCharacterTyped;
-import vazkii.zeta.client.event.ZScreenInit;
-import vazkii.zeta.client.event.ZScreenKeyPressed;
-import vazkii.zeta.client.event.ZScreenMousePressed;
-import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
-import vazkii.zeta.event.bus.PlayEvent;
-import vazkii.zeta.module.ZetaLoadModule;
-import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.api.IQuarkButtonAllowed;
 import vazkii.quark.base.client.handler.InventoryButtonHandler;
 import vazkii.quark.base.client.handler.InventoryButtonHandler.ButtonTargetType;
@@ -46,12 +36,20 @@ import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.InventoryTransferHandler;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.SimilarBlockTypeHandler;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.RGBAColorConfig;
 import vazkii.quark.content.management.client.screen.widgets.MiniInventoryButton;
+import vazkii.zeta.client.event.*;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.ItemNBTHelper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.function.BiPredicate;
 import java.util.regex.Pattern;
 
@@ -98,7 +96,7 @@ public class ChestSearchingModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void initGui(ZScreenInit.Post event) {
+		public void initGui(ZScreen.Init.Post event) {
 			Screen gui = event.getScreen();
 			boolean apiAllowed = gui instanceof IQuarkButtonAllowed;
 			if(!(gui instanceof InventoryScreen) &&
@@ -131,7 +129,7 @@ public class ChestSearchingModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void charTyped(ZScreenCharacterTyped.Pre event) {
+		public void charTyped(ZScreen.CharacterTyped.Pre event) {
 			if(searchBar != null && searchBar.isFocused() && searchEnabled) {
 				searchBar.charTyped(event.getCodePoint(), event.getModifiers());
 				text = searchBar.getValue();
@@ -141,7 +139,7 @@ public class ChestSearchingModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onKeypress(ZScreenKeyPressed.Pre event) {
+		public void onKeypress(ZScreen.KeyPressed.Pre event) {
 			if(searchBar != null && searchBar.isFocused() && searchEnabled) {
 				searchBar.keyPressed(event.getKeyCode(), event.getScanCode(), event.getModifiers());
 				text = searchBar.getValue();
@@ -151,7 +149,7 @@ public class ChestSearchingModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onClick(ZScreenMousePressed.Pre event) {
+		public void onClick(ZScreen.MouseButtonPressed.Pre event) {
 			if(searchBar != null && searchEnabled && event.getScreen() instanceof AbstractContainerScreen<?> containerScreen) {
 				searchBar.mouseClicked(event.getMouseX() - containerScreen.getGuiLeft(), event.getMouseY() - containerScreen.getGuiTop(), event.getButton());
 

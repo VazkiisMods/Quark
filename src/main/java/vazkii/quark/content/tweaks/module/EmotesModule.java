@@ -1,22 +1,10 @@
 package vazkii.quark.content.tweaks.module;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.function.Consumer;
-
-import javax.annotation.Nonnull;
-
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -33,29 +21,24 @@ import net.minecraft.world.entity.player.Player;
 import vazkii.aurelienribon.tweenengine.Tween;
 import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.handler.ContributorRewardHandler;
-import vazkii.zeta.client.event.ZRenderLiving;
-import vazkii.zeta.client.event.ZRenderOverlay;
-import vazkii.zeta.client.event.ZRenderTick;
-import vazkii.zeta.client.event.ZScreenInit;
-import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.client.event.ZInput;
-import vazkii.zeta.event.ZModulesReady;
-import vazkii.zeta.event.bus.PlayEvent;
-import vazkii.zeta.module.ZetaLoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.RequestEmoteMessage;
-import vazkii.quark.content.tweaks.client.emote.CustomEmoteIconResourcePack;
-import vazkii.quark.content.tweaks.client.emote.EmoteBase;
-import vazkii.quark.content.tweaks.client.emote.EmoteDescriptor;
-import vazkii.quark.content.tweaks.client.emote.EmoteHandler;
-import vazkii.quark.content.tweaks.client.emote.ModelAccessor;
+import vazkii.quark.content.tweaks.client.emote.*;
 import vazkii.quark.content.tweaks.client.screen.widgets.EmoteButton;
 import vazkii.quark.content.tweaks.client.screen.widgets.TranslucentButton;
+import vazkii.zeta.client.event.*;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZModulesReady;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
-import vazkii.zeta.client.event.ZKeyMapping;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import java.io.File;
+import java.util.*;
+import java.util.function.Consumer;
 
 @ZetaLoadModule(category = "tweaks")
 public class EmotesModule extends ZetaModule {
@@ -163,7 +146,7 @@ public class EmotesModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void initGui(ZScreenInit.Post event) {
+		public void initGui(ZScreen.Init.Post event) {
 			Screen gui = event.getScreen();
 			if(gui instanceof ChatScreen) {
 				Map<Integer, List<EmoteDescriptor>> descriptorSorting = new TreeMap<>();

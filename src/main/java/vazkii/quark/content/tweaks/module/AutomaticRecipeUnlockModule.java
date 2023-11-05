@@ -18,15 +18,15 @@ import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.GameRules;
 import vazkii.quark.base.Quark;
+import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.client.event.ZEndClientTick;
-import vazkii.zeta.client.event.ZScreenInit;
+import vazkii.zeta.client.event.ZScreen;
+import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZPlayerLoggedIn;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
-import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.bus.LoadEvent;
 
 import java.util.*;
 
@@ -103,7 +103,7 @@ public class AutomaticRecipeUnlockModule extends ZetaModule {
 	public static class Client extends AutomaticRecipeUnlockModule {
 
 		@PlayEvent
-		public void onInitGui(ZScreenInit.Post event) {
+		public void onInitGui(ZScreen.Init.Post event) {
 			Screen gui = event.getScreen();
 			if(disableRecipeBook && gui instanceof RecipeUpdateListener) {
 				Minecraft.getInstance().player.getRecipeBook().getBookSettings().setOpen(RecipeBookType.CRAFTING, false);

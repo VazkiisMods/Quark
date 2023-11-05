@@ -1,18 +1,8 @@
 package vazkii.quark.content.client.module;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.Stack;
-import java.util.function.BooleanSupplier;
-
-import org.apache.commons.lang3.tuple.Pair;
-
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -30,14 +20,18 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import org.apache.commons.lang3.tuple.Pair;
 import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.zeta.client.event.ZRenderContainerScreen;
-import vazkii.zeta.client.event.ZScreenMousePressed;
+import vazkii.zeta.client.event.ZScreen;
 import vazkii.zeta.client.event.ZStartClientTick;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
+
+import java.util.*;
+import java.util.function.BooleanSupplier;
 
 @ZetaLoadModule(category = "client")
 public class MicrocraftingHelperModule extends ZetaModule {
@@ -52,7 +46,7 @@ public class MicrocraftingHelperModule extends ZetaModule {
 		private static int compoundCount = 1;
 
 		@PlayEvent
-		public void onClick(ZScreenMousePressed.Pre event) {
+		public void onClick(ZScreen.MouseButtonPressed.Pre event) {
 			Minecraft mc = Minecraft.getInstance();
 			Screen screen = mc.screen;
 

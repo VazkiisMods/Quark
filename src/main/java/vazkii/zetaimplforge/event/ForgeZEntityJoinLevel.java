@@ -2,7 +2,6 @@ package vazkii.zetaimplforge.event;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import vazkii.zeta.event.ZEntityJoinLevel;
 
 public class ForgeZEntityJoinLevel implements ZEntityJoinLevel {
@@ -15,6 +14,11 @@ public class ForgeZEntityJoinLevel implements ZEntityJoinLevel {
     @Override
     public Entity getEntity() {
         return e.getEntity();
+    }
+
+    @Override
+    public boolean isCanceled() {
+        return e.isCanceled();
     }
 
     @Override

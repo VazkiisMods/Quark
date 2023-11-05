@@ -52,13 +52,16 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import vazkii.quark.base.Quark;
-import vazkii.zeta.client.config.screen.ZetaScreen;
 import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;
-import vazkii.zeta.client.event.ZScreenKeyPressed;
+import vazkii.zeta.client.config.screen.ZetaScreen;
+import vazkii.zeta.client.event.ZScreen;
 import vazkii.zeta.event.bus.PlayEvent;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class MiscUtil {
 
@@ -227,7 +230,7 @@ public class MiscUtil {
 		private static int progress;
 
 		@PlayEvent
-		public static void onKeystroke(ZScreenKeyPressed.Pre event) {
+		public static void onKeystroke(ZScreen.KeyPressed.Pre event) {
 			final String[] ids = new String[] {
 				"-FCYE87P5L0","mybsDDymrsc","6a4BWpBJppI","thpTOAS1Vgg","ZNcBZM5SvbY","_qJEoSa3Ie0",
 				"RWeyOyY_puQ","VBbeuXW8Nko","LIDe-yTxda0","BVVfMFS3mgc","m5qwcYL8a0o","UkY8HvgvBJ8",

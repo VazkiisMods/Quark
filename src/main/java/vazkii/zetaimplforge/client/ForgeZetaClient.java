@@ -80,14 +80,6 @@ public class ForgeZetaClient extends ZetaClient {
 
 		MinecraftForge.EVENT_BUS.addListener(this::renderContainerScreenForeground);
 		MinecraftForge.EVENT_BUS.addListener(this::renderContainerScreenBackground);
-		MinecraftForge.EVENT_BUS.addListener(this::screenCharacterTypedPre);
-		MinecraftForge.EVENT_BUS.addListener(this::screenCharacterTypedPost);
-		MinecraftForge.EVENT_BUS.addListener(this::screenInitPre);
-		MinecraftForge.EVENT_BUS.addListener(this::screenInitPost);
-		MinecraftForge.EVENT_BUS.addListener(this::screenKeyPressedPre);
-		MinecraftForge.EVENT_BUS.addListener(this::screenKeyPressedPost);
-		MinecraftForge.EVENT_BUS.addListener(this::screenMousePressedPre);
-		MinecraftForge.EVENT_BUS.addListener(this::screenMousePressedPost);
 
 		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlayNeitherPreNorPost);
 		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlayPre);
@@ -98,7 +90,17 @@ public class ForgeZetaClient extends ZetaClient {
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::renderLivingPostLowest);
 		MinecraftForge.EVENT_BUS.addListener(this::renderTooltipGatherComponents);
 		MinecraftForge.EVENT_BUS.addListener(this::renderTooltipGatherComponentsLow);
+
+		MinecraftForge.EVENT_BUS.addListener(this::screenInitPre);
+		MinecraftForge.EVENT_BUS.addListener(this::screenInitPost);
+		MinecraftForge.EVENT_BUS.addListener(this::screenRenderPre);
 		MinecraftForge.EVENT_BUS.addListener(this::screenRenderPost);
+		MinecraftForge.EVENT_BUS.addListener(this::screenMouseButtonPressedPre);
+		MinecraftForge.EVENT_BUS.addListener(this::screenMouseButtonPressedPost);
+		MinecraftForge.EVENT_BUS.addListener(this::screenKeyPressedPre);
+		MinecraftForge.EVENT_BUS.addListener(this::screenKeyPressedPost);
+		MinecraftForge.EVENT_BUS.addListener(this::screenCharacterTypedPre);
+		MinecraftForge.EVENT_BUS.addListener(this::screenCharacterTypedPost);
 	}
 
 	public void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -203,38 +205,6 @@ public class ForgeZetaClient extends ZetaClient {
 		playBus.fire(new ForgeZRenderContainerScreen.Background(e), ZRenderContainerScreen.Background.class);
 	}
 
-	public void screenCharacterTypedPre(ScreenEvent.CharacterTyped.Pre e) {
-		playBus.fire(new ForgeZScreenCharacterTyped.Pre(e), ZScreenCharacterTyped.Pre.class);
-	}
-
-	public void screenCharacterTypedPost(ScreenEvent.CharacterTyped.Post e) {
-		playBus.fire(new ForgeZScreenCharacterTyped.Post(e), ZScreenCharacterTyped.Post.class);
-	}
-
-	public void screenInitPre(ScreenEvent.Init.Pre e) {
-		playBus.fire(new ForgeZScreenInit.Pre(e), ZScreenInit.Pre.class);
-	}
-
-	public void screenInitPost(ScreenEvent.Init.Post e) {
-		playBus.fire(new ForgeZScreenInit.Post(e), ZScreenInit.Post.class);
-	}
-	
-	public void screenKeyPressedPre(ScreenEvent.KeyPressed.Pre e) {
-		playBus.fire(new ForgeZScreenKeyPressed.Pre(e), ZScreenKeyPressed.Pre.class);
-	}
-
-	public void screenKeyPressedPost(ScreenEvent.KeyPressed.Post e) {
-		playBus.fire(new ForgeZScreenKeyPressed.Post(e), ZScreenKeyPressed.Post.class);
-	}
-
-	public void screenMousePressedPre(ScreenEvent.MouseButtonPressed.Pre e) {
-		playBus.fire(new ForgeZScreenMousePressed.Pre(e), ZScreenMousePressed.Pre.class);
-	}
-
-	public void screenMousePressedPost(ScreenEvent.MouseButtonPressed.Post e) {
-		playBus.fire(new ForgeZScreenMousePressed.Post(e), ZScreenMousePressed.Post.class);
-	}
-
 	//TODO: This probably should have been a PRE/POST event (just copying quark here)
 	public void renderGameOverlayNeitherPreNorPost(RenderGuiOverlayEvent e) {
 		if(e.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
@@ -289,7 +259,43 @@ public class ForgeZetaClient extends ZetaClient {
 		playBus.fire(new ForgeZRenderTooltip.GatherComponents.Low(e), ZRenderTooltip.GatherComponents.Low.class);
 	}
 
+	public void screenInitPre(ScreenEvent.Init.Pre e) {
+		playBus.fire(new ForgeZScreen.Init.Pre(e), ZScreen.Init.Pre.class);
+	}
+
+	public void screenInitPost(ScreenEvent.Init.Post e) {
+		playBus.fire(new ForgeZScreen.Init.Post(e), ZScreen.Init.Post.class);
+	}
+
+	public void screenRenderPre(ScreenEvent.Render.Pre e) {
+		playBus.fire(new ForgeZScreen.Render.Pre(e), ZScreen.Render.Pre.class);
+	}
+
 	public void screenRenderPost(ScreenEvent.Render.Post e) {
 		playBus.fire(new ForgeZScreen.Render.Post(e), ZScreen.Render.Post.class);
+	}
+
+	public void screenMouseButtonPressedPre(ScreenEvent.MouseButtonPressed.Pre e) {
+		playBus.fire(new ForgeZScreen.MouseButtonPressed.Pre(e), ZScreen.MouseButtonPressed.Pre.class);
+	}
+
+	public void screenMouseButtonPressedPost(ScreenEvent.MouseButtonPressed.Post e) {
+		playBus.fire(new ForgeZScreen.MouseButtonPressed.Post(e), ZScreen.MouseButtonPressed.Post.class);
+	}
+
+	public void screenKeyPressedPre(ScreenEvent.KeyPressed.Pre e) {
+		playBus.fire(new ForgeZScreen.KeyPressed.Pre(e), ZScreen.KeyPressed.Pre.class);
+	}
+
+	public void screenKeyPressedPost(ScreenEvent.KeyPressed.Post e) {
+		playBus.fire(new ForgeZScreen.KeyPressed.Post(e), ZScreen.KeyPressed.Post.class);
+	}
+
+	public void screenCharacterTypedPre(ScreenEvent.CharacterTyped.Pre e) {
+		playBus.fire(new ForgeZScreen.CharacterTyped.Pre(e), ZScreen.CharacterTyped.Pre.class);
+	}
+
+	public void screenCharacterTypedPost(ScreenEvent.CharacterTyped.Post e) {
+		playBus.fire(new ForgeZScreen.CharacterTyped.Post(e), ZScreen.CharacterTyped.Post.class);
 	}
 }

@@ -1,26 +1,22 @@
 package vazkii.quark.content.client.module;
 
-import java.util.List;
-
-import org.lwjgl.glfw.GLFW;
-
 import com.google.common.collect.ImmutableSet;
 import com.mojang.blaze3d.platform.InputConstants.Type;
-
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.resources.language.I18n;
+import org.lwjgl.glfw.GLFW;
 import vazkii.quark.base.QuarkClient;
-import vazkii.zeta.client.event.ZScreenInit;
-import vazkii.zeta.client.event.ZScreenKeyPressed;
-import vazkii.zeta.client.event.ZScreenMousePressed;
+import vazkii.zeta.client.event.ZKeyMapping;
+import vazkii.zeta.client.event.ZScreen;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
-import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZKeyMapping;
+
+import java.util.List;
 
 @ZetaLoadModule(category = "client")
 public class BackButtonKeybindModule extends ZetaModule {
@@ -38,18 +34,18 @@ public class BackButtonKeybindModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void openGui(ZScreenInit.Pre event) {
+		public void openGui(ZScreen.Init.Pre event) {
 			listeners = event.getListenersList();
 		}
 
 		@PlayEvent
-		public void onKeyInput(ZScreenKeyPressed.Post event) {
+		public void onKeyInput(ZScreen.KeyPressed.Post event) {
 			if(backKey.getKey().getType() == Type.KEYSYM && event.getKeyCode() == backKey.getKey().getValue())
 				clicc();
 		}
 
 		@PlayEvent
-		public void onMouseInput(ZScreenMousePressed.Post event) {
+		public void onMouseInput(ZScreen.MouseButtonPressed.Post event) {
 			int btn = event.getButton();
 			if(backKey.getKey().getType() == Type.MOUSE && btn != GLFW.GLFW_MOUSE_BUTTON_LEFT && btn == backKey.getKey().getValue())
 				clicc();

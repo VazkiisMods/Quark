@@ -25,9 +25,15 @@ public class ForgeZPlayerInteract implements ZPlayerInteract {
     }
 
     @Override
+    public boolean isCanceled() {
+        return e.isCanceled();
+    }
+
+    @Override
     public void setCanceled(boolean cancel) {
         e.setCanceled(cancel);
     }
+
 
     @Override
     public void setCancellationResult(InteractionResult result) {

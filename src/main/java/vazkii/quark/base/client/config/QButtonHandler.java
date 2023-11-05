@@ -1,7 +1,5 @@
 package vazkii.quark.base.client.config;
 
-import java.util.List;
-
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
@@ -11,13 +9,15 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.resources.language.I18n;
 import vazkii.quark.base.handler.GeneralConfig;
-import vazkii.zeta.client.event.ZScreenInit;
+import vazkii.zeta.client.event.ZScreen;
 import vazkii.zeta.event.bus.PlayEvent;
+
+import java.util.List;
 
 public class QButtonHandler {
 
 	@PlayEvent
-	public static void onGuiInit(ZScreenInit.Post event) {
+	public static void onGuiInit(ZScreen.Init.Post event) {
 		Screen gui = event.getScreen();
 
 		if(GeneralConfig.enableQButton && (gui instanceof TitleScreen || gui instanceof PauseScreen)) {

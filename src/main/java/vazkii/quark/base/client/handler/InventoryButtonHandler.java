@@ -1,20 +1,8 @@
 package vazkii.quark.base.client.handler;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-
-import javax.annotation.Nonnull;
-
 import com.google.common.base.Supplier;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -33,12 +21,15 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.InventoryTransferHandler;
-import vazkii.zeta.client.event.ZScreenInit;
-import vazkii.zeta.client.event.ZScreenKeyPressed;
-import vazkii.zeta.client.event.ZScreenMousePressed;
+import vazkii.zeta.client.event.ZKeyMapping;
+import vazkii.zeta.client.event.ZScreen;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaModule;
-import vazkii.zeta.client.event.ZKeyMapping;
+
+import javax.annotation.Nonnull;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public final class InventoryButtonHandler {
 
@@ -46,7 +37,7 @@ public final class InventoryButtonHandler {
 	private static final Multimap<ButtonTargetType, Button> currentButtons = Multimaps.newSetMultimap(new HashMap<>(), LinkedHashSet::new);
 
 	@PlayEvent
-	public static void initGui(ZScreenInit.Post event) {
+	public static void initGui(ZScreen.Init.Post event) {
 		Minecraft mc = Minecraft.getInstance();
 		Screen screen = event.getScreen();
 		if(GeneralConfig.printScreenClassnames) {
@@ -91,7 +82,7 @@ public final class InventoryButtonHandler {
 	}
 
 	@PlayEvent
-	public static void mouseInputEvent(ZScreenMousePressed.Pre pressed) {
+	public static void mouseInputEvent(ZScreen.MouseButtonPressed.Pre pressed) {
 		Screen gui = pressed.getScreen();
 		if (gui instanceof AbstractContainerScreen<?> screen) {
 			if(!GeneralConfig.isScreenAllowed(screen))
@@ -111,7 +102,7 @@ public final class InventoryButtonHandler {
 	}
 
 	@PlayEvent
-	public static void keyboardInputEvent(ZScreenKeyPressed.Pre pressed) {
+	public static void keyboardInputEvent(ZScreen.KeyPressed.Pre pressed) {
 		Screen gui = pressed.getScreen();
 		if (gui instanceof AbstractContainerScreen<?> screen) {
 			if(!GeneralConfig.isScreenAllowed(screen))
@@ -131,7 +122,7 @@ public final class InventoryButtonHandler {
 
 	}
 
-	private static void applyProviders(ZScreenInit.Post event, ButtonTargetType type, AbstractContainerScreen<?> screen, Predicate<Slot> slotPred) {
+	private static void applyProviders(ZScreen.Init.Post event, ButtonTargetType type, AbstractContainerScreen<?> screen, Predicate<Slot> slotPred) {
 		Collection<ButtonProviderHolder> holders = providers.get(type);
 		if(!holders.isEmpty()) {
 			for(Slot slot : screen.getMenu().slots)
