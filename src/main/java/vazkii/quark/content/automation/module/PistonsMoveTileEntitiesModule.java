@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.piston.PistonStructureResolver;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraftforge.common.util.NonNullConsumer;
-import net.minecraftforge.event.TickEvent.Phase;
 import org.apache.commons.lang3.tuple.Pair;
 import vazkii.quark.api.IPistonCallback;
 import vazkii.quark.api.QuarkCapabilities;
@@ -69,8 +68,8 @@ public class PistonsMoveTileEntitiesModule extends ZetaModule {
 	}
 
 	@PlayEvent
-	public void onWorldTick(ZLevelTick event) {
-		if (!delayedUpdates.containsKey(event.getLevel()) || event.getPhase() == Phase.START)
+	public void onWorldTick(ZLevelTick.End event) {
+		if (!delayedUpdates.containsKey(event.getLevel()))
 			return;
 
 		List<Pair<BlockPos, CompoundTag>> delays = delayedUpdates.get(event.getLevel());
