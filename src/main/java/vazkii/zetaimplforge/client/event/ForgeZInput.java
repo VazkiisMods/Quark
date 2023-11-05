@@ -1,10 +1,10 @@
-package vazkii.zetaimplforge.event;
+package vazkii.zetaimplforge.client.event;
 
 import net.minecraftforge.client.event.InputEvent;
-import vazkii.zeta.event.ZInputEvent;
+import vazkii.zeta.client.event.ZInput;
 
-public class ForgeZInputEvent implements ZInputEvent {
-	public static class MouseButton extends ForgeZInputEvent implements ZInputEvent.MouseButton {
+public class ForgeZInput implements ZInput {
+	public static class MouseButton extends ForgeZInput implements ZInput.MouseButton {
 		private final InputEvent.MouseButton e;
 
 		public MouseButton(InputEvent.MouseButton e) {
@@ -17,7 +17,7 @@ public class ForgeZInputEvent implements ZInputEvent {
 		}
 	}
 
-	public static class Key extends ForgeZInputEvent implements ZInputEvent.Key {
+	public static class Key extends ForgeZInput implements ZInput.Key {
 		private final InputEvent.Key e;
 
 		public Key(InputEvent.Key e) {
