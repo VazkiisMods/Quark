@@ -6,16 +6,16 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import vazkii.quark.base.block.QuarkFenceGateBlock;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 /**
  * @author WireSegal
  * Created at 10:51 AM on 10/9/19.
  */
-@LoadModule(category = "building")
+@ZetaLoadModule(category = "building")
 public class NetherBrickFenceGateModule extends ZetaModule {
 	@LoadEvent
 	public final void register(ZRegister event) {

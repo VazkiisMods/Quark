@@ -1,12 +1,7 @@
 package vazkii.quark.content.building.module;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.google.common.base.Functions;
 import com.google.common.collect.Lists;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.world.level.block.Block;
@@ -14,14 +9,18 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import vazkii.quark.base.handler.VariantHandler;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
-import vazkii.zeta.util.Hint;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "building")
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@ZetaLoadModule(category = "building")
 public class MorePottedPlantsModule extends ZetaModule {
 
 	private static Map<Block, Block> tintedBlocks = new HashMap<>();

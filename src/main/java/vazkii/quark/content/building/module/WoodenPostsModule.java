@@ -13,18 +13,18 @@ import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.ToolActions;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.ToolInteractionHandler;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.zeta.module.ZetaModule;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.util.VanillaWoods;
 import vazkii.quark.base.util.VanillaWoods.Wood;
 import vazkii.quark.content.building.block.WoodPostBlock;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "building")
+@ZetaLoadModule(category = "building")
 public class WoodenPostsModule extends ZetaModule {
 
 	@Hint TagKey<Item> postsTag;

@@ -10,16 +10,16 @@ import net.minecraftforge.common.util.ForgeSoundType;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.block.QuarkPillarBlock;
 import vazkii.quark.base.handler.VariantHandler;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.VariantLadderBlock;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 import java.util.function.BooleanSupplier;
 
-@LoadModule(category = "building")
+@ZetaLoadModule(category = "building")
 public class IndustrialPaletteModule extends ZetaModule {
 
 	private static final SoundType IRON_LADDER_SOUND_TYPE = new ForgeSoundType(1.0F, 1.0F,

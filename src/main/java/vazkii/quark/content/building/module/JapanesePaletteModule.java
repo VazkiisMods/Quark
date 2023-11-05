@@ -10,11 +10,7 @@
  */
 package vazkii.quark.content.building.module;
 
-import java.util.function.BooleanSupplier;
-
 import vazkii.quark.base.block.IQuarkBlock;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.block.BambooMatBlock;
 import vazkii.quark.content.building.block.BambooMatCarpetBlock;
@@ -22,8 +18,12 @@ import vazkii.quark.content.building.block.PaperLanternBlock;
 import vazkii.quark.content.building.block.PaperWallBlock;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "building")
+import java.util.function.BooleanSupplier;
+
+@ZetaLoadModule(category = "building")
 public class JapanesePaletteModule extends ZetaModule {
 
 	@Config(flag = "paper_decor")

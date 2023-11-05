@@ -1,7 +1,5 @@
 package vazkii.zetaimplforge;
 
-import java.util.Map;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,7 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,13 +33,13 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
-import vazkii.zeta.event.*;
-import vazkii.zeta.registry.BrewingRegistry;
 import vazkii.zeta.Zeta;
 import vazkii.zeta.config.IZetaConfigInternals;
 import vazkii.zeta.config.SectionDefinition;
+import vazkii.zeta.event.*;
 import vazkii.zeta.event.bus.ZResult;
 import vazkii.zeta.network.ZetaNetworkHandler;
+import vazkii.zeta.registry.BrewingRegistry;
 import vazkii.zeta.registry.CraftingExtensionsRegistry;
 import vazkii.zeta.registry.ZetaRegistry;
 import vazkii.zeta.util.ZetaSide;
@@ -53,6 +50,8 @@ import vazkii.zetaimplforge.network.ForgeZetaNetworkHandler;
 import vazkii.zetaimplforge.registry.ForgeBrewingRegistry;
 import vazkii.zetaimplforge.registry.ForgeCraftingExtensionsRegistry;
 import vazkii.zetaimplforge.registry.ForgeZetaRegistry;
+
+import java.util.Map;
 
 /**
  * ideally do not touch quark from this package, it will later be split off
@@ -182,7 +181,10 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::babyEntitySpawnLowest);
 		MinecraftForge.EVENT_BUS.addListener(this::entityJoinLevel);
 		MinecraftForge.EVENT_BUS.addListener(this::attachCapabilities);
-		MinecraftForge.EVENT_BUS.addListener(this::levelTick);
+		MinecraftForge.EVENT_BUS.addListener(this::levelTickStart);
+		MinecraftForge.EVENT_BUS.addListener(this::levelTickEnd);
+		MinecraftForge.EVENT_BUS.addListener(this::playerInteract);
+		MinecraftForge.EVENT_BUS.addListener(this::playerInteractEntityInteractSpecific);
 	}
 
 	boolean registerDone = false;
@@ -281,12 +283,12 @@ public class ForgeZeta extends Zeta {
 	}
 
 	public void playerTickStart(TickEvent.PlayerTickEvent e) {
-		if(e.phase == TickEvent.Phase.START)
+		if (e.phase == TickEvent.Phase.START)
 			playBus.fire(new ForgeZPlayerTick.Start(e), ZPlayerTick.Start.class);
 	}
 
 	public void playerTickEnd(TickEvent.PlayerTickEvent e) {
-		if(e.phase == TickEvent.Phase.END)
+		if (e.phase == TickEvent.Phase.END)
 			playBus.fire(new ForgeZPlayerTick.End(e), ZPlayerTick.End.class);
 	}
 
@@ -306,8 +308,22 @@ public class ForgeZeta extends Zeta {
 		playBus.fire(new ForgeZAttachCapabilities<>(e), ZAttachCapabilities.class);
 	}
 
-	public void levelTick(TickEvent.LevelTickEvent e) {
-		playBus.fire(new ForgeZLevelTick(e), ZLevelTick.class);
+	public void levelTickStart(TickEvent.LevelTickEvent e) {
+		if (e.phase == TickEvent.Phase.START)
+			playBus.fire(new ForgeZLevelTick.Start(e), ZLevelTick.Start.class);
+	}
+
+	public void levelTickEnd(TickEvent.LevelTickEvent e) {
+		if (e.phase == TickEvent.Phase.END)
+			playBus.fire(new ForgeZLevelTick.End(e), ZLevelTick.End.class);
+	}
+
+	public void playerInteract(PlayerInteractEvent e) {
+		playBus.fire(new ForgeZPlayerInteract(e), ZPlayerInteract.class);
+	}
+
+	public void playerInteractEntityInteractSpecific(PlayerInteractEvent.EntityInteractSpecific e) {
+		playBus.fire(new ForgeZPlayerInteract.EntityInteractSpecific(e), ZPlayerInteract.EntityInteractSpecific.class);
 	}
 
 	public static ZResult from(Event.Result r) {

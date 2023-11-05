@@ -12,21 +12,21 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.building.block.StoolBlock;
 import vazkii.quark.content.building.client.render.entity.StoolEntityRenderer;
 import vazkii.quark.content.building.entity.Stool;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.ZRightClickBlock;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "building", hasSubscriptions = true)
+@ZetaLoadModule(category = "building")
 public class StoolsModule extends ZetaModule {
 
 	public static EntityType<Stool> stoolEntity;
@@ -53,8 +53,8 @@ public class StoolsModule extends ZetaModule {
 		stoolsTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "stools"));
 	}
 
-	@SubscribeEvent
-	public void itemUsed(RightClickBlock event) {
+	@PlayEvent
+	public void itemUsed(ZRightClickBlock event) {
 		if(event.getEntity().isShiftKeyDown() && event.getItemStack().getItem() instanceof BlockItem && event.getFace() == Direction.UP) {
 			BlockState state = event.getLevel().getBlockState(event.getPos());
 			if(state.getBlock() instanceof StoolBlock stool)

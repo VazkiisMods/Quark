@@ -1,7 +1,5 @@
 package vazkii.quark.content.building.module;
 
-import java.util.function.ToIntFunction;
-
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -10,16 +8,18 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.building.block.SoulFurnaceBlock;
 import vazkii.quark.content.building.block.VariantFurnaceBlock;
 import vazkii.quark.content.building.block.be.VariantFurnaceBlockEntity;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "building")
+import java.util.function.ToIntFunction;
+
+@ZetaLoadModule(category = "building")
 public class VariantFurnacesModule extends ZetaModule {
 
 	public static BlockEntityType<VariantFurnaceBlockEntity> blockEntityType;

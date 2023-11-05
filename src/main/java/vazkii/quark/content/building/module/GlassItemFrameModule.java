@@ -6,26 +6,24 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.building.client.render.entity.GlassItemFrameRenderer;
 import vazkii.quark.content.building.entity.GlassItemFrame;
 import vazkii.quark.content.building.item.QuarkItemFrameItem;
-import vazkii.zeta.event.ZRegister;
-import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.client.event.ZAddModels;
 import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
 /**
  * @author WireSegal
  * Created at 11:00 AM on 8/25/19.
  */
-@LoadModule(category = "building")
+@ZetaLoadModule(category = "building")
 public class GlassItemFrameModule extends ZetaModule {
 
 	@Config public static boolean glassItemFramesUpdateMaps = true;
@@ -65,9 +63,12 @@ public class GlassItemFrameModule extends ZetaModule {
 		EntityRenderers.register(glassFrameEntity, GlassItemFrameRenderer::new);
 	}
 
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)	
-	public void registerAdditionalModels(ZAddModels event) {
-		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/glass_item_frame", "inventory"));
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends GlassItemFrameModule {
+		@LoadEvent
+		public void registerAdditionalModels(ZAddModels event) {
+			event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/glass_item_frame", "inventory"));
+		}
+
 	}
 }

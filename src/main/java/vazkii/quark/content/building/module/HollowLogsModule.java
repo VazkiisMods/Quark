@@ -11,23 +11,22 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.api.ICrawlSpaceBlock;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.util.VanillaWoods;
 import vazkii.quark.base.util.VanillaWoods.Wood;
 import vazkii.quark.content.building.block.HollowLogBlock;
 import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZPlayerTick;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
 @LoadModule(category = "building", hasSubscriptions = true)
 public class HollowLogsModule extends ZetaModule {
@@ -57,10 +56,10 @@ public class HollowLogsModule extends ZetaModule {
 		hollowLogsTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "hollow_logs"));
 	}
 
-	@SubscribeEvent
-	public void playerTick(PlayerTickEvent event) {
-		if(enableAutoCrawl && event.phase == Phase.START) {
-			Player player = event.player;
+	@PlayEvent
+	public void playerTick(ZPlayerTick.Start event) {
+		if(enableAutoCrawl) {
+			Player player = event.getPlayer();
 			BlockPos playerPos = player.blockPosition();
 			boolean isTrying = player.isVisuallyCrawling() ||
 				(player.isCrouching() && !player.isColliding(playerPos, player.level.getBlockState(playerPos)));

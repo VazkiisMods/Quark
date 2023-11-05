@@ -9,15 +9,15 @@ import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import vazkii.quark.base.block.QuarkPaneBlock;
 import vazkii.quark.base.handler.StructureBlockReplacementHandler;
 import vazkii.quark.base.handler.StructureBlockReplacementHandler.StructureHolder;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.registry.RenderLayerRegistry;
 
-@LoadModule(category = "building")
+@ZetaLoadModule(category = "building")
 public class GoldBarsModule extends ZetaModule {
 
 	@Config public static boolean generateInNetherFortress = true;

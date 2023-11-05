@@ -1,20 +1,20 @@
 package vazkii.quark.content.building.module;
 
-import java.util.function.BooleanSupplier;
-
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.VariantHandler;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "building")
+import java.util.function.BooleanSupplier;
+
+@ZetaLoadModule(category = "building")
 public class MoreBrickTypesModule extends ZetaModule {
 
 	@Config(flag = "blue_nether_bricks", description = "This also comes with a utility recipe for Red Nether Bricks") 

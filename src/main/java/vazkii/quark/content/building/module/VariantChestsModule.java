@@ -25,18 +25,10 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.StructureBlockReplacementHandler;
 import vazkii.quark.base.handler.StructureBlockReplacementHandler.StructureHolder;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.zeta.module.IDisableable;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.util.VanillaWoods;
 import vazkii.quark.base.util.VanillaWoods.Wood;
@@ -48,12 +40,14 @@ import vazkii.quark.content.building.client.render.be.VariantChestRenderer;
 import vazkii.quark.content.building.recipe.MixedExclusionRecipe;
 import vazkii.quark.integration.lootr.ILootrIntegration;
 import vazkii.quark.mixin.accessor.AccessorAbstractChestedHorse;
-import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.ZLoadComplete;
-import vazkii.zeta.event.ZRegister;
-import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.client.event.ZPreTextureStitch;
+import vazkii.zeta.event.*;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.IDisableable;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -61,7 +55,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-@LoadModule(category = "building", hasSubscriptions = true, antiOverlap = { "woodworks" })
+@ZetaLoadModule(category = "building", antiOverlap = { "woodworks" })
 public class VariantChestsModule extends ZetaModule {
 
 	private static final String DONK_CHEST = "Quark:DonkChest";
@@ -256,8 +250,8 @@ public class VariantChestsModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void onClickEntity(PlayerInteractEvent.EntityInteractSpecific event) {
+	@PlayEvent
+	public void onClickEntity(ZPlayerInteract.EntityInteractSpecific event) {
 		Entity target = event.getTarget();
 		Player player = event.getEntity();
 		ItemStack held = player.getItemInHand(event.getHand());
@@ -287,8 +281,8 @@ public class VariantChestsModule extends ZetaModule {
 
 	private static final ThreadLocal<ItemStack> WAIT_TO_REPLACE_CHEST = new ThreadLocal<>();
 
-	@SubscribeEvent
-	public void onDeath(LivingDeathEvent event) {
+	@PlayEvent
+	public void onDeath(ZLivingDeath event) {
 		Entity target = event.getEntity();
 		if (target instanceof AbstractChestedHorse horse) {
 			ItemStack chest = ItemStack.of(horse.getPersistentData().getCompound(DONK_CHEST));
@@ -297,8 +291,8 @@ public class VariantChestsModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void onEntityJoinWorld(EntityJoinLevelEvent event) {
+	@PlayEvent
+	public void onEntityJoinWorld(ZEntityJoinLevel event) {
 		Entity target = event.getEntity();
 		if (target instanceof ItemEntity item && item.getItem().getItem() == Items.CHEST) {
 			ItemStack local = WAIT_TO_REPLACE_CHEST.get();

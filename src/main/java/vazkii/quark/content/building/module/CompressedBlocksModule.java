@@ -1,10 +1,6 @@
 package vazkii.quark.content.building.module;
 
-import java.util.List;
-import java.util.function.BooleanSupplier;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
@@ -18,15 +14,18 @@ import vazkii.quark.base.block.QuarkFlammableBlock;
 import vazkii.quark.base.block.QuarkFlammablePillarBlock;
 import vazkii.quark.base.handler.FuelHandler;
 import vazkii.quark.base.handler.ToolInteractionHandler;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.zeta.event.ZLoadComplete;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "building")
+import java.util.List;
+import java.util.function.BooleanSupplier;
+
+@ZetaLoadModule(category = "building")
 public class CompressedBlocksModule extends ZetaModule {
 
 	@Config(name = "Charcoal Block and Blaze Lantern Stay On Fire Forever", flag = "compressed_blocks_burn_forever")

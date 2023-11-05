@@ -7,12 +7,12 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import vazkii.quark.base.block.QuarkGlassBlock;
 import vazkii.quark.base.block.QuarkInheritedPaneBlock;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "building")
+@ZetaLoadModule(category = "building")
 public class FramedGlassModule extends ZetaModule {
 
 	@LoadEvent
