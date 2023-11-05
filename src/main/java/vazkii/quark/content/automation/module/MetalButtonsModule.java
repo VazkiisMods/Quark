@@ -1,14 +1,13 @@
 package vazkii.quark.content.automation.module;
 
 import net.minecraft.world.level.block.Block;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaLoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.automation.block.MetalButtonBlock;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
 @ZetaLoadModule(category = "automation")
 public class MetalButtonsModule extends ZetaModule {

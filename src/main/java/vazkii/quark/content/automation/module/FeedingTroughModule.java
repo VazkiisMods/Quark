@@ -1,14 +1,8 @@
 package vazkii.quark.content.automation.module;
 
-import java.util.Set;
-import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
-
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -35,24 +29,23 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
+import vazkii.quark.base.module.config.Config;
+import vazkii.quark.content.automation.block.FeedingTroughBlock;
+import vazkii.quark.content.automation.block.be.FeedingTroughBlockEntity;
 import vazkii.zeta.event.ZBabyEntitySpawn;
 import vazkii.zeta.event.ZEntityJoinLevel;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
-import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.util.Hint;
-import vazkii.quark.content.automation.block.FeedingTroughBlock;
-import vazkii.quark.content.automation.block.be.FeedingTroughBlockEntity;
-import vazkii.zeta.event.ZRegister;
-import vazkii.zeta.event.bus.LoadEvent;
+
+import javax.annotation.Nullable;
+import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * @author WireSegal

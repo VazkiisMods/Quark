@@ -1,9 +1,5 @@
 package vazkii.quark.content.automation.module;
 
-import java.util.function.Predicate;
-
-import org.apache.commons.lang3.tuple.Pair;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.item.Item;
@@ -12,14 +8,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChainBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import org.apache.commons.lang3.tuple.Pair;
 import vazkii.zeta.api.IIndirectConnector;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaLoadModule;
-import vazkii.zeta.module.ZetaModule;
-import vazkii.zeta.util.Hint;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
+
+import java.util.function.Predicate;
 
 @ZetaLoadModule(category = "automation")
 public class ChainsConnectBlocksModule extends ZetaModule {
