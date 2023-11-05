@@ -16,18 +16,12 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.LootTableLoadEvent;
-import net.minecraftforge.event.TagsUpdatedEvent;
-import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
-import net.minecraftforge.event.entity.living.LivingConversionEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.NoteBlockEvent;
@@ -177,13 +171,18 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::livingConversion);
 		MinecraftForge.EVENT_BUS.addListener(this::livingConversionPost);
 		MinecraftForge.EVENT_BUS.addListener(this::anvilUpdate);
-		MinecraftForge.EVENT_BUS.addListener(this::anvilUpdateLowest);
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::anvilUpdateLowest);
 		MinecraftForge.EVENT_BUS.addListener(this::entityConstruct);
 		MinecraftForge.EVENT_BUS.addListener(this::entityInteract);
 		MinecraftForge.EVENT_BUS.addListener(this::entityMobGriefing);
 		MinecraftForge.EVENT_BUS.addListener(this::livingDrops);
 		MinecraftForge.EVENT_BUS.addListener(this::playerTickStart);
 		MinecraftForge.EVENT_BUS.addListener(this::playerTickEnd);
+		MinecraftForge.EVENT_BUS.addListener(this::babyEntitySpawn);
+		MinecraftForge.EVENT_BUS.addListener(this::babyEntitySpawnLowest);
+		MinecraftForge.EVENT_BUS.addListener(this::entityJoinLevel);
+		MinecraftForge.EVENT_BUS.addListener(this::attachCapabilities);
+		MinecraftForge.EVENT_BUS.addListener(this::levelTick);
 	}
 
 	boolean registerDone = false;
@@ -289,6 +288,26 @@ public class ForgeZeta extends Zeta {
 	public void playerTickEnd(TickEvent.PlayerTickEvent e) {
 		if(e.phase == TickEvent.Phase.END)
 			playBus.fire(new ForgeZPlayerTick.End(e), ZPlayerTick.End.class);
+	}
+
+	public void babyEntitySpawn(BabyEntitySpawnEvent e) {
+		playBus.fire(new ForgeZBabyEntitySpawn(e), ZBabyEntitySpawn.class);
+	}
+
+	public void babyEntitySpawnLowest(BabyEntitySpawnEvent e) {
+		playBus.fire(new ForgeZBabyEntitySpawn.Lowest(e), ZBabyEntitySpawn.Lowest.class);
+	}
+
+	public void entityJoinLevel(EntityJoinLevelEvent e) {
+		playBus.fire(new ForgeZEntityJoinLevel(e), ZEntityJoinLevel.class);
+	}
+
+	public void attachCapabilities(AttachCapabilitiesEvent<?> e) {
+		playBus.fire(new ForgeZAttachCapabilities<>(e), ZAttachCapabilities.class);
+	}
+
+	public void levelTick(TickEvent.LevelTickEvent e) {
+		playBus.fire(new ForgeZLevelTick(e), ZLevelTick.class);
 	}
 
 	public static ZResult from(Event.Result r) {

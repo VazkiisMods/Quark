@@ -42,6 +42,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
+import vazkii.zeta.event.ZBabyEntitySpawn;
+import vazkii.zeta.event.ZEntityJoinLevel;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.util.Hint;
@@ -54,7 +58,7 @@ import vazkii.zeta.event.bus.LoadEvent;
  * @author WireSegal
  * Created at 9:48 AM on 9/20/19.
  */
-@LoadModule(category = "automation", hasSubscriptions = true)
+@ZetaLoadModule(category = "automation")
 public class FeedingTroughModule extends ZetaModule {
 	
 	public static BlockEntityType<FeedingTroughBlockEntity> blockEntityType;
@@ -84,14 +88,14 @@ public class FeedingTroughModule extends ZetaModule {
 
 	private static final ThreadLocal<Boolean> breedingOccurred = ThreadLocal.withInitial(() -> false);
 
-	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void onBreed(BabyEntitySpawnEvent event) {
+	@PlayEvent
+	public void onBreed(ZBabyEntitySpawn.Lowest event) {
 		if (event.getCausedByPlayer() == null && event.getParentA().level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT))
 			breedingOccurred.set(true);
 	}
 
-	@SubscribeEvent
-	public void onOrbSpawn(EntityJoinLevelEvent event) {
+	@PlayEvent
+	public void onOrbSpawn(ZEntityJoinLevel event) {
 		if (event.getEntity() instanceof ExperienceOrb && breedingOccurred.get()) {
 			event.setCanceled(true);
 			breedingOccurred.remove();
@@ -174,7 +178,7 @@ public class FeedingTroughModule extends ZetaModule {
 		return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
 	}
 	
-	private static record TroughPointer(BlockPos pos, FakePlayer player) {
+	private record TroughPointer(BlockPos pos, FakePlayer player) {
 		
 		public boolean exists() {
 			return player != null;

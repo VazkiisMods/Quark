@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Material;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.Hint;
 import vazkii.quark.content.automation.block.ChuteBlock;
@@ -19,7 +20,7 @@ import vazkii.zeta.event.bus.LoadEvent;
  * @author WireSegal
  * Created at 10:25 AM on 9/29/19.
  */
-@LoadModule(category = "automation")
+@ZetaLoadModule(category = "automation")
 public class ChuteModule extends ZetaModule {
 
 	public static BlockEntityType<ChuteBlockEntity> blockEntityType;

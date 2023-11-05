@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import vazkii.quark.base.QuarkClient;
 import vazkii.zeta.client.event.ZInputUpdate;
 import vazkii.zeta.client.event.ZRenderOverlay;
-import vazkii.zeta.event.ZInputEvent;
+import vazkii.zeta.client.event.ZInput;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
@@ -41,12 +41,12 @@ public class AutoWalkKeybindModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onMouseInput(ZInputEvent.MouseButton event) {
+		public void onMouseInput(ZInput.MouseButton event) {
 			acceptInput();
 		}
 
 		@PlayEvent
-		public void onKeyInput(ZInputEvent.Key event) {
+		public void onKeyInput(ZInput.Key event) {
 			acceptInput();
 		}
 

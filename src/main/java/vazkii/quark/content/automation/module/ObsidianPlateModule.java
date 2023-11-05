@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.content.automation.block.ObsidianPressurePlateBlock;
 import vazkii.zeta.event.ZRegister;
@@ -14,7 +15,7 @@ import vazkii.zeta.event.bus.LoadEvent;
  * @author WireSegal
  * Created at 9:51 PM on 10/8/19.
  */
-@LoadModule(category = "automation")
+@ZetaLoadModule(category = "automation")
 public class ObsidianPlateModule extends ZetaModule {
 	@LoadEvent
 	public final void register(ZRegister event) {

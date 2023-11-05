@@ -21,7 +21,7 @@ import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.zeta.client.event.ZRenderTick;
 import vazkii.zeta.client.event.ZScreenshot;
-import vazkii.zeta.event.ZInputEvent;
+import vazkii.zeta.client.event.ZInput;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
@@ -122,7 +122,7 @@ public class CameraModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void keystroke(ZInputEvent.Key event) {
+		public void keystroke(ZInput.Key event) {
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.level != null && event.getAction() == GLFW.GLFW_PRESS) {
 				if(cameraModeKey.isDown()) {

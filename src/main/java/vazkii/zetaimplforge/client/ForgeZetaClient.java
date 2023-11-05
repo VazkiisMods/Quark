@@ -23,9 +23,9 @@ import vazkii.zeta.client.ZetaClient;
 
 import net.minecraftforge.client.event.*;
 import vazkii.zeta.client.event.*;
-import vazkii.zeta.event.ZInputEvent;
+import vazkii.zeta.client.event.ZInput;
 import vazkii.zetaimplforge.client.event.*;
-import vazkii.zetaimplforge.event.ForgeZInputEvent;
+import vazkii.zetaimplforge.client.event.ForgeZInput;
 
 public class ForgeZetaClient extends ZetaClient {
 	public ForgeZetaClient(Zeta z) {
@@ -69,8 +69,8 @@ public class ForgeZetaClient extends ZetaClient {
 
 		MinecraftForge.EVENT_BUS.addListener(this::renderTick);
 		MinecraftForge.EVENT_BUS.addListener(this::clientTick);
-		MinecraftForge.EVENT_BUS.addListener(this::clicc);
-		MinecraftForge.EVENT_BUS.addListener(this::prece);
+		MinecraftForge.EVENT_BUS.addListener(this::inputMouseButton);
+		MinecraftForge.EVENT_BUS.addListener(this::inputKey);
 		MinecraftForge.EVENT_BUS.addListener(this::screenshot);
 		MinecraftForge.EVENT_BUS.addListener(this::movementInputUpdate);
 		MinecraftForge.EVENT_BUS.addListener(this::renderBlockHighlight);
@@ -164,12 +164,12 @@ public class ForgeZetaClient extends ZetaClient {
 			playBus.fire(new ZEndClientTick());
 	}
 
-	public void clicc(InputEvent.MouseButton e) {
-		playBus.fire(new ForgeZInputEvent.MouseButton(e), ZInputEvent.MouseButton.class);
+	public void inputMouseButton(InputEvent.MouseButton e) {
+		playBus.fire(new ForgeZInput.MouseButton(e), ZInput.MouseButton.class);
 	}
 
-	public void prece(InputEvent.Key e) {
-		playBus.fire(new ForgeZInputEvent.Key(e), ZInputEvent.Key.class);
+	public void inputKey(InputEvent.Key e) {
+		playBus.fire(new ForgeZInput.Key(e), ZInput.Key.class);
 	}
 
 	public void screenshot(ScreenshotEvent e) {

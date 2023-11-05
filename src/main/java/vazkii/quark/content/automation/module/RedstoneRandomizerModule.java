@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.Hint;
 import vazkii.quark.content.automation.block.RedstoneRandomizerBlock;
@@ -15,7 +16,7 @@ import vazkii.zeta.event.bus.LoadEvent;
  * @author WireSegal
  * Created at 10:34 AM on 8/26/19.
  */
-@LoadModule(category = "automation")
+@ZetaLoadModule(category = "automation")
 public class RedstoneRandomizerModule extends ZetaModule {
 
 	@Hint Block redstone_randomizer;

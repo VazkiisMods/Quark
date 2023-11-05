@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZCommonSetup;
@@ -30,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-@LoadModule(category = "automation")
+@ZetaLoadModule(category = "automation")
 public class DispensersPlaceBlocksModule extends ZetaModule {
 
 	@Config public static List<String> blacklist = Lists.newArrayList("minecraft:water", "minecraft:lava", "minecraft:fire");

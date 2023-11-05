@@ -27,6 +27,7 @@ import vazkii.quark.api.QuarkCapabilities;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
+import vazkii.zeta.event.ZLevelTick;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.building.module.SturdyStoneModule;
@@ -69,21 +70,21 @@ public class PistonsMoveTileEntitiesModule extends ZetaModule {
 		staticEnabled = enabled;
 	}
 
-	@SubscribeEvent
-	public void onWorldTick(LevelTickEvent event) {
-		if (!delayedUpdates.containsKey(event.level) || event.phase == Phase.START)
+	@PlayEvent
+	public void onWorldTick(ZLevelTick event) {
+		if (!delayedUpdates.containsKey(event.getLevel()) || event.getPhase() == Phase.START)
 			return;
 
-		List<Pair<BlockPos, CompoundTag>> delays = delayedUpdates.get(event.level);
+		List<Pair<BlockPos, CompoundTag>> delays = delayedUpdates.get(event.getLevel());
 		if (delays.isEmpty())
 			return;
 
 		for (Pair<BlockPos, CompoundTag> delay : delays) {
 			BlockPos pos = delay.getLeft();
-			BlockState state = event.level.getBlockState(pos);
-			BlockEntity entity = loadBlockEntitySafe(event.level, pos, delay.getRight());
+			BlockState state = event.getLevel().getBlockState(pos);
+			BlockEntity entity = loadBlockEntitySafe(event.getLevel(), pos, delay.getRight());
 			callCallback(entity, IPistonCallback::onPistonMovementFinished);
-			event.level.updateNeighbourForOutputSignal(pos, state.getBlock());
+			event.getLevel().updateNeighbourForOutputSignal(pos, state.getBlock());
 		}
 
 		delays.clear();

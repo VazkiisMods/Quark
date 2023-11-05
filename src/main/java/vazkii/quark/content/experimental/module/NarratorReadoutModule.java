@@ -22,7 +22,7 @@ import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
 import vazkii.quark.base.QuarkClient;
 import vazkii.zeta.client.event.ZKeyMapping;
-import vazkii.zeta.event.ZInputEvent;
+import vazkii.zeta.client.event.ZInput;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
@@ -47,7 +47,7 @@ public class NarratorReadoutModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onMouseInput(ZInputEvent.MouseButton event) {
+		public void onMouseInput(ZInput.MouseButton event) {
 			boolean down = isDown(event.getButton(), 0, true, keybind);
 			boolean full = isDown(event.getButton(), 0, true, keybindFull);
 
@@ -55,7 +55,7 @@ public class NarratorReadoutModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onKeyInput(ZInputEvent.Key event) {
+		public void onKeyInput(ZInput.Key event) {
 			boolean down = isDown(event.getKey(), event.getScanCode(), false, keybind);
 			boolean full = isDown(event.getKey(), event.getScanCode(), false, keybindFull);
 

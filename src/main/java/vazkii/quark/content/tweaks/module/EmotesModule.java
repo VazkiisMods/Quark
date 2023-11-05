@@ -38,7 +38,7 @@ import vazkii.zeta.client.event.ZRenderOverlay;
 import vazkii.zeta.client.event.ZRenderTick;
 import vazkii.zeta.client.event.ZScreenInit;
 import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.ZInputEvent;
+import vazkii.zeta.client.event.ZInput;
 import vazkii.zeta.event.ZModulesReady;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
@@ -244,7 +244,7 @@ public class EmotesModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onKeyInput(ZInputEvent.Key event) {
+		public void onKeyInput(ZInput.Key event) {
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.isWindowActive()) {
 				for(KeyMapping key : Client.emoteKeybinds.keySet()) {
