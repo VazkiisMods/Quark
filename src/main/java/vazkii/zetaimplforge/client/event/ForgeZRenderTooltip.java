@@ -26,5 +26,11 @@ public class ForgeZRenderTooltip implements ZRenderTooltip {
         public List<Either<FormattedText, TooltipComponent>> getTooltipElements() {
             return e.getTooltipElements();
         }
+
+        public static class Low extends ForgeZRenderTooltip.GatherComponents implements ZRenderTooltip.GatherComponents.Low {
+            public Low(RenderTooltipEvent.GatherComponents e) {
+                super(e);
+            }
+        }
     }
 }

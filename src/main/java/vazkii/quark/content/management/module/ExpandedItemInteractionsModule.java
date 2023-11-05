@@ -29,36 +29,36 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.network.NetworkHooks;
-import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.ZRegister;
-import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
-import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.SimilarBlockTypeHandler;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.ScrollOnBundleMessage;
 import vazkii.quark.content.management.client.screen.HeldShulkerBoxScreen;
 import vazkii.quark.content.management.inventory.HeldShulkerBoxContainer;
 import vazkii.quark.content.management.inventory.HeldShulkerBoxMenu;
+import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.client.event.ZRenderTooltip;
+import vazkii.zeta.client.event.ZScreen;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.zeta.util.RegistryUtil;
 
 import java.util.List;
@@ -131,39 +131,6 @@ public class ExpandedItemInteractionsModule extends ZetaModule {
 		return enableShulkerBoxInteraction && shulkerOverride(stack, incoming, slot, action, player, true);
 	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onScroll(ScreenEvent.MouseScrolled.Pre event) {
-		if (!allowRotatingBundles)
-			return;
-
-		Minecraft mc = Minecraft.getInstance();
-		Screen gui = mc.screen;
-
-		double scrollDelta = event.getScrollDelta();
-
-		if (mc.player != null && gui instanceof AbstractContainerScreen<?> containerGui) {
-			Slot under = containerGui.getSlotUnderMouse();
-			if (under != null) {
-				ItemStack underStack = under.getItem();
-				if (underStack.is(Items.BUNDLE)) {
-					CompoundTag tag = underStack.getTag();
-					if (tag != null) {
-						ListTag items = tag.getList("Items", Tag.TAG_COMPOUND);
-						if (items.size() > 1) {
-							var menu = containerGui.getMenu();
-							event.setCanceled(true);
-							if (scrollDelta < -0.1 || scrollDelta > 0.1) {
-								rotateBundle(underStack, scrollDelta);
-								QuarkNetwork.sendToServer(new ScrollOnBundleMessage(menu.containerId, menu.getStateId(), under.index, scrollDelta));
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
 	public static void scrollOnBundle(ServerPlayer player, int containerId, int stateId, int slotNum, double scrollDelta) {
 		if (!staticEnabled || !allowRotatingBundles)
 			return;
@@ -217,63 +184,6 @@ public class ExpandedItemInteractionsModule extends ZetaModule {
 			}
 		}
 	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onDrawScreen(ScreenEvent.Render.Post event) {
-		Minecraft mc = Minecraft.getInstance();
-		Screen gui = mc.screen;
-		if (mc.player != null && gui instanceof AbstractContainerScreen<?> containerGui) {
-			ItemStack held = containerGui.getMenu().getCarried();
-			if (!held.isEmpty()) {
-				Slot under = containerGui.getSlotUnderMouse();
-
-				if (under != null) {
-					ItemStack underStack = under.getItem();
-
-					int x = event.getMouseX();
-					int y = event.getMouseY();
-					if (enableLavaInteraction && canTrashItem(underStack, held, under, mc.player)) {
-						gui.renderComponentTooltip(event.getPoseStack(), List.of(Component.translatable("quark.misc.trash_item").withStyle(ChatFormatting.RED)), x, y);
-					} else if (enableShulkerBoxInteraction && tryAddToShulkerBox(mc.player, underStack, held, under, true, true, true) != null) {
-						gui.renderComponentTooltip(event.getPoseStack(), List.of(Component.translatable(
-								SimilarBlockTypeHandler.isShulkerBox(held) ? "quark.misc.merge_shulker_box" : "quark.misc.insert_shulker_box"
-								).withStyle(ChatFormatting.YELLOW)), x, y, underStack);
-					} else if (enableShulkerBoxInteraction && SimilarBlockTypeHandler.isShulkerBox(underStack)) {
-						gui.renderComponentTooltip(event.getPoseStack(), gui.getTooltipFromItem(underStack), x, y, underStack);
-					}
-				}
-
-			}
-		}
-	}
-
-	@SubscribeEvent(priority = EventPriority.LOW)
-	@OnlyIn(Dist.CLIENT)
-	public void gatherTooltip(RenderTooltipEvent.GatherComponents event) {
-		if (!enableArmorInteraction && (!enableShulkerBoxInteraction || !allowOpeningShulkerBoxes))
-			return;
-
-		Minecraft mc = Minecraft.getInstance();
-		Screen gui = mc.screen;
-		if (mc.player != null && gui instanceof AbstractContainerScreen<?> containerGui && containerGui.getMenu().getCarried().isEmpty()) {
-			Slot under = containerGui.getSlotUnderMouse();
-			if (containerGui instanceof CreativeModeInventoryScreen creativeGui && creativeGui.getSelectedTab() != CreativeModeTab.TAB_INVENTORY.getId())
-				return;
-
-			if (under != null) {
-				ItemStack underStack = under.getItem();
-
-				if (event.getItemStack() == underStack)
-					if(enableArmorInteraction && armorOverride(underStack, ItemStack.EMPTY, under, ClickAction.SECONDARY, mc.player, true))
-						event.getTooltipElements().add(Either.left(Component.translatable("quark.misc.equip_armor").withStyle(ChatFormatting.YELLOW)));
-
-					else if(enableShulkerBoxInteraction && canOpenShulkerBox(underStack, ItemStack.EMPTY, under, mc.player))
-						event.getTooltipElements().add(Either.left(Component.translatable("quark.misc.open_shulker").withStyle(ChatFormatting.YELLOW)));
-			}
-		}
-	}
-
 
 	private static boolean armorOverride(ItemStack stack, ItemStack incoming, Slot slot, ClickAction action, Player player, boolean simulate) {
 		if (incoming.isEmpty()) {
@@ -457,4 +367,94 @@ public class ExpandedItemInteractionsModule extends ZetaModule {
 		return null;
 	}
 
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends ExpandedItemInteractionsModule {
+		@PlayEvent
+		public void gatherTooltip(ZRenderTooltip.GatherComponents.Low event) {
+			if (!enableArmorInteraction && (!enableShulkerBoxInteraction || !allowOpeningShulkerBoxes))
+				return;
+
+			Minecraft mc = Minecraft.getInstance();
+			Screen gui = mc.screen;
+			if (mc.player != null && gui instanceof AbstractContainerScreen<?> containerGui && containerGui.getMenu().getCarried().isEmpty()) {
+				Slot under = containerGui.getSlotUnderMouse();
+				if (containerGui instanceof CreativeModeInventoryScreen creativeGui && creativeGui.getSelectedTab() != CreativeModeTab.TAB_INVENTORY.getId())
+					return;
+
+				if (under != null) {
+					ItemStack underStack = under.getItem();
+
+					if (event.getItemStack() == underStack)
+						if(enableArmorInteraction && armorOverride(underStack, ItemStack.EMPTY, under, ClickAction.SECONDARY, mc.player, true))
+							event.getTooltipElements().add(Either.left(Component.translatable("quark.misc.equip_armor").withStyle(ChatFormatting.YELLOW)));
+
+						else if(enableShulkerBoxInteraction && canOpenShulkerBox(underStack, ItemStack.EMPTY, under, mc.player))
+							event.getTooltipElements().add(Either.left(Component.translatable("quark.misc.open_shulker").withStyle(ChatFormatting.YELLOW)));
+				}
+			}
+		}
+
+		@PlayEvent
+		public void onDrawScreen(ZScreen.Render.Post event) {
+			Minecraft mc = Minecraft.getInstance();
+			Screen gui = mc.screen;
+			if (mc.player != null && gui instanceof AbstractContainerScreen<?> containerGui) {
+				ItemStack held = containerGui.getMenu().getCarried();
+				if (!held.isEmpty()) {
+					Slot under = containerGui.getSlotUnderMouse();
+
+					if (under != null) {
+						ItemStack underStack = under.getItem();
+
+						int x = event.getMouseX();
+						int y = event.getMouseY();
+						if (enableLavaInteraction && canTrashItem(underStack, held, under, mc.player)) {
+							gui.renderComponentTooltip(event.getPoseStack(), List.of(Component.translatable("quark.misc.trash_item").withStyle(ChatFormatting.RED)), x, y);
+						} else if (enableShulkerBoxInteraction && tryAddToShulkerBox(mc.player, underStack, held, under, true, true, true) != null) {
+							gui.renderComponentTooltip(event.getPoseStack(), List.of(Component.translatable(
+									SimilarBlockTypeHandler.isShulkerBox(held) ? "quark.misc.merge_shulker_box" : "quark.misc.insert_shulker_box"
+							).withStyle(ChatFormatting.YELLOW)), x, y, underStack);
+						} else if (enableShulkerBoxInteraction && SimilarBlockTypeHandler.isShulkerBox(underStack)) {
+							gui.renderComponentTooltip(event.getPoseStack(), gui.getTooltipFromItem(underStack), x, y, underStack);
+						}
+					}
+
+				}
+			}
+		}
+
+		//fixme
+		//todo
+		@SubscribeEvent
+		public void onScroll(ScreenEvent.MouseScrolled.Pre event) {
+			if (!allowRotatingBundles)
+				return;
+
+			Minecraft mc = Minecraft.getInstance();
+			Screen gui = mc.screen;
+
+			double scrollDelta = event.getScrollDelta();
+
+			if (mc.player != null && gui instanceof AbstractContainerScreen<?> containerGui) {
+				Slot under = containerGui.getSlotUnderMouse();
+				if (under != null) {
+					ItemStack underStack = under.getItem();
+					if (underStack.is(Items.BUNDLE)) {
+						CompoundTag tag = underStack.getTag();
+						if (tag != null) {
+							ListTag items = tag.getList("Items", Tag.TAG_COMPOUND);
+							if (items.size() > 1) {
+								var menu = containerGui.getMenu();
+								event.setCanceled(true);
+								if (scrollDelta < -0.1 || scrollDelta > 0.1) {
+									rotateBundle(underStack, scrollDelta);
+									QuarkNetwork.sendToServer(new ScrollOnBundleMessage(menu.containerId, menu.getStateId(), under.index, scrollDelta));
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

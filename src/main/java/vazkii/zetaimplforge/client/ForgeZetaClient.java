@@ -97,6 +97,8 @@ public class ForgeZetaClient extends ZetaClient {
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, this::renderLivingPreHighest);
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::renderLivingPostLowest);
 		MinecraftForge.EVENT_BUS.addListener(this::renderTooltipGatherComponents);
+		MinecraftForge.EVENT_BUS.addListener(this::renderTooltipGatherComponentsLow);
+		MinecraftForge.EVENT_BUS.addListener(this::screenRenderPost);
 	}
 
 	public void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -281,5 +283,13 @@ public class ForgeZetaClient extends ZetaClient {
 
 	public void renderTooltipGatherComponents(RenderTooltipEvent.GatherComponents e) {
 		playBus.fire(new ForgeZRenderTooltip.GatherComponents(e), ZRenderTooltip.GatherComponents.class);
+	}
+
+	public void renderTooltipGatherComponentsLow(RenderTooltipEvent.GatherComponents e) {
+		playBus.fire(new ForgeZRenderTooltip.GatherComponents.Low(e), ZRenderTooltip.GatherComponents.Low.class);
+	}
+
+	public void screenRenderPost(ScreenEvent.Render.Post e) {
+		playBus.fire(new ForgeZScreen.Render.Post(e), ZScreen.Render.Post.class);
 	}
 }

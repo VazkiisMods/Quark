@@ -14,14 +14,14 @@ public class ContainerScreenMixin {
 			at = @At("STORE"),
 			index = 15)
 	private boolean hasShiftDownClick(boolean curr) {
-		return EasyTransferingModule.hasShiftDown(curr);
+		return EasyTransferingModule.Client.hasShiftDown(curr);
 	}
 	
 	@ModifyVariable(method = "mouseReleased(DDI)Z",
 			at = @At("STORE"),
 			index = 12)
 	private boolean hasShiftDownRelease(boolean curr) {
-		return EasyTransferingModule.hasShiftDown(curr);
+		return EasyTransferingModule.Client.hasShiftDown(curr);
 	}
 	
 }

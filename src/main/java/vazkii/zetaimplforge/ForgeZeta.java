@@ -19,6 +19,7 @@ import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.NoteBlockEvent;
@@ -186,6 +187,7 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::levelTickEnd);
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteract);
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteractEntityInteractSpecific);
+		MinecraftForge.EVENT_BUS.addListener(this::playerDestroyItem);
 	}
 
 	boolean registerDone = false;
@@ -325,6 +327,10 @@ public class ForgeZeta extends Zeta {
 
 	public void playerInteractEntityInteractSpecific(PlayerInteractEvent.EntityInteractSpecific e) {
 		playBus.fire(new ForgeZPlayerInteract.EntityInteractSpecific(e), ZPlayerInteract.EntityInteractSpecific.class);
+	}
+
+	public void playerDestroyItem(PlayerDestroyItemEvent e) {
+		playBus.fire(new ForgeZPlayerDestroyItem(e), ZPlayerDestroyItem.class);
 	}
 
 	public static ZResult from(Event.Result r) {

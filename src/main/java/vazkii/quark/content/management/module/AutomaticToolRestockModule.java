@@ -13,28 +13,27 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
-import vazkii.quark.base.util.InventoryIIH;
 import vazkii.quark.addons.oddities.module.BackpackModule;
 import vazkii.quark.api.event.GatherToolClassesEvent;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.sync.SyncedFlagHandler;
+import vazkii.quark.base.util.InventoryIIH;
 import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZPlayerDestroyItem;
+import vazkii.zeta.event.ZPlayerTick;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.RegistryUtil;
 
 import java.util.*;
 import java.util.function.Predicate;
 
-@LoadModule(category = "management", hasSubscriptions = true, antiOverlap = "inventorytweaks")
+@ZetaLoadModule(category = "management", antiOverlap = "inventorytweaks")
 public class AutomaticToolRestockModule extends ZetaModule {
 
 	private static final Map<ToolAction, String> ACTION_TO_CLASS = new HashMap<>();
@@ -86,8 +85,8 @@ public class AutomaticToolRestockModule extends ZetaModule {
 		itemsToIgnore = RegistryUtil.massRegistryGet(ignoredItems, Registry.ITEM);
 	}
 
-	@SubscribeEvent
-	public void onToolBreak(PlayerDestroyItemEvent event) {
+	@PlayEvent
+	public void onToolBreak(ZPlayerDestroyItem event) {
 		Player player = event.getEntity();
 		ItemStack stack = event.getOriginal();
 		Item item = stack.getItem();
@@ -168,14 +167,14 @@ public class AutomaticToolRestockModule extends ZetaModule {
 		return false;
 	}
 
-	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event) {
-		if(event.phase == Phase.END && !event.player.level.isClientSide && replacements.containsKey(event.player)) {
-			Stack<QueuedRestock> replacementStack = replacements.get(event.player);
+	@PlayEvent
+	public void onPlayerTick(ZPlayerTick.End event) {
+		if(!event.getPlayer().level.isClientSide && replacements.containsKey(event.getPlayer())) {
+			Stack<QueuedRestock> replacementStack = replacements.get(event.getPlayer());
 			synchronized(mutex) {
 				while(!replacementStack.isEmpty()) {
 					QueuedRestock restock = replacementStack.pop();
-					switchItems(event.player, restock);
+					switchItems(event.getPlayer(), restock);
 				}
 			}
 		}

@@ -11,6 +11,6 @@ public class ScreenMixin {
 
 	@ModifyReturnValue(method = "hasShiftDown", at = @At("RETURN"))
 	private static boolean hasShiftDown(boolean prev) {
-		return EasyTransferingModule.hasShiftDown(prev);
+		return EasyTransferingModule.Client.hasShiftDown(prev);
 	}
 }
