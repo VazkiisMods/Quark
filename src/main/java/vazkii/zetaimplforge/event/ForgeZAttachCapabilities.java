@@ -2,7 +2,6 @@ package vazkii.zetaimplforge.event;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import vazkii.zeta.event.ZAttachCapabilities;
 

@@ -20,7 +20,10 @@ public interface ZRenderOverlay extends IZetaPlayEvent {
 		interface Pre extends Chat { }
 		interface Post extends Chat { }
 	}
-	interface Crosshair extends ZRenderOverlay { }
+	interface Crosshair extends ZRenderOverlay {
+		interface Pre extends Crosshair { }
+		interface Post extends Crosshair { }
+	}
 	interface Hotbar extends ZRenderOverlay {
 		interface Pre extends Chat { }
 		interface Post extends Chat { }

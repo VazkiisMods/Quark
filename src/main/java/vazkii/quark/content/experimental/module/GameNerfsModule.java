@@ -1,7 +1,6 @@
 package vazkii.quark.content.experimental.module;
 
 import com.mojang.serialization.Dynamic;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -20,10 +19,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-
 import net.minecraftforge.eventbus.api.Event;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.*;
 import vazkii.zeta.event.bus.LoadEvent;
@@ -37,7 +34,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-@LoadModule(category = "experimental", enabledByDefault = false, hasSubscriptions = true)
+@ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class GameNerfsModule extends ZetaModule {
 
 	private static final String TAG_TRADES_ADJUSTED = "quark:zombie_trades_adjusted";

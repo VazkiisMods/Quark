@@ -180,7 +180,8 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::babyEntitySpawn);
 		MinecraftForge.EVENT_BUS.addListener(this::babyEntitySpawnLowest);
 		MinecraftForge.EVENT_BUS.addListener(this::entityJoinLevel);
-		MinecraftForge.EVENT_BUS.addListener(this::attachCapabilities);
+		//fixme
+		//MinecraftForge.EVENT_BUS.addGenericListener(ForgeZeta.class, this::attachCapabilities);
 		MinecraftForge.EVENT_BUS.addListener(this::levelTickStart);
 		MinecraftForge.EVENT_BUS.addListener(this::levelTickEnd);
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteract);

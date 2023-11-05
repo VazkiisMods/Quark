@@ -8,20 +8,16 @@ import net.minecraft.world.entity.npc.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
-import net.minecraftforge.event.entity.living.LivingConversionEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.event.ZLivingConversion;
-import vazkii.zeta.event.ZLivingTick;
-import vazkii.zeta.event.bus.PlayEvent;
-import vazkii.zeta.module.ZetaLoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.experimental.hax.PseudoAccessorMerchantOffer;
 import vazkii.quark.mixin.accessor.AccessorMerchantOffer;
 import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZLivingConversion;
+import vazkii.zeta.event.ZLivingTick;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 @ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class VillagerRerollingReworkModule extends ZetaModule {

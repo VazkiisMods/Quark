@@ -1,19 +1,9 @@
 package vazkii.quark.content.experimental.client.screen;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import com.google.common.collect.ImmutableSet;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexFormat;
-
+import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -26,7 +16,11 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.lwjgl.opengl.GL11;
 import vazkii.quark.content.experimental.module.VariantSelectorModule;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VariantSelectorScreen extends Screen {
 
@@ -176,7 +170,7 @@ public class VariantSelectorScreen extends Screen {
 			
 			if(slotSelected != -1) {
 				String variant = slotSelected == 0 ? "" : variants.get(slotSelected - 1);
-				VariantSelectorModule.setClientVariant(variant, true);
+				VariantSelectorModule.Client.setClientVariant(variant, true);
 				mc.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
 			}
 		}

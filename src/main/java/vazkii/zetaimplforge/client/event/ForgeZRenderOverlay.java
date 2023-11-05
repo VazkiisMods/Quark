@@ -79,6 +79,18 @@ public class ForgeZRenderOverlay implements ZRenderOverlay {
 		public Crosshair(RenderGuiOverlayEvent e) {
 			super(e);
 		}
+
+		public static class Pre extends ForgeZRenderOverlay.Crosshair implements ZRenderOverlay.Crosshair.Pre {
+			public Pre(RenderGuiOverlayEvent.Pre e) {
+				super(e);
+			}
+		}
+
+		public static class Post extends ForgeZRenderOverlay.Crosshair implements ZRenderOverlay.Crosshair.Post {
+			public Post(RenderGuiOverlayEvent.Post e) {
+				super(e);
+			}
+		}
 	}
 
 	public static class Hotbar extends ForgeZRenderOverlay implements ZRenderOverlay.Hotbar {

@@ -96,6 +96,7 @@ public class ForgeZetaClient extends ZetaClient {
 		MinecraftForge.EVENT_BUS.addListener(this::renderPlayerPost);
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, this::renderLivingPreHighest);
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::renderLivingPostLowest);
+		MinecraftForge.EVENT_BUS.addListener(this::renderTooltipGatherComponents);
 	}
 
 	public void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -247,6 +248,8 @@ public class ForgeZetaClient extends ZetaClient {
 			playBus.fire(new ForgeZRenderOverlay.Chat.Pre(e), ZRenderOverlay.Chat.Pre.class);
 		else if(e.getOverlay() == VanillaGuiOverlay.HOTBAR.type())
 			playBus.fire(new ForgeZRenderOverlay.Hotbar.Pre(e), ZRenderOverlay.Hotbar.Pre.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
+			playBus.fire(new ForgeZRenderOverlay.Crosshair.Pre(e), ZRenderOverlay.Crosshair.Pre.class);
 	}
 
 	public void renderGameOverlayPost(RenderGuiOverlayEvent.Post e) {
@@ -256,6 +259,8 @@ public class ForgeZetaClient extends ZetaClient {
 			playBus.fire(new ForgeZRenderOverlay.Chat.Post(e), ZRenderOverlay.Chat.Post.class);
 		else if(e.getOverlay() == VanillaGuiOverlay.HOTBAR.type())
 			playBus.fire(new ForgeZRenderOverlay.Hotbar.Post(e), ZRenderOverlay.Hotbar.Post.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
+			playBus.fire(new ForgeZRenderOverlay.Crosshair.Post(e), ZRenderOverlay.Crosshair.Post.class);
 	}
 
 	public void renderPlayerPre(RenderPlayerEvent.Pre e) {
@@ -272,5 +277,9 @@ public class ForgeZetaClient extends ZetaClient {
 
 	public void renderLivingPostLowest(RenderLivingEvent.Post<?, ?> e) {
 		playBus.fire(new ForgeZRenderLiving.PostLowest(e), ZRenderLiving.PostLowest.class);
+	}
+
+	public void renderTooltipGatherComponents(RenderTooltipEvent.GatherComponents e) {
+		playBus.fire(new ForgeZRenderTooltip.GatherComponents(e), ZRenderTooltip.GatherComponents.class);
 	}
 }

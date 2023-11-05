@@ -9,12 +9,12 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZAnvilUpdate;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-@LoadModule(category = "experimental", enabledByDefault = false, hasSubscriptions = true)
+@ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class EnchantmentsBegoneModule extends ZetaModule {
 
 	@Config
