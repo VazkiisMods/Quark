@@ -12,27 +12,20 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.client.gui.overlay.NamedGuiOverlay;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
 import vazkii.quark.base.QuarkClient;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.ChangeHotbarMessage;
 import vazkii.zeta.client.event.ZEndClientTick;
 import vazkii.zeta.client.event.ZInput;
 import vazkii.zeta.client.event.ZKeyMapping;
-import vazkii.zeta.client.event.ZRenderOverlay;
+import vazkii.zeta.client.event.ZRenderGuiOverlay;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "management", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@ZetaLoadModule(category = "management")
 public class HotbarChangerModule extends ZetaModule {
 	private static final ResourceLocation WIDGETS = new ResourceLocation("textures/gui/widget.png");
 
@@ -66,24 +59,35 @@ public class HotbarChangerModule extends ZetaModule {
 		}
 
 		//fixme Needs splitting up
-		@SubscribeEvent
-		@OnlyIn(Dist.CLIENT)
-		public void hudPre(RenderGuiOverlayEvent.Pre event) {
+		@PlayEvent
+		public void hudHeathPre(ZRenderGuiOverlay.PlayerHealth.Pre event) {
 			float shift = -getRealHeight(event.getPartialTick()) + 22;
-			if(shift < 0) {
-				NamedGuiOverlay overlay = event.getOverlay();
-				if(overlay == VanillaGuiOverlay.PLAYER_HEALTH.type()) {
-					event.getPoseStack().translate(0, shift, 0);
-					shifting = true;
-				} else if(shifting && (overlay == VanillaGuiOverlay.DEBUG_TEXT.type() || overlay == VanillaGuiOverlay.POTION_ICONS.type())) {
-					event.getPoseStack().translate(0, -shift, 0);
-					shifting = false;
-				}
+			if (shift < 0) {
+				event.getPoseStack().translate(0, shift, 0);
+				shifting = true;
 			}
 		}
 
 		@PlayEvent
-		public void hudPost(ZRenderOverlay.Hotbar.Post event) {
+		public void hudDebugTextPre(ZRenderGuiOverlay.DebugText.Pre event) {
+			hudOverlay(event);
+		}
+
+		@PlayEvent
+		public void hudPotionIconsPre(ZRenderGuiOverlay.PotionIcons.Pre event) {
+			hudOverlay(event);
+		}
+
+		public void hudOverlay(ZRenderGuiOverlay event) {
+			float shift = -getRealHeight(event.getPartialTick()) + 22;
+			if (shifting) {
+				event.getPoseStack().translate(0, -shift, 0);
+				shifting = false;
+			}
+		}
+
+		@PlayEvent
+		public void hudPost(ZRenderGuiOverlay.Hotbar.Post event) {
 			if(height <= 0)
 				return;
 

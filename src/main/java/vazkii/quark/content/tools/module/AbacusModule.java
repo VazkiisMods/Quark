@@ -27,7 +27,7 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.inputtable.RGBAColorConfig;
 import vazkii.zeta.util.Hint;
 import vazkii.quark.content.tools.item.AbacusItem;
-import vazkii.zeta.client.event.ZRenderOverlay;
+import vazkii.zeta.client.event.ZRenderGuiOverlay;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
@@ -57,7 +57,7 @@ public class AbacusModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onHUDRender(ZRenderOverlay.Crosshair event) {
+		public void onHUDRender(ZRenderGuiOverlay.Crosshair event) {
 			Minecraft mc = Minecraft.getInstance();
 			Player player = mc.player;
 			if(player != null) {

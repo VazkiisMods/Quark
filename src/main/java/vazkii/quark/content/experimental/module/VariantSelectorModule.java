@@ -275,7 +275,7 @@ public class VariantSelectorModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void onRender(ZRenderOverlay.Crosshair.Pre event) {
+		public void onRender(ZRenderGuiOverlay.Crosshair.Pre event) {
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.screen instanceof VariantSelectorScreen || !showHud)
 				return;

@@ -11,7 +11,7 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.world.entity.player.Player;
 import vazkii.quark.base.QuarkClient;
 import vazkii.zeta.client.event.ZInputUpdate;
-import vazkii.zeta.client.event.ZRenderOverlay;
+import vazkii.zeta.client.event.ZRenderGuiOverlay;
 import vazkii.zeta.client.event.ZInput;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
@@ -51,7 +51,7 @@ public class AutoWalkKeybindModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void drawHUD(ZRenderOverlay.Hotbar event) {
+		public void drawHUD(ZRenderGuiOverlay.Hotbar event) {
 			if(drawHud && autorunning) {
 				String message = I18n.get("quark.misc.autowalking");
 

@@ -13,7 +13,7 @@ import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.enchantment.Enchantments;
 import vazkii.quark.api.IUsageTickerOverride;
 import vazkii.quark.base.Quark;
-import vazkii.zeta.client.event.ZRenderOverlay;
+import vazkii.zeta.client.event.ZRenderGuiOverlay;
 import vazkii.zeta.client.event.ZStartClientTick;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
@@ -70,7 +70,7 @@ public class UsageTickerModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void renderHUD(ZRenderOverlay.Hotbar.Post event) {
+		public void renderHUD(ZRenderGuiOverlay.Hotbar.Post event) {
 			Window window = event.getWindow();
 			Player player = Minecraft.getInstance().player;
 			float partial = event.getPartialTick();

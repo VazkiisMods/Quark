@@ -32,7 +32,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.RayTraceHandler;
 import vazkii.zeta.client.event.ZEndClientTick;
-import vazkii.zeta.client.event.ZRenderOverlay;
+import vazkii.zeta.client.event.ZRenderGuiOverlay;
 import vazkii.zeta.event.ZRightClickItem;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
@@ -189,7 +189,7 @@ public class ReacharoundPlacingModule extends ZetaModule {
 	public static class Client extends ReacharoundPlacingModule {
 
 		@PlayEvent
-		public void onRender(ZRenderOverlay.Crosshair event) {
+		public void onRender(ZRenderGuiOverlay.Crosshair event) {
 
 			Minecraft mc = Minecraft.getInstance();
 			Player player = mc.player;

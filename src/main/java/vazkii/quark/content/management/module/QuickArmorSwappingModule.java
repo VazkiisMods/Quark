@@ -7,19 +7,19 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZPlayerInteract;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "management", hasSubscriptions = true)
+@ZetaLoadModule(category = "management")
 public class QuickArmorSwappingModule extends ZetaModule {
 
 	@Config public static boolean swapOffHand = true;
 
-	@SubscribeEvent
-	public void onEntityInteractSpecific(PlayerInteractEvent.EntityInteractSpecific event) {
+	@PlayEvent
+	public void onEntityInteractSpecific(ZPlayerInteract.EntityInteractSpecific event) {
 		Player player = event.getEntity();
 
 		if(player.isSpectator() || player.getAbilities().instabuild || !(event.getTarget() instanceof ArmorStand armorStand))

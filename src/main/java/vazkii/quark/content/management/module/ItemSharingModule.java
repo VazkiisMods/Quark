@@ -10,7 +10,7 @@
  */
 package vazkii.quark.content.management.module;
 
-import com.mojang.blaze3d.platform.InputConstants.Type;
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.SharedConstants;
@@ -27,26 +27,23 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.client.event.ScreenEvent.KeyPressed;
-import net.minecraftforge.client.event.ScreenEvent.MouseButtonPressed;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.ShareItemMessage;
 import vazkii.quark.mixin.accessor.AccessorServerGamePacketListenerImpl;
 import vazkii.quark.mixin.client.accessor.AccessorLocalPlayer;
+import vazkii.zeta.client.event.ZScreen;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 import java.time.Instant;
 import java.util.List;
 
-@LoadModule(category = "management", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@ZetaLoadModule(category = "management")
 public class ItemSharingModule extends ZetaModule {
 
 	@Config
@@ -55,51 +52,10 @@ public class ItemSharingModule extends ZetaModule {
 	//global variable to apply 5 sec cooldown
 	private static long lastShareTimestamp = -1;
 
-	@OnlyIn(Dist.CLIENT)
-	public static void renderItemForMessage(PoseStack poseStack, FormattedCharSequence sequence, float x, float y, int color) {
-		if (!ModuleLoader.INSTANCE.isModuleEnabled(ItemSharingModule.class) || !renderItemsInChat)
-			return;
+	// used in a mixin because rendering overrides are cursed by necessity hahayes
+	public static float alphaValue = 1F;
 
-		Minecraft mc = Minecraft.getInstance();
-
-		StringBuilder before = new StringBuilder();
-
-		int halfSpace = mc.font.width(" ") / 2;
-
-		sequence.accept((counter_, style, character) -> {
-			String sofar = before.toString();
-			if (sofar.endsWith("   ")) {
-				render(mc, poseStack, sofar.substring(0, sofar.length() - 2), character == ' ' ? 0 : -halfSpace, x, y, style, color);
-				return false;
-			}
-			before.append((char) character);
-			return true;
-		});
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onKeyInput(KeyPressed.Pre event) {
-		KeyMapping key = getChatKey();
-		if(key.getKey().getType() == Type.KEYSYM && event.getKeyCode() == key.getKey().getValue())
-			event.setCanceled(clicc());
-
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onMouseInput(MouseButtonPressed.Post event) {
-		KeyMapping key = getChatKey();
-		int btn = event.getButton();
-		if(key.getKey().getType() == Type.MOUSE && btn != GLFW.GLFW_MOUSE_BUTTON_LEFT && btn == key.getKey().getValue())
-			event.setCanceled(clicc());
-	}
-
-	private KeyMapping getChatKey() {
-		return Minecraft.getInstance().options.keyChat;
-	}
-
-	public boolean clicc() {
+	public boolean click() {
 		Minecraft mc = Minecraft.getInstance();
 		Screen screen = mc.screen;
 
@@ -174,43 +130,82 @@ public class ItemSharingModule extends ZetaModule {
 		return out.append(component);
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	private static void render(Minecraft mc, PoseStack pose, String before, float extraShift, float x, float y, Style style, int color) {
-		float a = (color >> 24 & 255) / 255.0F;
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends ItemSharingModule {
+		public static void renderItemForMessage(PoseStack poseStack, FormattedCharSequence sequence, float x, float y, int color) {
+			if (!ModuleLoader.INSTANCE.isModuleEnabled(ItemSharingModule.class) || !renderItemsInChat)
+				return;
 
-		HoverEvent hoverEvent = style.getHoverEvent();
-		if (hoverEvent != null && hoverEvent.getAction() == HoverEvent.Action.SHOW_ITEM) {
-			HoverEvent.ItemStackInfo contents = hoverEvent.getValue(HoverEvent.Action.SHOW_ITEM);
+			Minecraft mc = Minecraft.getInstance();
 
-			ItemStack stack = contents != null ? contents.getItemStack() : ItemStack.EMPTY;
+			StringBuilder before = new StringBuilder();
 
-			if (stack.isEmpty())
-				stack = new ItemStack(Blocks.BARRIER); // for invalid icon
+			int halfSpace = mc.font.width(" ") / 2;
 
-			float shift = mc.font.width(before) + extraShift;
+			sequence.accept((counter_, style, character) -> {
+				String sofar = before.toString();
+				if (sofar.endsWith("   ")) {
+					render(mc, poseStack, sofar.substring(0, sofar.length() - 2), character == ' ' ? 0 : -halfSpace, x, y, style, color);
+					return false;
+				}
+				before.append((char) character);
+				return true;
+			});
+		}
 
-			if (a > 0) {
-				alphaValue = a;
+		@PlayEvent
+		public void onKeyInput(ZScreen.KeyPressed.Pre event) {
+			KeyMapping key = getChatKey();
+			if(key.getKey().getType() == InputConstants.Type.KEYSYM && event.getKeyCode() == key.getKey().getValue())
+				event.setCanceled(click());
 
-				PoseStack poseStack = RenderSystem.getModelViewStack();
+		}
 
-				poseStack.pushPose();
+		@PlayEvent
+		public void onMouseInput(ZScreen.MouseButtonPressed.Post event) {
+			KeyMapping key = getChatKey();
+			int btn = event.getButton();
+			if(key.getKey().getType() == InputConstants.Type.MOUSE && btn != GLFW.GLFW_MOUSE_BUTTON_LEFT && btn == key.getKey().getValue())
+				event.setCanceled(click());
+		}
 
-				poseStack.mulPoseMatrix(pose.last().pose());
+		private static void render(Minecraft mc, PoseStack pose, String before, float extraShift, float x, float y, Style style, int color) {
+			float a = (color >> 24 & 255) / 255.0F;
 
-				poseStack.translate(shift + x, y, 0);
-				poseStack.scale(0.5f, 0.5f, 0.5f);
-				mc.getItemRenderer().renderGuiItem(stack, 0, 0);
-				poseStack.popPose();
+			HoverEvent hoverEvent = style.getHoverEvent();
+			if (hoverEvent != null && hoverEvent.getAction() == HoverEvent.Action.SHOW_ITEM) {
+				HoverEvent.ItemStackInfo contents = hoverEvent.getValue(HoverEvent.Action.SHOW_ITEM);
 
-				RenderSystem.applyModelViewMatrix();
+				ItemStack stack = contents != null ? contents.getItemStack() : ItemStack.EMPTY;
 
-				alphaValue = 1F;
+				if (stack.isEmpty())
+					stack = new ItemStack(Blocks.BARRIER); // for invalid icon
+
+				float shift = mc.font.width(before) + extraShift;
+
+				if (a > 0) {
+					alphaValue = a;
+
+					PoseStack poseStack = RenderSystem.getModelViewStack();
+
+					poseStack.pushPose();
+
+					poseStack.mulPoseMatrix(pose.last().pose());
+
+					poseStack.translate(shift + x, y, 0);
+					poseStack.scale(0.5f, 0.5f, 0.5f);
+					mc.getItemRenderer().renderGuiItem(stack, 0, 0);
+					poseStack.popPose();
+
+					RenderSystem.applyModelViewMatrix();
+
+					alphaValue = 1F;
+				}
 			}
 		}
+
+		private KeyMapping getChatKey() {
+			return Minecraft.getInstance().options.keyChat;
+		}
 	}
-
-
-	// used in a mixin because rendering overrides are cursed by necessity hahayes
-	public static float alphaValue = 1F;
 }

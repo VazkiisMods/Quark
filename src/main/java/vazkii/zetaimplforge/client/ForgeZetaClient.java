@@ -82,8 +82,8 @@ public class ForgeZetaClient extends ZetaClient {
 		MinecraftForge.EVENT_BUS.addListener(this::renderContainerScreenBackground);
 
 		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlayNeitherPreNorPost);
-		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlayPre);
-		MinecraftForge.EVENT_BUS.addListener(this::renderGameOverlayPost);
+		MinecraftForge.EVENT_BUS.addListener(this::renderGuiOverlayPre);
+		MinecraftForge.EVENT_BUS.addListener(this::renderGuiOverlayPost);
 		MinecraftForge.EVENT_BUS.addListener(this::renderPlayerPre);
 		MinecraftForge.EVENT_BUS.addListener(this::renderPlayerPost);
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, this::renderLivingPreHighest);
@@ -210,31 +210,43 @@ public class ForgeZetaClient extends ZetaClient {
 	//TODO: This probably should have been a PRE/POST event (just copying quark here)
 	public void renderGameOverlayNeitherPreNorPost(RenderGuiOverlayEvent e) {
 		if(e.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
-			playBus.fire(new ForgeZRenderOverlay.Crosshair(e), ZRenderOverlay.Crosshair.class);
+			playBus.fire(new ForgeZRenderGuiOverlay.Crosshair(e), ZRenderGuiOverlay.Crosshair.class);
 		else if(e.getOverlay() == VanillaGuiOverlay.HOTBAR.type())
-			playBus.fire(new ForgeZRenderOverlay.Hotbar(e), ZRenderOverlay.Hotbar.class);
+			playBus.fire(new ForgeZRenderGuiOverlay.Hotbar(e), ZRenderGuiOverlay.Hotbar.class);
 	}
 
-	public void renderGameOverlayPre(RenderGuiOverlayEvent.Pre e) {
-		if(e.getOverlay() == VanillaGuiOverlay.ARMOR_LEVEL.type())
-			playBus.fire(new ForgeZRenderOverlay.ArmorLevel.Pre(e), ZRenderOverlay.ArmorLevel.Pre.class);
-		else if(e.getOverlay() == VanillaGuiOverlay.CHAT_PANEL.type())
-			playBus.fire(new ForgeZRenderOverlay.Chat.Pre(e), ZRenderOverlay.Chat.Pre.class);
-		else if(e.getOverlay() == VanillaGuiOverlay.HOTBAR.type())
-			playBus.fire(new ForgeZRenderOverlay.Hotbar.Pre(e), ZRenderOverlay.Hotbar.Pre.class);
+	public void renderGuiOverlayPre(RenderGuiOverlayEvent.Pre e) {
+		if (e.getOverlay() == VanillaGuiOverlay.HOTBAR.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.Hotbar.Pre(e), ZRenderGuiOverlay.Hotbar.Pre.class);
 		else if (e.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
-			playBus.fire(new ForgeZRenderOverlay.Crosshair.Pre(e), ZRenderOverlay.Crosshair.Pre.class);
+			playBus.fire(new ForgeZRenderGuiOverlay.Crosshair.Pre(e), ZRenderGuiOverlay.Crosshair.Pre.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.PLAYER_HEALTH.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.PlayerHealth.Pre(e), ZRenderGuiOverlay.PlayerHealth.Pre.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.ARMOR_LEVEL.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.ArmorLevel.Pre(e), ZRenderGuiOverlay.ArmorLevel.Pre.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.DEBUG_TEXT.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.DebugText.Pre(e), ZRenderGuiOverlay.DebugText.Pre.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.POTION_ICONS.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.PotionIcons.Pre(e), ZRenderGuiOverlay.PotionIcons.Pre.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.CHAT_PANEL.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.ChatPanel.Pre(e), ZRenderGuiOverlay.ChatPanel.Pre.class);
 	}
 
-	public void renderGameOverlayPost(RenderGuiOverlayEvent.Post e) {
-		if(e.getOverlay() == VanillaGuiOverlay.ARMOR_LEVEL.type())
-			playBus.fire(new ForgeZRenderOverlay.ArmorLevel.Post(e), ZRenderOverlay.ArmorLevel.Post.class);
-		else if(e.getOverlay() == VanillaGuiOverlay.CHAT_PANEL.type())
-			playBus.fire(new ForgeZRenderOverlay.Chat.Post(e), ZRenderOverlay.Chat.Post.class);
-		else if(e.getOverlay() == VanillaGuiOverlay.HOTBAR.type())
-			playBus.fire(new ForgeZRenderOverlay.Hotbar.Post(e), ZRenderOverlay.Hotbar.Post.class);
+	public void renderGuiOverlayPost(RenderGuiOverlayEvent.Post e) {
+		if (e.getOverlay() == VanillaGuiOverlay.HOTBAR.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.Hotbar.Post(e), ZRenderGuiOverlay.Hotbar.Post.class);
 		else if (e.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
-			playBus.fire(new ForgeZRenderOverlay.Crosshair.Post(e), ZRenderOverlay.Crosshair.Post.class);
+			playBus.fire(new ForgeZRenderGuiOverlay.Crosshair.Post(e), ZRenderGuiOverlay.Crosshair.Post.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.PLAYER_HEALTH.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.PlayerHealth.Post(e), ZRenderGuiOverlay.PlayerHealth.Post.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.ARMOR_LEVEL.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.ArmorLevel.Post(e), ZRenderGuiOverlay.ArmorLevel.Post.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.DEBUG_TEXT.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.DebugText.Post(e), ZRenderGuiOverlay.DebugText.Post.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.POTION_ICONS.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.PotionIcons.Post(e), ZRenderGuiOverlay.PotionIcons.Post.class);
+		else if (e.getOverlay() == VanillaGuiOverlay.CHAT_PANEL.type())
+			playBus.fire(new ForgeZRenderGuiOverlay.ChatPanel.Post(e), ZRenderGuiOverlay.ChatPanel.Post.class);
 	}
 
 	public void renderPlayerPre(RenderPlayerEvent.Pre e) {

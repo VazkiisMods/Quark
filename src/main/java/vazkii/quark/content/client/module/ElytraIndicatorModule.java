@@ -10,7 +10,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import vazkii.quark.base.handler.MiscUtil;
-import vazkii.zeta.client.event.ZRenderOverlay;
+import vazkii.zeta.client.event.ZRenderGuiOverlay;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
@@ -28,7 +28,7 @@ public class ElytraIndicatorModule extends ZetaModule {
 		private int shift = 0;
 
 		@PlayEvent
-		public void hudPre(ZRenderOverlay.ArmorLevel.Pre event) {
+		public void hudPre(ZRenderGuiOverlay.ArmorLevel.Pre event) {
 			if(!event.shouldDrawSurvivalElements())
 				return;
 
@@ -59,7 +59,7 @@ public class ElytraIndicatorModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void hudPost(ZRenderOverlay.ArmorLevel.Post event) {
+		public void hudPost(ZRenderGuiOverlay.ArmorLevel.Post event) {
 			if(shift != 0) {
 				event.getPoseStack().translate(-shift, 0, 0);
 				shift = 0;

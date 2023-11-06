@@ -241,7 +241,7 @@ public class EmotesModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void drawCrosshair(ZRenderOverlay.Crosshair event) {
+		public void drawCrosshair(ZRenderGuiOverlay.Crosshair event) {
 			Minecraft mc = Minecraft.getInstance();
 			Window res = event.getWindow();
 			PoseStack stack = event.getPoseStack();
