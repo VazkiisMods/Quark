@@ -10,5 +10,5 @@ public interface ZAnvilUpdate extends IZetaPlayEvent {
     void setOutput(ItemStack output);
     void setCost(int cost);
 
-    interface Lowest extends IZetaPlayEvent, ZAnvilUpdate { }
+    interface Lowest extends ZAnvilUpdate { }
 }

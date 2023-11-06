@@ -13,6 +13,6 @@ public interface ZRenderTooltip extends IZetaPlayEvent {
         ItemStack getItemStack();
         List<Either<FormattedText, TooltipComponent>> getTooltipElements();
 
-        interface Low extends IZetaPlayEvent, GatherComponents, ZRenderTooltip { }
+        interface Low extends GatherComponents { }
     }
 }

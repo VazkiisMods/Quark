@@ -97,6 +97,8 @@ public class ForgeZetaClient extends ZetaClient {
 		MinecraftForge.EVENT_BUS.addListener(this::screenRenderPost);
 		MinecraftForge.EVENT_BUS.addListener(this::screenMouseButtonPressedPre);
 		MinecraftForge.EVENT_BUS.addListener(this::screenMouseButtonPressedPost);
+		MinecraftForge.EVENT_BUS.addListener(this::screenMouseScrolledPre);
+		MinecraftForge.EVENT_BUS.addListener(this::screenMouseScrolledPost);
 		MinecraftForge.EVENT_BUS.addListener(this::screenKeyPressedPre);
 		MinecraftForge.EVENT_BUS.addListener(this::screenKeyPressedPost);
 		MinecraftForge.EVENT_BUS.addListener(this::screenCharacterTypedPre);
@@ -281,6 +283,14 @@ public class ForgeZetaClient extends ZetaClient {
 
 	public void screenMouseButtonPressedPost(ScreenEvent.MouseButtonPressed.Post e) {
 		playBus.fire(new ForgeZScreen.MouseButtonPressed.Post(e), ZScreen.MouseButtonPressed.Post.class);
+	}
+
+	public void screenMouseScrolledPre(ScreenEvent.MouseScrolled.Pre e) {
+		playBus.fire(new ForgeZScreen.MouseScrolled.Pre(e), ZScreen.MouseScrolled.Pre.class);
+	}
+
+	public void screenMouseScrolledPost(ScreenEvent.MouseScrolled.Post e) {
+		playBus.fire(new ForgeZScreen.MouseScrolled.Post(e), ZScreen.MouseScrolled.Post.class);
 	}
 
 	public void screenKeyPressedPre(ScreenEvent.KeyPressed.Pre e) {

@@ -8,5 +8,5 @@ public interface ZBabyEntitySpawn extends IZetaPlayEvent {
     Mob getParentA();
     Player getCausedByPlayer();
 
-    interface Lowest extends IZetaPlayEvent, ZBabyEntitySpawn { }
+    interface Lowest extends ZBabyEntitySpawn { }
 }

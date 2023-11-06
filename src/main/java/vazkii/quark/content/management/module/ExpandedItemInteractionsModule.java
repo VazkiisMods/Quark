@@ -29,11 +29,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
@@ -41,7 +39,6 @@ import net.minecraftforge.network.NetworkHooks;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.SimilarBlockTypeHandler;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.ScrollOnBundleMessage;
@@ -63,7 +60,7 @@ import vazkii.zeta.util.RegistryUtil;
 
 import java.util.List;
 
-@LoadModule(category = "management", hasSubscriptions = true)
+@ZetaLoadModule(category = "management")
 public class ExpandedItemInteractionsModule extends ZetaModule {
 
 	@Config
@@ -423,10 +420,8 @@ public class ExpandedItemInteractionsModule extends ZetaModule {
 			}
 		}
 
-		//fixme
-		//todo
-		@SubscribeEvent
-		public void onScroll(ScreenEvent.MouseScrolled.Pre event) {
+		@PlayEvent
+		public void onScroll(ZScreen.MouseScrolled.Pre event) {
 			if (!allowRotatingBundles)
 				return;
 

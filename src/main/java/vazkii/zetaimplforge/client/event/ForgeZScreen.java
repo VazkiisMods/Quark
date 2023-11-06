@@ -138,6 +138,42 @@ public class ForgeZScreen implements ZScreen {
         }
     }
 
+    public static class MouseScrolled extends ForgeZScreen implements ZScreen.MouseScrolled {
+        private final ScreenEvent.MouseScrolled e;
+
+        public MouseScrolled(ScreenEvent.MouseScrolled e) {
+            super(e);
+            this.e = e;
+        }
+
+        @Override
+        public double getScrollDelta() {
+            return e.getScrollDelta();
+        }
+
+        @Override
+        public boolean isCanceled() {
+            return e.isCanceled();
+        }
+
+        @Override
+        public void setCanceled(boolean cancel) {
+            e.setCanceled(cancel);
+        }
+
+        public static class Pre extends ForgeZScreen.MouseScrolled implements ZScreen.MouseScrolled.Pre {
+            public Pre(ScreenEvent.MouseScrolled.Pre e) {
+                super(e);
+            }
+        }
+
+        public static class Post extends ForgeZScreen.MouseScrolled implements ZScreen.MouseScrolled.Post {
+            public Post(ScreenEvent.MouseScrolled.Post e) {
+                super(e);
+            }
+        }
+    }
+
     public static class KeyPressed extends ForgeZScreen implements ZScreen.KeyPressed {
         private final ScreenEvent.KeyPressed e;
 

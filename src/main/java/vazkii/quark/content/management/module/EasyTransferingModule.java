@@ -2,8 +2,6 @@ package vazkii.quark.content.management.module;
 
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.client.handler.InventoryButtonHandler;
 import vazkii.quark.base.client.handler.InventoryButtonHandler.ButtonTargetType;
 import vazkii.quark.base.module.config.Config;
@@ -25,7 +23,6 @@ public class EasyTransferingModule extends ZetaModule {
 	@ZetaLoadModule(clientReplacement = true)
 	public static class Client extends EasyTransferingModule {
 		@LoadEvent
-		@OnlyIn(Dist.CLIENT)
 		public void registerKeybinds(ZKeyMapping event) {
 			addButton(event, 1, "insert", false);
 			addButton(event, 2, "extract", true);
@@ -39,7 +36,6 @@ public class EasyTransferingModule extends ZetaModule {
 					() -> enableShiftLock);
 		}
 
-		@OnlyIn(Dist.CLIENT)
 		private void addButton(ZKeyMapping event, int priority, String name, boolean restock) {
 			InventoryButtonHandler.addButtonProvider(event, this, ButtonTargetType.CONTAINER_PLAYER_INVENTORY, priority,
 					"quark.keybind.transfer_" + name,

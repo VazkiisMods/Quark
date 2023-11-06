@@ -1,11 +1,8 @@
 package vazkii.quark.content.management.module;
 
-import org.lwjgl.opengl.GL11;
-
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -17,27 +14,26 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.NamedGuiOverlay;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.event.TickEvent.ClientTickEvent;
-import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.lwjgl.opengl.GL11;
 import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.ChangeHotbarMessage;
-import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.client.event.ZEndClientTick;
+import vazkii.zeta.client.event.ZInput;
 import vazkii.zeta.client.event.ZKeyMapping;
+import vazkii.zeta.client.event.ZRenderOverlay;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 @LoadModule(category = "management", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class HotbarChangerModule extends ZetaModule {
-
-	@OnlyIn(Dist.CLIENT)
-	private static KeyMapping changeHotbarKey;
-
 	private static final ResourceLocation WIDGETS = new ResourceLocation("textures/gui/widget.png");
 
 	private static final int ANIMATION_TIME = 10;
@@ -50,77 +46,51 @@ public class HotbarChangerModule extends ZetaModule {
 	public static boolean keyDown;
 	public static boolean hotbarChangeOpen, shifting;
 
-	@LoadEvent
-	public void registerKeybinds(ZKeyMapping event) {
-		changeHotbarKey = event.init("quark.keybind.change_hotbar", "z", QuarkClient.MISC_GROUP);
-	}
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends HotbarChangerModule {
+		private static KeyMapping changeHotbarKey;
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onMouseInput(InputEvent.MouseButton event) {
-		acceptInput(-1);
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onKeyInput(InputEvent.Key event) {
-		acceptInput(event.getKey());
-	}
-
-	private void acceptInput(int currInput) {
-		Minecraft mc = Minecraft.getInstance();
-		boolean down = changeHotbarKey.isDown();
-		boolean wasDown = keyDown;
-		keyDown = down;
-		if(mc.isWindowActive()) {
-			if(down && !wasDown)
-				hotbarChangeOpen = !hotbarChangeOpen;
-			else if(hotbarChangeOpen)
-				for(int i = 0; i < 3; i++)
-					if(isKeyDownOrFallback(mc.options.keyHotbarSlots[i], 49 + i, currInput)) {
-						QuarkNetwork.sendToServer(new ChangeHotbarMessage(i + 1));
-						hotbarChangeOpen = false;
-						currentHeldItem = mc.player.getInventory().selected;
-						return;
-					}
-
+		@LoadEvent
+		public void registerKeybinds(ZKeyMapping event) {
+			changeHotbarKey = event.init("quark.keybind.change_hotbar", "z", QuarkClient.MISC_GROUP);
 		}
-	}
-	
-	private boolean isKeyDownOrFallback(KeyMapping key, int input, int currInput) {
-		if(key.isUnbound())
-			return currInput != -1 && input == currInput;
-		
-		return key.isDown();
-	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void hudPre(RenderGuiOverlayEvent.Pre event) {
-		float shift = -getRealHeight(event.getPartialTick()) + 22;
-		if(shift < 0) {
-			NamedGuiOverlay overlay = event.getOverlay();
-			if(overlay == VanillaGuiOverlay.PLAYER_HEALTH.type()) {
-				event.getPoseStack().translate(0, shift, 0);
-				shifting = true;
-			} else if(shifting && (overlay == VanillaGuiOverlay.DEBUG_TEXT.type() || overlay == VanillaGuiOverlay.POTION_ICONS.type())) {
-				event.getPoseStack().translate(0, -shift, 0);
-				shifting = false;
+		@PlayEvent
+		public void onMouseInput(ZInput.MouseButton event) {
+			acceptInput(-1);
+		}
+
+		@PlayEvent
+		public void onKeyInput(ZInput.Key event) {
+			acceptInput(event.getKey());
+		}
+
+		//fixme Needs splitting up
+		@SubscribeEvent
+		@OnlyIn(Dist.CLIENT)
+		public void hudPre(RenderGuiOverlayEvent.Pre event) {
+			float shift = -getRealHeight(event.getPartialTick()) + 22;
+			if(shift < 0) {
+				NamedGuiOverlay overlay = event.getOverlay();
+				if(overlay == VanillaGuiOverlay.PLAYER_HEALTH.type()) {
+					event.getPoseStack().translate(0, shift, 0);
+					shifting = true;
+				} else if(shifting && (overlay == VanillaGuiOverlay.DEBUG_TEXT.type() || overlay == VanillaGuiOverlay.POTION_ICONS.type())) {
+					event.getPoseStack().translate(0, -shift, 0);
+					shifting = false;
+				}
 			}
 		}
-	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void hudPost(RenderGuiOverlayEvent.Post event) {
-		if(height <= 0)
-			return;
+		@PlayEvent
+		public void hudPost(ZRenderOverlay.Hotbar.Post event) {
+			if(height <= 0)
+				return;
 
-		Minecraft mc = Minecraft.getInstance();
-		Player player = mc.player;
-		PoseStack matrix = event.getPoseStack();
+			Minecraft mc = Minecraft.getInstance();
+			Player player = mc.player;
+			PoseStack matrix = event.getPoseStack();
 
-		if(event.getOverlay() == VanillaGuiOverlay.HOTBAR.type()) {
 			Window res = event.getWindow();
 			float realHeight = getRealHeight(event.getPartialTick());
 			float xStart = res.getGuiScaledWidth() / 2f - 91;
@@ -149,9 +119,9 @@ public class HotbarChangerModule extends ZetaModule {
 				if(!key.isUnbound()) {
 					draw = key.getTranslatedKeyMessage().getString();
 				}
-				
+
 				draw = ChatFormatting.BOLD + draw;
-				
+
 				mc.font.drawShadow(matrix, draw, xStart - mc.font.width(draw) - 2, yStart + i * 21 + 7, 0xFFFFFF);
 			}
 
@@ -164,37 +134,60 @@ public class HotbarChangerModule extends ZetaModule {
 				render.renderGuiItemDecorations(mc.font, invStack, x, y);
 			}
 		}
-	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onTick(ClientTickEvent event) {
-		if(event.phase == Phase.END) {
+		@PlayEvent
+		public void onTick(ZEndClientTick event) {
 			Player player = Minecraft.getInstance().player;
-			
+
 			if(player != null) {
 				Inventory inventory = player.getInventory();
 
 				if(currentHeldItem != -1 && inventory.selected != currentHeldItem) {
 					inventory.selected = currentHeldItem;
-					currentHeldItem = -1;	
+					currentHeldItem = -1;
 				}
 			}
-		} 
 
-		if(hotbarChangeOpen && height < MAX_HEIGHT) {
-			height += ANIM_PER_TICK;
-			animating = true;
-		} else if(!hotbarChangeOpen && height > 0) {
-			height -= ANIM_PER_TICK;
-			animating = true;
-		} else animating = false;
+			if(hotbarChangeOpen && height < MAX_HEIGHT) {
+				height += ANIM_PER_TICK;
+				animating = true;
+			} else if(!hotbarChangeOpen && height > 0) {
+				height -= ANIM_PER_TICK;
+				animating = true;
+			} else animating = false;
+		}
+
+		private void acceptInput(int currInput) {
+			Minecraft mc = Minecraft.getInstance();
+			boolean down = changeHotbarKey.isDown();
+			boolean wasDown = keyDown;
+			keyDown = down;
+			if(mc.isWindowActive()) {
+				if(down && !wasDown)
+					hotbarChangeOpen = !hotbarChangeOpen;
+				else if(hotbarChangeOpen)
+					for(int i = 0; i < 3; i++)
+						if(isKeyDownOrFallback(mc.options.keyHotbarSlots[i], 49 + i, currInput)) {
+							QuarkNetwork.sendToServer(new ChangeHotbarMessage(i + 1));
+							hotbarChangeOpen = false;
+							currentHeldItem = mc.player.getInventory().selected;
+							return;
+						}
+
+			}
+		}
+
+		private boolean isKeyDownOrFallback(KeyMapping key, int input, int currInput) {
+			if(key.isUnbound())
+				return currInput != -1 && input == currInput;
+
+			return key.isDown();
+		}
+
+		private float getRealHeight(float part) {
+			if(!animating)
+				return height;
+			return height + part * ANIM_PER_TICK * (hotbarChangeOpen ? 1 : -1);
+		}
 	}
-
-	private float getRealHeight(float part) {
-		if(!animating)
-			return height;
-		return height + part * ANIM_PER_TICK * (hotbarChangeOpen ? 1 : -1);
-	}
-
 }

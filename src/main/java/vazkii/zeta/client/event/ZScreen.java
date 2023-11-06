@@ -11,25 +11,25 @@ import java.util.List;
 public interface ZScreen extends IZetaPlayEvent {
     Screen getScreen();
 
-    interface Init extends IZetaPlayEvent, ZScreen {
+    interface Init extends ZScreen {
         List<GuiEventListener> getListenersList();
         void addListener(GuiEventListener listener);
         void removeListener(GuiEventListener listener);
 
-        interface Pre extends ZScreen, Init { }
-        interface Post extends ZScreen, Init { }
+        interface Pre extends Init { }
+        interface Post extends Init { }
     }
 
-    interface Render extends IZetaPlayEvent, ZScreen {
+    interface Render extends ZScreen {
         PoseStack getPoseStack();
         int getMouseX();
         int getMouseY();
 
-        interface Pre extends ZScreen, Render { }
-        interface Post extends ZScreen, Render { }
+        interface Pre extends Render { }
+        interface Post extends Render { }
     }
 
-    interface MouseButtonPressed extends IZetaPlayEvent, ZScreen, Cancellable {
+    interface MouseButtonPressed extends ZScreen, Cancellable {
         int getButton();
         double getMouseX();
         double getMouseY();
@@ -38,7 +38,14 @@ public interface ZScreen extends IZetaPlayEvent {
         interface Post extends MouseButtonPressed { }
     }
 
-    interface KeyPressed extends IZetaPlayEvent, ZScreen, Cancellable {
+    interface MouseScrolled extends ZScreen, Cancellable {
+        double getScrollDelta();
+
+        interface Pre extends MouseScrolled { }
+        interface Post extends MouseScrolled { }
+    }
+
+    interface KeyPressed extends ZScreen, Cancellable {
         int getKeyCode();
         int getScanCode();
         int getModifiers();
@@ -47,11 +54,11 @@ public interface ZScreen extends IZetaPlayEvent {
         interface Post extends KeyPressed { }
     }
 
-    interface CharacterTyped extends IZetaPlayEvent, ZScreen, Cancellable {
+    interface CharacterTyped extends ZScreen, Cancellable {
         char getCodePoint();
         int getModifiers();
 
-        interface Pre extends ZScreen, CharacterTyped { }
-        interface Post extends ZScreen, CharacterTyped { }
+        interface Pre extends CharacterTyped { }
+        interface Post extends CharacterTyped { }
     }
 }
