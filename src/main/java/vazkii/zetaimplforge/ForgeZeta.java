@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.*;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.NoteBlockEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -199,6 +200,11 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::anvilRepair);
 		MinecraftForge.EVENT_BUS.addListener(this::player);
 		MinecraftForge.EVENT_BUS.addListener(this::playerBreakSpeed);
+		MinecraftForge.EVENT_BUS.addListener(this::entityItemPickup);
+		MinecraftForge.EVENT_BUS.addListener(this::block);
+		MinecraftForge.EVENT_BUS.addListener(this::blockBreak);
+		MinecraftForge.EVENT_BUS.addListener(this::blockEntityPlace);
+		MinecraftForge.EVENT_BUS.addListener(this::animalTame);
 	}
 
 	boolean registerDone = false;
@@ -375,6 +381,27 @@ public class ForgeZeta extends Zeta {
 	public void sleepingLocationCheck(SleepingLocationCheckEvent e) {
 		playBus.fire(new ForgeZSleepingLocationCheck(e), ZSleepingLocationCheck.class);
 	}
+
+	public void entityItemPickup(EntityItemPickupEvent e) {
+		playBus.fire(new ForgeZEntityItemPickup(e), ZEntityItemPickup.class);
+	}
+
+	public void block(BlockEvent e) {
+		playBus.fire(new ForgeZBlock(e), ZBlock.class);
+	}
+
+	public void blockBreak(BlockEvent.BreakEvent e) {
+		playBus.fire(new ForgeZBlock.Break(e), ZBlock.Break.class);
+	}
+
+	public void blockEntityPlace(BlockEvent.EntityPlaceEvent e) {
+		playBus.fire(new ForgeZBlock.EntityPlace(e), ZBlock.EntityPlace.class);
+	}
+
+	public void animalTame(AnimalTameEvent e) {
+		playBus.fire(new ForgeZAnimalTame(e), ZAnimalTame.class);
+	}
+
 
 	public void villagerTrades(VillagerTradesEvent e) {
 		playBus.fire(new ForgeZVillagerTrades(e), ZVillagerTrades.class);

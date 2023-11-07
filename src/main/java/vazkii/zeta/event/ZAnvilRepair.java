@@ -8,4 +8,6 @@ public interface ZAnvilRepair extends IZetaPlayEvent, PlayerGetter {
     ItemStack getOutput();
     ItemStack getLeft();
     ItemStack getRight();
+    float getBreakChance();
+    void setBreakChance(float breakChance);
 }

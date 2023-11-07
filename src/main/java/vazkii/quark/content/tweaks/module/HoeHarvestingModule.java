@@ -24,19 +24,19 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
+import vazkii.zeta.event.ZBlock;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class HoeHarvestingModule extends ZetaModule {
 
 	@Config
@@ -79,8 +79,8 @@ public class HoeHarvestingModule extends ZetaModule {
 		bigHarvestingHoesTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "big_harvesting_hoes"));
 	}
 
-	@SubscribeEvent
-	public void onBlockBroken(BlockEvent.BreakEvent event) {
+	@PlayEvent
+	public void onBlockBroken(ZBlock.Break event) {
 		LevelAccessor world = event.getLevel();
 		if(!(world instanceof Level level))
 			return;

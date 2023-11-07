@@ -10,17 +10,17 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.item.QuarkArrowItem;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.tools.client.render.entity.TorchArrowRenderer;
 import vazkii.quark.content.tools.entity.TorchArrow;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "tools")
+@ZetaLoadModule(category = "tools")
 public class TorchArrowModule extends ZetaModule {
 
 	@Config public static boolean extinguishOnMiss = false;

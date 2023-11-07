@@ -17,19 +17,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.handler.MiscUtil;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
+import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZBabyEntitySpawn;
+import vazkii.zeta.event.ZEntityJoinLevel;
 import vazkii.zeta.event.ZLivingTick;
 import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
-import vazkii.quark.base.module.config.Config;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class PigLittersModule extends ZetaModule {
 
 	private static final String GOLDEN_CARROT_TAG = "quark:AteGoldenCarrot";
@@ -67,8 +65,8 @@ public class PigLittersModule extends ZetaModule {
 		return min + random.nextInt(max - min + 1);
 	}
 
-	@SubscribeEvent
-	public void onPigAppear(EntityJoinLevelEvent event) {
+	@PlayEvent
+	public void onPigAppear(ZEntityJoinLevel event) {
 		if (pigsEatGoldenCarrots && event.getEntity() instanceof Pig pig) {
 			boolean alreadySetUp = pig.goalSelector.getAvailableGoals().stream()
 					.anyMatch(goal -> goal.getGoal() instanceof TemptGoal tempt && tempt.items.test(new ItemStack(Items.GOLDEN_CARROT)));
@@ -93,8 +91,8 @@ public class PigLittersModule extends ZetaModule {
 			animal.getPersistentData().remove(GOLDEN_CARROT_TAG);
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void onPigBreed(BabyEntitySpawnEvent event) {
+	@PlayEvent
+	public void onPigBreed(ZBabyEntitySpawn.Lowest event) {
 		AgeableMob mob = event.getChild();
 		Mob mobA = event.getParentA();
 		Mob mobB = event.getParentB();

@@ -1,9 +1,6 @@
 package vazkii.quark.content.tools.module;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import com.google.common.collect.ImmutableSet;
-
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -14,24 +11,23 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.apache.commons.lang3.tuple.Pair;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.tools.client.tooltip.SeedPouchClientTooltipComponent;
 import vazkii.quark.content.tools.item.SeedPouchItem;
-import vazkii.zeta.event.ZCommonSetup;
-import vazkii.zeta.event.ZRegister;
-import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.client.event.ZTooltipComponents;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZEntityItemPickup;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "tools", hasSubscriptions = true)
+@ZetaLoadModule(category = "tools")
 public class SeedPouchModule extends ZetaModule {
 
 	@Hint public static Item seed_pouch;
@@ -52,20 +48,8 @@ public class SeedPouchModule extends ZetaModule {
 		seedPouchHoldableTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "seed_pouch_holdable"));
 	}
 
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(ZClientSetup e) {
-		e.enqueueWork(() -> ItemProperties.register(seed_pouch, new ResourceLocation("pouch_items"), SeedPouchItem::itemFraction));
-	}
-
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)
-	public void registerClientTooltipComponentFactories(ZTooltipComponents event) {
-		event.register(SeedPouchItem.Tooltip.class, t -> new SeedPouchClientTooltipComponent(t.stack()));
-	}
-
-	@SubscribeEvent
-	public void onItemPickup(EntityItemPickupEvent event) {
+	@PlayEvent
+	public void onItemPickup(ZEntityItemPickup event) {
 		Player player = event.getEntity();
 		ItemStack stack = event.getItem().getItem();
 
@@ -98,4 +82,16 @@ public class SeedPouchModule extends ZetaModule {
 			}
 	}
 
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends SeedPouchModule {
+		@LoadEvent
+		public void clientSetup(ZClientSetup e) {
+			e.enqueueWork(() -> ItemProperties.register(seed_pouch, new ResourceLocation("pouch_items"), SeedPouchItem::itemFraction));
+		}
+
+		@LoadEvent
+		public void registerClientTooltipComponentFactories(ZTooltipComponents event) {
+			event.register(SeedPouchItem.Tooltip.class, t -> new SeedPouchClientTooltipComponent(t.stack()));
+		}
+	}
 }

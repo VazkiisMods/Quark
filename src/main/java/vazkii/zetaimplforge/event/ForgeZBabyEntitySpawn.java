@@ -1,10 +1,9 @@
 package vazkii.zetaimplforge.event;
 
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
-import vazkii.zeta.event.ZAnvilUpdate;
 import vazkii.zeta.event.ZBabyEntitySpawn;
 
 public class ForgeZBabyEntitySpawn implements ZBabyEntitySpawn {
@@ -20,8 +19,23 @@ public class ForgeZBabyEntitySpawn implements ZBabyEntitySpawn {
     }
 
     @Override
+    public Mob getParentB() {
+        return e.getParentB();
+    }
+
+    @Override
     public Player getCausedByPlayer() {
         return e.getCausedByPlayer();
+    }
+
+    @Override
+    public AgeableMob getChild() {
+        return e.getChild();
+    }
+
+    @Override
+    public void setChild(AgeableMob proposedChild) {
+        e.setChild(proposedChild);
     }
 
     public static class Lowest extends ForgeZBabyEntitySpawn implements ZBabyEntitySpawn.Lowest {

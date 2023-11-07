@@ -5,6 +5,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import vazkii.zeta.event.ZPlayerInteract;
 
@@ -23,6 +24,11 @@ public class ForgeZPlayerInteract implements ZPlayerInteract {
     @Override
     public InteractionHand getHand() {
         return e.getHand();
+    }
+
+    @Override
+    public Level getLevel() {
+        return e.getLevel();
     }
 
     @Override

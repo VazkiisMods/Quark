@@ -15,24 +15,24 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.tools.ai.RunAwayFromPikesGoal;
 import vazkii.quark.content.tools.client.render.entity.SkullPikeRenderer;
 import vazkii.quark.content.tools.entity.SkullPike;
+import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.ZBlock;
 import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZEntityJoinLevel;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "tools", hasSubscriptions = true)
+@ZetaLoadModule(category = "tools")
 public class SkullPikesModule extends ZetaModule {
 
 	public static EntityType<SkullPike> skullPikeType;
@@ -64,8 +64,8 @@ public class SkullPikesModule extends ZetaModule {
 		EntityRenderers.register(skullPikeType, SkullPikeRenderer::new);
 	}
 
-	@SubscribeEvent
-	public void onPlaceBlock(BlockEvent.EntityPlaceEvent event) {
+	@PlayEvent
+	public void onPlaceBlock(ZBlock.EntityPlace event) {
 		BlockState state = event.getPlacedBlock();
 
 		if(state.is(pikeTrophiesTag)) {
@@ -85,8 +85,8 @@ public class SkullPikesModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void onMonsterAppear(EntityJoinLevelEvent event) {
+	@PlayEvent
+	public void onMonsterAppear(ZEntityJoinLevel event) {
 		Entity e = event.getEntity();
 		if(e instanceof Monster monster && !(e instanceof PatrollingMonster) && e.canChangeDimensions() && e.isAlive()) {
 			boolean alreadySetUp = monster.goalSelector.getAvailableGoals().stream().anyMatch((goal) -> goal.getGoal() instanceof RunAwayFromPikesGoal);

@@ -1,15 +1,15 @@
 package vazkii.quark.content.tools.module;
 
 import net.minecraft.world.item.Item;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.tools.item.TrowelItem;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "tools")
+@ZetaLoadModule(category = "tools")
 public class TrowelModule extends ZetaModule {
 
 	@Config(name = "Trowel Max Durability",

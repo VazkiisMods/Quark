@@ -19,10 +19,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.content.tools.client.render.entity.PickarangRenderer;
 import vazkii.quark.content.tools.config.PickarangType;
 import vazkii.quark.content.tools.entity.rang.AbstractPickarang;
@@ -30,17 +27,20 @@ import vazkii.quark.content.tools.entity.rang.Echorang;
 import vazkii.quark.content.tools.entity.rang.Flamerang;
 import vazkii.quark.content.tools.entity.rang.Pickarang;
 import vazkii.quark.content.tools.item.PickarangItem;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-@LoadModule(category = "tools", hasSubscriptions = true)
+@ZetaLoadModule(category = "tools")
 public class PickarangModule extends ZetaModule {
 
 	@Config(name = "pickarang")

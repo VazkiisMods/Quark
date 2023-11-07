@@ -12,20 +12,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import vazkii.quark.content.tools.item.SlimeInABucketItem;
+import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.ZPlayerInteract;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
-import vazkii.zeta.util.ItemNBTHelper;
-import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.Hint;
-import vazkii.quark.content.tools.item.SlimeInABucketItem;
+import vazkii.zeta.util.ItemNBTHelper;
 
-@LoadModule(category = "tools", hasSubscriptions = true)
+@ZetaLoadModule(category = "tools")
 public class SlimeInABucketModule extends ZetaModule {
 
 	@Hint public static Item slime_in_a_bucket;
@@ -35,15 +33,8 @@ public class SlimeInABucketModule extends ZetaModule {
 		slime_in_a_bucket = new SlimeInABucketItem(this);
 	}
 
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(ZClientSetup event) {
-		event.enqueueWork(() -> ItemProperties.register(slime_in_a_bucket, new ResourceLocation("excited"),
-				(stack, world, e, id) -> ItemNBTHelper.getBoolean(stack, SlimeInABucketItem.TAG_EXCITED, false) ? 1 : 0));
-	}
-
-	@SubscribeEvent
-	public void entityInteract(PlayerInteractEvent.EntityInteract event) {
+	@PlayEvent
+	public void entityInteract(ZPlayerInteract.EntityInteract event) {
 		if(event.getTarget() != null) {
 			if(event.getTarget().getType() == EntityType.SLIME && ((Slime) event.getTarget()).getSize() == 1 && event.getTarget().isAlive()) {
 				Player player = event.getEntity();
@@ -82,4 +73,12 @@ public class SlimeInABucketModule extends ZetaModule {
 		}
 	}
 
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends SlimeInABucketModule {
+		@LoadEvent
+		public void clientSetup(ZClientSetup event) {
+			event.enqueueWork(() -> ItemProperties.register(slime_in_a_bucket, new ResourceLocation("excited"),
+					(stack, world, e, id) -> ItemNBTHelper.getBoolean(stack, SlimeInABucketItem.TAG_EXCITED, false) ? 1 : 0));
+		}
+	}
 }

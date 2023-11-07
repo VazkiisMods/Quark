@@ -14,18 +14,18 @@ import net.minecraft.world.entity.animal.axolotl.Axolotl;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.AnimalTameEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.QuarkSounds;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.content.mobs.entity.Foxhound;
 import vazkii.quark.content.tweaks.ai.NuzzleGoal;
 import vazkii.quark.content.tweaks.ai.WantLoveGoal;
+import vazkii.zeta.event.ZAnimalTame;
+import vazkii.zeta.event.ZEntityJoinLevel;
+import vazkii.zeta.event.ZPlayerInteract;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ import java.util.List;
  * @author WireSegal
  * Created at 11:25 AM on 9/2/19.
  */
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class PatTheDogsModule extends ZetaModule {
 	@Config(description = "How many ticks it takes for a dog to want affection after being pet/tamed; leave -1 to disable")
 	public static int dogsWantLove = -1;
@@ -44,8 +44,8 @@ public class PatTheDogsModule extends ZetaModule {
 	@Config(description = "Even if `petAllMobs` is not set, these mobs can be pet")
 	public static List<String> pettableAllowlist = Lists.newArrayList();
 
-	@SubscribeEvent
-	public void onWolfAppear(EntityJoinLevelEvent event) {
+	@PlayEvent
+	public void onWolfAppear(ZEntityJoinLevel event) {
 		if (dogsWantLove > 0 && event.getEntity() instanceof Wolf wolf) {
 			boolean alreadySetUp = wolf.goalSelector.getAvailableGoals().stream().anyMatch((goal) -> goal.getGoal() instanceof WantLoveGoal);
 
@@ -56,8 +56,8 @@ public class PatTheDogsModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void onInteract(PlayerInteractEvent.EntityInteract event) {
+	@PlayEvent
+	public void onInteract(ZPlayerInteract.EntityInteract event) {
 		var player = event.getEntity();
 
 		if (player.isDiscrete() && player.getMainHandItem().isEmpty()) {
@@ -147,8 +147,8 @@ public class PatTheDogsModule extends ZetaModule {
 
 
 
-	@SubscribeEvent
-	public void onTame(AnimalTameEvent event) {
+	@PlayEvent
+	public void onTame(ZAnimalTame event) {
 		if(event.getAnimal() instanceof Wolf wolf) {
 			WantLoveGoal.setPetTime(wolf);
 		}

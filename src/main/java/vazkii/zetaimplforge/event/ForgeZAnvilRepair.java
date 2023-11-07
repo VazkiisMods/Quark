@@ -31,4 +31,14 @@ public class ForgeZAnvilRepair implements ZAnvilRepair {
     public ItemStack getRight() {
         return e.getRight();
     }
+
+    @Override
+    public float getBreakChance() {
+        return e.getBreakChance();
+    }
+
+    @Override
+    public void setBreakChance(float breakChance) {
+        e.setBreakChance(breakChance);
+    }
 }
