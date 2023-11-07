@@ -14,23 +14,23 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.EntityAttributeHandler;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
 import vazkii.quark.base.module.config.type.DimensionConfig;
 import vazkii.quark.base.module.config.type.EntitySpawnConfig;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.StonelingRenderer;
 import vazkii.quark.content.mobs.entity.Stoneling;
 import vazkii.quark.content.mobs.item.DiamondHeartItem;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "mobs", hasSubscriptions = true)
+@ZetaLoadModule(category = "mobs")
 public class StonelingsModule extends ZetaModule {
 
 	public static EntityType<Stoneling> stonelingType;

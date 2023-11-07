@@ -22,6 +22,7 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.SleepingLocationCheckEvent;
 import net.minecraftforge.event.level.NoteBlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -188,6 +189,11 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteract);
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteractEntityInteractSpecific);
 		MinecraftForge.EVENT_BUS.addListener(this::playerDestroyItem);
+		MinecraftForge.EVENT_BUS.addListener(this::livingSpawn);
+		MinecraftForge.EVENT_BUS.addListener(this::livingSpawnCheckSpawn);
+		MinecraftForge.EVENT_BUS.addListener(this::livingSpawnCheckSpawnLowest);
+		MinecraftForge.EVENT_BUS.addListener(this::livingChangeTarget);
+		MinecraftForge.EVENT_BUS.addListener(this::sleepingLocationCheck);
 	}
 
 	boolean registerDone = false;
@@ -331,6 +337,26 @@ public class ForgeZeta extends Zeta {
 
 	public void playerDestroyItem(PlayerDestroyItemEvent e) {
 		playBus.fire(new ForgeZPlayerDestroyItem(e), ZPlayerDestroyItem.class);
+	}
+
+	public void livingSpawn(LivingSpawnEvent e) {
+		playBus.fire(new ForgeZLivingSpawn(e), ZLivingSpawn.class);
+	}
+
+	public void livingSpawnCheckSpawn(LivingSpawnEvent.CheckSpawn e) {
+		playBus.fire(new ForgeZLivingSpawn.CheckSpawn(e), ZLivingSpawn.CheckSpawn.class);
+	}
+
+	public void livingSpawnCheckSpawnLowest(LivingSpawnEvent.CheckSpawn e) {
+		playBus.fire(new ForgeZLivingSpawn.CheckSpawn.Lowest(e), ZLivingSpawn.CheckSpawn.Lowest.class);
+	}
+
+	public void livingChangeTarget(LivingChangeTargetEvent e) {
+		playBus.fire(new ForgeZLivingChangeTarget(e), ZLivingChangeTarget.class);
+	}
+
+	public void sleepingLocationCheck(SleepingLocationCheckEvent e) {
+		playBus.fire(new ForgeZSleepingLocationCheck(e), ZSleepingLocationCheck.class);
 	}
 
 	public static ZResult from(Event.Result r) {

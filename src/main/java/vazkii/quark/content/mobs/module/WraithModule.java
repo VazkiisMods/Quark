@@ -1,11 +1,7 @@
 package vazkii.quark.content.mobs.module;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -23,26 +19,29 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.EntityAttributeHandler;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.mod.MonsterHunterModifier;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
 import vazkii.quark.base.module.config.type.CostSensitiveEntitySpawnConfig;
 import vazkii.quark.base.module.config.type.EntitySpawnConfig;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.SoulBeadRenderer;
 import vazkii.quark.content.mobs.client.render.entity.WraithRenderer;
 import vazkii.quark.content.mobs.entity.SoulBead;
 import vazkii.quark.content.mobs.entity.Wraith;
 import vazkii.quark.content.mobs.item.SoulBeadItem;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "mobs")
+import java.util.List;
+import java.util.stream.Collectors;
+
+@ZetaLoadModule(category = "mobs")
 public class WraithModule extends ZetaModule {
 
 	public static EntityType<Wraith> wraithType;

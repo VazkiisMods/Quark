@@ -30,26 +30,26 @@ import vazkii.quark.base.handler.advancement.mod.FuriousCocktailModifier;
 import vazkii.quark.base.handler.advancement.mod.TwoByTwoModifier;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.item.QuarkMobBucketItem;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
 import vazkii.quark.base.module.config.type.EntitySpawnConfig;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.util.QuarkEffect;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.CrabRenderer;
 import vazkii.quark.content.mobs.entity.Crab;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
 /**
  * @author WireSegal
  * Created at 7:28 PM on 9/22/19.
  */
-@LoadModule(category = "mobs", hasSubscriptions = true)
+@ZetaLoadModule(category = "mobs")
 public class CrabsModule extends ZetaModule {
 
 	public static EntityType<Crab> crabType;

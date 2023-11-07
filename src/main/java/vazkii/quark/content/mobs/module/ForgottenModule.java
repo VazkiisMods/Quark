@@ -1,14 +1,9 @@
 package vazkii.quark.content.mobs.module;
 
 import com.google.common.collect.ImmutableSet;
-
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.Registry;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec3;
@@ -16,25 +11,26 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import net.minecraftforge.eventbus.api.Event.Result;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.EntityAttributeHandler;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.mod.MonsterHunterModifier;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.world.EntitySpawnHandler;
 import vazkii.quark.content.mobs.client.render.entity.ForgottenRenderer;
 import vazkii.quark.content.mobs.entity.Forgotten;
 import vazkii.quark.content.mobs.item.ForgottenHatItem;
+import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.ZLivingSpawn;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.event.bus.ZResult;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "mobs", hasSubscriptions = true)
+@ZetaLoadModule(category = "mobs")
 public class ForgottenModule extends ZetaModule {
 
 	public static EntityType<Forgotten> forgottenType;
@@ -69,17 +65,17 @@ public class ForgottenModule extends ZetaModule {
 		EntityRenderers.register(forgottenType, ForgottenRenderer::new);
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void onSkeletonSpawn(LivingSpawnEvent.CheckSpawn event) {
+	@PlayEvent
+	public void onSkeletonSpawn(ZLivingSpawn.CheckSpawn.Lowest event) {
 		if (event.getSpawnReason() == MobSpawnType.SPAWNER)
 			return;
 
 		LivingEntity entity = event.getEntity();
-		Result result = event.getResult();
+		ZResult result = event.getResult();
 		LevelAccessor world = event.getLevel();
 
-		if(entity.getType() == EntityType.SKELETON && entity instanceof Mob mob && result != Result.DENY && entity.getY() < maxHeightForSpawn && world.getRandom().nextDouble() < forgottenSpawnRate) {
-			if(result == Result.ALLOW || (mob.checkSpawnRules(world, event.getSpawnReason()) && mob.checkSpawnObstruction(world))) {
+		if (entity.getType() == EntityType.SKELETON && entity instanceof Mob mob && result != ZResult.DENY && entity.getY() < maxHeightForSpawn && world.getRandom().nextDouble() < forgottenSpawnRate) {
+			if(result == ZResult.ALLOW || (mob.checkSpawnRules(world, event.getSpawnReason()) && mob.checkSpawnObstruction(world))) {
 				Forgotten forgotten = new Forgotten(forgottenType, entity.level);
 				Vec3 epos = entity.position();
 				
@@ -91,7 +87,7 @@ public class ForgottenModule extends ZetaModule {
 				
 				if(newEvent.getResult() != Result.DENY) {
 					world.addFreshEntity(forgotten);
-					event.setResult(Result.DENY);
+					event.setResult(ZResult.DENY);
 				}
 			}
 		}
