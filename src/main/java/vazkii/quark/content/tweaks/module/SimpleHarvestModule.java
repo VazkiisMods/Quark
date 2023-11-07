@@ -40,7 +40,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.ToolActions;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import vazkii.quark.api.event.SimpleHarvestEvent;
 import vazkii.quark.api.event.SimpleHarvestEvent.ActionType;
@@ -179,7 +178,7 @@ public class SimpleHarvestModule extends ZetaModule {
         if (!(world instanceof ServerLevel serverLevel) || entity.isSpectator())
             return;
 
-        int fortune = Quark.ZETA.getEnchantmentLevel(heldItem, Enchantments.BLOCK_FORTUNE);
+        int fortune = Quark.ZETA.itemExtensions.get(heldItem).getEnchantmentLevelZeta(heldItem, Enchantments.BLOCK_FORTUNE);
 
         ItemStack copy = heldItem.copy();
         if (copy.isEmpty())
@@ -279,7 +278,9 @@ public class SimpleHarvestModule extends ZetaModule {
             return false;
 
         BlockState stateAt = player.level.getBlockState(pos);
-        if (stateAt.getToolModifiedState(new UseOnContext(player, hand, pick), ToolActions.HOE_TILL, true) != null)
+        //can you till this block?
+        BlockState modifiedState = Quark.ZETA.blockExtensions.get(stateAt).getToolModifiedStateZeta(stateAt, new UseOnContext(player, hand, pick), "hoe_till", true);
+        if (modifiedState != null)
             return false;
 
         ItemStack inHand = player.getItemInHand(hand);

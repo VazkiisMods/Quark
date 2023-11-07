@@ -15,7 +15,7 @@ import vazkii.zetaimplforge.ForgeZeta;
 public class Quark {
 
 	public static final String MOD_ID = "quark";
-	public static final String ODDITIES_ID = "quarkoddities";
+	public static final String ODDITIES_ID = "quark"; ///SHHHhhh quat is testing, todo fix the modid
 
 	public static Quark instance;
 	public static CommonProxy proxy;

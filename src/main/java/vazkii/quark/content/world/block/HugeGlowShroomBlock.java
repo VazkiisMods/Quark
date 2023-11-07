@@ -50,12 +50,12 @@ public class HugeGlowShroomBlock extends HugeMushroomBlock implements IQuarkBloc
 	}
 
 	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	public int getFlammabilityZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return 0;
 	}
 
 	@Override
-	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	public int getFireSpreadSpeedZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return 0;
 	}
 

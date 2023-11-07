@@ -61,7 +61,7 @@
     "StructureStartMixin",
     "StructureTemplateMixin",
     "TemptGoalMixin",
-    "TrapDoorBlockMixin",
+    
     "TripWireHookBlockMixin",
     "VillagerMixin",
     "WallBlockMixin",
@@ -77,7 +77,8 @@
     "zeta.PistonBaseBlockMixin",
 
     "zeta_forge.WeatheringCopperMixin",
-    "zeta_forge.IngredientMixin"
+    "zeta_forge.IngredientMixin",
+    "zeta_forge.self.IQuarkBlockMixin"
   ],
   "client": [
     "client.AbstractCandleBlockMixin",

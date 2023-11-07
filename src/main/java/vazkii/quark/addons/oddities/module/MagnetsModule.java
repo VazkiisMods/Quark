@@ -20,6 +20,8 @@ import vazkii.quark.addons.oddities.magnetsystem.MagnetSystem;
 import vazkii.quark.api.event.RecipeCrawlEvent;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.event.ZLevelTick;
+import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.util.Hint;
@@ -63,9 +65,14 @@ public class MagnetsModule extends ZetaModule {
 		BlockEntityRenderers.register(magnetizedBlockType, MagnetizedBlockRenderer::new);
 	}
 
-	@SubscribeEvent
-	public void tick(LevelTickEvent event) {
-		MagnetSystem.tick(event.phase == Phase.START, event.level);
+	@PlayEvent
+	public void tickStart(ZLevelTick.Start event) {
+		MagnetSystem.tick(true, event.getLevel());
+	}
+
+	@PlayEvent
+	public void tickEnd(ZLevelTick.End event) {
+		MagnetSystem.tick(false, event.getLevel());
 	}
 	
 	@SubscribeEvent

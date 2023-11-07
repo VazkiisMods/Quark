@@ -65,7 +65,7 @@ public class VariantTrappedChestBlock extends ChestBlock implements IZetaBlockIt
 	}
 
 	@Override
-	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+	public int getFlammabilityZeta(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 0;
 	}
 

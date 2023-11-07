@@ -25,6 +25,7 @@ import vazkii.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import vazkii.quark.api.ICustomSorting;
 import vazkii.quark.api.ISortingLockedSlots;
 import vazkii.quark.api.QuarkCapabilities;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.content.management.module.InventorySortingModule;
 
@@ -452,11 +453,11 @@ public final class SortingHandler {
 	}
 
 	static boolean hasCustomSorting(ItemStack stack) {
-		return stack.getCapability(QuarkCapabilities.SORTING, null).isPresent();
+		return Quark.ZETA.capabilityManager.hasCapability(QuarkCapabilities.SORTING, stack);
 	}
 
 	static ICustomSorting getCustomSorting(ItemStack stack) {
-		return stack.getCapability(QuarkCapabilities.SORTING, null).orElse(null);
+		return Quark.ZETA.capabilityManager.getCapability(QuarkCapabilities.SORTING, stack);
 	}
 
 	private enum ItemType {

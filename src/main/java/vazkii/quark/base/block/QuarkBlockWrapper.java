@@ -2,12 +2,7 @@ package vazkii.quark.base.block;
 
 import java.util.function.BooleanSupplier;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.IPlantable;
 import vazkii.zeta.module.ZetaModule;
 
 // Wrapper to allow vanilla blocks to be treated as quark blocks contextualized under a module
@@ -42,11 +37,6 @@ public class QuarkBlockWrapper implements IQuarkBlock {
 	@Override
 	public boolean doesConditionApply() {
 		return condition == null || condition.getAsBoolean();
-	}
-
-	@Override
-	public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
-		return false;
 	}
 
 }

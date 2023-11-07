@@ -142,7 +142,7 @@ public class GameNerfsModule extends ZetaModule {
 			return base;
 
 		if(noNerfForMendingTwo)
-			return (stack) -> base.test(stack) && Quark.ZETA.getEnchantmentLevel(stack, Enchantments.MENDING) > 1;
+			return (stack) -> base.test(stack) && Quark.ZETA.itemExtensions.get(stack).getEnchantmentLevelZeta(stack, Enchantments.MENDING) > 1;
 		return (stack) -> false;
 	}
 

@@ -580,11 +580,11 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 	}
 
 	public int getEfficiencyModifier() {
-		return Quark.ZETA.getEnchantmentLevel(getStack(), Enchantments.BLOCK_EFFICIENCY);
+		return Quark.ZETA.itemExtensions.get(getStack()).getEnchantmentLevelZeta(getStack(), Enchantments.BLOCK_EFFICIENCY);
 	}
 
 	public int getPiercingModifier() {
-		return Quark.ZETA.getEnchantmentLevel(getStack(), Enchantments.PIERCING);
+		return Quark.ZETA.itemExtensions.get(getStack()).getEnchantmentLevelZeta(getStack(), Enchantments.PIERCING);
 	}
 
 	public ItemStack getStack() {

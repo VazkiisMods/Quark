@@ -25,6 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.addons.oddities.magnetsystem.MagnetSystem;
 import vazkii.quark.addons.oddities.module.MagnetsModule;
 import vazkii.quark.api.IMagnetMoveAction;
+import vazkii.quark.base.Quark;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -84,6 +85,8 @@ public class MagnetizedBlockBlockEntity extends BlockEntity {
 		if (this.level == null)
 			return;
 
+		boolean sticky = Quark.ZETA.blockExtensions.get(magnetState).isStickyBlockZeta(magnetState);
+
 		Direction direction = this.magnetFacing;
 		double movement = (progress - this.progress);
 		VoxelShape collision = magnetState.getCollisionShape(this.level, this.getBlockPos());
@@ -92,7 +95,6 @@ public class MagnetizedBlockBlockEntity extends BlockEntity {
 			AABB containingBox = this.moveByPositionAndProgress(this.getEnclosingBox(boundingBoxes));
 			List<Entity> entities = this.level.getEntities(null, this.getMovementArea(containingBox, direction, movement).minmax(containingBox));
 			if (!entities.isEmpty()) {
-				boolean sticky = this.magnetState.getBlock().isStickyBlock(this.magnetState);
 
 				for (Entity entity : entities) {
 					if (entity.getPistonPushReaction() != PushReaction.IGNORE) {

@@ -140,8 +140,8 @@ public class HedgeBlock extends FenceBlock implements IQuarkBlock, IZetaBlockCol
 	}
 
 	@Override
-	public boolean canSustainPlant(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull Direction facing, @Nonnull IPlantable plantable) {
-		return facing == Direction.UP && !state.getValue(WATERLOGGED) && plantable.getPlantType(world, pos) == PlantType.PLAINS;
+	public boolean canSustainPlantZeta(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull Direction facing, @Nonnull String plantabletype) {
+		return facing == Direction.UP && !state.getValue(WATERLOGGED) && "plains".equals(plantabletype);
 	}
 
 	@Override

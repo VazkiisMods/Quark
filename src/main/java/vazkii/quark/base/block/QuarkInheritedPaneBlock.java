@@ -40,8 +40,9 @@ public class QuarkInheritedPaneBlock extends QuarkPaneBlock implements IQuarkBlo
 
 	@Nullable
 	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-		return parent.getBlock().getBeaconColorMultiplier(parent.getBlock().defaultBlockState(), world, pos, beaconPos);
+	public float[] getBeaconColorMultiplierZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+		BlockState parentState = parent.getBlock().defaultBlockState();
+		return Quark.ZETA.blockExtensions.get(parentState).getBeaconColorMultiplierZeta(parentState, world, pos, beaconPos);
 	}
 
 	@Override

@@ -52,10 +52,12 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 
 	public GrateBlock(ZetaModule module) {
 		super("grate", module, CreativeModeTab.TAB_DECORATIONS,
-				Block.Properties.of(Material.METAL)
-						.strength(5, 10)
-						.sound(SoundType.METAL)
-						.noOcclusion());
+			Block.Properties.of(Material.METAL)
+				.strength(5, 10)
+				.sound(SoundType.METAL)
+				.isValidSpawn((what, huh, idk, hoh) -> false)
+				.lightLevel(state -> state.getValue(LAVALOGGED) ? 15 : 0)
+				.noOcclusion());
 
 		registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false).setValue(LAVALOGGED, false));
 		module.zeta.renderLayerRegistry.put(this, RenderLayerRegistry.Layer.CUTOUT);
@@ -96,7 +98,7 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 	}
 
 	@Override
-	public boolean collisionExtendsVertically(BlockState state, BlockGetter level, BlockPos pos, Entity collidingEntity) {
+	public boolean collisionExtendsVerticallyZeta(BlockState state, BlockGetter level, BlockPos pos, Entity collidingEntity) {
 		if (collidingEntity instanceof Animal || collidingEntity instanceof WaterAnimal)
 			if (!(collidingEntity instanceof Animal animal && animal.getLeashHolder() != null))
 				return !(collidingEntity instanceof WaterAnimal waterAnimal && waterAnimal.getLeashHolder() != null);
@@ -141,18 +143,8 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 	}
 
 	@Override
-	public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
-		return fluidContained(state).getFluidType().getLightLevel();
-	}
-
-	@Override
 	public boolean propagatesSkylightDown(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos) {
 		return fluidContained(state) == Fluids.EMPTY;
-	}
-
-	@Override
-	public boolean isValidSpawn(BlockState state, BlockGetter world, BlockPos pos, SpawnPlacements.Type type, EntityType<?> entityType) {
-		return false;
 	}
 
 	@Override

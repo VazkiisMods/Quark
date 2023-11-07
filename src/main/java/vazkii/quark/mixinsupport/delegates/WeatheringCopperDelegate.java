@@ -1,7 +1,7 @@
 package vazkii.quark.mixinsupport.delegates;
 
 import net.minecraft.world.level.block.state.BlockState;
-import vazkii.zeta.block.CustomWeatheringCopper;
+import vazkii.zeta.block.ext.CustomWeatheringCopper;
 import vazkii.quark.mixinsupport.DelegateInterfaceTarget;
 import vazkii.quark.mixinsupport.DelegateReturnValueTarget;
 

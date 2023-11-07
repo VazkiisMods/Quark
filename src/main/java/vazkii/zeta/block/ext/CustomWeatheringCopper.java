@@ -1,4 +1,4 @@
-package vazkii.zeta.block;
+package vazkii.zeta.block.ext;
 
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;

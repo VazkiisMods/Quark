@@ -64,7 +64,7 @@ public class HollowPillarBlock extends QuarkPillarBlock implements SimpleWaterlo
     }
 
     @Override
-    public boolean isLadder(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
+    public boolean isLadderZeta(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
         if (state.getValue(AXIS) != Axis.Y)
             return false;
 
@@ -73,7 +73,7 @@ public class HollowPillarBlock extends QuarkPillarBlock implements SimpleWaterlo
         if (eyePos.x > (pos.getX() + pad) && eyePos.z > (pos.getZ() + pad) && eyePos.x < (pos.getX() + 1 - pad) && eyePos.z < (pos.getZ() + 1 - pad))
             return true;
 
-        return super.isLadder(state, level, pos, entity);
+        return super.isLadderZeta(state, level, pos, entity);
     }
 
     @Override

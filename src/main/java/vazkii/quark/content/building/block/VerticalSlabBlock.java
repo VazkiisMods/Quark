@@ -28,6 +28,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import vazkii.quark.base.Quark;
+import vazkii.zeta.block.ext.IZetaBlockExtensions;
 import vazkii.zeta.registry.IZetaBlockColorProvider;
 import vazkii.zeta.registry.IZetaItemColorProvider;
 
@@ -38,7 +40,7 @@ import java.util.function.Supplier;
 /**
  * Base extensible class in case mods want to add their own slabs
  */
-public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, IZetaBlockColorProvider {
+public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, IZetaBlockColorProvider, IZetaBlockExtensions {
 
 	public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.create("type", VerticalSlabType.class);
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -52,21 +54,25 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 	}
 
 	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.get().isFlammable(state, world, pos, face);
+	public boolean isFlammableZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+		BlockState parentState = parent.get().defaultBlockState();
+		return Quark.ZETA.blockExtensions.get(parentState).isFlammableZeta(parentState, world, pos, face);
 	}
 
 	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.get().getFlammability(state, world, pos, face);
+	public int getFlammabilityZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+		BlockState parentState = parent.get().defaultBlockState();
+		return Quark.ZETA.blockExtensions.get(parentState).getFlammabilityZeta(parentState, world, pos, face);
 	}
 
+	@SuppressWarnings("deprecation") //IForgeBlock
 	@Nonnull
 	@Override
 	public BlockState rotate(BlockState state, @Nonnull Rotation rot) {
 		return state.getValue(TYPE) == VerticalSlabType.DOUBLE ? state : state.setValue(TYPE, VerticalSlabType.fromDirection(rot.rotate(state.getValue(TYPE).direction)));
 	}
 
+	@SuppressWarnings("deprecation") //IForgeBlock
 	@Nonnull
 	@Override
 	public BlockState mirror(BlockState state, @Nonnull Mirror mirrorIn) {
@@ -97,9 +103,11 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 		return state.getValue(TYPE).shape;
 	}
 
+	//TODO: doesn't actually work, "parent" is a slab block, and in vanilla slabs are never conduit frames
 	@Override
-	public boolean isConduitFrame(BlockState state, LevelReader world, BlockPos pos, BlockPos conduit) {
-		return parent.get().isConduitFrame(state, world, pos, conduit);
+	public boolean isConduitFrameZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos conduit) {
+		BlockState parentState = parent.get().defaultBlockState();
+		return Quark.ZETA.blockExtensions.get(parentState).isConduitFrameZeta(parentState, world, pos, conduit);
 	}
 
 	@Override

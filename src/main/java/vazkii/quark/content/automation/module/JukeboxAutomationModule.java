@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.JukeboxBlock;
 import net.minecraft.world.level.block.LevelEvent;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -51,9 +50,9 @@ public class JukeboxAutomationModule extends ZetaModule {
 	}
 
 	@PlayEvent
-	public void attachCaps(ZAttachCapabilities<BlockEntity> event) {
+	public void attachCaps(ZAttachCapabilities.BlockEntityCaps event) {
 		if(event.getObject() instanceof JukeboxBlockEntity jukebox)
-			event.addCapability(JUKEBOX_ITEM_HANDLER, new JukeboxItemHandler(jukebox));
+			event.addCapabilityForgeApi(JUKEBOX_ITEM_HANDLER, new JukeboxItemHandler(jukebox));
 	}
 
 	public record JukeboxItemHandler(JukeboxBlockEntity tile) implements ICapabilityProvider, IItemHandler {

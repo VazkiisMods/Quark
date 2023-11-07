@@ -43,12 +43,12 @@ public class QuarkVineBlock extends VineBlock implements IQuarkBlock {
 	}
 
 	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	public boolean isFlammableZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return true;
 	}
 
 	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	public int getFlammabilityZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return 300;
 	}
 

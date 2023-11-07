@@ -64,12 +64,12 @@ public class VariantChestBlock extends ChestBlock implements IZetaBlockItemProvi
 	}
 
 	@Override
-	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+	public int getFlammabilityZeta(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 0;
 	}
 
 	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	public boolean isFlammableZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return false;
 	}
 

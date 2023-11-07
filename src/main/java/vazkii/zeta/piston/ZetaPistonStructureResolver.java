@@ -18,6 +18,7 @@ import vazkii.zeta.api.ICollateralMover.MoveResult;
 import vazkii.zeta.api.IConditionalSticky;
 import vazkii.zeta.api.IIndirectConnector;
 import vazkii.quark.mixin.zeta.AccessorPistonStructureResolver;
+import vazkii.zeta.block.ext.IZetaBlockExtensions;
 
 import javax.annotation.Nonnull;
 
@@ -399,7 +400,13 @@ public class ZetaPistonStructureResolver extends PistonStructureResolver {
 
 		@Override
 		public boolean canStickToBlock(Level world, BlockPos pistonPos, BlockPos pos, BlockPos slimePos, BlockState state, BlockState slimeState, Direction direction) {
-			return slimeState.canStickTo(state);
+			//TODO: can't use BlockExtensionFactory since it depends on a particular instance of Zeta
+			if(slimeState.getBlock() instanceof IZetaBlockExtensions ext)
+				return ext.canStickToZeta(slimeState, state);
+			else if(state.getBlock() instanceof IZetaBlockExtensions ext)
+				return ext.canStickToZeta(state, slimeState);
+			else
+				return IZetaBlockExtensions.DEFAULT.canStickToZeta(slimeState, state);
 		}
 
 	}

@@ -17,6 +17,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -192,7 +193,7 @@ public class EnhancedLaddersModule extends ZetaModule {
 
 			Player player = event.getEntity();
 			if(player.onClimbable() && !player.getAbilities().flying &&
-				!player.level.getBlockState(player.blockPosition()).isScaffolding(player)
+				!isScaffolding(player.level.getBlockState(player.blockPosition()), player)
 				&& Minecraft.getInstance().screen != null && !(player.zza == 0 && player.getXRot() > 70) && !player.isOnGround()) {
 				Input input = event.getInput();
 				if(input != null)
@@ -210,7 +211,7 @@ public class EnhancedLaddersModule extends ZetaModule {
 				BlockPos playerPos = player.blockPosition();
 				BlockPos downPos = playerPos.below();
 
-				boolean scaffold = player.level.getBlockState(playerPos).isScaffolding(player);
+				boolean scaffold = isScaffolding(player.level.getBlockState(playerPos), player);
 				if(player.isCrouching() == scaffold &&
 					player.zza == 0 &&
 					player.yya <= 0 &&
@@ -232,6 +233,10 @@ public class EnhancedLaddersModule extends ZetaModule {
 			}
 		}
 
+	}
+
+	protected boolean isScaffolding(BlockState state, LivingEntity entity) {
+		return zeta.blockExtensions.get(state).isScaffoldingZeta(state, entity.level, entity.blockPosition(), entity);
 	}
 
 

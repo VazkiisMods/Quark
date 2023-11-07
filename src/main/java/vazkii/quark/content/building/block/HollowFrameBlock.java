@@ -153,7 +153,7 @@ public abstract class HollowFrameBlock extends QuarkBlock implements SimpleWater
     }
 
     @Override
-    public boolean isLadder(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
+    public boolean isLadderZeta(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
         if (entity.isVisuallyCrawling() && entity.isShiftKeyDown())
             return false;
 
@@ -166,7 +166,7 @@ public abstract class HollowFrameBlock extends QuarkBlock implements SimpleWater
         if (eyePos.x > (pos.getX() + pad) && eyePos.z > (pos.getZ() + pad) && eyePos.x < (pos.getX() + 1 - pad) && eyePos.z < (pos.getZ() + 1 - pad))
             return true;
 
-        return super.isLadder(state, level, pos, entity);
+        return super.isLadderZeta(state, level, pos, entity);
     }
 
     @Override

@@ -285,7 +285,7 @@ public class RopeBlock extends QuarkBlock implements IZetaBlockItemProvider, Sim
 	}
 
 	@Override
-	public boolean isLadder(BlockState state, LevelReader world, BlockPos pos, LivingEntity entity) {
+	public boolean isLadderZeta(BlockState state, LevelReader world, BlockPos pos, LivingEntity entity) {
 		return true;
 	}
 
@@ -296,12 +296,12 @@ public class RopeBlock extends QuarkBlock implements IZetaBlockItemProvider, Sim
 	}
 
 	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	public int getFlammabilityZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return 30;
 	}
 
 	@Override
-	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	public int getFireSpreadSpeedZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return 60;
 	}
 

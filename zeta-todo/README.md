@@ -25,7 +25,7 @@ So tl;dr for zeta-fying a module:
 * create cross-platform versions of any missing `@SubscribeEvent`s in Zeta and subscribe to them with `@PlayEvent`,
 * remove all other mentions of Forge and add an appropriate indirection layer in Zeta.
 
-Repeat ~~164x~~ 136x.
+Repeat ~~164x~~ ~~136x~~ 47x.
 
 # The initial Zeta pitch
 
@@ -81,13 +81,12 @@ Just the netcode that was already in Quark/ARL tbh
 
 ## Zeta Registry
 
-its literally autoreglib
+its literally autoreglib. Except its not
 
 # code goals
 
 * Cut down on `static` usage
 * Keep the components of Zeta relatively loosely coupled if at all possible
-  * I'm still deciding how many fields should go in `Zeta`. Like does the module system belong there (probably). Does the registry belong there (maybe?)
 
 # notes from vazkii
 
@@ -99,36 +98,39 @@ Some of these fit nicer as event arguments too, instead of singletons that need 
 
 Bring to zeta:
 
-* "If the feature exists only to interact with a specific quark feature it stays in quark, otherwise it goes in zeta"
-* Piston logic override in zeta? :eyes:
-* Recipe crawler -> zeta
-* Advancement modification system
-* "ig the worldgen shim?"
-* "pretty much everything in `block` is viable to pull out"
-* some stuff wrt to module loader - anti overlap
-* ItemOverrideHandler is used by variant bookshelves/ladders but it's pretty standalone
-* ToolInteractionHandler is "literally only used for waxing" but it's important
-* QuarkBlock and QuarkItem are really for "disableable/enablable blocks"
-* WoodSetHandler is important, but there are some quark uniques in there
-* VanillaWoods is used in a few modules, could be moved out since it's useful
+- "If the feature exists only to interact with a specific quark feature it stays in quark, otherwise it goes in zeta"
+- [x] Piston logic override in zeta? :eyes:
+- [ ] Recipe crawler -> zeta
+- [ ] Advancement modification system
+- [ ] "ig the worldgen shim?"
+- [ ] "pretty much everything in `block` is viable to pull out"
+- [x] some stuff wrt to module loader - anti overlap
+- [ ] ItemOverrideHandler is used by variant bookshelves/ladders but it's pretty standalone
+- [ ] ToolInteractionHandler is "literally only used for waxing" but it's important
+- [ ] QuarkBlock and QuarkItem are really for "disableable/enablable blocks"
+- [ ] WoodSetHandler is important, but there are some quark uniques in there
+- [ ] VanillaWoods is used in a few modules, could be moved out since it's useful
 
 Keep in quark/reform:
 
-* ContributorRewardHandler (ofc)
-* CreativeTabHandler will need rethinking for the new creative tab scheme in 1.19.4
-* EntityAttributeHandler is "essentially just a bridge"
-* DyeHandler -> some simple utilities fit in Zeta, others not so much
-* capabilities: pain point. Some can be made non-capabilities
-* InventoryTransferHandler is quark specific so it can stay
-* MiscUtil should probably be dissolved (addToLootTable is very important though -> maybe into a LootTableLoadEvent shim)
-* SimilarBlockTypeHandler is for quark shulker box stuff
-* UndergroundBiomeHandler is overengineered
+- [x] ContributorRewardHandler (ofc)
+- [x] CreativeTabHandler will need rethinking for the new creative tab scheme in 1.19.4
+  - stub api is in place, CreativeTabHandler is just a bridge to it 
+- [ ] EntityAttributeHandler is "essentially just a bridge"
+- [x] DyeHandler -> some simple utilities fit in Zeta, others not so much
+- [x] capabilities: pain point. Some can be made non-capabilities
+  - tried to abstract over all quark capabilities, still gotta deal with IItemHandler and such tho 
+- [ ] InventoryTransferHandler is quark specific so it can stay
+- [ ] MiscUtil should probably be dissolved
+  - ~~(addToLootTable is very important though -> maybe into a LootTableLoadEvent shim)~~ Done
+- [ ] SimilarBlockTypeHandler is for quark shulker box stuff
+- [ ] UndergroundBiomeHandler is overengineered
 
 Obsolete things:
 
-* "External config" stuff can be removed and does not work anyway
-* RenderLayerHandler might be different
-* worldgen can be simplified a bit - just need a way to add a Singular feature to a biome in every step, then everything works itself out
+- [x] "External config" stuff can be removed and does not work anyway
+- [x] RenderLayerHandler might be different
+- [ ] worldgen can be simplified a bit - just need a way to add a Singular feature to a biome in every step, then everything works itself out
 
 # can you add a note to the todo about datagen
 

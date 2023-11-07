@@ -117,7 +117,7 @@ public class CorundumBlock extends QuarkGlassBlock {
 
 	@Nullable
 	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	public float[] getBeaconColorMultiplierZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
 		return colorComponents;
 	}
 

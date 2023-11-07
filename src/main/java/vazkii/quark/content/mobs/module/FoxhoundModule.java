@@ -13,6 +13,7 @@ import net.minecraft.world.entity.SpawnPlacements.Type;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.EntityAttributeHandler;
@@ -114,8 +115,10 @@ public class FoxhoundModule extends ZetaModule {
 			BlockPos pos = event.getSleepingLocation();
 			Level world = event.getEntity().level;
 
-			boolean sleep = world.getBlockState(pos.below()).getLightEmission(world, pos.below()) > 2;
-			if(sleep)
+			BlockPos below = pos.below();
+			BlockState belowState = world.getBlockState(below);
+			int light = zeta.blockExtensions.get(belowState).getLightEmissionZeta(belowState, world, below);
+			if(light > 2)
 				event.setResult(ZResult.ALLOW);
 		}
 	}

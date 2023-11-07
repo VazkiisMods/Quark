@@ -43,17 +43,18 @@ public class QuarkStairsBlock extends StairBlock implements IQuarkBlock, IZetaBl
 		if(isEnabled() || group == CreativeModeTab.TAB_SEARCH)
 			super.fillItemCategory(group, items);
 	}
-	
+
 	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.isFlammable(state, world, pos, face);
+	public boolean isFlammableZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+		BlockState parentState = parent.getBlock().defaultBlockState();
+		return Quark.ZETA.blockExtensions.get(parentState).isFlammableZeta(parentState, world, pos, face);
 	}
 
 	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.getFlammability(state, world, pos, face);
+	public int getFlammabilityZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+		BlockState parentState = parent.getBlock().defaultBlockState();
+		return Quark.ZETA.blockExtensions.get(parentState).getFlammabilityZeta(parentState, world, pos, face);
 	}
-	
 
 	@Nullable
 	@Override
@@ -74,8 +75,8 @@ public class QuarkStairsBlock extends StairBlock implements IQuarkBlock, IZetaBl
 
 	@Nullable
 	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-		return parent.getBlock().getBeaconColorMultiplier(parent.getBlock().defaultBlockState(), world, pos, beaconPos);
+	public float[] getBeaconColorMultiplierZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+		return Quark.ZETA.blockExtensions.get(state).getBeaconColorMultiplierZeta(state, world, pos, beaconPos);
 	}
 
 	@Override

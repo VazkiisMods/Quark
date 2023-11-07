@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import vazkii.quark.base.Quark;
 import vazkii.quark.content.mobs.entity.Foxhound;
 
 import javax.annotation.Nonnull;
@@ -88,11 +89,12 @@ public class FindPlaceToSleepGoal extends MoveToBlockGoal {
 		} else {
 			BlockState state = world.getBlockState(pos);
 			BlockEntity tileentity = world.getBlockEntity(pos);
+			int light = Quark.ZETA.blockExtensions.get(state).getLightEmissionZeta(state, world, pos);
 
 			return switch (target) {
-				case LIT_FURNACE -> tileentity instanceof FurnaceBlockEntity && state.getLightEmission(world, pos) > 2;
-				case FURNACE -> tileentity instanceof FurnaceBlockEntity && state.getLightEmission(world, pos) <= 2;
-				case GLOWING -> state.getLightEmission(world, pos) > 2;
+				case LIT_FURNACE -> tileentity instanceof FurnaceBlockEntity && light > 2;
+				case FURNACE -> tileentity instanceof FurnaceBlockEntity && light <= 2;
+				case GLOWING -> light > 2;
 			};
 		}
 	}

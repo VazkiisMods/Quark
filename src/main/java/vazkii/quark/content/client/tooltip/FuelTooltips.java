@@ -28,7 +28,7 @@ public class FuelTooltips {
 		if(!stack.isEmpty()) {
 			Screen screen = Minecraft.getInstance().screen;
 			if(screen != null && screen instanceof AbstractFurnaceScreen<?>) {
-				int count = Quark.ZETA.getBurnTime(stack, RecipeType.SMELTING);
+				int count = Quark.ZETA.itemExtensions.get(stack).getBurnTimeZeta(stack, RecipeType.SMELTING);
 				if(count > 0) {
 					Font font = Minecraft.getInstance().font;
 					

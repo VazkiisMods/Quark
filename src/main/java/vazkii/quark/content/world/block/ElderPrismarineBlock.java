@@ -14,7 +14,7 @@ public class ElderPrismarineBlock extends QuarkBlock {
 	}
 	
 	@Override
-	public boolean isConduitFrame(BlockState state, LevelReader world, BlockPos pos, BlockPos conduit) {
+	public boolean isConduitFrameZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos conduit) {
 		return true;
 	}
 

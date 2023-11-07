@@ -16,6 +16,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import vazkii.quark.api.IQuarkButtonAllowed;
 import vazkii.quark.api.ITransferManager;
 import vazkii.quark.api.QuarkCapabilities;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.content.management.module.EasyTransferingModule;
 
@@ -69,11 +70,11 @@ public class InventoryTransferHandler {
 	//	}
 
 	private static boolean hasProvider(Object te) {
-		return te instanceof BlockEntity be && be.getCapability(QuarkCapabilities.TRANSFER).isPresent();
+		return te instanceof BlockEntity be && Quark.ZETA.capabilityManager.hasCapability(QuarkCapabilities.TRANSFER, be);
 	}
 
 	private static ITransferManager getProvider(Object te) {
-		return ((BlockEntity) te).getCapability(QuarkCapabilities.TRANSFER).orElse(null);
+		return Quark.ZETA.capabilityManager.getCapability(QuarkCapabilities.TRANSFER, (BlockEntity) te);
 	}
 
 	public static boolean accepts(AbstractContainerMenu container, Player player) {

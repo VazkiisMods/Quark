@@ -9,8 +9,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.common.extensions.IForgeBlock;
 import vazkii.quark.base.Quark;
+import vazkii.zeta.block.ext.IZetaBlockExtensions;
 import vazkii.zeta.module.IDisableable;
 
 import java.util.function.Function;
@@ -19,14 +19,14 @@ import java.util.function.Function;
  * @author WireSegal
  * Created at 1:14 PM on 9/19/19.
  */
-public interface IQuarkBlock extends IForgeBlock, IDisableable<IQuarkBlock> {
+public interface IQuarkBlock extends IZetaBlockExtensions, IDisableable<IQuarkBlock> {
 
 	default Block getBlock() {
 		return (Block) this;
 	}
 
 	@Override
-	default int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	default int getFlammabilityZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		if (state.getValues().containsKey(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED))
 			return 0;
 
@@ -40,7 +40,7 @@ public interface IQuarkBlock extends IForgeBlock, IDisableable<IQuarkBlock> {
 	}
 
 	@Override
-	default int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	default int getFireSpreadSpeedZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		if (state.getValues().containsKey(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED))
 			return 0;
 

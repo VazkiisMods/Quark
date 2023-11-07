@@ -12,12 +12,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.common.util.LazyOptional;
+import org.jetbrains.annotations.Nullable;
 import vazkii.quark.addons.oddities.block.be.MagnetBlockEntity;
 import vazkii.quark.addons.oddities.module.MagnetsModule;
 import vazkii.quark.api.IMagnetMoveAction;
 import vazkii.quark.api.IMagnetTracker;
 import vazkii.quark.api.QuarkCapabilities;
+import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.RecipeCrawlHandler;
 
 public class MagnetSystem {
@@ -34,20 +35,23 @@ public class MagnetSystem {
 		return BLOCK_MOVE_ACTIONS.get(block);
 	}
 
-	public static LazyOptional<IMagnetTracker> getCapability(Level world) {
-		return world.getCapability(QuarkCapabilities.MAGNET_TRACKER_CAPABILITY);
+	public static @Nullable IMagnetTracker getTracker(Level level) {
+		return Quark.ZETA.capabilityManager.getCapability(QuarkCapabilities.MAGNET_TRACKER_CAPABILITY, level);
 	}
 
 	public static void tick(boolean start, Level level) {
-		if (start) {
-			getCapability(level).ifPresent(IMagnetTracker::clear);
-		} else {
-			getCapability(level).ifPresent(magnetTracker -> {
-				for (BlockPos pos : magnetTracker.getTrackedPositions())
-					magnetTracker.actOnForces(pos);
-				magnetTracker.clear();
-			});
+		//TODO ZETA: recipe crawl stuff is probably not working at the moment, i just wanna see if magnets work
+		magnetizableBlocks.add(Blocks.IRON_BLOCK);
+
+		IMagnetTracker tracker = getTracker(level);
+		if(tracker == null)
+			return;
+
+		if(!start) {
+			for(BlockPos pos : tracker.getTrackedPositions())
+				tracker.actOnForces(pos);
 		}
+		tracker.clear();
 	}
 
 	public static void onRecipeReset() {
@@ -62,8 +66,9 @@ public class MagnetSystem {
 	}
 	
 	public static void applyForce(Level world, BlockPos pos, int magnitude, boolean pushing, Direction dir, int distance, BlockPos origin) {
-		getCapability(world).ifPresent(magnetTracker ->
-		magnetTracker.applyForce(pos, magnitude, pushing, dir, distance, origin));
+		IMagnetTracker tracker = getTracker(world);
+		if(tracker != null)
+			tracker.applyForce(pos, magnitude, pushing, dir, distance, origin);
 	}
 
 	public static PushReaction getPushAction(MagnetBlockEntity magnet, BlockPos pos, BlockState state, Direction moveDir) {

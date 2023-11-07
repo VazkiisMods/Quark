@@ -21,12 +21,12 @@ public class VariantBookshelfBlock extends QuarkBlock {
 	}
 	
 	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	public boolean isFlammableZeta(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return flammable;
 	}
 	
 	@Override
-	public float getEnchantPowerBonus(BlockState state, LevelReader world, BlockPos pos) {
+	public float getEnchantPowerBonusZeta(BlockState state, LevelReader world, BlockPos pos) {
 		return 1;
 	}
 }

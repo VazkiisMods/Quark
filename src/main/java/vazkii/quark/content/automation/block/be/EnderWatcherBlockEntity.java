@@ -47,7 +47,7 @@ public class EnderWatcherBlockEntity extends ZetaBlockEntity {
 		for(Player player : players) {
 			ItemStack helm = player.getItemBySlot(EquipmentSlot.HEAD);
 			fakeEnderman.lookAt(player, 180, 180);
-			if(!helm.isEmpty() && Quark.ZETA.isEnderMask(helm, player, fakeEnderman))
+			if(!helm.isEmpty() && Quark.ZETA.itemExtensions.get(helm).isEnderMaskZeta(helm, player, fakeEnderman))
 				continue;
 
 			HitResult result = RayTraceHandler.rayTrace(player, level, player, Block.OUTLINE, Fluid.NONE, 64);

@@ -45,7 +45,7 @@ public class ShearVinesModule extends ZetaModule {
 	@PlayEvent
 	public void onRightClick(ZRightClickBlock event) {
 		ItemStack stack = event.getItemStack();
-		if(zeta.canShear(stack)) {
+		if(zeta.itemExtensions.get(stack).canShearZeta(stack)) {
 			BlockPos pos = event.getPos();
 			Level world = event.getLevel();
 			BlockState state = world.getBlockState(pos);

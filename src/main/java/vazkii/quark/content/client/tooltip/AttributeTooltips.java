@@ -175,7 +175,7 @@ public class AttributeTooltips {
 				if (!map.containsKey(Attributes.ATTACK_SPEED) && map.containsKey(Attributes.ATTACK_DAMAGE))
 					map.put(Attributes.ATTACK_SPEED, new AttributeModifier(Util.NIL_UUID, "-", 0, AttributeModifier.Operation.ADDITION));
 
-				if (!map.containsKey(Attributes.ATTACK_KNOCKBACK) && Quark.ZETA.getEnchantmentLevel(stack, Enchantments.KNOCKBACK) > 0)
+				if (!map.containsKey(Attributes.ATTACK_KNOCKBACK) && Quark.ZETA.itemExtensions.get(stack).getEnchantmentLevelZeta(stack, Enchantments.KNOCKBACK) > 0)
 					map.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(Util.NIL_UUID, "-", 0, AttributeModifier.Operation.ADDITION));
 			}
 			return map;
@@ -320,7 +320,7 @@ public class AttributeTooltips {
 		if (key.equals(Attributes.ATTACK_DAMAGE) && slot == AttributeSlot.MAINHAND)
 			value += EnchantmentHelper.getDamageBonus(stack, MobType.UNDEFINED);
 		if (key.equals(Attributes.ATTACK_KNOCKBACK) && slot == AttributeSlot.MAINHAND)
-			value += Quark.ZETA.getEnchantmentLevel(stack, Enchantments.KNOCKBACK);
+			value += Quark.ZETA.itemExtensions.get(stack).getEnchantmentLevelZeta(stack, Enchantments.KNOCKBACK);
 
 		if (displayType == AttributeDisplayType.DIFFERENCE) {
 			if (slot != null || !key.equals(Attributes.ATTACK_DAMAGE)) {

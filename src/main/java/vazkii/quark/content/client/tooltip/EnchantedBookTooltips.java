@@ -93,7 +93,7 @@ public class EnchantedBookTooltips {
 				continue;
 
 			if(!stack.isEmpty() && e.canEnchant(stack)) {
-				if (onlyForTable && (!e.canApplyAtEnchantingTable(stack) || !stack.isEnchantable() || Quark.ZETA.getEnchantmentValue(stack) <= 0))
+				if (onlyForTable && (!e.canApplyAtEnchantingTable(stack) || !stack.isEnchantable() || Quark.ZETA.itemExtensions.get(stack).getEnchantmentValueZeta(stack) <= 0))
 					continue;
 				list.add(stack);
 			}

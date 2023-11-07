@@ -21,6 +21,13 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.network.NetworkDirection;
+import org.jetbrains.annotations.Nullable;
+import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZLootTableLoad;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.api.IRuneColorProvider;
 import vazkii.quark.api.QuarkCapabilities;
 import vazkii.quark.base.Quark;
@@ -93,10 +100,10 @@ public class ColorRunesModule extends ZetaModule {
 		if (target == null)
 			return -1;
 
-		LazyOptional<IRuneColorProvider> cap = get(target);
+		@Nullable IRuneColorProvider cap = get(target);
 
-		if (cap.isPresent()) {
-			int color = cap.orElse((s) -> -1).getRuneColor(target);
+		if (cap != null) {
+			int color = cap.getRuneColor(target);
 			if (color != -1)
 				return color;
 		}
@@ -105,8 +112,11 @@ public class ColorRunesModule extends ZetaModule {
 			return -1;
 
 		ItemStack proxied = ItemStack.of(ItemNBTHelper.getCompound(target, TAG_RUNE_COLOR, false));
-		LazyOptional<IRuneColorProvider> proxyCap = get(proxied);
-		return proxyCap.orElse((s) -> -1).getRuneColor(target);
+		@Nullable IRuneColorProvider proxyCap = get(proxied);
+		if(proxyCap != null)
+			return proxyCap.getRuneColor(target);
+
+		return -1;
 	}
 	
 	private static final Map<ThrownTrident, ItemStack> TRIDENT_STACK_REFERENCES = new WeakHashMap<>();
@@ -233,8 +243,8 @@ public class ColorRunesModule extends ZetaModule {
 		return stack.isEnchanted() || (stack.getItem() == Items.COMPASS && CompassItem.isLodestoneCompass(stack)); // isLodestoneCompass = is lodestone compass
 	}
 
-	private static LazyOptional<IRuneColorProvider> get(ICapabilityProvider provider) {
-		return provider.getCapability(QuarkCapabilities.RUNE_COLOR);
+	private static @Nullable IRuneColorProvider get(ItemStack stack) {
+		return Quark.ZETA.capabilityManager.getCapability(QuarkCapabilities.RUNE_COLOR, stack);
 	}
 
 	@ZetaLoadModule(clientReplacement = true)

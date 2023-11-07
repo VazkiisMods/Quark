@@ -227,7 +227,7 @@ public class UsageTickerModule extends ZetaModule {
 			}
 
 			private static boolean isProjectileWeapon(ItemStack stack) {
-				return (stack.getItem() instanceof ProjectileWeaponItem) && Quark.ZETA.getEnchantmentLevel(stack, Enchantments.INFINITY_ARROWS) == 0;
+				return stack.getItem() instanceof ProjectileWeaponItem && Quark.ZETA.itemExtensions.get(stack).getEnchantmentLevelZeta(stack, Enchantments.INFINITY_ARROWS) == 0;
 			}
 
 			public ItemStack getRenderedStack(Player player) {

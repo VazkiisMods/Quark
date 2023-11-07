@@ -65,8 +65,9 @@ public class HollowWoodBlock extends HollowFrameBlock {
         return shapeCode(state, DOWN, UP, NORTH, SOUTH, WEST, EAST);
     }
 
+    @SuppressWarnings("deprecation") //Don't need the Forge extension
     @Override
-    public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction) {
+    public BlockState rotate(BlockState state, Rotation direction) {
         BlockState newState = state;
         for (Direction dir : Direction.values())
             newState = newState.setValue(directionProperty(dir), state.getValue(directionProperty(direction.rotate(dir))));
@@ -84,14 +85,14 @@ public class HollowWoodBlock extends HollowFrameBlock {
 
     // Temporary method
     @Override
-    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
-        if (toolAction == ToolActions.AXE_STRIP) {
+    public @Nullable BlockState getToolModifiedStateZeta(BlockState state, UseOnContext context, String toolActionType, boolean simulate) {
+        if ("axe_strip".equals(toolActionType)) {
             Vec3 exactPos = context.getClickLocation();
             BlockPos centerPos = context.getClickedPos();
             Direction face = Direction.getNearest(exactPos.x - (centerPos.getX() + 0.5), exactPos.y - (centerPos.getY() + 0.5), exactPos.z - (centerPos.getZ() + 0.5));
             return state.cycle(directionProperty(face));
         }
-        return super.getToolModifiedState(state, context, toolAction, simulate);
+        return super.getToolModifiedStateZeta(state, context, toolActionType, simulate);
     }
 
     @Override

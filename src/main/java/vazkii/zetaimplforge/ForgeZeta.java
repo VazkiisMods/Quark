@@ -8,6 +8,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeHooks;
@@ -35,24 +37,28 @@ import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 import vazkii.zeta.Zeta;
+import vazkii.zeta.block.ext.BlockExtensionFactory;
+import vazkii.zeta.capability.ZetaCapabilityManager;
 import vazkii.zeta.config.IZetaConfigInternals;
 import vazkii.zeta.config.SectionDefinition;
 import vazkii.zeta.event.*;
 import vazkii.zeta.event.bus.ZResult;
+import vazkii.zeta.item.ext.ItemExtensionFactory;
 import vazkii.zeta.network.ZetaNetworkHandler;
 import vazkii.zeta.registry.BrewingRegistry;
 import vazkii.zeta.registry.CraftingExtensionsRegistry;
 import vazkii.zeta.registry.ZetaRegistry;
 import vazkii.zeta.util.ZetaSide;
+import vazkii.zetaimplforge.block.IForgeBlockBlockExtensions;
+import vazkii.zetaimplforge.capability.ForgeCapabilityManager;
 import vazkii.zetaimplforge.config.ForgeBackedConfig;
 import vazkii.zetaimplforge.config.TerribleForgeConfigHackery;
 import vazkii.zetaimplforge.event.*;
+import vazkii.zetaimplforge.item.IForgeItemItemExtensions;
 import vazkii.zetaimplforge.network.ForgeZetaNetworkHandler;
 import vazkii.zetaimplforge.registry.ForgeBrewingRegistry;
 import vazkii.zetaimplforge.registry.ForgeCraftingExtensionsRegistry;
 import vazkii.zetaimplforge.registry.ForgeZetaRegistry;
-
-import java.util.Map;
 
 /**
  * ideally do not touch quark from this package, it will later be split off
@@ -106,43 +112,23 @@ public class ForgeZeta extends Zeta {
 	}
 
 	@Override
+	public ZetaCapabilityManager createCapabilityManager() {
+		return new ForgeCapabilityManager();
+	}
+
+	@Override
+	public BlockExtensionFactory createBlockExtensionFactory() {
+		return block -> IForgeBlockBlockExtensions.INSTANCE;
+	}
+
+	@Override
+	public ItemExtensionFactory createItemExtensionFactory() {
+		return stack -> IForgeItemItemExtensions.INSTANCE;
+	}
+
+	@Override
 	public boolean fireRightClickBlock(Player player, InteractionHand hand, BlockPos pos, BlockHitResult bhr) {
 		return MinecraftForge.EVENT_BUS.post(new PlayerInteractEvent.RightClickBlock(player, hand, pos, bhr));
-	}
-
-	@Override
-	public int getBurnTime(ItemStack stack, @Nullable RecipeType<?> recipeType) {
-		return ForgeHooks.getBurnTime(stack, recipeType);
-	}
-
-	@Override
-	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-		return stack.canElytraFly(entity); //IForgeItemStack
-	}
-
-	@Override
-	public boolean isEnderMask(ItemStack stack, Player player, EnderMan enderboy) {
-		return stack.isEnderMask(player, enderboy); //IForgeItemStack
-	}
-
-	@Override
-	public boolean canShear(ItemStack stack) {
-		return stack.canPerformAction(ToolActions.SHEARS_CARVE); //IForgeItemStack
-	}
-
-	@Override
-	public int getEnchantmentLevel(ItemStack stack, Enchantment enchantment) {
-		return stack.getEnchantmentLevel(enchantment); //IForgeItemStack
-	}
-
-	@Override
-	public Map<Enchantment, Integer> getAllEnchantments(ItemStack stack) {
-		return stack.getAllEnchantments(); //IForgeItemStack
-	}
-
-	@Override
-	public int getEnchantmentValue(ItemStack stack) {
-		return stack.getEnchantmentValue(); //IForgeItemStack
 	}
 
 	@SuppressWarnings("duplicates")
@@ -182,8 +168,11 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::babyEntitySpawn);
 		MinecraftForge.EVENT_BUS.addListener(this::babyEntitySpawnLowest);
 		MinecraftForge.EVENT_BUS.addListener(this::entityJoinLevel);
-		//fixme
-		//MinecraftForge.EVENT_BUS.addGenericListener(ForgeZeta.class, this::attachCapabilities);
+
+		MinecraftForge.EVENT_BUS.addGenericListener(ItemStack.class, this::itemStackCaps);
+		MinecraftForge.EVENT_BUS.addGenericListener(BlockEntity.class, this::blockEntityCaps);
+		MinecraftForge.EVENT_BUS.addGenericListener(Level.class, this::levelCaps);
+
 		MinecraftForge.EVENT_BUS.addListener(this::levelTickStart);
 		MinecraftForge.EVENT_BUS.addListener(this::levelTickEnd);
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteract);
@@ -328,8 +317,16 @@ public class ForgeZeta extends Zeta {
 		playBus.fire(new ForgeZEntityJoinLevel(e), ZEntityJoinLevel.class);
 	}
 
-	public void attachCapabilities(AttachCapabilitiesEvent<?> e) {
-		playBus.fire(new ForgeZAttachCapabilities<>(e), ZAttachCapabilities.class);
+	public void itemStackCaps(AttachCapabilitiesEvent<ItemStack> e) {
+		playBus.fire(new ForgeZAttachCapabilities.ItemStackCaps(capabilityManager, e), ZAttachCapabilities.ItemStackCaps.class);
+	}
+
+	public void blockEntityCaps(AttachCapabilitiesEvent<BlockEntity> e) {
+		playBus.fire(new ForgeZAttachCapabilities.BlockEntityCaps(capabilityManager, e), ZAttachCapabilities.BlockEntityCaps.class);
+	}
+
+	public void levelCaps(AttachCapabilitiesEvent<Level> e) {
+		playBus.fire(new ForgeZAttachCapabilities.LevelCaps(capabilityManager, e), ZAttachCapabilities.LevelCaps.class);
 	}
 
 	public void levelTickStart(TickEvent.LevelTickEvent e) {

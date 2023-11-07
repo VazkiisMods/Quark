@@ -145,7 +145,7 @@ public class GoldToolsHaveFortuneModule extends ZetaModule {
 	}
 
 	public static void fakeEnchantmentTooltip(ItemStack stack, List<Component> components) {
-		for (Map.Entry<Enchantment, Integer> entry : Quark.ZETA.getAllEnchantments(stack).entrySet()) {
+		for (Map.Entry<Enchantment, Integer> entry : Quark.ZETA.itemExtensions.get(stack).getAllEnchantmentsZeta(stack).entrySet()) {
 			int actualLevel = EnchantmentHelper.getTagEnchantmentLevel(entry.getKey(), stack);
 			if (actualLevel != entry.getValue()) {
 				Component comp = entry.getKey().getFullname(entry.getValue());
@@ -164,7 +164,7 @@ public class GoldToolsHaveFortuneModule extends ZetaModule {
 	public static ListTag hideSmallerEnchantments(ItemStack stack, ListTag tag) {
 		if (staticEnabled && displayBakedEnchantmentsInTooltip) {
 			List<ResourceLocation> toRemove = Lists.newArrayList();
-			for (Map.Entry<Enchantment, Integer> entry : Quark.ZETA.getAllEnchantments(stack).entrySet()) {
+			for (Map.Entry<Enchantment, Integer> entry : Quark.ZETA.itemExtensions.get(stack).getAllEnchantmentsZeta(stack).entrySet()) {
 				int actualLevel = EnchantmentHelper.getTagEnchantmentLevel(entry.getKey(), stack);
 				if (actualLevel != entry.getValue() && actualLevel != 0) {
 					toRemove.add(EnchantmentHelper.getEnchantmentId(entry.getKey()));

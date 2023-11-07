@@ -29,6 +29,7 @@ public class InventorySortingModule extends ZetaModule {
 	@Config(description = "Play a click when sorting inventories using keybindings")
 	public static boolean satisfyingClick = true;
 
+	@ZetaLoadModule(clientReplacement = true)
 	public static class Client extends InventorySortingModule {
 		@LoadEvent
 		public void registerKeybinds(ZKeyMapping event) {

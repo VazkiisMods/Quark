@@ -1,18 +1,11 @@
 package vazkii.quark.api;
 
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
+import vazkii.zeta.capability.ZetaCapability;
 
 public class QuarkCapabilities {
-
-	public static final Capability<ICustomSorting> SORTING = CapabilityManager.get(new CapabilityToken<>(){});
-
-	public static final Capability<ITransferManager> TRANSFER = CapabilityManager.get(new CapabilityToken<>(){});
-
-	public static final Capability<IPistonCallback> PISTON_CALLBACK = CapabilityManager.get(new CapabilityToken<>(){});
-
-	public static final Capability<IMagnetTracker> MAGNET_TRACKER_CAPABILITY = CapabilityManager.get(new CapabilityToken<>(){});
-
-	public static final Capability<IRuneColorProvider> RUNE_COLOR = CapabilityManager.get(new CapabilityToken<>(){});
+	public static final ZetaCapability<ICustomSorting> SORTING = new ZetaCapability<>("quark:sorting");
+	public static final ZetaCapability<ITransferManager> TRANSFER = new ZetaCapability<>("quark:transfer");
+	public static final ZetaCapability<IPistonCallback> PISTON_CALLBACK = new ZetaCapability<>("quark:piston_callback");
+	public static final ZetaCapability<IMagnetTracker> MAGNET_TRACKER_CAPABILITY = new ZetaCapability<>("quark:magnet_tracker");
+	public static final ZetaCapability<IRuneColorProvider> RUNE_COLOR = new ZetaCapability<>("quark:rune_color");
 }

@@ -1,25 +1,16 @@
 package vazkii.zeta;
 
-import java.util.Map;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ElytraItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ShearsItem;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.BlockHitResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
+import vazkii.zeta.block.ext.BlockExtensionFactory;
+import vazkii.zeta.capability.ZetaCapabilityManager;
+import vazkii.zeta.item.ext.ItemExtensionFactory;
 import vazkii.zeta.registry.BrewingRegistry;
-import vazkii.zeta.client.ClientTicker;
 import vazkii.zeta.config.IZetaConfigInternals;
 import vazkii.zeta.config.SectionDefinition;
 import vazkii.zeta.config.ConfigManager;
@@ -59,6 +50,10 @@ public abstract class Zeta {
 		this.craftingExtensions = createCraftingExtensionsRegistry();
 		this.brewingRegistry = createBrewingRegistry();
 
+		this.blockExtensions = createBlockExtensionFactory();
+		this.itemExtensions = createItemExtensionFactory();
+		this.capabilityManager = createCapabilityManager();
+
 		loadBus.subscribe(craftingExtensions)
 			.subscribe(brewingRegistry);
 	}
@@ -76,6 +71,10 @@ public abstract class Zeta {
 	public final DyeablesRegistry dyeables;
 	public final CraftingExtensionsRegistry craftingExtensions;
 	public final BrewingRegistry brewingRegistry;
+
+	public final ZetaCapabilityManager capabilityManager;
+	public final BlockExtensionFactory blockExtensions;
+	public final ItemExtensionFactory itemExtensions;
 
 	public ConfigManager configManager; //This could do with being split up into various pieces?
 	public IZetaConfigInternals configInternals;
@@ -115,31 +114,14 @@ public abstract class Zeta {
 	}
 	public abstract BrewingRegistry createBrewingRegistry();
 	public abstract ZetaNetworkHandler createNetworkHandler(String modid, int protocolVersion);
+	public abstract ZetaCapabilityManager createCapabilityManager();
+	public BlockExtensionFactory createBlockExtensionFactory() {
+		return BlockExtensionFactory.DEFAULT;
+	}
+	public abstract ItemExtensionFactory createItemExtensionFactory();
 
 	// misc "ah fuck i need to interact with the modloader" stuff
 	public abstract boolean fireRightClickBlock(Player player, InteractionHand hand, BlockPos pos, BlockHitResult bhr);
-	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-		//forge has a funky little extension for this
-		return stack.getItem() instanceof ElytraItem && ElytraItem.isFlyEnabled(stack);
-	}
-	public boolean isEnderMask(ItemStack stack, Player player, EnderMan enderboy) {
-		return stack.getItem() == Items.CARVED_PUMPKIN;
-	}
-	public boolean canShear(ItemStack stack) {
-		return stack.getItem() instanceof ShearsItem;
-	}
-	public int getEnchantmentLevel(ItemStack stack, Enchantment enchantment) {
-		return EnchantmentHelper.getTagEnchantmentLevel(enchantment, stack);
-	}
-	public Map<Enchantment, Integer> getAllEnchantments(ItemStack stack) {
-		return EnchantmentHelper.deserializeEnchantments(stack.getEnchantmentTags());
-	}
-	@SuppressWarnings("deprecation") //forge ext
-	public int getEnchantmentValue(ItemStack stack) {
-		return stack.getItem().getEnchantmentValue();
-	}
-
-	public abstract int getBurnTime(ItemStack stack, @Nullable RecipeType<?> recipeType);
 
 	// Let's Jump
 	public abstract void start();
