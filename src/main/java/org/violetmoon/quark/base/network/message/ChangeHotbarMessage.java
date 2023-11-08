@@ -3,11 +3,10 @@ package org.violetmoon.quark.base.network.message;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-
-import java.io.Serial;
-
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class ChangeHotbarMessage implements IZetaMessage {
 

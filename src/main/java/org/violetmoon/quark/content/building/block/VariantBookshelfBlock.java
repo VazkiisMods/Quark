@@ -1,8 +1,5 @@
 package org.violetmoon.quark.content.building.block;
 
-import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
@@ -11,6 +8,8 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.zeta.module.ZetaModule;
 
 public class VariantBookshelfBlock extends QuarkBlock {
 

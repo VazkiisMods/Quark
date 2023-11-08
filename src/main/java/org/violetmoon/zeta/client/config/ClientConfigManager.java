@@ -1,22 +1,14 @@
 package org.violetmoon.zeta.client.config;
 
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 import org.violetmoon.quark.base.config.type.inputtable.ConvulsionMatrixConfig;
 import org.violetmoon.quark.base.config.type.inputtable.RGBColorConfig;
-import org.violetmoon.zeta.client.config.definition.BooleanClientDefinition;
-import org.violetmoon.zeta.client.config.definition.ClientDefinitionExt;
-import org.violetmoon.zeta.client.config.definition.ConvulsionMatrixClientDefinition;
-import org.violetmoon.zeta.client.config.definition.DoubleClientDefinition;
-import org.violetmoon.zeta.client.config.definition.IntegerClientDefinition;
-import org.violetmoon.zeta.client.config.definition.RGBClientDefinition;
-import org.violetmoon.zeta.client.config.definition.SectionClientDefinition;
-import org.violetmoon.zeta.client.config.definition.StringClientDefinition;
-import org.violetmoon.zeta.client.config.definition.StringListClientDefinition;
+import org.violetmoon.zeta.client.config.definition.*;
 import org.violetmoon.zeta.config.Definition;
 import org.violetmoon.zeta.config.SectionDefinition;
 import org.violetmoon.zeta.config.ValueDefinition;
+
+import java.util.List;
 
 public class ClientConfigManager {
 	@SuppressWarnings("unchecked")

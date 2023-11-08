@@ -1,17 +1,5 @@
 package org.violetmoon.quark.addons.oddities.block;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.addons.oddities.block.be.MagnetBlockEntity;
-import org.violetmoon.quark.addons.oddities.block.be.MagnetizedBlockBlockEntity;
-import org.violetmoon.quark.addons.oddities.magnetsystem.MagnetSystem;
-import org.violetmoon.quark.addons.oddities.module.MagnetsModule;
-import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -22,11 +10,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -38,6 +22,16 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.addons.oddities.block.be.MagnetBlockEntity;
+import org.violetmoon.quark.addons.oddities.block.be.MagnetizedBlockBlockEntity;
+import org.violetmoon.quark.addons.oddities.magnetsystem.MagnetSystem;
+import org.violetmoon.quark.addons.oddities.module.MagnetsModule;
+import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class MagnetBlock extends QuarkBlock implements EntityBlock {
 

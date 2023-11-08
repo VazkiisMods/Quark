@@ -10,11 +10,10 @@
  */
 package org.violetmoon.quark.base.util;
 
-import org.violetmoon.quark.base.Quark;
-
 import net.minecraft.core.Registry;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import org.violetmoon.quark.base.Quark;
 
 public class QuarkEffect extends MobEffect {
 

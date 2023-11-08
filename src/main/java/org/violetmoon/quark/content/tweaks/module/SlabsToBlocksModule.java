@@ -7,16 +7,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.violetmoon.quark.api.event.RecipeCrawlEvent;
 import org.violetmoon.quark.content.tweaks.recipe.SlabToBlockRecipe;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @ZetaLoadModule(category = "tweaks")
 public class SlabsToBlocksModule extends ZetaModule {

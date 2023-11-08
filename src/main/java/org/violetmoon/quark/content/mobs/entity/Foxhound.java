@@ -10,25 +10,6 @@
  */
 package org.violetmoon.quark.content.mobs.entity;
 
-import static org.violetmoon.quark.content.mobs.ai.FindPlaceToSleepGoal.Target.FURNACE;
-import static org.violetmoon.quark.content.mobs.ai.FindPlaceToSleepGoal.Target.GLOWING;
-import static org.violetmoon.quark.content.mobs.ai.FindPlaceToSleepGoal.Target.LIT_FURNACE;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.block.TinyPotatoBlock;
-import org.violetmoon.quark.addons.oddities.module.TinyPotatoModule;
-import org.violetmoon.quark.base.handler.QuarkSounds;
-import org.violetmoon.quark.content.mobs.ai.FindPlaceToSleepGoal;
-import org.violetmoon.quark.content.mobs.ai.SleepGoal;
-import org.violetmoon.quark.content.mobs.module.FoxhoundModule;
-import org.violetmoon.quark.content.tweaks.ai.WantLoveGoal;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
@@ -49,24 +30,9 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.BegGoal;
-import net.minecraft.world.entity.ai.goal.BreedGoal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
@@ -90,6 +56,21 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import org.violetmoon.quark.addons.oddities.block.TinyPotatoBlock;
+import org.violetmoon.quark.addons.oddities.module.TinyPotatoModule;
+import org.violetmoon.quark.base.handler.QuarkSounds;
+import org.violetmoon.quark.content.mobs.ai.FindPlaceToSleepGoal;
+import org.violetmoon.quark.content.mobs.ai.SleepGoal;
+import org.violetmoon.quark.content.mobs.module.FoxhoundModule;
+import org.violetmoon.quark.content.tweaks.ai.WantLoveGoal;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.violetmoon.quark.content.mobs.ai.FindPlaceToSleepGoal.Target.*;
 
 public class Foxhound extends Wolf implements Enemy {
 

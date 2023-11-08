@@ -10,10 +10,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-
-import java.util.Collection;
-import java.util.Objects;
-
 import org.violetmoon.quark.addons.oddities.client.render.entity.TotemOfHoldingRenderer;
 import org.violetmoon.quark.addons.oddities.entity.TotemOfHoldingEntity;
 import org.violetmoon.quark.base.Quark;
@@ -26,6 +22,9 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.event.play.entity.living.ZLivingDrops;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.Collection;
+import java.util.Objects;
 
 /**
  * @author WireSegal

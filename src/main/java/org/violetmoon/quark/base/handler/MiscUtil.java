@@ -51,15 +51,13 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.experimental.module.EnchantmentsBegoneModule;
 import org.violetmoon.zeta.client.config.screen.ZetaScreen;
 import org.violetmoon.zeta.client.event.play.ZScreen;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;

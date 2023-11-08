@@ -4,11 +4,10 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
-
-import java.util.EnumSet;
-
 import org.violetmoon.quark.content.mobs.entity.Shiba;
 import org.violetmoon.quark.mixin.accessor.AccessorAbstractArrow;
+
+import java.util.EnumSet;
 
 public class FetchArrowGoal extends Goal {
 

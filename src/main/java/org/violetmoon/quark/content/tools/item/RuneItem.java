@@ -1,14 +1,13 @@
 package org.violetmoon.quark.content.tools.item;
 
-import javax.annotation.Nonnull;
-
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import org.violetmoon.quark.api.IRuneColorProvider;
 import org.violetmoon.quark.base.item.QuarkItem;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import javax.annotation.Nonnull;
 
 /**
  * @author WireSegal

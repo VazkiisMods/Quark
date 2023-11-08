@@ -2,11 +2,10 @@ package org.violetmoon.quark.base.network.message.structural;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
+import org.violetmoon.quark.base.config.SyncedFlagHandler;
 
 import java.util.BitSet;
 import java.util.function.BiConsumer;
-
-import org.violetmoon.quark.base.config.SyncedFlagHandler;
 
 public class C2SLoginFlag extends HandshakeMessage {
 

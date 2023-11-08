@@ -1,13 +1,12 @@
 package org.violetmoon.quark.base.config.type;
 
+import net.minecraft.core.Holder;
+import net.minecraft.world.level.biome.Biome;
+import org.violetmoon.quark.base.config.Config;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.violetmoon.quark.base.config.Config;
-
-import net.minecraft.core.Holder;
-import net.minecraft.world.level.biome.Biome;
 
 public class StrictBiomeConfig implements IBiomeConfig, IConfigType {
 

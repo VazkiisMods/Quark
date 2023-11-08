@@ -10,11 +10,10 @@
  */
 package org.violetmoon.quark.content.mobs.ai;
 
-import java.util.EnumSet;
-
+import net.minecraft.world.entity.ai.goal.Goal;
 import org.violetmoon.quark.content.mobs.entity.Crab;
 
-import net.minecraft.world.entity.ai.goal.Goal;
+import java.util.EnumSet;
 
 public class RaveGoal extends Goal {
 	private final Crab crab;

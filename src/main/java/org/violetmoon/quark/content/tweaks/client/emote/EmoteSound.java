@@ -10,9 +10,6 @@
  */
 package org.violetmoon.quark.content.tweaks.client.emote;
 
-import java.lang.ref.WeakReference;
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.AbstractSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
@@ -23,6 +20,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.lang.ref.WeakReference;
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class EmoteSound extends AbstractSoundInstance implements TickableSoundInstance {

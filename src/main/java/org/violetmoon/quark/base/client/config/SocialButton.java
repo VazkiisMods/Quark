@@ -1,13 +1,5 @@
 package org.violetmoon.quark.base.client.config;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.zeta.client.TopLayerTooltipHandler;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
@@ -15,6 +7,11 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.QuarkClient;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class SocialButton extends Button {
 

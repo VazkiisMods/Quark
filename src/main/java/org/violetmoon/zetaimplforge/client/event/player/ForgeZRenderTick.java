@@ -1,8 +1,7 @@
 package org.violetmoon.zetaimplforge.client.event.player;
 
-import org.violetmoon.zeta.client.event.play.ZRenderTick;
-
 import net.minecraftforge.event.TickEvent;
+import org.violetmoon.zeta.client.event.play.ZRenderTick;
 
 public record ForgeZRenderTick(TickEvent.RenderTickEvent e) implements ZRenderTick {
 	@Override

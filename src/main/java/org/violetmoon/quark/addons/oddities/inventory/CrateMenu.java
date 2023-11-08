@@ -11,14 +11,13 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.block.be.CrateBlockEntity;
 import org.violetmoon.quark.addons.oddities.capability.CrateItemHandler;
 import org.violetmoon.quark.addons.oddities.module.CrateModule;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.oddities.ScrollCrateMessage;
+
+import javax.annotation.Nonnull;
 
 public class CrateMenu extends AbstractContainerMenu {
 

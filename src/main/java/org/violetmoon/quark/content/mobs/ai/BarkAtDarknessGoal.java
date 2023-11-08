@@ -6,10 +6,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.phys.Vec3;
+import org.violetmoon.quark.content.mobs.entity.Shiba;
 
 import java.util.EnumSet;
-
-import org.violetmoon.quark.content.mobs.entity.Shiba;
 
 public class BarkAtDarknessGoal extends Goal {
 

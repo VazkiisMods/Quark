@@ -20,9 +20,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.zeta.client.event.load.ZKeyMapping;
 import org.violetmoon.zeta.client.event.play.ZInput;
@@ -30,6 +27,8 @@ import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.List;
 
 @ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class NarratorReadoutModule extends ZetaModule {

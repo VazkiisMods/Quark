@@ -1,23 +1,15 @@
 package org.violetmoon.quark.content.client.resources;
 
+import com.google.gson.*;
+import net.minecraft.ChatFormatting;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+
 import java.lang.reflect.Type;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
-import com.google.gson.JsonSyntaxException;
-
-import net.minecraft.ChatFormatting;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 
 public record AttributeIconEntry(
 	 Map<AttributeSlot, AttributeDisplayType> displayTypes,

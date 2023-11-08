@@ -1,11 +1,5 @@
 package org.violetmoon.quark.content.management.module;
 
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.play.entity.player.ZPlayerInteract;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -13,6 +7,11 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayerInteract;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
 
 @ZetaLoadModule(category = "management")
 public class QuickArmorSwappingModule extends ZetaModule {

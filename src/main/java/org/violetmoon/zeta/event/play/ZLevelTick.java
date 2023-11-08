@@ -1,8 +1,7 @@
 package org.violetmoon.zeta.event.play;
 
-import org.violetmoon.zeta.event.bus.IZetaPlayEvent;
-
 import net.minecraft.world.level.Level;
+import org.violetmoon.zeta.event.bus.IZetaPlayEvent;
 
 public interface ZLevelTick extends IZetaPlayEvent {
     Level getLevel();

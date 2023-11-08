@@ -10,13 +10,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.tools.module.ColorRunesModule;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.tools.module.ColorRunesModule;
 
 @OnlyIn(Dist.CLIENT)
 public class GlintRenderTypes extends RenderType {

@@ -1,17 +1,5 @@
 package org.violetmoon.quark.base.block;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.handler.CreativeTabHandler;
-import org.violetmoon.quark.base.handler.VariantHandler;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.registry.IZetaBlockColorProvider;
-import org.violetmoon.zeta.registry.IZetaItemColorProvider;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -21,6 +9,16 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.handler.CreativeTabHandler;
+import org.violetmoon.quark.base.handler.VariantHandler;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.registry.IZetaBlockColorProvider;
+import org.violetmoon.zeta.registry.IZetaItemColorProvider;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.function.BooleanSupplier;
 
 public class QuarkStairsBlock extends StairBlock implements IQuarkBlock, IZetaBlockColorProvider {
 

@@ -1,17 +1,16 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.play.entity.ZEntityJoinLevel;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.world.entity.ai.goal.TemptGoal;
-import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 
 /**
  * @author WireSegal

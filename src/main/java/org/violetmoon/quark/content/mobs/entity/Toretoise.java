@@ -43,16 +43,13 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.ToolActions;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.content.mobs.module.ToretoiseModule;
 
+import javax.annotation.Nonnull;
 import java.util.List;
-import java.util.Objects;
 
 public class Toretoise extends Animal {
 

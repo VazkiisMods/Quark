@@ -1,10 +1,9 @@
 package org.violetmoon.zeta.client.config.screen;
 
-import org.violetmoon.zeta.Zeta;
-import org.violetmoon.zeta.client.ZetaClient;
-
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import org.violetmoon.zeta.Zeta;
+import org.violetmoon.zeta.client.ZetaClient;
 
 public abstract class ZetaScreen extends Screen {
 

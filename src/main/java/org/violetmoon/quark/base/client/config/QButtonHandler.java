@@ -8,12 +8,11 @@ import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.resources.language.I18n;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.handler.GeneralConfig;
 import org.violetmoon.zeta.client.event.play.ZScreen;
 import org.violetmoon.zeta.event.bus.PlayEvent;
+
+import java.util.List;
 
 public class QButtonHandler {
 

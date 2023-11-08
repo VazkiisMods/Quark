@@ -18,10 +18,9 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.content.tools.module.ParrotEggsModule;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.content.tools.module.ParrotEggsModule;
 
 public class ParrotEgg extends ThrowableItemProjectile {
 	public static final int VARIANTS = 5;

@@ -1,22 +1,7 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.quark.base.network.QuarkNetwork;
-import org.violetmoon.quark.base.network.message.DoubleDoorMessage;
-import org.violetmoon.quark.integration.claim.IClaimIntegration;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.bus.ZResult;
-import org.violetmoon.zeta.event.load.ZCommonSetup;
-import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -40,6 +25,19 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.network.QuarkNetwork;
+import org.violetmoon.quark.base.network.message.DoubleDoorMessage;
+import org.violetmoon.quark.integration.claim.IClaimIntegration;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.bus.ZResult;
+import org.violetmoon.zeta.event.load.ZCommonSetup;
+import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
 
 @ZetaLoadModule(category = "tweaks", antiOverlap = "utilitix")
 public class DoubleDoorOpeningModule extends ZetaModule {

@@ -1,15 +1,14 @@
 package org.violetmoon.quark.base.handler;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 import com.google.common.collect.ImmutableSet;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author WireSegal

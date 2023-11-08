@@ -14,11 +14,10 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import org.violetmoon.quark.addons.oddities.module.MatrixEnchantingModule;
+
+import javax.annotation.Nonnull;
 
 public class MatrixEnchantingMenu extends AbstractContainerMenu {
 

@@ -1,18 +1,16 @@
 package org.violetmoon.quark.base.handler.advancement;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.Criterion;
+import org.violetmoon.quark.api.IMutableAdvancement;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import org.violetmoon.quark.api.IMutableAdvancement;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.Criterion;
 
 public class MutableAdvancement implements IMutableAdvancement {
 	

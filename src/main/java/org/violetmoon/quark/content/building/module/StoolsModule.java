@@ -1,5 +1,17 @@
 package org.violetmoon.quark.content.building.module;
 
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.state.BlockState;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.block.StoolBlock;
 import org.violetmoon.quark.content.building.client.render.entity.StoolEntityRenderer;
@@ -13,19 +25,6 @@ import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.state.BlockState;
 
 @ZetaLoadModule(category = "building")
 public class StoolsModule extends ZetaModule {

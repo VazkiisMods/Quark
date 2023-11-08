@@ -15,10 +15,6 @@ import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
-
-import java.util.*;
-import java.util.function.Predicate;
-
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 import org.violetmoon.quark.api.event.GatherToolClassesEvent;
 import org.violetmoon.quark.base.Quark;
@@ -33,6 +29,9 @@ import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.RegistryUtil;
+
+import java.util.*;
+import java.util.function.Predicate;
 
 @ZetaLoadModule(category = "management", antiOverlap = "inventorytweaks")
 public class AutomaticToolRestockModule extends ZetaModule {

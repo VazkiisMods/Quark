@@ -1,8 +1,8 @@
 package org.violetmoon.quark.api;
 
-import java.util.function.Predicate;
-
 import net.minecraft.world.item.ItemStack;
+
+import java.util.function.Predicate;
 
 /**
  * Implement this on an Item to change its behavior with the quark usage ticker.

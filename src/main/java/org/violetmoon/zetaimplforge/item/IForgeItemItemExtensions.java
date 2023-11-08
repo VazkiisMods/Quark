@@ -1,7 +1,5 @@
 package org.violetmoon.zetaimplforge.item;
 
-import java.util.Map;
-
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
@@ -12,6 +10,8 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.zeta.item.ext.IZetaItemExtensions;
+
+import java.util.Map;
 
 public class IForgeItemItemExtensions implements IZetaItemExtensions {
 	public static final IForgeItemItemExtensions INSTANCE = new IForgeItemItemExtensions();

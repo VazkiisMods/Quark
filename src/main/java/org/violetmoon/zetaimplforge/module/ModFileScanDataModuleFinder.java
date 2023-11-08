@@ -1,7 +1,5 @@
 package org.violetmoon.zetaimplforge.module;
 
-import java.util.stream.Stream;
-
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 import org.objectweb.asm.Type;
@@ -9,6 +7,8 @@ import org.violetmoon.zeta.module.ModuleFinder;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaLoadModuleAnnotationData;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.stream.Stream;
 
 public class ModFileScanDataModuleFinder implements ModuleFinder {
 	private static final Type ZLM_TYPE = Type.getType(ZetaLoadModule.class);

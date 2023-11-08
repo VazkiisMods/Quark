@@ -25,9 +25,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.common.Tags;
-
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.StructureBlockReplacementHandler;
@@ -44,7 +41,6 @@ import org.violetmoon.quark.integration.lootr.ILootrIntegration;
 import org.violetmoon.quark.mixin.accessor.AccessorAbstractChestedHorse;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.client.event.load.ZPreTextureStitch;
-import org.violetmoon.zeta.event.*;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
@@ -57,6 +53,7 @@ import org.violetmoon.zeta.module.IDisableable;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;

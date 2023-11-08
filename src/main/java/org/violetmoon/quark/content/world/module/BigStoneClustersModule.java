@@ -10,11 +10,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraftforge.common.Tags;
-
-import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.function.BooleanSupplier;
-
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
 import org.violetmoon.quark.base.config.type.DimensionConfig;
@@ -30,6 +25,10 @@ import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.event.play.loading.ZGatherHints;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.BooleanSupplier;
 
 @ZetaLoadModule(category = "world")
 public class BigStoneClustersModule extends ZetaModule {

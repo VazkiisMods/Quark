@@ -11,9 +11,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.IQuarkBlock;
 import org.violetmoon.quark.base.handler.CreativeTabHandler;
@@ -21,6 +18,7 @@ import org.violetmoon.quark.content.building.block.be.VariantFurnaceBlockEntity;
 import org.violetmoon.quark.content.building.module.VariantFurnacesModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 
 public class VariantFurnaceBlock extends FurnaceBlock implements IQuarkBlock {

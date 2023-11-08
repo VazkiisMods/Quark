@@ -17,10 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.addons.oddities.block.TinyPotatoBlock;
 import org.violetmoon.quark.addons.oddities.module.TinyPotatoModule;
 import org.violetmoon.quark.addons.oddities.util.TinyPotatoInfo;
@@ -28,6 +24,8 @@ import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.util.SimpleInventoryBlockEntity;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 

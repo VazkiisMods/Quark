@@ -8,10 +8,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import org.violetmoon.quark.base.Quark;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
 
 public final class FlanIntegration implements IClaimIntegration{
 

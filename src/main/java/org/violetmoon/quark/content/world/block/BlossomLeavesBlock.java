@@ -1,11 +1,5 @@
 package org.violetmoon.quark.content.world.block;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkLeavesBlock;
-import org.violetmoon.quark.content.world.module.BlossomTreesModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,6 +7,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
+import org.violetmoon.quark.base.block.QuarkLeavesBlock;
+import org.violetmoon.quark.content.world.module.BlossomTreesModule;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class BlossomLeavesBlock extends QuarkLeavesBlock {
 

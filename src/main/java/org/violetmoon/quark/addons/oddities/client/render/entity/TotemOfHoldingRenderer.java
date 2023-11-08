@@ -1,14 +1,7 @@
 package org.violetmoon.quark.addons.oddities.client.render.entity;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.entity.TotemOfHoldingEntity;
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.QuarkClient;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
@@ -25,6 +18,11 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.addons.oddities.entity.TotemOfHoldingEntity;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.QuarkClient;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author WireSegal

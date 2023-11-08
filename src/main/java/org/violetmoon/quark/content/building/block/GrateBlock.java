@@ -6,9 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
-import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -35,14 +33,13 @@ import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.event.ForgeEventFactory;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.api.ICrawlSpaceBlock;
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.base.block.SimpleFluidloggedBlock;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
 
 public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, ICrawlSpaceBlock {
 	private static final VoxelShape TRUE_SHAPE = box(0, 15, 0, 16, 16, 16);

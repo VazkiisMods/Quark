@@ -1,20 +1,5 @@
 package org.violetmoon.quark.base.client.config;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.handler.ContributorRewardHandler;
-import org.violetmoon.quark.base.handler.GeneralConfig;
-import org.violetmoon.quark.base.handler.MiscUtil;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -23,6 +8,19 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
+import org.violetmoon.quark.base.QuarkClient;
+import org.violetmoon.quark.base.handler.ContributorRewardHandler;
+import org.violetmoon.quark.base.handler.GeneralConfig;
+import org.violetmoon.quark.base.handler.MiscUtil;
+
+import javax.annotation.Nonnull;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class QButton extends Button {
 

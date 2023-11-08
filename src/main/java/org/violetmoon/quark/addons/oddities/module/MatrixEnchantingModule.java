@@ -19,12 +19,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.common.util.FakePlayer;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.violetmoon.quark.addons.oddities.block.MatrixEnchantingTableBlock;
 import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import org.violetmoon.quark.addons.oddities.client.render.be.MatrixEnchantingTableRenderer;
@@ -38,7 +32,6 @@ import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
-import org.violetmoon.zeta.event.*;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
@@ -50,6 +43,11 @@ import org.violetmoon.zeta.event.play.loading.ZGatherHints;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ZetaLoadModule(category = "oddities")
 public class MatrixEnchantingModule extends ZetaModule {

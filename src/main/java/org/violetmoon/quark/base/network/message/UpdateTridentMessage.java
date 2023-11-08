@@ -7,11 +7,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.io.Serial;
-
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class UpdateTridentMessage implements IZetaMessage {
 

@@ -1,9 +1,5 @@
 package org.violetmoon.quark.addons.oddities.block.be;
 
-import org.violetmoon.quark.addons.oddities.block.MagnetBlock;
-import org.violetmoon.quark.addons.oddities.magnetsystem.MagnetSystem;
-import org.violetmoon.quark.addons.oddities.module.MagnetsModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,6 +8,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
+import org.violetmoon.quark.addons.oddities.block.MagnetBlock;
+import org.violetmoon.quark.addons.oddities.magnetsystem.MagnetSystem;
+import org.violetmoon.quark.addons.oddities.module.MagnetsModule;
 
 public class MagnetBlockEntity extends BlockEntity {
 

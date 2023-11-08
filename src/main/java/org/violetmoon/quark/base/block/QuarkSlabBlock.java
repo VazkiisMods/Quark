@@ -9,10 +9,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.CreativeTabHandler;
 import org.violetmoon.quark.base.handler.VariantHandler;
@@ -20,6 +16,8 @@ import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.IZetaBlockColorProvider;
 import org.violetmoon.zeta.registry.IZetaItemColorProvider;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.function.BooleanSupplier;
 
 public class QuarkSlabBlock extends SlabBlock implements IQuarkBlock, IZetaBlockColorProvider {

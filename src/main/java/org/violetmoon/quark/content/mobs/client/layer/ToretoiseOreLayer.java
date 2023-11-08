@@ -1,17 +1,15 @@
 package org.violetmoon.quark.content.mobs.client.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.mobs.client.model.ToretoiseModel;
 import org.violetmoon.quark.content.mobs.entity.Toretoise;
+
+import javax.annotation.Nonnull;
 
 public class ToretoiseOreLayer extends RenderLayer<Toretoise, ToretoiseModel> {
 

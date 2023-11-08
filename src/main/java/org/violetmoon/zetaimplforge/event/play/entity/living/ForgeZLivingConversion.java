@@ -1,10 +1,9 @@
 package org.violetmoon.zetaimplforge.event.play.entity.living;
 
-import org.violetmoon.zeta.event.play.entity.living.ZLivingConversion;
-
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingConversionEvent;
+import org.violetmoon.zeta.event.play.entity.living.ZLivingConversion;
 
 public class ForgeZLivingConversion implements ZLivingConversion {
     private final LivingConversionEvent e;

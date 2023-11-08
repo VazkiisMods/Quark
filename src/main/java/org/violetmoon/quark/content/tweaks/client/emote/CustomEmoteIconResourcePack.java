@@ -1,30 +1,23 @@
 package org.violetmoon.quark.content.tweaks.client.emote;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.tweaks.module.EmotesModule;
-
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-
 import net.minecraft.ResourceLocationException;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.AbstractPackResources;
 import net.minecraft.server.packs.PackType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.tweaks.module.EmotesModule;
+
+import javax.annotation.Nonnull;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 @OnlyIn(Dist.CLIENT)
 public class CustomEmoteIconResourcePack extends AbstractPackResources {

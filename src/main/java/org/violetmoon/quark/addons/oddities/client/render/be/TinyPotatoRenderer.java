@@ -26,9 +26,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.block.be.TinyPotatoBlockEntity;
 import org.violetmoon.quark.addons.oddities.module.TinyPotatoModule;
 import org.violetmoon.quark.addons.oddities.util.TinyPotatoInfo;
@@ -36,6 +33,7 @@ import org.violetmoon.quark.content.tools.item.RuneItem;
 import org.violetmoon.quark.content.tools.module.ColorRunesModule;
 import org.violetmoon.quark.mixin.client.accessor.AccessorModelManager;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

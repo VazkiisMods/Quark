@@ -1,12 +1,11 @@
 package org.violetmoon.quark.base.config;
 
-import java.util.function.BooleanSupplier;
-
+import com.google.gson.JsonObject;
+import net.minecraft.resources.ResourceLocation;
 import org.violetmoon.zeta.recipe.IZetaCondition;
 import org.violetmoon.zeta.recipe.IZetaConditionSerializer;
 
-import com.google.gson.JsonObject;
-import net.minecraft.resources.ResourceLocation;
+import java.util.function.BooleanSupplier;
 
 /**
  * @author WireSegal

@@ -1,10 +1,5 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.play.entity.living.ZLivingConversion;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -15,6 +10,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.play.entity.living.ZLivingConversion;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
 
 @ZetaLoadModule(category = "tweaks")
 public class ZombieVillagersOnNormalModule extends ZetaModule {

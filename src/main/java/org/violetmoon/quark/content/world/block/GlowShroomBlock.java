@@ -1,10 +1,5 @@
 package org.violetmoon.quark.content.world.block;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkBushBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -20,6 +15,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.block.QuarkBushBlock;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class GlowShroomBlock extends QuarkBushBlock implements BonemealableBlock {
 

@@ -19,9 +19,6 @@ import net.minecraft.world.level.block.Blocks;
 import org.lwjgl.opengl.GL11;
 import org.violetmoon.quark.content.experimental.module.VariantSelectorModule;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;

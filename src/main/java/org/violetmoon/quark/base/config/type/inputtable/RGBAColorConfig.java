@@ -1,8 +1,8 @@
 package org.violetmoon.quark.base.config.type.inputtable;
 
-import java.util.Objects;
-
 import org.violetmoon.quark.base.config.Config;
+
+import java.util.Objects;
 
 public class RGBAColorConfig extends RGBColorConfig {
 

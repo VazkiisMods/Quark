@@ -1,12 +1,11 @@
 package org.violetmoon.quark.content.world.undergroundstyle;
 
-import org.violetmoon.quark.content.world.undergroundstyle.base.BasicUndergroundStyle;
-import org.violetmoon.quark.content.world.undergroundstyle.base.UndergroundStyleGenerator.Context;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.content.world.undergroundstyle.base.BasicUndergroundStyle;
+import org.violetmoon.quark.content.world.undergroundstyle.base.UndergroundStyleGenerator.Context;
 
 public class PermafrostStyle extends BasicUndergroundStyle {
 	

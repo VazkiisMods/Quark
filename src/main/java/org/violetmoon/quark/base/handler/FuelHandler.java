@@ -1,9 +1,11 @@
 package org.violetmoon.quark.base.handler;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.material.Material;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.block.VerticalSlabBlock;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -11,12 +13,9 @@ import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZLoadComplete;
 import org.violetmoon.zeta.event.play.ZFurnaceFuelBurnTime;
 
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.material.Material;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class FuelHandler {
 

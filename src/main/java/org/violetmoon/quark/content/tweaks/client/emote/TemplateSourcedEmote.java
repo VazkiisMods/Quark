@@ -1,7 +1,5 @@
 package org.violetmoon.quark.content.tweaks.client.emote;
 
-import org.violetmoon.quark.base.Quark;
-
 import aurelienribon.tweenengine.Timeline;
 import cpw.mods.modlauncher.Launcher;
 import cpw.mods.modlauncher.api.IEnvironment;
@@ -9,6 +7,7 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.Quark;
 
 @OnlyIn(Dist.CLIENT)
 public class TemplateSourcedEmote extends EmoteBase {

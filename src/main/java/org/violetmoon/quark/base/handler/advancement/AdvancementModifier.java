@@ -1,11 +1,10 @@
 package org.violetmoon.quark.base.handler.advancement;
 
-import javax.annotation.Nullable;
-
+import com.google.common.base.Supplier;
 import org.violetmoon.quark.api.IAdvancementModifier;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import com.google.common.base.Supplier;
+import javax.annotation.Nullable;
 
 public abstract class AdvancementModifier implements IAdvancementModifier {
 

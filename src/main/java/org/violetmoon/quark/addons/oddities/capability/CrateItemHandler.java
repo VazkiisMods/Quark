@@ -10,13 +10,12 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemStackHandler;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 import org.violetmoon.quark.addons.oddities.module.CrateModule;
 import org.violetmoon.quark.base.handler.SortingHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author WireSegal

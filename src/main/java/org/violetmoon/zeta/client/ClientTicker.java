@@ -1,11 +1,10 @@
 package org.violetmoon.zeta.client;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import org.violetmoon.zeta.client.event.play.ZEndClientTick;
 import org.violetmoon.zeta.client.event.play.ZRenderTick;
 import org.violetmoon.zeta.event.bus.PlayEvent;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 
 public final class ClientTicker {
 	public int ticksInGame = 0;

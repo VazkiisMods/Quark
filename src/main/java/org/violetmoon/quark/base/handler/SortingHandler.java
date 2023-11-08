@@ -20,10 +20,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
-import java.util.*;
-import java.util.function.Predicate;
-
 import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
 import org.violetmoon.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import org.violetmoon.quark.api.ICustomSorting;
@@ -31,6 +27,9 @@ import org.violetmoon.quark.api.ISortingLockedSlots;
 import org.violetmoon.quark.api.QuarkCapabilities;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.management.module.InventorySortingModule;
+
+import java.util.*;
+import java.util.function.Predicate;
 
 public final class SortingHandler {
 

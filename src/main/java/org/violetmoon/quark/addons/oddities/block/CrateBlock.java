@@ -1,13 +1,5 @@
 package org.violetmoon.quark.addons.oddities.block;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.addons.oddities.block.be.CrateBlockEntity;
-import org.violetmoon.quark.addons.oddities.module.CrateModule;
-import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,6 +25,13 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
+import org.violetmoon.quark.addons.oddities.block.be.CrateBlockEntity;
+import org.violetmoon.quark.addons.oddities.module.CrateModule;
+import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class CrateBlock extends QuarkBlock implements EntityBlock {
 

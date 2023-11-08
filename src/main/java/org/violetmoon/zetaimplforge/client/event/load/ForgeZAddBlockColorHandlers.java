@@ -1,15 +1,14 @@
 package org.violetmoon.zetaimplforge.client.event.load;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-
-import org.violetmoon.zeta.client.event.load.ZAddBlockColorHandlers;
-
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import org.violetmoon.zeta.client.event.load.ZAddBlockColorHandlers;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 public class ForgeZAddBlockColorHandlers implements ZAddBlockColorHandlers {
 	protected final RegisterColorHandlersEvent.Block e;

@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.tools.module;
 
+import net.minecraft.world.item.Item;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.tools.item.TrowelItem;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -7,8 +8,6 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.world.item.Item;
 
 @ZetaLoadModule(category = "tools")
 public class TrowelModule extends ZetaModule {

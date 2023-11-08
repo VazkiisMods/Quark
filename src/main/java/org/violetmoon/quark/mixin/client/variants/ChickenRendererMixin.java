@@ -1,16 +1,15 @@
 package org.violetmoon.quark.mixin.client.variants;
 
+import net.minecraft.client.model.ChickenModel;
+import net.minecraft.client.renderer.entity.ChickenRenderer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.animal.Chicken;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.violetmoon.quark.content.client.module.VariantAnimalTexturesModule;
 import org.violetmoon.quark.content.tweaks.module.GrabChickensModule;
-
-import net.minecraft.client.model.ChickenModel;
-import net.minecraft.client.renderer.entity.ChickenRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.animal.Chicken;
 
 @Mixin(ChickenRenderer.class)
 public class ChickenRendererMixin {

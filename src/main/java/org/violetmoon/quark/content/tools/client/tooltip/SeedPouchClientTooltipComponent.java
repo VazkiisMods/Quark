@@ -1,17 +1,15 @@
 package org.violetmoon.quark.content.tools.client.tooltip;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import org.apache.commons.lang3.tuple.Pair;
-import org.violetmoon.quark.content.tools.item.SeedPouchItem;
-
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import org.apache.commons.lang3.tuple.Pair;
+import org.violetmoon.quark.content.tools.item.SeedPouchItem;
 
 import javax.annotation.Nonnull;
 

@@ -4,10 +4,9 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import org.violetmoon.zeta.event.play.entity.living.ZLivingDrops;
 
 import java.util.Collection;
-
-import org.violetmoon.zeta.event.play.entity.living.ZLivingDrops;
 
 public class ForgeZLivingDrops implements ZLivingDrops {
 	private final LivingDropsEvent e;

@@ -17,10 +17,6 @@ import net.minecraft.world.level.block.WallSkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.Material;
-
-import java.util.Arrays;
-import java.util.List;
-
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.zeta.event.bus.PlayEvent;
@@ -28,6 +24,9 @@ import org.violetmoon.zeta.event.play.ZPlayNoteBlock;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
+
+import java.util.Arrays;
+import java.util.List;
 
 @ZetaLoadModule(category = "tweaks")
 public class MoreNoteBlockSoundsModule extends ZetaModule {

@@ -7,9 +7,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-
-import java.util.function.ToIntFunction;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.block.SoulFurnaceBlock;
 import org.violetmoon.quark.content.building.block.VariantFurnaceBlock;
@@ -19,6 +16,8 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
+
+import java.util.function.ToIntFunction;
 
 @ZetaLoadModule(category = "building")
 public class VariantFurnacesModule extends ZetaModule {

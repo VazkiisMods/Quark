@@ -1,20 +1,12 @@
 package org.violetmoon.zeta.module;
 
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.event.load.ZModulesReady;
 import org.violetmoon.zeta.util.ZetaSide;
+
+import java.lang.reflect.Constructor;
+import java.util.*;
 
 /**
  * TODO: other forms of module discovery and replacement (like a Forge-only module, or other types of 'replacement' modules)

@@ -22,10 +22,9 @@ import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import org.violetmoon.quark.content.automation.module.GravisandModule;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.content.automation.module.GravisandModule;
 
 public class Gravisand extends FallingBlockEntity {
 

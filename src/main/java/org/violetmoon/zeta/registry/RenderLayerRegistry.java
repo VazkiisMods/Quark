@@ -1,10 +1,10 @@
 package org.violetmoon.zeta.registry;
 
+import net.minecraft.world.level.block.Block;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
-
-import net.minecraft.world.level.block.Block;
 
 /**
  * note this is NOT client-side code, for ease of registering stuff in constructors

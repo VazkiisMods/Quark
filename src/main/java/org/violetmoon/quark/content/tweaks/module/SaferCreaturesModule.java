@@ -1,14 +1,13 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.phys.Vec3;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.play.entity.living.ZLivingFall;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.phys.Vec3;
 
 @ZetaLoadModule(category = "tweaks")
 public class SaferCreaturesModule extends ZetaModule {

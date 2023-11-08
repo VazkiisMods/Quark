@@ -1,7 +1,5 @@
 package org.violetmoon.zeta.client.config.definition;
 
-import java.util.function.Consumer;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
@@ -11,6 +9,8 @@ import org.violetmoon.zeta.client.config.screen.AbstractEditBoxInputScreen;
 import org.violetmoon.zeta.client.config.widget.PencilButton;
 import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.ValueDefinition;
+
+import java.util.function.Consumer;
 
 public class DoubleClientDefinition implements ClientDefinitionExt<ValueDefinition<Double>> {
 	@Override

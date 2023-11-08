@@ -1,5 +1,10 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -8,12 +13,6 @@ import org.violetmoon.zeta.event.load.ZCommonSetup;
 import org.violetmoon.zeta.event.play.ZAnvilRepair;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 @ZetaLoadModule(category = "tweaks")
 public class NoDurabilityOnCosmeticsModule extends ZetaModule {

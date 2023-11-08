@@ -1,20 +1,15 @@
 package org.violetmoon.quark.content.tweaks.recipe;
 
-import java.util.Optional;
-
-import org.violetmoon.quark.content.tweaks.module.SlabsToBlocksModule;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.violetmoon.quark.content.tweaks.module.SlabsToBlocksModule;
+
+import java.util.Optional;
 
 public class SlabToBlockRecipe extends CustomRecipe {
 	

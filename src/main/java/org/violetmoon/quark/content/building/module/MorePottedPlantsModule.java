@@ -8,11 +8,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.violetmoon.quark.base.handler.VariantHandler;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -20,6 +15,10 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ZetaLoadModule(category = "building")
 public class MorePottedPlantsModule extends ZetaModule {

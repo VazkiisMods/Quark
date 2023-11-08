@@ -1,9 +1,13 @@
 package org.violetmoon.zeta.client;
 
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.function.Function;
-
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.client.event.load.ZAddBlockColorHandlers;
 import org.violetmoon.zeta.client.event.load.ZAddItemColorHandlers;
@@ -13,14 +17,9 @@ import org.violetmoon.zeta.registry.DyeablesRegistry;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
 import org.violetmoon.zeta.registry.ZetaRegistry;
 
-import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Just a grab-bag of stuff that needs to be done on the physical client

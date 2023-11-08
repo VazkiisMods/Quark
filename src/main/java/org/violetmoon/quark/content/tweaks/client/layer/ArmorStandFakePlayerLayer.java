@@ -26,11 +26,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.SkullBlock;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.content.client.module.UsesForCursesModule;
 import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
 
 public class ArmorStandFakePlayerLayer<M extends EntityModel<ArmorStand>> extends RenderLayer<ArmorStand, M> {
 

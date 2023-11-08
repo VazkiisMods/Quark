@@ -10,10 +10,6 @@
  */
 package org.violetmoon.quark.base.util;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.zeta.block.be.ZetaBlockEntity;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -28,6 +24,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import org.violetmoon.zeta.block.be.ZetaBlockEntity;
+
+import javax.annotation.Nonnull;
 
 //formerly from AutoRegLib
 public abstract class SimpleInventoryBlockEntity extends ZetaBlockEntity implements WorldlyContainer {

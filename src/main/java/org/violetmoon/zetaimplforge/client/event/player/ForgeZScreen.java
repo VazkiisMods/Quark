@@ -4,10 +4,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.client.event.ScreenEvent;
+import org.violetmoon.zeta.client.event.play.ZScreen;
 
 import java.util.List;
-
-import org.violetmoon.zeta.client.event.play.ZScreen;
 
 public class ForgeZScreen implements ZScreen {
     private final ScreenEvent e;

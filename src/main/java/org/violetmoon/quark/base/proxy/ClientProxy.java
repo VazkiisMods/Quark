@@ -14,14 +14,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory;
 import net.minecraftforge.fml.ModLoadingContext;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.time.LocalDateTime;
-import java.time.Month;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.client.config.QButtonHandler;
@@ -37,7 +29,13 @@ import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.structural.C2SUpdateFlag;
 import org.violetmoon.quark.mixin.client.accessor.AccessorMultiPlayerGameMode;
 import org.violetmoon.zeta.client.TopLayerTooltipHandler;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientProxy extends CommonProxy {

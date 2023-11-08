@@ -1,8 +1,15 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import java.util.Arrays;
-import java.util.List;
-
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.SnowGolem;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Witch;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.Vec3;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -14,16 +21,8 @@ import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
 import org.violetmoon.zeta.util.ItemNBTHelper;
 
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.animal.SnowGolem;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.Witch;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.phys.Vec3;
+import java.util.Arrays;
+import java.util.List;
 
 @ZetaLoadModule(category = "tweaks")
 public class SnowGolemPlayerHeadsModule extends ZetaModule {

@@ -2,12 +2,11 @@ package org.violetmoon.quark.base.network.message.oddities;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-
-import java.io.Serial;
-
 import org.violetmoon.quark.addons.oddities.inventory.CrateMenu;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class ScrollCrateMessage implements IZetaMessage {
 

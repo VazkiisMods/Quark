@@ -1,12 +1,11 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import aurelienribon.tweenengine.Tween;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
-import aurelienribon.tweenengine.Tween;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -20,9 +19,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.RepositorySource;
 import net.minecraft.world.entity.player.Player;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.ContributorRewardHandler;
@@ -31,14 +27,9 @@ import org.violetmoon.quark.base.network.message.RequestEmoteMessage;
 import org.violetmoon.quark.content.tweaks.client.emote.*;
 import org.violetmoon.quark.content.tweaks.client.screen.widgets.EmoteButton;
 import org.violetmoon.quark.content.tweaks.client.screen.widgets.TranslucentButton;
-import org.violetmoon.zeta.client.event.*;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.client.event.load.ZKeyMapping;
-import org.violetmoon.zeta.client.event.play.ZInput;
-import org.violetmoon.zeta.client.event.play.ZRenderGuiOverlay;
-import org.violetmoon.zeta.client.event.play.ZRenderLiving;
-import org.violetmoon.zeta.client.event.play.ZRenderTick;
-import org.violetmoon.zeta.client.event.play.ZScreen;
+import org.violetmoon.zeta.client.event.play.*;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
@@ -46,6 +37,7 @@ import org.violetmoon.zeta.event.load.ZModulesReady;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.util.*;
 import java.util.function.Consumer;

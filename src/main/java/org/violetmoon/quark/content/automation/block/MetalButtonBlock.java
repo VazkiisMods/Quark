@@ -1,16 +1,15 @@
 package org.violetmoon.quark.content.automation.block;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkButtonBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
+import org.violetmoon.quark.base.block.QuarkButtonBlock;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author WireSegal

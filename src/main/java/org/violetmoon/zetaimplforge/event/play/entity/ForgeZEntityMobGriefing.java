@@ -1,11 +1,10 @@
 package org.violetmoon.zetaimplforge.event.play.entity;
 
+import net.minecraft.world.entity.Entity;
+import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import org.violetmoon.zeta.event.bus.ZResult;
 import org.violetmoon.zeta.event.play.entity.ZEntityMobGriefing;
 import org.violetmoon.zetaimplforge.ForgeZeta;
-
-import net.minecraft.world.entity.Entity;
-import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 
 public class ForgeZEntityMobGriefing implements ZEntityMobGriefing {
     private final EntityMobGriefingEvent e;

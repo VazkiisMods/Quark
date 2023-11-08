@@ -10,10 +10,9 @@
  */
 package org.violetmoon.quark.content.tweaks.client.emote;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import aurelienribon.tweenengine.Timeline;
 import aurelienribon.tweenengine.TweenManager;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;

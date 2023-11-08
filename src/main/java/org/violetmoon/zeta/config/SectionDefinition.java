@@ -1,12 +1,12 @@
 package org.violetmoon.zeta.config;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-
-import org.jetbrains.annotations.Nullable;
 
 public class SectionDefinition extends Definition {
 	public final Map<String, SectionDefinition> subsections = new LinkedHashMap<>();

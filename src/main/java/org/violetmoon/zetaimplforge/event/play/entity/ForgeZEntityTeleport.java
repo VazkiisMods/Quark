@@ -1,9 +1,8 @@
 package org.violetmoon.zetaimplforge.event.play.entity;
 
-import org.violetmoon.zeta.event.play.entity.ZEntityTeleport;
-
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.event.entity.EntityTeleportEvent;
+import org.violetmoon.zeta.event.play.entity.ZEntityTeleport;
 
 public class ForgeZEntityTeleport implements ZEntityTeleport {
     private final EntityTeleportEvent e;

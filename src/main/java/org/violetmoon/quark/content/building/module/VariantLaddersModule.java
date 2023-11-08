@@ -7,10 +7,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.FuelHandler;
 import org.violetmoon.quark.base.handler.ItemOverrideHandler;
@@ -23,6 +19,9 @@ import org.violetmoon.zeta.event.load.ZLoadComplete;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @ZetaLoadModule(category = "building", antiOverlap = { "woodworks" })
 public class VariantLaddersModule extends ZetaModule {

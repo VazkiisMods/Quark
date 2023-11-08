@@ -1,13 +1,12 @@
 package org.violetmoon.quark.base.network.message;
 
 import net.minecraft.server.level.ServerPlayer;
-
-import java.io.Serial;
-
 import org.violetmoon.quark.base.handler.ContributorRewardHandler;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class RequestEmoteMessage implements IZetaMessage {
 

@@ -4,11 +4,10 @@ import com.google.common.collect.Multimap;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import org.violetmoon.quark.content.client.resources.AttributeSlot;
 
 import java.util.List;
 import java.util.Map;
-
-import org.violetmoon.quark.content.client.resources.AttributeSlot;
 
 /**
  * This is extremely jank. Please do not use this as an example for anything unless you ABSOLUTELY know what you're doing.

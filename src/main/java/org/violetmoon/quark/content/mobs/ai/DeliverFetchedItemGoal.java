@@ -1,8 +1,7 @@
 package org.violetmoon.quark.content.mobs.ai;
 
-import org.violetmoon.quark.content.mobs.entity.Shiba;
-
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+import org.violetmoon.quark.content.mobs.entity.Shiba;
 
 public class DeliverFetchedItemGoal extends FollowOwnerGoal {
 

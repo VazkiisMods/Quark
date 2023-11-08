@@ -1,13 +1,12 @@
 package org.violetmoon.quark.base.config.type.inputtable;
 
-import java.util.Objects;
-
+import net.minecraft.util.Mth;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.config.ConfigFlagManager;
 import org.violetmoon.quark.base.config.type.IConfigType;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import net.minecraft.util.Mth;
+import java.util.Objects;
 
 public class RGBColorConfig implements IConfigType {
 

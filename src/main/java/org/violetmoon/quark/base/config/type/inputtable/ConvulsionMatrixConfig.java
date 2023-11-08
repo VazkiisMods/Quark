@@ -1,19 +1,17 @@
 package org.violetmoon.quark.base.config.type.inputtable;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nullable;
-
+import com.google.common.base.Preconditions;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.config.ConfigFlagManager;
 import org.violetmoon.quark.base.config.type.IConfigType;
 import org.violetmoon.quark.content.client.module.GreenerGrassModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import com.google.common.base.Preconditions;
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ConvulsionMatrixConfig implements IConfigType {
 

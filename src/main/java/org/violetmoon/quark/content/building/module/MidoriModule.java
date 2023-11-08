@@ -1,5 +1,11 @@
 package org.violetmoon.quark.content.building.module;
 
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.base.block.QuarkPillarBlock;
 import org.violetmoon.quark.base.handler.VariantHandler;
@@ -9,13 +15,6 @@ import org.violetmoon.zeta.event.load.ZLoadComplete;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ComposterBlock;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 
 @ZetaLoadModule(category = "building")
 public class MidoriModule extends ZetaModule {

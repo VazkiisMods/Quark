@@ -1,13 +1,12 @@
 package org.violetmoon.quark.content.tweaks.ai;
 
-import java.util.EnumSet;
-
-import org.violetmoon.quark.content.tweaks.module.PatTheDogsModule;
-
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;
+import org.violetmoon.quark.content.tweaks.module.PatTheDogsModule;
+
+import java.util.EnumSet;
 
 /**
  * @author WireSegal

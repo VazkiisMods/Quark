@@ -1,8 +1,7 @@
 package org.violetmoon.quark.base.capability.dummy;
 
-import org.violetmoon.quark.api.IRuneColorProvider;
-
 import net.minecraft.world.item.ItemStack;
+import org.violetmoon.quark.api.IRuneColorProvider;
 
 public class DummyRuneColor implements IRuneColorProvider {
 

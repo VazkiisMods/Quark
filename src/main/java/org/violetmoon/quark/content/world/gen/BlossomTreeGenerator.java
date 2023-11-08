@@ -1,11 +1,5 @@
 package org.violetmoon.quark.content.world.gen;
 
-import java.util.Optional;
-
-import org.violetmoon.quark.base.world.generator.Generator;
-import org.violetmoon.quark.content.world.block.BlossomSaplingBlock.BlossomTree;
-import org.violetmoon.quark.content.world.config.BlossomTreeConfig;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.WorldGenRegion;
@@ -20,6 +14,11 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.Fluids;
+import org.violetmoon.quark.base.world.generator.Generator;
+import org.violetmoon.quark.content.world.block.BlossomSaplingBlock.BlossomTree;
+import org.violetmoon.quark.content.world.config.BlossomTreeConfig;
+
+import java.util.Optional;
 
 public class BlossomTreeGenerator extends Generator {
 

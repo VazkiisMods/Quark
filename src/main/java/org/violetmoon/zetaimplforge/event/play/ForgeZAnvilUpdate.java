@@ -1,10 +1,9 @@
 package org.violetmoon.zetaimplforge.event.play;
 
-import org.violetmoon.zeta.event.play.ZAnvilUpdate;
-
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import org.violetmoon.zeta.event.play.ZAnvilUpdate;
 
 public class ForgeZAnvilUpdate implements ZAnvilUpdate {
     private final AnvilUpdateEvent e;

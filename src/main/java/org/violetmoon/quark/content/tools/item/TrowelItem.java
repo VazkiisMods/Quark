@@ -12,9 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.phys.BlockHitResult;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.api.ITrowelable;
 import org.violetmoon.quark.api.IUsageTickerOverride;
 import org.violetmoon.quark.base.handler.MiscUtil;
@@ -23,6 +20,7 @@ import org.violetmoon.quark.content.tools.module.TrowelModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.ItemNBTHelper;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

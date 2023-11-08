@@ -9,12 +9,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
-
-import java.util.function.Function;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.block.ext.IZetaBlockExtensions;
 import org.violetmoon.zeta.module.IDisableable;
+
+import java.util.function.Function;
 
 /**
  * @author WireSegal

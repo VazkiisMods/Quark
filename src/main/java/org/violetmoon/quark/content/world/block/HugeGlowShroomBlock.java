@@ -1,16 +1,5 @@
 package org.violetmoon.quark.content.world.block;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.block.IQuarkBlock;
-import org.violetmoon.quark.base.handler.CreativeTabHandler;
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.content.world.module.GlimmeringWealdModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -25,6 +14,15 @@ import net.minecraft.world.level.block.HugeMushroomBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.block.IQuarkBlock;
+import org.violetmoon.quark.base.handler.CreativeTabHandler;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.quark.content.world.module.GlimmeringWealdModule;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import java.util.function.BooleanSupplier;
 
 public class HugeGlowShroomBlock extends HugeMushroomBlock implements IQuarkBlock {
 

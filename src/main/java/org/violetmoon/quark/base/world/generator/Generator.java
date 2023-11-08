@@ -1,9 +1,5 @@
 package org.violetmoon.quark.base.world.generator;
 
-import java.util.function.BooleanSupplier;
-
-import org.violetmoon.quark.base.config.type.DimensionConfig;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.WorldGenRegion;
@@ -14,6 +10,9 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
+
+import java.util.function.BooleanSupplier;
 
 public abstract class Generator implements IGenerator {
 	

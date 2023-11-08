@@ -5,14 +5,13 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
+import org.violetmoon.zeta.module.ZetaModule;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.quark.base.config.ConfigFlagManager;
-import org.violetmoon.zeta.module.ZetaModule;
 
 public class BiomeTagConfig implements IBiomeConfig, IConfigType {
 

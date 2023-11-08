@@ -1,12 +1,11 @@
 package org.violetmoon.quark.base.block;
 
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.zeta.module.ZetaModule;
 
 public class QuarkFlammableBlock extends QuarkBlock {
 

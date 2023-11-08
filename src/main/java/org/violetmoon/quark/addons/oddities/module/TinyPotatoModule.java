@@ -10,11 +10,6 @@ import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import org.violetmoon.quark.addons.oddities.block.TinyPotatoBlock;
 import org.violetmoon.quark.addons.oddities.block.be.TinyPotatoBlockEntity;
 import org.violetmoon.quark.addons.oddities.client.model.TinyPotatoModel;
@@ -31,6 +26,10 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @ZetaLoadModule(category = "oddities", antiOverlap = "botania")
 public class TinyPotatoModule extends ZetaModule {

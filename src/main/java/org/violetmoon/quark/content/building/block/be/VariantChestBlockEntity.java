@@ -1,12 +1,11 @@
 package org.violetmoon.quark.content.building.block.be;
 
-import org.violetmoon.quark.content.building.module.VariantChestsModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import org.violetmoon.quark.content.building.module.VariantChestsModule;
 
 public class VariantChestBlockEntity extends ChestBlockEntity {
 

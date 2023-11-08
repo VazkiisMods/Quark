@@ -3,13 +3,12 @@ package org.violetmoon.quark.base.world.generator.multichunk;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-
-import java.util.Random;
-import java.util.function.BooleanSupplier;
-
 import org.violetmoon.quark.base.config.type.ClusterSizeConfig;
 import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.generator.Generator;
+
+import java.util.Random;
+import java.util.function.BooleanSupplier;
 
 public abstract class ClusterBasedGenerator extends MultiChunkFeatureGenerator {
 

@@ -1,9 +1,9 @@
 package org.violetmoon.quark.api.event;
 
-import java.util.Set;
-
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.Event;
+
+import java.util.Set;
 
 public class GatherToolClassesEvent extends Event {
 

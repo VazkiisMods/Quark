@@ -2,9 +2,6 @@ package org.violetmoon.quark.base.config;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-
-import java.util.*;
-
 import org.violetmoon.quark.base.handler.GeneralConfig;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -12,6 +9,11 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.recipe.FlagIngredient;
 import org.violetmoon.zeta.registry.CraftingExtensionsRegistry;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public final class ConfigFlagManager {
 

@@ -1,8 +1,5 @@
 package org.violetmoon.quark.addons.oddities.magnetsystem;
 
-import java.util.HashMap;
-import java.util.HashSet;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
@@ -20,6 +17,9 @@ import org.violetmoon.quark.api.IMagnetTracker;
 import org.violetmoon.quark.api.QuarkCapabilities;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.RecipeCrawlHandler;
+
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class MagnetSystem {
 

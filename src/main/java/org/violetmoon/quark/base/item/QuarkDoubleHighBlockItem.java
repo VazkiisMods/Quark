@@ -4,13 +4,11 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.ItemStack;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.block.IQuarkBlock;
 import org.violetmoon.zeta.item.IZetaItem;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 
 public class QuarkDoubleHighBlockItem extends DoubleHighBlockItem implements IZetaItem {

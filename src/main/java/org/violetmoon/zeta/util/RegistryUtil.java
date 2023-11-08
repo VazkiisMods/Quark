@@ -1,11 +1,11 @@
 package org.violetmoon.zeta.util;
 
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 
 public class RegistryUtil {
 	

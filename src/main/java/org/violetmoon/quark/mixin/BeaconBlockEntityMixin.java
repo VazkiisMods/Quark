@@ -1,14 +1,13 @@
 package org.violetmoon.quark.mixin;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import org.violetmoon.quark.content.tools.module.BeaconRedirectionModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BeaconBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.violetmoon.quark.content.tools.module.BeaconRedirectionModule;
 
 @Mixin(BeaconBlockEntity.class)
 public class BeaconBlockEntityMixin {

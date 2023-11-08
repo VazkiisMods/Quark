@@ -1,5 +1,10 @@
 package org.violetmoon.quark.content.building.module;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.util.VanillaWoods;
 import org.violetmoon.quark.base.util.VanillaWoods.Wood;
@@ -15,12 +20,6 @@ import org.violetmoon.zeta.event.load.ZCommonSetup;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 
 @ZetaLoadModule(category = "building")
 public class HedgesModule extends ZetaModule {

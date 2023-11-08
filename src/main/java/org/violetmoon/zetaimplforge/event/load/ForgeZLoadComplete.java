@@ -1,8 +1,7 @@
 package org.violetmoon.zetaimplforge.event.load;
 
-import org.violetmoon.zeta.event.load.ZLoadComplete;
-
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import org.violetmoon.zeta.event.load.ZLoadComplete;
 
 public record ForgeZLoadComplete(FMLLoadCompleteEvent e) implements ZLoadComplete {
 	@Override

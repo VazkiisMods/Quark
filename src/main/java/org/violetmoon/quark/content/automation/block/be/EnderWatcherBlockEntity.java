@@ -18,14 +18,13 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.RayTraceHandler;
 import org.violetmoon.quark.content.automation.block.EnderWatcherBlock;
 import org.violetmoon.quark.content.automation.module.EnderWatcherModule;
 import org.violetmoon.zeta.block.be.ZetaBlockEntity;
+
+import java.util.List;
 
 public class EnderWatcherBlockEntity extends ZetaBlockEntity {
 

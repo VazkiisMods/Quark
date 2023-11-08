@@ -24,9 +24,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.item.QuarkItem;
@@ -35,6 +32,7 @@ import org.violetmoon.quark.content.tools.entity.rang.AbstractPickarang;
 import org.violetmoon.quark.content.tools.module.PickarangModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.HashSet;
 

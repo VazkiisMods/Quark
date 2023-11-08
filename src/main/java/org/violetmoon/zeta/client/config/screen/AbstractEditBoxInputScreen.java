@@ -1,7 +1,5 @@
 package org.violetmoon.zeta.client.config.screen;
 
-import javax.annotation.Nonnull;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.EditBox;
@@ -12,6 +10,8 @@ import org.jetbrains.annotations.Nullable;
 import org.violetmoon.zeta.client.ZetaClient;
 import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.ValueDefinition;
+
+import javax.annotation.Nonnull;
 
 public abstract class AbstractEditBoxInputScreen<T> extends AbstractInputScreen<T> {
 	protected EditBox input;

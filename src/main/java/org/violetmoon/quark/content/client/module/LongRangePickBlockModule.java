@@ -1,9 +1,5 @@
 package org.violetmoon.quark.content.client.module;
 
-import org.violetmoon.quark.base.handler.RayTraceHandler;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext.Block;
@@ -13,6 +9,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.HitResult.Type;
+import org.violetmoon.quark.base.handler.RayTraceHandler;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
 
 @ZetaLoadModule(category = "client")
 public class LongRangePickBlockModule extends ZetaModule {

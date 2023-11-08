@@ -12,21 +12,13 @@ import org.violetmoon.zeta.capability.ZetaCapabilityManager;
 import org.violetmoon.zeta.config.ConfigManager;
 import org.violetmoon.zeta.config.IZetaConfigInternals;
 import org.violetmoon.zeta.config.SectionDefinition;
-import org.violetmoon.zeta.event.bus.IZetaLoadEvent;
-import org.violetmoon.zeta.event.bus.IZetaPlayEvent;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.bus.ZetaEventBus;
+import org.violetmoon.zeta.event.bus.*;
 import org.violetmoon.zeta.item.ext.ItemExtensionFactory;
 import org.violetmoon.zeta.module.ModuleFinder;
 import org.violetmoon.zeta.module.ZetaCategory;
 import org.violetmoon.zeta.module.ZetaModuleManager;
 import org.violetmoon.zeta.network.ZetaNetworkHandler;
-import org.violetmoon.zeta.registry.BrewingRegistry;
-import org.violetmoon.zeta.registry.CraftingExtensionsRegistry;
-import org.violetmoon.zeta.registry.DyeablesRegistry;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
-import org.violetmoon.zeta.registry.ZetaRegistry;
+import org.violetmoon.zeta.registry.*;
 import org.violetmoon.zeta.util.ZetaSide;
 
 /**

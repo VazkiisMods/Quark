@@ -1,12 +1,12 @@
 package org.violetmoon.quark.base.util;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+
+import javax.annotation.Nonnull;
 
 //formerly from AutoRegLib
 public class InventoryIIH implements IItemHandlerModifiable {

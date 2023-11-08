@@ -7,10 +7,9 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.ModList;
+import org.violetmoon.zeta.client.event.load.ZPreTextureStitch;
 
 import javax.annotation.Nullable;
-
-import org.violetmoon.zeta.client.event.load.ZPreTextureStitch;
 
 /**
  * @author WireSegal

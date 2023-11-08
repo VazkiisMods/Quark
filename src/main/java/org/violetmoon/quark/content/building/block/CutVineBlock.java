@@ -1,21 +1,19 @@
 package org.violetmoon.quark.content.building.block;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.block.QuarkVineBlock;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.IZetaBlockColorProvider;
+
+import javax.annotation.Nonnull;
 
 public class CutVineBlock extends QuarkVineBlock implements IZetaBlockColorProvider {
 

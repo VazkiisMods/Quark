@@ -1,14 +1,13 @@
 package org.violetmoon.quark.mixin;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.violetmoon.quark.base.handler.StructureBlockReplacementHandler;
-
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.violetmoon.quark.base.handler.StructureBlockReplacementHandler;
 
 @Mixin(StructurePiece.class)
 public class StructurePieceMixin {

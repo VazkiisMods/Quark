@@ -1,12 +1,5 @@
 package org.violetmoon.quark.content.world.gen;
 
-import java.util.Random;
-
-import org.violetmoon.quark.base.config.type.DimensionConfig;
-import org.violetmoon.quark.base.world.generator.multichunk.MultiChunkFeatureGenerator;
-import org.violetmoon.quark.content.world.module.NewStoneTypesModule;
-import org.violetmoon.quark.content.world.module.SpiralSpiresModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Vec3i;
@@ -15,6 +8,12 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
+import org.violetmoon.quark.base.world.generator.multichunk.MultiChunkFeatureGenerator;
+import org.violetmoon.quark.content.world.module.NewStoneTypesModule;
+import org.violetmoon.quark.content.world.module.SpiralSpiresModule;
+
+import java.util.Random;
 
 public class SpiralSpireGenerator extends MultiChunkFeatureGenerator {
 

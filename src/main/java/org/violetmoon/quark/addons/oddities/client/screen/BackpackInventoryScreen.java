@@ -13,15 +13,13 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.oddities.HandleBackpackMessage;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 

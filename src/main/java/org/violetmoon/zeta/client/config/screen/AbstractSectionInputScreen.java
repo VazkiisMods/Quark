@@ -1,13 +1,12 @@
 package org.violetmoon.zeta.client.config.screen;
 
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import org.violetmoon.zeta.client.ZetaClient;
 import org.violetmoon.zeta.client.config.definition.ClientDefinitionExt;
 import org.violetmoon.zeta.client.config.widget.DefaultDiscardDone;
 import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.SectionDefinition;
-
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
 
 public abstract class AbstractSectionInputScreen extends ZetaScreen {
 	protected final ChangeSet changes;

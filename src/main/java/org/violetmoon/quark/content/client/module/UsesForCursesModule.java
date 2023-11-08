@@ -1,17 +1,5 @@
 package org.violetmoon.quark.content.client.module;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.quark.content.tweaks.client.layer.ArmorStandFakePlayerLayer;
-import org.violetmoon.zeta.client.event.load.ZAddModelLayers;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.load.ZConfigChanged;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-
 import net.minecraft.client.renderer.entity.ArmorStandRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -21,6 +9,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.content.tweaks.client.layer.ArmorStandFakePlayerLayer;
+import org.violetmoon.zeta.client.event.load.ZAddModelLayers;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.load.ZConfigChanged;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
+
+import java.util.Arrays;
+import java.util.List;
 
 @ZetaLoadModule(category = "client")
 public class UsesForCursesModule extends ZetaModule {

@@ -1,9 +1,9 @@
 package org.violetmoon.quark.base.world;
 
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.world.generator.IGenerator;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public record WeightedGenerator(ZetaModule module,
 								IGenerator generator,

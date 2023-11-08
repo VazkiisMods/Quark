@@ -34,15 +34,14 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidUtil;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.content.automation.module.PistonsMoveTileEntitiesModule;
 import org.violetmoon.quark.content.building.module.RopeModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.IZetaBlockItemProvider;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
 
 public class RopeBlock extends QuarkBlock implements IZetaBlockItemProvider, SimpleWaterloggedBlock {
 

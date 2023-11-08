@@ -1,8 +1,5 @@
 package org.violetmoon.quark.content.tweaks.entity;
 
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.tweaks.module.DyeableItemFramesModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -16,6 +13,8 @@ import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.tweaks.module.DyeableItemFramesModule;
 
 public class DyedItemFrame extends ItemFrame {
 

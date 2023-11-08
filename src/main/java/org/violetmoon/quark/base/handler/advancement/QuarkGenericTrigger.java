@@ -2,7 +2,6 @@ package org.violetmoon.quark.base.handler.advancement;
 
 import com.google.common.base.Predicates;
 import com.google.gson.JsonObject;
-
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.DeserializationContext;
 import net.minecraft.advancements.critereon.EntityPredicate.Composite;

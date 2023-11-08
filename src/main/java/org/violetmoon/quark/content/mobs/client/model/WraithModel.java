@@ -1,23 +1,16 @@
 package org.violetmoon.quark.content.mobs.client.model;
 
-import java.util.Random;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.content.mobs.entity.Wraith;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
+import org.violetmoon.quark.content.mobs.entity.Wraith;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
 
 public class WraithModel extends EntityModel<Wraith> {
 

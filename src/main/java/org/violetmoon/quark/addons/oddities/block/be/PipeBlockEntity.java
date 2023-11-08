@@ -29,9 +29,6 @@ import net.minecraft.world.level.gameevent.GameEvent.Context;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.block.pipe.BasePipeBlock;
 import org.violetmoon.quark.addons.oddities.module.PipesModule;
 import org.violetmoon.quark.base.client.handler.NetworkProfilingHandler;
@@ -39,6 +36,7 @@ import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.util.SimpleInventoryBlockEntity;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.function.Predicate;
 

@@ -1,12 +1,5 @@
 package org.violetmoon.quark.content.client.tooltip;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
-import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Either;
@@ -21,6 +14,12 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
+import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
+
+import javax.annotation.Nonnull;
 
 public class FuelTooltips {
 

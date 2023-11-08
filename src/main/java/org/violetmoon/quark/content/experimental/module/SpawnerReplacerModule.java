@@ -9,16 +9,15 @@ import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class SpawnerReplacerModule extends ZetaModule {

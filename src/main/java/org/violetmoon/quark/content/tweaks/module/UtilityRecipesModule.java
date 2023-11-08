@@ -1,5 +1,8 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.ComposterBlock;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
@@ -8,10 +11,6 @@ import org.violetmoon.zeta.event.play.ZFurnaceFuelBurnTime;
 import org.violetmoon.zeta.event.play.ZLevelTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.ComposterBlock;
 
 /**
  * @author WireSegal

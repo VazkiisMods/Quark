@@ -1,14 +1,5 @@
 package org.violetmoon.quark.content.automation.block;
 
-import java.util.EnumSet;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.quark.content.automation.base.RandomizerPowerState;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -35,6 +26,13 @@ import net.minecraft.world.ticks.TickPriority;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.quark.content.automation.base.RandomizerPowerState;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
+import java.util.EnumSet;
 
 /**
  * @author WireSegal

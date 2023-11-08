@@ -1,19 +1,17 @@
 package org.violetmoon.quark.base.block;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.base.handler.CreativeTabHandler;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
-
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import org.violetmoon.quark.base.handler.CreativeTabHandler;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nullable;
+import java.util.function.BooleanSupplier;
 
 public class QuarkLeavesBlock extends LeavesBlock implements IQuarkBlock {
 	

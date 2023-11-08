@@ -6,12 +6,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.BlockHitResult;
-
-import java.io.Serial;
-
 import org.violetmoon.quark.content.tweaks.module.SimpleHarvestModule;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class HarvestMessage implements IZetaMessage {
 

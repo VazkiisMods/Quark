@@ -1,14 +1,13 @@
 package org.violetmoon.zeta.client.config.definition;
 
-import java.util.function.Consumer;
-
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.screens.Screen;
 import org.violetmoon.zeta.client.ZetaClient;
 import org.violetmoon.zeta.client.config.widget.CheckboxButton;
 import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.ValueDefinition;
 
-import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.screens.Screen;
+import java.util.function.Consumer;
 
 public class BooleanClientDefinition implements ClientDefinitionExt<ValueDefinition<Boolean>> {
 	@Override

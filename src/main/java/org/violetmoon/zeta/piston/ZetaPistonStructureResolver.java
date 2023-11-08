@@ -14,14 +14,13 @@ import net.minecraft.world.level.material.PushReaction;
 import org.apache.commons.lang3.tuple.Pair;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.api.ICollateralMover;
+import org.violetmoon.zeta.api.ICollateralMover.MoveResult;
 import org.violetmoon.zeta.api.IConditionalSticky;
 import org.violetmoon.zeta.api.IIndirectConnector;
-import org.violetmoon.zeta.api.ICollateralMover.MoveResult;
 import org.violetmoon.zeta.block.ext.IZetaBlockExtensions;
 import org.violetmoon.zeta.mixin.mixins.AccessorPistonStructureResolver;
 
 import javax.annotation.Nonnull;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

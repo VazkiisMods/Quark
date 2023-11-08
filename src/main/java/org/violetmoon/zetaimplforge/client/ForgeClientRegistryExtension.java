@@ -1,11 +1,10 @@
 package org.violetmoon.zetaimplforge.client;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.world.level.block.Block;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.client.ClientRegistryExtension;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
-
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.world.level.block.Block;
 
 public class ForgeClientRegistryExtension extends ClientRegistryExtension {
 	public ForgeClientRegistryExtension(Zeta z) {

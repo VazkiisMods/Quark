@@ -11,11 +11,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.enchantment.Enchantments;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
 import org.violetmoon.quark.api.IUsageTickerOverride;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
@@ -26,6 +21,10 @@ import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 @ZetaLoadModule(category = "client")
 public class UsageTickerModule extends ZetaModule {

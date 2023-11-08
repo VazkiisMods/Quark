@@ -1,13 +1,12 @@
 package org.violetmoon.quark.mixin;
 
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.violetmoon.quark.content.tools.module.PickarangModule;
-
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.player.Player;
 
 @Mixin(DamageSource.class)
 public class DamageSourceMixin {

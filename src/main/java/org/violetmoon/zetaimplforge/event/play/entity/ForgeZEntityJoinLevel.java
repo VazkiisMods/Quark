@@ -1,9 +1,8 @@
 package org.violetmoon.zetaimplforge.event.play.entity;
 
-import org.violetmoon.zeta.event.play.entity.ZEntityJoinLevel;
-
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import org.violetmoon.zeta.event.play.entity.ZEntityJoinLevel;
 
 public class ForgeZEntityJoinLevel implements ZEntityJoinLevel {
     private final EntityJoinLevelEvent e;

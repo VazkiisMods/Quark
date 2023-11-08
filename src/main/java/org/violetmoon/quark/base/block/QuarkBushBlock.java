@@ -1,19 +1,17 @@
 package org.violetmoon.quark.base.block;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.BushBlock;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.CreativeTabHandler;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
 
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.BushBlock;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.function.BooleanSupplier;
 
 public class QuarkBushBlock extends BushBlock implements IQuarkBlock {
 

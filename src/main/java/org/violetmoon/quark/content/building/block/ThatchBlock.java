@@ -10,12 +10,11 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.block.QuarkFlammableBlock;
 import org.violetmoon.quark.content.building.module.ThatchModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class ThatchBlock extends QuarkFlammableBlock {
 

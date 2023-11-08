@@ -1,8 +1,5 @@
 package org.violetmoon.quark.content.tools.entity;
 
-import org.violetmoon.quark.content.tools.module.TorchArrowModule;
-import org.violetmoon.quark.integration.claim.IClaimIntegration;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -19,6 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import org.violetmoon.quark.content.tools.module.TorchArrowModule;
+import org.violetmoon.quark.integration.claim.IClaimIntegration;
 
 public class TorchArrow extends AbstractArrow {
 	

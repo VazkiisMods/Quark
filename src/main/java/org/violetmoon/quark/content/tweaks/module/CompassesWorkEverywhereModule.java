@@ -1,5 +1,13 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.tweaks.client.item.ClockTimeGetter;
 import org.violetmoon.quark.content.tweaks.client.item.CompassAngleGetter;
@@ -11,15 +19,6 @@ import org.violetmoon.zeta.event.play.loading.ZGatherHints;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 @ZetaLoadModule(category = "tweaks")
 public class CompassesWorkEverywhereModule extends ZetaModule {

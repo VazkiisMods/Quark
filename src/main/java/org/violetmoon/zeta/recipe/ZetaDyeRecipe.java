@@ -1,9 +1,5 @@
 package org.violetmoon.zeta.recipe;
 
-import java.util.List;
-
-import org.violetmoon.zeta.registry.DyeablesRegistry;
-
 import com.google.common.collect.Lists;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -14,6 +10,9 @@ import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
+import org.violetmoon.zeta.registry.DyeablesRegistry;
+
+import java.util.List;
 
 // copy of ArmorDyeRecipe
 public class ZetaDyeRecipe extends CustomRecipe {

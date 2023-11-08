@@ -1,12 +1,5 @@
 package org.violetmoon.quark.content.automation.block;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.quark.content.automation.block.be.ChuteBlockEntity;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
@@ -23,6 +16,12 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.quark.content.automation.block.be.ChuteBlockEntity;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
 
 public class ChuteBlock extends QuarkBlock implements EntityBlock {
 

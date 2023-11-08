@@ -1,10 +1,9 @@
 package org.violetmoon.zetaimplforge.client.event.load;
 
-import org.violetmoon.zeta.client.event.load.ZPreTextureStitch;
-
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import org.violetmoon.zeta.client.event.load.ZPreTextureStitch;
 
 public record ForgeZPreTextureStitch(TextureStitchEvent.Pre e) implements ZPreTextureStitch {
 	@Override

@@ -44,14 +44,12 @@ import noobanidus.mods.lootr.LootrTags;
 import noobanidus.mods.lootr.block.entities.LootrChestBlockEntity;
 import noobanidus.mods.lootr.config.ConfigManager;
 import noobanidus.mods.lootr.util.ChestUtil;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.content.building.block.VariantChestBlock;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.IZetaItemPropertiesFiller;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 

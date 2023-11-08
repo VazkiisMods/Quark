@@ -1,5 +1,8 @@
 package org.violetmoon.quark.content.automation.module;
 
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
@@ -10,10 +13,6 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.core.Registry;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 
 @ZetaLoadModule(category = "automation")
 public class EnderWatcherModule extends ZetaModule {

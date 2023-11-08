@@ -1,16 +1,6 @@
 package org.violetmoon.quark.content.world.block;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.block.QuarkGlassBlock;
-import org.violetmoon.quark.content.world.module.CorundumModule;
-import org.violetmoon.quark.content.world.module.SpiralSpiresModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import com.mojang.math.Vector3f;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -25,6 +15,14 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.block.QuarkGlassBlock;
+import org.violetmoon.quark.content.world.module.CorundumModule;
+import org.violetmoon.quark.content.world.module.SpiralSpiresModule;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * @author WireSegal

@@ -1,17 +1,5 @@
 package org.violetmoon.quark.content.client.tooltip;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.handler.SimilarBlockTypeHandler;
-import org.violetmoon.quark.content.client.module.ChestSearchingModule;
-import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
-import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -38,6 +26,16 @@ import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.handler.SimilarBlockTypeHandler;
+import org.violetmoon.quark.content.client.module.ChestSearchingModule;
+import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
+import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShulkerBoxTooltips {
 

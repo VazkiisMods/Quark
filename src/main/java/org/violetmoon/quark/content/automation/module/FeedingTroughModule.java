@@ -29,9 +29,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.FakePlayer;
-
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.automation.block.FeedingTroughBlock;
@@ -45,6 +42,7 @@ import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
 
+import javax.annotation.Nullable;
 import java.util.Set;
 import java.util.function.Predicate;
 

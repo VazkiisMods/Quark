@@ -1,13 +1,6 @@
 package org.violetmoon.quark.content.experimental.client.tooltip;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.violetmoon.quark.content.experimental.module.VariantSelectorModule;
-
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -18,6 +11,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.content.experimental.module.VariantSelectorModule;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class VariantsComponent implements ClientTooltipComponent, TooltipComponent {

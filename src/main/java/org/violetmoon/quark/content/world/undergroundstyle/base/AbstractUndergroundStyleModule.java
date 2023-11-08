@@ -1,13 +1,12 @@
 package org.violetmoon.quark.content.world.undergroundstyle.base;
 
+import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.world.WorldGenHandler;
 import org.violetmoon.quark.base.world.WorldGenWeights;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZCommonSetup;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 
 public abstract class AbstractUndergroundStyleModule<T extends UndergroundStyle> extends ZetaModule {
 

@@ -1,20 +1,18 @@
 package org.violetmoon.quark.base.item;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.block.IQuarkBlock;
-import org.violetmoon.zeta.item.IZetaItem;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.Block;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.block.IQuarkBlock;
+import org.violetmoon.zeta.item.IZetaItem;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import java.util.function.BooleanSupplier;
 
 public class QuarkSignItem extends SignItem implements IZetaItem {
 

@@ -1,11 +1,5 @@
 package org.violetmoon.quark.integration.jei;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
-
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import mezz.jei.api.constants.RecipeTypes;
@@ -20,6 +14,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import org.jetbrains.annotations.Nullable;
+import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Essentially just a copy of JEI's PlayerRecipeTransferHandler, but for BackpackMenu.

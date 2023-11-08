@@ -1,10 +1,5 @@
 package org.violetmoon.quark.base.item.boat;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.handler.WoodSetHandler;
-import org.violetmoon.quark.base.handler.WoodSetHandler.QuarkBoatType;
-
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -16,6 +11,10 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import org.violetmoon.quark.base.handler.WoodSetHandler;
+import org.violetmoon.quark.base.handler.WoodSetHandler.QuarkBoatType;
+
+import javax.annotation.Nonnull;
 
 public class QuarkBoat extends Boat implements IQuarkBoat {
 

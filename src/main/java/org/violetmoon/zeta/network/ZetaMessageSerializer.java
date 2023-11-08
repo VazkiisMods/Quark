@@ -1,16 +1,5 @@
 package org.violetmoon.zeta.network;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.UUID;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -19,6 +8,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import org.apache.commons.lang3.tuple.Pair;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 @SuppressWarnings({ "unchecked", "rawtypes", "unused" })
 public final class ZetaMessageSerializer {

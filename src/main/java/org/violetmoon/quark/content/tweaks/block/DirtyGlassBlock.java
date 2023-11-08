@@ -1,14 +1,13 @@
 package org.violetmoon.quark.content.tweaks.block;
 
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.base.block.QuarkGlassBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.base.block.QuarkGlassBlock;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nullable;
 
 /**
  * @author WireSegal

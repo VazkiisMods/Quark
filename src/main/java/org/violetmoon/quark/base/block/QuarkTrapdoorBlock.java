@@ -1,23 +1,20 @@
 package org.violetmoon.quark.base.block;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.base.handler.CreativeTabHandler;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.base.handler.CreativeTabHandler;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.function.BooleanSupplier;
 
 public class QuarkTrapdoorBlock extends TrapDoorBlock implements IQuarkBlock {
 

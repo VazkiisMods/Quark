@@ -1,12 +1,5 @@
 package org.violetmoon.quark.content.automation.block;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkPressurePlateBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,6 +11,11 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.AABB;
+import org.violetmoon.quark.base.block.QuarkPressurePlateBlock;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * @author WireSegal

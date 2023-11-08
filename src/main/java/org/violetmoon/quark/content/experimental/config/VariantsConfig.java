@@ -52,7 +52,11 @@ public class VariantsConfig implements IConfigType {
     private List<String> visibleVariants = new ArrayList<>();
     private List<String> sortedSuffixes;
 
-    public VariantsConfig() { }
+    public VariantsConfig(List<String> variantTypes, List<String> testedMods, List<String> aliases) {
+        this.variantTypes = variantTypes;
+        this.testedMods = testedMods;
+        this.aliases = aliases;
+    }
 
     @Override
     public void onReload(ZetaModule module, ConfigFlagManager flagManager) {

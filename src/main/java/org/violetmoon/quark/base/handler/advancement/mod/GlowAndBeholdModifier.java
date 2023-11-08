@@ -11,12 +11,11 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-
-import java.util.Set;
-
 import org.violetmoon.quark.api.IMutableAdvancement;
 import org.violetmoon.quark.base.handler.advancement.AdvancementModifier;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.Set;
 
 public class GlowAndBeholdModifier extends AdvancementModifier {
 

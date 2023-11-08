@@ -1,24 +1,7 @@
 package org.violetmoon.quark.addons.oddities.client.screen;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
-import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix;
-import org.violetmoon.quark.addons.oddities.inventory.MatrixEnchantingMenu;
-import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
-import org.violetmoon.quark.addons.oddities.module.MatrixEnchantingModule;
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.base.network.QuarkNetwork;
-import org.violetmoon.quark.base.network.message.oddities.MatrixEnchanterOperationMessage;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -30,6 +13,20 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
+import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
+import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix;
+import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
+import org.violetmoon.quark.addons.oddities.inventory.MatrixEnchantingMenu;
+import org.violetmoon.quark.addons.oddities.module.MatrixEnchantingModule;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.QuarkClient;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.quark.base.network.QuarkNetwork;
+import org.violetmoon.quark.base.network.message.oddities.MatrixEnchanterOperationMessage;
+
+import javax.annotation.Nonnull;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchantingMenu> {
 

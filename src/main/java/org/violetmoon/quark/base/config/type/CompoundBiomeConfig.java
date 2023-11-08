@@ -1,12 +1,11 @@
 package org.violetmoon.quark.base.config.type;
 
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.quark.base.config.ConfigFlagManager;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.Holder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
+import org.violetmoon.zeta.module.ZetaModule;
 
 public class CompoundBiomeConfig implements IBiomeConfig, IConfigType {
 

@@ -1,21 +1,5 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.tweaks.client.render.entity.DyedItemFrameRenderer;
-import org.violetmoon.quark.content.tweaks.entity.DyedItemFrame;
-import org.violetmoon.zeta.client.event.load.ZAddModels;
-import org.violetmoon.zeta.client.event.load.ZClientSetup;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.load.ZRegister;
-import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
@@ -36,6 +20,21 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.tweaks.client.render.entity.DyedItemFrameRenderer;
+import org.violetmoon.quark.content.tweaks.entity.DyedItemFrame;
+import org.violetmoon.zeta.client.event.load.ZAddModels;
+import org.violetmoon.zeta.client.event.load.ZClientSetup;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.load.ZRegister;
+import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
+
+import java.util.Arrays;
+import java.util.List;
 
 @ZetaLoadModule(category = "tweaks")
 public class DyeableItemFramesModule extends ZetaModule {

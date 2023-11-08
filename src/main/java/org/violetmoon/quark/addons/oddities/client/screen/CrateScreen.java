@@ -1,9 +1,14 @@
 package org.violetmoon.quark.addons.oddities.client.screen;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
+import com.google.common.collect.Lists;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.Rect2i;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 import org.violetmoon.quark.addons.oddities.inventory.CrateMenu;
 import org.violetmoon.quark.addons.oddities.module.CrateModule;
 import org.violetmoon.quark.base.Quark;
@@ -12,16 +17,8 @@ import org.violetmoon.quark.base.client.handler.InventoryButtonHandler.ButtonTar
 import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.quark.content.client.module.ChestSearchingModule;
 
-import com.google.common.collect.Lists;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.Rect2i;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class CrateScreen extends AbstractContainerScreen<CrateMenu> {
 

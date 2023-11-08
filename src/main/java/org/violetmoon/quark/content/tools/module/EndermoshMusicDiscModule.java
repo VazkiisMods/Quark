@@ -1,5 +1,12 @@
 package org.violetmoon.quark.content.tools.module;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.item.QuarkMusicDiscItem;
@@ -11,14 +18,6 @@ import org.violetmoon.zeta.event.play.loading.ZLootTableLoad;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.dimension.LevelStem;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 
 @ZetaLoadModule(category = "tools")
 public class EndermoshMusicDiscModule extends ZetaModule {

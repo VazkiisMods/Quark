@@ -22,10 +22,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.fml.ModList;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.IQuarkBlock;
 import org.violetmoon.quark.base.handler.CreativeTabHandler;
@@ -34,6 +30,8 @@ import org.violetmoon.quark.content.building.module.VariantChestsModule.IChestTe
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.IZetaBlockItemProvider;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.Supplier;

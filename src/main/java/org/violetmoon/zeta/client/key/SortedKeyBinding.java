@@ -1,7 +1,6 @@
 package org.violetmoon.zeta.client.key;
 
 import com.mojang.blaze3d.platform.InputConstants.Type;
-
 import net.minecraft.client.KeyMapping;
 
 /**

@@ -1,14 +1,7 @@
 package org.violetmoon.quark.base.handler.advancement.mod;
 
-import java.util.Set;
-
-import org.violetmoon.quark.api.IMutableAdvancement;
-import org.violetmoon.quark.base.handler.advancement.AdvancementModifier;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
-
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.BredAnimalsTrigger;
 import net.minecraft.advancements.critereon.EntityPredicate;
@@ -16,6 +9,11 @@ import net.minecraft.advancements.critereon.EntityTypePredicate;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import org.violetmoon.quark.api.IMutableAdvancement;
+import org.violetmoon.quark.base.handler.advancement.AdvancementModifier;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.Set;
 
 public class TwoByTwoModifier extends AdvancementModifier {
 

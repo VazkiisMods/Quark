@@ -1,11 +1,7 @@
 package org.violetmoon.quark.content.tweaks.client.render.entity;
 
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.tweaks.entity.DyedItemFrame;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
@@ -29,6 +25,8 @@ import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.tweaks.entity.DyedItemFrame;
 
 // yes this shit again
 @OnlyIn(Dist.CLIENT)

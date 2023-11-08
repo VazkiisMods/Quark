@@ -1,15 +1,10 @@
 package org.violetmoon.zeta.config;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.base.config.type.IConfigType;
 
 /**
  * Common superclass of a... "thing" in a config definition (a value or section).

@@ -30,11 +30,10 @@ import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
 
 import javax.annotation.Nonnull;
-
-import static org.violetmoon.quark.base.handler.MiscUtil.directionProperty;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.violetmoon.quark.base.handler.MiscUtil.directionProperty;
 
 public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 

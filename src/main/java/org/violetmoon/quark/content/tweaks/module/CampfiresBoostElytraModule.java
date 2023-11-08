@@ -1,12 +1,5 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +11,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
 
 @ZetaLoadModule(category = "tweaks")
 public class CampfiresBoostElytraModule extends ZetaModule {

@@ -1,15 +1,14 @@
 package org.violetmoon.quark.mixin;
 
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HalfTransparentBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.violetmoon.quark.addons.oddities.module.PipesModule;
-
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HalfTransparentBlock;
-import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(HalfTransparentBlock.class)
 public class HalfTransparentBlockMixin {

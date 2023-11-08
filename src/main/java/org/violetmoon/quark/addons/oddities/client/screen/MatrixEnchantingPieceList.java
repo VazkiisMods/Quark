@@ -7,10 +7,9 @@ import net.minecraft.client.gui.components.ObjectSelectionList;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
+import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
 
 public class MatrixEnchantingPieceList extends ObjectSelectionList<MatrixEnchantingPieceList.PieceEntry> {
 

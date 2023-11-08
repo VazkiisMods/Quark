@@ -1,12 +1,11 @@
 package org.violetmoon.zetaimplforge.event.play.entity.living;
 
-import org.violetmoon.zeta.event.bus.ZResult;
-import org.violetmoon.zeta.event.play.entity.living.ZSleepingLocationCheck;
-import org.violetmoon.zetaimplforge.ForgeZeta;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.player.SleepingLocationCheckEvent;
+import org.violetmoon.zeta.event.bus.ZResult;
+import org.violetmoon.zeta.event.play.entity.living.ZSleepingLocationCheck;
+import org.violetmoon.zetaimplforge.ForgeZeta;
 
 public class ForgeZSleepingLocationCheck implements ZSleepingLocationCheck {
     private final SleepingLocationCheckEvent e;

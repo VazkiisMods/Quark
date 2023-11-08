@@ -10,12 +10,11 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-
-import static org.violetmoon.quark.content.tools.module.AncientTomesModule.validEnchants;
+import org.violetmoon.quark.content.tools.module.AncientTomesModule;
 
 import javax.annotation.Nonnull;
 
-import org.violetmoon.quark.content.tools.module.AncientTomesModule;
+import static org.violetmoon.quark.content.tools.module.AncientTomesModule.validEnchants;
 
 /**
  * @author WireSegal

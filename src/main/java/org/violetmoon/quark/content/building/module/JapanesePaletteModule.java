@@ -10,8 +10,6 @@
  */
 package org.violetmoon.quark.content.building.module;
 
-import java.util.function.BooleanSupplier;
-
 import org.violetmoon.quark.base.block.IQuarkBlock;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.building.block.BambooMatBlock;
@@ -22,6 +20,8 @@ import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.function.BooleanSupplier;
 
 @ZetaLoadModule(category = "building")
 public class JapanesePaletteModule extends ZetaModule {

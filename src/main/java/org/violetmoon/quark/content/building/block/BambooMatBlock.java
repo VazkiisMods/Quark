@@ -1,8 +1,5 @@
 package org.violetmoon.quark.content.building.block;
 
-import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
@@ -15,6 +12,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.zeta.module.ZetaModule;
 
 public class BambooMatBlock extends QuarkBlock {
 	

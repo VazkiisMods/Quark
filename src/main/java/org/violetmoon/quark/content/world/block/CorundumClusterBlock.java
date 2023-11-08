@@ -1,11 +1,5 @@
 package org.violetmoon.quark.content.world.block;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.IQuarkBlock;
-import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -28,6 +22,11 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.violetmoon.quark.base.block.IQuarkBlock;
+import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
 
 public class CorundumClusterBlock extends QuarkBlock implements SimpleWaterloggedBlock {
 

@@ -1,5 +1,13 @@
 package org.violetmoon.quark.addons.oddities.module;
 
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity;
 import org.violetmoon.quark.addons.oddities.block.pipe.EncasedPipeBlock;
 import org.violetmoon.quark.addons.oddities.block.pipe.PipeBlock;
@@ -15,15 +23,6 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 
 @ZetaLoadModule(category = "oddities")
 public class PipesModule extends ZetaModule {

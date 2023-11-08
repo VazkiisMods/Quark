@@ -1,15 +1,14 @@
 package org.violetmoon.quark.base.client.handler;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import net.minecraft.ChatFormatting;
 import org.violetmoon.quark.base.handler.GeneralConfig;
 import org.violetmoon.zeta.client.event.play.ZCustomizeDebugText;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 
-import net.minecraft.ChatFormatting;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class NetworkProfilingHandler {
 

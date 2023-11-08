@@ -1,11 +1,11 @@
 package org.violetmoon.quark.base.world;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+
+import javax.annotation.Nonnull;
 
 public class DeferredFeature extends Feature<NoneFeatureConfiguration> {
 

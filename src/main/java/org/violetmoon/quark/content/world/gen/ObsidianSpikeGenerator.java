@@ -1,12 +1,5 @@
 package org.violetmoon.quark.content.world.gen;
 
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.config.type.DimensionConfig;
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.base.world.generator.Generator;
-import org.violetmoon.quark.content.building.module.CompressedBlocksModule;
-import org.violetmoon.quark.content.world.module.NetherObsidianSpikesModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +13,12 @@ import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.material.Material;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.quark.base.world.generator.Generator;
+import org.violetmoon.quark.content.building.module.CompressedBlocksModule;
+import org.violetmoon.quark.content.world.module.NetherObsidianSpikesModule;
 
 public class ObsidianSpikeGenerator extends Generator {
 

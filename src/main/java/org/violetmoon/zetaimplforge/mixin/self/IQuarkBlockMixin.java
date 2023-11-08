@@ -1,7 +1,5 @@
 package org.violetmoon.zetaimplforge.mixin.self;
 
-import java.util.Locale;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
@@ -24,6 +22,8 @@ import org.violetmoon.quark.content.automation.block.IronRodBlock;
 import org.violetmoon.quark.content.building.block.*;
 import org.violetmoon.quark.content.world.block.HugeGlowShroomBlock;
 import org.violetmoon.zeta.block.ext.IZetaBlockExtensions;
+
+import java.util.Locale;
 
 // Kid named forge interface mixins:
 @Mixin({

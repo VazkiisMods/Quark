@@ -15,9 +15,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.client.screen.BackpackInventoryScreen;
 import org.violetmoon.quark.api.IQuarkButtonAllowed;
 import org.violetmoon.quark.base.Quark;
@@ -29,6 +26,7 @@ import org.violetmoon.zeta.client.event.play.ZScreen;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;

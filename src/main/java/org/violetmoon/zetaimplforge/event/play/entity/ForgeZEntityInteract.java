@@ -1,13 +1,12 @@
 package org.violetmoon.zetaimplforge.event.play.entity;
 
-import org.violetmoon.zeta.event.play.entity.ZEntityInteract;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import org.violetmoon.zeta.event.play.entity.ZEntityInteract;
 
 public class ForgeZEntityInteract implements ZEntityInteract {
 	private final PlayerInteractEvent.EntityInteract e;

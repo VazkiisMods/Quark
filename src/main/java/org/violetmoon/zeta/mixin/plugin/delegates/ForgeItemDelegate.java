@@ -2,12 +2,11 @@ package org.violetmoon.zeta.mixin.plugin.delegates;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-
-import java.util.Map;
-
 import org.violetmoon.quark.content.tweaks.module.GoldToolsHaveFortuneModule;
 import org.violetmoon.zeta.mixin.plugin.DelegateInterfaceTarget;
 import org.violetmoon.zeta.mixin.plugin.DelegateReturnValueTarget;
+
+import java.util.Map;
 
 @DelegateInterfaceTarget
 public class ForgeItemDelegate {

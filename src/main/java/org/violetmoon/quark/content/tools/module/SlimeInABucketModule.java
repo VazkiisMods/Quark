@@ -1,16 +1,5 @@
 package org.violetmoon.quark.content.tools.module;
 
-import org.violetmoon.quark.content.tools.item.SlimeInABucketItem;
-import org.violetmoon.zeta.client.event.load.ZClientSetup;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.load.ZRegister;
-import org.violetmoon.zeta.event.play.entity.player.ZPlayerInteract;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -23,6 +12,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.gameevent.GameEvent;
+import org.violetmoon.quark.content.tools.item.SlimeInABucketItem;
+import org.violetmoon.zeta.client.event.load.ZClientSetup;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.load.ZRegister;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayerInteract;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
+import org.violetmoon.zeta.util.ItemNBTHelper;
 
 @ZetaLoadModule(category = "tools")
 public class SlimeInABucketModule extends ZetaModule {

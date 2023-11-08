@@ -1,11 +1,10 @@
 package org.violetmoon.quark.mixin.client;
 
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.violetmoon.quark.content.management.module.EasyTransferingModule;
-
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 
 @Mixin(AbstractContainerScreen.class)
 public class ContainerScreenMixin {

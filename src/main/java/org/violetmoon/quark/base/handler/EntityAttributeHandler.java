@@ -1,15 +1,14 @@
 package org.violetmoon.quark.base.handler;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
-
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.load.ZEntityAttributeCreation;
-
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.load.ZEntityAttributeCreation;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public final class EntityAttributeHandler {
 	

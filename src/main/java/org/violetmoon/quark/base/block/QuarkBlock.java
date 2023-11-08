@@ -7,15 +7,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.client.handler.RequiredModTooltipHandler;
 import org.violetmoon.quark.base.handler.CreativeTabHandler;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.function.BooleanSupplier;
 
 public class QuarkBlock extends Block implements IQuarkBlock {

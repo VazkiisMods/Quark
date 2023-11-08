@@ -7,13 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.event.TickEvent.ServerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.api.event.RecipeCrawlEvent;
 import org.violetmoon.quark.api.event.RecipeCrawlEvent.Visit;
 import org.violetmoon.quark.base.Quark;
@@ -22,6 +17,7 @@ import org.violetmoon.zeta.event.load.ZAddReloadListener;
 import org.violetmoon.zeta.event.load.ZTagsUpdated;
 import org.violetmoon.zeta.util.RegistryUtil;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

@@ -1,14 +1,5 @@
 package org.violetmoon.quark.content.world.undergroundstyle;
 
-import java.util.Random;
-
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.content.world.block.CorundumBlock;
-import org.violetmoon.quark.content.world.block.CorundumClusterBlock;
-import org.violetmoon.quark.content.world.module.CorundumModule;
-import org.violetmoon.quark.content.world.undergroundstyle.base.BasicUndergroundStyle;
-import org.violetmoon.quark.content.world.undergroundstyle.base.UndergroundStyleGenerator.Context;
-
 import it.unimi.dsi.fastutil.ints.Int2ByteArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2ByteMap;
 import net.minecraft.core.BlockPos;
@@ -17,6 +8,14 @@ import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.quark.content.world.block.CorundumBlock;
+import org.violetmoon.quark.content.world.block.CorundumClusterBlock;
+import org.violetmoon.quark.content.world.module.CorundumModule;
+import org.violetmoon.quark.content.world.undergroundstyle.base.BasicUndergroundStyle;
+import org.violetmoon.quark.content.world.undergroundstyle.base.UndergroundStyleGenerator.Context;
+
+import java.util.Random;
 
 public class CorundumStyle extends BasicUndergroundStyle {
 

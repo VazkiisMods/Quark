@@ -1,5 +1,13 @@
 package org.violetmoon.quark.content.experimental.module;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.npc.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.experimental.hax.PseudoAccessorMerchantOffer;
 import org.violetmoon.quark.mixin.accessor.AccessorMerchantOffer;
@@ -10,15 +18,6 @@ import org.violetmoon.zeta.event.play.entity.living.ZLivingConversion;
 import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.npc.*;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.item.trading.MerchantOffers;
 
 @ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class VillagerRerollingReworkModule extends ZetaModule {

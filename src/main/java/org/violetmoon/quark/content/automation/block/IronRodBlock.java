@@ -15,10 +15,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.block.IQuarkBlock;
 import org.violetmoon.quark.base.handler.CreativeTabHandler;
 import org.violetmoon.quark.content.automation.module.IronRodModule;
@@ -26,6 +22,8 @@ import org.violetmoon.zeta.api.ICollateralMover;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.function.BooleanSupplier;
 
 public class IronRodBlock extends EndRodBlock implements ICollateralMover, IQuarkBlock {

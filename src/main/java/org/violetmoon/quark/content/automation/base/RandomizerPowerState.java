@@ -1,10 +1,9 @@
 package org.violetmoon.quark.content.automation.base;
 
-import java.util.Locale;
-
 import net.minecraft.util.StringRepresentable;
 
 import javax.annotation.Nonnull;
+import java.util.Locale;
 
 /**
  * @author WireSegal

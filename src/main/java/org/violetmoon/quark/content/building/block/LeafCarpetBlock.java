@@ -1,7 +1,5 @@
 package org.violetmoon.quark.content.building.block;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
@@ -23,6 +21,8 @@ import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.IZetaBlockColorProvider;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
 
 public class LeafCarpetBlock extends QuarkBlock implements IZetaBlockColorProvider {
 

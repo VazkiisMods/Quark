@@ -1,20 +1,5 @@
 package org.violetmoon.quark.content.building.module;
 
-import java.util.Map;
-
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.content.building.block.CutVineBlock;
-import org.violetmoon.zeta.client.AlikeColorHandler;
-import org.violetmoon.zeta.client.event.load.ZAddBlockColorHandlers;
-import org.violetmoon.zeta.client.event.load.ZAddItemColorHandlers;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.load.ZRegister;
-import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -30,6 +15,20 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.quark.content.building.block.CutVineBlock;
+import org.violetmoon.zeta.client.AlikeColorHandler;
+import org.violetmoon.zeta.client.event.load.ZAddBlockColorHandlers;
+import org.violetmoon.zeta.client.event.load.ZAddItemColorHandlers;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.load.ZRegister;
+import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
+
+import java.util.Map;
 
 @ZetaLoadModule(category = "building")
 public class ShearVinesModule extends ZetaModule {

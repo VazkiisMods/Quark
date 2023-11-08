@@ -1,20 +1,7 @@
 package org.violetmoon.quark.addons.oddities.client.render.be;
 
-import java.util.Iterator;
-import java.util.Random;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity;
-import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity.ConnectionType;
-import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity.PipeItem;
-import org.violetmoon.quark.addons.oddities.block.pipe.PipeBlock;
-import org.violetmoon.quark.addons.oddities.module.PipesModule;
-import org.violetmoon.quark.base.Quark;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
@@ -31,6 +18,15 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity;
+import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity.ConnectionType;
+import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity.PipeItem;
+import org.violetmoon.quark.addons.oddities.module.PipesModule;
+import org.violetmoon.quark.base.Quark;
+
+import javax.annotation.Nonnull;
+import java.util.Iterator;
+import java.util.Random;
 
 public class PipeRenderer implements BlockEntityRenderer<PipeBlockEntity> {
 

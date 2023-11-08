@@ -1,5 +1,13 @@
 package org.violetmoon.quark.content.automation.module;
 
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.FallingBlockRenderer;
+import net.minecraft.core.Registry;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.automation.block.GravisandBlock;
 import org.violetmoon.quark.content.automation.entity.Gravisand;
@@ -9,15 +17,6 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.FallingBlockRenderer;
-import net.minecraft.core.Registry;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 
 @ZetaLoadModule(category = "automation")
 public class GravisandModule extends ZetaModule {

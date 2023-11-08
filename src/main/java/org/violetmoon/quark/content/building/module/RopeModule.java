@@ -14,9 +14,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.building.block.RopeBlock;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -25,6 +22,8 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
+
+import javax.annotation.Nonnull;
 
 @ZetaLoadModule(category = "building")
 public class RopeModule extends ZetaModule {

@@ -1,8 +1,8 @@
 package org.violetmoon.quark.api;
 
-import java.util.Comparator;
-
 import net.minecraft.world.item.ItemStack;
+
+import java.util.Comparator;
 
 public interface ICustomSorting {
 

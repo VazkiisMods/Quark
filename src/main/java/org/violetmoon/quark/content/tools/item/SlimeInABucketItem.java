@@ -1,11 +1,5 @@
 package org.violetmoon.quark.content.tools.item;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.item.QuarkItem;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -31,6 +25,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.phys.Vec3;
+import org.violetmoon.quark.base.item.QuarkItem;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
 
 public class SlimeInABucketItem extends QuarkItem {
 

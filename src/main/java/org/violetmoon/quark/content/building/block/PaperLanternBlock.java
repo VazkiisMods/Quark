@@ -1,10 +1,5 @@
 package org.violetmoon.quark.content.building.block;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,6 +12,10 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class PaperLanternBlock extends QuarkBlock {
 

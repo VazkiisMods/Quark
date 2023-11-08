@@ -1,11 +1,10 @@
 package org.violetmoon.zetaimplforge.event.play.entity.player;
 
-import org.violetmoon.zeta.event.play.entity.player.ZPlayerDestroyItem;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayerDestroyItem;
 
 public class ForgeZPlayerDestroyItem implements ZPlayerDestroyItem {
     private final PlayerDestroyItemEvent e;

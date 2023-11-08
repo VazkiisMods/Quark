@@ -4,14 +4,12 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.client.handler.RequiredModTooltipHandler;
 import org.violetmoon.zeta.item.IZetaItem;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 
 public class QuarkItem extends Item implements IZetaItem {

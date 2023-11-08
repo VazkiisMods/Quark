@@ -1,11 +1,10 @@
 package org.violetmoon.quark.content.tools.client.render.entity;
 
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.tools.entity.TorchArrow;
-
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.tools.entity.TorchArrow;
 
 public class TorchArrowRenderer extends ArrowRenderer<TorchArrow> {
 

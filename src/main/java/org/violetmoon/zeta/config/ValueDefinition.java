@@ -1,9 +1,9 @@
 package org.violetmoon.zeta.config;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 import java.util.function.Predicate;
-
-import org.jetbrains.annotations.Nullable;
 
 //TODO: maybe we need "boolean equals(T thing1, T thing2)"
 public class ValueDefinition<T> extends Definition {

@@ -1,13 +1,5 @@
 package org.violetmoon.quark.content.world.block;
 
-import java.util.OptionalInt;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkSaplingBlock;
-import org.violetmoon.quark.content.world.module.BlossomTreesModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -21,6 +13,12 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
+import org.violetmoon.quark.base.block.QuarkSaplingBlock;
+import org.violetmoon.quark.content.world.module.BlossomTreesModule;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import java.util.OptionalInt;
 
 public class BlossomSaplingBlock extends QuarkSaplingBlock {
 

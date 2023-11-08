@@ -1,5 +1,11 @@
 package org.violetmoon.quark.addons.oddities.module;
 
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.core.Registry;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import org.violetmoon.quark.addons.oddities.block.CrateBlock;
 import org.violetmoon.quark.addons.oddities.block.be.CrateBlockEntity;
 import org.violetmoon.quark.addons.oddities.client.screen.CrateScreen;
@@ -12,13 +18,6 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.core.Registry;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.common.extensions.IForgeMenuType;
 
 @ZetaLoadModule(category = "oddities")
 public class CrateModule extends ZetaModule {

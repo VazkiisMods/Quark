@@ -1,5 +1,16 @@
 package org.violetmoon.quark.content.mobs.module;
 
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.Registry;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
+import net.minecraftforge.eventbus.api.Event.Result;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.EntityAttributeHandler;
@@ -18,18 +29,6 @@ import org.violetmoon.zeta.event.play.entity.living.ZLivingSpawn;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import com.google.common.collect.ImmutableSet;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Registry;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
-import net.minecraftforge.eventbus.api.Event.Result;
 
 @ZetaLoadModule(category = "mobs")
 public class ForgottenModule extends ZetaModule {

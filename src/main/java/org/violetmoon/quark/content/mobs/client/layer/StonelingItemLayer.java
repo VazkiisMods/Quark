@@ -12,7 +12,6 @@ package org.violetmoon.quark.content.mobs.client.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
@@ -23,11 +22,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.content.mobs.client.model.StonelingModel;
 import org.violetmoon.quark.content.mobs.entity.Stoneling;
+
+import javax.annotation.Nonnull;
 
 @OnlyIn(Dist.CLIENT)
 public class StonelingItemLayer extends RenderLayer<Stoneling, StonelingModel> {

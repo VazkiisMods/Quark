@@ -27,14 +27,13 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.*;
 import net.minecraftforge.common.util.ForgeSoundType;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.content.automation.block.be.FeedingTroughBlockEntity;
 import org.violetmoon.quark.content.automation.module.FeedingTroughModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * @author WireSegal

@@ -6,13 +6,11 @@ import it.unimi.dsi.fastutil.ints.IntLists;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.config.ConfigFlagManager;
 import org.violetmoon.zeta.Zeta;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
 /**

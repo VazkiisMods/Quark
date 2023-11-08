@@ -1,10 +1,7 @@
 package org.violetmoon.quark.base.client.render;
 
-import java.util.function.Consumer;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -19,6 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
+import java.util.function.Consumer;
 
 @OnlyIn(Dist.CLIENT)
 public class QuarkArmorModel extends HumanoidModel<LivingEntity> {

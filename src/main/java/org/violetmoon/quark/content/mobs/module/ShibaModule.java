@@ -1,5 +1,17 @@
 package org.violetmoon.quark.content.mobs.module;
 
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.Registry;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacements.Type;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.levelgen.Heightmap.Types;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
@@ -17,19 +29,6 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import com.google.common.collect.ImmutableSet;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Registry;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacements.Type;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.levelgen.Heightmap.Types;
 
 @ZetaLoadModule(category = "mobs")
 public class ShibaModule extends ZetaModule {

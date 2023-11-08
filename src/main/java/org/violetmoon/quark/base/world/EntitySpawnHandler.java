@@ -1,17 +1,5 @@
 package org.violetmoon.quark.base.world;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.function.BooleanSupplier;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.config.type.CostSensitiveEntitySpawnConfig;
-import org.violetmoon.quark.base.config.type.EntitySpawnConfig;
-import org.violetmoon.quark.base.item.QuarkSpawnEggItem;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.load.ZConfigChanged;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
@@ -27,6 +15,17 @@ import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
 import net.minecraftforge.common.world.ModifiableBiomeInfo;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.type.CostSensitiveEntitySpawnConfig;
+import org.violetmoon.quark.base.config.type.EntitySpawnConfig;
+import org.violetmoon.quark.base.item.QuarkSpawnEggItem;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.load.ZConfigChanged;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.BooleanSupplier;
 
 public class EntitySpawnHandler {
 

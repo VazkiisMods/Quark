@@ -1,11 +1,5 @@
 package org.violetmoon.zeta.client.config.screen;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -22,6 +16,11 @@ import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.SectionDefinition;
 import org.violetmoon.zeta.config.ValueDefinition;
 import org.violetmoon.zeta.module.ZetaCategory;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ZetaConfigHomeScreen extends ZetaScreen {
 	public ZetaConfigHomeScreen(ZetaClient zc, Screen parent) {

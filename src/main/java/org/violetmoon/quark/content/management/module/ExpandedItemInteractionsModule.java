@@ -36,9 +36,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.network.NetworkHooks;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.GeneralConfig;
@@ -60,6 +57,8 @@ import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
 import org.violetmoon.zeta.util.ItemNBTHelper;
 import org.violetmoon.zeta.util.RegistryUtil;
+
+import java.util.List;
 
 @ZetaLoadModule(category = "management")
 public class ExpandedItemInteractionsModule extends ZetaModule {

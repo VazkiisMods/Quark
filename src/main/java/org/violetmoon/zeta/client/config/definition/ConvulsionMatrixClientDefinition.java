@@ -1,21 +1,5 @@
 package org.violetmoon.zeta.client.config.definition;
 
-import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.config.type.inputtable.ConvulsionMatrixConfig;
-import org.violetmoon.zeta.client.ZetaClient;
-import org.violetmoon.zeta.client.config.screen.AbstractSectionInputScreen;
-import org.violetmoon.zeta.client.config.widget.PencilButton;
-import org.violetmoon.zeta.config.ChangeSet;
-import org.violetmoon.zeta.config.SectionDefinition;
-import org.violetmoon.zeta.config.ValueDefinition;
-
 import com.google.common.base.Preconditions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
@@ -28,6 +12,20 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.client.gui.widget.ForgeSlider;
+import org.violetmoon.quark.base.config.type.inputtable.ConvulsionMatrixConfig;
+import org.violetmoon.zeta.client.ZetaClient;
+import org.violetmoon.zeta.client.config.screen.AbstractSectionInputScreen;
+import org.violetmoon.zeta.client.config.widget.PencilButton;
+import org.violetmoon.zeta.config.ChangeSet;
+import org.violetmoon.zeta.config.SectionDefinition;
+import org.violetmoon.zeta.config.ValueDefinition;
+
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ConvulsionMatrixClientDefinition implements ClientDefinitionExt<SectionDefinition> {
 	public ConvulsionMatrixClientDefinition(ConvulsionMatrixConfig cfg, SectionDefinition def) {

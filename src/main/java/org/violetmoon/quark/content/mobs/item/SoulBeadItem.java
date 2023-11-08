@@ -13,14 +13,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.item.QuarkItem;
 import org.violetmoon.quark.content.mobs.entity.SoulBead;
 import org.violetmoon.quark.content.mobs.module.WraithModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class SoulBeadItem extends QuarkItem {
 

@@ -13,11 +13,9 @@ import net.minecraft.world.level.block.piston.PistonMovingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.content.building.block.StoolBlock;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class Stool extends Entity {

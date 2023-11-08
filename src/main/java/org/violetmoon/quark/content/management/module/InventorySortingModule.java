@@ -4,9 +4,6 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.sounds.SoundEvents;
-
-import java.util.function.BooleanSupplier;
-
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.client.handler.InventoryButtonHandler;
 import org.violetmoon.quark.base.config.Config;
@@ -17,6 +14,8 @@ import org.violetmoon.zeta.client.event.load.ZKeyMapping;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.function.BooleanSupplier;
 
 @ZetaLoadModule(category = "management")
 public class InventorySortingModule extends ZetaModule {

@@ -1,9 +1,5 @@
 package org.violetmoon.quark.content.tweaks.recipe;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.content.tweaks.module.DragonScalesModule;
-
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -15,6 +11,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
+import org.violetmoon.quark.content.tweaks.module.DragonScalesModule;
+
+import javax.annotation.Nonnull;
 
 public class ElytraDuplicationRecipe extends CustomRecipe {
 

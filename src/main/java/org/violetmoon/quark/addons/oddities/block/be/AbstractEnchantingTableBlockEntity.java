@@ -1,12 +1,5 @@
 package org.violetmoon.quark.addons.oddities.block.be;
 
-import java.util.Random;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.base.util.SimpleInventoryBlockEntity;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -20,6 +13,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.quark.base.util.SimpleInventoryBlockEntity;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
 
 public abstract class AbstractEnchantingTableBlockEntity extends SimpleInventoryBlockEntity implements Nameable {
 

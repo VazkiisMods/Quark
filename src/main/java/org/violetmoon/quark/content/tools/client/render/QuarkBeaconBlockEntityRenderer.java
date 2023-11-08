@@ -1,16 +1,10 @@
 package org.violetmoon.quark.content.tools.client.render;
 
-import java.util.List;
-
-import org.violetmoon.quark.content.tools.module.BeaconRedirectionModule;
-import org.violetmoon.quark.content.tools.module.BeaconRedirectionModule.ExtendedBeamSegment;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BeaconRenderer;
@@ -18,6 +12,10 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.BeaconBlockEntity;
+import org.violetmoon.quark.content.tools.module.BeaconRedirectionModule;
+import org.violetmoon.quark.content.tools.module.BeaconRedirectionModule.ExtendedBeamSegment;
+
+import java.util.List;
 
 // Mostly vanilla copypaste but adapted to use ExtendedBeamSegment values
 public class QuarkBeaconBlockEntityRenderer {

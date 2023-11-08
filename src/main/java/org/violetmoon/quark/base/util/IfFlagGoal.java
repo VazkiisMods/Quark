@@ -1,11 +1,10 @@
 package org.violetmoon.quark.base.util;
 
-import java.util.EnumSet;
-import java.util.function.BooleanSupplier;
+import net.minecraft.world.entity.ai.goal.Goal;
 
 import javax.annotation.Nonnull;
-
-import net.minecraft.world.entity.ai.goal.Goal;
+import java.util.EnumSet;
+import java.util.function.BooleanSupplier;
 
 /**
  * @author WireSegal

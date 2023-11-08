@@ -20,16 +20,14 @@ import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.gameevent.vibrations.VibrationListener;
 import net.minecraft.world.level.gameevent.vibrations.VibrationListener.VibrationListenerConfig;
 import net.minecraft.world.phys.Vec3;
-
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tools.config.PickarangType;
 import org.violetmoon.quark.content.tools.module.PickarangModule;
 
-import static org.violetmoon.quark.content.tools.module.PickarangModule.echorangBreaksAnywayTag;
-
+import javax.annotation.Nullable;
 import java.util.function.BiConsumer;
+
+import static org.violetmoon.quark.content.tools.module.PickarangModule.echorangBreaksAnywayTag;
 
 public class Echorang extends AbstractPickarang<Echorang> implements VibrationListenerConfig {
 

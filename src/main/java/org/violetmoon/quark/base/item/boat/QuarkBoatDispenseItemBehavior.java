@@ -10,10 +10,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.LevelEvent;
+import org.violetmoon.quark.base.handler.WoodSetHandler;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.handler.WoodSetHandler;
 
 // Pretty much just a copy of BoatDispenseItemBehavior but for the quark boat
 public class QuarkBoatDispenseItemBehavior extends DefaultDispenseItemBehavior {

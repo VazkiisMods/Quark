@@ -1,9 +1,8 @@
 package org.violetmoon.zetaimplforge.event.play.entity.living;
 
-import org.violetmoon.zeta.event.play.entity.living.ZLivingChangeTarget;
-
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
+import org.violetmoon.zeta.event.play.entity.living.ZLivingChangeTarget;
 
 public class ForgeZLivingChangeTarget implements ZLivingChangeTarget {
     private final LivingChangeTargetEvent e;

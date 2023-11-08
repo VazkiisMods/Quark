@@ -1,15 +1,14 @@
 package org.violetmoon.zetaimplforge.event.play.loading;
 
-import org.violetmoon.zeta.capability.ZetaCapability;
-import org.violetmoon.zeta.capability.ZetaCapabilityManager;
-import org.violetmoon.zeta.event.play.loading.ZAttachCapabilities;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import org.violetmoon.zeta.capability.ZetaCapability;
+import org.violetmoon.zeta.capability.ZetaCapabilityManager;
+import org.violetmoon.zeta.event.play.loading.ZAttachCapabilities;
 
 public abstract class ForgeZAttachCapabilities<T> implements ZAttachCapabilities<T> {
     protected final ZetaCapabilityManager zetaCaps;

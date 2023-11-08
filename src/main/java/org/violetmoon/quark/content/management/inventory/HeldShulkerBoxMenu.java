@@ -1,8 +1,5 @@
 package org.violetmoon.quark.content.management.inventory;
 
-import org.violetmoon.quark.api.ISortingLockedSlots;
-import org.violetmoon.quark.content.management.module.ExpandedItemInteractionsModule;
-
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -12,6 +9,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ShulkerBoxSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import org.violetmoon.quark.api.ISortingLockedSlots;
+import org.violetmoon.quark.content.management.module.ExpandedItemInteractionsModule;
 
 public class HeldShulkerBoxMenu extends AbstractContainerMenu implements ISortingLockedSlots {
 

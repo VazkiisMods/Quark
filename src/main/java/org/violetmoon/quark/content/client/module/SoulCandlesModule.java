@@ -1,11 +1,5 @@
 package org.violetmoon.quark.content.client.module;
 
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.load.ZConfigChanged;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -15,6 +9,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.load.ZConfigChanged;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
 
 @ZetaLoadModule(category = "client") // Not using a client module replacement b/c everything here happens to be side-safe
 public class SoulCandlesModule extends ZetaModule {

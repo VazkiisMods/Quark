@@ -22,12 +22,11 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.api.ICrawlSpaceBlock;
 import org.violetmoon.quark.base.block.QuarkPillarBlock;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class HollowPillarBlock extends QuarkPillarBlock implements SimpleWaterloggedBlock, ICrawlSpaceBlock {
 

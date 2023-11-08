@@ -1,15 +1,14 @@
 package org.violetmoon.quark.base.block;
 
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.zeta.registry.IZetaBlockColorProvider;
-import org.violetmoon.zeta.registry.IZetaItemColorProvider;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.zeta.registry.IZetaBlockColorProvider;
+import org.violetmoon.zeta.registry.IZetaItemColorProvider;
+
+import javax.annotation.Nullable;
 
 /**
  * @author WireSegal

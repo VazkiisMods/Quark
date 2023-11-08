@@ -1,13 +1,13 @@
 package org.violetmoon.quark.base.world.generator;
 
-import java.util.List;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
+
+import java.util.List;
 
 /**
  * @author WireSegal

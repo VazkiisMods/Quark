@@ -10,10 +10,10 @@
  */
 package org.violetmoon.quark.api;
 
-import java.util.function.Supplier;
-
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.items.IItemHandler;
+
+import java.util.function.Supplier;
 
 /**
  * Implement on a TileEntity or provide as a capability

@@ -1,15 +1,14 @@
 package org.violetmoon.zeta.client.config.definition;
 
-import java.util.function.Consumer;
-
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.resources.language.I18n;
 import org.violetmoon.zeta.client.ZetaClient;
 import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.Definition;
 import org.violetmoon.zeta.config.SectionDefinition;
 
-import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.resources.language.I18n;
+import java.util.function.Consumer;
 
 public interface ClientDefinitionExt<T extends Definition> {
 	default String getGuiDisplayName(ChangeSet changes, T def) {

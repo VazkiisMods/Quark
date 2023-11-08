@@ -30,7 +30,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.violetmoon.quark.content.client.hax.PseudoAccessorItemStack;
 import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
 import org.violetmoon.quark.content.client.resources.AttributeSlot;
-import org.violetmoon.quark.content.client.tooltip.AttributeTooltips;
 import org.violetmoon.quark.content.management.module.ItemSharingModule;
 import org.violetmoon.quark.content.tools.module.AncientTomesModule;
 import org.violetmoon.quark.content.tweaks.module.GoldToolsHaveFortuneModule;

@@ -13,14 +13,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tools.module.AmbientDiscsModule;
 import org.violetmoon.zeta.item.IZetaItem;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 

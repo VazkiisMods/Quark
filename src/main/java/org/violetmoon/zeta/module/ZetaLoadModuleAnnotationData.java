@@ -1,10 +1,10 @@
 package org.violetmoon.zeta.module;
 
+import net.minecraftforge.api.distmarker.Dist;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import net.minecraftforge.api.distmarker.Dist;
 
 /**
  * Exists mainly because Forge ModFileScanData doesn't give you the annotation itself :S

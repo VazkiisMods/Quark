@@ -1,9 +1,5 @@
 package org.violetmoon.quark.content.tools.entity;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.content.tools.module.SkullPikesModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -18,6 +14,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import org.violetmoon.quark.content.tools.module.SkullPikesModule;
+
+import javax.annotation.Nonnull;
 
 public class SkullPike extends Entity {
 

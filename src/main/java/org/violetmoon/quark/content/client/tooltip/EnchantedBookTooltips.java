@@ -1,19 +1,5 @@
 package org.violetmoon.quark.content.client.tooltip;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.item.QuarkItem;
-import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
-import org.violetmoon.quark.content.tools.item.AncientTomeItem;
-import org.violetmoon.quark.content.tools.module.AncientTomesModule;
-import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -34,6 +20,18 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.item.QuarkItem;
+import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
+import org.violetmoon.quark.content.tools.item.AncientTomeItem;
+import org.violetmoon.quark.content.tools.module.AncientTomesModule;
+import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class EnchantedBookTooltips {
 

@@ -1,10 +1,5 @@
 package org.violetmoon.quark.addons.oddities.block.pipe;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity.ConnectionType;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -17,6 +12,10 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity.ConnectionType;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class EncasedPipeBlock extends BasePipeBlock {
 

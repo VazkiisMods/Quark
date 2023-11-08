@@ -17,11 +17,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.mobs.entity.Foxhound;
+
+import javax.annotation.Nonnull;
 
 public class FindPlaceToSleepGoal extends MoveToBlockGoal {
 	private final Foxhound foxhound;

@@ -1,5 +1,12 @@
 package org.violetmoon.zeta.config;
 
+import org.apache.commons.lang3.text.WordUtils;
+import org.jetbrains.annotations.Nullable;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
+import org.violetmoon.quark.base.config.type.IConfigType;
+import org.violetmoon.zeta.module.ZetaModule;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -11,13 +18,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-
-import org.apache.commons.lang3.text.WordUtils;
-import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.quark.base.config.ConfigFlagManager;
-import org.violetmoon.quark.base.config.type.IConfigType;
-import org.violetmoon.zeta.module.ZetaModule;
 
 public class ConfigObjectMapper {
 	public static List<Field> walkModuleFields(Class<?> clazz) {

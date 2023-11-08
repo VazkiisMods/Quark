@@ -1,8 +1,7 @@
 package org.violetmoon.zeta.item;
 
-import org.violetmoon.zeta.module.IDisableable;
-
 import net.minecraft.world.item.Item;
+import org.violetmoon.zeta.module.IDisableable;
 
 public interface IZetaItem extends IDisableable<IZetaItem> {
 

@@ -40,9 +40,8 @@ import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.experimental.PlaceVariantUpdateMessage;
 import org.violetmoon.quark.content.experimental.client.screen.VariantSelectorScreen;
 import org.violetmoon.quark.content.experimental.client.tooltip.VariantsComponent;
-import org.violetmoon.quark.content.experimental.config.BlockSuffixConfig;
+import org.violetmoon.quark.content.experimental.config.VariantsConfig;
 import org.violetmoon.quark.content.experimental.item.HammerItem;
-import org.violetmoon.zeta.client.event.*;
 import org.violetmoon.zeta.client.event.load.ZKeyMapping;
 import org.violetmoon.zeta.client.event.load.ZTooltipComponents;
 import org.violetmoon.zeta.client.event.play.ZEndClientTick;
@@ -83,7 +82,7 @@ public class VariantSelectorModule extends ZetaModule {
 	@Config public static boolean overrideHeldItemRender = true;
 
 	@Config
-	public static BlockSuffixConfig variants = new BlockSuffixConfig(
+	public static VariantsConfig variants = new VariantsConfig(
 			Arrays.asList("slab", "stairs", "wall", "fence", "fence_gate", "vertical_slab"),
 			Arrays.asList("quark"),
 			Arrays.asList("carpet=slab")

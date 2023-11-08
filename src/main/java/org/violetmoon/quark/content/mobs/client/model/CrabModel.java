@@ -12,11 +12,9 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.content.mobs.entity.Crab;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 public class CrabModel extends EntityModel<Crab> {

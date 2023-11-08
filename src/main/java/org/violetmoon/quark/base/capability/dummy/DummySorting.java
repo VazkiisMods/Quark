@@ -10,11 +10,10 @@
  */
 package org.violetmoon.quark.base.capability.dummy;
 
-import java.util.Comparator;
-
+import net.minecraft.world.item.ItemStack;
 import org.violetmoon.quark.api.ICustomSorting;
 
-import net.minecraft.world.item.ItemStack;
+import java.util.Comparator;
 
 public class DummySorting implements ICustomSorting {
 	@Override

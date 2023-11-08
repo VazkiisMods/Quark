@@ -1,14 +1,9 @@
 package org.violetmoon.quark;
 
-import org.violetmoon.quark.api.ICustomSorting;
-import org.violetmoon.quark.api.IMagnetTracker;
-import org.violetmoon.quark.api.IPistonCallback;
-import org.violetmoon.quark.api.IRuneColorProvider;
-import org.violetmoon.quark.api.ITransferManager;
-
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
+import org.violetmoon.quark.api.*;
 
 //TODO: put this somewhere in a Forge-only API package
 public class QuarkForgeCapabilities {

@@ -1,13 +1,12 @@
 package org.violetmoon.zeta.client.config.screen;
 
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import org.violetmoon.zeta.client.ZetaClient;
 import org.violetmoon.zeta.client.config.definition.ClientDefinitionExt;
 import org.violetmoon.zeta.client.config.widget.DefaultDiscardDone;
 import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.ValueDefinition;
-
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
 
 //TODO: assumes the thing your editing has a direct ValueDefinition, which isn't true for certain types of config screens
 // like, RGBA color inputs actually correspond to SectionDefinitions in the config

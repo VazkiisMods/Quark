@@ -1,16 +1,5 @@
 package org.violetmoon.quark.base.client.config;
 
-import java.util.Iterator;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.handler.ContributorRewardHandler;
-import org.violetmoon.quark.base.handler.GeneralConfig;
-import org.violetmoon.zeta.client.config.screen.ZetaConfigHomeScreen;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -20,6 +9,15 @@ import net.minecraft.client.renderer.PanoramaRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.QuarkClient;
+import org.violetmoon.quark.base.handler.ContributorRewardHandler;
+import org.violetmoon.quark.base.handler.GeneralConfig;
+import org.violetmoon.zeta.client.config.screen.ZetaConfigHomeScreen;
+
+import javax.annotation.Nonnull;
+import java.util.Iterator;
+import java.util.List;
 
 public class QuarkConfigHomeScreen extends ZetaConfigHomeScreen {
 

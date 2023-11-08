@@ -1,14 +1,5 @@
 package org.violetmoon.zeta.registry;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.IdentityHashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.BooleanSupplier;
-import java.util.function.Supplier;
-
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.core.Registry;
@@ -21,6 +12,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.zeta.Zeta;
+
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BooleanSupplier;
+import java.util.function.Supplier;
 
 //Mash of arl's RegistryHelper and its ModData innerclass.
 //You're expected to create one of these per modid instead, avoiding a dependency on Forge's "current mod id" notion.

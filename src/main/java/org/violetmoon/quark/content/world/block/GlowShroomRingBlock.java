@@ -22,14 +22,12 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.base.handler.CreativeTabHandler;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 
 // Mostly a copy of BaseCoralWallFanBlock

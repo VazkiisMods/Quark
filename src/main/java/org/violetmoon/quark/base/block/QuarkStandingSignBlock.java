@@ -1,14 +1,12 @@
 package org.violetmoon.quark.base.block;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nullable;
-
+import net.minecraft.world.level.block.StandingSignBlock;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import net.minecraft.world.level.block.StandingSignBlock;
-import net.minecraft.world.level.block.state.properties.WoodType;
+import javax.annotation.Nullable;
+import java.util.function.BooleanSupplier;
 
 public class QuarkStandingSignBlock extends StandingSignBlock implements IQuarkBlock {
 

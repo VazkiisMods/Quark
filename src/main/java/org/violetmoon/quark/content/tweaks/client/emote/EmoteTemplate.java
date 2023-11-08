@@ -1,13 +1,13 @@
 package org.violetmoon.quark.content.tweaks.client.emote;
 
-import com.google.common.collect.Lists;
-
 import aurelienribon.tweenengine.*;
+import com.google.common.collect.Lists;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.Quark;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,8 +16,6 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
-
-import org.violetmoon.quark.base.Quark;
 
 @OnlyIn(Dist.CLIENT)
 public class EmoteTemplate {

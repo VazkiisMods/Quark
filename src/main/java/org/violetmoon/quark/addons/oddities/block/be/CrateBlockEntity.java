@@ -23,13 +23,12 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.block.CrateBlock;
 import org.violetmoon.quark.addons.oddities.capability.CrateItemHandler;
 import org.violetmoon.quark.addons.oddities.inventory.CrateMenu;
 import org.violetmoon.quark.addons.oddities.module.CrateModule;
+
+import javax.annotation.Nonnull;
 
 public class CrateBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
 

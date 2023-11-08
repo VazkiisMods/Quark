@@ -8,9 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
@@ -18,6 +15,8 @@ import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.RegistryUtil;
+
+import java.util.List;
 
 @ZetaLoadModule(category = "experimental", enabledByDefault = false,
 description = "This feature generates Resource Pack Item Model predicates on the items defined in 'Items to Change'\n"

@@ -14,9 +14,6 @@ import net.minecraft.world.entity.animal.axolotl.Axolotl;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.entity.player.Player;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.quark.base.handler.QuarkSounds;
@@ -29,6 +26,8 @@ import org.violetmoon.zeta.event.play.entity.living.ZAnimalTame;
 import org.violetmoon.zeta.event.play.entity.player.ZPlayerInteract;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.List;
 
 /**
  * @author WireSegal

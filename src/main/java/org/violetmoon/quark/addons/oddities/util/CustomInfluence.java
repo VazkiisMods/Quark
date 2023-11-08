@@ -1,12 +1,11 @@
 package org.violetmoon.quark.addons.oddities.util;
 
-import org.violetmoon.quark.api.IEnchantmentInfluencer;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.api.IEnchantmentInfluencer;
 
 public record CustomInfluence(int strength, int color, Influence influence) implements IEnchantmentInfluencer {
 	@Override

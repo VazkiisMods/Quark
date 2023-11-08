@@ -1,17 +1,16 @@
 package org.violetmoon.quark.base.world.generator.multichunk;
 
-import java.util.Random;
-import java.util.function.BooleanSupplier;
-import java.util.function.Consumer;
-
-import org.violetmoon.quark.base.config.type.DimensionConfig;
-import org.violetmoon.quark.base.world.generator.Generator;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.chunk.ChunkGenerator;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
+import org.violetmoon.quark.base.world.generator.Generator;
+
+import java.util.Random;
+import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
 
 public abstract class MultiChunkFeatureGenerator extends Generator {
 

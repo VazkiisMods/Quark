@@ -12,11 +12,9 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.content.tweaks.recipe.ElytraDuplicationRecipe;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 

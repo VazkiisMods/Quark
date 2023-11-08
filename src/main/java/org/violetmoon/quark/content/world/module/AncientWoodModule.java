@@ -1,5 +1,15 @@
 package org.violetmoon.quark.content.world.module;
 
+import com.google.common.base.Functions;
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.core.Registry;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.QuarkLeavesBlock;
 import org.violetmoon.quark.base.config.Config;
@@ -20,18 +30,6 @@ import org.violetmoon.zeta.event.play.loading.ZLootTableLoad;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import com.google.common.base.Functions;
-import com.google.common.collect.ImmutableSet;
-
-import net.minecraft.core.Registry;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ComposterBlock;
-import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 
 @ZetaLoadModule(category = "world")
 public class AncientWoodModule extends ZetaModule {

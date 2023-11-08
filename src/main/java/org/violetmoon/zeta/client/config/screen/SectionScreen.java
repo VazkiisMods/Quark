@@ -1,12 +1,5 @@
 package org.violetmoon.zeta.client.config.screen;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -14,7 +7,6 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import org.apache.commons.lang3.text.WordUtils;
 import org.jetbrains.annotations.NotNull;
-import org.violetmoon.zeta.client.TopLayerTooltipHandler;
 import org.violetmoon.zeta.client.ZetaClient;
 import org.violetmoon.zeta.client.config.definition.ClientDefinitionExt;
 import org.violetmoon.zeta.client.config.widget.DefaultDiscardDone;
@@ -23,6 +15,12 @@ import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.Definition;
 import org.violetmoon.zeta.config.SectionDefinition;
 import org.violetmoon.zeta.config.ValueDefinition;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SectionScreen extends ZetaScreen {
 	protected final SectionDefinition section;

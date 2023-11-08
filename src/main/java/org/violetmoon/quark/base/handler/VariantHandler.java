@@ -7,17 +7,16 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.function.Function;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.IQuarkBlock;
 import org.violetmoon.quark.base.block.QuarkSlabBlock;
 import org.violetmoon.quark.base.block.QuarkStairsBlock;
 import org.violetmoon.quark.base.block.QuarkWallBlock;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Function;
 
 public class VariantHandler {
 

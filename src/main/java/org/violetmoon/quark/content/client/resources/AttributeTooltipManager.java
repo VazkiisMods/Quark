@@ -1,5 +1,19 @@
 package org.violetmoon.quark.content.client.resources;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.util.profiling.ProfilerFiller;
+import org.apache.logging.log4j.Logger;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.client.tooltip.AttributeTooltips;
+
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -7,23 +21,6 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.annotation.Nonnull;
-
-import org.apache.logging.log4j.Logger;
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.client.tooltip.AttributeTooltips;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.util.profiling.ProfilerFiller;
 
 public class AttributeTooltipManager extends SimplePreparableReloadListener<Map<String, AttributeIconEntry>> {
 	private static final Gson GSON = new GsonBuilder()

@@ -1,13 +1,12 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.Vex;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.monster.Vex;
 
 @ZetaLoadModule(category = "tweaks")
 public class VexesDieWithTheirMastersModule extends ZetaModule {

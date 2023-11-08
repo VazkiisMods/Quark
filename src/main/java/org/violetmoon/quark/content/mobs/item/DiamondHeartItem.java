@@ -19,14 +19,13 @@ import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.item.QuarkItem;
 import org.violetmoon.quark.content.mobs.entity.Stoneling;
 import org.violetmoon.quark.content.mobs.entity.Stoneling.StonelingVariant;
 import org.violetmoon.quark.content.mobs.module.StonelingsModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class DiamondHeartItem extends QuarkItem {
 

@@ -1,13 +1,5 @@
 package org.violetmoon.quark.addons.oddities.client.model;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.addons.oddities.block.TinyPotatoBlock;
-import org.violetmoon.quark.addons.oddities.client.render.be.TinyPotatoRenderer;
-
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -21,6 +13,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.addons.oddities.block.TinyPotatoBlock;
+import org.violetmoon.quark.addons.oddities.client.render.be.TinyPotatoRenderer;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public record TinyPotatoModel(BakedModel originalModel) implements BakedModel {

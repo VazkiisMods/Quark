@@ -1,17 +1,8 @@
 package org.violetmoon.quark.content.building.client.render.entity;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.building.entity.GlassItemFrame;
-import org.violetmoon.quark.content.building.module.GlassItemFrameModule;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
@@ -35,22 +26,22 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.BannerItem;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.MapItem;
-import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.entity.BannerBlockEntity;
 import net.minecraft.world.level.block.entity.BannerPattern;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.common.MinecraftForge;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.building.entity.GlassItemFrame;
+import org.violetmoon.quark.content.building.module.GlassItemFrameModule;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * @author WireSegal

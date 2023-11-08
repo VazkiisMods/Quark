@@ -27,17 +27,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.network.NetworkHooks;
+import org.violetmoon.quark.content.building.module.GlassItemFrameModule;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.violetmoon.quark.content.building.module.GlassItemFrameModule;
-
-import java.lang.ref.WeakReference;
 import java.util.UUID;
 
 public class GlassItemFrame extends ItemFrame implements IEntityAdditionalSpawnData {

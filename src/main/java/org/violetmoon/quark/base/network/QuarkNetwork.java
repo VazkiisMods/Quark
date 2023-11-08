@@ -12,12 +12,6 @@ import net.minecraftforge.network.HandshakeHandler;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.simple.SimpleChannel;
-
-import java.time.Instant;
-import java.util.BitSet;
-import java.util.function.BiConsumer;
-import java.util.function.Supplier;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.network.message.*;
 import org.violetmoon.quark.base.network.message.experimental.PlaceVariantUpdateMessage;
@@ -32,6 +26,11 @@ import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.ZetaNetworkDirection;
 import org.violetmoon.zeta.network.ZetaNetworkHandler;
 import org.violetmoon.zetaimplforge.network.ForgeZetaNetworkHandler;
+
+import java.time.Instant;
+import java.util.BitSet;
+import java.util.function.BiConsumer;
+import java.util.function.Supplier;
 
 public final class QuarkNetwork {
 

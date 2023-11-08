@@ -1,8 +1,12 @@
 package org.violetmoon.quark.content.world.module;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.google.common.base.Functions;
+import net.minecraft.core.Registry;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.common.Tags;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.VariantHandler;
 import org.violetmoon.quark.base.handler.WoodSetHandler;
@@ -22,14 +26,8 @@ import org.violetmoon.zeta.event.play.loading.ZGatherHints;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import com.google.common.base.Functions;
-
-import net.minecraft.core.Registry;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.block.ComposterBlock;
-import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
-import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.common.Tags;
+import java.util.HashMap;
+import java.util.Map;
 
 @ZetaLoadModule(category = "world")
 public class BlossomTreesModule extends ZetaModule {

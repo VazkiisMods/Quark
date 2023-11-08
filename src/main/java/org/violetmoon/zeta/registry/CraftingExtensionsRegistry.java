@@ -1,10 +1,9 @@
 package org.violetmoon.zeta.registry;
 
-import org.violetmoon.zeta.recipe.IZetaConditionSerializer;
-import org.violetmoon.zeta.recipe.IZetaIngredientSerializer;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.violetmoon.zeta.recipe.IZetaConditionSerializer;
+import org.violetmoon.zeta.recipe.IZetaIngredientSerializer;
 
 public interface CraftingExtensionsRegistry {
 	// yes the generic is bad but blame forge

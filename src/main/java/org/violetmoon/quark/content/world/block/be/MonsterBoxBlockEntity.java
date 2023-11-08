@@ -21,12 +21,11 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.content.world.module.MonsterBoxModule;
 import org.violetmoon.zeta.block.be.ZetaBlockEntity;
+
+import java.util.List;
 
 public class MonsterBoxBlockEntity extends ZetaBlockEntity {
 

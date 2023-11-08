@@ -5,13 +5,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.io.Serial;
-import java.util.UUID;
-
 import org.violetmoon.quark.content.tweaks.client.emote.EmoteHandler;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
+import java.util.UUID;
 
 public class DoEmoteMessage implements IZetaMessage {
 

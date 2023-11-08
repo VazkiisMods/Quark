@@ -1,38 +1,7 @@
 package org.violetmoon.quark.content.tools.module;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.quark.base.config.type.IConfigType;
-import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
-import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
-import org.violetmoon.quark.content.tools.item.PathfindersQuillItem;
-import org.violetmoon.quark.content.tools.loot.InBiomeCondition;
-import org.violetmoon.zeta.client.event.load.ZAddItemColorHandlers;
-import org.violetmoon.zeta.client.event.load.ZClientSetup;
-import org.violetmoon.zeta.client.event.play.ZRenderGuiOverlay;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.load.ZConfigChanged;
-import org.violetmoon.zeta.event.load.ZRegister;
-import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
-import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
-import org.violetmoon.zeta.event.play.loading.ZVillagerTrades;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
@@ -62,10 +31,36 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.QuarkClient;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.IConfigType;
+import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
+import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
+import org.violetmoon.quark.content.tools.item.PathfindersQuillItem;
+import org.violetmoon.quark.content.tools.loot.InBiomeCondition;
+import org.violetmoon.zeta.client.event.load.ZAddItemColorHandlers;
+import org.violetmoon.zeta.client.event.load.ZClientSetup;
+import org.violetmoon.zeta.client.event.play.ZRenderGuiOverlay;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.load.ZConfigChanged;
+import org.violetmoon.zeta.event.load.ZRegister;
+import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
+import org.violetmoon.zeta.event.play.loading.ZVillagerTrades;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @ZetaLoadModule(category = "tools")
 public class PathfinderMapsModule extends ZetaModule {

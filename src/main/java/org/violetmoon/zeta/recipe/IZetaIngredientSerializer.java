@@ -1,11 +1,10 @@
 package org.violetmoon.zeta.recipe;
 
-import org.violetmoon.zeta.Zeta;
-
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.violetmoon.zeta.Zeta;
 
 // Copy of Forge IIngredientSerializer
 public interface IZetaIngredientSerializer<T extends Ingredient> {

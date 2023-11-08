@@ -1,15 +1,5 @@
 package org.violetmoon.quark.integration.jei;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map.Entry;
-
-import javax.annotation.Nonnull;
-
-import org.apache.commons.compress.utils.Lists;
-import org.violetmoon.quark.content.tweaks.module.SlabsToBlocksModule;
-import org.violetmoon.quark.content.tweaks.recipe.SlabToBlockRecipe;
-
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
@@ -18,6 +8,14 @@ import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategor
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import org.apache.commons.compress.utils.Lists;
+import org.violetmoon.quark.content.tweaks.module.SlabsToBlocksModule;
+import org.violetmoon.quark.content.tweaks.recipe.SlabToBlockRecipe;
+
+import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map.Entry;
 
 public record SlabToBlockExtension(SlabToBlockRecipe recipe) implements ICraftingCategoryExtension {
 	

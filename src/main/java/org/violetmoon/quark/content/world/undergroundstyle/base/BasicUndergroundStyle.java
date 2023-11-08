@@ -1,9 +1,8 @@
 package org.violetmoon.quark.content.world.undergroundstyle.base;
 
-import org.violetmoon.quark.content.world.undergroundstyle.base.UndergroundStyleGenerator.Context;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.content.world.undergroundstyle.base.UndergroundStyleGenerator.Context;
 
 public class BasicUndergroundStyle extends UndergroundStyle {
 

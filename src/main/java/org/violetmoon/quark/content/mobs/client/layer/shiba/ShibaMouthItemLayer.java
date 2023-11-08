@@ -1,13 +1,7 @@
 package org.violetmoon.quark.content.mobs.client.layer.shiba;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.content.mobs.client.model.ShibaModel;
-import org.violetmoon.quark.content.mobs.entity.Shiba;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -16,6 +10,10 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TridentItem;
+import org.violetmoon.quark.content.mobs.client.model.ShibaModel;
+import org.violetmoon.quark.content.mobs.entity.Shiba;
+
+import javax.annotation.Nonnull;
 
 public class ShibaMouthItemLayer extends RenderLayer<Shiba, ShibaModel> {
 

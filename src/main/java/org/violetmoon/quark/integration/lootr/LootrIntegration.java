@@ -8,20 +8,18 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.mods.lootr.init.ModBlocks;
-
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.module.VariantChestsModule;
 import org.violetmoon.quark.integration.lootr.client.LootrVariantChestRenderer;
 import org.violetmoon.zeta.client.event.load.ZPreTextureStitch;
 
-import static org.violetmoon.quark.content.building.module.VariantChestsModule.registerChests;
-
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import static org.violetmoon.quark.content.building.module.VariantChestsModule.registerChests;
 
 /**
  * @author WireSegal

@@ -1,11 +1,6 @@
 package org.violetmoon.quark.content.mobs.entity;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.handler.QuarkSounds;
-
 import com.mojang.math.Vector3f;
-
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -21,6 +16,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import org.violetmoon.quark.base.handler.QuarkSounds;
+
+import javax.annotation.Nonnull;
 
 public class SoulBead extends Entity {
 

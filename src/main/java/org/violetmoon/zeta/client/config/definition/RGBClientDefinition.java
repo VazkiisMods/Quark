@@ -1,9 +1,5 @@
 package org.violetmoon.zeta.client.config.definition;
 
-import java.util.function.Consumer;
-
-import javax.annotation.Nonnull;
-
 import com.google.common.base.Preconditions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
@@ -20,6 +16,9 @@ import org.violetmoon.zeta.client.config.widget.PencilButton;
 import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.SectionDefinition;
 import org.violetmoon.zeta.config.ValueDefinition;
+
+import javax.annotation.Nonnull;
+import java.util.function.Consumer;
 
 public class RGBClientDefinition implements ClientDefinitionExt<SectionDefinition> {
 	protected final ValueDefinition<Double> r;

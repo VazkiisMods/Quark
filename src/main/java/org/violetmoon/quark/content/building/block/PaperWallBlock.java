@@ -10,14 +10,13 @@
  */
 package org.violetmoon.quark.content.building.block;
 
-import org.violetmoon.quark.base.block.IQuarkBlock;
-import org.violetmoon.quark.base.block.QuarkInheritedPaneBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.base.block.IQuarkBlock;
+import org.violetmoon.quark.base.block.QuarkInheritedPaneBlock;
 
 public class PaperWallBlock extends QuarkInheritedPaneBlock {
 

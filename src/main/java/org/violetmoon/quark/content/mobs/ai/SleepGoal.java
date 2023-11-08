@@ -10,13 +10,12 @@
  */
 package org.violetmoon.quark.content.mobs.ai;
 
-import java.util.EnumSet;
-
-import org.violetmoon.quark.content.mobs.entity.Foxhound;
-
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.goal.Goal;
+import org.violetmoon.quark.content.mobs.entity.Foxhound;
+
+import java.util.EnumSet;
 
 public class SleepGoal extends Goal {
 

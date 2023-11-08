@@ -1,20 +1,8 @@
 package org.violetmoon.quark.content.management.client.screen.widgets;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.function.BooleanSupplier;
-import java.util.function.Consumer;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.zeta.client.TopLayerTooltipHandler;
-
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
@@ -22,6 +10,14 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import org.violetmoon.quark.base.QuarkClient;
+import org.violetmoon.quark.base.handler.MiscUtil;
+
+import javax.annotation.Nonnull;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
 
 public class MiniInventoryButton extends Button {
 

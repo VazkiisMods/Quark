@@ -10,13 +10,6 @@
  */
 package org.violetmoon.quark.content.mobs.ai;
 
-import java.util.EnumSet;
-import java.util.List;
-import java.util.function.Predicate;
-
-import org.violetmoon.quark.base.handler.QuarkSounds;
-import org.violetmoon.quark.content.mobs.entity.Stoneling;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -31,6 +24,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
+import org.violetmoon.quark.base.handler.QuarkSounds;
+import org.violetmoon.quark.content.mobs.entity.Stoneling;
+
+import java.util.EnumSet;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class RunAndPoofGoal<T extends Entity> extends Goal {
 

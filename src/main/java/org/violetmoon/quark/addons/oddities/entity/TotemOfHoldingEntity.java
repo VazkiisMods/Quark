@@ -1,13 +1,5 @@
 package org.violetmoon.quark.addons.oddities.entity;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.item.BackpackItem;
-import org.violetmoon.quark.addons.oddities.module.TotemOfHoldingModule;
-
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -26,6 +18,12 @@ import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
+import org.violetmoon.quark.addons.oddities.item.BackpackItem;
+import org.violetmoon.quark.addons.oddities.module.TotemOfHoldingModule;
+
+import javax.annotation.Nonnull;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author WireSegal

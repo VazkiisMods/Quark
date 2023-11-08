@@ -1,18 +1,16 @@
 package org.violetmoon.quark.content.tweaks.client.screen.widgets;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.content.tweaks.client.emote.EmoteDescriptor;
-import org.violetmoon.quark.content.tweaks.module.EmotesModule;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.quark.content.tweaks.client.emote.EmoteDescriptor;
+import org.violetmoon.quark.content.tweaks.module.EmotesModule;
+
+import javax.annotation.Nonnull;
 
 public class EmoteButton extends TranslucentButton {
 

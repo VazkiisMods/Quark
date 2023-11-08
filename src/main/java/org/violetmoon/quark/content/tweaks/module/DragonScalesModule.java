@@ -1,5 +1,12 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.core.Registry;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import org.violetmoon.quark.base.item.QuarkItem;
 import org.violetmoon.quark.content.tweaks.recipe.ElytraDuplicationRecipe;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -9,14 +16,6 @@ import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.core.Registry;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 
 @ZetaLoadModule(category = "tweaks")
 public class DragonScalesModule extends ZetaModule {

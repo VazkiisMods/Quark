@@ -5,10 +5,9 @@ import net.minecraft.network.chat.FormattedText;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.RenderTooltipEvent;
+import org.violetmoon.zeta.client.event.play.ZRenderTooltip;
 
 import java.util.List;
-
-import org.violetmoon.zeta.client.event.play.ZRenderTooltip;
 
 public class ForgeZRenderTooltip implements ZRenderTooltip {
     public static class GatherComponents extends ForgeZRenderTooltip implements ZRenderTooltip.GatherComponents {

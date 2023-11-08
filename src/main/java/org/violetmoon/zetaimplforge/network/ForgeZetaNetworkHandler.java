@@ -1,9 +1,5 @@
 package org.violetmoon.zetaimplforge.network;
 
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,6 +11,10 @@ import org.jetbrains.annotations.VisibleForTesting;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.ZetaNetworkDirection;
 import org.violetmoon.zeta.network.ZetaNetworkHandler;
+
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ForgeZetaNetworkHandler extends ZetaNetworkHandler {
 	@VisibleForTesting //TODO ZETA: encapsulate, leaky abstraction in QuarkNetwork

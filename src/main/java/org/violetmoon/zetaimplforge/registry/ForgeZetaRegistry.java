@@ -1,17 +1,16 @@
 package org.violetmoon.zetaimplforge.registry;
 
-import java.util.Collection;
-import java.util.function.Supplier;
-
-import org.violetmoon.zeta.registry.ZetaRegistry;
-import org.violetmoon.zetaimplforge.ForgeZeta;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegisterEvent;
+import org.violetmoon.zeta.registry.ZetaRegistry;
+import org.violetmoon.zetaimplforge.ForgeZeta;
+
+import java.util.Collection;
+import java.util.function.Supplier;
 
 public class ForgeZetaRegistry extends ZetaRegistry {
 	public ForgeZetaRegistry(ForgeZeta z) {

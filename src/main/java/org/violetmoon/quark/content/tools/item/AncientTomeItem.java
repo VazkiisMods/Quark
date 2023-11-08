@@ -10,14 +10,12 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.item.QuarkItem;
 import org.violetmoon.quark.content.experimental.module.EnchantmentsBegoneModule;
 import org.violetmoon.quark.content.tools.module.AncientTomesModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class AncientTomeItem extends QuarkItem {

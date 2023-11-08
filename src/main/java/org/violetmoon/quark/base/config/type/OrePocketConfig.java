@@ -1,11 +1,10 @@
 package org.violetmoon.quark.base.config.type;
 
-import java.util.function.Consumer;
-
-import org.violetmoon.quark.base.config.Config;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import org.violetmoon.quark.base.config.Config;
+
+import java.util.function.Consumer;
 
 public class OrePocketConfig implements IConfigType {
 

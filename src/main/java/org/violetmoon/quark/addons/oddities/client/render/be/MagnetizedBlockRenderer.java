@@ -1,12 +1,6 @@
 package org.violetmoon.quark.addons.oddities.client.render.be;
 
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.block.be.MagnetizedBlockBlockEntity;
-import org.violetmoon.quark.content.automation.client.render.QuarkPistonBlockEntityRenderer;
-
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -23,6 +17,10 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
+import org.violetmoon.quark.addons.oddities.block.be.MagnetizedBlockBlockEntity;
+import org.violetmoon.quark.content.automation.client.render.QuarkPistonBlockEntityRenderer;
+
+import javax.annotation.Nonnull;
 
 @OnlyIn(Dist.CLIENT)
 public class MagnetizedBlockRenderer implements BlockEntityRenderer<MagnetizedBlockBlockEntity> {

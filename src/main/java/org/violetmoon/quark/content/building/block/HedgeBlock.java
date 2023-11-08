@@ -1,11 +1,6 @@
 package org.violetmoon.quark.content.building.block;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nonnull;
-
 import com.google.common.collect.ImmutableList;
-
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
@@ -27,8 +22,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.IQuarkBlock;
@@ -38,6 +31,9 @@ import org.violetmoon.quark.content.world.block.BlossomLeavesBlock;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.IZetaBlockColorProvider;
 import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
+import java.util.function.BooleanSupplier;
 
 //TODO ZETA: extend QuarkFenceBlock
 public class HedgeBlock extends FenceBlock implements IQuarkBlock, IZetaBlockColorProvider {

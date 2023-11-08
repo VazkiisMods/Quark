@@ -1,16 +1,14 @@
 package org.violetmoon.quark.base.handler;
 
 import com.google.common.collect.Lists;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZRegister;
+
+import java.util.List;
 
 /**
  * @author WireSegal

@@ -1,10 +1,10 @@
 package org.violetmoon.quark.base.network.message;
 
-import java.io.Serial;
-
 import org.violetmoon.quark.content.management.module.ExpandedItemInteractionsModule;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class ScrollOnBundleMessage implements IZetaMessage {
 

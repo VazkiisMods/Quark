@@ -1,14 +1,13 @@
 package org.violetmoon.zeta.client.config.widget;
 
-import java.util.function.Consumer;
-
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.network.chat.Component;
 import org.violetmoon.zeta.client.config.screen.ZetaScreen;
 import org.violetmoon.zeta.config.ChangeSet;
 import org.violetmoon.zeta.config.Definition;
 
-import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.network.chat.Component;
+import java.util.function.Consumer;
 
 public class DefaultDiscardDone {
 	public final Button resetToDefault;

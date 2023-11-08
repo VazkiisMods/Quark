@@ -9,9 +9,6 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements.Type;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraftforge.common.Tags;
-
-import java.util.List;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
@@ -28,6 +25,8 @@ import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.List;
 
 @ZetaLoadModule(category = "mobs")
 public class ToretoiseModule extends ZetaModule {

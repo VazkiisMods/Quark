@@ -1,17 +1,15 @@
 package org.violetmoon.zeta.client.config.widget;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.zeta.client.ZetaClient;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import org.violetmoon.zeta.client.ZetaClient;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class CategoryButton extends Button {
 

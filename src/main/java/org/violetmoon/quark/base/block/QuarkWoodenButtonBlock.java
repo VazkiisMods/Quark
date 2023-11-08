@@ -3,10 +3,9 @@ package org.violetmoon.quark.base.block;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.CreativeModeTab;
+import org.violetmoon.zeta.module.ZetaModule;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.zeta.module.ZetaModule;
 
 public class QuarkWoodenButtonBlock extends QuarkButtonBlock {
 

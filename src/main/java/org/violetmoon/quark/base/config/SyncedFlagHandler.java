@@ -5,15 +5,13 @@ import net.minecraft.network.PacketListener;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.structural.S2CUpdateFlag;
 import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class SyncedFlagHandler {
 	private static ConfigFlagManager flagManager;

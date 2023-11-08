@@ -1,10 +1,9 @@
 package org.violetmoon.quark.content.world.undergroundstyle.base;
 
-import org.violetmoon.quark.base.config.type.ClusterSizeConfig;
-import org.violetmoon.quark.base.config.type.IBiomeConfig;
-
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
+import org.violetmoon.quark.base.config.type.ClusterSizeConfig;
+import org.violetmoon.quark.base.config.type.IBiomeConfig;
 
 public class UndergroundStyleConfig<T extends UndergroundStyle> extends ClusterSizeConfig {
 

@@ -17,9 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.GameRules;
-
-import java.util.*;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.play.ZEndClientTick;
@@ -30,6 +27,8 @@ import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.event.play.entity.player.ZPlayer;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.*;
 
 @ZetaLoadModule(category = "tweaks")
 public class AutomaticRecipeUnlockModule extends ZetaModule {

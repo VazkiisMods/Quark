@@ -1,15 +1,10 @@
 package org.violetmoon.zeta.module;
 
-import java.util.List;
-import java.util.Set;
-
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.play.loading.ZGatherHints;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import java.util.Set;
 
 public class ZetaModule {
 	public Zeta zeta;

@@ -1,10 +1,9 @@
 package org.violetmoon.quark.api;
 
-import java.util.Set;
-
 import com.google.common.base.Supplier;
-
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.Set;
 
 public interface IAdvancementModifier {
 

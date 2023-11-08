@@ -1,7 +1,6 @@
 package org.violetmoon.quark.content.mobs.client.layer.forgotten;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.SkeletonModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -14,10 +13,9 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.Quark;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
 
 @OnlyIn(Dist.CLIENT)
 public class ForgottenClothingLayer<T extends Mob & RangedAttackMob, M extends EntityModel<T>> extends RenderLayer<T, M> {

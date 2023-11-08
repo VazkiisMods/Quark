@@ -13,12 +13,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.module.MatrixEnchantingModule;
 import org.violetmoon.quark.content.experimental.module.EnchantmentsBegoneModule;
 
+import javax.annotation.Nonnull;
 import java.awt.*;
 import java.util.List;
 import java.util.*;

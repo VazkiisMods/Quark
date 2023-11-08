@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.automation.module;
 
+import net.minecraft.world.level.block.Block;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.automation.block.MetalButtonBlock;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -7,8 +8,6 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.world.level.block.Block;
 
 @ZetaLoadModule(category = "automation")
 public class MetalButtonsModule extends ZetaModule {

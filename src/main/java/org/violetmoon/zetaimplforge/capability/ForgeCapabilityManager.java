@@ -1,8 +1,5 @@
 package org.violetmoon.zetaimplforge.capability;
 
-import java.util.IdentityHashMap;
-import java.util.Map;
-
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -16,6 +13,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.zeta.capability.ZetaCapability;
 import org.violetmoon.zeta.capability.ZetaCapabilityManager;
+
+import java.util.IdentityHashMap;
+import java.util.Map;
 
 public class ForgeCapabilityManager implements ZetaCapabilityManager {
 	protected Map<ZetaCapability<?>, Capability<?>> toForge = new IdentityHashMap<>();

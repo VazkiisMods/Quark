@@ -1,24 +1,7 @@
 package org.violetmoon.quark.addons.oddities.item;
 
-import java.util.Map;
-import java.util.function.BooleanSupplier;
-import java.util.function.Consumer;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
-import org.violetmoon.quark.addons.oddities.module.BackpackModule;
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.client.handler.ModelHandler;
-import org.violetmoon.quark.base.client.handler.RequiredModTooltipHandler;
-import org.violetmoon.quark.base.handler.ProxiedItemStackHandler;
-import org.violetmoon.zeta.item.IZetaItem;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -34,12 +17,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.ArmorMaterials;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.DyeableArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -52,6 +30,20 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
+import org.violetmoon.quark.addons.oddities.module.BackpackModule;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.client.handler.ModelHandler;
+import org.violetmoon.quark.base.client.handler.RequiredModTooltipHandler;
+import org.violetmoon.quark.base.handler.ProxiedItemStackHandler;
+import org.violetmoon.zeta.item.IZetaItem;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
+import java.util.Map;
+import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
 
 public class BackpackItem extends DyeableArmorItem implements IZetaItem, MenuProvider {
 

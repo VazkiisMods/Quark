@@ -10,10 +10,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.base.block.QuarkInheritedPaneBlock;
@@ -24,6 +20,9 @@ import org.violetmoon.zeta.event.load.ZCommonSetup;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author WireSegal

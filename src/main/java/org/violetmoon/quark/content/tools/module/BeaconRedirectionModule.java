@@ -19,11 +19,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
@@ -38,6 +33,10 @@ import org.violetmoon.zeta.event.play.loading.ZGatherHints;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 
 @ZetaLoadModule(category = "tools")
 public class BeaconRedirectionModule extends ZetaModule {

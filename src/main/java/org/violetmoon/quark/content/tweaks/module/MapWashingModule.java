@@ -1,15 +1,14 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.load.ZCommonSetup;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.load.ZCommonSetup;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
 
 @ZetaLoadModule(category = "tweaks", antiOverlap = "supplementaries")
 public class MapWashingModule extends ZetaModule {

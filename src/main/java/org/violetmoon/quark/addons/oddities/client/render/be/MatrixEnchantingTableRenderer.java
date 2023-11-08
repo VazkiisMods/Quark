@@ -3,7 +3,6 @@ package org.violetmoon.quark.addons.oddities.client.render.be;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BookModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -17,10 +16,9 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
+import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 
 public class MatrixEnchantingTableRenderer implements BlockEntityRenderer<MatrixEnchantingTableBlockEntity> {
 

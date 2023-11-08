@@ -4,13 +4,12 @@ import net.minecraft.network.chat.LastSeenMessages;
 import net.minecraft.network.chat.MessageSignature;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-
-import java.io.Serial;
-import java.time.Instant;
-
 import org.violetmoon.quark.content.management.module.ItemSharingModule;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
+import java.time.Instant;
 
 public class ShareItemMessage implements IZetaMessage {
 

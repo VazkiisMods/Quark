@@ -11,14 +11,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.block.Block;
-
-import java.util.List;
-
 import org.violetmoon.quark.addons.oddities.util.Influence;
 import org.violetmoon.quark.content.client.tooltip.EnchantedBookTooltips;
 import org.violetmoon.quark.content.experimental.module.EnchantmentsBegoneModule;
 import org.violetmoon.quark.content.tools.module.ColorRunesModule;
 import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import java.util.List;
 
 public class InfluenceEntry implements IRecipeCategoryExtension {
 

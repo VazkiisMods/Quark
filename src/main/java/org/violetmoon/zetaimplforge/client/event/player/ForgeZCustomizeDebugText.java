@@ -1,12 +1,11 @@
 package org.violetmoon.zetaimplforge.client.event.player;
 
-import java.util.ArrayList;
-
-import org.violetmoon.zeta.client.event.play.ZCustomizeDebugText;
-
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraftforge.client.event.CustomizeGuiOverlayEvent;
+import org.violetmoon.zeta.client.event.play.ZCustomizeDebugText;
+
+import java.util.ArrayList;
 
 public class ForgeZCustomizeDebugText implements ZCustomizeDebugText {
 	private final CustomizeGuiOverlayEvent.DebugText e;

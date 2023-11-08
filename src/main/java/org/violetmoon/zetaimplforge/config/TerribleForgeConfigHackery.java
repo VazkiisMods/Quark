@@ -1,9 +1,5 @@
 package org.violetmoon.zetaimplforge.config;
 
-import java.io.Serial;
-import java.lang.reflect.Method;
-import java.nio.file.Path;
-
 import com.electronwill.nightconfig.core.CommentedConfig;
 import com.electronwill.nightconfig.core.ConfigFormat;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
@@ -15,6 +11,10 @@ import net.minecraftforge.fml.config.ConfigFileTypeHandler;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+
+import java.io.Serial;
+import java.lang.reflect.Method;
+import java.nio.file.Path;
 
 public class TerribleForgeConfigHackery {
 	private static final Method SET_CONFIG_DATA = ObfuscationReflectionHelper.findMethod(ModConfig.class, "setConfigData", CommentedConfig.class);

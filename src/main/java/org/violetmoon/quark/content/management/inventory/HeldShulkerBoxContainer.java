@@ -1,9 +1,5 @@
 package org.violetmoon.quark.content.management.inventory;
 
-import org.violetmoon.quark.base.handler.SimilarBlockTypeHandler;
-import org.violetmoon.quark.content.management.module.ExpandedItemInteractionsModule;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.MenuProvider;
@@ -13,6 +9,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
+import org.violetmoon.quark.base.handler.SimilarBlockTypeHandler;
+import org.violetmoon.quark.content.management.module.ExpandedItemInteractionsModule;
+import org.violetmoon.zeta.util.ItemNBTHelper;
 
 public class HeldShulkerBoxContainer implements Container, MenuProvider {
 

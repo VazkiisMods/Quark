@@ -1,12 +1,5 @@
 package org.violetmoon.quark.content.client.tooltip;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
-import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -27,6 +20,11 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MapItem;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
+import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
+import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class MapTooltips {
 

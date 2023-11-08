@@ -1,16 +1,11 @@
 package org.violetmoon.quark.content.client.module;
 
-import java.util.List;
-
+import com.google.common.collect.Lists;
+import net.minecraft.world.item.ItemStack;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.client.resources.AttributeTooltipManager;
-import org.violetmoon.quark.content.client.tooltip.AttributeTooltips;
-import org.violetmoon.quark.content.client.tooltip.EnchantedBookTooltips;
-import org.violetmoon.quark.content.client.tooltip.FoodTooltips;
-import org.violetmoon.quark.content.client.tooltip.FuelTooltips;
-import org.violetmoon.quark.content.client.tooltip.MapTooltips;
-import org.violetmoon.quark.content.client.tooltip.ShulkerBoxTooltips;
+import org.violetmoon.quark.content.client.tooltip.*;
 import org.violetmoon.zeta.client.event.load.ZRegisterReloadListeners;
 import org.violetmoon.zeta.client.event.load.ZTooltipComponents;
 import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
@@ -21,9 +16,7 @@ import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.ItemNBTHelper;
 
-import com.google.common.collect.Lists;
-
-import net.minecraft.world.item.ItemStack;
+import java.util.List;
 
 /**
  * @author WireSegal

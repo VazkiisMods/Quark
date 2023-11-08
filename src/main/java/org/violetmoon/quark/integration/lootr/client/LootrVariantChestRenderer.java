@@ -8,16 +8,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import noobanidus.mods.lootr.config.ConfigManager;
 import noobanidus.mods.lootr.util.Getter;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.client.render.GenericChestBERenderer;
 import org.violetmoon.quark.content.building.module.VariantChestsModule;
 import org.violetmoon.quark.integration.lootr.LootrVariantChestBlockEntity;
 import org.violetmoon.zeta.client.event.load.ZPreTextureStitch;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class LootrVariantChestRenderer<T extends LootrVariantChestBlockEntity> extends GenericChestBERenderer<T> {
 	private UUID playerId = null;

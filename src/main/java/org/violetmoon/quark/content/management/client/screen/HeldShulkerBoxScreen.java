@@ -1,14 +1,7 @@
 package org.violetmoon.quark.content.management.client.screen;
 
-import org.lwjgl.glfw.GLFW;
-import org.violetmoon.quark.addons.oddities.client.screen.BackpackInventoryScreen;
-import org.violetmoon.quark.addons.oddities.module.BackpackModule;
-import org.violetmoon.quark.api.IQuarkButtonAllowed;
-import org.violetmoon.quark.content.management.inventory.HeldShulkerBoxMenu;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
@@ -20,6 +13,10 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import org.lwjgl.glfw.GLFW;
+import org.violetmoon.quark.addons.oddities.module.BackpackModule;
+import org.violetmoon.quark.api.IQuarkButtonAllowed;
+import org.violetmoon.quark.content.management.inventory.HeldShulkerBoxMenu;
 
 public class HeldShulkerBoxScreen extends AbstractContainerScreen<HeldShulkerBoxMenu> implements IQuarkButtonAllowed {
 

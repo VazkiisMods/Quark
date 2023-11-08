@@ -1,19 +1,18 @@
 package org.violetmoon.zetaimplforge.registry;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
-
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.violetmoon.quark.mixin.accessor.AccessorPotionBrewing;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZCommonSetup;
 import org.violetmoon.zeta.registry.BrewingRegistry;
 import org.violetmoon.zetaimplforge.ForgeZeta;
 
-import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionBrewing;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.registries.ForgeRegistries;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
 
 public class ForgeBrewingRegistry extends BrewingRegistry {
 	public ForgeBrewingRegistry(ForgeZeta zeta) {

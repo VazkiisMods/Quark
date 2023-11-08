@@ -20,13 +20,11 @@ import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.content.tweaks.module.CompassesWorkEverywhereModule;
 import org.violetmoon.zeta.util.ItemNBTHelper;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Optional;
 
 public class CompassAngleGetter {

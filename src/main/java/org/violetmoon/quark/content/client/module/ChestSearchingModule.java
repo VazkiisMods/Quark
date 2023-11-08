@@ -39,7 +39,6 @@ import org.violetmoon.quark.base.handler.InventoryTransferHandler;
 import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.quark.base.handler.SimilarBlockTypeHandler;
 import org.violetmoon.quark.content.management.client.screen.widgets.MiniInventoryButton;
-import org.violetmoon.zeta.client.event.*;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.client.event.play.ZRenderContainerScreen;
 import org.violetmoon.zeta.client.event.play.ZScreen;

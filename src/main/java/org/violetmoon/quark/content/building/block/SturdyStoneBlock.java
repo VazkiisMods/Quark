@@ -6,11 +6,10 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class SturdyStoneBlock extends QuarkBlock {
 

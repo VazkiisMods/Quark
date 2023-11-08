@@ -1,5 +1,10 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.bus.ZResult;
@@ -7,12 +12,6 @@ import org.violetmoon.zeta.event.play.ZBonemeal;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 
 @ZetaLoadModule(category = "tweaks")
 public class RenewableSporeBlossomsModule extends ZetaModule {

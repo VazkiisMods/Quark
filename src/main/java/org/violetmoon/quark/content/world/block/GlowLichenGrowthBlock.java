@@ -1,16 +1,6 @@
 package org.violetmoon.quark.content.world.block;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.block.QuarkBushBlock;
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,6 +17,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.block.QuarkBushBlock;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import java.util.Collections;
+import java.util.List;
 
 public class GlowLichenGrowthBlock extends QuarkBushBlock implements BonemealableBlock {
 

@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.building.module;
 
+import net.minecraft.world.level.block.Blocks;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.ItemOverrideHandler;
 import org.violetmoon.quark.base.util.VanillaWoods;
@@ -10,8 +11,6 @@ import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.world.level.block.Blocks;
 
 @ZetaLoadModule(category = "building", antiOverlap = { "woodworks" })
 public class VariantBookshelvesModule extends ZetaModule {

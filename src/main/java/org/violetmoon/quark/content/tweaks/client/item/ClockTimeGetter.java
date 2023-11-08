@@ -1,10 +1,5 @@
 package org.violetmoon.quark.content.tweaks.client.item;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.util.Mth;
@@ -14,6 +9,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class ClockTimeGetter {
 

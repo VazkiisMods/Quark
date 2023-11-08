@@ -1,21 +1,5 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import java.util.List;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.zeta.client.event.play.ZInputUpdate;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.load.ZCommonSetup;
-import org.violetmoon.zeta.event.load.ZConfigChanged;
-import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
-import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
-import org.violetmoon.zeta.event.play.loading.ZGatherHints;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
 import net.minecraft.core.BlockPos;
@@ -47,6 +31,21 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.handler.MiscUtil;
+import org.violetmoon.zeta.client.event.play.ZInputUpdate;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.load.ZCommonSetup;
+import org.violetmoon.zeta.event.load.ZConfigChanged;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
+import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
+import org.violetmoon.zeta.event.play.loading.ZGatherHints;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.List;
 
 @ZetaLoadModule(category = "tweaks")
 public class EnhancedLaddersModule extends ZetaModule {

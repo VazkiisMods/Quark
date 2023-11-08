@@ -1,5 +1,13 @@
 package org.violetmoon.quark.content.client.module;
 
+import com.mojang.blaze3d.platform.Window;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.OptionInstance;
+import net.minecraft.client.player.Input;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.world.entity.player.Player;
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.load.ZKeyMapping;
@@ -10,16 +18,6 @@ import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import com.mojang.blaze3d.platform.Window;
-
-import net.minecraft.client.KeyMapping;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.OptionInstance;
-import net.minecraft.client.player.Input;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.resources.language.I18n;
-import net.minecraft.world.entity.player.Player;
 
 @ZetaLoadModule(category = "client")
 public class AutoWalkKeybindModule extends ZetaModule {

@@ -1,35 +1,21 @@
 package org.violetmoon.zeta.block.ext;
 
-import java.util.Optional;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.HoneycombItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BeaconBeamBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.world.level.block.FireBlock;
-import net.minecraft.world.level.block.HalfTransparentBlock;
-import net.minecraft.world.level.block.LadderBlock;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.WeatheringCopper;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 /**
  * Imagine a mouse eating a suspiciously IForgeBlock-shaped piece of cheese

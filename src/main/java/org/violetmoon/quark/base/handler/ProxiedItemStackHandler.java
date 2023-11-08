@@ -11,11 +11,10 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemHandlerHelper;
+import org.violetmoon.zeta.util.ItemNBTHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.violetmoon.zeta.util.ItemNBTHelper;
 
 /**
  * @author WireSegal

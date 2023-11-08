@@ -1,17 +1,5 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
-import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.load.ZRegister;
-import org.violetmoon.zeta.event.play.entity.ZEntityInteract;
-import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -25,6 +13,17 @@ import net.minecraft.world.entity.animal.frog.Tadpole;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
+import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.load.ZRegister;
+import org.violetmoon.zeta.event.play.entity.ZEntityInteract;
+import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
 
 @ZetaLoadModule(category = "tweaks")
 public class PoisonPotatoUsageModule extends ZetaModule {

@@ -1,14 +1,13 @@
 package org.violetmoon.quark.base.handler;
 
-import java.util.List;
-
+import com.google.common.collect.Lists;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.piston.ZetaPistonStructureResolver;
 
-import com.google.common.collect.Lists;
+import java.util.List;
 
 public class GeneralConfig {
 

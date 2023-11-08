@@ -1,13 +1,5 @@
 package org.violetmoon.quark.base.item;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.zeta.item.IZetaItem;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -16,6 +8,12 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.zeta.item.IZetaItem;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+import java.util.function.BooleanSupplier;
 
 public abstract class QuarkArrowItem extends ArrowItem implements IZetaItem {
 

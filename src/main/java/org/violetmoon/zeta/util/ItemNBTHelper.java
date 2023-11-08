@@ -10,9 +10,9 @@
  */
 package org.violetmoon.zeta.util;
 
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.world.item.ItemStack;
 
 public final class ItemNBTHelper {
 

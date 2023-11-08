@@ -6,9 +6,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.List;
-
 import org.violetmoon.quark.addons.oddities.block.MagnetBlock;
 import org.violetmoon.quark.addons.oddities.block.MovingMagnetizedBlock;
 import org.violetmoon.quark.addons.oddities.block.be.MagnetBlockEntity;
@@ -26,6 +23,8 @@ import org.violetmoon.zeta.event.play.ZLevelTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
+
+import java.util.List;
 
 @ZetaLoadModule(category = "oddities")
 public class MagnetsModule extends ZetaModule {

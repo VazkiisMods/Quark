@@ -1,7 +1,5 @@
 package org.violetmoon.quark.content.mobs.client.model;
 
-import org.violetmoon.quark.base.client.render.QuarkArmorModel;
-
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -9,6 +7,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.client.render.QuarkArmorModel;
 
 @OnlyIn(Dist.CLIENT)
 public class ForgottenHatModel {

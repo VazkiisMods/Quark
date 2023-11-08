@@ -8,10 +8,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.violetmoon.quark.base.Quark;
 
 import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.base.Quark;
 
 @OnlyIn(Dist.CLIENT)
 public class ForgottenEyesLayer<T extends Skeleton, M extends SkeletonModel<T>> extends EyesLayer<T, M> {

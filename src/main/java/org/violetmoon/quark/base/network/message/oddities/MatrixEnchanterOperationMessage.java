@@ -2,13 +2,12 @@ package org.violetmoon.quark.base.network.message.oddities;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-
-import java.io.Serial;
-
 import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import org.violetmoon.quark.addons.oddities.inventory.MatrixEnchantingMenu;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class MatrixEnchanterOperationMessage implements IZetaMessage {
 

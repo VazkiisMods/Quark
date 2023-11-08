@@ -1,9 +1,8 @@
 package org.violetmoon.zetaimplforge.event.play.entity.living;
 
-import org.violetmoon.zeta.event.play.entity.living.ZLivingFall;
-
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import org.violetmoon.zeta.event.play.entity.living.ZLivingFall;
 
 public class ForgeZLivingFall implements ZLivingFall {
     private final LivingFallEvent e;

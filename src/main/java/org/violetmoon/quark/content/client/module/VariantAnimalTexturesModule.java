@@ -12,9 +12,6 @@ import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.level.Level;
-
-import javax.annotation.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
@@ -25,6 +22,7 @@ import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Supplier;
 

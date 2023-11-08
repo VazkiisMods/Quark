@@ -1,10 +1,9 @@
 package org.violetmoon.zetaimplforge.event.play.entity.living;
 
-import org.violetmoon.zeta.event.play.entity.living.ZLivingDeath;
-
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import org.violetmoon.zeta.event.play.entity.living.ZLivingDeath;
 
 public class ForgeZLivingDeath implements ZLivingDeath {
 	private final LivingDeathEvent e;

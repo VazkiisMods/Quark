@@ -19,16 +19,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.function.Predicate;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.zeta.event.*;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.bus.ZResult;
@@ -40,6 +32,12 @@ import org.violetmoon.zeta.event.play.entity.living.ZLivingDrops;
 import org.violetmoon.zeta.event.play.entity.living.ZLivingTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.function.Predicate;
 
 @ZetaLoadModule(category = "experimental", enabledByDefault = false)
 public class GameNerfsModule extends ZetaModule {

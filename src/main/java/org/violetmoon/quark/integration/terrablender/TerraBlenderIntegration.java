@@ -1,17 +1,6 @@
 package org.violetmoon.quark.integration.terrablender;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.handler.GeneralConfig;
-import org.violetmoon.quark.base.handler.UndergroundBiomeHandler;
-import org.violetmoon.quark.base.handler.UndergroundBiomeHandler.Proxy;
-import org.violetmoon.quark.base.handler.UndergroundBiomeHandler.UndergroundBiomeSkeleton;
-import org.violetmoon.zeta.event.load.ZLoadComplete;
-
 import com.mojang.datafixers.util.Pair;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -19,11 +8,18 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.Climate.ParameterPoint;
 import net.minecraft.world.level.biome.OverworldBiomeBuilder;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.handler.GeneralConfig;
+import org.violetmoon.quark.base.handler.UndergroundBiomeHandler;
+import org.violetmoon.quark.base.handler.UndergroundBiomeHandler.Proxy;
+import org.violetmoon.quark.base.handler.UndergroundBiomeHandler.UndergroundBiomeSkeleton;
+import org.violetmoon.zeta.event.load.ZLoadComplete;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
 import terrablender.api.Regions;
+
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class TerraBlenderIntegration implements Supplier<UndergroundBiomeHandler.Proxy> {
 

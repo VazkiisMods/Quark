@@ -1,16 +1,5 @@
 package org.violetmoon.quark.base.block;
 
-import java.util.function.BooleanSupplier;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.base.handler.CreativeTabHandler;
-import org.violetmoon.quark.base.item.QuarkDoubleHighBlockItem;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.registry.IZetaBlockItemProvider;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
-
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -18,6 +7,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
+import org.violetmoon.quark.base.handler.CreativeTabHandler;
+import org.violetmoon.quark.base.item.QuarkDoubleHighBlockItem;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.registry.IZetaBlockItemProvider;
+import org.violetmoon.zeta.registry.RenderLayerRegistry;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.function.BooleanSupplier;
 
 public class QuarkDoorBlock extends DoorBlock implements IQuarkBlock, IZetaBlockItemProvider {
 

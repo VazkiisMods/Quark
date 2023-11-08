@@ -1,16 +1,5 @@
 package org.violetmoon.quark.addons.oddities.item;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.violetmoon.quark.addons.oddities.block.TinyPotatoBlock;
-import org.violetmoon.quark.addons.oddities.block.be.TinyPotatoBlockEntity;
-import org.violetmoon.quark.addons.oddities.util.TinyPotatoInfo;
-import org.violetmoon.quark.api.IRuneColorProvider;
-import org.violetmoon.quark.base.handler.ContributorRewardHandler;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -23,6 +12,15 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import org.violetmoon.quark.addons.oddities.block.TinyPotatoBlock;
+import org.violetmoon.quark.addons.oddities.block.be.TinyPotatoBlockEntity;
+import org.violetmoon.quark.addons.oddities.util.TinyPotatoInfo;
+import org.violetmoon.quark.api.IRuneColorProvider;
+import org.violetmoon.quark.base.handler.ContributorRewardHandler;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class TinyPotatoBlockItem extends BlockItem implements IRuneColorProvider {
 	private static final int NOT_MY_NAME = 17;

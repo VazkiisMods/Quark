@@ -18,13 +18,12 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.content.automation.block.be.EnderWatcherBlockEntity;
 import org.violetmoon.quark.content.automation.module.EnderWatcherModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public class EnderWatcherBlock extends QuarkBlock implements EntityBlock {
 

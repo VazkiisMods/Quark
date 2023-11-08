@@ -28,14 +28,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import static org.violetmoon.quark.base.handler.MiscUtil.directionProperty;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.block.be.PipeBlockEntity;
 import org.violetmoon.quark.addons.oddities.module.PipesModule;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
+
+import static org.violetmoon.quark.base.handler.MiscUtil.directionProperty;
 
 public class PipeBlock extends BasePipeBlock implements SimpleWaterloggedBlock {
 

@@ -1,5 +1,10 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
@@ -7,12 +12,6 @@ import org.violetmoon.zeta.event.play.entity.living.ZLivingDeath;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Slime;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 
 @ZetaLoadModule(category = "tweaks")
 public class SlimesToMagmaCubesModule extends ZetaModule {

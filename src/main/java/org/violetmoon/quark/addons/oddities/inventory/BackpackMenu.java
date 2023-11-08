@@ -8,13 +8,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.addons.oddities.inventory.slot.BackpackSlot;
 import org.violetmoon.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 import org.violetmoon.quark.base.util.InventoryIIH;
+
+import javax.annotation.Nonnull;
 
 public class BackpackMenu extends InventoryMenu {
 

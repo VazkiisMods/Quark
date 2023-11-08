@@ -8,23 +8,20 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.common.ToolActions;
-
-import java.util.List;
-import java.util.function.BooleanSupplier;
-
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.base.block.QuarkFlammableBlock;
 import org.violetmoon.quark.base.block.QuarkFlammablePillarBlock;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.FuelHandler;
-import org.violetmoon.quark.base.handler.ToolInteractionHandler;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZLoadComplete;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
+
+import java.util.List;
+import java.util.function.BooleanSupplier;
 
 @ZetaLoadModule(category = "building")
 public class CompressedBlocksModule extends ZetaModule {

@@ -6,12 +6,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.Random;
-
 import org.violetmoon.quark.base.config.type.ClusterSizeConfig;
 import org.violetmoon.quark.base.config.type.IBiomeConfig;
 import org.violetmoon.quark.base.handler.GeneralConfig;
+
+import java.util.Random;
 
 public record ClusterShape(BlockPos src, Vec3 radius,
 						   PerlinSimplexNoise noiseGenerator) {

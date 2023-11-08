@@ -1,13 +1,5 @@
 package org.violetmoon.zeta.config;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
-
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.config.ConfigFlagManager;
 import org.violetmoon.quark.base.handler.GeneralConfig;
@@ -16,6 +8,9 @@ import org.violetmoon.zeta.event.play.loading.ZGatherAdditionalFlags;
 import org.violetmoon.zeta.module.ZetaCategory;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.module.ZetaModuleManager;
+
+import java.util.*;
+import java.util.function.Consumer;
 
 public class ConfigManager {
 	private final Zeta z;

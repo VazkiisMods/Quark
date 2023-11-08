@@ -1,10 +1,9 @@
 package org.violetmoon.quark.base.block;
 
-import java.util.function.BooleanSupplier;
-
+import net.minecraft.world.level.block.Block;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import net.minecraft.world.level.block.Block;
+import java.util.function.BooleanSupplier;
 
 // Wrapper to allow vanilla blocks to be treated as quark blocks contextualized under a module
 public class QuarkBlockWrapper implements IQuarkBlock {

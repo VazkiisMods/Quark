@@ -1,10 +1,9 @@
 package org.violetmoon.zetaimplforge.event.play.entity.player;
 
-import org.violetmoon.zeta.event.play.entity.player.ZPlayer;
-
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayer;
 
 public class ForgeZPlayer implements ZPlayer {
     private final PlayerEvent e;

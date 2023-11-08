@@ -10,9 +10,6 @@
  */
 package org.violetmoon.quark.content.mobs.ai;
 
-import java.util.EnumSet;
-import java.util.function.Predicate;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.PathfinderMob;
@@ -21,6 +18,9 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.EnumSet;
+import java.util.function.Predicate;
 
 public class FavorBlockGoal extends Goal {
 

@@ -1,5 +1,10 @@
 package org.violetmoon.quark.content.world.module;
 
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
 import org.violetmoon.quark.base.handler.VariantHandler;
@@ -10,12 +15,6 @@ import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 
 @ZetaLoadModule(category = "world")
 public class PermafrostModule extends AbstractUndergroundStyleModule<PermafrostStyle> {

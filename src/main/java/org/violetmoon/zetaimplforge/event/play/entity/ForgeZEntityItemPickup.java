@@ -1,10 +1,9 @@
 package org.violetmoon.zetaimplforge.event.play.entity;
 
-import org.violetmoon.zeta.event.play.entity.ZEntityItemPickup;
-
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import org.violetmoon.zeta.event.play.entity.ZEntityItemPickup;
 
 public class ForgeZEntityItemPickup implements ZEntityItemPickup {
     private final EntityItemPickupEvent e;

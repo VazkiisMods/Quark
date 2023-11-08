@@ -1,9 +1,8 @@
 package org.violetmoon.quark.base.config.type;
 
-import org.violetmoon.quark.base.config.Config;
-
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
+import org.violetmoon.quark.base.config.Config;
 
 public class ClusterSizeConfig implements IConfigType {
 

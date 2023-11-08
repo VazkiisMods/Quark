@@ -19,12 +19,11 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.*;
-
-import javax.annotation.Nonnull;
-
 import org.violetmoon.quark.api.ICrawlSpaceBlock;
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.zeta.module.ZetaModule;
+
+import javax.annotation.Nonnull;
 
 public abstract class HollowFrameBlock extends QuarkBlock implements SimpleWaterloggedBlock, ICrawlSpaceBlock {
 

@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.building.module;
 
+import net.minecraft.world.level.block.ComposterBlock;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.VariantHandler;
 import org.violetmoon.quark.content.building.block.ThatchBlock;
@@ -8,8 +9,6 @@ import org.violetmoon.zeta.event.load.ZLoadComplete;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.world.level.block.ComposterBlock;
 
 @ZetaLoadModule(category = "building", antiOverlap = {"goated", "environmental"})
 public class ThatchModule extends ZetaModule {

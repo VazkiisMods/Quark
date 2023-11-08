@@ -1,16 +1,5 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import java.util.List;
-
-import org.violetmoon.quark.base.config.Config;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.load.ZConfigChanged;
-import org.violetmoon.zeta.event.play.entity.ZEntityInteract;
-import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import net.minecraft.client.model.ChickenModel;
 import net.minecraft.network.protocol.game.ClientboundSetPassengersPacket;
 import net.minecraft.server.level.ServerLevel;
@@ -24,6 +13,16 @@ import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.FakePlayer;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.load.ZConfigChanged;
+import org.violetmoon.zeta.event.play.entity.ZEntityInteract;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.List;
 
 @ZetaLoadModule(category = "tweaks")
 public class GrabChickensModule extends ZetaModule {

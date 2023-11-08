@@ -1,25 +1,6 @@
 package org.violetmoon.quark.addons.oddities.block.be;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.UUID;
-import java.util.function.Predicate;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix;
-import org.violetmoon.quark.addons.oddities.inventory.MatrixEnchantingMenu;
-import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
-import org.violetmoon.quark.addons.oddities.module.MatrixEnchantingModule;
-import org.violetmoon.quark.addons.oddities.util.Influence;
-import org.violetmoon.quark.api.IEnchantmentInfluencer;
-import org.violetmoon.zeta.util.ItemNBTHelper;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
@@ -48,6 +29,22 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix;
+import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
+import org.violetmoon.quark.addons.oddities.inventory.MatrixEnchantingMenu;
+import org.violetmoon.quark.addons.oddities.module.MatrixEnchantingModule;
+import org.violetmoon.quark.addons.oddities.util.Influence;
+import org.violetmoon.quark.api.IEnchantmentInfluencer;
+import org.violetmoon.zeta.util.ItemNBTHelper;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.UUID;
+import java.util.function.Predicate;
 
 public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlockEntity implements MenuProvider {
 

@@ -1,13 +1,12 @@
 package org.violetmoon.zetaimplforge.client.event.load;
 
-import org.violetmoon.zeta.client.event.load.ZAddModelLayers;
-
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import org.violetmoon.zeta.client.event.load.ZAddModelLayers;
 
 public record ForgeZAddModelLayers(EntityRenderersEvent.AddLayers e) implements ZAddModelLayers {
 	@Override

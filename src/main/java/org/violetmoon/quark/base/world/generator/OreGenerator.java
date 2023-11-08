@@ -1,12 +1,5 @@
 package org.violetmoon.quark.base.world.generator;
 
-import java.util.BitSet;
-import java.util.function.BooleanSupplier;
-import java.util.function.Predicate;
-
-import org.violetmoon.quark.base.config.type.DimensionConfig;
-import org.violetmoon.quark.base.config.type.OrePocketConfig;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
@@ -17,6 +10,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.type.OrePocketConfig;
+
+import java.util.BitSet;
+import java.util.function.BooleanSupplier;
+import java.util.function.Predicate;
 
 public class OreGenerator extends Generator {
 

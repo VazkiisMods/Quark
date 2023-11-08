@@ -1,14 +1,13 @@
 package org.violetmoon.zetaimplforge.config;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import net.minecraftforge.common.ForgeConfigSpec;
 import org.violetmoon.zeta.config.IZetaConfigInternals;
 import org.violetmoon.zeta.config.SectionDefinition;
 import org.violetmoon.zeta.config.ValueDefinition;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ForgeBackedConfig implements IZetaConfigInternals {
 	private final Map<ValueDefinition<?>, ForgeConfigSpec.ConfigValue<?>> definitionsToValues = new HashMap<>();

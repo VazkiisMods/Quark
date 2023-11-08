@@ -1,11 +1,11 @@
 package org.violetmoon.quark.base.network.message;
 
-import java.io.Serial;
-
 import org.violetmoon.quark.content.tweaks.module.LockRotationModule;
 import org.violetmoon.quark.content.tweaks.module.LockRotationModule.LockProfile;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
+
+import java.io.Serial;
 
 public class SetLockProfileMessage implements IZetaMessage {
 

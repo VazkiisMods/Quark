@@ -15,10 +15,9 @@ import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.IPlantable;
+import org.violetmoon.quark.api.IMagnetMoveAction;
 
 import java.util.HashMap;
-
-import org.violetmoon.quark.api.IMagnetMoveAction;
 
 public class DefaultMoveActions {
 

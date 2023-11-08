@@ -6,14 +6,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.properties.ChestType;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.client.render.GenericChestBERenderer;
 import org.violetmoon.quark.content.building.module.VariantChestsModule.IChestTextureProvider;
 import org.violetmoon.zeta.client.event.load.ZPreTextureStitch;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class VariantChestRenderer extends GenericChestBERenderer<ChestBlockEntity> {
 

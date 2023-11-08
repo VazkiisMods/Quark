@@ -1,22 +1,7 @@
 package org.violetmoon.quark.base.handler.advancement;
 
-import java.util.Collection;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BooleanSupplier;
-
-import org.violetmoon.quark.api.IAdvancementModifier;
-import org.violetmoon.quark.api.IAdvancementModifierDelegate;
-import org.violetmoon.quark.api.event.GatherAdvancementModifiersEvent;
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.handler.GeneralConfig;
-import org.violetmoon.quark.base.handler.advancement.mod.*;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.load.ZAddReloadListener;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.resources.ResourceKey;
@@ -30,8 +15,19 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.violetmoon.quark.api.IAdvancementModifier;
+import org.violetmoon.quark.api.IAdvancementModifierDelegate;
+import org.violetmoon.quark.api.event.GatherAdvancementModifiersEvent;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.handler.GeneralConfig;
+import org.violetmoon.quark.base.handler.advancement.mod.*;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.load.ZAddReloadListener;
+
+import java.util.Collection;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BooleanSupplier;
 
 public final class QuarkAdvancementHandler {
 

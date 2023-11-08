@@ -1,9 +1,5 @@
 package org.violetmoon.zetaimplforge.event.play.entity.player;
 
-import org.violetmoon.zeta.event.bus.ZResult;
-import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
-import org.violetmoon.zetaimplforge.ForgeZeta;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -13,6 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import org.violetmoon.zeta.event.bus.ZResult;
+import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
+import org.violetmoon.zetaimplforge.ForgeZeta;
 
 public class ForgeZRightClickBlock implements ZRightClickBlock {
 	private final PlayerInteractEvent.RightClickBlock e;

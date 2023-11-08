@@ -1,6 +1,5 @@
 package org.violetmoon.quark.addons.oddities.inventory.slot;
 
-import com.google.common.cache.Cache;
 import net.minecraftforge.items.IItemHandler;
 
 @Deprecated(forRemoval = true)

@@ -3,11 +3,10 @@ package org.violetmoon.quark.base.capability.dummy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import org.violetmoon.quark.api.IMagnetTracker;
 
 import java.util.Collection;
 import java.util.Collections;
-
-import org.violetmoon.quark.api.IMagnetTracker;
 
 /**
  * @author WireSegal

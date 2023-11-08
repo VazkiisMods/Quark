@@ -1,10 +1,9 @@
 package org.violetmoon.zeta.client.event.load;
 
-import java.util.function.Consumer;
-
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 import org.violetmoon.zeta.event.bus.IZetaLoadEvent;
 
-import net.minecraft.server.packs.resources.PreparableReloadListener;
+import java.util.function.Consumer;
 
 public record ZRegisterReloadListeners(Consumer<PreparableReloadListener> manager) implements IZetaLoadEvent, Consumer<PreparableReloadListener> {
 	@Override

@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.world.module;
 
+import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.WorldGenHandler;
@@ -9,8 +10,6 @@ import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZCommonSetup;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 
 @ZetaLoadModule(category = "world")
 public class NetherObsidianSpikesModule extends ZetaModule {

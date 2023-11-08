@@ -1,12 +1,12 @@
 package org.violetmoon.quark.content.world.block;
 
-import java.awt.*;
-import java.util.List;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
+
+import java.awt.*;
+import java.util.List;
 
 public class MyaliteColorLogic {
 	protected static final float s = 0.7f;

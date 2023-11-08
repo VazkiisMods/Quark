@@ -1,7 +1,5 @@
 package org.violetmoon.zeta.item.ext;
 
-import java.util.Map;
-
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
@@ -13,6 +11,8 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
 
 //TODO ZETA: more extensions (remove all usages of IForgeItem, implement this interface on Quark's items)
 @SuppressWarnings("deprecation") //forge ext

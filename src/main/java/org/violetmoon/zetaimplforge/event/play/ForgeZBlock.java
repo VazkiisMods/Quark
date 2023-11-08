@@ -1,12 +1,11 @@
 package org.violetmoon.zetaimplforge.event.play;
 
-import org.violetmoon.zeta.event.play.ZBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.level.BlockEvent;
+import org.violetmoon.zeta.event.play.ZBlock;
 
 public class ForgeZBlock implements ZBlock {
     private final BlockEvent e;

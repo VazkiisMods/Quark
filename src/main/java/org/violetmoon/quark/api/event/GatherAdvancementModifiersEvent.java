@@ -8,13 +8,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.Event;
+import org.violetmoon.quark.api.IAdvancementModifier;
+import org.violetmoon.quark.api.IAdvancementModifierDelegate;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.BooleanSupplier;
-
-import org.violetmoon.quark.api.IAdvancementModifier;
-import org.violetmoon.quark.api.IAdvancementModifierDelegate;
 
 public class GatherAdvancementModifiersEvent extends Event implements IAdvancementModifierDelegate{
 

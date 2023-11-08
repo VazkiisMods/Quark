@@ -9,12 +9,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
-
-import javax.annotation.Nullable;
-
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.recipe.FlagIngredient;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.function.Supplier;
 
