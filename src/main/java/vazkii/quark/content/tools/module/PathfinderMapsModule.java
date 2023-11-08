@@ -30,9 +30,6 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
-import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
@@ -45,8 +42,7 @@ import vazkii.quark.content.tools.item.PathfindersQuillItem;
 import vazkii.quark.content.tools.loot.InBiomeCondition;
 import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.client.event.ZRenderGuiOverlay;
-import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.*;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
@@ -144,8 +140,8 @@ public class PathfinderMapsModule extends ZetaModule {
 		pathfinders_quill = new PathfindersQuillItem(this);
 	}
 
-	@SubscribeEvent
-	public void onTradesLoaded(VillagerTradesEvent event) {
+	@PlayEvent
+	public void onTradesLoaded(ZVillagerTrades event) {
 		if(event.getType() == VillagerProfession.CARTOGRAPHER && addToCartographer)
 			synchronized (mutex) {
 				Int2ObjectMap<List<ItemListing>> trades = event.getTrades();
@@ -155,6 +151,7 @@ public class PathfinderMapsModule extends ZetaModule {
 			}
 	}
 
+	//fixme Port
 	@SubscribeEvent
 	public void onWandererTradesLoaded(WandererTradesEvent event) {
 		if(!addToWanderingTraderForced && (addToWanderingTraderGeneric || addToWanderingTraderRare))
@@ -171,8 +168,8 @@ public class PathfinderMapsModule extends ZetaModule {
 			}
 	}
 
-	@SubscribeEvent
-	public void livingTick(LivingTickEvent event) {
+	@PlayEvent
+	public void livingTick(ZLivingTick event) {
 		if(event.getEntity() instanceof WanderingTrader wt && addToWanderingTraderForced && !wt.getPersistentData().getBoolean(TAG_CHECKED_FOR_PATHFINDER)) {
 			boolean hasPathfinder = false;
 			MerchantOffers offers = wt.getOffers();
@@ -198,9 +195,9 @@ public class PathfinderMapsModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void playerTick(PlayerTickEvent event) {
-		Player player = event.player;
+	@PlayEvent
+	public void playerTick(ZPlayerTick event) {
+		Player player = event.getPlayer();
 		if(!(player instanceof ServerPlayer))
 			return;
 

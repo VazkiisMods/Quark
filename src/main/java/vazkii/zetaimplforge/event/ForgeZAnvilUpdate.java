@@ -1,5 +1,6 @@
 package vazkii.zetaimplforge.event;
 
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import vazkii.zeta.event.ZAnvilUpdate;
@@ -39,6 +40,21 @@ public class ForgeZAnvilUpdate implements ZAnvilUpdate {
     @Override
     public void setCost(int cost) {
         e.setCost(cost);
+    }
+
+    @Override
+    public int getMaterialCost() {
+        return e.getMaterialCost();
+    }
+
+    @Override
+    public void setMaterialCost(int materialCost) {
+        e.setMaterialCost(materialCost);
+    }
+
+    @Override
+    public Player getPlayer() {
+        return e.getPlayer();
     }
 
     public static class Lowest extends ForgeZAnvilUpdate implements ZAnvilUpdate.Lowest {

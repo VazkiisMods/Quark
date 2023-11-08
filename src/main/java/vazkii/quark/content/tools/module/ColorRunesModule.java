@@ -15,19 +15,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.network.NetworkDirection;
 import org.jetbrains.annotations.Nullable;
-import vazkii.zeta.event.ZCommonSetup;
-import vazkii.zeta.event.ZLootTableLoad;
-import vazkii.zeta.event.ZRegister;
-import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.event.bus.PlayEvent;
-import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.api.IRuneColorProvider;
 import vazkii.quark.api.QuarkCapabilities;
 import vazkii.quark.base.Quark;
@@ -179,8 +168,8 @@ public class ColorRunesModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public void onAnvilUpdate(AnvilUpdateEvent event) {
+	@PlayEvent
+	public void onAnvilUpdate(ZAnvilUpdate.Highest event) {
 		ItemStack left = event.getLeft();
 		ItemStack right = event.getRight();
 		ItemStack output = event.getOutput();
