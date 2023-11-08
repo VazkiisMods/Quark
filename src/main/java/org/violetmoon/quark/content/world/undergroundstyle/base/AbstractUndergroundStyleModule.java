@@ -1,6 +1,6 @@
 package org.violetmoon.quark.content.world.undergroundstyle.base;
 
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.world.WorldGenHandler;
 import org.violetmoon.quark.base.world.WorldGenWeights;
 import org.violetmoon.zeta.event.bus.LoadEvent;

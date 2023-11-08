@@ -1,6 +1,9 @@
 package org.violetmoon.quark.content.mobs.module;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
+import org.violetmoon.quark.base.config.type.EntitySpawnConfig;
 import org.violetmoon.quark.base.handler.EntityAttributeHandler;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
@@ -9,9 +12,6 @@ import org.violetmoon.quark.base.handler.advancement.mod.FuriousCocktailModifier
 import org.violetmoon.quark.base.handler.advancement.mod.TwoByTwoModifier;
 import org.violetmoon.quark.base.item.QuarkItem;
 import org.violetmoon.quark.base.item.QuarkMobBucketItem;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.type.CompoundBiomeConfig;
-import org.violetmoon.quark.base.module.config.type.EntitySpawnConfig;
 import org.violetmoon.quark.base.util.QuarkEffect;
 import org.violetmoon.quark.base.world.EntitySpawnHandler;
 import org.violetmoon.quark.content.mobs.client.render.entity.CrabRenderer;

@@ -3,7 +3,7 @@ package org.violetmoon.quark.base.network.message.structural;
 import java.io.Serial;
 import java.util.BitSet;
 
-import org.violetmoon.quark.base.module.sync.SyncedFlagHandler;
+import org.violetmoon.quark.base.config.SyncedFlagHandler;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
 

@@ -30,10 +30,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.content.tools.entity.ParrotEgg;
 import org.violetmoon.quark.content.tools.item.ParrotEggItem;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;

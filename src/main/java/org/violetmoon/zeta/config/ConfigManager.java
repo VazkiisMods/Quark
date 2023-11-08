@@ -9,8 +9,8 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 import org.jetbrains.annotations.Nullable;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
 import org.violetmoon.quark.base.handler.GeneralConfig;
-import org.violetmoon.quark.base.module.config.ConfigFlagManager;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.event.play.loading.ZGatherAdditionalFlags;
 import org.violetmoon.zeta.module.ZetaCategory;

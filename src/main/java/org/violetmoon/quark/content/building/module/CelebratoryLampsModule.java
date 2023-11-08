@@ -1,7 +1,7 @@
 package org.violetmoon.quark.content.building.module;
 
 import org.violetmoon.quark.base.block.QuarkBlock;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZRegister;

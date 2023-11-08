@@ -40,9 +40,9 @@ import net.minecraftforge.network.NetworkHooks;
 import java.util.List;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.GeneralConfig;
 import org.violetmoon.quark.base.handler.SimilarBlockTypeHandler;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.ScrollOnBundleMessage;
 import org.violetmoon.quark.content.management.client.screen.HeldShulkerBoxScreen;

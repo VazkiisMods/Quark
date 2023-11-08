@@ -17,9 +17,9 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.MiscUtil;
 import org.violetmoon.quark.base.handler.QuarkSounds;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.content.mobs.entity.Foxhound;
 import org.violetmoon.quark.content.tweaks.ai.NuzzleGoal;
 import org.violetmoon.quark.content.tweaks.ai.WantLoveGoal;

@@ -24,8 +24,8 @@ import net.minecraft.world.entity.player.Player;
 import javax.annotation.Nonnull;
 
 import org.violetmoon.quark.base.QuarkClient;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.ContributorRewardHandler;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.RequestEmoteMessage;
 import org.violetmoon.quark.content.tweaks.client.emote.*;

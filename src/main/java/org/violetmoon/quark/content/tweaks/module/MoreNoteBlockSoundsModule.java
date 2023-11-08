@@ -21,8 +21,8 @@ import net.minecraft.world.level.material.Material;
 import java.util.Arrays;
 import java.util.List;
 
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.play.ZPlayNoteBlock;
 import org.violetmoon.zeta.module.ZetaLoadModule;

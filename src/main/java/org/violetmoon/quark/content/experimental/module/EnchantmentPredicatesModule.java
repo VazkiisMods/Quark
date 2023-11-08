@@ -12,7 +12,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import java.util.List;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.module.ZetaLoadModule;

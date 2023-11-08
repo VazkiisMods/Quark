@@ -1,8 +1,8 @@
 package org.violetmoon.quark.content.tools.module;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.item.QuarkArrowItem;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.content.tools.client.render.entity.TorchArrowRenderer;
 import org.violetmoon.quark.content.tools.entity.TorchArrow;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;

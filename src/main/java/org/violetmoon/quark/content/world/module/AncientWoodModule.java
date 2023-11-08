@@ -2,14 +2,14 @@ package org.violetmoon.quark.content.world.module;
 
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.QuarkLeavesBlock;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.Config.Min;
 import org.violetmoon.quark.base.handler.VariantHandler;
 import org.violetmoon.quark.base.handler.WoodSetHandler;
 import org.violetmoon.quark.base.handler.WoodSetHandler.WoodSet;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
 import org.violetmoon.quark.base.handler.advancement.mod.BalancedDietModifier;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.Config.Min;
 import org.violetmoon.quark.content.world.block.AncientSaplingBlock;
 import org.violetmoon.quark.content.world.item.AncientFruitItem;
 import org.violetmoon.zeta.event.bus.LoadEvent;

@@ -2,7 +2,7 @@ package org.violetmoon.quark.base.world.generator;
 
 import java.util.function.BooleanSupplier;
 
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;

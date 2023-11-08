@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.violetmoon.quark.base.module.config.ConfigFlagManager;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
 import org.violetmoon.zeta.Zeta;
 
 import java.util.stream.Stream;

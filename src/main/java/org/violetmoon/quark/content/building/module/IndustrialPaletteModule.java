@@ -12,8 +12,8 @@ import java.util.function.BooleanSupplier;
 
 import org.violetmoon.quark.base.block.QuarkBlock;
 import org.violetmoon.quark.base.block.QuarkPillarBlock;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.VariantHandler;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.content.building.block.VariantLadderBlock;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZRegister;

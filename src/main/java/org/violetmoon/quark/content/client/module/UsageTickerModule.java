@@ -18,7 +18,7 @@ import java.util.function.Predicate;
 
 import org.violetmoon.quark.api.IUsageTickerOverride;
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.play.ZRenderGuiOverlay;
 import org.violetmoon.zeta.client.event.play.ZStartClientTick;
 import org.violetmoon.zeta.event.bus.LoadEvent;

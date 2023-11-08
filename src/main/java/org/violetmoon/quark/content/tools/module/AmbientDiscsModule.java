@@ -3,9 +3,9 @@ package org.violetmoon.quark.content.tools.module;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.item.QuarkMusicDiscItem;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZRegister;

@@ -17,7 +17,7 @@ import java.util.Objects;
 import org.violetmoon.quark.addons.oddities.client.render.entity.TotemOfHoldingRenderer;
 import org.violetmoon.quark.addons.oddities.entity.TotemOfHoldingEntity;
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.load.ZAddModels;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.event.bus.LoadEvent;

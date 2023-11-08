@@ -1,7 +1,7 @@
 package org.violetmoon.quark.content.tweaks.module;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.DoubleDoorMessage;
 import org.violetmoon.quark.integration.claim.IClaimIntegration;

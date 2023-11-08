@@ -1,6 +1,6 @@
 package org.violetmoon.quark.content.tweaks.module;
 
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.tweaks.client.item.ClockTimeGetter;
 import org.violetmoon.quark.content.tweaks.client.item.CompassAngleGetter;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;

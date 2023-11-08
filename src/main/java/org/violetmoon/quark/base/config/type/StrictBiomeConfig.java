@@ -1,10 +1,10 @@
-package org.violetmoon.quark.base.module.config.type;
+package org.violetmoon.quark.base.config.type;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;

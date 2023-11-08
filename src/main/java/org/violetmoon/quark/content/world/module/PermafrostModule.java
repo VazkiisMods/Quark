@@ -1,8 +1,8 @@
 package org.violetmoon.quark.content.world.module;
 
 import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
 import org.violetmoon.quark.base.handler.VariantHandler;
-import org.violetmoon.quark.base.module.config.type.CompoundBiomeConfig;
 import org.violetmoon.quark.content.world.undergroundstyle.PermafrostStyle;
 import org.violetmoon.quark.content.world.undergroundstyle.base.AbstractUndergroundStyleModule;
 import org.violetmoon.quark.content.world.undergroundstyle.base.UndergroundStyleConfig;

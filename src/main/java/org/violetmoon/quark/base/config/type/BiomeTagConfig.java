@@ -1,4 +1,4 @@
-package org.violetmoon.quark.base.module.config.type;
+package org.violetmoon.quark.base.config.type;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -10,8 +10,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.ConfigFlagManager;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
 import org.violetmoon.zeta.module.ZetaModule;
 
 public class BiomeTagConfig implements IBiomeConfig, IConfigType {

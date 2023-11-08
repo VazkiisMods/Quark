@@ -11,9 +11,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.FuelHandler;
 import org.violetmoon.quark.base.handler.ItemOverrideHandler;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.base.util.VanillaWoods;
 import org.violetmoon.quark.base.util.VanillaWoods.Wood;
 import org.violetmoon.quark.content.building.block.VariantLadderBlock;

@@ -1,8 +1,8 @@
 package org.violetmoon.quark.content.tools.module;
 
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.item.QuarkMusicDiscItem;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.zeta.client.event.play.ZEndClientTick;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;

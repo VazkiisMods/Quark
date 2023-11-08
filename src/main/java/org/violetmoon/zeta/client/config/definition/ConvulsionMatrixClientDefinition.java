@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nonnull;
 
-import org.violetmoon.quark.base.module.config.type.inputtable.ConvulsionMatrixConfig;
+import org.violetmoon.quark.base.config.type.inputtable.ConvulsionMatrixConfig;
 import org.violetmoon.zeta.client.ZetaClient;
 import org.violetmoon.zeta.client.config.screen.AbstractSectionInputScreen;
 import org.violetmoon.zeta.client.config.widget.PencilButton;

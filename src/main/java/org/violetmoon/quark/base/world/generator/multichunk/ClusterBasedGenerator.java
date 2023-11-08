@@ -7,8 +7,8 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import java.util.Random;
 import java.util.function.BooleanSupplier;
 
-import org.violetmoon.quark.base.module.config.type.ClusterSizeConfig;
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.type.ClusterSizeConfig;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.generator.Generator;
 
 public abstract class ClusterBasedGenerator extends MultiChunkFeatureGenerator {

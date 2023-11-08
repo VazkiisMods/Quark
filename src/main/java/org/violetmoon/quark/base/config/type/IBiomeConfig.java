@@ -1,4 +1,4 @@
-package org.violetmoon.quark.base.module.config.type;
+package org.violetmoon.quark.base.config.type;
 
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;

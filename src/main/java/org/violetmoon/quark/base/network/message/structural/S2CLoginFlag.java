@@ -3,7 +3,7 @@ package org.violetmoon.quark.base.network.message.structural;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 import org.apache.commons.lang3.tuple.Pair;
-import org.violetmoon.quark.base.module.sync.SyncedFlagHandler;
+import org.violetmoon.quark.base.config.SyncedFlagHandler;
 
 import java.util.BitSet;
 import java.util.Collections;

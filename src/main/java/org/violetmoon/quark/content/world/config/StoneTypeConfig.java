@@ -1,9 +1,9 @@
 package org.violetmoon.quark.content.world.config;
 
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
-import org.violetmoon.quark.base.module.config.type.IConfigType;
-import org.violetmoon.quark.base.module.config.type.OrePocketConfig;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.type.IConfigType;
+import org.violetmoon.quark.base.config.type.OrePocketConfig;
 
 public class StoneTypeConfig implements IConfigType {
 

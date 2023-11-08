@@ -25,9 +25,9 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.content.world.block.CorundumClusterBlock;
 import org.violetmoon.quark.content.world.module.CorundumModule;
 import org.violetmoon.zeta.event.bus.LoadEvent;

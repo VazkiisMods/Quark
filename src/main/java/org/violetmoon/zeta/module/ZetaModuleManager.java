@@ -12,12 +12,9 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.base.module.LoadModule;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.event.load.ZModulesReady;
 import org.violetmoon.zeta.util.ZetaSide;
-
-import net.minecraftforge.fml.loading.FMLEnvironment;
 
 /**
  * TODO: other forms of module discovery and replacement (like a Forge-only module, or other types of 'replacement' modules)
@@ -141,28 +138,10 @@ public class ZetaModuleManager {
 
 	int legacyModuleCount = 0;
 	private ZetaModule constructAndSetup(TentativeModule t) {
-		boolean isLegacy = t.clazz().isAnnotationPresent(LoadModule.class); //as opposed to ZetaLoadModule
-		if(isLegacy) {
-			z.log.info("Constructing module {}... (LEGACY MODULE)", t.displayName());
-			legacyModuleCount++;
-		} else
-			z.log.info("Constructing module {}...", t.displayName());
+		z.log.info("Constructing module {}...", t.displayName());
 
 		//construct, set properties
 		ZetaModule module = construct(t.clazz());
-
-		//TODO: Cheap hacks to keep non-Zeta Quark modules on life support.
-		// When all the Forge events are removed, this can be removed too.
-		boolean LEGACY_actuallySubscribe;
-		if(isLegacy) {
-			module.LEGACY_hasSubscriptions = t.LEGACY_hasSubscriptions();
-			module.LEGACY_subscriptionTarget = t.LEGACY_subscribeOn();
-			LEGACY_actuallySubscribe = module.LEGACY_subscriptionTarget.contains(FMLEnvironment.dist);
-		} else {
-			module.LEGACY_hasSubscriptions = false;
-			module.LEGACY_subscriptionTarget = null;
-			LEGACY_actuallySubscribe = true;
-		}
 
 		module.zeta = z;
 		module.category = t.category();
@@ -177,7 +156,7 @@ public class ZetaModuleManager {
 
 		//event busses
 		module.setEnabled(z, t.enabledByDefault());
-		if(LEGACY_actuallySubscribe) z.loadBus.subscribe(module.getClass()).subscribe(module);
+		z.loadBus.subscribe(module.getClass()).subscribe(module);
 
 		//category upkeep
 		modulesInCategory.computeIfAbsent(module.category, __ -> new ArrayList<>()).add(module);

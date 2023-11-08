@@ -21,7 +21,7 @@ import net.minecraft.world.level.GameRules;
 import java.util.*;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.play.ZEndClientTick;
 import org.violetmoon.zeta.client.event.play.ZScreen;
 import org.violetmoon.zeta.event.bus.LoadEvent;

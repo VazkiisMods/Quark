@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
 import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.base.module.config.ConfigFlagManager;
 import org.violetmoon.zeta.config.ConfigObjectMapper;
 import org.violetmoon.zeta.event.bus.IZetaPlayEvent;
 import org.violetmoon.zeta.module.ZetaModule;

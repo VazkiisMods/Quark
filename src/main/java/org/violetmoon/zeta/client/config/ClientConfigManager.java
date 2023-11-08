@@ -3,8 +3,8 @@ package org.violetmoon.zeta.client.config;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
-import org.violetmoon.quark.base.module.config.type.inputtable.ConvulsionMatrixConfig;
-import org.violetmoon.quark.base.module.config.type.inputtable.RGBColorConfig;
+import org.violetmoon.quark.base.config.type.inputtable.ConvulsionMatrixConfig;
+import org.violetmoon.quark.base.config.type.inputtable.RGBColorConfig;
 import org.violetmoon.zeta.client.config.definition.BooleanClientDefinition;
 import org.violetmoon.zeta.client.config.definition.ClientDefinitionExt;
 import org.violetmoon.zeta.client.config.definition.ConvulsionMatrixClientDefinition;

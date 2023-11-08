@@ -17,9 +17,9 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import java.util.*;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.Config.Max;
-import org.violetmoon.quark.base.module.config.Config.Min;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.Config.Max;
+import org.violetmoon.quark.base.config.Config.Min;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.module.ZetaLoadModule;

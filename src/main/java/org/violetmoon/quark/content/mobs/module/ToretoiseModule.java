@@ -13,13 +13,13 @@ import net.minecraftforge.common.Tags;
 import java.util.List;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.type.EntitySpawnConfig;
 import org.violetmoon.quark.base.handler.EntityAttributeHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.type.CompoundBiomeConfig;
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
-import org.violetmoon.quark.base.module.config.type.EntitySpawnConfig;
 import org.violetmoon.quark.base.world.EntitySpawnHandler;
 import org.violetmoon.quark.content.mobs.client.render.entity.ToretoiseRenderer;
 import org.violetmoon.quark.content.mobs.entity.Toretoise;

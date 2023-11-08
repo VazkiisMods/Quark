@@ -13,7 +13,7 @@ package org.violetmoon.quark.content.building.module;
 import java.util.function.BooleanSupplier;
 
 import org.violetmoon.quark.base.block.IQuarkBlock;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.building.block.BambooMatBlock;
 import org.violetmoon.quark.content.building.block.BambooMatCarpetBlock;
 import org.violetmoon.quark.content.building.block.PaperLanternBlock;

@@ -1,4 +1,4 @@
-package org.violetmoon.quark.base.module.config;
+package org.violetmoon.quark.base.config;
 
 public interface IConfigCallback {
 

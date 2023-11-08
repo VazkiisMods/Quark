@@ -1,4 +1,4 @@
-package org.violetmoon.quark.base.module.config;
+package org.violetmoon.quark.base.config;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;

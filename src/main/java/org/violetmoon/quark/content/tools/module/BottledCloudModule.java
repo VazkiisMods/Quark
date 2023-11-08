@@ -1,7 +1,7 @@
 package org.violetmoon.quark.content.tools.module;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.tools.block.CloudBlock;
 import org.violetmoon.quark.content.tools.block.be.CloudBlockEntity;
 import org.violetmoon.quark.content.tools.client.render.be.CloudRenderer;

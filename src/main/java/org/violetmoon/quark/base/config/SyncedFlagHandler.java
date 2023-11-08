@@ -1,4 +1,4 @@
-package org.violetmoon.quark.base.module.sync;
+package org.violetmoon.quark.base.config;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.PacketListener;
@@ -9,7 +9,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.violetmoon.quark.base.module.config.ConfigFlagManager;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.structural.S2CUpdateFlag;
 import org.violetmoon.zeta.event.bus.LoadEvent;

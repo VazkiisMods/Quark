@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.ForgeHooksClient;
 import org.lwjgl.glfw.GLFW;
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.ShareItemMessage;
 import org.violetmoon.quark.mixin.accessor.AccessorServerGamePacketListenerImpl;

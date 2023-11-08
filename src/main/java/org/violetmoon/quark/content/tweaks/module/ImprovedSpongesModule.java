@@ -1,7 +1,7 @@
 package org.violetmoon.quark.content.tweaks.module;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.play.entity.player.ZRightClickItem;
 import org.violetmoon.zeta.module.ZetaLoadModule;

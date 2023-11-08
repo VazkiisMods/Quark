@@ -3,7 +3,7 @@ package org.violetmoon.quark.content.client.module;
 import java.util.Arrays;
 import java.util.List;
 
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.tweaks.client.layer.ArmorStandFakePlayerLayer;
 import org.violetmoon.zeta.client.event.load.ZAddModelLayers;
 import org.violetmoon.zeta.event.bus.LoadEvent;

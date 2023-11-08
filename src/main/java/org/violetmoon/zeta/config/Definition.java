@@ -9,7 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.base.module.config.type.IConfigType;
+import org.violetmoon.quark.base.config.type.IConfigType;
 
 /**
  * Common superclass of a... "thing" in a config definition (a value or section).

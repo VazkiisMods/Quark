@@ -1,8 +1,8 @@
 package org.violetmoon.quark.content.tools.module;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.MiscUtil;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.content.tools.ai.RunAwayFromPikesGoal;
 import org.violetmoon.quark.content.tools.client.render.entity.SkullPikeRenderer;
 import org.violetmoon.quark.content.tools.entity.SkullPike;

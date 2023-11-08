@@ -2,7 +2,7 @@ package org.violetmoon.quark.content.world.gen;
 
 import java.util.Random;
 
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.generator.multichunk.MultiChunkFeatureGenerator;
 import org.violetmoon.quark.content.world.module.ChorusVegetationModule;
 

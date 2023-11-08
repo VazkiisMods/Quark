@@ -8,8 +8,8 @@ import java.util.function.BooleanSupplier;
 
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.VariantHandler;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;

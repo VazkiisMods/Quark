@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.BooleanSupplier;
 
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.type.CompoundBiomeConfig;
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.WorldGenHandler;
 import org.violetmoon.quark.base.world.WorldGenWeights;
 import org.violetmoon.quark.content.world.config.AirStoneClusterConfig;

@@ -9,7 +9,7 @@ import java.util.function.BooleanSupplier;
 
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.client.handler.InventoryButtonHandler;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.network.QuarkNetwork;
 import org.violetmoon.quark.base.network.message.SortInventoryMessage;
 import org.violetmoon.quark.content.management.client.screen.widgets.MiniInventoryButton;

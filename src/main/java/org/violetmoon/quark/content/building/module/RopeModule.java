@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import javax.annotation.Nonnull;
 
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.building.block.RopeBlock;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;

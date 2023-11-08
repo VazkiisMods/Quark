@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.config.type.CostSensitiveEntitySpawnConfig;
+import org.violetmoon.quark.base.config.type.EntitySpawnConfig;
 import org.violetmoon.quark.base.item.QuarkSpawnEggItem;
-import org.violetmoon.quark.base.module.config.type.CostSensitiveEntitySpawnConfig;
-import org.violetmoon.quark.base.module.config.type.EntitySpawnConfig;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.module.ZetaModule;

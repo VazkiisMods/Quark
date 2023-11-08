@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.mobs.entity.Crab;
 import org.violetmoon.quark.content.mobs.module.CrabsModule;
 import org.violetmoon.quark.content.tools.item.SlimeInABucketItem;

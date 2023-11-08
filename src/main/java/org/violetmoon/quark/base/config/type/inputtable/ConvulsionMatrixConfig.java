@@ -1,4 +1,4 @@
-package org.violetmoon.quark.base.module.config.type.inputtable;
+package org.violetmoon.quark.base.config.type.inputtable;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -7,9 +7,9 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.ConfigFlagManager;
-import org.violetmoon.quark.base.module.config.type.IConfigType;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
+import org.violetmoon.quark.base.config.type.IConfigType;
 import org.violetmoon.quark.content.client.module.GreenerGrassModule;
 import org.violetmoon.zeta.module.ZetaModule;
 

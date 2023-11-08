@@ -1,9 +1,9 @@
 package org.violetmoon.quark.content.building.module;
 
 import org.violetmoon.quark.base.block.QuarkPaneBlock;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.StructureBlockReplacementHandler;
 import org.violetmoon.quark.base.handler.StructureBlockReplacementHandler.StructureHolder;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.event.load.ZRegister;

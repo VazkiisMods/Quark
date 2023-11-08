@@ -9,9 +9,9 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Random;
 
+import org.violetmoon.quark.base.config.type.ClusterSizeConfig;
+import org.violetmoon.quark.base.config.type.IBiomeConfig;
 import org.violetmoon.quark.base.handler.GeneralConfig;
-import org.violetmoon.quark.base.module.config.type.ClusterSizeConfig;
-import org.violetmoon.quark.base.module.config.type.IBiomeConfig;
 
 public record ClusterShape(BlockPos src, Vec3 radius,
 						   PerlinSimplexNoise noiseGenerator) {

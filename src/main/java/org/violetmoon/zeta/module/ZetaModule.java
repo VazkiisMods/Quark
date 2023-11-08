@@ -52,34 +52,14 @@ public class ZetaModule {
 			return;
 		this.enabled = nowEnabled;
 
-		//TODO: Cheap hacks to keep non-Zeta Quark modules on life support.
-		// When all the Forge events are removed, this "if" can be unwrapped.
-		if(LEGACY_doForgeEventBusSubscription(nowEnabled)) {
-			if(nowEnabled)
-				z.playBus.subscribe(this.getClass()).subscribe(this);
-			else
-				z.playBus.unsubscribe(this.getClass()).unsubscribe(this);
-		}
+		if(nowEnabled)
+			z.playBus.subscribe(this.getClass()).subscribe(this);
+		else
+			z.playBus.unsubscribe(this.getClass()).unsubscribe(this);
 	}
 
 	@PlayEvent
 	public final void addAnnotationHints(ZGatherHints event) {
 		event.gatherHintsFromModule(this, zeta.configManager.getConfigFlagManager());
-	}
-
-	@Deprecated public boolean LEGACY_hasSubscriptions = false;
-	@Deprecated public List<Dist> LEGACY_subscriptionTarget = null;
-
-	private boolean LEGACY_doForgeEventBusSubscription(boolean nowEnabled) {
-		if(LEGACY_subscriptionTarget == null) return true;
-
-		if(LEGACY_hasSubscriptions && LEGACY_subscriptionTarget.contains(FMLEnvironment.dist)) {
-			if(nowEnabled)
-				MinecraftForge.EVENT_BUS.register(this);
-			else
-				MinecraftForge.EVENT_BUS.unregister(this);
-		}
-
-		return LEGACY_subscriptionTarget.contains(FMLEnvironment.dist);
 	}
 }

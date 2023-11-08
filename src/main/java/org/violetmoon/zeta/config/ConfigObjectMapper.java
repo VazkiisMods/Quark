@@ -14,9 +14,9 @@ import java.util.function.Predicate;
 
 import org.apache.commons.lang3.text.WordUtils;
 import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.ConfigFlagManager;
-import org.violetmoon.quark.base.module.config.type.IConfigType;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.ConfigFlagManager;
+import org.violetmoon.quark.base.config.type.IConfigType;
 import org.violetmoon.zeta.module.ZetaModule;
 
 public class ConfigObjectMapper {

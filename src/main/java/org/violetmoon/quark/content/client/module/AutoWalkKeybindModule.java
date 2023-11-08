@@ -1,7 +1,7 @@
 package org.violetmoon.quark.content.client.module;
 
 import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.load.ZKeyMapping;
 import org.violetmoon.zeta.client.event.play.ZInput;
 import org.violetmoon.zeta.client.event.play.ZInputUpdate;

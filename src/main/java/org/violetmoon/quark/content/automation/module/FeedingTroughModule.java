@@ -33,7 +33,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import javax.annotation.Nullable;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.automation.block.FeedingTroughBlock;
 import org.violetmoon.quark.content.automation.block.be.FeedingTroughBlockEntity;
 import org.violetmoon.zeta.event.bus.LoadEvent;

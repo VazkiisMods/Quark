@@ -2,7 +2,6 @@
     "replace": false,
     "values": [
         "quark:ancient_post",
-        "quark:bamboo_post",
         "quark:mangrove_post",
         "quark:blossom_post",
         "quark:azalea_post",
@@ -15,7 +14,6 @@
         "quark:birch_post",
         "quark:acacia_post",
         "quark:stripped_ancient_post",
-        "quark:stripped_bamboo_post",
         "quark:stripped_mangrove_post",
         "quark:stripped_blossom_post",
         "quark:stripped_azalea_post",

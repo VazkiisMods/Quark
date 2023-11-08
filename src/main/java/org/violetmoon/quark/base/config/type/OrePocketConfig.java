@@ -1,8 +1,8 @@
-package org.violetmoon.quark.base.module.config.type;
+package org.violetmoon.quark.base.config.type;
 
 import java.util.function.Consumer;
 
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;

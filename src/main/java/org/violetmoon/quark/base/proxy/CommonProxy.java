@@ -1,20 +1,5 @@
 package org.violetmoon.quark.base.proxy;
 
-import net.minecraft.core.Registry;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
@@ -28,12 +13,20 @@ import org.violetmoon.quark.api.ITransferManager;
 import org.violetmoon.quark.api.QuarkCapabilities;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.capability.CapabilityHandler;
-import org.violetmoon.quark.base.handler.*;
+import org.violetmoon.quark.base.config.SyncedFlagHandler;
+import org.violetmoon.quark.base.handler.ContributorRewardHandler;
+import org.violetmoon.quark.base.handler.CreativeTabHandler;
+import org.violetmoon.quark.base.handler.EntityAttributeHandler;
+import org.violetmoon.quark.base.handler.FuelHandler;
+import org.violetmoon.quark.base.handler.GeneralConfig;
+import org.violetmoon.quark.base.handler.QuarkSounds;
+import org.violetmoon.quark.base.handler.RecipeCrawlHandler;
+import org.violetmoon.quark.base.handler.ToolInteractionHandler;
+import org.violetmoon.quark.base.handler.UndergroundBiomeHandler;
+import org.violetmoon.quark.base.handler.WoodSetHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
-import org.violetmoon.quark.base.module.LegacyQuarkModuleFinder;
-import org.violetmoon.quark.base.module.sync.SyncedFlagHandler;
 import org.violetmoon.quark.base.network.QuarkNetwork;
-import org.violetmoon.quark.base.recipe.*;
+import org.violetmoon.quark.base.recipe.ExclusionRecipe;
 import org.violetmoon.quark.base.world.EntitySpawnHandler;
 import org.violetmoon.quark.base.world.WorldGenHandler;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -42,6 +35,19 @@ import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaCategory;
 import org.violetmoon.zetaimplforge.module.ModFileScanDataModuleFinder;
+
+import net.minecraft.core.Registry;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class CommonProxy {
 
@@ -102,7 +108,7 @@ public class CommonProxy {
 				new ZetaCategory("experimental", Items.TNT),
 				new ZetaCategory("oddities", Items.CHORUS_FRUIT, Quark.ODDITIES_ID)
 			),
-			new ModFileScanDataModuleFinder(Quark.MOD_ID).and(new LegacyQuarkModuleFinder()),
+			new ModFileScanDataModuleFinder(Quark.MOD_ID),
 			GeneralConfig.INSTANCE
 		);
 

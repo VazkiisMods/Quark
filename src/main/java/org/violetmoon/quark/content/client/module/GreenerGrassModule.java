@@ -3,8 +3,8 @@ package org.violetmoon.quark.content.client.module;
 import java.util.List;
 
 import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.type.inputtable.ConvulsionMatrixConfig;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.inputtable.ConvulsionMatrixConfig;
 import org.violetmoon.zeta.client.event.play.ZFirstClientTick;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.module.ZetaLoadModule;

@@ -9,10 +9,10 @@ import javax.annotation.Nonnull;
 
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.IConfigType;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.type.IConfigType;
 import org.violetmoon.quark.content.tools.item.PathfindersQuillItem;
 import org.violetmoon.quark.content.tools.loot.InBiomeCondition;
 import org.violetmoon.zeta.client.event.load.ZAddItemColorHandlers;

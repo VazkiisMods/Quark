@@ -4,8 +4,8 @@ import java.util.BitSet;
 import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
-import org.violetmoon.quark.base.module.config.type.OrePocketConfig;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.type.OrePocketConfig;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.WorldGenRegion;

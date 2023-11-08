@@ -15,8 +15,8 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import java.util.ArrayList;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.WorldGenHandler;
 import org.violetmoon.quark.base.world.WorldGenWeights;
 import org.violetmoon.quark.content.world.block.MonsterBoxBlock;

@@ -1,4 +1,4 @@
-package org.violetmoon.quark.base.module.config;
+package org.violetmoon.quark.base.config;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.*;
 
 import org.violetmoon.quark.base.handler.GeneralConfig;
-import org.violetmoon.quark.base.module.sync.SyncedFlagHandler;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZRegister;

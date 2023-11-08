@@ -3,7 +3,7 @@ package org.violetmoon.quark.content.client.module;
 import java.util.List;
 
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.client.resources.AttributeTooltipManager;
 import org.violetmoon.quark.content.client.tooltip.AttributeTooltips;
 import org.violetmoon.quark.content.client.tooltip.EnchantedBookTooltips;

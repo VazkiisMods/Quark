@@ -1,4 +1,4 @@
-package org.violetmoon.quark.base.module.config.type;
+package org.violetmoon.quark.base.config.type;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 
 public class DimensionConfig implements IConfigType {
 

@@ -22,13 +22,13 @@ import java.util.List;
 
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.block.QuarkBlock;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.Config.Max;
+import org.violetmoon.quark.base.config.Config.Min;
+import org.violetmoon.quark.base.config.type.CompoundBiomeConfig;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.handler.advancement.QuarkAdvancementHandler;
 import org.violetmoon.quark.base.handler.advancement.QuarkGenericTrigger;
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.Config.Max;
-import org.violetmoon.quark.base.module.config.Config.Min;
-import org.violetmoon.quark.base.module.config.type.CompoundBiomeConfig;
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.WorldGenHandler;
 import org.violetmoon.quark.base.world.WorldGenWeights;
 import org.violetmoon.quark.content.world.block.MyaliteCrystalBlock;
@@ -65,8 +65,9 @@ public class SpiralSpiresModule extends ZetaModule {
 
 	@Config public static boolean renewableMyalite = true;
 
-	@Hint
 	public static QuarkGenericTrigger useViaductTrigger;
+	
+	@Hint 
 	public static Block dusky_myalite;
 	public static Block myalite_crystal;
 

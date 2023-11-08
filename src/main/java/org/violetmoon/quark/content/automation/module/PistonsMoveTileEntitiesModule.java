@@ -21,7 +21,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.violetmoon.quark.api.IPistonCallback;
 import org.violetmoon.quark.api.QuarkCapabilities;
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.content.building.module.SturdyStoneModule;
 import org.violetmoon.zeta.api.IIndirectConnector;
 import org.violetmoon.zeta.event.bus.LoadEvent;

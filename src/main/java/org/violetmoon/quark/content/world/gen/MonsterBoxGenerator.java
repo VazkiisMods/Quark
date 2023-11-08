@@ -1,6 +1,6 @@
 package org.violetmoon.quark.content.world.gen;
 
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.generator.Generator;
 import org.violetmoon.quark.content.world.module.MonsterBoxModule;
 

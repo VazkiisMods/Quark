@@ -5,7 +5,7 @@ import org.violetmoon.quark.addons.oddities.block.pipe.EncasedPipeBlock;
 import org.violetmoon.quark.addons.oddities.block.pipe.PipeBlock;
 import org.violetmoon.quark.addons.oddities.client.render.be.PipeRenderer;
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.module.config.Config;
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.zeta.client.event.load.ZAddModels;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.event.bus.LoadEvent;

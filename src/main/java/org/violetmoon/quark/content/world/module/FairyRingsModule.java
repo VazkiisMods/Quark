@@ -11,8 +11,8 @@ import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.violetmoon.quark.base.module.config.Config;
-import org.violetmoon.quark.base.module.config.type.DimensionConfig;
+import org.violetmoon.quark.base.config.Config;
+import org.violetmoon.quark.base.config.type.DimensionConfig;
 import org.violetmoon.quark.base.world.WorldGenHandler;
 import org.violetmoon.quark.base.world.WorldGenWeights;
 import org.violetmoon.quark.content.world.gen.FairyRingGenerator;

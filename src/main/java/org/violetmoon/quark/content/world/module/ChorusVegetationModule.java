@@ -1,7 +1,7 @@
 package org.violetmoon.quark.content.world.module;
 
+import org.violetmoon.quark.base.config.Config;
 import org.violetmoon.quark.base.handler.VariantHandler;
-import org.violetmoon.quark.base.module.config.Config;
 import org.violetmoon.quark.base.world.WorldGenHandler;
 import org.violetmoon.quark.base.world.WorldGenWeights;
 import org.violetmoon.quark.content.world.block.ChorusVegetationBlock;
