@@ -22,18 +22,22 @@ import org.violetmoon.quark.content.experimental.module.VariantSelectorModule;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+
 public class VariantSelectorScreen extends Screen {
 
-	float timeIn = 0;
-	int slotSelected = -1;
+	private float timeIn = 0;
+	private int slotSelected = -1;
 
-	final Minecraft mc;
-	final ItemStack stack;
-	final KeyMapping key;
-	final String currentVariant;
-	final List<String> variants;
+	private final Minecraft mc;
+	private final ItemStack stack;
+	private final KeyMapping key;
+	private final String currentVariant;
+	private final List<String> variants;
 
-	final List<DrawStack> drawStacks = new ArrayList<>();
+	private final List<DrawStack> drawStacks = new ArrayList<>();
 
 	public VariantSelectorScreen(ItemStack stack, KeyMapping key, String currentVariant, List<String> variants) {
 		super(Component.empty());
@@ -45,7 +49,7 @@ public class VariantSelectorScreen extends Screen {
 	}
 
 	@Override
-	public void render(PoseStack ms, int mx, int my, float delta) {
+	public void render(@Nonnull PoseStack ms, int mx, int my, float delta) {
 		super.render(ms, mx, my, delta);
 
 		timeIn += delta;
@@ -60,7 +64,7 @@ public class VariantSelectorScreen extends Screen {
 		// ensure the boring one is always at the bottom
 		float pad = - ((float) Math.PI / segments) + ((float) Math.PI / 2);
 		double angle = mouseAngle(x, y, mx, my);
-		double dist = (x - mx) * (x - mx) + (y - my) * (y - my); 
+		double dist = (x - mx) * (x - mx) + (y - my) * (y - my);
 
 		// loop angle around to ensure the last bit is accessible
 		if(angle < pad)
@@ -99,18 +103,25 @@ public class VariantSelectorScreen extends Screen {
 			if(mouseInSector || rightVariant)
 				radius *= 1.1f;
 
+			if (!variantExists)
+				radius *= 0.9f;
+
 			int gs = 0x39;
 			if(seg % 2 == 0)
 				gs += 0x29;
 
 			int r = gs;
-			int g = gs ;
+			int g = gs;
 			int b = gs;
-			int a = 0x33;
+			int a = 0x44;
 
 			if(variantExists) {
 				g += 0x22;
 				a = 0x99;
+			} else {
+				r /= 4;
+				g /= 4;
+				b /= 4;
 			}
 
 			if(seg == 0)
@@ -120,7 +131,7 @@ public class VariantSelectorScreen extends Screen {
 				slotSelected = seg;
 				r = 0x00;
 				g = b = 0xAA;
-			} 
+			}
 			else if(rightVariant) {
 				r = b = 0x00;
 				g = 0xAA;
@@ -149,12 +160,11 @@ public class VariantSelectorScreen extends Screen {
 		RenderSystem.enableTexture();
 		RenderSystem.enableBlend();
 		RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-		
+
 		for(DrawStack ds : drawStacks) {
-			if(ds.stack().isEmpty())
-				mc.font.draw(ms, "?", ds.x() + 6, ds.y() + 3, 0x99FFFFFF);
-			else 
+			if (!ds.stack().isEmpty())
 				mc.getItemRenderer().renderGuiItem(ds.stack(), ds.x(), ds.y());
+
 		}
 		RenderSystem.disableBlend();
 	}
@@ -164,10 +174,10 @@ public class VariantSelectorScreen extends Screen {
 		super.tick();
 		if (!isKeyDown(key)) {
 			mc.setScreen(null);
-			
+
 			if(slotSelected == -1 && timeIn < 10)
 				slotSelected = 0;
-			
+
 			if(slotSelected != -1) {
 				String variant = slotSelected == 0 ? "" : variants.get(slotSelected - 1);
 				VariantSelectorModule.Client.setClientVariant(variant, true);
