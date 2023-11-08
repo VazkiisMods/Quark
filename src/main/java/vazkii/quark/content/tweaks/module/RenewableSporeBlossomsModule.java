@@ -5,28 +5,28 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.eventbus.api.Event.Result;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZBonemeal;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.event.bus.ZResult;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class RenewableSporeBlossomsModule extends ZetaModule {
 	
 	@Config public double boneMealChance = 0.2;
 	
 	@Hint Item spore_blossom = Items.SPORE_BLOSSOM;
 	
-	@SubscribeEvent
-	public void onBoneMealed(BonemealEvent event) {
+	@PlayEvent
+	public void onBoneMealed(ZBonemeal event) {
 		if(event.getBlock().is(Blocks.SPORE_BLOSSOM) && boneMealChance > 0) {
 			if(Math.random() < boneMealChance)
 				Block.popResource(event.getLevel(), event.getPos(), new ItemStack(Items.SPORE_BLOSSOM));
 			
-			event.setResult(Result.ALLOW);
+			event.setResult(ZResult.ALLOW);
 		}
 	}	
 

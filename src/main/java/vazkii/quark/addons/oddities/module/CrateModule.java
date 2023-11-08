@@ -5,23 +5,21 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import vazkii.quark.addons.oddities.block.CrateBlock;
 import vazkii.quark.addons.oddities.block.be.CrateBlockEntity;
 import vazkii.quark.addons.oddities.client.screen.CrateScreen;
 import vazkii.quark.addons.oddities.inventory.CrateMenu;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "oddities")
+@ZetaLoadModule(category = "oddities")
 public class CrateModule extends ZetaModule {
 
     public static BlockEntityType<CrateBlockEntity> blockEntityType;
@@ -44,10 +42,13 @@ public class CrateModule extends ZetaModule {
 	    Quark.ZETA.registry.register(blockEntityType, "crate", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
     }
 
-    @LoadEvent
-    @OnlyIn(Dist.CLIENT)
-    public final void clientSetup(ZClientSetup event) {
-        MenuScreens.register(menuType, CrateScreen::new);
-    }
 
+
+    @ZetaLoadModule(clientReplacement = true)
+    public static class Client extends CrateModule {
+        @LoadEvent
+        public final void clientSetup(ZClientSetup event) {
+            MenuScreens.register(menuType, CrateScreen::new);
+        }
+    }
 }

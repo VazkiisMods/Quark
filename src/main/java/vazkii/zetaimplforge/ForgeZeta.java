@@ -2,19 +2,13 @@ package vazkii.zetaimplforge;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -155,6 +149,7 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::playNoteBlock);
 		MinecraftForge.EVENT_BUS.addListener(this::lootTableLoad);
 		MinecraftForge.EVENT_BUS.addListener(this::livingConversion);
+		MinecraftForge.EVENT_BUS.addListener(this::livingConversionPre);
 		MinecraftForge.EVENT_BUS.addListener(this::livingConversionPost);
 		MinecraftForge.EVENT_BUS.addListener(this::anvilUpdate);
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::anvilUpdateLowest);
@@ -163,6 +158,7 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::entityInteract);
 		MinecraftForge.EVENT_BUS.addListener(this::entityMobGriefing);
 		MinecraftForge.EVENT_BUS.addListener(this::livingDrops);
+		MinecraftForge.EVENT_BUS.addListener(this::livingDropsLowest);
 		MinecraftForge.EVENT_BUS.addListener(this::playerTickStart);
 		MinecraftForge.EVENT_BUS.addListener(this::playerTickEnd);
 		MinecraftForge.EVENT_BUS.addListener(this::babyEntitySpawn);
@@ -178,6 +174,7 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteract);
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteractEntityInteractSpecific);
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteractEntityInteract);
+		MinecraftForge.EVENT_BUS.addListener(this::playerInteractRightClickBlock);
 		MinecraftForge.EVENT_BUS.addListener(this::playerInteractRightClickItem);
 		MinecraftForge.EVENT_BUS.addListener(this::playerDestroyItem);
 		MinecraftForge.EVENT_BUS.addListener(this::livingSpawn);
@@ -194,6 +191,7 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::blockBreak);
 		MinecraftForge.EVENT_BUS.addListener(this::blockEntityPlace);
 		MinecraftForge.EVENT_BUS.addListener(this::animalTame);
+		MinecraftForge.EVENT_BUS.addListener(this::bonemeal);
 	}
 
 	boolean registerDone = false;
@@ -263,6 +261,10 @@ public class ForgeZeta extends Zeta {
 		playBus.fire(new ForgeZLivingConversion(e), ZLivingConversion.class);
 	}
 
+	public void livingConversionPre(LivingConversionEvent.Pre e) {
+		playBus.fire(new ForgeZLivingConversion.Pre(e), ZLivingConversion.Pre.class);
+	}
+
 	public void livingConversionPost(LivingConversionEvent.Post e) {
 		playBus.fire(new ForgeZLivingConversion.Post(e), ZLivingConversion.Post.class);
 	}
@@ -293,6 +295,10 @@ public class ForgeZeta extends Zeta {
 
 	public void livingDrops(LivingDropsEvent e) {
 		playBus.fire(new ForgeZLivingDrops(e), ZLivingDrops.class);
+	}
+
+	public void livingDropsLowest(LivingDropsEvent e) {
+		playBus.fire(new ForgeZLivingDrops.Lowest(e), ZLivingDrops.Lowest.class);
 	}
 
 	public void playerTickStart(TickEvent.PlayerTickEvent e) {
@@ -349,6 +355,10 @@ public class ForgeZeta extends Zeta {
 
 	public void playerInteractEntityInteract(PlayerInteractEvent.EntityInteract e) {
 		playBus.fire(new ForgeZPlayerInteract.EntityInteract(e), ZPlayerInteract.EntityInteract.class);
+	}
+
+	public void playerInteractRightClickBlock(PlayerInteractEvent.RightClickBlock e) {
+		playBus.fire(new ForgeZPlayerInteract.RightClickBlock(e), ZPlayerInteract.RightClickBlock.class);
 	}
 
 	public void playerInteractRightClickItem(PlayerInteractEvent.RightClickItem e) {
@@ -414,6 +424,10 @@ public class ForgeZeta extends Zeta {
 
 	public void playerBreakSpeed(PlayerEvent.BreakSpeed e) {
 		playBus.fire(new ForgeZPlayer.BreakSpeed(e), ZPlayer.BreakSpeed.class);
+	}
+
+	public void bonemeal(BonemealEvent e) {
+		playBus.fire(new ForgeZBonemeal(e), ZBonemeal.class);
 	}
 
 	public static ZResult from(Event.Result r) {

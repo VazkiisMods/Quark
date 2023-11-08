@@ -1,8 +1,5 @@
 package vazkii.quark.content.world.module;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -26,13 +23,11 @@ import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.Config.Max;
 import vazkii.quark.base.module.config.Config.Min;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
 import vazkii.quark.base.module.config.type.DimensionConfig;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.world.WorldGenHandler;
 import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.block.MyaliteCrystalBlock;
@@ -42,6 +37,11 @@ import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @LoadModule(category = "world", hasSubscriptions = true)
 public class SpiralSpiresModule extends ZetaModule {
@@ -66,11 +66,11 @@ public class SpiralSpiresModule extends ZetaModule {
 	@Config public static boolean renewableMyalite = true;
 
 	@Hint
+	public static QuarkGenericTrigger useViaductTrigger;
 	public static Block dusky_myalite;
 	public static Block myalite_crystal;
 
-	public static QuarkGenericTrigger useViaductTrigger;
-	
+
 	@LoadEvent
 	public final void register(ZRegister event) {
 		Block.Properties props = Block.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PURPLE)

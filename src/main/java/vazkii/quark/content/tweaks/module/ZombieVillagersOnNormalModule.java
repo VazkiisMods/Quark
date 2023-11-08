@@ -10,16 +10,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.entity.living.LivingConversionEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.event.ZLivingConversion;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class ZombieVillagersOnNormalModule extends ZetaModule {
-
-	@SubscribeEvent
-	public void onConversion(LivingConversionEvent.Pre event) {
+	@PlayEvent
+	public void onConversion(ZLivingConversion.Pre event) {
 		if(event.getEntity().getType() == EntityType.VILLAGER && event.getOutcome() == EntityType.ZOMBIE_VILLAGER) {
 			Villager villager = (Villager) event.getEntity();
 			Level level = villager.level;
@@ -39,5 +38,4 @@ public class ZombieVillagersOnNormalModule extends ZetaModule {
 			}
 		}
 	}
-
 }

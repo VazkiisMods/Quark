@@ -21,12 +21,12 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.items.ItemHandlerHelper;
 import vazkii.zeta.event.ZRightClickBlock;
 import vazkii.zeta.event.bus.PlayEvent;
-import vazkii.zeta.util.ItemNBTHelper;
-import vazkii.quark.base.module.LoadModule;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.Hint;
+import vazkii.zeta.util.ItemNBTHelper;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class ShulkerPackingModule extends ZetaModule {
 
 	@Hint Item shulker_shell = Items.SHULKER_SHELL;

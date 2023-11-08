@@ -1,10 +1,10 @@
 package vazkii.zetaimplforge.event;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
-import net.minecraftforge.eventbus.api.Event;
 import vazkii.zeta.event.ZEntityMobGriefing;
+import vazkii.zeta.event.bus.ZResult;
+import vazkii.zetaimplforge.ForgeZeta;
 
 public class ForgeZEntityMobGriefing implements ZEntityMobGriefing {
     private final EntityMobGriefingEvent e;
@@ -19,7 +19,12 @@ public class ForgeZEntityMobGriefing implements ZEntityMobGriefing {
     }
 
     @Override
-    public void setResult(Event.Result value) {
-        e.setResult(value);
+    public ZResult getResult() {
+        return ForgeZeta.from(e.getResult());
+    }
+
+    @Override
+    public void setResult(ZResult value) {
+        e.setResult(ForgeZeta.to(value));
     }
 }

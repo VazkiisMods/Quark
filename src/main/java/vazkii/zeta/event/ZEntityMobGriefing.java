@@ -1,10 +1,9 @@
 package vazkii.zeta.event;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.eventbus.api.Event;
 import vazkii.zeta.event.bus.IZetaPlayEvent;
+import vazkii.zeta.event.bus.Resultable;
 
-public interface ZEntityMobGriefing extends IZetaPlayEvent {
+public interface ZEntityMobGriefing extends IZetaPlayEvent, Resultable {
     Entity getEntity();
-    void setResult(Event.Result value);
 }

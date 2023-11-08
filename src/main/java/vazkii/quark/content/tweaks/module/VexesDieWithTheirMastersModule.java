@@ -3,12 +3,12 @@ package vazkii.quark.content.tweaks.module;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Vex;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.zeta.event.ZLivingTick;
 import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class VexesDieWithTheirMastersModule extends ZetaModule {
 
 	@PlayEvent // omae wa mou shindeiru

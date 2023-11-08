@@ -1,11 +1,6 @@
 package vazkii.quark.content.world.module;
 
-import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.function.BooleanSupplier;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
@@ -15,8 +10,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraftforge.common.Tags;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.type.CompoundBiomeConfig;
 import vazkii.quark.base.module.config.type.DimensionConfig;
@@ -30,8 +23,14 @@ import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "world")
+import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.BooleanSupplier;
+
+@ZetaLoadModule(category = "world")
 public class BigStoneClustersModule extends ZetaModule {
 
 	@Config public static BigStoneClusterConfig calcite = new BigStoneClusterConfig(BiomeTags.IS_MOUNTAIN);

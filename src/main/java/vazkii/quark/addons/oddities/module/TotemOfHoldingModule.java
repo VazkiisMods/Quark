@@ -1,42 +1,36 @@
 package vazkii.quark.addons.oddities.module;
 
-import java.util.Collection;
-import java.util.Objects;
-
-import com.mojang.datafixers.util.Pair;
-
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.addons.oddities.client.render.entity.TotemOfHoldingRenderer;
 import vazkii.quark.addons.oddities.entity.TotemOfHoldingEntity;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.event.ZRegister;
-import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.client.event.ZAddModels;
 import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.ZLivingDrops;
+import vazkii.zeta.event.ZRegister;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+
+import java.util.Collection;
+import java.util.Objects;
 
 /**
  * @author WireSegal
  * Created at 1:21 PM on 3/30/20.
  */
-@LoadModule(category = "oddities", hasSubscriptions = true)
+@ZetaLoadModule(category = "oddities")
 public class TotemOfHoldingModule extends ZetaModule {
 	private static final String TAG_LAST_TOTEM = "quark:lastTotemOfHolding";
 
@@ -72,20 +66,9 @@ public class TotemOfHoldingModule extends ZetaModule {
 				.build("totem");
 		Quark.ZETA.registry.register(totemType, "totem", Registry.ENTITY_TYPE_REGISTRY);
 	}
-
-	@LoadEvent
-	public final void clientSetup(ZClientSetup event) {
-		EntityRenderers.register(totemType, TotemOfHoldingRenderer::new);
-	}
-
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)
-	public void registerAdditionalModels(ZAddModels event) {
-		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/totem_of_holding", "inventory"));
-	}
 	
-	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void onPlayerDrops(LivingDropsEvent event) {
+	@PlayEvent
+	public void onPlayerDrops(ZLivingDrops.Lowest event) {
 		LivingEntity entity = event.getEntity();
 		if (!(entity instanceof Player player))
 			return;
@@ -132,17 +115,16 @@ public class TotemOfHoldingModule extends ZetaModule {
 		return "";
 	}
 
-	public static Pair<BlockPos, String> getPlayerDeathPosition(Entity e) {
-		if(e instanceof Player) {
-			CompoundTag cmp = e.getPersistentData().getCompound(Player.PERSISTED_NBT_TAG);
-			if(cmp.contains(TAG_LAST_TOTEM)) {
-				int x = cmp.getInt(TAG_DEATH_X);
-				int z = cmp.getInt(TAG_DEATH_Z);
-				String dim = cmp.getString(TAG_DEATH_DIM);
-				return Pair.of(new BlockPos(x, -1, z), dim);
-			}
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends TotemOfHoldingModule {
+		@LoadEvent
+		public final void clientSetup(ZClientSetup event) {
+			EntityRenderers.register(totemType, TotemOfHoldingRenderer::new);
 		}
 
-		return null;
+		@LoadEvent
+		public void registerAdditionalModels(ZAddModels event) {
+			event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/totem_of_holding", "inventory"));
+		}
 	}
 }

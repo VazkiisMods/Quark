@@ -3,21 +3,20 @@ package vazkii.quark.content.tweaks.module;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.ComposterBlock;
-import net.minecraftforge.event.TickEvent.LevelTickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.event.ZFurnaceFuelBurnTime;
-import vazkii.zeta.event.bus.PlayEvent;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZFurnaceFuelBurnTime;
+import vazkii.zeta.event.ZLevelTick;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 /**
  * @author WireSegal
  * Created at 7:34 PM on 9/28/19.
  */
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class UtilityRecipesModule extends ZetaModule {
 
 	@Config(description = "Can any wool color be dyed?", flag = "dye_any_wool")
@@ -80,8 +79,8 @@ public class UtilityRecipesModule extends ZetaModule {
 		needsChange = true;
 	}
 
-	@SubscribeEvent
-	public void worldTick(LevelTickEvent event) {
+	@PlayEvent
+	public void worldTick(ZLevelTick event) {
 		if(needsChange) {
 			if (effectiveDragonBreath)
 				Items.DRAGON_BREATH.craftingRemainingItem = null;

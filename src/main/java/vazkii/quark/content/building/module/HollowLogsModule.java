@@ -15,7 +15,6 @@ import vazkii.quark.api.ICrawlSpaceBlock;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.util.VanillaWoods;
 import vazkii.quark.base.util.VanillaWoods.Wood;
@@ -25,10 +24,11 @@ import vazkii.zeta.event.ZPlayerTick;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "building", hasSubscriptions = true)
+@ZetaLoadModule(category = "building")
 public class HollowLogsModule extends ZetaModule {
 
 	private static final String TAG_TRYING_TO_CRAWL = "quark:trying_crawl";

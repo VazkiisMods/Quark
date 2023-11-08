@@ -260,4 +260,38 @@ public class ForgeZScreen implements ZScreen {
             }
         }
     }
+
+    public static class Opening extends ForgeZScreen implements ZScreen.Opening {
+        private final ScreenEvent.Opening e;
+
+        public Opening(ScreenEvent.Opening e) {
+            super(e);
+            this.e = e;
+        }
+
+        @Override
+        public Screen getCurrentScreen() {
+            return e.getCurrentScreen();
+        }
+
+        @Override
+        public Screen getNewScreen() {
+            return e.getNewScreen();
+        }
+
+        @Override
+        public void setNewScreen(Screen newScreen) {
+            e.setNewScreen(newScreen);
+        }
+
+        @Override
+        public boolean isCanceled() {
+            return e.isCanceled();
+        }
+
+        @Override
+        public void setCanceled(boolean cancel) {
+            e.setCanceled(true);
+        }
+    }
 }

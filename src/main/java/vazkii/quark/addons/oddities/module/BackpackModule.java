@@ -17,39 +17,33 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.event.TickEvent.ClientTickEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.addons.oddities.client.screen.BackpackInventoryScreen;
 import vazkii.quark.addons.oddities.inventory.BackpackMenu;
 import vazkii.quark.addons.oddities.item.BackpackItem;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.item.QuarkItem;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.oddities.HandleBackpackMessage;
+import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.client.event.ZScreen;
+import vazkii.zeta.client.event.ZStartClientTick;
 import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZLivingDrops;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "oddities", hasSubscriptions = true)
+@ZetaLoadModule(category = "oddities")
 public class BackpackModule extends ZetaModule {
 
 	@Config(description = "Set this to true to allow the backpacks to be unequipped even with items in them")
@@ -74,9 +68,6 @@ public class BackpackModule extends ZetaModule {
 	public static MenuType<BackpackMenu> menyType;
 	private static ItemStack heldStack = null;
 
-	@OnlyIn(Dist.CLIENT)
-	private static boolean backpackRequested;
-
 	@LoadEvent
 	public final void register(ZRegister event) {
 		backpack = new BackpackItem(this);
@@ -98,17 +89,8 @@ public class BackpackModule extends ZetaModule {
 		backpackBlockedTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "backpack_blocked"));
 	}
 
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)
-	public void clientSetup(ZClientSetup e) {
-		MenuScreens.register(menyType, BackpackInventoryScreen::new);
-
-		e.enqueueWork(() -> ItemProperties.register(backpack, new ResourceLocation("has_items"),
-				(stack, world, entity, i) -> (!BackpackModule.superOpMode && BackpackItem.doesBackpackHaveItems(stack)) ? 1 : 0));
-	}
-
-	@SubscribeEvent
-	public void onDrops(LivingDropsEvent event) {
+	@PlayEvent
+	public void onDrops(ZLivingDrops event) {
 		LivingEntity entity = event.getEntity();
 		if(enableRavagerHide && entity.getType() == EntityType.RAVAGER) {
 			int amount = baseRavagerHideDrop;
@@ -124,42 +106,9 @@ public class BackpackModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onOpenGUI(ScreenEvent.Opening event) {
-		Player player = Minecraft.getInstance().player;
-		if(player != null && isInventoryGUI(event.getScreen()) && !player.getAbilities().instabuild && isEntityWearingBackpack(player) && !player.isInsidePortal) {
-			requestBackpack();
-			event.setCanceled(true);
-		}
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void clientTick(ClientTickEvent event) {
-		Minecraft mc = Minecraft.getInstance();
-		if(isInventoryGUI(mc.screen) && !backpackRequested && isEntityWearingBackpack(mc.player) && !mc.player.isInsidePortal) {
-			requestBackpack();
-			mc.player.inventoryMenu.setCarried(mc.player.getItemBySlot(EquipmentSlot.CHEST));
-			backpackRequested = true;
-		} else if(mc.screen instanceof BackpackInventoryScreen) {
-			if(heldStack != null) {
-				mc.player.inventoryMenu.setCarried(heldStack);
-				heldStack = null;
-			}
-
-			backpackRequested = false;
-		}
-	}
-
 	public static void requestBackpack() {
 		heldStack = Minecraft.getInstance().player.inventoryMenu.getCarried();
 		QuarkNetwork.sendToServer(new HandleBackpackMessage(true));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	private static boolean isInventoryGUI(Screen gui) {
-		return gui != null && gui.getClass() == InventoryScreen.class;
 	}
 
 	public static boolean isEntityWearingBackpack(Entity e) {
@@ -180,4 +129,47 @@ public class BackpackModule extends ZetaModule {
 		return false;
 	}
 
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends BackpackModule {
+		private static boolean backpackRequested;
+
+		@LoadEvent
+		public void clientSetup(ZClientSetup e) {
+			MenuScreens.register(menyType, BackpackInventoryScreen::new);
+
+			e.enqueueWork(() -> ItemProperties.register(backpack, new ResourceLocation("has_items"),
+					(stack, world, entity, i) -> (!BackpackModule.superOpMode && BackpackItem.doesBackpackHaveItems(stack)) ? 1 : 0));
+		}
+
+		@PlayEvent
+		public void onOpenGUI(ZScreen.Opening event) {
+			Player player = Minecraft.getInstance().player;
+			if(player != null && isInventoryGUI(event.getScreen()) && !player.getAbilities().instabuild && isEntityWearingBackpack(player) && !player.isInsidePortal) {
+				requestBackpack();
+				event.setCanceled(true);
+			}
+		}
+
+		@PlayEvent
+		//fixme this was ClientTickEvent before so not sure if this is correct
+		public void clientTick(ZStartClientTick event) {
+			Minecraft mc = Minecraft.getInstance();
+			if(isInventoryGUI(mc.screen) && !backpackRequested && isEntityWearingBackpack(mc.player) && !mc.player.isInsidePortal) {
+				requestBackpack();
+				mc.player.inventoryMenu.setCarried(mc.player.getItemBySlot(EquipmentSlot.CHEST));
+				backpackRequested = true;
+			} else if(mc.screen instanceof BackpackInventoryScreen) {
+				if(heldStack != null) {
+					mc.player.inventoryMenu.setCarried(heldStack);
+					heldStack = null;
+				}
+
+				backpackRequested = false;
+			}
+		}
+
+		private static boolean isInventoryGUI(Screen gui) {
+			return gui != null && gui.getClass() == InventoryScreen.class;
+		}
+	}
 }

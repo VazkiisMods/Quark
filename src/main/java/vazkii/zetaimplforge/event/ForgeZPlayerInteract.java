@@ -1,5 +1,6 @@
 package vazkii.zetaimplforge.event;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -24,6 +25,11 @@ public class ForgeZPlayerInteract implements ZPlayerInteract {
     @Override
     public InteractionHand getHand() {
         return e.getHand();
+    }
+
+    @Override
+    public BlockPos getPos() {
+        return e.getPos();
     }
 
     @Override
@@ -72,6 +78,15 @@ public class ForgeZPlayerInteract implements ZPlayerInteract {
         @Override
         public Entity getTarget() {
             return e.getTarget();
+        }
+    }
+
+    public static class RightClickBlock extends ForgeZPlayerInteract implements ZPlayerInteract.RightClickBlock {
+        private final PlayerInteractEvent.RightClickBlock e;
+
+        public RightClickBlock(PlayerInteractEvent.RightClickBlock e) {
+            super(e);
+            this.e = e;
         }
     }
 

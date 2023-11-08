@@ -17,21 +17,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.ZGatherHints;
-import vazkii.zeta.event.ZRegister;
-import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.event.bus.PlayEvent;
-import vazkii.zeta.client.event.ZClientSetup;
-import vazkii.zeta.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.MatrixEnchantingTableBlock;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.client.render.be.MatrixEnchantingTableRenderer;
@@ -43,16 +30,21 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.*;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.ItemNBTHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@LoadModule(category = "oddities", hasSubscriptions = true)
+@ZetaLoadModule(category = "oddities")
 public class MatrixEnchantingModule extends ZetaModule {
 
 	public static BlockEntityType<MatrixEnchantingTableBlockEntity> blockEntityType;
@@ -194,22 +186,14 @@ public class MatrixEnchantingModule extends ZetaModule {
 		BlockEntityRenderers.register(blockEntityType, MatrixEnchantingTableRenderer::new);
 	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onTooltip(ItemTooltipEvent event) {
-		ItemStack stack = event.getItemStack();
-		if(showTooltip && ItemNBTHelper.verifyExistence(stack, MatrixEnchantingTableBlockEntity.TAG_STACK_MATRIX))
-			event.getToolTip().add(Component.translatable("quark.gui.enchanting.pending").withStyle(ChatFormatting.AQUA));
-	}
-
-	@SubscribeEvent
-	public void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
+	@PlayEvent
+	public void onBlockPlaced(ZBlock.EntityPlace event) {
 		if(event.getPlacedBlock().getBlock().equals(Blocks.ENCHANTING_TABLE) && automaticallyConvert)
 			event.getLevel().setBlock(event.getPos(), matrixEnchanter.defaultBlockState(), 3);
 	}
 
-	@SubscribeEvent
-	public void onRightClick(PlayerInteractEvent.RightClickBlock event) {
+	@PlayEvent
+	public void onRightClick(ZPlayerInteract.RightClickBlock event) {
 		if(event.getEntity() instanceof FakePlayer)
 			return;
 
@@ -275,4 +259,13 @@ public class MatrixEnchantingModule extends ZetaModule {
 		}
 	}
 
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends MatrixEnchantingModule {
+		@PlayEvent
+		public void onTooltip(ZItemTooltip event) {
+			ItemStack stack = event.getItemStack();
+			if(showTooltip && ItemNBTHelper.verifyExistence(stack, MatrixEnchantingTableBlockEntity.TAG_STACK_MATRIX))
+				event.getToolTip().add(Component.translatable("quark.gui.enchanting.pending").withStyle(ChatFormatting.AQUA));
+		}
+	}
 }

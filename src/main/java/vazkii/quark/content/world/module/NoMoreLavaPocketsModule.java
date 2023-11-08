@@ -2,12 +2,12 @@ package vazkii.quark.content.world.module;
 
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.levelgen.feature.configurations.SpringConfiguration;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "world")
+@ZetaLoadModule(category = "world")
 public class NoMoreLavaPocketsModule extends ZetaModule {
 
 	private static boolean staticEnabled;

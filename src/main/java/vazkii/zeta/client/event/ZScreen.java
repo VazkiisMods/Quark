@@ -61,4 +61,10 @@ public interface ZScreen extends IZetaPlayEvent {
         interface Pre extends CharacterTyped { }
         interface Post extends CharacterTyped { }
     }
+
+    interface Opening extends ZScreen, Cancellable {
+        Screen getCurrentScreen();
+        Screen getNewScreen();
+        void setNewScreen(Screen newScreen);
+    }
 }

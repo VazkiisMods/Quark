@@ -103,6 +103,7 @@ public class ForgeZetaClient extends ZetaClient {
 		MinecraftForge.EVENT_BUS.addListener(this::screenKeyPressedPost);
 		MinecraftForge.EVENT_BUS.addListener(this::screenCharacterTypedPre);
 		MinecraftForge.EVENT_BUS.addListener(this::screenCharacterTypedPost);
+		MinecraftForge.EVENT_BUS.addListener(this::screenOpening);
 	}
 
 	public void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -319,5 +320,9 @@ public class ForgeZetaClient extends ZetaClient {
 
 	public void screenCharacterTypedPost(ScreenEvent.CharacterTyped.Post e) {
 		playBus.fire(new ForgeZScreen.CharacterTyped.Post(e), ZScreen.CharacterTyped.Post.class);
+	}
+
+	public void screenOpening(ScreenEvent.Opening e) {
+		playBus.fire(new ForgeZScreen.Opening(e), ZScreen.Opening.class);
 	}
 }

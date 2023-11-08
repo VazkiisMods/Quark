@@ -8,25 +8,23 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.addons.oddities.block.be.PipeBlockEntity;
 import vazkii.quark.addons.oddities.block.pipe.EncasedPipeBlock;
 import vazkii.quark.addons.oddities.block.pipe.PipeBlock;
 import vazkii.quark.addons.oddities.client.render.be.PipeRenderer;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
+import vazkii.zeta.client.event.ZAddModels;
+import vazkii.zeta.client.event.ZClientSetup;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZConfigChanged;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZAddModels;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "oddities")
+@ZetaLoadModule(category = "oddities")
 public class PipesModule extends ZetaModule {
 
 	public static BlockEntityType<PipeBlockEntity> blockEntityType;
@@ -72,17 +70,18 @@ public class PipesModule extends ZetaModule {
 	public final void configChanged(ZConfigChanged event) {
 		effectivePipeSpeed = pipeSpeed * 2;
 	}
-
-	@LoadEvent
-	public final void clientSetup(ZClientSetup event) {
-		BlockEntityRenderers.register(blockEntityType, PipeRenderer::new);
-	}
-
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)
-	public void registerAdditionalModels(ZAddModels event) {
-		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/pipe_flare", "inventory"));
-	}
 	
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends PipesModule {
+		@LoadEvent
+		public final void clientSetup(ZClientSetup event) {
+			BlockEntityRenderers.register(blockEntityType, PipeRenderer::new);
+		}
+
+		@LoadEvent
+		public void registerAdditionalModels(ZAddModels event) {
+			event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/pipe_flare", "inventory"));
+		}
+	}
 }
 

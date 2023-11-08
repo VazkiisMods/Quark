@@ -1,14 +1,10 @@
 package vazkii.quark.content.world.module;
 
 import com.google.common.base.Functions;
-
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import vazkii.quark.base.handler.VariantHandler;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
 import vazkii.quark.base.world.WorldGenHandler;
 import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.block.ChorusVegetationBlock;
@@ -16,10 +12,12 @@ import vazkii.quark.content.world.gen.ChorusVegetationGenerator;
 import vazkii.zeta.event.ZCommonSetup;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "world")
+@ZetaLoadModule(category = "world")
 public class ChorusVegetationModule extends ZetaModule {
-
 	@Config public static int rarity = 150;
 	@Config public static int radius = 7;
 	@Config public static int chunkAttempts = 120;
@@ -47,5 +45,4 @@ public class ChorusVegetationModule extends ZetaModule {
 	public final void setup(ZCommonSetup event) {
 		WorldGenHandler.addGenerator(this, new ChorusVegetationGenerator(), Decoration.VEGETAL_DECORATION, WorldGenWeights.CHORUS_VEGETATION);
 	}
-	
 }
