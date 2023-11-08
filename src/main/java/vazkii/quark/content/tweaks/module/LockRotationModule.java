@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -29,58 +28,40 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.HitResult.Type;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
 import org.lwjgl.opengl.GL11;
-
 import vazkii.quark.api.IRotationLockable;
 import vazkii.quark.base.QuarkClient;
 import vazkii.quark.base.handler.MiscUtil;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.SetLockProfileMessage;
 import vazkii.quark.content.building.block.QuarkVerticalSlabBlock;
 import vazkii.quark.content.building.block.VerticalSlabBlock;
-import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.client.event.ZInput;
 import vazkii.zeta.client.event.ZKeyMapping;
+import vazkii.zeta.client.event.ZRenderGuiOverlay;
+import vazkii.zeta.event.ZConfigChanged;
+import vazkii.zeta.event.ZPlayer;
+import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class LockRotationModule extends ZetaModule {
 
 	private static final String TAG_LOCKED_ONCE = "quark:locked_once";
 
 	private static final HashMap<UUID, LockProfile> lockProfiles = new HashMap<>();
 
-	@OnlyIn(Dist.CLIENT)
-	private LockProfile clientProfile;
-
-	@OnlyIn(Dist.CLIENT)
-	private KeyMapping keybind;
-
 	@LoadEvent
 	public final void configChanged(ZConfigChanged event) {
 		lockProfiles.clear();
-	}
-
-	@LoadEvent
-	@OnlyIn(Dist.CLIENT)
-	public void registerKeybinds(ZKeyMapping event) {
-		keybind = event.init("quark.keybind.lock_rotation", "k", QuarkClient.MISC_GROUP);
 	}
 
 	public static BlockState fixBlockRotation(BlockState state, BlockPlaceContext ctx) {
@@ -145,78 +126,9 @@ public class LockRotationModule extends ZetaModule {
 		return setState;
 	}
 
-	@SubscribeEvent
-	public void onPlayerLogoff(PlayerLoggedOutEvent event) {
+	@PlayEvent
+	public void onPlayerLogoff(ZPlayer.LoggedOut event) {
 		lockProfiles.remove(event.getEntity().getUUID());
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onMouseInput(InputEvent.MouseButton event) {
-		acceptInput();
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onKeyInput(InputEvent.Key event) {
-		acceptInput();
-	}
-
-	private void acceptInput() {
-		Minecraft mc = Minecraft.getInstance();
-		boolean down = keybind.isDown();
-		if(mc.isWindowActive() && down && mc.screen == null) {
-			LockProfile newProfile;
-			HitResult result = mc.hitResult;
-
-			if(result instanceof BlockHitResult bresult && result.getType() == Type.BLOCK) {
-				Vec3 hitVec = bresult.getLocation();
-				Direction face = bresult.getDirection();
-
-				int half = Math.abs((int) ((hitVec.y - (int) hitVec.y) * 2));
-				if(face.getAxis() == Axis.Y)
-					half = -1;
-				else if(hitVec.y < 0)
-					half = 1 - half;
-
-				newProfile = new LockProfile(face.getOpposite(), half);
-
-			} else {
-				Vec3 look = mc.player.getLookAngle();
-				newProfile = new LockProfile(Direction.getNearest((float) look.x, (float) look.y, (float) look.z), -1);
-			}
-
-			if(clientProfile != null && clientProfile.equals(newProfile))
-				clientProfile = null;
-			else
-				clientProfile = newProfile;
-			QuarkNetwork.sendToServer(new SetLockProfileMessage(clientProfile));
-		}
-	}
-
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void onHUDRender(RenderGuiOverlayEvent.Post event) {
-		if(event.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type() && clientProfile != null) {
-			PoseStack matrix = event.getPoseStack();
-
-			RenderSystem.enableBlend();
-			RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			RenderSystem.setShader(GameRenderer::getPositionTexShader);
-			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.5F);
-			RenderSystem.setShaderTexture(0, MiscUtil.GENERAL_ICONS);
-
-			Window window = event.getWindow();
-			int x = window.getGuiScaledWidth() / 2 + 20;
-			int y = window.getGuiScaledHeight() / 2 - 8;
-			Screen.blit(matrix, x, y, clientProfile.facing.ordinal() * 16, 65, 16, 16, 256, 256);
-
-			if(clientProfile.half > -1)
-				Screen.blit(matrix, x + 16, y, clientProfile.half * 16, 79, 16, 16, 256, 256);
-
-			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-
-		}
 	}
 
 	public static void setProfile(Player player, LockProfile profile) {
@@ -238,8 +150,8 @@ public class LockRotationModule extends ZetaModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void respawn(PlayerEvent.Clone event) {
+	@PlayEvent
+	public void respawn(ZPlayer.Clone event) {
 		if(event.getOriginal().getPersistentData().getBoolean(TAG_LOCKED_ONCE)) {
 			event.getEntity().getPersistentData().putBoolean(TAG_LOCKED_ONCE, true);
 		}
@@ -283,4 +195,81 @@ public class LockRotationModule extends ZetaModule {
 		}
 	}
 
+	@ZetaLoadModule(clientReplacement = true)
+	public static class Client extends LockRotationModule {
+		private LockProfile clientProfile;
+
+		private KeyMapping keybind;
+
+		@LoadEvent
+		public void registerKeybinds(ZKeyMapping event) {
+			keybind = event.init("quark.keybind.lock_rotation", "k", QuarkClient.MISC_GROUP);
+		}
+
+		@PlayEvent
+		public void onMouseInput(ZInput.MouseButton event) {
+			acceptInput();
+		}
+
+		@PlayEvent
+		public void onKeyInput(ZInput.Key event) {
+			acceptInput();
+		}
+
+		private void acceptInput() {
+			Minecraft mc = Minecraft.getInstance();
+			boolean down = keybind.isDown();
+			if(mc.isWindowActive() && down && mc.screen == null) {
+				LockProfile newProfile;
+				HitResult result = mc.hitResult;
+
+				if(result instanceof BlockHitResult bresult && result.getType() == Type.BLOCK) {
+					Vec3 hitVec = bresult.getLocation();
+					Direction face = bresult.getDirection();
+
+					int half = Math.abs((int) ((hitVec.y - (int) hitVec.y) * 2));
+					if(face.getAxis() == Axis.Y)
+						half = -1;
+					else if(hitVec.y < 0)
+						half = 1 - half;
+
+					newProfile = new LockProfile(face.getOpposite(), half);
+
+				} else {
+					Vec3 look = mc.player.getLookAngle();
+					newProfile = new LockProfile(Direction.getNearest((float) look.x, (float) look.y, (float) look.z), -1);
+				}
+
+				if(clientProfile != null && clientProfile.equals(newProfile))
+					clientProfile = null;
+				else
+					clientProfile = newProfile;
+				QuarkNetwork.sendToServer(new SetLockProfileMessage(clientProfile));
+			}
+		}
+
+		@PlayEvent
+		public void onHUDRender(ZRenderGuiOverlay.Crosshair.Post event) {
+			if (clientProfile != null) {
+				PoseStack matrix = event.getPoseStack();
+
+				RenderSystem.enableBlend();
+				RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+				RenderSystem.setShader(GameRenderer::getPositionTexShader);
+				RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.5F);
+				RenderSystem.setShaderTexture(0, MiscUtil.GENERAL_ICONS);
+
+				Window window = event.getWindow();
+				int x = window.getGuiScaledWidth() / 2 + 20;
+				int y = window.getGuiScaledHeight() / 2 - 8;
+				Screen.blit(matrix, x, y, clientProfile.facing.ordinal() * 16, 65, 16, 16, 256, 256);
+
+				if(clientProfile.half > -1)
+					Screen.blit(matrix, x + 16, y, clientProfile.half * 16, 79, 16, 16, 256, 256);
+
+				RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+
+			}
+		}
+	}
 }

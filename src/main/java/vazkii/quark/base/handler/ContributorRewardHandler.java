@@ -1,34 +1,24 @@
 package vazkii.quark.base.handler;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.WeakHashMap;
-
 import com.google.common.collect.ImmutableSet;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import vazkii.quark.base.Quark;
 import vazkii.zeta.client.event.ZRenderPlayer;
 import vazkii.zeta.event.ZCommonSetup;
-import vazkii.zeta.event.ZPlayerLoggedIn;
+import vazkii.zeta.event.ZPlayer;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.*;
 
 public class ContributorRewardHandler {
 
@@ -55,7 +45,7 @@ public class ContributorRewardHandler {
 	}
 
 	@PlayEvent
-	public static void onPlayerJoin(ZPlayerLoggedIn event) {
+	public static void onPlayerJoin(ZPlayer.LoggedIn event) {
 		//refresh the contributor list on login
 		init();
 	}

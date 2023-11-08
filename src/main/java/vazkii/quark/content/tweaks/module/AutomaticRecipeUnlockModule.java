@@ -22,7 +22,7 @@ import vazkii.quark.base.module.config.Config;
 import vazkii.zeta.client.event.ZEndClientTick;
 import vazkii.zeta.client.event.ZScreen;
 import vazkii.zeta.event.ZConfigChanged;
-import vazkii.zeta.event.ZPlayerLoggedIn;
+import vazkii.zeta.event.ZPlayer;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
 import vazkii.zeta.module.ZetaLoadModule;
@@ -50,7 +50,7 @@ public class AutomaticRecipeUnlockModule extends ZetaModule {
 	}
 
 	@PlayEvent
-	public void onPlayerLoggedIn(ZPlayerLoggedIn event) {
+	public void onPlayerLoggedIn(ZPlayer.LoggedIn event) {
 		Player player = event.getEntity();
 
 		if(player instanceof ServerPlayer spe) {

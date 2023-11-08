@@ -10,10 +10,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.*;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.EntityMobGriefingEvent;
+import net.minecraftforge.event.entity.*;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.*;
 import net.minecraftforge.event.level.BlockEvent;
@@ -140,7 +137,6 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::tagsUpdated);
 
 		//play
-		MinecraftForge.EVENT_BUS.addListener(this::playerLoggedIn);
 		MinecraftForge.EVENT_BUS.addListener(this::rightClickBlock);
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOW, this::rightClickBlockLow);
 		MinecraftForge.EVENT_BUS.addListener(this::rightClickItem);
@@ -186,12 +182,17 @@ public class ForgeZeta extends Zeta {
 		MinecraftForge.EVENT_BUS.addListener(this::anvilRepair);
 		MinecraftForge.EVENT_BUS.addListener(this::player);
 		MinecraftForge.EVENT_BUS.addListener(this::playerBreakSpeed);
+		MinecraftForge.EVENT_BUS.addListener(this::playerClone);
+		MinecraftForge.EVENT_BUS.addListener(this::playerLoggedIn);
+		MinecraftForge.EVENT_BUS.addListener(this::playerLoggedOut);
 		MinecraftForge.EVENT_BUS.addListener(this::entityItemPickup);
 		MinecraftForge.EVENT_BUS.addListener(this::block);
 		MinecraftForge.EVENT_BUS.addListener(this::blockBreak);
 		MinecraftForge.EVENT_BUS.addListener(this::blockEntityPlace);
 		MinecraftForge.EVENT_BUS.addListener(this::animalTame);
 		MinecraftForge.EVENT_BUS.addListener(this::bonemeal);
+		MinecraftForge.EVENT_BUS.addListener(this::entityTeleport);
+		MinecraftForge.EVENT_BUS.addListener(this::livingFall);
 	}
 
 	boolean registerDone = false;
@@ -223,10 +224,6 @@ public class ForgeZeta extends Zeta {
 
 	public void tagsUpdated(TagsUpdatedEvent e) {
 		loadBus.fire(new ZTagsUpdated());
-	}
-
-	public void playerLoggedIn(PlayerEvent.PlayerLoggedInEvent e) {
-		playBus.fire(new ForgeZPlayerLoggedIn(e), ZPlayerLoggedIn.class);
 	}
 
 	public void rightClickBlock(PlayerInteractEvent.RightClickBlock e) {
@@ -426,8 +423,28 @@ public class ForgeZeta extends Zeta {
 		playBus.fire(new ForgeZPlayer.BreakSpeed(e), ZPlayer.BreakSpeed.class);
 	}
 
+	public void playerClone(PlayerEvent.Clone e) {
+		playBus.fire(new ForgeZPlayer.Clone(e), ZPlayer.Clone.class);
+	}
+
+	public void playerLoggedIn(PlayerEvent.PlayerLoggedInEvent e) {
+		playBus.fire(new ForgeZPlayer.LoggedIn(e), ZPlayer.LoggedIn.class);
+	}
+
+	public void playerLoggedOut(PlayerEvent.PlayerLoggedOutEvent e) {
+		playBus.fire(new ForgeZPlayer.LoggedOut(e), ZPlayer.LoggedOut.class);
+	}
+
 	public void bonemeal(BonemealEvent e) {
 		playBus.fire(new ForgeZBonemeal(e), ZBonemeal.class);
+	}
+
+	public void entityTeleport(EntityTeleportEvent e) {
+		playBus.fire(new ForgeZEntityTeleport(e), ZEntityTeleport.class);
+	}
+
+	public void livingFall(LivingFallEvent e) {
+		playBus.fire(new ForgeZLivingFall(e), ZLivingFall.class);
 	}
 
 	public static ZResult from(Event.Result r) {

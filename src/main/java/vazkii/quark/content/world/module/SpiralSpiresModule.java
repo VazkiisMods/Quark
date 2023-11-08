@@ -16,12 +16,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.event.entity.EntityTeleportEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
 import vazkii.quark.base.handler.advancement.QuarkGenericTrigger;
-import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.config.Config;
 import vazkii.quark.base.module.config.Config.Max;
@@ -33,17 +30,19 @@ import vazkii.quark.base.world.WorldGenWeights;
 import vazkii.quark.content.world.block.MyaliteCrystalBlock;
 import vazkii.quark.content.world.gen.SpiralSpireGenerator;
 import vazkii.zeta.event.ZCommonSetup;
+import vazkii.zeta.event.ZEntityTeleport;
 import vazkii.zeta.event.ZGatherHints;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
 import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
 import vazkii.zeta.module.ZetaModule;
 import vazkii.zeta.util.Hint;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@LoadModule(category = "world", hasSubscriptions = true)
+@ZetaLoadModule(category = "world")
 public class SpiralSpiresModule extends ZetaModule {
 
 	@Config
@@ -100,8 +99,8 @@ public class SpiralSpiresModule extends ZetaModule {
 		consumer.accept(myalite_crystal.asItem(), comp);
 	}
 
-	@SubscribeEvent
-	public void onTeleport(EntityTeleportEvent event) {
+	@PlayEvent
+	public void onTeleport(ZEntityTeleport event) {
 		if(!enableMyaliteViaducts)
 			return;
 

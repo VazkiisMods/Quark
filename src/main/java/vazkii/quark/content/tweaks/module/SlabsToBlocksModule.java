@@ -8,16 +8,16 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.api.event.RecipeCrawlEvent;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.content.tweaks.recipe.SlabToBlockRecipe;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class SlabsToBlocksModule extends ZetaModule {
 
 	public static Map<Item, Item> recipes = new HashMap<>();
@@ -27,6 +27,7 @@ public class SlabsToBlocksModule extends ZetaModule {
 		event.getRegistry().register(SlabToBlockRecipe.SERIALIZER, "slab_to_block", Registry.RECIPE_SERIALIZER_REGISTRY);
 	}
 
+	//fixme Switch to Zeta - IThundxr
 	@SubscribeEvent
 	public void onReset(RecipeCrawlEvent.Reset event) {
 		recipes.clear();
@@ -38,6 +39,7 @@ public class SlabsToBlocksModule extends ZetaModule {
 		return array[0];
 	}
 
+	//fixme Switch to Zeta - IThundxr
 	@SubscribeEvent
 	public void onVisitShaped(RecipeCrawlEvent.Visit.Shaped visit) {
 		if(visit.ingredients.size() == 3

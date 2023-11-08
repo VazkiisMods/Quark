@@ -3,13 +3,13 @@ package vazkii.quark.content.tweaks.module;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
+import vazkii.zeta.event.ZLivingFall;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
 
-@LoadModule(category = "tweaks", hasSubscriptions = true)
+@ZetaLoadModule(category = "tweaks")
 public class SaferCreaturesModule extends ZetaModule {
 
 	@Config(description = "How many blocks should be subtracted from the rabbit fall height when calculating fall damage. 5 is the same value as vanilla frogs") 
@@ -18,8 +18,8 @@ public class SaferCreaturesModule extends ZetaModule {
 	@Config
 	public boolean enableSlimeFallDamageRemoval = true;
 	
-	@SubscribeEvent
-	public void onFall(LivingFallEvent event) {
+	@PlayEvent
+	public void onFall(ZLivingFall event) {
 		Entity e = event.getEntity();
 		EntityType<?> type = e.getType();
 		float dist = event.getDistance();

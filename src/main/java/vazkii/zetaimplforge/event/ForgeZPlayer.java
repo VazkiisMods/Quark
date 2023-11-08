@@ -39,4 +39,30 @@ public class ForgeZPlayer implements ZPlayer {
             e.setNewSpeed(newSpeed);
         }
     }
+
+    public static class Clone extends ForgeZPlayer implements ZPlayer.Clone {
+        private final PlayerEvent.Clone e;
+
+        public Clone(PlayerEvent.Clone e) {
+            super(e);
+            this.e = e;
+        }
+
+        @Override
+        public Player getOriginal() {
+            return e.getOriginal();
+        }
+    }
+
+    public static class LoggedIn extends ForgeZPlayer implements ZPlayer.LoggedIn {
+        public LoggedIn(PlayerEvent.PlayerLoggedInEvent e) {
+            super(e);
+        }
+    }
+
+    public static class LoggedOut extends ForgeZPlayer implements ZPlayer.LoggedOut {
+        public LoggedOut(PlayerEvent.PlayerLoggedOutEvent e) {
+            super(e);
+        }
+    }
 }

@@ -1,15 +1,10 @@
 package vazkii.quark.addons.oddities.module;
 
-import java.util.List;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.event.TickEvent.LevelTickEvent;
-import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.addons.oddities.block.MagnetBlock;
 import vazkii.quark.addons.oddities.block.MovingMagnetizedBlock;
@@ -19,17 +14,19 @@ import vazkii.quark.addons.oddities.client.render.be.MagnetizedBlockRenderer;
 import vazkii.quark.addons.oddities.magnetsystem.MagnetSystem;
 import vazkii.quark.api.event.RecipeCrawlEvent;
 import vazkii.quark.base.Quark;
-import vazkii.quark.base.module.LoadModule;
-import vazkii.zeta.event.ZLevelTick;
-import vazkii.zeta.event.bus.PlayEvent;
-import vazkii.zeta.module.ZetaModule;
 import vazkii.quark.base.module.config.Config;
-import vazkii.zeta.util.Hint;
+import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.ZLevelTick;
 import vazkii.zeta.event.ZRegister;
 import vazkii.zeta.event.bus.LoadEvent;
-import vazkii.zeta.client.event.ZClientSetup;
+import vazkii.zeta.event.bus.PlayEvent;
+import vazkii.zeta.module.ZetaLoadModule;
+import vazkii.zeta.module.ZetaModule;
+import vazkii.zeta.util.Hint;
 
-@LoadModule(category = "oddities", hasSubscriptions = true)
+import java.util.List;
+
+@ZetaLoadModule(category = "oddities")
 public class MagnetsModule extends ZetaModule {
 
 	public static BlockEntityType<MagnetBlockEntity> magnetType;
@@ -74,12 +71,14 @@ public class MagnetsModule extends ZetaModule {
 	public void tickEnd(ZLevelTick.End event) {
 		MagnetSystem.tick(false, event.getLevel());
 	}
-	
+
+	//fixme Switch to Zeta - IThundxr
 	@SubscribeEvent
 	public void crawlReset(RecipeCrawlEvent.Reset event) {
 		MagnetSystem.onRecipeReset();
 	}
-	
+
+	//fixme Switch to Zeta - IThundxr
 	@SubscribeEvent
 	public void crawlDigest(RecipeCrawlEvent.Digest event) {
 		MagnetSystem.onDigest();
