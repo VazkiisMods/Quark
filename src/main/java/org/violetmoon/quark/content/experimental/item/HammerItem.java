@@ -35,23 +35,25 @@ public class HammerItem extends QuarkItem {
 		BlockPos pos = context.getClickedPos();
 		BlockState state = level.getBlockState(pos);
 		Block block = state.getBlock();
-		
-		String variant = VariantSelectorModule.getSavedVariant(player);
-		Block variantBlock = VariantSelectorModule.getVariantOrOriginal(block, variant);
-		if(variantBlock != null) {
-			BlockPlaceContext bpc = new YungsBetterBlockPlaceContext(context);
-			BlockState place = variantBlock.getStateForPlacement(bpc);
-			place = LockRotationModule.fixBlockRotation(place, bpc);
-			
-			if(!place.equals(state) && !level.isClientSide) {
-				level.removeBlock(pos, false);
-				level.setBlock(pos, place, 1 | 2);
-				player.swing(context.getHand());
-				
-				level.playSound(null, pos, variantBlock.getSoundType(place).getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+
+		if(player != null) {
+			String variant = VariantSelectorModule.getSavedVariant(player);
+			Block variantBlock = VariantSelectorModule.getVariantOrOriginal(block, variant);
+			if(variantBlock != null) {
+				BlockPlaceContext bpc = new YungsBetterBlockPlaceContext(context);
+				BlockState place = variantBlock.getStateForPlacement(bpc);
+				place = LockRotationModule.fixBlockRotation(place, bpc);
+
+				if(place != null && !place.equals(state) && !level.isClientSide) {
+					level.removeBlock(pos, false);
+					level.setBlock(pos, place, 1 | 2);
+					player.swing(context.getHand());
+
+					level.playSound(null, pos, place.getSoundType().getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+				}
+
+				return InteractionResult.SUCCESS;
 			}
-			
-			return InteractionResult.SUCCESS;
 		}
 		
 		return InteractionResult.PASS;
@@ -66,7 +68,8 @@ public class HammerItem extends QuarkItem {
 		// vanilla BlockPlaceContext offsets the original clicked pos if replaceClicked is false
 		// so that the block is placed on the edge, but in this case we want to place it in the
 		// same blockpos that was clicked so we do this nonsense
-		
+
+		@Nonnull
 		@Override
 		public BlockPos getClickedPos() {
 			boolean oldRepl = replaceClicked;

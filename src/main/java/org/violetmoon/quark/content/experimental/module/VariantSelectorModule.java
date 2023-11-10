@@ -126,14 +126,13 @@ public class VariantSelectorModule extends ZetaModule {
 	}
 
 	public static Block getVariantForBlock(Block block, String variant) {
-		Block variantBlock = variants.getBlockForVariant(block, variant);
-		if(variantBlock != null)
-			return variantBlock;
-
-		return null;
+		return variants.getBlockForVariant(block, variant);
 	}
 
 	public static Block getVariantOrOriginal(Block block, String variant) {
+		if(!variants.isVariant(block) && !variants.isOriginal(block))
+			return null;
+
 		block = variants.getOriginalBlock(block);
 
 		if(variant == null || variant.isEmpty())

@@ -153,7 +153,11 @@ public class BlockSuffixConfig implements IConfigType {
 	}
 	
 	public Block getOriginalBlock(Block block) {
-		return originals.containsKey(block) ? originals.get(block) : block;
+		return originals.getOrDefault(block, block);
+	}
+
+	public boolean isOriginal(Block block) {
+		return originals.containsKey(block);
 	}
 	
 	public boolean isVariant(Block block) {
