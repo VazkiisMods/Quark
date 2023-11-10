@@ -156,7 +156,7 @@ public class VariantsConfig implements IConfigType {
 	}
 
 	public boolean isOriginal(Block block) {
-		return originals.containsKey(block);
+		return originals.containsValue(block);
 	}
 	
 	public boolean isVariant(Block block) {
