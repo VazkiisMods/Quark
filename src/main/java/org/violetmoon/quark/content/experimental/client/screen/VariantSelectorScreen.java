@@ -22,18 +22,20 @@ import org.violetmoon.quark.content.experimental.module.VariantSelectorModule;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 public class VariantSelectorScreen extends Screen {
 
-	float timeIn = 0;
-	int slotSelected = -1;
+	private float timeIn = 0;
+	private int slotSelected = -1;
 
-	final Minecraft mc;
-	final ItemStack stack;
-	final KeyMapping key;
-	final String currentVariant;
-	final List<String> variants;
+	private final Minecraft mc;
+	private final ItemStack stack;
+	private final KeyMapping key;
+	private final String currentVariant;
+	private final List<String> variants;
 
-	final List<DrawStack> drawStacks = new ArrayList<>();
+	private final List<DrawStack> drawStacks = new ArrayList<>();
 
 	public VariantSelectorScreen(ItemStack stack, KeyMapping key, String currentVariant, List<String> variants) {
 		super(Component.empty());
@@ -45,7 +47,7 @@ public class VariantSelectorScreen extends Screen {
 	}
 
 	@Override
-	public void render(PoseStack ms, int mx, int my, float delta) {
+	public void render(@Nonnull PoseStack ms, int mx, int my, float delta) {
 		super.render(ms, mx, my, delta);
 
 		timeIn += delta;
@@ -99,6 +101,9 @@ public class VariantSelectorScreen extends Screen {
 			if(mouseInSector || rightVariant)
 				radius *= 1.1f;
 
+			if(!variantExists)
+				radius *= 0.9f;
+
 			int gs = 0x39;
 			if(seg % 2 == 0)
 				gs += 0x29;
@@ -106,11 +111,15 @@ public class VariantSelectorScreen extends Screen {
 			int r = gs;
 			int g = gs ;
 			int b = gs;
-			int a = 0x33;
+			int a = 0x44;
 
 			if(variantExists) {
 				g += 0x22;
 				a = 0x99;
+			} else {
+				r /= 4;
+				g /= 4;
+				b /= 4;
 			}
 
 			if(seg == 0)
@@ -151,9 +160,7 @@ public class VariantSelectorScreen extends Screen {
 		RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
 		
 		for(DrawStack ds : drawStacks) {
-			if(ds.stack().isEmpty())
-				mc.font.draw(ms, "?", ds.x() + 6, ds.y() + 3, 0x99FFFFFF);
-			else 
+			if(!ds.stack().isEmpty())
 				mc.getItemRenderer().renderGuiItem(ds.stack(), ds.x(), ds.y());
 		}
 		RenderSystem.disableBlend();

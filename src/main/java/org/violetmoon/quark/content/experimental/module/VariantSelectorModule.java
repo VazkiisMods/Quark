@@ -316,10 +316,6 @@ public class VariantSelectorModule extends ZetaModule {
 					int x = window.getGuiScaledWidth() / 2;
 					int y = window.getGuiScaledHeight() / 2 + 12;
 
-
-					showSimpleHud = true;
-					alignHudToHotbar = true;
-
 					if(alignHudToHotbar) {
 						HumanoidArm arm = mc.options.mainHand().get();
 						if(arm == HumanoidArm.RIGHT)
