@@ -13,7 +13,7 @@
       "tag": "quark:seed_pouch_holdable"
     },
     "H": {
-      "item": "minecraft:leather"
+      "tag": "forge:leather"
     }
   },
   "result": {

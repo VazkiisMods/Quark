@@ -7,7 +7,7 @@
   ],
   "key": {
     "L": {
-      "item": "minecraft:leather"
+      "tag": "forge:leather"
     },
     "R": {
       "item": "quark:ravager_hide"

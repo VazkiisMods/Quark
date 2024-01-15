@@ -10,7 +10,7 @@
       "item": "minecraft:string"
     },
     "H": {
-      "item": "minecraft:leather"
+      "tag": "forge:leather"
     }
   },
   "result": {
