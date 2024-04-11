@@ -17,6 +17,7 @@ import org.violetmoon.quark.content.building.block.be.VariantTrappedChestBlockEn
 import org.violetmoon.quark.content.building.client.render.be.VariantChestRenderer;
 import org.violetmoon.quark.content.building.recipe.MixedExclusionRecipe;
 import org.violetmoon.quark.mixin.mixins.accessor.AccessorAbstractChestedHorse;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorBlockEntityRenderers;
 import org.violetmoon.zeta.client.SimpleWithoutLevelRenderer;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.config.Config;
@@ -280,8 +281,8 @@ public class VariantChestsModule extends ZetaModule {
 
 		@LoadEvent
 		public final void clientSetup(ZClientSetup event) {
-			BlockEntityRenderers.register(chestTEType, ctx -> new VariantChestRenderer(ctx, false));
-			BlockEntityRenderers.register(trappedChestTEType, ctx -> new VariantChestRenderer(ctx, true));
+			AccessorBlockEntityRenderers.quark$register(chestTEType, ctx -> new VariantChestRenderer(ctx, false));
+			AccessorBlockEntityRenderers.quark$register(trappedChestTEType, ctx -> new VariantChestRenderer(ctx, true));
 
 			for(Block b : regularChests)
 				QuarkClient.ZETA_CLIENT.setBlockEntityWithoutLevelRenderer(b.asItem(), new SimpleWithoutLevelRenderer(chestTEType, b.defaultBlockState()));
