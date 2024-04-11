@@ -3,12 +3,10 @@ package org.violetmoon.quark.content.tools.module;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -21,10 +19,10 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
 import org.joml.Matrix4f;
 import org.violetmoon.quark.base.config.type.RGBAColorConfig;
 import org.violetmoon.quark.content.tools.item.AbacusItem;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorItemProperties;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.client.event.play.ZHighlightBlock;
 import org.violetmoon.zeta.client.event.play.ZRenderGuiOverlay;
@@ -57,7 +55,7 @@ public class AbacusModule extends ZetaModule {
 
 		@LoadEvent
 		public void clientSetup(ZClientSetup e) {
-			e.enqueueWork(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem.Client.ITEM_PROPERTY_FUNCTION));
+			e.enqueueWork(() -> AccessorItemProperties.quark$register(abacus, new ResourceLocation("count"), AbacusItem.Client.ITEM_PROPERTY_FUNCTION));
 		}
 
 		@PlayEvent

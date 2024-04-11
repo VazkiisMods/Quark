@@ -1,7 +1,6 @@
 package org.violetmoon.quark.addons.oddities.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
@@ -15,13 +14,14 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
-
 import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 import org.violetmoon.quark.api.IQuarkButtonAllowed;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.network.message.oddities.HandleBackpackMessage;
+import org.violetmoon.quark.mixin.mixins.accessor.AccessorPlayer;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorScreen;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +45,7 @@ public class BackpackInventoryScreen extends InventoryScreen implements IQuarkBu
 
 	public static Player setBackpackContainer(Player entity, InventoryMenu container) {
 		oldContainer = entity.inventoryMenu;
-		entity.inventoryMenu = container;
+		((AccessorPlayer) entity).quark$inventoryMenu(container);
 
 		return entity;
 	}
@@ -57,7 +57,7 @@ public class BackpackInventoryScreen extends InventoryScreen implements IQuarkBu
 
 		buttonYs.clear();
 
-		for(Renderable renderable : renderables)
+		for(Renderable renderable : ((AccessorScreen) this).quark$renderables())
 			if(renderable instanceof Button b)
 				if(b.getClass().getName().contains("GuiButtonInventoryBook")) { // class check for Patchouli
 					if(!buttonYs.containsKey(b)) {
@@ -106,7 +106,7 @@ public class BackpackInventoryScreen extends InventoryScreen implements IQuarkBu
 	}
 
 	private void moveCharmsButtons() {
-		for(Renderable renderable : renderables) {
+		for(Renderable renderable : ((AccessorScreen) this).quark$renderables()) {
 			//Charms buttons have a static Y pos, so use that to only focus on them.
 			if(renderable instanceof ImageButton img) {
 				if(img.getY() == height / 2 - 22)

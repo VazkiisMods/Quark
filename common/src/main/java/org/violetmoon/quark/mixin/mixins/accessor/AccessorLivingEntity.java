@@ -13,4 +13,10 @@ public interface AccessorLivingEntity {
 
 	@Accessor("lastHurtByPlayerTime")
 	int quark$lastHurtByPlayerTime();
+
+	@Accessor("attackStrengthTicker")
+	int quark$attackStrengthTicker();
+
+	@Accessor("attackStrengthTicker")
+	void quark$attackStrengthTicker(int attackStrengthTicker);
 }

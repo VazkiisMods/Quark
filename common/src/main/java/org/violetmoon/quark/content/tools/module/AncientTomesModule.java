@@ -1,38 +1,6 @@
 package org.violetmoon.quark.content.tools.module;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.api.QuarkCapabilities;
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.experimental.module.EnchantmentsBegoneModule;
-import org.violetmoon.quark.content.tools.base.RuneColor;
-import org.violetmoon.quark.content.tools.item.AncientTomeItem;
-import org.violetmoon.quark.content.tools.loot.EnchantTome;
-import org.violetmoon.quark.content.world.module.MonsterBoxModule;
-import org.violetmoon.zeta.advancement.ManualTrigger;
-import org.violetmoon.zeta.config.Config;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.load.ZCommonSetup;
-import org.violetmoon.zeta.event.load.ZConfigChanged;
-import org.violetmoon.zeta.event.load.ZRegister;
-import org.violetmoon.zeta.event.play.ZAnvilRepair;
-import org.violetmoon.zeta.event.play.ZAnvilUpdate;
-import org.violetmoon.zeta.event.play.entity.player.ZPlayer;
-import org.violetmoon.zeta.event.play.loading.ZAttachCapabilities;
-import org.violetmoon.zeta.event.play.loading.ZLootTableLoad;
-import org.violetmoon.zeta.event.play.loading.ZVillagerTrades;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.util.Hint;
-
 import com.google.common.collect.Lists;
-
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -52,11 +20,7 @@ import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MerchantContainer;
 import net.minecraft.world.inventory.MerchantMenu;
-import net.minecraft.world.item.EnchantedBookItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
@@ -69,6 +33,38 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.violetmoon.quark.api.QuarkCapabilities;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.experimental.module.EnchantmentsBegoneModule;
+import org.violetmoon.quark.content.tools.base.RuneColor;
+import org.violetmoon.quark.content.tools.item.AncientTomeItem;
+import org.violetmoon.quark.content.tools.loot.EnchantTome;
+import org.violetmoon.quark.content.world.module.MonsterBoxModule;
+import org.violetmoon.quark.mixin.mixins.accessor.AccessorMerchantMenu;
+import org.violetmoon.quark.mixin.mixins.accessor.AccessorMerchantOffer;
+import org.violetmoon.zeta.advancement.ManualTrigger;
+import org.violetmoon.zeta.config.Config;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.load.ZCommonSetup;
+import org.violetmoon.zeta.event.load.ZConfigChanged;
+import org.violetmoon.zeta.event.load.ZRegister;
+import org.violetmoon.zeta.event.play.ZAnvilRepair;
+import org.violetmoon.zeta.event.play.ZAnvilUpdate;
+import org.violetmoon.zeta.event.play.entity.player.ZPlayer;
+import org.violetmoon.zeta.event.play.loading.ZAttachCapabilities;
+import org.violetmoon.zeta.event.play.loading.ZLootTableLoad;
+import org.violetmoon.zeta.event.play.loading.ZVillagerTrades;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.Hint;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @ZetaLoadModule(category = "tools")
 public class AncientTomesModule extends ZetaModule {
@@ -470,7 +466,7 @@ public class AncientTomesModule extends ZetaModule {
 	}
 
 	private static void moveFromInventoryToPaymentSlot(MerchantMenu menu, MerchantContainer container, MerchantOffer offer, int tradeSlot, ItemStack targetStack) {
-		menu.moveFromInventoryToPaymentSlot(tradeSlot, targetStack);
+		((AccessorMerchantMenu) menu).quark$moveFromInventoryToPaymentSlot(tradeSlot, targetStack);
 		// Do a second pass with a softer match severity, but don't put in books that are the same as the output
 		if(container.getItem(tradeSlot).isEmpty() && !targetStack.isEmpty()) {
 			for(int slot = 3; slot < 39; ++slot) {
@@ -478,7 +474,7 @@ public class AncientTomesModule extends ZetaModule {
 				ItemStack currentStack = container.getItem(tradeSlot);
 
 				if(!ItemStack.isSameItemSameTags(inSlot, offer.getResult()) &&
-						!inSlot.isEmpty() && (currentStack.isEmpty() ? offer.isRequiredItem(inSlot, targetStack) : ItemStack.isSameItemSameTags(targetStack, inSlot))) {
+						!inSlot.isEmpty() && (currentStack.isEmpty() ? ((AccessorMerchantOffer) offer).quark$isRequiredItem(inSlot, targetStack) : ItemStack.isSameItemSameTags(targetStack, inSlot))) {
 					int currentCount = currentStack.isEmpty() ? 0 : currentStack.getCount();
 					int amountToTake = Math.min(targetStack.getMaxStackSize() - currentCount, inSlot.getCount());
 					ItemStack newStack = inSlot.copy();

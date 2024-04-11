@@ -1,7 +1,6 @@
 package org.violetmoon.quark.content.tweaks.module;
 
 import com.google.common.collect.Lists;
-
 import net.minecraft.advancements.Advancement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
@@ -18,8 +17,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.GameRules;
-
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorRecipeToast;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorToastComponent;
 import org.violetmoon.zeta.client.event.play.ZClientTick;
 import org.violetmoon.zeta.client.event.play.ZScreen;
 import org.violetmoon.zeta.config.Config;
@@ -130,10 +130,10 @@ public class AutomaticRecipeUnlockModule extends ZetaModule {
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.player != null && mc.player.tickCount < 20) {
 				ToastComponent toasts = mc.getToasts();
-				Queue<Toast> toastQueue = toasts.queued;
+				Queue<Toast> toastQueue = ((AccessorToastComponent) toasts).quark$queued();
 				for(Toast toast : toastQueue)
 					if(toast instanceof RecipeToast recipeToast) {
-						List<Recipe<?>> stacks = recipeToast.recipes;
+						List<Recipe<?>> stacks = ((AccessorRecipeToast) recipeToast).quark$recipes();
 						if(stacks.size() > 100) {
 							toastQueue.remove(toast);
 							return;

@@ -44,10 +44,6 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.HitResult.Type;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.network.NetworkHooks;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -57,6 +53,7 @@ import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.content.mobs.entity.Toretoise;
 import org.violetmoon.quark.content.tools.config.PickarangType;
 import org.violetmoon.quark.content.tools.module.PickarangModule;
+import org.violetmoon.quark.mixin.mixins.accessor.AccessorLivingEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -247,8 +244,8 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 						owner.setItemInHand(InteractionHand.MAIN_HAND, pickarang);
 						owner.getAttributes().addTransientAttributeModifiers(modifiers);
 
-						int ticksSinceLastSwing = owner.attackStrengthTicker;
-						owner.attackStrengthTicker = (int) (1.0 / owner.getAttributeValue(Attributes.ATTACK_SPEED) * 20.0) + 1;
+						int ticksSinceLastSwing = ((AccessorLivingEntity) owner).quark$attackStrengthTicker();
+						((AccessorLivingEntity) owner).quark$attackStrengthTicker((int) (1.0 / owner.getAttributeValue(Attributes.ATTACK_SPEED) * 20.0) + 1);
 
 						float prevHealth = hit instanceof LivingEntity ? ((LivingEntity) hit).getHealth() : 0;
 
@@ -282,7 +279,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 
 						PickarangModule.setActivePickarang(null);
 
-						owner.attackStrengthTicker = ticksSinceLastSwing;
+						((AccessorLivingEntity) owner).quark$attackStrengthTicker(ticksSinceLastSwing);
 
 						setStack(owner.getMainHandItem());
 						owner.setItemInHand(InteractionHand.MAIN_HAND, prev);

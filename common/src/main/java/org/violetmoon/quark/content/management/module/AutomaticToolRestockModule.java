@@ -11,11 +11,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 import org.violetmoon.quark.api.event.GatherToolClassesEvent;
@@ -31,6 +26,7 @@ import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.RegistryUtil;
+import org.violetmoon.zeta.util.ZetaToolActions;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -38,16 +34,17 @@ import java.util.function.Predicate;
 @ZetaLoadModule(category = "management", antiOverlap = "inventorytweaks")
 public class AutomaticToolRestockModule extends ZetaModule {
 
-	private static final Map<ToolAction, String> ACTION_TO_CLASS = new HashMap<>();
+	private static final Map<ZetaToolActions.ZetaToolAction, String> ACTION_TO_CLASS = new HashMap<>();
 
 	static {
-		ACTION_TO_CLASS.put(ToolActions.AXE_DIG, "axe");
-		ACTION_TO_CLASS.put(ToolActions.HOE_DIG, "hoe");
-		ACTION_TO_CLASS.put(ToolActions.SHOVEL_DIG, "shovel");
-		ACTION_TO_CLASS.put(ToolActions.PICKAXE_DIG, "pickaxe");
-		ACTION_TO_CLASS.put(ToolActions.SWORD_SWEEP, "sword");
-		ACTION_TO_CLASS.put(ToolActions.SHEARS_HARVEST, "shears");
-		ACTION_TO_CLASS.put(ToolActions.FISHING_ROD_CAST, "fishing_rod");
+		//fixme
+//		ACTION_TO_CLASS.put(ZetaToolActions.TOOL_DIG, "axe");
+//		ACTION_TO_CLASS.put(ZetaToolActions.TOOL_DIG, "hoe");
+//		ACTION_TO_CLASS.put(ZetaToolActions.TOOL_DIG, "shovel");
+//		ACTION_TO_CLASS.put(ZetaToolActions.TOOL_DIG, "pickaxe");
+//		ACTION_TO_CLASS.put(ZetaToolActions.TOOL_DIG, "sword");
+		ACTION_TO_CLASS.put(ZetaToolActions.SHEARS_HARVEST, "shears");
+		ACTION_TO_CLASS.put(ZetaToolActions.CAST_ROD, "fishing_rod");
 	}
 
 	private static final WeakHashMap<Player, Stack<QueuedRestock>> replacements = new WeakHashMap<>();

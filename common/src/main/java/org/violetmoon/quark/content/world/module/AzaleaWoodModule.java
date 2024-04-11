@@ -7,9 +7,9 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.material.MapColor;
-
 import org.violetmoon.quark.base.handler.WoodSetHandler;
 import org.violetmoon.quark.base.handler.WoodSetHandler.WoodSet;
+import org.violetmoon.quark.mixin.mixins.accessor.AccessorTreeConfiguration;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZAddReloadListener;
 import org.violetmoon.zeta.event.load.ZRegister;
@@ -37,9 +37,9 @@ public class AzaleaWoodModule extends ZetaModule {
 			return; // Maybe we interacted with the RegistryAccess too early?
 
 		if(enabled)
-			treeConfig.trunkProvider = BlockStateProvider.simple(woodSet.log);
+			((AccessorTreeConfiguration) treeConfig).quark$trunkProvider(BlockStateProvider.simple(woodSet.log));
 		else
-			treeConfig.trunkProvider = BlockStateProvider.simple(Blocks.OAK_LOG);
+			((AccessorTreeConfiguration) treeConfig).quark$trunkProvider(BlockStateProvider.simple(Blocks.OAK_LOG));
 	}
 
 }
