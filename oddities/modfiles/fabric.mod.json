@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "quarkoddities",
+  "version": "1.20.1",
+  "name": "Quark Oddities",
+  "authors": [
+    "Vazkii",
+    "WireSegal",
+    "MCVinnyq",
+    "Sully"
+  ],
+  "contact": {
+    "sources": "https://github.com/Vazkii/Quark",
+    "issues": "https://github.com/Vazkii/Quark/issues"
+  },
+  "license": "https://github.com/Vazkii/Quark/blob/master/LICENSE.md",
+  "environment": "*",
+  "depends": {
+    "quark": "*"
+  }
+}

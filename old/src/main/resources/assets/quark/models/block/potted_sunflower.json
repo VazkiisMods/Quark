@@ -1,0 +1,101 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"2": "quark:block/potted/sunflower",
+		"particle": "block/flower_pot",
+		"flowerpot": "block/flower_pot",
+		"dirt": "block/dirt"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [6, 6, 11],
+			"faces": {
+				"north": {"uv": [10, 10, 11, 16], "texture": "#flowerpot"},
+				"east": {"uv": [5, 10, 11, 16], "texture": "#flowerpot"},
+				"south": {"uv": [5, 10, 6, 16], "texture": "#flowerpot"},
+				"west": {"uv": [5, 10, 11, 16], "texture": "#flowerpot"},
+				"up": {"uv": [5, 5, 6, 11], "texture": "#flowerpot"},
+				"down": {"uv": [5, 5, 6, 11], "texture": "#flowerpot", "cullface": "down"}
+			}
+		},
+		{
+			"from": [10, 0, 5],
+			"to": [11, 6, 11],
+			"faces": {
+				"north": {"uv": [5, 10, 6, 16], "texture": "#flowerpot"},
+				"east": {"uv": [5, 10, 11, 16], "texture": "#flowerpot"},
+				"south": {"uv": [10, 10, 11, 16], "texture": "#flowerpot"},
+				"west": {"uv": [5, 10, 11, 16], "texture": "#flowerpot"},
+				"up": {"uv": [10, 5, 11, 11], "texture": "#flowerpot"},
+				"down": {"uv": [10, 5, 11, 11], "texture": "#flowerpot", "cullface": "down"}
+			}
+		},
+		{
+			"from": [6, 0, 5],
+			"to": [10, 6, 6],
+			"faces": {
+				"north": {"uv": [6, 10, 10, 16], "texture": "#flowerpot"},
+				"south": {"uv": [6, 10, 10, 16], "texture": "#flowerpot"},
+				"up": {"uv": [6, 5, 10, 6], "texture": "#flowerpot"},
+				"down": {"uv": [6, 10, 10, 11], "texture": "#flowerpot", "cullface": "down"}
+			}
+		},
+		{
+			"from": [6, 0, 10],
+			"to": [10, 6, 11],
+			"faces": {
+				"north": {"uv": [6, 10, 10, 16], "texture": "#flowerpot"},
+				"south": {"uv": [6, 10, 10, 16], "texture": "#flowerpot"},
+				"up": {"uv": [6, 10, 10, 11], "texture": "#flowerpot"},
+				"down": {"uv": [6, 5, 10, 6], "texture": "#flowerpot", "cullface": "down"}
+			}
+		},
+		{
+			"from": [6, 0, 6],
+			"to": [10, 4, 10],
+			"faces": {
+				"down": {"uv": [6, 12, 10, 16], "texture": "#flowerpot", "cullface": "down"},
+				"up": {"uv": [6, 6, 10, 10], "texture": "#dirt"}
+			}
+		},
+		{
+			"from": [4, 4, 8],
+			"to": [12, 12, 8],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [4, 8, 12, 16], "texture": "#2"},
+				"south": {"uv": [4, 8, 12, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [4, 4, 8],
+			"to": [12, 12, 8],
+			"shade": false,
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [4, 8, 12, 16], "texture": "#2"},
+				"south": {"uv": [4, 8, 12, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [8.75, 10, 6],
+			"to": [8.75, 14, 10],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 12, 7.5]},
+			"faces": {
+				"east": {"uv": [12, 8, 16, 12], "texture": "#2"},
+				"west": {"uv": [12, 12, 16, 16], "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "potted_sunflower",
+			"origin": [8, 8, 8],
+			"children": [0, 1, 2, 3, 4, 5, 6, 7]
+		}
+	]
+}

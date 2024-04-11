@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "quark",
+  "version": "${version}",
+
+  "name": "Quark",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.violetmoon.quark.fabric.QuarkFabric"
+    ]
+  },
+  "mixins": [
+    "quark.mixins.json",
+    "quark-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.9",
+    "minecraft": ">=1.20.1"
+  }
+}

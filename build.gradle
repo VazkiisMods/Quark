@@ -1,291 +1,51 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://repo.spongepowered.org/maven' }
-        maven { url = 'https://maven.parchmentmc.org' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1+', changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
-        classpath group: 'org.parchmentmc.librarian.forgegradle', name: 'org.parchmentmc.librarian.forgegradle.gradle.plugin', version: '1.+'
-    }
-}
-
 plugins {
-	id 'com.diffplug.spotless' version '6.22.0'
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.3-SNAPSHOT" apply false
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-apply plugin: 'pmd'
-
-jarJar.enable()
-
-ext.configFile = file('build.properties')
-ext.depsFile = file('dependencies.properties')
-ext.config = parseConfig(configFile)
-ext.deps = parseConfig(depsFile)
-
-version = "${config.version}-${config.build_number}"
-group = "org.violetmoon.${config.mod_id}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = config.mod_name
-
-compileJava.options.compilerArgs << "-Xlint:all,-classfile,-processing,-deprecation"
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-
-if (System.getenv('BUILD_NUMBER') != null) {
-    version += "." + System.getenv('BUILD_NUMBER')
+architectury {
+    minecraft = rootProject.minecraft_version
 }
 
-minecraft {
-    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+subprojects {
+    apply plugin: "dev.architectury.loom"
 
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    loom {
+        silentMojangMappingsLicense()
+    }
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
-    runs {
-        configureEach {
-            property "mixin.debug.export", "true"
-            mods {
-                quark {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        client {
-            workingDirectory project.file('run')
-        }
-
-        server {
-            workingDirectory project.file('runServer')
-        }
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        // The following line declares the mojmap mappings, you may use other mappings as well
+        mappings loom.officialMojangMappings()
+        // The following line declares the yarn mappings you may select this one as well.
+        // mappings "net.fabricmc:yarn:@YARN_MAPPINGS@:v2"
     }
 }
 
-mixin {
-    add sourceSets.main, 'quark.mixins.refmap.json'
-    config 'quark.mixins.json'
-    config 'quark_integrations.mixins.json'
-}
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
 
-repositories {
-    maven {
-        // for Zeta
-        name "blamejared"
-        url "https://maven.blamejared.com"
-    }
-    maven {
-        name "TerraformersMC"
-        url "https://maven.terraformersmc.com"
-    }
-    maven {
-        name "cursemaven"
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
-    maven { // Curios api
-        url = "https://maven.theillusivec4.top/"
-    }
-
-    maven {
-        name "jitpack"
-        url "https://jitpack.io"
-    }
-}
-
-dependencies {
-    minecraft "net.minecraftforge:forge:${config.mc_version}-${deps.forge}"
-
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.2"))
-    implementation("io.github.llamalad7:mixinextras-forge:0.3.2")
-
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
-    runtimeOnly fg.deobf("dev.emi:emi-forge:${deps.emi}")
-    runtimeOnly fg.deobf("curse.maven:spark-361579:${deps.spark}")
-
-    implementation fg.deobf("org.violetmoon.zeta:Zeta:${deps.zeta}")
-    implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:${deps.terrablender}")
-    implementation fg.deobf("curse.maven:jei-238222:${deps.jei}")
-    implementation fg.deobf("curse.maven:flan-forge-493246:${deps.flan}")
-    implementation fg.deobf("curse.maven:lootr-361276:${deps.lootr}")
-    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:4689010")
-
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${deps.curios}")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${deps.curios}:api")
-}
-
-spotless {
-    enforceCheck = false // workaround around jenkins having wrong line endings in some files
-    java {
-        target project.fileTree(dir: 'src/main/java/org/violetmoon/quark', include: '**/*.java')
-        //indentWithTabs()
-        eclipse().configFile 'spotless/eclipseformat.xml'
-        removeUnusedImports()
-        importOrderFile 'spotless/eclipse.importorder'
-        replaceRegex 'Too much space after if', '(if|for|while|switch) +\\(', '$1('
-    }
-}
-
-pmd {
-    toolVersion '6.42.0'
-    incrementalAnalysis.set(true)
-    ruleSets.clear()
-    ruleSetFiles = files("spotless/pmd-ruleset.xml")
-}
-
-task checkSyntax (group: "verification") {
-    // Replace the following line when Spotless is setup
-    //dependsOn spotlessJavaCheck, pmdMain
-    dependsOn pmdMain
-}
-
-processResources {
-    // copy everything excluding psd files
-    from(sourceSets.main.resources.srcDirs) {
-        exclude '**/psd/**'
-        duplicatesStrategy 'include'
-    }
-
-/*
-    TODO: figure out a way to bring this back while keeping
-    the standard file.version format
-    
-    // Formats 1.0-13.58 to 1.0-13 (removes the build number)
-    String zetaVer = deps.zeta.substring(0, deps.zeta.lastIndexOf('.'))
-    String curiosVer = deps.curios;
-    String versionStr = version as String;
-
-    file = new Object() {
-        String version = versionStr;
-    };
-
-    Map<String, String> properties = Map.of(
-            "zeta_ver", zetaVer,
-            "curios_ver", curiosVer,
-            "file", file
-    )
-
-    properties.forEach((k, v) -> inputs.property(k, v))
-
-    filesMatching("META-INF/mods.toml") {
-        expand properties
-    }
-*/
-}
-
-def parseConfig(File config) {
-    config.withReader {
-        def prop = new Properties()
-        prop.load(it)
-        return (new ConfigSlurper().parse(prop))
-    }
-}
-
-jar {
-    classifier "pure" // Jar without jar-in-jar
-
-     manifest {
-        attributes([
-            "Specification-Title": "${config.mod_id}",
-            "Specification-Vendor": "vazkii",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": "${config.mod_id}",
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"vazkii",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs": "quark.mixins.json,quark_integrations.mixins.json"
-        ])
-    }
-
-    exclude "**/*.bat"
-    exclude "**/*.psd"
-    exclude "**/*.exe"
-    exclude "**/unused"
-    exclude "**/genscripts"
-}
-
-task sourcesJar(type: Jar) {
-    classifier "sources"
-    from sourceSets.main.allJava
-}
-
-task deobfJar(type: Jar) {
-    classifier "deobf"
-    from sourceSets.main.output
-}
-
-tasks.jarJar.configure {
-    classifier "" // "Main" jar should be the one with jar-in-jar
-
-    exclude "**/*.bat"
-    exclude "**/*.psd"
-    exclude "**/*.exe"
-    exclude "**/unused"
-    exclude "**/genscripts"
-}
-
-artifacts {
-    archives sourcesJar
-    archives deobfJar
-}
-
-publish.dependsOn(project.tasks.getByName("assemble"))
-publish.mustRunAfter(project.tasks.getByName("build"))
-
-publishing {
-
-    publications {
-
-        mavenJava(MavenPublication) {
-
-            groupId project.group
-            artifactId project.archivesBaseName
-            version project.version
-            from components.java
-
-            // Allows the maven pom file to be modified.
-            pom.withXml {
-
-                // Go through all the dependencies.
-                asNode().dependencies.dependency.each { dep ->
-
-                    println 'Surpressing artifact ' + dep.artifactId.last().value().last() + ' from maven dependencies.'
-                    assert dep.parent().remove(dep)
-                }
-            }
-
-            artifact sourcesJar {
-                classifier 'sources'
-            }
-
-            jarJar.component(it)
-        }
-    }
+    archivesBaseName = rootProject.archives_base_name
+    version = rootProject.mod_version
+    group = rootProject.maven_group
 
     repositories {
-        maven {
-            url "file://" + System.getenv("local_maven")
-        }
-
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
     }
-}
 
-// Disables Gradle's custom module metadata from being published to maven. The
-// metadata includes mapped dependencies which are not reasonably consumable by
-// other mod developers.
-tasks.withType(GenerateModuleMetadata) {
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release.set(17)
+    }
 
-    enabled = false
+    java {
+        withSourcesJar()
+    }
 }
