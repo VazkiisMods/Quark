@@ -27,6 +27,7 @@ subprojects {
                 includeGroup "org.quiltmc"
             }
         }
+        maven { url = "https://maven.ithundxr.dev/hidden" } // Zeta from xplat-maven branch
     }
 
     dependencies {
