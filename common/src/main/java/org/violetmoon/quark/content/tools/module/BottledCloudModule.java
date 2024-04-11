@@ -15,6 +15,7 @@ import org.violetmoon.quark.content.tools.block.CloudBlock;
 import org.violetmoon.quark.content.tools.block.be.CloudBlockEntity;
 import org.violetmoon.quark.content.tools.client.render.be.CloudRenderer;
 import org.violetmoon.quark.content.tools.item.BottledCloudItem;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorBlockEntityRenderers;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -68,7 +69,7 @@ public class BottledCloudModule extends ZetaModule {
 	public static class Client extends BottledCloudModule {
 		@LoadEvent
 		public final void clientSetup(ZClientSetup event) {
-			BlockEntityRenderers.register(blockEntityType, CloudRenderer::new);
+			AccessorBlockEntityRenderers.quark$register(blockEntityType, CloudRenderer::new);
 		}
 
 	}

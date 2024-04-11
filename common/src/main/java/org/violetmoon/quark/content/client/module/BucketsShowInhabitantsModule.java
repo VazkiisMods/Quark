@@ -2,8 +2,7 @@ package org.violetmoon.quark.content.client.module;
 
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.item.ItemPropertyFunction;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
@@ -13,16 +12,15 @@ import net.minecraft.world.entity.animal.axolotl.Axolotl;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.content.mobs.entity.Crab;
 import org.violetmoon.quark.content.mobs.module.CrabsModule;
 import org.violetmoon.quark.content.tools.item.SlimeInABucketItem;
 import org.violetmoon.quark.content.tools.module.SlimeInABucketModule;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorItemProperties;
 import org.violetmoon.zeta.client.event.load.ZAddItemColorHandlers;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.config.Config;
@@ -74,7 +72,7 @@ public class BucketsShowInhabitantsModule extends ZetaModule {
 			evt.register(new TropicalFishBucketColor(parent, () -> showTropicalFish), Items.TROPICAL_FISH_BUCKET);
 		}
 
-		private class MobBucketVariantProperty implements ItemPropertyFunction {
+		private class MobBucketVariantProperty implements ClampedItemPropertyFunction {
 
 			private final int maxVariants;
 			private final BooleanSupplier featureEnabled;
@@ -85,15 +83,15 @@ public class BucketsShowInhabitantsModule extends ZetaModule {
 			}
 
 			@Override
-			public float call(@NotNull ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int id) {
+			public float unclampedCall(ItemStack itemStack, @Nullable ClientLevel clientLevel, @Nullable LivingEntity livingEntity, int i) {
 				if(!enabled || !featureEnabled.getAsBoolean())
 					return 0;
 
-				return ItemNBTHelper.getInt(stack, Axolotl.VARIANT_TAG, 0) % maxVariants;
+				return ItemNBTHelper.getInt(itemStack, Axolotl.VARIANT_TAG, 0) % maxVariants;
 			}
 		}
 
-		private class ShinyMobBucketProperty implements ItemPropertyFunction {
+		private class ShinyMobBucketProperty implements ClampedItemPropertyFunction {
 
 			private final BooleanSupplier featureEnabled;
 
@@ -102,11 +100,11 @@ public class BucketsShowInhabitantsModule extends ZetaModule {
 			}
 
 			@Override
-			public float call(@NotNull ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int id) {
+			public float unclampedCall(ItemStack itemStack, @Nullable ClientLevel clientLevel, @Nullable LivingEntity livingEntity, int i) {
 				if(!enabled || !featureEnabled.getAsBoolean())
 					return 0;
 
-				CompoundTag data = ItemNBTHelper.getCompound(stack, SlimeInABucketItem.TAG_ENTITY_DATA, true);
+				CompoundTag data = ItemNBTHelper.getCompound(itemStack, SlimeInABucketItem.TAG_ENTITY_DATA, true);
 				if(data != null && data.hasUUID("UUID")) {
 					UUID uuid = data.getUUID("UUID");
 					if(VariantAnimalTexturesModule.Client.isShiny(uuid))
@@ -117,7 +115,7 @@ public class BucketsShowInhabitantsModule extends ZetaModule {
 			}
 		}
 
-		private class TropicalFishBucketVariantProperty implements ItemPropertyFunction {
+		private class TropicalFishBucketVariantProperty implements ClampedItemPropertyFunction {
 
 			private final IntUnaryOperator extractor;
 			private final BooleanSupplier featureEnabled;
@@ -128,11 +126,11 @@ public class BucketsShowInhabitantsModule extends ZetaModule {
 			}
 
 			@Override
-			public float call(@NotNull ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int id) {
+			public float unclampedCall(ItemStack itemStack, @Nullable ClientLevel clientLevel, @Nullable LivingEntity livingEntity, int i) {
 				if(!enabled || !featureEnabled.getAsBoolean())
 					return 0;
 
-				CompoundTag tag = stack.getTag();
+				CompoundTag tag = itemStack.getTag();
 				if(tag != null && tag.contains(TropicalFish.BUCKET_VARIANT_TAG, Tag.TAG_INT)) {
 					int variant = tag.getInt(TropicalFish.BUCKET_VARIANT_TAG);
 					return extractor.applyAsInt(variant) + 1;
