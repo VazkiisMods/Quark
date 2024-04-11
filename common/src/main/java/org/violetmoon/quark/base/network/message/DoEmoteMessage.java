@@ -3,8 +3,6 @@ package org.violetmoon.quark.base.network.message;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import org.violetmoon.quark.content.tweaks.client.emote.EmoteHandler;
 import org.violetmoon.zeta.network.IZetaMessage;
@@ -31,7 +29,7 @@ public class DoEmoteMessage implements IZetaMessage {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+
 	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> {
 			Level world = Minecraft.getInstance().level;

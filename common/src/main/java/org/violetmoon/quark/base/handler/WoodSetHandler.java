@@ -1,13 +1,22 @@
 package org.violetmoon.quark.base.handler;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Stream;
-
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.Direction;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.PressurePlateBlock.Sensitivity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraftforge.common.ToolActions;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.client.render.QuarkBoatRenderer;
 import org.violetmoon.quark.base.item.boat.QuarkBoat;
@@ -18,26 +27,10 @@ import org.violetmoon.quark.content.building.block.HollowLogBlock;
 import org.violetmoon.quark.content.building.block.VariantBookshelfBlock;
 import org.violetmoon.quark.content.building.block.VariantLadderBlock;
 import org.violetmoon.quark.content.building.block.WoodPostBlock;
-import org.violetmoon.quark.content.building.module.HollowLogsModule;
-import org.violetmoon.quark.content.building.module.VariantBookshelvesModule;
-import org.violetmoon.quark.content.building.module.VariantChestsModule;
-import org.violetmoon.quark.content.building.module.VariantLaddersModule;
-import org.violetmoon.quark.content.building.module.VerticalPlanksModule;
-import org.violetmoon.quark.content.building.module.WoodenPostsModule;
-import org.violetmoon.zeta.block.IZetaBlock;
-import org.violetmoon.zeta.block.OldMaterials;
-import org.violetmoon.zeta.block.ZetaBlock;
-import org.violetmoon.zeta.block.ZetaCeilingHangingSignBlock;
-import org.violetmoon.zeta.block.ZetaDoorBlock;
-import org.violetmoon.zeta.block.ZetaFenceBlock;
-import org.violetmoon.zeta.block.ZetaFenceGateBlock;
-import org.violetmoon.zeta.block.ZetaPillarBlock;
-import org.violetmoon.zeta.block.ZetaPressurePlateBlock;
-import org.violetmoon.zeta.block.ZetaStandingSignBlock;
-import org.violetmoon.zeta.block.ZetaTrapdoorBlock;
-import org.violetmoon.zeta.block.ZetaWallHangingSignBlock;
-import org.violetmoon.zeta.block.ZetaWallSignBlock;
-import org.violetmoon.zeta.block.ZetaWoodenButtonBlock;
+import org.violetmoon.quark.content.building.module.*;
+import org.violetmoon.quark.mixin.mixins.accessor.AccessorBlockEntityType;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorEntityRenderers;
+import org.violetmoon.zeta.block.*;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.load.ZCommonSetup;
@@ -47,30 +40,11 @@ import org.violetmoon.zeta.item.ZetaSignItem;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.CreativeTabManager;
 import org.violetmoon.zeta.util.BooleanSuppliers;
+import org.violetmoon.zeta.util.ZetaToolActions;
 import org.violetmoon.zeta.util.handler.ToolInteractionHandler;
 
-import com.google.common.collect.ImmutableSet;
-
-import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Direction;
-import net.minecraft.core.dispenser.DispenseItemBehavior;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.world.level.block.PressurePlateBlock.Sensitivity;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraftforge.common.ToolActions;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class WoodSetHandler {
 
@@ -172,9 +146,9 @@ public class WoodSetHandler {
 
 		makeSignWork(set.sign, set.wallSign, set.ceilingHangingSign, set.wallHangingSign);
 
-		ToolInteractionHandler.registerInteraction(ToolActions.AXE_STRIP, set.log, set.strippedLog);
-		ToolInteractionHandler.registerInteraction(ToolActions.AXE_STRIP, set.wood, set.strippedWood);
-		ToolInteractionHandler.registerInteraction(ToolActions.AXE_STRIP, set.post, set.strippedPost);
+		ToolInteractionHandler.registerInteraction(ZetaToolActions.AXE_STRIP, set.log, set.strippedLog);
+		ToolInteractionHandler.registerInteraction(ZetaToolActions.AXE_STRIP, set.wood, set.strippedWood);
+		ToolInteractionHandler.registerInteraction(ZetaToolActions.AXE_STRIP, set.post, set.strippedPost);
 
 		VariantLaddersModule.variantLadders.add(set.ladder);
 
@@ -192,14 +166,14 @@ public class WoodSetHandler {
 		Set<Block> validBlocks = new HashSet<>();
 		validBlocks.add(sign);
 		validBlocks.add(wallSign);
-		validBlocks.addAll(BlockEntityType.SIGN.validBlocks);
-		BlockEntityType.SIGN.validBlocks = ImmutableSet.copyOf(validBlocks);
+		validBlocks.addAll(((AccessorBlockEntityType) BlockEntityType.SIGN).quark$validBlocks());
+		((AccessorBlockEntityType) BlockEntityType.SIGN).quark$validBlocks(ImmutableSet.copyOf(validBlocks));
 
 		validBlocks.clear();
 		validBlocks.add(hangingSign);
 		validBlocks.add(wallHangingSign);
-		validBlocks.addAll(BlockEntityType.HANGING_SIGN.validBlocks);
-		BlockEntityType.HANGING_SIGN.validBlocks = ImmutableSet.copyOf(validBlocks);
+		validBlocks.addAll(((AccessorBlockEntityType) BlockEntityType.HANGING_SIGN).quark$validBlocks());
+		((AccessorBlockEntityType) BlockEntityType.HANGING_SIGN).quark$validBlocks(ImmutableSet.copyOf(validBlocks));
 	}
 
 	private static ZetaPillarBlock log(String name, ZetaModule module, MapColor topColor, MapColor sideColor) {
@@ -246,8 +220,8 @@ public class WoodSetHandler {
 	public static class Client {
 		@LoadEvent
 		public static void clientSetup(ZClientSetup event) {
-			EntityRenderers.register(quarkBoatEntityType, r -> new QuarkBoatRenderer(r, false));
-			EntityRenderers.register(quarkChestBoatEntityType, r -> new QuarkBoatRenderer(r, true));
+			AccessorEntityRenderers.quark$register(quarkBoatEntityType, r -> new QuarkBoatRenderer(r, false));
+			AccessorEntityRenderers.quark$register(quarkChestBoatEntityType, r -> new QuarkBoatRenderer(r, true));
 
 			event.enqueueWork(() -> {
 				for(WoodSet set : woodSets) {

@@ -374,7 +374,7 @@ public class PathfindersQuillItem extends ZetaItem implements CreativeTabManager
 		return stack;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@Environment(EnvType.CLIENT)
 	public static MutableComponent getSearchingComponent() {
 		MutableComponent comp = Component.translatable("quark.misc.quill_searching");
 
@@ -409,7 +409,7 @@ public class PathfindersQuillItem extends ZetaItem implements CreativeTabManager
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@Environment(EnvType.CLIENT)
 	public void appendHoverText(ItemStack stack, Level level, List<Component> comps, TooltipFlag flags) {
 		ResourceLocation biome = this.getTarget(stack);
 		if(biome != null) {

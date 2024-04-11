@@ -2,14 +2,14 @@ package org.violetmoon.quark.base.handler;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-
 import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorAbstractClientPlayer;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorPlayerInfo;
 import org.violetmoon.zeta.client.event.play.ZRenderPlayer;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
@@ -131,8 +131,8 @@ public class ContributorRewardHandler {
 			String uuid = player.getUUID().toString();
 			if(player instanceof AbstractClientPlayer clientPlayer && DEV_UUID.contains(uuid) && !done.contains(uuid)) {
 				if(clientPlayer.isCapeLoaded()) {
-					PlayerInfo info = clientPlayer.playerInfo;
-					Map<MinecraftProfileTexture.Type, ResourceLocation> textures = info.textureLocations;
+					PlayerInfo info = ((AccessorAbstractClientPlayer) clientPlayer).quark$playerInfo();
+					Map<MinecraftProfileTexture.Type, ResourceLocation> textures = ((AccessorPlayerInfo) info).quark$textureLocations();
 					ResourceLocation loc = new ResourceLocation("quark", "textures/misc/dev_cape.png");
 					textures.put(MinecraftProfileTexture.Type.CAPE, loc);
 					textures.put(MinecraftProfileTexture.Type.ELYTRA, loc);

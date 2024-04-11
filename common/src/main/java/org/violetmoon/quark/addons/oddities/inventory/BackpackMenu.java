@@ -8,24 +8,27 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.addons.oddities.inventory.slot.BackpackSlot;
 import org.violetmoon.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 import org.violetmoon.quark.base.util.InventoryIIH;
+import org.violetmoon.quark.mixin.mixins.accessor.AccessorAbstractContainerMenu;
+import org.violetmoon.quark.mixin.mixins.accessor.AccessorSlot;
 
 public class BackpackMenu extends InventoryMenu {
 
 	public BackpackMenu(int windowId, Player player) {
 		super(player.getInventory(), !player.level().isClientSide, player);
-		this.containerId = windowId;
+		((AccessorAbstractContainerMenu) this).quark$qontainerId(windowId);
 
 		Inventory inventory = player.getInventory();
 		for(Slot slot : slots)
-			if(slot.container == inventory && slot.getSlotIndex() < inventory.getContainerSize() - 5)
-				slot.y += 58;
+			if(slot.container == inventory && slot.getSlotIndex() < inventory.getContainerSize() - 5) {
+				AccessorSlot accessorSlot = ((AccessorSlot) slot);
+
+				accessorSlot.quark$y(accessorSlot.quark$y() + 58);
+			}
 
 		Slot anchor = slots.get(9);
 		int left = anchor.x;
@@ -207,7 +210,7 @@ public class BackpackMenu extends InventoryMenu {
 
 	@Override
 	public @NotNull MenuType<?> getType() {
-		return BackpackModule.menyType;
+		return BackpackModule.menuType;
 	}
 
 }

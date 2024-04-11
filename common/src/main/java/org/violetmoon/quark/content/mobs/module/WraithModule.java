@@ -2,7 +2,6 @@ package org.violetmoon.quark.content.mobs.module;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -21,6 +20,7 @@ import org.violetmoon.quark.content.mobs.client.render.entity.WraithRenderer;
 import org.violetmoon.quark.content.mobs.entity.SoulBead;
 import org.violetmoon.quark.content.mobs.entity.Wraith;
 import org.violetmoon.quark.content.mobs.item.SoulBeadItem;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorEntityRenderers;
 import org.violetmoon.zeta.advancement.modifier.MonsterHunterModifier;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.config.Config;
@@ -116,14 +116,14 @@ public class WraithModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		wraithSpawnableTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "wraith_spawnable"));
+		wraithSpawnableTag = TagKey.create(Registries.BLOCK, new ResourceLocation(Quark.MOD_ID, "wraith_spawnable"));
 		soulBeadTargetTag = TagKey.create(Registries.STRUCTURE, new ResourceLocation(Quark.MOD_ID, "soul_bead_target"));
 	}
 
 	@LoadEvent
 	public final void clientSetup(ZClientSetup event) {
-		EntityRenderers.register(wraithType, WraithRenderer::new);
-		EntityRenderers.register(soulBeadType, SoulBeadRenderer::new);
+		AccessorEntityRenderers.quark$register(wraithType, WraithRenderer::new);
+		AccessorEntityRenderers.quark$register(soulBeadType, SoulBeadRenderer::new);
 	}
 
 	@LoadEvent

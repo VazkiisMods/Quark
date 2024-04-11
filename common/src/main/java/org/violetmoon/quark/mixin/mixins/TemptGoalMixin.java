@@ -25,7 +25,7 @@ public class TemptGoalMixin {
 
 	@Shadow
 	@Final
-	public PathfinderMob mob;
+    protected PathfinderMob mob;
 
 	@Inject(method = "canUse", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/ai/goal/TemptGoal;player:Lnet/minecraft/world/entity/player/Player;", ordinal = 0, shift = At.Shift.AFTER))
 	private void findTroughs(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {

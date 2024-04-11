@@ -1,30 +1,27 @@
 package org.violetmoon.quark.content.tweaks.client.item;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.item.ItemPropertyFunction;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import org.violetmoon.quark.content.tweaks.module.CompassesWorkEverywhereModule;
 
-@OnlyIn(Dist.CLIENT)
-public class ClockTimePropertyFunction implements ItemPropertyFunction {
+@Environment(EnvType.CLIENT)
+public class ClockTimePropertyFunction implements ClampedItemPropertyFunction {
 
 	private double rotation;
 	private double rota;
 	private long lastUpdateTick;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
-	public float call(@NotNull ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int id) {
+	@Environment(EnvType.CLIENT)
+	public float unclampedCall(ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int i) {
 		if(!CompassesWorkEverywhereModule.isClockCalculated(stack))
 			return 0F;
 

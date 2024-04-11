@@ -1,9 +1,19 @@
 package org.violetmoon.quark.content.building.module;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.PipeBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import org.apache.commons.lang3.tuple.Pair;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.block.QuarkVerticalSlabBlock;
@@ -15,24 +25,12 @@ import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.util.ZetaToolActions;
 import org.violetmoon.zeta.util.handler.ToolInteractionHandler;
 
-import com.google.common.collect.ImmutableSet;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.PipeBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraftforge.common.ToolActions;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @ZetaLoadModule(category = "building")
 public class VerticalSlabsModule extends ZetaModule {
@@ -92,7 +90,7 @@ public class VerticalSlabsModule extends ZetaModule {
 			WeatheringCopperVerticalSlabBlock current = copperVerticalSlabs.get(i);
 			WeatheringCopperVerticalSlabBlock next = i < max - 1 ? copperVerticalSlabs.get(i + 1) : null;
 			if(prev != null) {
-				ToolInteractionHandler.registerInteraction(ToolActions.AXE_SCRAPE, current, prev);
+				ToolInteractionHandler.registerInteraction(ZetaToolActions.AXE_SCRAPE, current, prev);
 				current.prev = prev;
 			}
 			if(next != null)
@@ -110,7 +108,7 @@ public class VerticalSlabsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		verticalSlabTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "vertical_slabs"));
+		verticalSlabTag = TagKey.create(Registries.BLOCK, new ResourceLocation(Quark.MOD_ID, "vertical_slabs"));
 	}
 
 	@LoadEvent

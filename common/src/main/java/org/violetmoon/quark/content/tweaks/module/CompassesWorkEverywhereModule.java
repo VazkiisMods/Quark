@@ -15,6 +15,7 @@ import net.minecraft.world.level.dimension.LevelStem;
 
 import org.violetmoon.quark.content.tweaks.client.item.ClockTimePropertyFunction;
 import org.violetmoon.quark.content.tweaks.client.item.CompassAnglePropertyFunction;
+import org.violetmoon.quark.mixin.mixins.accessor.client.AccessorItemProperties;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -131,10 +132,10 @@ public class CompassesWorkEverywhereModule extends ZetaModule {
 					return;
 
 				if(enableCompassNerf || enableNether || enableEnd)
-					ItemProperties.register(Items.COMPASS, new ResourceLocation("angle"), new CompassAnglePropertyFunction());
+					AccessorItemProperties.quark$register(Items.COMPASS, new ResourceLocation("angle"), new CompassAnglePropertyFunction());
 
 				if(enableClockNerf)
-					ItemProperties.register(Items.CLOCK, new ResourceLocation("time"), new ClockTimePropertyFunction());
+					AccessorItemProperties.quark$register(Items.CLOCK, new ResourceLocation("time"), new ClockTimePropertyFunction());
 			});
 		}
 

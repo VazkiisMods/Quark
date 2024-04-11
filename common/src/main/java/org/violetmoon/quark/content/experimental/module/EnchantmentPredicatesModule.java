@@ -52,7 +52,7 @@ public class EnchantmentPredicatesModule extends ZetaModule {
 						ItemPropertyFunction fun = (stack, level, entity, i) -> EnchantmentHelper.getTagEnchantmentLevel(enchant, stack);
 
 						for(Item item : items)
-							ItemProperties.register(item, name, fun);
+							AccessorItemProperties.quark$register(item, name, fun);
 					}
 				});
 			}

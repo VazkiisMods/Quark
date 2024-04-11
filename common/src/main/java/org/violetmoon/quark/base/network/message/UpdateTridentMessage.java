@@ -29,7 +29,7 @@ public class UpdateTridentMessage implements IZetaMessage {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@Environment(EnvType.CLIENT)
 	public boolean receive(IZetaNetworkEventContext context) {
 		context.enqueueWork(() -> {
 			Level level = Minecraft.getInstance().level;

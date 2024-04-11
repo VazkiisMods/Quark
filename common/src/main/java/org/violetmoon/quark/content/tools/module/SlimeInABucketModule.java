@@ -78,7 +78,7 @@ public class SlimeInABucketModule extends ZetaModule {
 	public static class Client extends SlimeInABucketModule {
 		@LoadEvent
 		public void clientSetup(ZClientSetup event) {
-			event.enqueueWork(() -> ItemProperties.register(slime_in_a_bucket, new ResourceLocation("excited"),
+			event.enqueueWork(() -> AccessorItemProperties.quark$register(slime_in_a_bucket, new ResourceLocation("excited"),
 					(stack, world, e, id) -> ItemNBTHelper.getBoolean(stack, SlimeInABucketItem.TAG_EXCITED, false) ? 1 : 0));
 		}
 	}

@@ -11,7 +11,7 @@ The first module ported to `@ZetaLoadModule` is `DoubleDoorOpeningModule` if you
   * Other classes can be subscribed to the event bus with `.subscribe`.
 * **Client module replacements**.
   * On the client, if a class is annotated with `@ZetaLoadModule(clientReplacement = true)`, and the class extends another `ZetaModule`, the replacement module will load *instead* of its superclass.
-  * Since Fabric doesn't do side-stripping (the removal of things flagged `@OnlyIn(Dist.CLIENT)`), a client replacement module is the best place to put client-only code.
+  * Since Fabric doesn't do side-stripping (the removal of things flagged `@Environment(EnvType.CLIENT)`), a client replacement module is the best place to put client-only code.
   * Yeah it's hard to explain. See `DoubleDoorOpeningModule`. On the server `DoubleDoorOpeningModule` loads, and on the client `DoubleDoorOpeningModule$Client` loads.
 * **General notes**.
   * It is recommended to make fewer things `static`. It's easy to obtain module instances with `Quark.ZETA.modules.get`.
@@ -21,7 +21,7 @@ In the interim period, modules annotated with `@LoadModule` instead of the new `
 So tl;dr for zeta-fying a module:
 
 * swap LoadModule to ZetaLoadModule, remove hasSubscriptions/subscribeOn
-* move everything marked `@OnlyIn(Dist.CLIENT)` (and all `@SubscribeEvent`s if subscribeOn was formerly `Dist.CLIENT` only) into a client module replacement,
+* move everything marked `@Environment(EnvType.CLIENT)` (and all `@SubscribeEvent`s if subscribeOn was formerly `Dist.CLIENT` only) into a client module replacement,
 * create cross-platform versions of any missing `@SubscribeEvent`s in Zeta and subscribe to them with `@PlayEvent`,
 * remove all other mentions of Forge and add an appropriate indirection layer in Zeta.
 

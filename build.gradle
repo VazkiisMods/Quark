@@ -28,6 +28,7 @@ subprojects {
             }
         }
         maven { url = "https://maven.ithundxr.dev/hidden" } // Zeta from xplat-maven branch
+        maven { url = "https://maven.blamejared.com/" } // JEI
     }
 
     dependencies {

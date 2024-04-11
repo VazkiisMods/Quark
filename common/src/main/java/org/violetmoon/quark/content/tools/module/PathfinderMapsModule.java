@@ -368,7 +368,7 @@ public class PathfinderMapsModule extends ZetaModule {
 	public static class Client extends PathfinderMapsModule {
 		@LoadEvent
 		public void clientSetup(ZClientSetup e) {
-			e.enqueueWork(() -> ItemProperties.register(pathfinders_quill, new ResourceLocation("has_biome"),
+			e.enqueueWork(() -> AccessorItemProperties.quark$register(pathfinders_quill, new ResourceLocation("has_biome"),
 					(stack, world, entity, i) -> (PathfindersQuillItem.getTargetBiome(stack) != null) ? 1 : 0));
 		}
 

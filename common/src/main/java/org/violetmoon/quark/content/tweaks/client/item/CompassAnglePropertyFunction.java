@@ -27,14 +27,14 @@ import org.violetmoon.zeta.util.ItemNBTHelper;
 
 import java.util.Optional;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class CompassAnglePropertyFunction implements ItemPropertyFunction {
 
 	private final Angle normalAngle = new Angle();
 	private final Angle unknownAngle = new Angle();
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@Environment(EnvType.CLIENT)
 	public float call(@NotNull ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int id) {
 		if(entityIn == null && !stack.isFramed())
 			return 0F;
@@ -137,7 +137,7 @@ public class CompassAnglePropertyFunction implements ItemPropertyFunction {
 		return world.dimensionType().natural() ? world.getSharedSpawnPos() : null;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@Environment(EnvType.CLIENT)
 	private static class Angle {
 		private double rotation;
 		private double rota;
