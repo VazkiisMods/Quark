@@ -127,13 +127,16 @@ public class Wraith extends Zombie {
 
 	@Override
 	public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor worldIn, @Nonnull DifficultyInstance difficultyIn, @Nonnull MobSpawnType reason, SpawnGroupData spawnDataIn, CompoundTag dataTag) {
-		int idx = random.nextInt(WraithModule.validWraithSounds.size());
-		String sound = WraithModule.validWraithSounds.get(idx);
-		String[] split = sound.split("\\|");
-
-		entityData.set(IDLE_SOUND, split[0]);
-		entityData.set(HURT_SOUND, split[1]);
-		entityData.set(DEATH_SOUND, split[2]);
+		int wraithSoundsSize = WraithModule.validWraithSounds.size();
+		if(wraithSoundsSize > 0) {
+			int idx = random.nextInt(WraithModule.validWraithSounds.size());
+			String sound = WraithModule.validWraithSounds.get(idx);
+			String[] split = sound.split("\\|");
+	
+			entityData.set(IDLE_SOUND, split[0]);
+			entityData.set(HURT_SOUND, split[1]);
+			entityData.set(DEATH_SOUND, split[2]);
+		}
 
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
