@@ -1,30 +1,58 @@
 package org.violetmoon.quark.mixin.mixins;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
 import org.violetmoon.quark.content.tweaks.module.EnhancedLaddersModule;
 
 @Mixin(LadderBlock.class)
-public class LadderBlockMixin {
+public class LadderBlockMixin extends Block {
+	public LadderBlockMixin(Properties pProperties) {
+		super(pProperties);
+		throw new AssertionError("Mixin dummy constructor");
+	}
 
+	@ModifyReturnValue(method = "canSurvive", at = @At("RETURN"))
+	private boolean canSurviveTweak(boolean original, BlockState state, LevelReader level, BlockPos pos) {
+		return EnhancedLaddersModule.canSurviveTweak(original, state, level, pos);
+	}
 
-	@Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
-	private void canSurvive(BlockState state, LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if(EnhancedLaddersModule.canLadderSurvive(state, level, pos)) {
-			callbackInfoReturnable.setReturnValue(true);
-			callbackInfoReturnable.cancel();
+	/**
+	 * In vanilla, the only way to break a ladder is to break the block behind it. So in updateShape,
+	 * vanilla only does ladder canSurvive checks if the update came from behind. But with Quark's
+	 * freestanding ladder feature, it's possible to break a ladder by breaking a block *above* it.
+	 */
+	@Inject(method = "updateShape", at = @At(value = "HEAD"), cancellable = true)
+	private void updateShapeTweak(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos, CallbackInfoReturnable<BlockState> cir) {
+		if(EnhancedLaddersModule.staticEnabled && EnhancedLaddersModule.allowFreestanding && pFacing == Direction.UP) {
+			//This is just for fun. Makes the ladders break like bamboo instead of instantly.
+			pLevel.scheduleTick(pCurrentPos, (LadderBlock) (Object) this, 1);
+			cir.setReturnValue(pState);
 		}
 	}
 
+	@Override
+	public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+		if(EnhancedLaddersModule.staticEnabled && EnhancedLaddersModule.allowFreestanding && !pState.canSurvive(pLevel, pPos)) {
+			pLevel.destroyBlock(pPos, true);
+		}
+
+		super.tick(pState, pLevel, pPos, pRandom);
+	}
 }

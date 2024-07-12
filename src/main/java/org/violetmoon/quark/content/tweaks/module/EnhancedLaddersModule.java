@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Direction.Axis;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -21,13 +20,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -64,9 +63,11 @@ public class EnhancedLaddersModule extends ZetaModule {
 	@Config
 	public static boolean allowInventorySneak = true;
 
-	private static boolean staticEnabled;
+	public static boolean staticEnabled;
 	private static TagKey<Item> laddersTag;
 	private static TagKey<Block> laddersBlockTag;
+
+	private static final DirectionProperty FACING = LadderBlock.FACING;
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
@@ -106,35 +107,19 @@ public class EnhancedLaddersModule extends ZetaModule {
 			event.accept(item, comp);
 	}
 
-	private static boolean canAttachTo(BlockState state, Block ladder, LevelReader world, BlockPos pos, Direction facing) {
-		if(ladder instanceof LadderBlock) {
-			if(allowFreestanding)
-				return canLadderSurvive(state, world, pos);
+	// see LadderBlockMixin
+	public static boolean canSurviveTweak(boolean vanillaSurvive, BlockState state, LevelReader world, BlockPos pos) {
+		//With the freestanding feature enabled, ladders can survive if they are supported by a block (vanillaSurvive),
+		//or if they are underneath a ladder on the same wall.
+		if(vanillaSurvive)
+			return true;
 
-			BlockPos offset = pos.relative(facing);
-			BlockState blockstate = world.getBlockState(offset);
-			return !blockstate.isSignalSource() && blockstate.isFaceSturdy(world, offset, facing);
-		}
-
-		return false;
-	}
-
-	// replaces ladder survives logic
-	public static boolean canLadderSurvive(BlockState state, LevelReader world, BlockPos pos) {
-		if(!staticEnabled || !allowFreestanding)
+		if(!staticEnabled || !allowFreestanding || !state.is(laddersBlockTag) || !state.hasProperty(FACING))
 			return false;
-		if(!state.is(laddersBlockTag))return false;
 
-		Direction facing = state.getValue(LadderBlock.FACING);
-		Direction opposite = facing.getOpposite();
-		BlockPos oppositePos = pos.relative(opposite);
-		BlockState oppositeState = world.getBlockState(oppositePos);
-
-		boolean solid =  oppositeState.isFaceSturdy(world, oppositePos, facing) && !(oppositeState.getBlock() instanceof LadderBlock);
-		BlockState topState = world.getBlockState(pos.above());
-		return solid || (topState.getBlock() instanceof LadderBlock && (facing.getAxis() == Axis.Y || topState.getValue(LadderBlock.FACING) == facing));
+		BlockState aboveState = world.getBlockState(pos.above());
+		return aboveState.is(laddersBlockTag) && aboveState.hasProperty(FACING) && aboveState.getValue(FACING) == state.getValue(FACING);
 	}
-
 
 	@PlayEvent
 	public void onInteract(ZRightClickBlock event) {
@@ -164,8 +149,7 @@ public class EnhancedLaddersModule extends ZetaModule {
 					if(water || stateDown.isAir()) {
 						BlockState copyState = world.getBlockState(pos);
 
-						Direction facing = copyState.getValue(LadderBlock.FACING);
-						if(canAttachTo(copyState, block, world, posDown, facing.getOpposite())) {
+						if(copyState.canSurvive(world, posDown)) {
 							world.setBlockAndUpdate(posDown, copyState.setValue(BlockStateProperties.WATERLOGGED, water));
 							world.playSound(null, posDown.getX(), posDown.getY(), posDown.getZ(), SoundEvents.LADDER_PLACE, SoundSource.BLOCKS, 1F, 1F);
 
