@@ -40,7 +40,7 @@ public class LadderBlockMixin extends Block {
 	 */
 	@Inject(method = "updateShape", at = @At(value = "HEAD"), cancellable = true)
 	private void updateShapeTweak(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos, CallbackInfoReturnable<BlockState> cir) {
-		if(EnhancedLaddersModule.staticEnabled && EnhancedLaddersModule.allowFreestanding && pFacing == Direction.UP) {
+		if(EnhancedLaddersModule.shouldDoUpdateShapeTweak(pState) && pFacing == Direction.UP) {
 			//This is just for fun. Makes the ladders break like bamboo instead of instantly.
 			pLevel.scheduleTick(pCurrentPos, (LadderBlock) (Object) this, 1);
 			cir.setReturnValue(pState);
@@ -49,7 +49,7 @@ public class LadderBlockMixin extends Block {
 
 	@Override
 	public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-		if(EnhancedLaddersModule.staticEnabled && EnhancedLaddersModule.allowFreestanding && !pState.canSurvive(pLevel, pPos)) {
+		if(EnhancedLaddersModule.shouldDoUpdateShapeTweak(pState) && !pState.canSurvive(pLevel, pPos)) {
 			pLevel.destroyBlock(pPos, true);
 		}
 

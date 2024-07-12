@@ -1,3 +1,4 @@
 - Fallen logs can rarely spawn on water
 - Fallen logs can no longer spawn on ice and other non terrain blocks (added tag for them)
 - Fallen log decoration (moss and vines) are now biome temperature and humidify dependent. No more moss in snowy biomes
+- Freestanding ladders will now break off the wall when you break the top block

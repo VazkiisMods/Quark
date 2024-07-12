@@ -121,6 +121,10 @@ public class EnhancedLaddersModule extends ZetaModule {
 		return aboveState.is(laddersBlockTag) && aboveState.hasProperty(FACING) && aboveState.getValue(FACING) == state.getValue(FACING);
 	}
 
+	public static boolean shouldDoUpdateShapeTweak(BlockState state) {
+		return staticEnabled && allowFreestanding && state.is(laddersBlockTag);
+	}
+
 	@PlayEvent
 	public void onInteract(ZRightClickBlock event) {
 		if(!allowDroppingDown) return;
