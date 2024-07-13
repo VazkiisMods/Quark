@@ -16,6 +16,7 @@
     "BaseCoralPlantTypeBlockMixin",
     "BeaconBlockEntityMixin",
     "BeehiveBlockEntityMixin",
+    "BlockBehaviourMixin",
     "BlockItemMixin",
     "BoatMixin",
     "CeilingHangingSignBlockMixin",

@@ -2,6 +2,5 @@
 - Fallen logs can no longer spawn on ice and other non terrain blocks (added tag for them)
 - Fallen log decoration (moss and vines) are now biome temperature and humidify dependent. No more moss in snowy biomes
 - Freestanding ladders will now break off the wall when you break the top block
-
 - Matrix Enchanting Table appears in creative if automaticallyConvert is off
 - Fixed Skull Pikes not functioning when there's a block on top, by lowering the detection point

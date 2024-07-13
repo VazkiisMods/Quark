@@ -18,16 +18,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.violetmoon.quark.content.tweaks.module.EnhancedLaddersModule;
 
 @Mixin(LadderBlock.class)
-public class LadderBlockMixin extends Block {
-	public LadderBlockMixin(Properties pProperties) {
-		super(pProperties);
-		throw new AssertionError("Mixin dummy constructor");
-	}
-
+public class LadderBlockMixin extends BlockBehaviourMixin {
 	@ModifyReturnValue(method = "canSurvive", at = @At("RETURN"))
 	private boolean canSurviveTweak(boolean original, BlockState state, LevelReader level, BlockPos pos) {
 		return EnhancedLaddersModule.canSurviveTweak(original, state, level, pos);
@@ -47,12 +43,13 @@ public class LadderBlockMixin extends Block {
 		}
 	}
 
+	/**
+	 * Override from BlockBehaviourMixin which does the actual injection
+	 */
 	@Override
-	public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+	public void quark$tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom, CallbackInfo ci) {
 		if(EnhancedLaddersModule.shouldDoUpdateShapeTweak(pState) && !pState.canSurvive(pLevel, pPos)) {
 			pLevel.destroyBlock(pPos, true);
 		}
-
-		super.tick(pState, pLevel, pPos, pRandom);
 	}
 }
