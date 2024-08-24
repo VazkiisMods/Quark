@@ -1,11 +1,11 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import aurelienribon.tweenengine.Tween;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -15,13 +15,20 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.server.packs.repository.RepositorySource;
 import net.minecraft.world.entity.player.Player;
-
 import org.lwjgl.glfw.GLFW;
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.handler.ContributorRewardHandler;
 import org.violetmoon.quark.base.network.message.RequestEmoteMessage;
-import org.violetmoon.quark.content.tweaks.client.emote.*;
+import org.violetmoon.quark.content.tweaks.client.emote.CustomEmoteIconResourcePack;
+import org.violetmoon.quark.content.tweaks.client.emote.EmoteBase;
+import org.violetmoon.quark.content.tweaks.client.emote.EmoteDescriptor;
+import org.violetmoon.quark.content.tweaks.client.emote.EmoteHandler;
+import org.violetmoon.quark.content.tweaks.client.emote.ModelAccessor;
 import org.violetmoon.quark.content.tweaks.client.screen.NotButton;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.client.event.load.ZKeyMapping;
@@ -39,9 +46,14 @@ import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
 import java.io.File;
-import java.util.*;
-
-import aurelienribon.tweenengine.Tween;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.function.Consumer;
 
 @ZetaLoadModule(category = "tweaks")
 public class EmotesModule extends ZetaModule {
@@ -107,19 +119,17 @@ public class EmotesModule extends ZetaModule {
 			emotesDir = new File(mc.gameDirectory, "/config/quark_emotes");
 			if(!emotesDir.exists())
 				emotesDir.mkdirs();
-
-			//todo: Fixme or something idk - Siuolplex
-			/*
+			
 			mc.getResourcePackRepository().addPackFinder(new RepositorySource() {
 				@Override
-				public void loadPacks(@NotNull Consumer<Pack> packConsumer, @NotNull Pack.PackConstructor packInfoFactory) {
+				public void loadPacks(Consumer<Pack> consumer) {
 					Client.resourcePack = new CustomEmoteIconResourcePack();
-			
+
 					String name = "quark:emote_resources";
-					Pack t = Pack.create(name, true, () -> Client.resourcePack, packInfoFactory, Pack.Position.TOP, tx->tx);
-					packConsumer.accept(t);
+					Pack t = Pack.readMetaAndCreate(name, Component.literal("Emote Resources"), true, id -> Client.resourcePack, PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
+					consumer.accept(t);
 				}
-			});*/
+			});
 		}
 
 		@LoadEvent
