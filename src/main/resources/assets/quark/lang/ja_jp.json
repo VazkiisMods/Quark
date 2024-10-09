@@ -307,7 +307,7 @@
 
 	"quark.keybind.change_hotbar": "ホットバーの交換",
 	"quark.keybind.lock_rotation": "設置方向の固定",
-	"quark.keybind.sort_container": "ターゲットのインベントリを整理",
+	"quark.keybind.sort_container": "対象のインベントリを整理",
 	"quark.keybind.sort_player": "プレイヤーのインベントリを整理",
 	"quark.keybind.transfer_extract": "アイテムを取り出す",
 	"quark.keybind.transfer_insert": "アイテムをしまう",
@@ -479,9 +479,9 @@
 	"quark.misc.you_came_to_the_wrong_neighborhood.15": "それは私の名前ではありません",
 	"quark.misc.you_came_to_the_wrong_neighborhood.16": "それは私の名前ではありません",
 
-	"quark.misc.reloaded0": "Quarkの設定が再読み込みされました",
-	"quark.misc.reloaded1": "- レシピなどが変わる変更をした場合は、/reloadを実行してください",
-	"quark.misc.reloaded2": "- 変更が適用されない場合は、ゲームを再起動してみてください",
+	"quark.misc.reloaded0": "Quarkの設定が再読み込みされました。",
+	"quark.misc.reloaded1": "- レシピなどが変わる変更を行った場合は、/reloadを実行してください。",
+	"quark.misc.reloaded2": "- 変更が適用されない場合は、ゲームを再起動してみてください。",
 
 	"quark.container.feeding_trough": "餌箱",
 
