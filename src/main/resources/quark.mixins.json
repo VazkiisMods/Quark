@@ -1,7 +1,7 @@
 {
   "minVersion": "0.8",
   "required": true,
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "refmap": "quark.mixins.refmap.json",
   "package": "org.violetmoon.quark.mixin.mixins",
   "plugin": "org.violetmoon.zeta.mixin.plugin.InterfaceDelegateMixinPlugin",

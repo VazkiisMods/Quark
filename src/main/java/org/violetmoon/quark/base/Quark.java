@@ -3,15 +3,12 @@ package org.violetmoon.quark.base;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.violetmoon.quark.base.proxy.ClientProxy;
 import org.violetmoon.quark.base.proxy.CommonProxy;
-import org.violetmoon.quark.integration.claim.FlanIntegration;
-import org.violetmoon.quark.integration.claim.IClaimIntegration;
 import org.violetmoon.quark.integration.lootr.ILootrIntegration;
 import org.violetmoon.quark.integration.lootr.LootrIntegration;
 import org.violetmoon.quark.integration.terrablender.AbstractUndergroundBiomeHandler;
@@ -19,7 +16,6 @@ import org.violetmoon.quark.integration.terrablender.TerrablenderUndergroundBiom
 import org.violetmoon.quark.integration.terrablender.VanillaUndergroundBiomeHandler;
 import org.violetmoon.zeta.Zeta;
 import org.violetmoon.zeta.multiloader.Env;
-import org.violetmoon.zeta.util.Utils;
 import org.violetmoon.zetaimplforge.ForgeZeta;
 
 @Mod(Quark.MOD_ID)
@@ -35,9 +31,11 @@ public class Quark {
 	public static Quark instance;
 	public static CommonProxy proxy;
 
+	/*
 	public static final IClaimIntegration FLAN_INTEGRATION = ZETA.modIntegration("flan",
 			() -> FlanIntegration::new,
 			() -> IClaimIntegration.Dummy::new);
+	 */
 
 	public static final ILootrIntegration LOOTR_INTEGRATION = ZETA.modIntegration("lootr",
 			() -> LootrIntegration::new,

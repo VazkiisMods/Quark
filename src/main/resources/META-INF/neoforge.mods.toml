@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[41,)"
+loaderVersion="[3,)"
 issueTrackerURL="https://github.com/VazkiiMods/Quark"
 license="https://github.com/VazkiiMods/Quark/blob/master/LICENSE.md"
 
@@ -10,30 +10,28 @@ version="${file.jarVersion}"
 authors="Vazkii, WireSegal, MCVinnyq, Sully"
 description='''Small things, improving Minecraft bit by bit.'''
 
+[[mixins]]
+config="quark.mixins.json"
+
+file="META-INF/accesstransformer.cfg"
+
 [[dependencies.quark]]
-    modId="forge"
-    mandatory=true
-    versionRange="[43.0.8,)"
-    ordering="AFTER"
+    modId="neoforge"
+    type="required"
+    versionRange="[21.0.10,)"
+    ordering="NONE"
     side="BOTH"
 
 [[dependencies.quark]]
     modId="zeta"
-    mandatory=true
-    versionRange="[1.0-20,2.0)"
-    ordering="AFTER"
-    side="BOTH"
-
-[[dependencies.quark]]
-    modId="curios"
-    mandatory=false
-    versionRange="[5.6.1,)"
+    type="required"
+    versionRange="[1.0,2.0)"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.quark]]
     modId="lootr"
     mandatory=false
-    versionRange="[0.4.24.61,)"
+    versionRange="[1.10.34.86,)"
     ordering="AFTER"
     side="BOTH"
