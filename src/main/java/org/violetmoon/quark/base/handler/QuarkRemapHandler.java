@@ -47,7 +47,7 @@ public class QuarkRemapHandler {
 		for (var v : event.getMappings(block.key(), Quark.MOD_ID)) {
 			String rem = REMAP.get(v.getKey().toString());
 			if (rem != null) {
-				var b = block.getOptional(new ResourceLocation(rem));
+				var b = block.getOptional(ResourceLocation.parse(rem));
 				b.ifPresent(v::remap);
 			} else v.ignore();
 		}

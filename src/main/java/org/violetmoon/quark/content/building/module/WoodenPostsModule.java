@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.building.module;
 
+import net.minecraft.core.registries.Registries;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.block.WoodPostBlock;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -42,7 +43,7 @@ public class WoodenPostsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		postsTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "posts"));
+		postsTag = Quark.asTagKey(Registries.ITEM,"posts");
 	}
 
 	public static boolean canHangingBlockConnect(BlockState state, LevelReader worldIn, BlockPos pos, boolean prev) {

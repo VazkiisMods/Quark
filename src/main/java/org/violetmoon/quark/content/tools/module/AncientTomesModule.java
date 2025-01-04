@@ -141,7 +141,7 @@ public class AncientTomesModule extends ZetaModule {
 		ancient_tome = new AncientTomeItem(this);
 
 		tomeEnchantType = new LootItemFunctionType(new EnchantTome.Serializer());
-		Registry.register(BuiltInRegistries.LOOT_FUNCTION_TYPE, new ResourceLocation(Quark.MOD_ID, "tome_enchant"), tomeEnchantType);
+		Registry.register(BuiltInRegistries.LOOT_FUNCTION_TYPE, Quark.asResource("tome_enchant"), tomeEnchantType);
 
 		overlevelTrigger = event.getAdvancementModifierRegistry().registerManualTrigger("overlevel");
 		instamineDeepslateTrigger = event.getAdvancementModifierRegistry().registerManualTrigger("instamine_deepslate");
@@ -164,7 +164,7 @@ public class AncientTomesModule extends ZetaModule {
 			String[] split = table.split(",");
 			if(split.length == 2) {
 				int weight;
-				ResourceLocation loc = new ResourceLocation(split[0]);
+				ResourceLocation loc = ResourceLocation.parse(split[0]);
 				try {
 					weight = Integer.parseInt(split[1]);
 				} catch (NumberFormatException e) {
@@ -359,7 +359,7 @@ public class AncientTomesModule extends ZetaModule {
 		return false;
 	}
 
-	private static final ResourceLocation OVERLEVEL_COLOR_HANDLER = new ResourceLocation(Quark.MOD_ID, "overlevel_rune");
+	private static final ResourceLocation OVERLEVEL_COLOR_HANDLER = Quark.asResource("overlevel_rune");
 
 	@PlayEvent
 	public void attachRuneCapability(ZAttachCapabilities.ItemStackCaps event) {
@@ -422,7 +422,7 @@ public class AncientTomesModule extends ZetaModule {
 	public static void initializeEnchantmentList(Iterable<String> enchantNames, List<Enchantment> enchants) {
 		enchants.clear();
 		for(String s : enchantNames) {
-			Enchantment enchant = BuiltInRegistries.ENCHANTMENT.get(new ResourceLocation(s));
+			Enchantment enchant = BuiltInRegistries.ENCHANTMENT.get(ResourceLocation.parse(s));
 			if(enchant != null && !EnchantmentsBegoneModule.shouldBegone(enchant))
 				enchants.add(enchant);
 		}

@@ -25,7 +25,7 @@ import org.violetmoon.quark.content.mobs.entity.Shiba;
 
 public class ShibaCollarLayer extends RenderLayer<Shiba, ShibaModel> {
 
-	private static final ResourceLocation WOLF_COLLAR = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/shiba/collar.png");
+	private static final ResourceLocation WOLF_COLLAR = Quark.asResource("textures/model/entity/shiba/collar.png");
 
 	public ShibaCollarLayer(RenderLayerParent<Shiba, ShibaModel> renderer) {
 		super(renderer);

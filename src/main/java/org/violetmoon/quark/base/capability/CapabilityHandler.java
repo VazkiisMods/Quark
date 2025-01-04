@@ -14,10 +14,10 @@ import org.violetmoon.zeta.event.play.loading.ZAttachCapabilities;
 
 // TODO: push these event handlers into their respective modules
 public class CapabilityHandler {
-	private static final ResourceLocation DROPOFF_MANAGER = new ResourceLocation(Quark.MOD_ID, "dropoff");
-	private static final ResourceLocation SORTING_HANDLER = new ResourceLocation(Quark.MOD_ID, "sort");
-	private static final ResourceLocation MAGNET_TRACKER = new ResourceLocation(Quark.MOD_ID, "magnet_tracker");
-	private static final ResourceLocation RUNE_COLOR_HANDLER = new ResourceLocation(Quark.MOD_ID, "rune_color");
+	private static final ResourceLocation DROPOFF_MANAGER = Quark.asResource("dropoff");
+	private static final ResourceLocation SORTING_HANDLER = Quark.asResource("sort");
+	private static final ResourceLocation MAGNET_TRACKER = Quark.asResource("magnet_tracker");
+	private static final ResourceLocation RUNE_COLOR_HANDLER = Quark.asResource("rune_color");
 
 	@PlayEvent
 	public static void attachItemCapabilities(ZAttachCapabilities.ItemStackCaps event) {

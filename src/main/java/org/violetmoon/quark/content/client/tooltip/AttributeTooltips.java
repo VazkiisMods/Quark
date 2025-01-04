@@ -67,15 +67,15 @@ import net.minecraft.world.item.enchantment.Enchantments;
  */
 public class AttributeTooltips {
 
-	public static final ResourceLocation TEXTURE_UPGRADE = new ResourceLocation(Quark.MOD_ID, "textures/attribute/upgrade.png");
-	public static final ResourceLocation TEXTURE_DOWNGRADE = new ResourceLocation(Quark.MOD_ID, "textures/attribute/downgrade.png");
+	public static final ResourceLocation TEXTURE_UPGRADE = Quark.asResource("textures/attribute/upgrade.png");
+	public static final ResourceLocation TEXTURE_DOWNGRADE = Quark.asResource("textures/attribute/downgrade.png");
 
 	private static final Map<ResourceLocation, AttributeIconEntry> attributes = new HashMap<>();
 
 	public static void receiveAttributes(Map<String, AttributeIconEntry> map) {
 		attributes.clear();
 		for(Map.Entry<String, AttributeIconEntry> entry : map.entrySet()) {
-			attributes.put(new ResourceLocation(entry.getKey()), entry.getValue());
+			attributes.put(ResourceLocation.parse(entry.getKey()), entry.getValue());
 		}
 	}
 

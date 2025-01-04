@@ -23,7 +23,7 @@ import java.util.List;
 
 public class QuarkConfigHomeScreen extends ZetaConfigHomeScreen {
 
-	private static final CubeMap CUBE_MAP = new CubeMap(new ResourceLocation(Quark.MOD_ID, "textures/misc/panorama/panorama"));
+	private static final CubeMap CUBE_MAP = new CubeMap(Quark.asResource("textures/misc/panorama/panorama"));
 	private static final PanoramaRenderer PANORAMA = new PanoramaRenderer(CUBE_MAP);
 	private float time;
 

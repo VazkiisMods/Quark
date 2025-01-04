@@ -59,7 +59,7 @@ import java.util.*;
 public class FeedingTroughModule extends ZetaModule {
 
     //using a ResourceKey because they're interned, and Holder.Reference#is leverages this for a very efficient implementation
-    private static final ResourceKey<PoiType> FEEDING_TROUGH_POI_KEY = ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, Quark.asResource("feeding_trough"));
+    private static final ResourceKey<PoiType> FEEDING_TROUGH_POI_KEY = Quark.asResourceKey(Registries.POINT_OF_INTEREST_TYPE, "feeding_trough");
     private static final Set<FakePlayer> FREE_FAKE_PLAYERS = new HashSet<>();
     //fake players created are either stored here above or in the cache below.
     //this way each animal has its own player which is needed as they are moved in diff pos

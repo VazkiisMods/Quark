@@ -61,9 +61,9 @@ public class PickarangModule extends ZetaModule {
     private static final List<PickarangType<?>> knownTypes = new ArrayList<>();
     private static boolean isEnabled;
 
-    public static final TagKey<Block> pickarangImmuneTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "pickarang_immune"));
+    public static final TagKey<Block> pickarangImmuneTag = Quark.asTagKey(Registries.BLOCK,"pickarang_immune");
 
-    public static final ResourceKey<DamageType> pickarangDamageType = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(Quark.MOD_ID, "pickarang"));
+    public static final ResourceKey<DamageType> pickarangDamageType = Quark.asResourceKey(Registries.DAMAGE_TYPE,"pickarang");
 
     public static ManualTrigger throwPickarangTrigger;
     public static ManualTrigger useFlamerangTrigger;

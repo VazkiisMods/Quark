@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -116,7 +117,7 @@ public class SimpleHarvestModule extends ZetaModule {
 
 	@LoadEvent
 	public void setup(ZCommonSetup event) {
-		simpleHarvestBlacklistedTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "simple_harvest_blacklisted"));
+		simpleHarvestBlacklistedTag = Quark.asTagKey(Registries.BLOCK,"simple_harvest_blacklisted");
 	}
 
 	@LoadEvent
@@ -153,7 +154,7 @@ public class SimpleHarvestModule extends ZetaModule {
 		}
 
 		for(String blockName : rightClickableBlocks) {
-			Block block = BuiltInRegistries.BLOCK.get(new ResourceLocation(blockName));
+			Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(blockName));
 			if(block != Blocks.AIR)
 				rightClickCrops.add(block);
 		}

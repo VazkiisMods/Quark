@@ -67,7 +67,7 @@ public class PipesModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		pipesTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "pipes"));
+		pipesTag = BlockTags.create(Quark.asResource("pipes"));
 	}
 
 	@LoadEvent
@@ -84,7 +84,7 @@ public class PipesModule extends ZetaModule {
 
 		@LoadEvent
 		public void registerAdditionalModels(ZAddModels event) {
-			event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/pipe_flare", "inventory"));
+			event.register(new ModelResourceLocation(Quark.asResource("extra/pipe_flare"), "inventory"));
 		}
 	}
 }

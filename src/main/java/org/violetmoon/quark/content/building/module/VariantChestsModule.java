@@ -135,11 +135,11 @@ public class VariantChestsModule extends ZetaModule {
 
 		VariantChestBlock regularChest = new VariantChestBlock(name, module, () -> chestTEType, props).setCondition(condition);
 		regularChests.add(regularChest);
-		chestMappings.put(TagKey.create(Registries.STRUCTURE, new ResourceLocation(Quark.MOD_ID, name + "_chest_structures")), regularChest);
+		chestMappings.put(Quark.asTagKey(Registries.STRUCTURE, name + "_chest_structures"), regularChest);
 
 		VariantTrappedChestBlock trappedChest = new VariantTrappedChestBlock(name, module, () -> trappedChestTEType, props).setCondition(condition);
 		trappedChests.add(trappedChest);
-		trappedChestMappings.put(TagKey.create(Registries.STRUCTURE, new ResourceLocation(Quark.MOD_ID, name + "_chest_structures")), trappedChest);
+		trappedChestMappings.put(Quark.asTagKey(Registries.STRUCTURE, name + "_chest_structures"), trappedChest);
 
 		Quark.LOOTR_INTEGRATION.makeChestBlocks(module, name, base, condition, regularChest, trappedChest);
 	}
@@ -177,12 +177,12 @@ public class VariantChestsModule extends ZetaModule {
 				String left = toks[0];
 				String right = toks[1];
 
-				Block block = BuiltInRegistries.BLOCK.get(new ResourceLocation(right));
+				Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(right));
 				if(block != Blocks.AIR) {
-					manualChestMappings.put(new ResourceLocation(left), block);
+					manualChestMappings.put(ResourceLocation.parse(left), block);
 					if(regularChests.contains(block)) {
 						var trapped = trappedChests.get(regularChests.indexOf(block));
-						manualTrappedChestMappings.put(new ResourceLocation(left), trapped);
+						manualTrappedChestMappings.put(ResourceLocation.parse(left), trapped);
 					}
 				}
 			}

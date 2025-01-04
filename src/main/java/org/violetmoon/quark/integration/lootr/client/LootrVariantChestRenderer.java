@@ -63,6 +63,6 @@ public class LootrVariantChestRenderer<T extends LootrVariantChestBlockEntity> e
 				tex.append("lootr_normal");
 		}
 
-		return new Material(Sheets.CHEST_SHEET, new ResourceLocation(Quark.MOD_ID, tex.toString()));
+		return new Material(Sheets.CHEST_SHEET, Quark.asResource(tex.toString()));
 	}
 }

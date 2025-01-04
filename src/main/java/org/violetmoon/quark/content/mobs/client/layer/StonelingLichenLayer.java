@@ -15,7 +15,7 @@ import org.violetmoon.quark.content.mobs.entity.Stoneling;
 
 public class StonelingLichenLayer extends RenderLayer<Stoneling, StonelingModel> {
 
-	private static final ResourceLocation MOLD_LAYER = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/stoneling/lichen_layer.png");
+	private static final ResourceLocation MOLD_LAYER = Quark.asResource("textures/model/entity/stoneling/lichen_layer.png");
 
 	public StonelingLichenLayer(RenderLayerParent<Stoneling, StonelingModel> renderer) {
 		super(renderer);

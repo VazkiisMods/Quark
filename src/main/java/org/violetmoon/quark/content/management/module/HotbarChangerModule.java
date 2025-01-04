@@ -32,7 +32,7 @@ import org.violetmoon.zeta.module.ZetaModule;
 
 @ZetaLoadModule(category = "management")
 public class HotbarChangerModule extends ZetaModule {
-	private static final ResourceLocation WIDGETS = new ResourceLocation("textures/gui/widgets.png");
+	private static final ResourceLocation WIDGETS = ResourceLocation.withDefaultNamespace("textures/gui/widgets.png"); //TODO this file no longer exists
 
 	private static final int MAX_HEIGHT = 90;
 

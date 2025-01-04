@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.gameevent.GameEvent;
 
+import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tools.item.SlimeInABucketItem;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -78,7 +79,7 @@ public class SlimeInABucketModule extends ZetaModule {
 	public static class Client extends SlimeInABucketModule {
 		@LoadEvent
 		public void clientSetup(ZClientSetup event) {
-			event.enqueueWork(() -> ItemProperties.register(slime_in_a_bucket, new ResourceLocation("excited"),
+			event.enqueueWork(() -> ItemProperties.register(slime_in_a_bucket, Quark.asResource("excited"),
 					(stack, world, e, id) -> ItemNBTHelper.getBoolean(stack, SlimeInABucketItem.TAG_EXCITED, false) ? 1 : 0));
 		}
 	}

@@ -2,12 +2,14 @@ package org.violetmoon.quark.content.mobs.entity;
 
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -34,6 +36,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -48,7 +51,7 @@ public class Forgotten extends Skeleton {
 
 	public static final EntityDataAccessor<ItemStack> SHEATHED_ITEM = SynchedEntityData.defineId(Forgotten.class, EntityDataSerializers.ITEM_STACK);
 
-	public static final ResourceLocation FORGOTTEN_LOOT_TABLE = new ResourceLocation("quark", "entities/forgotten");
+	public static final ResourceKey<LootTable> FORGOTTEN_LOOT_TABLE = Quark.asResourceKey(Registries.LOOT_TABLE, "entities/forgotten");
 
 	public Forgotten(EntityType<? extends Forgotten> type, Level world) {
 		super(type, world);
@@ -113,9 +116,8 @@ public class Forgotten extends Skeleton {
 		reassessWeaponGoal();
 	}
 
-	@NotNull
 	@Override
-	protected ResourceLocation getDefaultLootTable() {
+	protected ResourceKey<LootTable> getDefaultLootTable() {
 		return FORGOTTEN_LOOT_TABLE;
 	}
 

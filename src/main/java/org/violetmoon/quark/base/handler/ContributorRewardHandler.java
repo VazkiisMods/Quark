@@ -133,7 +133,7 @@ public class ContributorRewardHandler {
 				if(clientPlayer.isCapeLoaded()) {
 					PlayerInfo info = clientPlayer.playerInfo;
 					Map<MinecraftProfileTexture.Type, ResourceLocation> textures = info.textureLocations;
-					ResourceLocation loc = new ResourceLocation("quark", "textures/misc/dev_cape.png");
+					ResourceLocation loc = Quark.asResource("textures/misc/dev_cape.png");
 					textures.put(MinecraftProfileTexture.Type.CAPE, loc);
 					textures.put(MinecraftProfileTexture.Type.ELYTRA, loc);
 					done.add(uuid);

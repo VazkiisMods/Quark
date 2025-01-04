@@ -3,7 +3,8 @@ package org.violetmoon.quark.base;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.tags.TagKey;
+import net.neoforged.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.MixinEnvironment;
@@ -57,11 +58,15 @@ public class Quark {
 			MixinEnvironment.getCurrentEnvironment().audit();
 	}
 
-	public static ResourceLocation asResource(String name) {
-		return new ResourceLocation(MOD_ID, name);
+	public static ResourceLocation asResource(String path) {
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
 
 	public static <T> ResourceKey<T> asResourceKey(ResourceKey<? extends Registry<T>> base, String name) {
 		return ResourceKey.create(base, asResource(name));
+	}
+
+	public static <T> TagKey<T> asTagKey(ResourceKey<? extends Registry<T>> base, String name) {
+		return TagKey.create(base, asResource(name));
 	}
 }

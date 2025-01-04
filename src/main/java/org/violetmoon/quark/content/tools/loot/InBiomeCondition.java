@@ -42,7 +42,7 @@ public record InBiomeCondition(ResourceLocation target) implements LootItemCondi
 		@NotNull
 		public InBiomeCondition deserialize(@NotNull JsonObject object, @NotNull JsonDeserializationContext deserializationContext) {
 			String key = GsonHelper.getAsString(object, "target");
-			ResourceLocation target = new ResourceLocation(key);
+			ResourceLocation target = ResourceLocation.parse(key);
 
 			return new InBiomeCondition(target);
 		}

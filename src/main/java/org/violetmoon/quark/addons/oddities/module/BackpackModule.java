@@ -113,7 +113,7 @@ public class BackpackModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		backpackBlockedTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "backpack_blocked"));
+		backpackBlockedTag = ItemTags.create(Quark.asResource("backpack_blocked"));
 	}
 
 	@PlayEvent
@@ -193,7 +193,7 @@ public class BackpackModule extends ZetaModule {
 			e.enqueueWork(() -> {
 				MenuScreens.register(menyType, BackpackInventoryScreen::new);
 
-				ItemProperties.register(backpack, new ResourceLocation("has_items"),
+				ItemProperties.register(backpack, Quark.asResource("has_items"),
 						(stack, world, entity, i) -> (!BackpackModule.superOpMode && BackpackItem.doesBackpackHaveItems(stack)) ? 1 : 0);
 
 				QuarkClient.ZETA_CLIENT.setHumanoidArmorModel(backpack.asItem(), (living, stack, slot, original) -> ModelHandler.armorModel(ModelHandler.backpack, slot));

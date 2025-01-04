@@ -5,12 +5,14 @@ import com.google.common.collect.Sets;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -39,6 +41,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.HitResult;
@@ -67,7 +70,7 @@ import static org.violetmoon.quark.content.world.module.NewStoneTypesModule.*;
 
 public class Stoneling extends PathfinderMob {
 
-	public static final ResourceLocation CARRY_LOOT_TABLE = new ResourceLocation("quark", "entities/stoneling_carry");
+	public static final ResourceKey<LootTable> CARRY_LOOT_TABLE = Quark.asResourceKey(Registries.LOOT_TABLE, "entities/stoneling_carry");
 
 	private static final EntityDataAccessor<ItemStack> CARRYING_ITEM = SynchedEntityData.defineId(Stoneling.class, EntityDataSerializers.ITEM_STACK);
 	private static final EntityDataAccessor<Byte> VARIANT = SynchedEntityData.defineId(Stoneling.class, EntityDataSerializers.BYTE);
@@ -263,7 +266,7 @@ public class Stoneling extends PathfinderMob {
 		entityData.set(HOLD_ANGLE, world.getRandom().nextFloat() * 90 - 45);
 
 		if(!isTame && !world.isClientSide()) {
-			List<ItemStack> items = world.getServer().getLootData()
+			List<ItemStack> items = world.getServer().reloadableRegistries()
 					.getLootTable(CARRY_LOOT_TABLE).getRandomItems(new LootParams.Builder(world.getLevel())
 							.withParameter(LootContextParams.ORIGIN, position())
 							.create(LootContextParamSets.CHEST));
@@ -506,7 +509,7 @@ public class Stoneling extends PathfinderMob {
 		private final List<Block> blocks;
 
 		StonelingVariant(String variantPath, Block... blocks) {
-			this.texture = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/stoneling/" + variantPath + ".png");
+			this.texture = Quark.asResource("textures/model/entity/stoneling/" + variantPath + ".png");
 			this.blocks = Lists.newArrayList(blocks);
 		}
 

@@ -80,7 +80,7 @@ public class SeedPouchModule extends ZetaModule {
 		@LoadEvent
 		public void clientSetup(ZClientSetup e) {
 			e.enqueueWork(() ->
-				ItemProperties.register(seed_pouch, new ResourceLocation("pouch_items"), (ClampedItemPropertyFunction) (pouch, level, entityIn, pSeed) -> {
+				ItemProperties.register(seed_pouch, Quark.asResource("pouch_items"), (ClampedItemPropertyFunction) (pouch, level, entityIn, pSeed) -> {
 					SeedPouchItem.PouchContents contents = SeedPouchItem.getContents(pouch);
 
 					if(entityIn instanceof Player player && contents.canFit(player.containerMenu.getCarried()))

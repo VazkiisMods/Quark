@@ -343,7 +343,7 @@ public final class SortingHandler {
 				else if(o instanceof ItemStack stack)
 					itemList.add(stack.getItem());
 				else if(o instanceof String s) {
-					Item item = BuiltInRegistries.ITEM.get(new ResourceLocation(s));
+					Item item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(s));
 					if(item != Items.AIR)
 						itemList.add(item);
 				}

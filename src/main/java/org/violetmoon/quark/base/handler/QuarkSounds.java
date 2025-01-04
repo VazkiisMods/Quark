@@ -112,7 +112,7 @@ public class QuarkSounds {
 	}
 
 	public static SoundEvent register(String name) {
-		SoundEvent event = SoundEvent.createVariableRangeEvent(new ResourceLocation(Quark.MOD_ID, name));
+		SoundEvent event = SoundEvent.createVariableRangeEvent(Quark.asResource(name));
 		REGISTRY_DEFERENCE.add(event);
 		return event;
 	}

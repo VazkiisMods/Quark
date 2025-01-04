@@ -19,7 +19,7 @@ import org.violetmoon.quark.base.Quark;
 
 public class ForgottenClothingLayer<T extends Mob & RangedAttackMob, M extends EntityModel<T>> extends RenderLayer<T, M> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/forgotten/overlay.png");
+	private static final ResourceLocation TEXTURE = Quark.asResource("textures/model/entity/forgotten/overlay.png");
 	private final SkeletonModel<T> layerModel;
 
 	public ForgottenClothingLayer(RenderLayerParent<T, M> parent, EntityModelSet model) {

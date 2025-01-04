@@ -24,7 +24,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class CrateScreen extends AbstractContainerScreen<CrateMenu> implements IQuarkButtonAllowed {
-	private static final ResourceLocation TEXTURE = new ResourceLocation(Quark.MOD_ID, "textures/gui/crate.png");
+	private static final ResourceLocation TEXTURE = Quark.asResource("textures/gui/crate.png");
 
 	private int lastScroll;
 	private int scrollOffs;

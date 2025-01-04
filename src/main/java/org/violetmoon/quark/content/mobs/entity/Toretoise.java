@@ -53,7 +53,7 @@ import java.util.List;
 
 public class Toretoise extends Animal {
 
-	private static final TagKey<Block> BREAKS_TORETOISE_ORE = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "breaks_toretoise_ore"));
+	private static final TagKey<Block> BREAKS_TORETOISE_ORE = BlockTags.create(Quark.asResource("breaks_toretoise_ore"));
 
 	public static final int ORE_TYPES = 5;
 	public static final int ANGERY_TIME = 20;
@@ -105,7 +105,7 @@ public class Toretoise extends Animal {
 
 	private void computeGoodFood() {
 		goodFood = Ingredient.of(ToretoiseModule.foods.stream()
-				.map(loc -> BuiltInRegistries.ITEM.get(new ResourceLocation(loc)))
+				.map(loc -> BuiltInRegistries.ITEM.get(ResourceLocation.parse(loc)))
 				.filter(i -> i != Items.AIR)
 				.map(ItemStack::new));
 	}

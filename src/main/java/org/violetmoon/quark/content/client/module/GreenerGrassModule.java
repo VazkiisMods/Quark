@@ -129,7 +129,7 @@ public class GreenerGrassModule extends ZetaModule {
 			BlockColors colors = Minecraft.getInstance().getBlockColors();
 
 			for(String id : ids) {
-				Block block = BuiltInRegistries.BLOCK.get(new ResourceLocation(id));
+				Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(id));
 				if(block == Blocks.AIR)
 					continue;
 

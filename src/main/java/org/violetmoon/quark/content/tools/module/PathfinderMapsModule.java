@@ -153,7 +153,7 @@ public class PathfinderMapsModule extends ZetaModule {
 		loadTradeInfo(Biomes.CHERRY_GROVE, true, 5, 20, 26, 0xE9A9E8);
 
 		inBiomeConditionType = new LootItemConditionType(new InBiomeCondition.InBiomeSerializer());
-		Registry.register(BuiltInRegistries.LOOT_CONDITION_TYPE, new ResourceLocation(Quark.MOD_ID, "in_biome"), inBiomeConditionType);
+		Registry.register(BuiltInRegistries.LOOT_CONDITION_TYPE, Quark.asResource("in_biome"), inBiomeConditionType);
 
 		pathfinderMapTrigger = event.getAdvancementModifierRegistry().registerManualTrigger("pathfinder_map_center");
 
@@ -283,7 +283,7 @@ public class PathfinderMapsModule extends ZetaModule {
 		if(tokens.length != 5 && tokens.length != 6) // Silently ignore old name format
 			throw new IllegalArgumentException("Wrong number of parameters " + tokens.length + " (expected 5)");
 
-		ResourceLocation biomeName = new ResourceLocation(tokens[0]);
+		ResourceLocation biomeName = ResourceLocation.parse(tokens[0]);
 		int level = Integer.parseInt(tokens[1]);
 		int minPrice = Integer.parseInt(tokens[2]);
 		int maxPrice = Integer.parseInt(tokens[3]);
@@ -368,7 +368,7 @@ public class PathfinderMapsModule extends ZetaModule {
 	public static class Client extends PathfinderMapsModule {
 		@LoadEvent
 		public void clientSetup(ZClientSetup e) {
-			e.enqueueWork(() -> ItemProperties.register(pathfinders_quill, new ResourceLocation("has_biome"),
+			e.enqueueWork(() -> ItemProperties.register(pathfinders_quill, Quark.asResource("has_biome"),
 					(stack, world, entity, i) -> (PathfindersQuillItem.getTargetBiome(stack) != null) ? 1 : 0));
 		}
 

@@ -3,10 +3,12 @@ package org.violetmoon.quark.content.mobs.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -29,16 +31,18 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import org.jetbrains.annotations.NotNull;
 
+import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.mobs.module.WraithModule;
 
 public class Wraith extends Zombie {
 
-	public static final ResourceLocation LOOT_TABLE = new ResourceLocation("quark:entities/wraith");
+	public static final ResourceKey<LootTable> LOOT_TABLE = Quark.asResourceKey(Registries.LOOT_TABLE, "entities/wraith");
 
 	private static final EntityDataAccessor<String> IDLE_SOUND = SynchedEntityData.defineId(Wraith.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> HURT_SOUND = SynchedEntityData.defineId(Wraith.class, EntityDataSerializers.STRING);
@@ -99,7 +103,7 @@ public class Wraith extends Zombie {
 	}
 
 	public SoundEvent getSound(EntityDataAccessor<String> param) {
-		ResourceLocation loc = new ResourceLocation(entityData.get(param));
+		ResourceLocation loc = ResourceLocation.parse(entityData.get(param));
 		return BuiltInRegistries.SOUND_EVENT.get(loc);
 	}
 
@@ -173,9 +177,8 @@ public class Wraith extends Zombie {
 		entityData.set(DEATH_SOUND, compound.getString(TAG_DEATH_SOUND));
 	}
 
-	@NotNull
 	@Override
-	protected ResourceLocation getDefaultLootTable() {
+	protected ResourceKey<LootTable> getDefaultLootTable() {
 		return LOOT_TABLE;
 	}
 

@@ -15,7 +15,7 @@ import org.violetmoon.quark.content.mobs.entity.Crab;
 
 public class CrabMoldLayer extends RenderLayer<Crab, CrabModel> {
 
-	private static final ResourceLocation MOLD_LAYER = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/crab/mold_layer.png");
+	private static final ResourceLocation MOLD_LAYER = Quark.asResource("textures/model/entity/crab/mold_layer.png");
 
 	public CrabMoldLayer(RenderLayerParent<Crab, CrabModel> renderer) {
 		super(renderer);

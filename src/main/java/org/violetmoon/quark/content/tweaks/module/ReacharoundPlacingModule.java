@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -48,8 +49,8 @@ import java.util.List;
 @ZetaLoadModule(category = "tweaks")
 public class ReacharoundPlacingModule extends ZetaModule {
 
-	public static final ResourceLocation OVERLAY_HORIZONTAL = new ResourceLocation(Quark.MOD_ID, "textures/gui/reacharound_overlay_horizontal.png");
-	public static final ResourceLocation OVERLAY_VERTICAL = new ResourceLocation(Quark.MOD_ID, "textures/gui/reacharound_overlay_vertical.png");
+	public static final ResourceLocation OVERLAY_HORIZONTAL = Quark.asResource("textures/gui/reacharound_overlay_horizontal.png");
+	public static final ResourceLocation OVERLAY_VERTICAL = Quark.asResource("textures/gui/reacharound_overlay_vertical.png");
 
 	@Config
 	@Config.Min(0)
@@ -69,7 +70,7 @@ public class ReacharoundPlacingModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		reacharoundTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "reacharound_able"));
+		reacharoundTag = Quark.asTagKey(Registries.ITEM, "reacharound_able");
 	}
 
 	@PlayEvent

@@ -12,6 +12,7 @@ package org.violetmoon.quark.content.mobs.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
@@ -19,6 +20,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -54,6 +56,7 @@ import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
@@ -74,7 +77,7 @@ import java.util.function.BiConsumer;
 public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketable {
 
 	public static final int COLORS = 3;
-	public static final ResourceLocation CRAB_LOOT_TABLE = new ResourceLocation("quark", "entities/crab");
+	public static final ResourceKey<LootTable> CRAB_LOOT_TABLE = Quark.asResourceKey(Registries.LOOT_TABLE, "entities/crab");
 
 	private static final EntityDataAccessor<Float> SIZE_MODIFIER = SynchedEntityData.defineId(Crab.class, EntityDataSerializers.FLOAT);
 	private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Crab.class, EntityDataSerializers.INT);
@@ -413,7 +416,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	private Ingredient getTemptationItems() {
 		if(temptationItems == null)
 			temptationItems = Ingredient.of(
-					ItemTags.create(new ResourceLocation(Quark.MOD_ID, "crab_tempt_items")));
+					Quark.asTagKey(Registries.ITEM,"crab_tempt_items"));
 
 		return temptationItems;
 	}
@@ -424,9 +427,8 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		return new Crab(CrabsModule.crabType, level());
 	}
 
-	@NotNull
 	@Override
-	protected ResourceLocation getDefaultLootTable() {
+	protected ResourceKey<LootTable> getDefaultLootTable() {
 		return CRAB_LOOT_TABLE;
 	}
 

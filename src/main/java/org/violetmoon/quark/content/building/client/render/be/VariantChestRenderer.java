@@ -45,7 +45,7 @@ public class VariantChestRenderer extends ChestRenderer<ChestBlockEntity> {
             else
                 tex.append(choose(type, "normal", "left", "right"));
 
-            return new Material(Sheets.CHEST_SHEET, new ResourceLocation(Quark.MOD_ID, tex.toString()));
+            return new Material(Sheets.CHEST_SHEET, Quark.asResource(tex.toString()));
         });
     }
 

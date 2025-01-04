@@ -30,7 +30,7 @@ import java.util.List;
 
 public class MapTooltips {
 
-	private static final ResourceLocation RES_MAP_BACKGROUND = new ResourceLocation("textures/map/map_background.png");
+	private static final ResourceLocation RES_MAP_BACKGROUND = ResourceLocation.withDefaultNamespace("textures/map/map_background.png");
 
 	public static void makeTooltip(ZGatherTooltipComponents event) {
 		ItemStack stack = event.getItemStack();

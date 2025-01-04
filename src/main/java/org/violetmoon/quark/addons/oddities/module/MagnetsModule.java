@@ -70,7 +70,7 @@ public class MagnetsModule extends ZetaModule {
 	@Config(description = "The maximum hardness of a block that a stonecutter pushed by magnets can cut through.")
     public static double stoneCutterMaxHardness = 3;
 
-    public static final TagKey<EntityType<?>> magneticEntities = TagKey.create(Registries.ENTITY_TYPE, Quark.asResource("affected_by_magnets"));
+    public static final TagKey<EntityType<?>> magneticEntities = Quark.asTagKey(Registries.ENTITY_TYPE,"affected_by_magnets");
 
     @Hint
     public static Block magnet;

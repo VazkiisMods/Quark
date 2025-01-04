@@ -41,7 +41,7 @@ import java.util.List;
 
 public class ShulkerBoxTooltips {
 
-	public static final ResourceLocation WIDGET_RESOURCE = new ResourceLocation("quark", "textures/misc/shulker_widget.png");
+	public static final ResourceLocation WIDGET_RESOURCE = Quark.asResource("textures/misc/shulker_widget.png");
 
 	public static void makeTooltip(ZGatherTooltipComponents event) {
 		ItemStack stack = event.getItemStack();

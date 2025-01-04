@@ -82,7 +82,7 @@ public class ModelHandler {
 	}
 
 	private static ModelLayerLocation addLayer(String name, Layer layer) {
-		ModelLayerLocation loc = new ModelLayerLocation(new ResourceLocation(Quark.MOD_ID, name), "main");
+		ModelLayerLocation loc = new ModelLayerLocation(Quark.asResource(name), "main");
 		layers.put(loc, layer);
 		return loc;
 	}

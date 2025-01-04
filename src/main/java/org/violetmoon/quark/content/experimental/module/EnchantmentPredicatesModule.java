@@ -48,7 +48,7 @@ public class EnchantmentPredicatesModule extends ZetaModule {
 
 					for(Enchantment enchant : enchants) {
 						ResourceLocation enchantRes = BuiltInRegistries.ENCHANTMENT.getKey(enchant);
-						ResourceLocation name = new ResourceLocation(Quark.MOD_ID + "_has_enchant_" + enchantRes.getNamespace() + "_" + enchantRes.getPath());
+						ResourceLocation name = ResourceLocation.parse(Quark.MOD_ID + "_has_enchant_" + enchantRes.getNamespace() + "_" + enchantRes.getPath());
 						ItemPropertyFunction fun = (stack, level, entity, i) -> EnchantmentHelper.getTagEnchantmentLevel(enchant, stack);
 
 						for(Item item : items)
