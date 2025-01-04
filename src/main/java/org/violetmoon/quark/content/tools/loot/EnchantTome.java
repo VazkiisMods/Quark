@@ -37,7 +37,7 @@ public class EnchantTome extends LootItemConditionalFunction {
 	@NotNull
 	public ItemStack run(@NotNull ItemStack stack, LootContext context) {
 		Enchantment enchantment = validEnchants.get(context.getRandom().nextInt(validEnchants.size()));
-		EnchantedBookItem.addEnchantment(stack, new EnchantmentInstance(enchantment, enchantment.getMaxLevel()));
+		EnchantedBookItem.createForEnchantment(stack, new EnchantmentInstance(enchantment, enchantment.getMaxLevel()));
 		return stack;
 	}
 

@@ -57,7 +57,6 @@ public class Quark {
 		if (!ZETA.isProduction) // force all mixins to load in dev
 			MixinEnvironment.getCurrentEnvironment().audit();
 	}
-
 	public static ResourceLocation asResource(String path) {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}

@@ -37,8 +37,6 @@ import net.minecraft.world.level.block.entity.BannerBlockEntity;
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.RenderItemInFrameEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 import org.jetbrains.annotations.NotNull;
 
