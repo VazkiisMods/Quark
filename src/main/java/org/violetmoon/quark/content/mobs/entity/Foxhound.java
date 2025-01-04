@@ -81,7 +81,7 @@ import static org.violetmoon.quark.content.mobs.ai.FindPlaceToSleepGoal.Target.*
 
 public class Foxhound extends Wolf implements Enemy {
 
-	public static final ResourceKey<LootTable> FOXHOUND_LOOT_TABLE = Quark.asResourceKey(Registries.LOOT_TABLE,"entities/foxhound");
+	public static final ResourceKey<LootTable> FOXHOUND_LOOT_TABLE = Quark.asResourceKey(Registries.LOOT_TABLE, "entities/foxhound");
 
 	private static final EntityDataAccessor<Boolean> TEMPTATION = SynchedEntityData.defineId(Foxhound.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_BLUE = SynchedEntityData.defineId(Foxhound.class, EntityDataSerializers.BOOLEAN);

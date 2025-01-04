@@ -416,7 +416,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	private Ingredient getTemptationItems() {
 		if(temptationItems == null)
 			temptationItems = Ingredient.of(
-					Quark.asTagKey(Registries.ITEM,"crab_tempt_items"));
+					Quark.asTagKey(Registries.ITEM, "crab_tempt_items"));
 
 		return temptationItems;
 	}

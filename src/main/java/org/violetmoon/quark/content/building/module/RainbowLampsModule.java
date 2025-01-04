@@ -36,7 +36,7 @@ public class RainbowLampsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		lampTag = Quark.asTagKey(Registries.BLOCK,"crystal_lamp");
+		lampTag = Quark.asTagKey(Registries.BLOCK, "crystal_lamp");
 	}
 
 	@LoadEvent

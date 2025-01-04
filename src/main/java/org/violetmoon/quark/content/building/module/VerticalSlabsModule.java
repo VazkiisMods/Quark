@@ -111,7 +111,7 @@ public class VerticalSlabsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		verticalSlabTag = Quark.asTagKey(Registries.BLOCK,"vertical_slabs");
+		verticalSlabTag = Quark.asTagKey(Registries.BLOCK, "vertical_slabs");
 	}
 
 	@LoadEvent
