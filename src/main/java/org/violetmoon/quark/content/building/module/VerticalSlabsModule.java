@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import net.neoforged.neoforge.common.ItemAbilities;
 import org.apache.commons.lang3.tuple.Pair;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.block.QuarkVerticalSlabBlock;
@@ -32,7 +33,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraftforge.common.ToolActions;
 
 @ZetaLoadModule(category = "building")
 public class VerticalSlabsModule extends ZetaModule {
@@ -92,7 +92,7 @@ public class VerticalSlabsModule extends ZetaModule {
 			WeatheringCopperVerticalSlabBlock current = copperVerticalSlabs.get(i);
 			WeatheringCopperVerticalSlabBlock next = i < max - 1 ? copperVerticalSlabs.get(i + 1) : null;
 			if(prev != null) {
-				ToolInteractionHandler.registerInteraction(ToolActions.AXE_SCRAPE, current, prev);
+				ToolInteractionHandler.registerInteraction(ItemAbilities.AXE_SCRAPE, current, prev);
 				current.prev = prev;
 			}
 			if(next != null)
@@ -110,7 +110,7 @@ public class VerticalSlabsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		verticalSlabTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "vertical_slabs"));
+		verticalSlabTag = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Quark.MOD_ID, "vertical_slabs"));
 	}
 
 	@LoadEvent

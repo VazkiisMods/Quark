@@ -37,8 +37,6 @@ import net.minecraft.world.level.block.entity.BannerBlockEntity;
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.RenderItemInFrameEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,7 +54,7 @@ import java.util.List;
 
 public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrame> {
 
-	private static final ModelResourceLocation LOCATION_MODEL = new ModelResourceLocation(new ResourceLocation(Quark.MOD_ID, "extra/glass_item_frame"), "inventory");
+	private static final ModelResourceLocation LOCATION_MODEL = new ModelResourceLocation(ResourceLocation.fromNamespaceAndPath(Quark.MOD_ID, "extra/glass_item_frame"), "inventory");
 
 	private static final List<Direction> SIGN_DIRECTIONS = List.of(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
 

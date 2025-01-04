@@ -17,9 +17,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.items.ItemHandlerHelper;
-
+import net.neoforged.neoforge.common.Tags;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
 import org.violetmoon.zeta.module.ZetaLoadModule;
@@ -82,7 +81,6 @@ public class ShulkerPackingModule extends ZetaModule {
 						}
 
 						ItemNBTHelper.setCompound(newShulkerBox, "BlockEntityTag", shulkerBoxData.saveWithFullMetadata());
-
 						ItemHandlerHelper.giveItemToPlayer(player, newShulkerBox, player.getInventory().selected);
 					}
 				}

@@ -48,8 +48,8 @@ import java.util.List;
 @ZetaLoadModule(category = "tweaks")
 public class ReacharoundPlacingModule extends ZetaModule {
 
-	public static final ResourceLocation OVERLAY_HORIZONTAL = new ResourceLocation(Quark.MOD_ID, "textures/gui/reacharound_overlay_horizontal.png");
-	public static final ResourceLocation OVERLAY_VERTICAL = new ResourceLocation(Quark.MOD_ID, "textures/gui/reacharound_overlay_vertical.png");
+	public static final ResourceLocation OVERLAY_HORIZONTAL = ResourceLocation.fromNamespaceAndPath(Quark.MOD_ID, "textures/gui/reacharound_overlay_horizontal.png");
+	public static final ResourceLocation OVERLAY_VERTICAL = ResourceLocation.fromNamespaceAndPath(Quark.MOD_ID, "textures/gui/reacharound_overlay_vertical.png");
 
 	@Config
 	@Config.Min(0)
@@ -69,7 +69,7 @@ public class ReacharoundPlacingModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		reacharoundTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "reacharound_able"));
+		reacharoundTag = ItemTags.create(ResourceLocation.fromNamespaceAndPath(Quark.MOD_ID, "reacharound_able"));
 	}
 
 	@PlayEvent
@@ -82,8 +82,10 @@ public class ReacharoundPlacingModule extends ZetaModule {
 			if(!player.mayUseItemAt(target.pos, target.dir, stack) || !player.level().mayInteract(player, target.pos))
 				return;
 
+			/* TODO: Fix/remove, dependency not available for 1.21.1
 			if(!Quark.FLAN_INTEGRATION.canPlace(player, target.pos))
 				return;
+			 */
 
 			int count = stack.getCount();
 			InteractionHand hand = event.getHand();
@@ -234,7 +236,7 @@ public class ReacharoundPlacingModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void clientTick(ZClientTick.End event) {
+		public void clientTick(ZClientTick event) {
 
 			currentTarget = null;
 
