@@ -323,9 +323,9 @@ public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable 
 	}
 
 	@Override
-	public float getStepHeight() {
-		float baseStep = wasTouchingWater ? 1F : 0.6F;
-		AttributeInstance stepHeightAttribute = getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get());
+	public float getStepHeight() { //TODO figure out when to recalculate attribute -Partonetrain
+		float baseStep = isInWater() ? 1F : 0.6F;
+		AttributeInstance stepHeightAttribute = getAttribute(Attributes.STEP_HEIGHT);
 		if(stepHeightAttribute != null)
 			return (float) Math.max(0, baseStep + stepHeightAttribute.getValue());
 		return baseStep;
