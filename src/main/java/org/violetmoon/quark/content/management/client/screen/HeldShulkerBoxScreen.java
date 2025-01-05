@@ -24,7 +24,7 @@ import org.violetmoon.quark.content.management.inventory.HeldShulkerBoxMenu;
 
 public class HeldShulkerBoxScreen extends AbstractContainerScreen<HeldShulkerBoxMenu> implements IQuarkButtonAllowed {
 
-	private static final ResourceLocation CONTAINER_TEXTURE = new ResourceLocation("textures/gui/container/shulker_box.png");
+	private static final ResourceLocation CONTAINER_TEXTURE = ResourceLocation.withDefaultNamespace("textures/gui/container/shulker_box.png");
 
 	public HeldShulkerBoxScreen(HeldShulkerBoxMenu p_99240_, Inventory p_99241_, Component p_99242_) {
 		super(p_99240_, p_99241_, p_99242_);

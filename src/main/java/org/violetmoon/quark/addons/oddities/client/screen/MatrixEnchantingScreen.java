@@ -35,7 +35,7 @@ import net.minecraft.world.item.Items;
 
 public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchantingMenu> {
 
-	public static final ResourceLocation BACKGROUND = new ResourceLocation(Quark.MOD_ID, "textures/misc/matrix_enchanting.png");
+	public static final ResourceLocation BACKGROUND = Quark.asResource("textures/misc/matrix_enchanting.png");
 
 	protected final Inventory playerInv;
 	protected final MatrixEnchantingTableBlockEntity enchanter;

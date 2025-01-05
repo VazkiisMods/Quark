@@ -118,7 +118,7 @@ public class BlossomTreesModule extends ZetaModule {
 	}
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-		return ResourceKey.create(Registries.CONFIGURED_FEATURE, Quark.asResource(name));
+		return Quark.asResourceKey(Registries.CONFIGURED_FEATURE, name);
 	}
 
 }

@@ -59,7 +59,7 @@ public class SkullPikesModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		pikeTrophiesTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "pike_trophies"));
+		pikeTrophiesTag = Quark.asResourceKey(Registries.BLOCK, "pike_trophies"));
 	}
 
 	@PlayEvent

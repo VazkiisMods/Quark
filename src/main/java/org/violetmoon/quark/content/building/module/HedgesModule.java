@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.building.module;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -46,7 +47,7 @@ public class HedgesModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		hedgesTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "hedges"));
+		hedgesTag = Quark.asTagKey(Registries.BLOCK,"hedges");
 	}
 
 	@ZetaLoadModule(clientReplacement = true)

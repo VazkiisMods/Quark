@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.building.module;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -35,7 +36,7 @@ public class RainbowLampsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		lampTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "crystal_lamp"));
+		lampTag = Quark.asTagKey(Registries.BLOCK, "crystal_lamp");
 	}
 
 	@LoadEvent

@@ -223,7 +223,7 @@ public class MatrixEnchantingModule extends ZetaModule {
 			if(damp)
 				enchStr = enchStr.substring(1);
 
-			Enchantment ench = BuiltInRegistries.ENCHANTMENT.get(new ResourceLocation(enchStr));
+			Enchantment ench = BuiltInRegistries.ENCHANTMENT.get(ResourceLocation.parse(enchStr));
 			if(ench != null) {
 				if(damp)
 					dampen.add(ench);

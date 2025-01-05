@@ -39,8 +39,8 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 public class MonsterBoxModule extends ZetaModule {
 
 	public static final String TAG_MONSTER_BOX_SPAWNED = "quark:monster_box_spawned";
-	public static final ResourceLocation MONSTER_BOX_LOOT_TABLE = new ResourceLocation(Quark.MOD_ID, "misc/monster_box");
-	public static final ResourceLocation MONSTER_BOX_SPAWNS_LOOT_TABLE = new ResourceLocation(Quark.MOD_ID, "misc/monster_box_spawns");
+	public static final ResourceLocation MONSTER_BOX_LOOT_TABLE = Quark.asResource("misc/monster_box");
+	public static final ResourceLocation MONSTER_BOX_SPAWNS_LOOT_TABLE = Quark.asResource("misc/monster_box_spawns");
 
 	public static BlockEntityType<MonsterBoxBlockEntity> blockEntityType;
 

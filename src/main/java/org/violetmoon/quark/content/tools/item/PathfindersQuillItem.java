@@ -86,7 +86,7 @@ public class PathfindersQuillItem extends ZetaItem implements CreativeTabManager
 		if(str.isEmpty())
 			return null;
 
-		return new ResourceLocation(str);
+		return ResourceLocation.parse(str);
 	}
 
 	public static int getOverlayColor(ItemStack stack) {

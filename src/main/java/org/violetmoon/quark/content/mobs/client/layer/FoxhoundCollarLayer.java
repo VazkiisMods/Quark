@@ -25,7 +25,7 @@ import org.violetmoon.quark.content.mobs.entity.Foxhound;
 
 public class FoxhoundCollarLayer extends RenderLayer<Foxhound, FoxhoundModel> {
 
-	private static final ResourceLocation WOLF_COLLAR = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/foxhound/collar.png");
+	private static final ResourceLocation WOLF_COLLAR = Quark.asResource("textures/model/entity/foxhound/collar.png");
 
 	public FoxhoundCollarLayer(RenderLayerParent<Foxhound, FoxhoundModel> renderer) {
 		super(renderer);

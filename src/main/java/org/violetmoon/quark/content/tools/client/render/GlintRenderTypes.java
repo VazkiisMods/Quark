@@ -145,6 +145,6 @@ public class GlintRenderTypes extends RenderType {
 	}
 
 	private static ResourceLocation texture(String name) {
-		return new ResourceLocation(Quark.MOD_ID, "textures/glint/enchanted_item_glint_" + name + ".png");
+		return Quark.asResource("textures/glint/enchanted_item_glint_" + name + ".png");
 	}
 }

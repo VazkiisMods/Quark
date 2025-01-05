@@ -3,6 +3,7 @@ package org.violetmoon.quark.content.tweaks.module;
 import java.util.EnumMap;
 import java.util.Map;
 
+import net.minecraft.core.registries.Registries;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.experimental.module.VariantSelectorModule;
 import org.violetmoon.quark.content.tweaks.block.DirtyGlassBlock;
@@ -63,6 +64,6 @@ public class GlassShardModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		shardTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "shards"));
+		shardTag = Quark.asTagKey(Registries.ITEM,"shards");
 	}
 }

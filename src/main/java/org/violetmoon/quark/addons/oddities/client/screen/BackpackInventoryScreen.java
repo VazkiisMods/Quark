@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class BackpackInventoryScreen extends InventoryScreen implements IQuarkButtonAllowed {
 
-	private static final ResourceLocation BACKPACK_INVENTORY_BACKGROUND = new ResourceLocation(Quark.MOD_ID, "textures/misc/backpack_gui.png");
+	private static final ResourceLocation BACKPACK_INVENTORY_BACKGROUND = Quark.asResource("textures/misc/backpack_gui.png");
 
 	private final Player player;
 	private final Map<Button, Integer> buttonYs = new HashMap<>();

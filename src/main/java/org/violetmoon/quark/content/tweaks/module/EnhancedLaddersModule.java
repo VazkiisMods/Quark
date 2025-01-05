@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -71,8 +72,8 @@ public class EnhancedLaddersModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		laddersTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "ladders"));
-		laddersBlockTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "ladders"));
+		laddersTag = Quark.asTagKey(Registries.ITEM,"ladders");
+		laddersBlockTag = Quark.asTagKey(Registries.BLOCK,"ladders");
 	}
 
 	@LoadEvent

@@ -39,7 +39,7 @@ public class TorchArrowModule extends ZetaModule {
 	@Hint
 	public static Item torch_arrow;
 
-	public static final TagKey<Item> ignoreMultishot = ItemTags.create(new ResourceLocation("quark:ignore_multishot"));
+	public static final TagKey<Item> ignoreMultishot = Quark.asTagKey(Registries.ITEM,"ignore_multishot");
 
 	@LoadEvent
 	public final void register(ZRegister event) {

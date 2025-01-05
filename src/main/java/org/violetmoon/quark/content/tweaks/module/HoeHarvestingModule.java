@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.core.registries.Registries;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -76,7 +77,7 @@ public class HoeHarvestingModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		bigHarvestingHoesTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "big_harvesting_hoes"));
+		bigHarvestingHoesTag = Quark.asTagKey(Registries.ITEM, "big_harvesting_hoes");
 	}
 
 	@PlayEvent

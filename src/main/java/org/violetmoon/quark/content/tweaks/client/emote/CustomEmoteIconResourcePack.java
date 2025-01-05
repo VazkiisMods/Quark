@@ -104,9 +104,9 @@ public class CustomEmoteIconResourcePack extends AbstractPackResources {
 				if(file.isDirectory()) {
 					if(maxDepth > 0)
 						this.crawl(file, maxDepth - 1, namespace, allResources, path + file.getName() + "/", filter);
-				} else if(!file.getName().endsWith(".mcmeta") && filter.test(new ResourceLocation(namespace, path + file.getName()))) {
+				} else if(!file.getName().endsWith(".mcmeta") && filter.test(ResourceLocation.fromNamespaceAndPath(namespace, path + file.getName()))) {
 					try {
-						allResources.add(new ResourceLocation(namespace, path + file.getName()));
+						allResources.add(ResourceLocation.fromNamespaceAndPath(namespace, path + file.getName()));
 					} catch (ResourceLocationException e) {
 						Quark.LOG.error(e.getMessage());
 					}

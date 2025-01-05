@@ -63,13 +63,13 @@ public class DiamondRepairModule extends ZetaModule {
 		for(String s : repairChangesList) {
 			String[] toks = s.split("=");
 			if(toks.length == 2) {
-				ResourceLocation itemRes = new ResourceLocation(toks[0]);
+				ResourceLocation itemRes = ResourceLocation.parse(toks[0]);
 
 				if(BuiltInRegistries.ITEM.containsKey(itemRes)) {
 					String repairItems = toks[1];
 					String[] repairToks = repairItems.split(",");
 					for(String repairTok : repairToks) {
-						ResourceLocation repairItemRes = new ResourceLocation(repairTok);
+						ResourceLocation repairItemRes = ResourceLocation.parse(repairTok);
 
 						if(BuiltInRegistries.ITEM.containsKey(repairItemRes)) {
 							Item item = BuiltInRegistries.ITEM.get(itemRes);

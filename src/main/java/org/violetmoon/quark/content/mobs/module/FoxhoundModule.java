@@ -95,7 +95,7 @@ public class FoxhoundModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		foxhoundSpawnableTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "foxhound_spawnable"));
+		foxhoundSpawnableTag = BlockTags.create(Quark.asResource("foxhound_spawnable"));
 	}
 
 	@PlayEvent

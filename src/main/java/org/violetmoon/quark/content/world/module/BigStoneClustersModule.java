@@ -117,7 +117,7 @@ public class BigStoneClustersModule extends ZetaModule {
 			}
 
 			String dimFinal = dimension;
-			BuiltInRegistries.BLOCK.getOptional(new ResourceLocation(bname)).ifPresent(blockObj -> {
+			BuiltInRegistries.BLOCK.getOptional(ResourceLocation.parse(bname)).ifPresent(blockObj -> {
 				if(blockObj != Blocks.AIR) {
 					if(dimFinal == null)
 						blockReplacePredicate = blockReplacePredicate.or((w, b) -> blockObj == b);

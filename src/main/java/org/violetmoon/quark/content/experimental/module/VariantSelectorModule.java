@@ -418,7 +418,7 @@ public class VariantSelectorModule extends ZetaModule {
 
 					posX += width * 2;
 				} else {
-					final ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/widget.png");
+					final ResourceLocation WIDGETS_LOCATION = ResourceLocation.withDefaultNamespace("textures/gui/widget.png"); //TODO this file no longer exists
 
 					if(alignHudToHotbar) {
 						RenderSystem.enableBlend();

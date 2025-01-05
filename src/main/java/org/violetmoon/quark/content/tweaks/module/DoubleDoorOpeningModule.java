@@ -5,6 +5,7 @@ import com.google.common.base.Predicates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -59,7 +60,7 @@ public class DoubleDoorOpeningModule extends ZetaModule {
 
 	@LoadEvent
 	public void setup(ZCommonSetup e) {
-		nonDoubleDoorTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "non_double_door"));
+		nonDoubleDoorTag = Quark.asTagKey(Registries.BLOCK,"non_double_door");
 	}
 
 	public boolean openBlock(Level world, Player player, BlockPos pos) {

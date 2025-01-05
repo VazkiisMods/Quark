@@ -57,7 +57,7 @@ import java.util.UUID;
 @ZetaLoadModule(category = "tools")
 public class ParrotEggsModule extends ZetaModule {
 
-	private static final ResourceLocation KOTO = new ResourceLocation("quark", "textures/model/entity/variants/kotobirb.png");
+	private static final ResourceLocation KOTO = Quark.asResource("textures/model/entity/variants/kotobirb.png");
 	private static final String EGG_TIMER = "quark:parrot_egg_timer";
 
 	public static EntityType<ParrotEgg> parrotEggType;
@@ -112,7 +112,7 @@ public class ParrotEggsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		feedTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "parrot_feed"));
+		feedTag = Quark.asTagKey(Registries.ITEM,"parrot_feed");
 	}
 
 	@LoadEvent

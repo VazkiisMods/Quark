@@ -39,7 +39,7 @@ public class AttributeTooltipManager extends SimplePreparableReloadListener<Map<
 		Map<String, AttributeIconEntry> tooltips = new HashMap<>();
 		profiler.startTick();
 		try {
-			for(Resource resource : manager.getResourceStack(new ResourceLocation("quark", "attribute_tooltips.json"))) {
+			for(Resource resource : manager.getResourceStack(Quark.asResource("attribute_tooltips.json"))) {
 				profiler.push(resource.sourcePackId());
 
 				try {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.common.ItemAbilities;
 import org.apache.commons.lang3.tuple.Pair;
 import org.violetmoon.quark.base.Quark;
@@ -110,7 +111,7 @@ public class VerticalSlabsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		verticalSlabTag = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Quark.MOD_ID, "vertical_slabs"));
+		verticalSlabTag = Quark.asTagKey(Registries.BLOCK, "vertical_slabs");
 	}
 
 	@LoadEvent

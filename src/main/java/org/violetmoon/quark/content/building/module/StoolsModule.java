@@ -68,7 +68,7 @@ public class StoolsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		stoolsTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "stools"));
+		stoolsTag = Quark.asTagKey(Registries.ITEM, "stools");
 	}
 
 	@PlayEvent

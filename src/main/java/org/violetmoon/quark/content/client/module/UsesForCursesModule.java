@@ -25,7 +25,7 @@ import java.util.List;
 @ZetaLoadModule(category = "client")
 public class UsesForCursesModule extends ZetaModule {
 
-	private static final ResourceLocation PUMPKIN_OVERLAY = new ResourceLocation("textures/misc/pumpkinblur.png");
+	private static final ResourceLocation PUMPKIN_OVERLAY = ResourceLocation.withDefaultNamespace("textures/misc/pumpkinblur.png");
 
 	public static boolean staticEnabled;
 

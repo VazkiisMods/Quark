@@ -37,8 +37,8 @@ import org.violetmoon.zeta.util.Hint;
 @ZetaLoadModule(category = "world")
 public class GlimmeringWealdModule extends ZetaModule {
 
-    public static final ResourceLocation BIOME_NAME = new ResourceLocation(Quark.MOD_ID, "glimmering_weald");
-    public static final ResourceKey<Biome> BIOME_KEY = ResourceKey.create(Registries.BIOME, BIOME_NAME);
+    public static final ResourceLocation BIOME_NAME = Quark.asResource("glimmering_weald");
+    public static final ResourceKey<Biome> BIOME_KEY = Quark.asResourceKey(Registries.BIOME, "glimmering_weald");
 
     public static GlowShroomsFeature glow_shrooms_feature;
     public static GlowExtrasFeature glow_shrooms_extra_feature;
@@ -116,7 +116,7 @@ public class GlimmeringWealdModule extends ZetaModule {
 
     @LoadEvent
     public void setup(ZCommonSetup e) {
-        glowShroomFeedablesTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "glow_shroom_feedables"));
+        glowShroomFeedablesTag = Quark.asTagKey(Registries.ITEM,"glow_shroom_feedables");
 
         e.enqueueWork(() -> {
             ComposterBlock.COMPOSTABLES.put(glow_shroom.asItem(), 0.65F);

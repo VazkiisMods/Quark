@@ -16,7 +16,7 @@ import org.violetmoon.quark.content.mobs.client.layer.forgotten.ForgottenSheathe
 
 public class ForgottenRenderer extends SkeletonRenderer {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/forgotten/main.png");
+	private static final ResourceLocation TEXTURE = Quark.asResource("textures/model/entity/forgotten/main.png");
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ForgottenRenderer(EntityRendererProvider.Context context) {

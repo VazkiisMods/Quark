@@ -23,6 +23,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import org.joml.Matrix4f;
+import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.type.RGBAColorConfig;
 import org.violetmoon.quark.content.tools.item.AbacusItem;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
@@ -57,7 +58,7 @@ public class AbacusModule extends ZetaModule {
 
 		@LoadEvent
 		public void clientSetup(ZClientSetup e) {
-			e.enqueueWork(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem.Client.ITEM_PROPERTY_FUNCTION));
+			e.enqueueWork(() -> ItemProperties.register(abacus, Quark.asResource("count"), AbacusItem.Client.ITEM_PROPERTY_FUNCTION));
 		}
 
 		@PlayEvent

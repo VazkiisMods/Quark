@@ -105,7 +105,7 @@ public class ObsidianSpikeGenerator extends Generator {
 
 				placePos = placePos.below();
 				world.setBlock(placePos, Blocks.CHEST.defaultBlockState(), 0);
-				RandomizableContainerBlockEntity.setLootTable(world, rand, placePos, new ResourceLocation("minecraft", "chests/nether_bridge"));
+				RandomizableContainerBlockEntity.setLootTable(world, rand, placePos, ResourceLocation.withDefaultNamespace("chests/nether_bridge"));
 			}
 		}
 	}

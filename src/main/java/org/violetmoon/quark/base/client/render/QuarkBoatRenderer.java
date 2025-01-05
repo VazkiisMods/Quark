@@ -43,7 +43,7 @@ public class QuarkBoatRenderer extends EntityRenderer<Boat> {
 	private static Map<String, BoatModelTuple> computeBoatResources(boolean chest, EntityRendererProvider.Context context) {
 		return WoodSetHandler.boatTypes().collect(ImmutableMap.toImmutableMap(Functions.identity(), name -> {
 			String folder = chest ? "chest_boat" : "boat";
-			ResourceLocation texture = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/" + folder + "/" + name + ".png");
+			ResourceLocation texture = Quark.asResource("textures/model/entity/" + folder + "/" + name + ".png");
 			BoatModel model = (chest) ? new ChestBoatModel(context.bakeLayer(ModelHandler.quark_boat_chest)) : new BoatModel(context.bakeLayer(ModelHandler.quark_boat));
 
 			return new BoatModelTuple(texture, model);

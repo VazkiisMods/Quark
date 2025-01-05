@@ -27,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import org.violetmoon.quark.addons.oddities.block.be.TinyPotatoBlockEntity;
 import org.violetmoon.quark.addons.oddities.module.TinyPotatoModule;
 import org.violetmoon.quark.addons.oddities.util.TinyPotatoInfo;
+import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tools.base.RuneColor;
 import org.violetmoon.quark.content.tools.module.ColorRunesModule;
 import org.violetmoon.quark.mixin.mixins.client.accessor.AccessorModelManager;
@@ -76,7 +77,7 @@ public class TinyPotatoRenderer implements BlockEntityRenderer<TinyPotatoBlockEn
 	}
 
 	private static ResourceLocation taterLocation(String name) {
-		return new ResourceLocation("quark", "tiny_potato/" + normalizeName(name));
+		return Quark.asResource( "tiny_potato/" + normalizeName(name));
 	}
 
 	private static String normalizeName(String name) {

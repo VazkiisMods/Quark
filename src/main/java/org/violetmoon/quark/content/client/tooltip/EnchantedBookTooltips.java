@@ -160,10 +160,10 @@ public class EnchantedBookTooltips {
 			String left = tokens[0];
 			String right = tokens[1];
 
-			BuiltInRegistries.ENCHANTMENT.getOptional(new ResourceLocation(left))
+			BuiltInRegistries.ENCHANTMENT.getOptional(ResourceLocation.parse(left))
 					.ifPresent(ench -> {
 						for(String itemId : right.split(",")) {
-							BuiltInRegistries.ITEM.getOptional(new ResourceLocation(itemId)).ifPresent(item -> additionalStacks.put(ench, new ItemStack(item)));
+							BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(itemId)).ifPresent(item -> additionalStacks.put(ench, new ItemStack(item)));
 						}
 					});
 		}

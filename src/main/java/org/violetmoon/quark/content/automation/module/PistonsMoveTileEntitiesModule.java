@@ -299,7 +299,7 @@ public class PistonsMoveTileEntitiesModule extends ZetaModule {
 		if(inWorldEntity == null) {
 			Quark.LOG.warn("No block entity found at {} (expected {})", pos.toShortString(), expectedTypeStr);
 			return null;
-		} else if(inWorldEntity.getType() != BuiltInRegistries.BLOCK_ENTITY_TYPE.get(new ResourceLocation(expectedTypeStr))) {
+		} else if(inWorldEntity.getType() != BuiltInRegistries.BLOCK_ENTITY_TYPE.get(ResourceLocation.parse(expectedTypeStr))) {
 			Quark.LOG.warn("Wrong block entity found at {} (expected {}, got {})", pos.toShortString(), expectedTypeStr, BlockEntityType.getKey(inWorldEntity.getType()));
 			return null;
 		} else {
