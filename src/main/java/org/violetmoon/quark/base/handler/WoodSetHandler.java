@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import net.neoforged.neoforge.common.ItemAbilities;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.client.render.QuarkBoatRenderer;
 import org.violetmoon.quark.base.item.boat.QuarkBoat;
@@ -157,7 +158,7 @@ public class WoodSetHandler {
 		set.wallHangingSign = new ZetaWallHangingSignBlock(name + "_wall_hanging_sign", module, type, OldMaterials.wood().forceSolidOn().mapColor(color).noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(() -> set.sign));
 
 		set.bookshelf = new VariantBookshelfBlock(name, module, true, sound).setCondition(() -> Quark.ZETA.modules.isEnabledOrOverlapping(VariantBookshelvesModule.class));
-		set.ladder = new VariantLadderBlock(name, module, Block.Properties.copy(Blocks.LADDER).sound(sound), true).setCondition(() -> Quark.ZETA.modules.isEnabledOrOverlapping(VariantLaddersModule.class));
+		set.ladder = new VariantLadderBlock(name, module, Block.Properties.ofFullCopy(Blocks.LADDER).sound(sound), true).setCondition(() -> Quark.ZETA.modules.isEnabledOrOverlapping(VariantLaddersModule.class));
 
 		set.post = new WoodPostBlock(module, set.fence, "", sound).setCondition(() -> Quark.ZETA.modules.isEnabledOrOverlapping(WoodenPostsModule.class));
 		set.strippedPost = new WoodPostBlock(module, set.fence, "stripped_", sound).setCondition(() -> Quark.ZETA.modules.isEnabledOrOverlapping(WoodenPostsModule.class));
@@ -172,9 +173,9 @@ public class WoodSetHandler {
 
 		makeSignWork(set.sign, set.wallSign, set.ceilingHangingSign, set.wallHangingSign);
 
-		ToolInteractionHandler.registerInteraction(ToolActions.AXE_STRIP, set.log, set.strippedLog);
-		ToolInteractionHandler.registerInteraction(ToolActions.AXE_STRIP, set.wood, set.strippedWood);
-		ToolInteractionHandler.registerInteraction(ToolActions.AXE_STRIP, set.post, set.strippedPost);
+		ToolInteractionHandler.registerInteraction(ItemAbilities.AXE_STRIP, set.log, set.strippedLog);
+		ToolInteractionHandler.registerInteraction(ItemAbilities.AXE_STRIP, set.wood, set.strippedWood);
+		ToolInteractionHandler.registerInteraction(ItemAbilities.AXE_STRIP, set.post, set.strippedPost);
 
 		VariantLaddersModule.variantLadders.add(set.ladder);
 

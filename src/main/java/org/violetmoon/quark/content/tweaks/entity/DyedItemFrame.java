@@ -37,10 +37,10 @@ public class DyedItemFrame extends ItemFrame {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		getEntityData().define(DATA_COLOR, 0);
-		getEntityData().define(DATA_GLOW, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_COLOR, 0);
+		builder.define(DATA_GLOW, false);
 	}
 
 	@Override

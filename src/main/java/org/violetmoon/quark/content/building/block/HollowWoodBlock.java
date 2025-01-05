@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.building.block;
 
+import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.Quark;
@@ -89,7 +90,7 @@ public class HollowWoodBlock extends HollowFrameBlock {
 			Direction face = Direction.getNearest(exactPos.x - (centerPos.getX() + 0.5), exactPos.y - (centerPos.getY() + 0.5), exactPos.z - (centerPos.getZ() + 0.5));
 			return state.cycle(MiscUtil.directionProperty(face));
 		}
-		return super.getToolModifiedStateZeta(state, context, toolActionType, simulate);
+		return super.getToolModifiedStateZeta(state, context, ItemAbility.get(toolActionType), simulate);
 	}
 
 	@Override

@@ -3,10 +3,8 @@ package org.violetmoon.quark.api.event;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.eventbus.api.Cancelable;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.bus.api.Event;
 
-@Cancelable
 public class UsageTickerEvent extends Event {
 
 	public final EquipmentSlot slot;
@@ -66,7 +64,5 @@ public class UsageTickerEvent extends Event {
 		public void setResultCount(int resultCount) {
 			this.resultCount = resultCount;
 		}
-
 	}
-
 }

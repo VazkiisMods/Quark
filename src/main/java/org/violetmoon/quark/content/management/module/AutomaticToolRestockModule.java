@@ -17,6 +17,9 @@ import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
 
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
+import net.neoforged.neoforge.common.NeoForge;
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 import org.violetmoon.quark.api.event.GatherToolClassesEvent;
 import org.violetmoon.quark.base.Quark;
@@ -38,16 +41,16 @@ import java.util.function.Predicate;
 @ZetaLoadModule(category = "management", antiOverlap = "inventorytweaks")
 public class AutomaticToolRestockModule extends ZetaModule {
 
-	private static final Map<ToolAction, String> ACTION_TO_CLASS = new HashMap<>();
+	private static final Map<ItemAbility, String> ACTION_TO_CLASS = new HashMap<>();
 
 	static {
-		ACTION_TO_CLASS.put(ToolActions.AXE_DIG, "axe");
-		ACTION_TO_CLASS.put(ToolActions.HOE_DIG, "hoe");
-		ACTION_TO_CLASS.put(ToolActions.SHOVEL_DIG, "shovel");
-		ACTION_TO_CLASS.put(ToolActions.PICKAXE_DIG, "pickaxe");
-		ACTION_TO_CLASS.put(ToolActions.SWORD_SWEEP, "sword");
-		ACTION_TO_CLASS.put(ToolActions.SHEARS_HARVEST, "shears");
-		ACTION_TO_CLASS.put(ToolActions.FISHING_ROD_CAST, "fishing_rod");
+		ACTION_TO_CLASS.put(ItemAbilities.AXE_DIG, "axe");
+		ACTION_TO_CLASS.put(ItemAbilities.HOE_DIG, "hoe");
+		ACTION_TO_CLASS.put(ItemAbilities.SHOVEL_DIG, "shovel");
+		ACTION_TO_CLASS.put(ItemAbilities.PICKAXE_DIG, "pickaxe");
+		ACTION_TO_CLASS.put(ItemAbilities.SWORD_SWEEP, "sword");
+		ACTION_TO_CLASS.put(ItemAbilities.SHEARS_HARVEST, "shears");
+		ACTION_TO_CLASS.put(ItemAbilities.FISHING_ROD_CAST, "fishing_rod");
 	}
 
 	private static final WeakHashMap<Player, Stack<QueuedRestock>> replacements = new WeakHashMap<>();
@@ -194,13 +197,13 @@ public class AutomaticToolRestockModule extends ZetaModule {
 		else if(item instanceof CrossbowItem)
 			classes.add("crossbow");
 
-		for(ToolAction action : ACTION_TO_CLASS.keySet()) {
+		for(ItemAbility action : ACTION_TO_CLASS.keySet()) {
 			if(item.canPerformAction(stack, action)) //TODO: IForgeItem
 				classes.add(ACTION_TO_CLASS.get(action));
 		}
 
 		GatherToolClassesEvent event = new GatherToolClassesEvent(stack, classes);
-		MinecraftForge.EVENT_BUS.post(event);
+		NeoForge.EVENT_BUS.post(event);
 
 		return classes;
 	}

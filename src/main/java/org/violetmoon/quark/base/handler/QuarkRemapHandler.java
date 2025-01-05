@@ -4,14 +4,14 @@ import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.MissingMappingsEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import org.violetmoon.quark.base.Quark;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class QuarkRemapHandler {
 	//datafixers could have also been used here but good luck figuring them out
 

@@ -39,7 +39,7 @@ public class MagnetBlock extends ZetaBlock implements EntityBlock{
 	public static final BooleanProperty WAXED = BooleanProperty.create("waxed");
 
 	public MagnetBlock(@Nullable ZetaModule module) {
-		super("magnet", module, Properties.copy(Blocks.IRON_BLOCK)
+		super("magnet", module, Properties.ofFullCopy(Blocks.IRON_BLOCK)
 				.hasPostProcess(MagnetBlock::isPowered)
 				.lightLevel(state -> state.getValue(POWERED) ? 3 : 0));
 

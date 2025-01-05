@@ -3,6 +3,7 @@ package org.violetmoon.quark.base.proxy;
 import java.time.LocalDateTime;
 import java.time.Month;
 
+import net.neoforged.fml.ModLoadingContext;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;

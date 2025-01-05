@@ -5,12 +5,15 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -30,7 +33,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.content.mobs.ai.BarkAtDarknessGoal;
@@ -54,7 +57,7 @@ public class Shiba extends TamableAnimal {
 
 	public Shiba(EntityType<? extends Shiba> type, Level worldIn) {
 		super(type, worldIn);
-		setTame(false);
+		setTame(false, false);
 	}
 
 	@Override
@@ -64,7 +67,7 @@ public class Shiba extends TamableAnimal {
 		goalSelector.addGoal(3, new BarkAtDarknessGoal(this));
 		goalSelector.addGoal(4, new FetchArrowGoal(this));
 		goalSelector.addGoal(5, new DeliverFetchedItemGoal(this, 1.1D, -1F, 32.0F, false));
-		goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+		goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
 		goalSelector.addGoal(7, new TemptGoal(this, 1, Ingredient.of(Items.BONE), false));
 		goalSelector.addGoal(8, new BreedGoal(this, 1.0D));
 		goalSelector.addGoal(9, new NuzzleGoal(this, 0.5F, 16, 2, QuarkSounds.ENTITY_SHIBA_WHINE));
@@ -170,20 +173,20 @@ public class Shiba extends TamableAnimal {
 	@Override
 	public boolean isFood(ItemStack stack) {
 		Item item = stack.getItem();
-		return item.isEdible() && item.getFoodProperties().isMeat();
+		return item.getFoodProperties(stack, this) != null && stack.is(ItemTags.MEAT);
 	}
 
 	@Override
-	public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+	public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entity) {
+		return new ClientboundAddEntityPacket(this, entity);
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		entityData.define(COLLAR_COLOR, DyeColor.RED.getId());
-		entityData.define(MOUTH_ITEM, ItemStack.EMPTY);
-		entityData.define(FETCHING, -1);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(COLLAR_COLOR, DyeColor.RED.getId());
+		builder.define(MOUTH_ITEM, ItemStack.EMPTY);
+		builder.define(FETCHING, -1);
 	}
 
 	public DyeColor getCollarColor() {
@@ -234,7 +237,7 @@ public class Shiba extends TamableAnimal {
 		CompoundTag itemcmp = new CompoundTag();
 		ItemStack holding = getMouthItem();
 		if(!holding.isEmpty())
-			holding.save(itemcmp);
+			holding.save(level().registryAccess(), itemcmp);
 		compound.put("MouthItem", itemcmp);
 	}
 
@@ -246,7 +249,7 @@ public class Shiba extends TamableAnimal {
 
 		if(compound.contains("MouthItem")) {
 			CompoundTag itemcmp = compound.getCompound("MouthItem");
-			setMouthItem(ItemStack.of(itemcmp));
+			setMouthItem(ItemStack.parseOptional(level().registryAccess(), itemcmp));
 		}
 	}
 
@@ -293,7 +296,7 @@ public class Shiba extends TamableAnimal {
 						itemstack.shrink(1);
 					}
 
-					this.heal((float) item.getFoodProperties().getNutrition());
+					this.heal((float) item.getFoodProperties(itemstack, this).nutrition());
 					return InteractionResult.CONSUME;
 				}
 
@@ -333,7 +336,7 @@ public class Shiba extends TamableAnimal {
 					itemstack.shrink(1);
 				}
 
-				if(this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+				if(this.random.nextInt(3) == 0 && !EventHooks.onAnimalTame(this, player)) {
 					WantLoveGoal.setPetTime(this);
 
 					this.tame(player);
@@ -352,9 +355,9 @@ public class Shiba extends TamableAnimal {
 	}
 
 	@Override
-	public void setTame(boolean tamed) {
-		super.setTame(tamed);
-		if (tamed) {
+	public void setTame(boolean tame, boolean applyTamingSideEffects) {
+		super.setTame(tame, applyTamingSideEffects);
+		if (tame) {
 			getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
 			setHealth(20);
 		} else
@@ -397,10 +400,8 @@ public class Shiba extends TamableAnimal {
 		UUID uuid = this.getOwnerUUID();
 		if(uuid != null) {
 			wolfentity.setOwnerUUID(uuid);
-			wolfentity.setTame(true);
+			wolfentity.setTame(true, false);
 		}
-
 		return wolfentity;
 	}
-
 }

@@ -217,7 +217,7 @@ public final class SortingHandler {
 			if(stackAt.isEmpty())
 				continue;
 
-			if(stackAt.getCount() < stackAt.getMaxStackSize() && ItemStack.isSameItem(stack, stackAt) && ItemStack.isSameItemSameTags(stack, stackAt)) {
+			if(stackAt.getCount() < stackAt.getMaxStackSize() && ItemStack.isSameItem(stack, stackAt) && ItemStack.isSameItemSameComponents(stack, stackAt)) {
 				int setSize = stackAt.getCount() + stack.getCount();
 				int carryover = Math.max(0, setSize - stackAt.getMaxStackSize());
 				stackAt.setCount(carryover);
@@ -355,7 +355,7 @@ public final class SortingHandler {
 	private static int nutrition(FoodProperties properties) {
 		if(properties == null)
 			return 0;
-		return properties.getNutrition();
+		return properties.nutrition();
 	}
 
 	private static int foodHealCompare(ItemStack stack1, ItemStack stack2) {
@@ -365,7 +365,7 @@ public final class SortingHandler {
 	private static float saturation(FoodProperties properties) {
 		if(properties == null)
 			return 0;
-		return Math.min(20, properties.getNutrition() * properties.getSaturationModifier() * 2);
+		return Math.min(20, properties.nutrition() * properties.saturation() * 2);
 	}
 
 	private static int foodSaturationCompare(ItemStack stack1, ItemStack stack2) {

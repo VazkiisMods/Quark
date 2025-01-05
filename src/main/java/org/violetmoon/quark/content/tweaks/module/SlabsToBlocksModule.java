@@ -42,8 +42,7 @@ public class SlabsToBlocksModule extends ZetaModule {
 	@PlayEvent
 	public void onVisitShaped(ZRecipeCrawl.Visit.Shaped visit) {
 		if(visit.ingredients.size() == 3
-				&& visit.recipe.getHeight() == 1
-				&& visit.recipe.getWidth() == 3
+				&& visit.recipe.canCraftInDimensions(3, 1)
 				&& visit.output.getItem() instanceof BlockItem bi
 				&& bi.getBlock() instanceof SlabBlock) {
 

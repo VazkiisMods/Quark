@@ -33,7 +33,7 @@ public class VariantLaddersModule extends ZetaModule {
 	public final void register(ZRegister event) {
 		CreativeTabManager.daisyChain();
 		for(Wood type : VanillaWoods.NON_OAK)
-			variantLadders.add(new VariantLadderBlock(type.name(), this, Block.Properties.copy(Blocks.LADDER).sound(type.soundPlanks()), !type.nether()));
+			variantLadders.add(new VariantLadderBlock(type.name(), this, Block.Properties.ofFullCopy(Blocks.LADDER).sound(type.soundPlanks()), !type.nether()));
 		CreativeTabManager.endDaisyChain();
 	}
 

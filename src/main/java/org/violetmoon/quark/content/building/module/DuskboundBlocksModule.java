@@ -18,10 +18,10 @@ public class DuskboundBlocksModule extends ZetaModule {
 	@LoadEvent
 	public final void register(ZRegister event) {
 		CreativeTabManager.daisyChain();
-		Block duskbound = new ZetaBlock("duskbound_block", this, Block.Properties.copy(Blocks.PURPUR_BLOCK)).setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS, Blocks.COAL_BLOCK, true);
+		Block duskbound = new ZetaBlock("duskbound_block", this, Block.Properties.ofFullCopy(Blocks.PURPUR_BLOCK)).setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS, Blocks.COAL_BLOCK, true);
 
 		new ZetaBlock("duskbound_lantern", this,
-				Block.Properties.copy(Blocks.PURPUR_BLOCK)
+				Block.Properties.ofFullCopy(Blocks.PURPUR_BLOCK)
 						.lightLevel(b -> 15))
 				.setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS);
 

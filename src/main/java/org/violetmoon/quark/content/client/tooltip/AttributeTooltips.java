@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.Quark;
@@ -90,21 +91,21 @@ public class AttributeTooltips {
 	private static MutableComponent format(Attribute attribute, double value, AttributeDisplayType displayType) {
 		switch(displayType) {
 		case DIFFERENCE -> {
-			return Component.literal((value > 0 ? "+" : "") + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value))
-					.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
+			return Component.literal((value > 0 ? "+" : "") + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format((value))
+					.formatted(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE));
 		}
 		case PERCENTAGE -> {
-			return Component.literal((value > 0 ? "+" : "") + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value * 100) + "%")
-					.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
+			return Component.literal((value > 0 ? "+" : "") + ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format((value * 100) + "%")
+					.formatted(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE));
 		}
 		case MULTIPLIER -> {
 			AttributeSupplier supplier = DefaultAttributes.getSupplier(EntityType.PLAYER);
 			double scaledValue = value / supplier.getBaseValue(attribute);
-			return Component.literal(ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(scaledValue) + "x")
+			return Component.literal(ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(scaledValue) + "x")
 					.withStyle(scaledValue < 1 ? ChatFormatting.RED : ChatFormatting.WHITE);
 		}
 		default -> {
-			return Component.literal(ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value))
+			return Component.literal(ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(value))
 					.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
 		}
 		}
@@ -261,7 +262,7 @@ public class AttributeTooltips {
 	private static AttributeSlot getPrimarySlot(ItemStack stack) {
 		if(stack.getItem() instanceof PotionItem || stack.getItem() instanceof TippedArrowItem)
 			return AttributeSlot.POTION;
-		return AttributeSlot.fromCanonicalSlot(Mob.getEquipmentSlotForItem(stack));
+		return AttributeSlot.fromCanonicalSlot(stack.getEquipmentSlot());
 	}
 
 	private static boolean canShowAttributes(ItemStack stack, AttributeSlot slot) {

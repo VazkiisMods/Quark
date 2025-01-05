@@ -28,7 +28,7 @@ public class GravisandModule extends ZetaModule {
 
 	@LoadEvent
 	public final void register(ZRegister event) {
-		gravisand = new GravisandBlock("gravisand", this, Block.Properties.copy(Blocks.SAND));
+		gravisand = new GravisandBlock("gravisand", this, Block.Properties.ofFullCopy(Blocks.SAND));
 
 		gravisandType = EntityType.Builder.<Gravisand>of(Gravisand::new, MobCategory.MISC)
 				.sized(0.98F, 0.98F)
