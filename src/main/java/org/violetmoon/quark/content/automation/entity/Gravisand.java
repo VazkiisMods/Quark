@@ -88,10 +88,9 @@ public class Gravisand extends FallingBlockEntity {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-
-		entityData.define(DIRECTION, 0F);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DIRECTION, 0F);
 	}
 
 	@Override

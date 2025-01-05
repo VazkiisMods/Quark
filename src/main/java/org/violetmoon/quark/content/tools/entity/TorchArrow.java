@@ -95,14 +95,19 @@ public class TorchArrow extends AbstractArrow {
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
 		// incredible hack to ensure we still set entities on fire without rendering the fire texture
-		setSecondsOnFire(1);
+		igniteForSeconds(1);
 		super.onHitEntity(result);
-		setSecondsOnFire(0);
+		extinguishFire();
 	}
 
 	@Override
 	protected @NotNull ItemStack getPickupItem() {
 		return new ItemStack(TorchArrowModule.extinguishOnMiss ? Items.ARROW : TorchArrowModule.torch_arrow);
+	}
+
+	@Override
+	protected ItemStack getDefaultPickupItem() {
+		return new ItemStack(TorchArrowModule.torch_arrow);
 	}
 
 }

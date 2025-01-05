@@ -115,7 +115,7 @@ public class CrabsModule extends ZetaModule {
 		crab_bucket = new ZetaMobBucketItem(() -> crabType, () -> Fluids.WATER, () -> QuarkSounds.BUCKET_EMPTY_CRAB, "crab_bucket", this);
 
 		resilience = new ZetaEffect(Quark.ZETA, "resilience", MobEffectCategory.BENEFICIAL, 0x5b1a04);
-		resilience.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, "2ddf3f0a-f386-47b6-aeb0-6bd32851f215", 0.5, AttributeModifier.Operation.ADDITION);
+		resilience.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, Quark.asResource("resilience_knockback_resistance"), 0.5, AttributeModifier.Operation.ADD_VALUE);
 
 		event.getBrewingRegistry().addPotionMix("crab_brewing", () -> Ingredient.of(crab_shell), resilience);
 

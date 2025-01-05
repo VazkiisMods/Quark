@@ -299,19 +299,19 @@ public class AttributeTooltips {
 		}
 
 		for(AttributeModifier modifier : collection) {
-			if(modifier.getOperation() == AttributeModifier.Operation.ADDITION)
+			if(modifier.getOperation() == AttributeModifier.Operation.ADD_VALUE)
 				value += modifier.getAmount();
 		}
 
 		double rawValue = value;
 
 		for(AttributeModifier modifier : collection) {
-			if(modifier.getOperation() == AttributeModifier.Operation.MULTIPLY_BASE)
+			if(modifier.getOperation() == AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
 				value += rawValue * modifier.getAmount();
 		}
 
 		for(AttributeModifier modifier : collection) {
-			if(modifier.getOperation() == AttributeModifier.Operation.MULTIPLY_TOTAL)
+			if(modifier.getOperation() == AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
 				value += value * modifier.getAmount();
 		}
 

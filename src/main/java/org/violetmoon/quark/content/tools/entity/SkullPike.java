@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
@@ -58,7 +59,7 @@ public class SkullPike extends Entity {
 	}
 
 	@Override
-	protected void defineSynchedData() {
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		// NO-OP
 	}
 

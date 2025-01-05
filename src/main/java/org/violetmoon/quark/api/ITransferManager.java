@@ -11,7 +11,7 @@
 package org.violetmoon.quark.api;
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.function.Supplier;
 

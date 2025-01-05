@@ -136,9 +136,9 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		entityData.define(STACK, new ItemStack(PickarangModule.pickarang));
-		entityData.define(RETURNING, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		builder.define(STACK, new ItemStack(PickarangModule.pickarang));
+		builder.define(RETURNING, false);
 	}
 
 	protected void checkImpact() {

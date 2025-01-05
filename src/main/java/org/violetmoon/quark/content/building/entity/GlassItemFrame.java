@@ -175,10 +175,10 @@ public class GlassItemFrame extends ItemFrame implements IEntityWithComplexSpawn
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
 
-		entityData.define(IS_SHINY, false);
+		builder.define(IS_SHINY, false);
 	}
 
 	@Override
