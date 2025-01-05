@@ -15,6 +15,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -64,6 +65,7 @@ import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.network.NetworkHooks;
 
+import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -74,7 +76,7 @@ import org.violetmoon.quark.content.mobs.module.CrabsModule;
 
 import java.util.function.BiConsumer;
 
-public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketable {
+public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable {
 
 	public static final int COLORS = 3;
 	public static final ResourceKey<LootTable> CRAB_LOOT_TABLE = Quark.asResourceKey(Registries.LOOT_TABLE, "entities/crab");
@@ -169,11 +171,6 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		return world.getBlockState(pos.below()).is(CrabsModule.crabSpawnableTag) ? 10.0F : world.getRawBrightness(pos, 0) - 0.5F;
 	}
 
-	@Override
-	public boolean canBreatheUnderwater() {
-		return true;
-	}
-
 	@NotNull
 	@Override
 	public MobType getMobType() {
@@ -181,13 +178,13 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
 
-		entityData.define(SIZE_MODIFIER, 1f);
-		entityData.define(VARIANT, -1);
-		entityData.define(RAVING, false);
-		entityData.define(FROM_BUCKET, false);
+		builder.define(SIZE_MODIFIER, 1f);
+		builder.define(VARIANT, -1);
+		builder.define(RAVING, false);
+		builder.define(FROM_BUCKET, false);
 	}
 
 	@NotNull
@@ -478,13 +475,13 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public void writeSpawnData(FriendlyByteBuf buffer) {
-		buffer.writeFloat(getSizeModifier());
+	public void writeSpawnData(RegistryFriendlyByteBuf registryFriendlyByteBuf) {
+		registryFriendlyByteBuf.writeFloat(getSizeModifier());
 	}
 
 	@Override
-	public void readSpawnData(FriendlyByteBuf buffer) {
-		entityData.set(SIZE_MODIFIER, buffer.readFloat());
+	public void readSpawnData(RegistryFriendlyByteBuf registryFriendlyByteBuf) {
+		entityData.set(SIZE_MODIFIER, registryFriendlyByteBuf.readFloat());
 	}
 
 	@Override

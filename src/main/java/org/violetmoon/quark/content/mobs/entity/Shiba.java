@@ -63,8 +63,8 @@ public class Shiba extends TamableAnimal {
 		goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
 		goalSelector.addGoal(3, new BarkAtDarknessGoal(this));
 		goalSelector.addGoal(4, new FetchArrowGoal(this));
-		goalSelector.addGoal(5, new DeliverFetchedItemGoal(this, 1.1D, -1F, 32.0F, false));
-		goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+		goalSelector.addGoal(5, new DeliverFetchedItemGoal(this, 1.1D, -1F, 32.0F));
+		goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
 		goalSelector.addGoal(7, new TemptGoal(this, 1, Ingredient.of(Items.BONE), false));
 		goalSelector.addGoal(8, new BreedGoal(this, 1.0D));
 		goalSelector.addGoal(9, new NuzzleGoal(this, 0.5F, 16, 2, QuarkSounds.ENTITY_SHIBA_WHINE));
@@ -179,11 +179,11 @@ public class Shiba extends TamableAnimal {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		entityData.define(COLLAR_COLOR, DyeColor.RED.getId());
-		entityData.define(MOUTH_ITEM, ItemStack.EMPTY);
-		entityData.define(FETCHING, -1);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(COLLAR_COLOR, DyeColor.RED.getId());
+		builder.define(MOUTH_ITEM, ItemStack.EMPTY);
+		builder.define(FETCHING, -1);
 	}
 
 	public DyeColor getCollarColor() {
@@ -246,7 +246,7 @@ public class Shiba extends TamableAnimal {
 
 		if(compound.contains("MouthItem")) {
 			CompoundTag itemcmp = compound.getCompound("MouthItem");
-			setMouthItem(ItemStack.of(itemcmp));
+			setMouthItem(ItemStack.parseOptional(level().registryAccess(), itemcmp));
 		}
 	}
 

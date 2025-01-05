@@ -1,5 +1,6 @@
 package org.violetmoon.quark.content.tweaks.module;
 
+import net.minecraft.world.entity.Entity;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.PlayEvent;
@@ -87,7 +88,7 @@ public class PigLittersModule extends ZetaModule {
 
 	@PlayEvent
 	public void onEntityUpdate(ZLivingTick event) {
-		LivingEntity entity = event.getEntity();
+		Entity entity = event.getEntity();
 		if(entity instanceof Animal animal && !animal.isInLove())
 			animal.getPersistentData().remove(GOLDEN_CARROT_TAG);
 	}

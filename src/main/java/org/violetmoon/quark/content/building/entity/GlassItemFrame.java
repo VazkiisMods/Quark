@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -35,6 +36,7 @@ import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.network.NetworkHooks;
 
+import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -42,7 +44,7 @@ import org.violetmoon.quark.content.building.module.GlassItemFrameModule;
 
 import java.util.UUID;
 
-public class GlassItemFrame extends ItemFrame implements IEntityAdditionalSpawnData {
+public class GlassItemFrame extends ItemFrame implements IEntityWithComplexSpawn {
 
 	public static final EntityDataAccessor<Boolean> IS_SHINY = SynchedEntityData.defineId(GlassItemFrame.class, EntityDataSerializers.BOOLEAN);
 
@@ -246,14 +248,14 @@ public class GlassItemFrame extends ItemFrame implements IEntityAdditionalSpawnD
 	}
 
 	@Override
-	public void writeSpawnData(FriendlyByteBuf buffer) {
-		buffer.writeBlockPos(this.pos);
-		buffer.writeVarInt(this.direction.get3DDataValue());
+	public void writeSpawnData(RegistryFriendlyByteBuf registryFriendlyByteBuf) {
+		registryFriendlyByteBuf.writeBlockPos(this.pos);
+		registryFriendlyByteBuf.writeVarInt(this.direction.get3DDataValue());
 	}
 
 	@Override
-	public void readSpawnData(FriendlyByteBuf buffer) {
-		this.pos = buffer.readBlockPos();
-		this.setDirection(Direction.from3DDataValue(buffer.readVarInt()));
+	public void readSpawnData(RegistryFriendlyByteBuf registryFriendlyByteBuf) {
+		this.pos = registryFriendlyByteBuf.readBlockPos();
+		this.setDirection(Direction.from3DDataValue(registryFriendlyByteBuf.readVarInt()));
 	}
 }

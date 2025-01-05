@@ -66,7 +66,7 @@ public class DiamondHeartItem extends ZetaItem {
 						stoneling.setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 						stoneling.setPlayerMade(true);
 						stoneling.setYRot(player.getYRot() + 180F);
-						stoneling.finalizeSpawn(serverLevel, world.getCurrentDifficultyAt(pos), MobSpawnType.STRUCTURE, variant, null);
+						stoneling.finalizeSpawn(serverLevel, world.getCurrentDifficultyAt(pos), MobSpawnType.STRUCTURE, variant);
 						world.addFreshEntity(stoneling);
 
 						if(player instanceof ServerPlayer serverPlayer) {
@@ -84,12 +84,6 @@ public class DiamondHeartItem extends ZetaItem {
 		}
 
 		return InteractionResult.PASS;
-	}
-
-	@NotNull
-	@Override
-	public Rarity getRarity(@NotNull ItemStack stack) {
-		return Rarity.UNCOMMON;
 	}
 
 	@Override

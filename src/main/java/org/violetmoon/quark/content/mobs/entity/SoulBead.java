@@ -41,9 +41,9 @@ public class SoulBead extends Entity {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		entityData.define(TARGET_X, 0);
-		entityData.define(TARGET_Z, 0);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		builder.define(TARGET_X, 0);
+		builder.define(TARGET_Z, 0);
 	}
 
 	@Override

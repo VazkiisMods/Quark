@@ -40,6 +40,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -89,18 +90,18 @@ public class Stoneling extends PathfinderMob {
 
 	public Stoneling(EntityType<? extends Stoneling> type, Level worldIn) {
 		super(type, worldIn);
-		this.setPathfindingMalus(BlockPathTypes.DAMAGE_OTHER, 1.0F);
-		this.setPathfindingMalus(BlockPathTypes.DANGER_OTHER, 1.0F);
+		this.setPathfindingMalus(PathType.DAMAGE_OTHER, 1.0F);
+		this.setPathfindingMalus(PathType.DANGER_OTHER, 1.0F);
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
 
-		entityData.define(CARRYING_ITEM, ItemStack.EMPTY);
-		entityData.define(VARIANT, (byte) 0);
-		entityData.define(HOLD_ANGLE, 0F);
-		entityData.define(HAS_LICHEN, false);
+		builder.define(CARRYING_ITEM, ItemStack.EMPTY);
+		builder.define(VARIANT, (byte) 0);
+		builder.define(HOLD_ANGLE, 0F);
+		builder.define(HAS_LICHEN, false);
 	}
 
 	@Override
@@ -253,7 +254,7 @@ public class Stoneling extends PathfinderMob {
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType spawnReason, @Nullable SpawnGroupData data, @Nullable CompoundTag compound) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType spawnReason, @Nullable SpawnGroupData data) {
 		RandomSource rand = world.getRandom();
 		byte variant;
 		if(data instanceof StonelingVariant stonelingVariant)
@@ -274,7 +275,7 @@ public class Stoneling extends PathfinderMob {
 				entityData.set(CARRYING_ITEM, items.get(0));
 		}
 
-		return super.finalizeSpawn(world, difficulty, spawnReason, data, compound);
+		return super.finalizeSpawn(world, difficulty, spawnReason, data);
 	}
 
 	@Override
@@ -294,11 +295,6 @@ public class Stoneling extends PathfinderMob {
 			return pickarang.getPiercingModifier() <= 0;
 		else if(sourceEntity instanceof AbstractArrow arrow)
 			return arrow.getPierceLevel() <= 0;
-		return true;
-	}
-
-	@Override
-	public boolean canBreatheUnderwater() {
 		return true;
 	}
 

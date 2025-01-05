@@ -6,10 +6,12 @@ import com.google.common.collect.Multimap;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraftforge.common.ForgeMod;
 
 import org.jetbrains.annotations.NotNull;
@@ -35,7 +37,8 @@ public class ForgottenHatItem extends ZetaArmorItem implements IZetaItem {
 				new Item.Properties()
 						.stacksTo(1)
 						.durability(0)
-						.rarity(Rarity.RARE));
+						.rarity(Rarity.RARE)
+						.attributes(createAttributes()));
 
 		Quark.ZETA.registry.registerItem(this, "forgotten_hat");
 		this.module = module;
@@ -72,22 +75,15 @@ public class ForgottenHatItem extends ZetaArmorItem implements IZetaItem {
 		return false;
 	}
 
-	@Override
-	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-		if(attributes == null) {
-			Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-			UUID uuid = UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150");
-			builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", 1, AttributeModifier.Operation.ADDITION));
-			builder.put(Attributes.LUCK, new AttributeModifier(uuid, "Armor luck modifier", 1, AttributeModifier.Operation.ADDITION));
+	public static ItemAttributeModifiers createAttributes() {
+		ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+		builder.add(Attributes.ARMOR, new AttributeModifier(Quark.asResource("forgotten_hat_armor"), 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD);
+		builder.add(Attributes.LUCK, new AttributeModifier(Quark.asResource("forgotten_hat_luck"), 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD);
 
-			//TODO: Forge extension attributes (but these are on the way out, i guess)
-			builder.put(ForgeMod.ENTITY_REACH.get(), new AttributeModifier(uuid, "Armor entity reach modifier", 2, AttributeModifier.Operation.ADDITION));
-			builder.put(ForgeMod.BLOCK_REACH.get(), new AttributeModifier(uuid, "Armor block reach modifier", 2, AttributeModifier.Operation.ADDITION));
+		builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(Quark.asResource("forgotten_hat_entity_interaction_range"),  2, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD);
+		builder.add(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(Quark.asResource("forgotten_hat_block_interaction_range"), 2, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD);
 
-			attributes = builder.build();
-		}
-
-		return slot == this.getEquipmentSlot() ? attributes : super.getDefaultAttributeModifiers(slot);
+		return builder.build();
 	}
 
 }
