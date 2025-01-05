@@ -67,7 +67,7 @@ public class HotbarChangerModule extends ZetaModule {
 
 		@PlayEvent
 		public void hudHeathPre(ZRenderGuiOverlay.PlayerHealth.Pre event) {
-			float shift = -getRealHeight(event.getPartialTick()) + 22;
+			float shift = -getRealHeight(event.getPartialTick().getGameTimeDeltaTicks()) + 22;
 			if(shift < 0) {
 				event.getGuiGraphics().pose().translate(0, shift, 0);
 				shifting = true;
@@ -85,7 +85,7 @@ public class HotbarChangerModule extends ZetaModule {
 		}
 
 		public void hudOverlay(ZRenderGuiOverlay event) {
-			float shift = -getRealHeight(event.getPartialTick()) + 22;
+			float shift = -getRealHeight(event.getPartialTick().getGameTimeDeltaTicks()) + 22;
 			if(shifting) {
 				event.getGuiGraphics().pose().translate(0, -shift, 0);
 				shifting = false;
@@ -107,7 +107,7 @@ public class HotbarChangerModule extends ZetaModule {
 			RenderSystem.enableDepthTest();
 
 			Window res = event.getWindow();
-			float realHeight = getRealHeight(event.getPartialTick());
+			float realHeight = getRealHeight(event.getPartialTick().getGameTimeDeltaTicks());
 			float xStart = res.getGuiScaledWidth() / 2f - 91;
 			float yStart = res.getGuiScaledHeight() - realHeight;
 

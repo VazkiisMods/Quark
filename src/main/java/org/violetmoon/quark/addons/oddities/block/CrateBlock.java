@@ -39,7 +39,7 @@ public class CrateBlock extends ZetaBlock implements EntityBlock {
 	public static final BooleanProperty PROPERTY_OPEN = BlockStateProperties.OPEN;
 
 	public CrateBlock(@Nullable ZetaModule module) {
-		super("crate", module, Properties.copy(Blocks.BARREL));
+		super("crate", module, Properties.ofFullCopy(Blocks.BARREL));
 		registerDefaultState(stateDefinition.any().setValue(PROPERTY_OPEN, false));
 
 		if(module == null) //auto registration below this line

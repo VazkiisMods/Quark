@@ -19,7 +19,7 @@ public class MoreMudBlocksModule extends ZetaModule {
 
 	@LoadEvent
 	public final void register(ZRegister event) {
-		BlockBehaviour.Properties props = Properties.copy(Blocks.MUD_BRICKS);
+		BlockBehaviour.Properties props = Properties.ofFullCopy(Blocks.MUD_BRICKS);
 
 		CreativeTabManager.daisyChain();
 		new ZetaBlock("carved_mud_bricks", this, props).setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS, Blocks.MUD_BRICK_STAIRS, false);

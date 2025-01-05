@@ -375,6 +375,16 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 		return CandleInfluencer.forBlock(state.getBlock(), world, pos);
 	}
 
+	@Override
+	public void startOpen(@NotNull Player player) {
+
+	}
+
+	@Override
+	public void stopOpen(@NotNull Player player) {
+
+	}
+
 	private record CandleInfluencer(boolean inverted) implements IEnchantmentInfluencer {
 
 		private static final CandleInfluencer INSTANCE = new CandleInfluencer(false);
@@ -416,7 +426,7 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 		@Override
 		public float[] getEnchantmentInfluenceColor(BlockGetter world, BlockPos pos, BlockState state) {
 			DyeColor color = getColor(state);
-			return color == null ? null : color.getTextureDiffuseColors();
+			return color == null ? null : color.getTextureDiffuseColor();
 		}
 
 		@Nullable

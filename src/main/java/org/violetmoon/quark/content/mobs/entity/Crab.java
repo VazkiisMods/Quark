@@ -12,17 +12,20 @@ package org.violetmoon.quark.content.mobs.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
@@ -57,6 +60,7 @@ import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -99,7 +103,7 @@ public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable 
 
 	public Crab(EntityType<? extends Crab> type, Level worldIn, float sizeModifier) {
 		super(type, worldIn);
-		this.setPathfindingMalus(BlockPathTypes.LAVA, -1.0F);
+		this.setPathfindingMalus(PathType.LAVA, -1.0F);
 		if(sizeModifier != 1)
 			entityData.set(SIZE_MODIFIER, sizeModifier);
 
@@ -373,15 +377,15 @@ public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable 
 
 			var healthAttr = this.getAttribute(Attributes.MAX_HEALTH);
 			if(healthAttr != null)
-				healthAttr.addPermanentModifier(new AttributeModifier("Lightning Bonus", 0.5, Operation.ADDITION));
+				healthAttr.addPermanentModifier(new AttributeModifier(Quark.asResource("Lightning Bonus"), 0.5, Operation.ADD_VALUE));
 
 			var speedAttr = this.getAttribute(Attributes.MOVEMENT_SPEED);
 			if(speedAttr != null)
-				speedAttr.addPermanentModifier(new AttributeModifier("Lightning Debuff", -0.05, Operation.ADDITION));
+				speedAttr.addPermanentModifier(new AttributeModifier(Quark.asResource("Lightning Debuff"), -0.05, Operation.ADD_VALUE));
 
 			var armorAttr = this.getAttribute(Attributes.ARMOR);
 			if(armorAttr != null)
-				armorAttr.addPermanentModifier(new AttributeModifier("Lightning Bonus", 0.125, Operation.ADDITION));
+				armorAttr.addPermanentModifier(new AttributeModifier(Quark.asResource("Lightning Bonus"), 0.125, Operation.ADD_VALUE));
 
 			float sizeModifier = Math.min(sizeMod + 1, 16);
 			this.entityData.set(SIZE_MODIFIER, sizeModifier);
@@ -470,18 +474,18 @@ public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable 
 
 	@NotNull
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+	public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entity) {
+		return new ClientboundAddEntityPacket(this, entity);
 	}
 
 	@Override
-	public void writeSpawnData(RegistryFriendlyByteBuf registryFriendlyByteBuf) {
-		registryFriendlyByteBuf.writeFloat(getSizeModifier());
+	public void writeSpawnData(RegistryFriendlyByteBuf buffer) {
+		buffer.writeFloat(getSizeModifier());
 	}
 
 	@Override
-	public void readSpawnData(RegistryFriendlyByteBuf registryFriendlyByteBuf) {
-		entityData.set(SIZE_MODIFIER, registryFriendlyByteBuf.readFloat());
+	public void readSpawnData(RegistryFriendlyByteBuf buffer) {
+		entityData.set(SIZE_MODIFIER, buffer.readFloat());
 	}
 
 	@Override
@@ -533,12 +537,24 @@ public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable 
 		}
 
 		@Override
-		public boolean handleGameEvent(@NotNull ServerLevel serverLevel, @NotNull GameEvent gameEvent,
-				@NotNull GameEvent.Context context, @NotNull Vec3 vec3) {
-			if(gameEvent == GameEvent.JUKEBOX_PLAY) {
+		public boolean handleGameEvent(ServerLevel level, Holder<GameEvent> holder, GameEvent.Context context, Vec3 vec3) {
+			if(context == GameEvent.JUKEBOX_PLAY) {
 				Crab.this.party(BlockPos.containing(vec3), true);
 				return true;
-			} else if(gameEvent == GameEvent.JUKEBOX_STOP_PLAY) {
+			} else if(context == GameEvent.JUKEBOX_STOP_PLAY) {
+				Crab.this.party(BlockPos.containing(vec3), false);
+				return true;
+			} else
+				return false;
+		}
+
+		@Override
+		public boolean handleGameEvent(@NotNull ServerLevel serverLevel, @NotNull GameEvent gameEvent,
+				@NotNull GameEvent.Context context, @NotNull Vec3 vec3) {
+			if(gameEvent == GameEvent.JUKEBOX_PLAY.value()) {
+				Crab.this.party(BlockPos.containing(vec3), true);
+				return true;
+			} else if(gameEvent == GameEvent.JUKEBOX_STOP_PLAY.value()) {
 				Crab.this.party(BlockPos.containing(vec3), false);
 				return true;
 			} else

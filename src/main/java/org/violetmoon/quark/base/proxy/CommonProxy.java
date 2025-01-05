@@ -1,35 +1,5 @@
 package org.violetmoon.quark.base.proxy;
 
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.List;
-
-import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.api.ICustomSorting;
-import org.violetmoon.quark.api.IMagnetTracker;
-import org.violetmoon.quark.api.IPistonCallback;
-import org.violetmoon.quark.api.IRuneColorProvider;
-import org.violetmoon.quark.api.ITransferManager;
-import org.violetmoon.quark.api.QuarkCapabilities;
-import org.violetmoon.quark.api.event.SimpleHarvestEvent;
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.base.capability.CapabilityHandler;
-import org.violetmoon.quark.base.capability.QuarkForgeCapabilities;
-import org.violetmoon.quark.base.config.QuarkGeneralConfig;
-import org.violetmoon.quark.base.handler.ContributorRewardHandler;
-import org.violetmoon.quark.base.handler.QuarkSounds;
-import org.violetmoon.quark.base.handler.WoodSetHandler;
-import org.violetmoon.quark.base.network.QuarkNetwork;
-import org.violetmoon.quark.base.recipe.ExclusionRecipe;
-import org.violetmoon.zeta.config.SyncedFlagHandler;
-import org.violetmoon.zeta.event.bus.IZetaPlayEvent;
-import org.violetmoon.zeta.event.bus.LoadEvent;
-import org.violetmoon.zeta.event.load.ZCommonSetup;
-import org.violetmoon.zeta.event.load.ZConfigChanged;
-import org.violetmoon.zeta.event.load.ZRegister;
-import org.violetmoon.zeta.module.ZetaCategory;
-import org.violetmoon.zetaimplforge.module.ModFileScanDataModuleFinder;
-
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.InteractionHand;
@@ -40,7 +10,27 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import org.jetbrains.annotations.Nullable;
+import org.violetmoon.quark.api.*;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.base.capability.CapabilityHandler;
+import org.violetmoon.quark.base.capability.QuarkForgeCapabilities;
+import org.violetmoon.quark.base.config.QuarkGeneralConfig;
+import org.violetmoon.quark.base.handler.ContributorRewardHandler;
+import org.violetmoon.quark.base.handler.QuarkSounds;
+import org.violetmoon.quark.base.handler.WoodSetHandler;
+import org.violetmoon.quark.base.network.QuarkNetwork;
+import org.violetmoon.quark.base.recipe.ExclusionRecipe;
+import org.violetmoon.zeta.event.bus.LoadEvent;
+import org.violetmoon.zeta.event.load.ZRegister;
+import org.violetmoon.zeta.module.ZetaCategory;
+import org.violetmoon.zetaimplforge.module.ModFileScanDataModuleFinder;
+
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.List;
 
 public class CommonProxy {
 
@@ -56,12 +46,12 @@ public class CommonProxy {
 				.register(QuarkCapabilities.MAGNET_TRACKER_CAPABILITY, QuarkForgeCapabilities.MAGNET_TRACKER_CAPABILITY)
 				.register(QuarkCapabilities.RUNE_COLOR, QuarkForgeCapabilities.RUNE_COLOR);
 		//weird forge capability-implementation-class stuff
-		MinecraftForge.EVENT_BUS.addListener((RegisterCapabilitiesEvent e) -> {
-			e.register(ICustomSorting.class);
-			e.register(ITransferManager.class);
-			e.register(IPistonCallback.class);
-			e.register(IMagnetTracker.class);
-			e.register(IRuneColorProvider.class);
+		NeoForge.EVENT_BUS.addListener((RegisterCapabilitiesEvent event) -> {
+			event.register(ICustomSorting.class);
+			event.register(ITransferManager.class);
+			event.register(IPistonCallback.class);
+			event.register(IMagnetTracker.class);
+			event.register(IRuneColorProvider.class);
 		});
 
 		// GLOBAL EVENT LISTENERS

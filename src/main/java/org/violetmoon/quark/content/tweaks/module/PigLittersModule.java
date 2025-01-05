@@ -88,8 +88,7 @@ public class PigLittersModule extends ZetaModule {
 
 	@PlayEvent
 	public void onEntityUpdate(ZLivingTick event) {
-		Entity entity = event.getEntity();
-		if(entity instanceof Animal animal && !animal.isInLove())
+		if(event.getEntity() instanceof Animal animal && !animal.isInLove())
 			animal.getPersistentData().remove(GOLDEN_CARROT_TAG);
 	}
 

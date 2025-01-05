@@ -1,6 +1,8 @@
 package org.violetmoon.quark.content.tweaks.module;
 
 import net.minecraft.core.registries.Registries;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.SpecialPlantable;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
@@ -72,7 +74,7 @@ public class HoeHarvestingModule extends ZetaModule {
 		return !itemStack.isEmpty() &&
 				(itemStack.getItem() instanceof HoeItem
 						|| itemStack.is(ItemTags.HOES)
-						|| itemStack.getItem().canPerformAction(itemStack, ToolActions.HOE_DIG)); //TODO: IForgeItem
+						|| itemStack.getItem().canPerformAction(itemStack, ItemAbilities.HOE_DIG)); //TODO: IForgeItem
 	}
 
 	@LoadEvent
@@ -122,7 +124,7 @@ public class HoeHarvestingModule extends ZetaModule {
 
 	private boolean canHarvest(Player player, LevelAccessor world, BlockPos pos, BlockState state) {
 		Block block = state.getBlock();
-		if(block instanceof IPlantable plant) {
+		if(block instanceof SpecialPlantable plant) {
 			PlantType type = plant.getPlantType(world, pos);
 			return type != PlantType.WATER && type != PlantType.DESERT;
 		}

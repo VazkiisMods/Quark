@@ -37,7 +37,7 @@ public class ShinglesModule extends ZetaModule {
 	}
 
 	private void add(ZRegister event, String name, Block parent) {
-		event.getVariantRegistry().addSlabAndStairs((IZetaBlock) new ZetaBlock(name + "shingles", this, Block.Properties.copy(parent)).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, parent, false), CreativeModeTabs.COLORED_BLOCKS);
+		event.getVariantRegistry().addSlabAndStairs((IZetaBlock) new ZetaBlock(name + "shingles", this, Block.Properties.ofFullCopy(parent)).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, parent, false), CreativeModeTabs.COLORED_BLOCKS);
 	}
 
 }

@@ -2,10 +2,8 @@ package org.violetmoon.quark.content.tools.module;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.Position;
-import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -52,7 +50,7 @@ public class TorchArrowModule extends ZetaModule {
 				.build("torch_arrow");
 		event.getRegistry().register(torchArrowType, "torch_arrow", Registries.ENTITY_TYPE);
 
-		DispenserBlock.registerBehavior(torch_arrow, new AbstractProjectileDispenseBehavior() {
+		DispenserBlock.registerBehavior(torch_arrow, new ProjectileDispenseBehavior() {
 			@Override
 			protected Projectile getProjectile(Level level, Position position, ItemStack itemStack) {
 				TorchArrow torch_arrow = new TorchArrow(level, position.x(), position.y(), position.z());

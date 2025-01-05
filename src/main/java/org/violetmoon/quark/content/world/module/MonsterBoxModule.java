@@ -87,7 +87,7 @@ public class MonsterBoxModule extends ZetaModule {
 				&& entity.getPersistentData().getBoolean(TAG_MONSTER_BOX_SPAWNED)
 				&& entity.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)
 				&& ((AccessorLivingEntity) entity).quark$lastHurtByPlayerTime() > 0) {
-			LootTable loot = serverLevel.getServer().getLootData().getLootTable(MONSTER_BOX_LOOT_TABLE);
+			LootTable loot = serverLevel.getServer().reloadableRegistries().getLootTable(MONSTER_BOX_LOOT_TABLE).getLootTable(MONSTER_BOX_LOOT_TABLE);
 			ObjectArrayList<ItemStack> generatedLoot = loot.getRandomItems(getLootParamsBuilder(entity, true, event.getSource()).create(LootContextParamSets.ENTITY));
 			entity.captureDrops(new ArrayList<>());
 			for(ItemStack stack : generatedLoot)
@@ -101,8 +101,8 @@ public class MonsterBoxModule extends ZetaModule {
 				.withParameter(LootContextParams.THIS_ENTITY, entity)
 				.withParameter(LootContextParams.ORIGIN, entity.position())
 				.withParameter(LootContextParams.DAMAGE_SOURCE, damageSource)
-				.withOptionalParameter(LootContextParams.KILLER_ENTITY, damageSource.getEntity())
-				.withOptionalParameter(LootContextParams.DIRECT_KILLER_ENTITY, damageSource.getDirectEntity());
+				.withOptionalParameter(LootContextParams.ATTACKING_ENTITY, damageSource.getEntity())
+				.withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, damageSource.getDirectEntity());
 
 		if(bl && ((AccessorLivingEntity) entity).quark$lastHurtByPlayer() != null) {
 			builder = builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, ((AccessorLivingEntity) entity).quark$lastHurtByPlayer()).withLuck(((AccessorLivingEntity) entity).quark$lastHurtByPlayer().getLuck());

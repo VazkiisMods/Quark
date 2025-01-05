@@ -9,11 +9,13 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
@@ -48,8 +50,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.Quark;
@@ -83,6 +84,7 @@ public class Stoneling extends PathfinderMob {
 	private static final String TAG_HAS_LICHEN = "has_lichen";
 	private static final String TAG_HOLD_ANGLE = "itemAngle";
 	private static final String TAG_PLAYER_MADE = "playerMade";
+	private final Vec3 PASSENGER_ATTACH_POINT = new Vec3(0, this.getBbHeight(), 0);
 
 	private ActWaryGoal waryGoal;
 
@@ -97,7 +99,6 @@ public class Stoneling extends PathfinderMob {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-
 		builder.define(CARRYING_ITEM, ItemStack.EMPTY);
 		builder.define(VARIANT, (byte) 0);
 		builder.define(HOLD_ANGLE, 0F);
@@ -121,18 +122,13 @@ public class Stoneling extends PathfinderMob {
 	public static AttributeSupplier.Builder prepareAttributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 8.0D)
-				.add(Attributes.KNOCKBACK_RESISTANCE, 1D);
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1D)
+				.add(Attributes.STEP_HEIGHT, 1F); // TODO: 1.0f if wasTouchingWater, otherwise 0.6f
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-
-		if(wasTouchingWater)
-			setMaxUpStep(1f);
-		else
-			setMaxUpStep(0.6f);
-
 		this.yBodyRotO = this.yRotO;
 		this.yBodyRot = this.getYRot();
 	}
@@ -254,8 +250,8 @@ public class Stoneling extends PathfinderMob {
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType spawnReason, @Nullable SpawnGroupData data) {
-		RandomSource rand = world.getRandom();
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType spawnReason, @Nullable SpawnGroupData data) {
+		RandomSource rand = accessor.getRandom();
 		byte variant;
 		if(data instanceof StonelingVariant stonelingVariant)
 			variant = stonelingVariant.getIndex();
@@ -263,19 +259,19 @@ public class Stoneling extends PathfinderMob {
 			variant = (byte) rand.nextInt(StonelingVariant.values().length);
 
 		entityData.set(VARIANT, variant);
-		entityData.set(HAS_LICHEN, world.getBiome(getOnPos()).is(GlimmeringWealdModule.BIOME_NAME) && rand.nextInt(5) < 3);
-		entityData.set(HOLD_ANGLE, world.getRandom().nextFloat() * 90 - 45);
+		entityData.set(HAS_LICHEN, accessor.getBiome(getOnPos()).is(GlimmeringWealdModule.BIOME_NAME) && rand.nextInt(5) < 3);
+		entityData.set(HOLD_ANGLE, accessor.getRandom().nextFloat() * 90 - 45);
 
-		if(!isTame && !world.isClientSide()) {
-			List<ItemStack> items = world.getServer().reloadableRegistries()
-					.getLootTable(CARRY_LOOT_TABLE).getRandomItems(new LootParams.Builder(world.getLevel())
+		if(!isTame && !accessor.isClientSide()) {
+			List<ItemStack> items = accessor.getServer().reloadableRegistries()
+					.getLootTable(CARRY_LOOT_TABLE).getRandomItems(new LootParams.Builder(accessor.getLevel())
 							.withParameter(LootContextParams.ORIGIN, position())
 							.create(LootContextParamSets.CHEST));
 			if(!items.isEmpty())
 				entityData.set(CARRYING_ITEM, items.get(0));
 		}
 
-		return super.finalizeSpawn(world, difficulty, spawnReason, data);
+		return super.finalizeSpawn(accessor, difficulty, spawnReason, data);
 	}
 
 	@Override
@@ -286,8 +282,7 @@ public class Stoneling extends PathfinderMob {
 	}
 
 	private static boolean isProjectileWithoutPiercing(DamageSource source) {
-		if(!source.isIndirect())
-			return false;
+		if(source.isDirect()) return false;
 
 		Entity sourceEntity = source.getDirectEntity();
 
@@ -304,8 +299,8 @@ public class Stoneling extends PathfinderMob {
 	}
 
 	@Override
-	public double getPassengersRidingOffset() {
-		return this.getBbHeight();
+	public Vec3 getPassengerRidingPosition(Entity entity) {
+		return PASSENGER_ATTACH_POINT;
 	}
 
 	@Override
@@ -388,7 +383,7 @@ public class Stoneling extends PathfinderMob {
 
 		if(compound.contains(TAG_CARRYING_ITEM, 10)) {
 			CompoundTag itemCmp = compound.getCompound(TAG_CARRYING_ITEM);
-			ItemStack stack = ItemStack.of(itemCmp);
+			ItemStack stack = ItemStack.parseOptional(level().registryAccess(), itemCmp);
 			entityData.set(CARRYING_ITEM, stack);
 		}
 
@@ -479,8 +474,8 @@ public class Stoneling extends PathfinderMob {
 	}
 
 	@Override
-	public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+	public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entity) {
+		return new ClientboundAddEntityPacket(this, entity);
 	}
 
 	@Override
