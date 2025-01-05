@@ -14,7 +14,6 @@ import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.DispenserMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -28,13 +27,18 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.common.util.FakePlayer;
+import net.neoforged.neoforge.common.util.FakePlayerFactory;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.automation.block.FeedingTroughBlock;
 import org.violetmoon.quark.content.automation.block.be.FeedingTroughBlockEntity;
-import org.violetmoon.quark.content.automation.client.screen.CrafterScreen;
 import org.violetmoon.quark.content.automation.client.screen.TroughScreen;
 import org.violetmoon.quark.mixin.mixins.accessor.AccessorTemptingSensor;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;
@@ -47,7 +51,6 @@ import org.violetmoon.zeta.event.play.entity.living.ZBabyEntitySpawn;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-import org.violetmoon.zeta.util.MiscUtil;
 
 import java.util.*;
 
@@ -187,7 +190,7 @@ public class FeedingTroughModule extends ZetaModule {
         PoiType feedingTroughPoi = new PoiType(ImmutableSet.copyOf(feeding_trough.getStateDefinition().getPossibleStates()), 1, 32);
         event.getRegistry().register(feedingTroughPoi, FEEDING_TROUGH_POI_KEY.location(), Registries.POINT_OF_INTEREST_TYPE);
 
-        menuType = IForgeMenuType.create((windowId, inv, data) -> new DispenserMenu(windowId, inv));
+        menuType = IMenuTypeExtension.create((windowId, inv, data) -> new DispenserMenu(windowId, inv));
         event.getRegistry().register(menuType, "feeding_trough", Registries.MENU);
     }
 
@@ -307,7 +310,17 @@ public class FeedingTroughModule extends ZetaModule {
         }
     }
 
+    // TODO: Replace with Zeta event
+    @EventBusSubscriber
+    public static final class Client {
 
+        @SubscribeEvent
+        public void clientSetup(RegisterMenuScreensEvent event) {
+            event.register(menuType, TroughScreen::new);
+        }
+    }
+
+    /*
     @ZetaLoadModule(clientReplacement = true)
     public static final class Client extends FeedingTroughModule{
 
@@ -316,5 +329,5 @@ public class FeedingTroughModule extends ZetaModule {
             event.enqueueWork(() -> MenuScreens.register(menuType, TroughScreen::new));
         }
     }
-
+     */
 }

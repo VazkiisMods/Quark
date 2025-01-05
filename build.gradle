@@ -36,6 +36,8 @@ if (System.getenv('BUILD_NUMBER') != null) {
     version += "." + System.getenv('BUILD_NUMBER')
 }
 
+minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+
 runs {
     // applies to all the run configs below
     configureEach {

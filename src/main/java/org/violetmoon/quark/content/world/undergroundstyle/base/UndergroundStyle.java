@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class UndergroundStyle {
 
-	private static final TagKey<Block> UNDERGROUND_BIOME_REPLACEABLE = Quark.asTagKey(Registries.BLOCK, "underground_biome_replaceable"));
+	private static final TagKey<Block> UNDERGROUND_BIOME_REPLACEABLE = Quark.asTagKey(Registries.BLOCK, "underground_biome_replaceable");
 
 	public boolean canReplace(BlockState state) {
 		return state.canBeReplaced() || state.is(UNDERGROUND_BIOME_REPLACEABLE);

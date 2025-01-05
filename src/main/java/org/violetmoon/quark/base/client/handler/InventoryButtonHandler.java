@@ -11,6 +11,8 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import net.neoforged.neoforge.client.settings.KeyConflictContext;
+import net.neoforged.neoforge.client.settings.KeyModifier;
 import org.jetbrains.annotations.NotNull;
 import org.violetmoon.quark.addons.oddities.client.screen.BackpackInventoryScreen;
 import org.violetmoon.quark.api.IQuarkButtonAllowed;
@@ -37,8 +39,6 @@ import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
-import net.minecraftforge.client.settings.KeyConflictContext;
-import net.minecraftforge.client.settings.KeyModifier;
 
 public final class InventoryButtonHandler {
 

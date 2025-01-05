@@ -18,23 +18,6 @@ public class EnchantmentMixin {
 	@ModifyReturnValue(method = "canEnchant", at = @At("RETURN"))
 	private boolean canApply(boolean prev, ItemStack stack) {
 		Enchantment self = (Enchantment) (Object) this;
-		return !EnchantmentsBegoneModule.shouldBegone(self) && (prev || canPiercingApply(self, stack));
+		return !EnchantmentsBegoneModule.shouldBegone(self);
 	}
-
-	@ModifyReturnValue(method = "canApplyAtEnchantingTable", at = @At("RETURN"), remap = false)
-	private boolean canApplyAtEnchantingTable(boolean prev, ItemStack stack) {
-		Enchantment self = (Enchantment) (Object) this;
-		return prev && !EnchantmentsBegoneModule.shouldBegone(self);
-	}
-
-	@ModifyReturnValue(method = "isDiscoverable", at = @At("RETURN"))
-	private boolean isDiscoverable(boolean prev) {
-		Enchantment self = (Enchantment) (Object) this;
-		return prev && !EnchantmentsBegoneModule.shouldBegone(self);
-	}
-
-	private static boolean canPiercingApply(Enchantment enchantment, ItemStack stack) {
-		return enchantment == Enchantments.PIERCING && stack.getItem() instanceof PickarangItem;
-	}
-
 }

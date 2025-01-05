@@ -15,12 +15,12 @@ public class ArmorStandMixin {
 		if(!ArmedArmorStandsModule.staticEnabled)
 			return original;
 
-		//try to be careful - this is a kinda scary looking mixin, lol
+		// try to be careful - this is a kinda scary looking mixin, lol
 		SynchedEntityData data = ((Entity) (Object) this).getEntityData();
-		if(data.hasItem(ArmorStand.DATA_CLIENT_FLAGS))
+		if (data.get(ArmorStand.DATA_CLIENT_FLAGS) != null) {
 			return original; //it's already been defined
-
-		else
+		} else {
 			return original | ArmorStand.CLIENT_FLAG_SHOW_ARMS; // | 4
+		}
 	}
 }

@@ -26,7 +26,7 @@ public class NoDurabilityOnCosmeticsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		cosmeticTag = Quark.asTagKey(Registries.ITEM,"cosmetic_anvil_items"));
+		cosmeticTag = Quark.asTagKey(Registries.ITEM,"cosmetic_anvil_items");
 	}
 
 	@PlayEvent

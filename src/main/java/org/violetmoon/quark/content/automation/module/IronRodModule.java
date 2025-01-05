@@ -34,6 +34,6 @@ public class IronRodModule extends ZetaModule {
 
 	@LoadEvent
 	public final void setup(ZCommonSetup event) {
-		ironRodImmuneTag = Quark.asTagKey(Registries.BLOCK,"iron_rod_immune"));
+		ironRodImmuneTag = Quark.asTagKey(Registries.BLOCK,"iron_rod_immune");
 	}
 }

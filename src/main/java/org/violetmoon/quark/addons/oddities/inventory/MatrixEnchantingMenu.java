@@ -13,10 +13,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.Tags;
-
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import org.violetmoon.quark.addons.oddities.module.MatrixEnchantingModule;
 
@@ -107,7 +105,7 @@ public class MatrixEnchantingMenu extends AbstractContainerMenu {
 		ItemStack originalStack = ItemStack.EMPTY;
 		Slot slot = slots.get(index);
 
-		if(slot != null && slot.hasItem()) {
+		if(slot.hasItem()) {
 			ItemStack stackInSlot = slot.getItem();
 			originalStack = stackInSlot.copy();
 
@@ -118,14 +116,14 @@ public class MatrixEnchantingMenu extends AbstractContainerMenu {
 				if(!moveItemStackTo(stackInSlot, 1, 2, true))
 					return ItemStack.EMPTY;
 			} else {
-				if(slots.get(0).hasItem() || !slots.get(0).mayPlace(stackInSlot))
+				if(slots.getFirst().hasItem() || !slots.getFirst().mayPlace(stackInSlot))
 					return ItemStack.EMPTY;
 
-				if(stackInSlot.hasTag()) // Forge: Fix MC-17431
-					slots.get(0).set(stackInSlot.split(1));
+				if(!stackInSlot.isEmpty() && !stackInSlot.getComponents().isEmpty()) // Forge: Fix MC-17431
+					slots.getFirst().set(stackInSlot.split(1));
 
 				else if(!stackInSlot.isEmpty()) {
-					slots.get(0).set(new ItemStack(stackInSlot.getItem(), 1));
+					slots.getFirst().set(new ItemStack(stackInSlot.getItem(), 1));
 					stackInSlot.shrink(1);
 				}
 			}

@@ -2,7 +2,6 @@ package org.violetmoon.quark.addons.oddities.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
@@ -26,26 +25,22 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.ProxiedItemStackHandler;
 import org.violetmoon.zeta.item.IZetaItem;
-import org.violetmoon.zeta.item.ZetaItem;
 import org.violetmoon.zeta.item.ext.IZetaItemExtensions;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.CreativeTabManager;
-import org.violetmoon.zeta.util.ItemNBTHelper;
 
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
-public class BackpackItem extends DyeableArmorItem implements IZetaItem, IZetaItemExtensions, MenuProvider {
+public class BackpackItem extends ArmorItem implements IZetaItem, IZetaItemExtensions, MenuProvider {
 
 	private static final String WORN_TEXTURE = Quark.MOD_ID + ":textures/misc/backpack_worn.png";
 	private static final String WORN_OVERLAY_TEXTURE = Quark.MOD_ID + ":textures/misc/backpack_worn_overlay.png";
@@ -64,9 +59,9 @@ public class BackpackItem extends DyeableArmorItem implements IZetaItem, IZetaIt
 
 		if (module == null)return;
 
-		module.zeta.registry.registerItem(this, "backpack");
+		module.zeta.registry.registerItem(this.getItem(), "backpack");
 
-		CreativeTabManager.addToCreativeTabNextTo(CreativeModeTabs.TOOLS_AND_UTILITIES, this, Items.SADDLE, true);
+		CreativeTabManager.addToCreativeTabNextTo(CreativeModeTabs.TOOLS_AND_UTILITIES, this.getItem(), Items.SADDLE, true);
 	}
 
 	@Override

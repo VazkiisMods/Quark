@@ -1,5 +1,8 @@
 package org.violetmoon.quark.content.world.gen;
 
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootTable;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.module.CompressedBlocksModule;
 import org.violetmoon.quark.content.world.module.NetherObsidianSpikesModule;
@@ -105,7 +108,10 @@ public class ObsidianSpikeGenerator extends Generator {
 
 				placePos = placePos.below();
 				world.setBlock(placePos, Blocks.CHEST.defaultBlockState(), 0);
-				RandomizableContainerBlockEntity.setLootTable(world, rand, placePos, ResourceLocation.withDefaultNamespace("chests/nether_bridge"));
+				BlockEntity blockEntity = world.getBlockEntity(placePos);
+				if (blockEntity instanceof RandomizableContainerBlockEntity container) {
+					container.setLootTable(BuiltInLootTables.NETHER_BRIDGE);
+				}
 			}
 		}
 	}

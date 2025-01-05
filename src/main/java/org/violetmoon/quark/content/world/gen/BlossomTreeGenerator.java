@@ -2,6 +2,7 @@ package org.violetmoon.quark.content.world.gen;
 
 import java.util.Optional;
 
+import net.neoforged.neoforge.common.util.TriState;
 import org.violetmoon.quark.content.world.config.BlossomTreeConfig;
 import org.violetmoon.zeta.world.generator.Generator;
 
@@ -43,7 +44,7 @@ public class BlossomTreeGenerator extends Generator {
 
 			BlockState ground = worldIn.getBlockState(placePos);
 
-			if(ground.getBlock().canSustainPlant(ground, worldIn, pos, Direction.UP, (SaplingBlock) Blocks.OAK_SAPLING)) { //TODO: forge
+			if(ground.getBlock().canSustainPlant(ground, worldIn, pos, Direction.UP, Blocks.OAK_SAPLING.defaultBlockState()).isTrue()) {
 				BlockPos up = placePos.above();
 				BlockState upState = worldIn.getBlockState(up);
 

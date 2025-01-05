@@ -1,13 +1,13 @@
 package org.violetmoon.quark.addons.oddities.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -16,18 +16,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.EnchantmentTableBlock;
+import net.minecraft.world.level.block.EnchantingTableBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
-
 import org.violetmoon.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import org.violetmoon.quark.addons.oddities.module.MatrixEnchantingModule;
 import org.violetmoon.quark.api.IEnchantmentInfluencer;
@@ -38,13 +35,13 @@ import org.violetmoon.zeta.util.BooleanSuppliers;
 
 import java.util.function.BooleanSupplier;
 
-public class MatrixEnchantingTableBlock extends EnchantmentTableBlock implements IZetaBlock {
+public class MatrixEnchantingTableBlock extends EnchantingTableBlock implements IZetaBlock {
 
 	private final ZetaModule module;
 	private BooleanSupplier enabledSupplier = BooleanSuppliers.TRUE;
 
 	public MatrixEnchantingTableBlock(ZetaModule module) {
-		super(Block.Properties.copy(Blocks.ENCHANTING_TABLE));
+		super(Block.Properties.ofFullCopy(Blocks.ENCHANTING_TABLE));
 
 		this.module = module;
 		module.zeta.registry.registerBlock(this, "matrix_enchanter", true);
@@ -88,17 +85,17 @@ public class MatrixEnchantingTableBlock extends EnchantmentTableBlock implements
 
 	@NotNull
 	@Override
-	public InteractionResult use(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult raytrace) {
-		if(!(worldIn.getBlockEntity(pos) instanceof MatrixEnchantingTableBlockEntity))
-			worldIn.setBlockEntity(newBlockEntity(pos, state));
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult result) {
+		if(!(level.getBlockEntity(pos) instanceof MatrixEnchantingTableBlockEntity))
+			level.setBlockEntity(newBlockEntity(pos, state));
 
 		if(Quark.ZETA.modules.isEnabled(MatrixEnchantingModule.class)) {
 			if(player instanceof ServerPlayer serverPlayer)
-				NetworkHooks.openScreen(serverPlayer, (MatrixEnchantingTableBlockEntity) worldIn.getBlockEntity(pos), pos);
+				serverPlayer.openMenu((MatrixEnchantingTableBlockEntity) level.getBlockEntity(pos), pos);
 		} else
-			worldIn.setBlockAndUpdate(pos, Blocks.ENCHANTING_TABLE.defaultBlockState());
+			level.setBlockAndUpdate(pos, Blocks.ENCHANTING_TABLE.defaultBlockState());
 
-		return InteractionResult.sidedSuccess(worldIn.isClientSide);
+		return InteractionResult.sidedSuccess(level.isClientSide);
 	}
 
 	@Override
@@ -167,7 +164,7 @@ public class MatrixEnchantingTableBlock extends EnchantmentTableBlock implements
 	public void setPlacedBy(@NotNull Level worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull LivingEntity placer, @NotNull ItemStack stack) {
 		super.setPlacedBy(worldIn, pos, state, placer, stack);
 
-		if(stack.hasCustomHoverName()) {
+		if(stack.get(DataComponents.CUSTOM_NAME) != null) {
 			BlockEntity tileentity = worldIn.getBlockEntity(pos);
 
 			if(tileentity instanceof MatrixEnchantingTableBlockEntity matrixEnchanter)

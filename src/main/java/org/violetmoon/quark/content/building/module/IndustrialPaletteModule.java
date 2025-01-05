@@ -24,7 +24,7 @@ import java.util.function.BooleanSupplier;
 @ZetaLoadModule(category = "building")
 public class IndustrialPaletteModule extends ZetaModule {
 
-	private static final SoundType IRON_LADDER_SOUND_TYPE = new ForgeSoundType(1.0F, 1.0F,
+	private static final SoundType IRON_LADDER_SOUND_TYPE = new SoundType(1.0F, 1.0F,
 			() -> SoundEvents.METAL_BREAK,
 			() -> SoundEvents.LADDER_STEP,
 			() -> SoundEvents.METAL_PLACE,
@@ -40,7 +40,7 @@ public class IndustrialPaletteModule extends ZetaModule {
 	@LoadEvent
 	public final void register(ZRegister event) {
 		CreativeTabManager.daisyChain();
-		Block.Properties props = Block.Properties.copy(Blocks.IRON_BLOCK);
+		Block.Properties props = Block.Properties.ofFullCopy(Blocks.IRON_BLOCK);
 
 		BooleanSupplier ironPlateCond = () -> enableIronPlates;
 		BooleanSupplier ironLadderCond = () -> enableIronLadder;

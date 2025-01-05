@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import net.minecraft.world.item.crafting.CraftingRecipe;
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
 

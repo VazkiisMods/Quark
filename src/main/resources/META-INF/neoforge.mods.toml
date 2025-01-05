@@ -13,6 +13,7 @@ description='''Small things, improving Minecraft bit by bit.'''
 [[mixins]]
 config="quark.mixins.json"
 
+[[accessTransformers]]
 file="META-INF/accesstransformer.cfg"
 
 [[dependencies.quark]]

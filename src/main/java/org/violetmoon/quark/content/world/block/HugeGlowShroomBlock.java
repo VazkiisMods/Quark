@@ -28,7 +28,7 @@ public class HugeGlowShroomBlock extends HugeMushroomBlock implements IZetaBlock
 	private final boolean glowing;
 
 	public HugeGlowShroomBlock(String name, ZetaModule module, final boolean glowing) {
-		super(Block.Properties.copy(Blocks.RED_MUSHROOM_BLOCK)
+		super(Block.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK)
 				.lightLevel(b -> glowing ? 12 : 0)
 				.hasPostProcess((a, b, c) -> glowing).emissiveRendering((a, b, c) -> glowing)
 				.randomTicks()
