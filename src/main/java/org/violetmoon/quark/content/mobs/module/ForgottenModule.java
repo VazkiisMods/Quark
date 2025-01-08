@@ -78,7 +78,7 @@ public class ForgottenModule extends ZetaModule {
 				Vec3 epos = entity.position();
 
 				forgotten.absMoveTo(epos.x, epos.y, epos.z, entity.getYRot(), entity.getXRot());
-				forgotten.prepareEquipment();
+				forgotten.prepareEquipment(event.getLevel(), event.getLevel().getCurrentDifficultyAt(entity.getOnPos()));
 
 				BlockPos pos = BlockPos.containing(event.getX(), event.getY(), event.getZ());
 

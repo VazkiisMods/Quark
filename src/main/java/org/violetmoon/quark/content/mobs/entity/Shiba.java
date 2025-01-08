@@ -66,7 +66,7 @@ public class Shiba extends TamableAnimal {
 		goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
 		goalSelector.addGoal(3, new BarkAtDarknessGoal(this));
 		goalSelector.addGoal(4, new FetchArrowGoal(this));
-		goalSelector.addGoal(5, new DeliverFetchedItemGoal(this, 1.1D, -1F, 32.0F, false));
+		goalSelector.addGoal(5, new DeliverFetchedItemGoal(this, 1.1D, -1F, 32.0F));
 		goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
 		goalSelector.addGoal(7, new TemptGoal(this, 1, Ingredient.of(Items.BONE), false));
 		goalSelector.addGoal(8, new BreedGoal(this, 1.0D));

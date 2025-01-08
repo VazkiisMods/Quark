@@ -39,10 +39,7 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Rabbit;
-import net.minecraft.world.entity.animal.Sheep;
-import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
@@ -56,6 +53,7 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -82,7 +80,6 @@ import static org.violetmoon.quark.content.mobs.ai.FindPlaceToSleepGoal.Target.*
 public class Foxhound extends Wolf implements Enemy {
 
 	public static final ResourceKey<LootTable> FOXHOUND_LOOT_TABLE = Quark.asResourceKey(Registries.LOOT_TABLE, "entities/foxhound");
-
 	private static final EntityDataAccessor<Boolean> TEMPTATION = SynchedEntityData.defineId(Foxhound.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_BLUE = SynchedEntityData.defineId(Foxhound.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> TATERING = SynchedEntityData.defineId(Foxhound.class, EntityDataSerializers.BOOLEAN);
@@ -91,19 +88,19 @@ public class Foxhound extends Wolf implements Enemy {
 
 	public Foxhound(EntityType<? extends Foxhound> type, Level worldIn) {
 		super(type, worldIn);
-		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
-		this.setPathfindingMalus(BlockPathTypes.LAVA, 1.0F);
-		this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 1.0F);
-		this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, 1.0F);
+		this.setPathfindingMalus(PathType.WATER, -1.0F);
+		this.setPathfindingMalus(PathType.LAVA, 1.0F);
+		this.setPathfindingMalus(PathType.DANGER_FIRE, 1.0F);
+		this.setPathfindingMalus(PathType.DAMAGE_FIRE, 1.0F); //TODO is there a reason this is here twice?
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
 		setCollarColor(DyeColor.ORANGE);
-		entityData.define(TEMPTATION, false);
-		entityData.define(IS_BLUE, false);
-		entityData.define(TATERING, false);
+		builder.define(TEMPTATION, false);
+		builder.define(IS_BLUE, false);
+		builder.define(TATERING, false);
 	}
 
 	@Override
@@ -127,12 +124,12 @@ public class Foxhound extends Wolf implements Enemy {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, SpawnGroupData spawnDataIn, CompoundTag dataTag) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, SpawnGroupData spawnDataIn) {
 		Holder<Biome> biome = worldIn.getBiome(BlockPos.containing(position()));
 		if(biome.is(Biomes.SOUL_SAND_VALLEY.location()))
 			setBlue(true);
 
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
 	}
 
 	@Override
@@ -158,6 +155,7 @@ public class Foxhound extends Wolf implements Enemy {
 				setTatering(false);
 				ItemStack stack = new ItemStack(TinyPotatoModule.tiny_potato);
 				ItemNBTHelper.setBoolean(stack, TinyPotatoBlock.ANGRY, true);
+
 				spawnAtLocation(stack);
 				playSound(QuarkSounds.BLOCK_POTATO_HURT, 1f, 1f);
 			} else if(!isTatering())
@@ -180,7 +178,7 @@ public class Foxhound extends Wolf implements Enemy {
 		if(WantLoveGoal.needsPets(this)) {
 			Entity owner = getOwner();
 			if(owner != null && owner.distanceToSqr(this) < 1 && !owner.isInWater() && !owner.fireImmune() && (!(owner instanceof Player player) || !player.getAbilities().invulnerable))
-				owner.setSecondsOnFire(5);
+				owner.igniteForSeconds(5);
 		}
 
 		Vec3 pos = position();
@@ -279,7 +277,7 @@ public class Foxhound extends Wolf implements Enemy {
 				((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
 
 		if(flag) {
-			entityIn.setSecondsOnFire(5);
+			entityIn.igniteForSeconds(5);
 			this.doEnchantDamageEffects(this, entityIn);
 		}
 

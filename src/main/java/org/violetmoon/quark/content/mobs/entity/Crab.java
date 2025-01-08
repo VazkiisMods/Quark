@@ -175,11 +175,6 @@ public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable 
 		return world.getBlockState(pos.below()).is(CrabsModule.crabSpawnableTag) ? 10.0F : world.getRawBrightness(pos, 0) - 0.5F;
 	}
 
-	@Override
-	public boolean canBreatheUnderwater() {
-		return true;
-	}
-
 	@NotNull
 	@Override
 	public MobType getMobType() {
@@ -187,12 +182,13 @@ public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable 
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		entityData.define(SIZE_MODIFIER, 1f);
-		entityData.define(VARIANT, -1);
-		entityData.define(RAVING, false);
-		entityData.define(FROM_BUCKET, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+
+		builder.define(SIZE_MODIFIER, 1f);
+		builder.define(VARIANT, -1);
+		builder.define(RAVING, false);
+		builder.define(FROM_BUCKET, false);
 	}
 
 	@NotNull
@@ -331,8 +327,8 @@ public class Crab extends Animal implements IEntityWithComplexSpawn, Bucketable 
 	}
 
 	@Override
-	public float getStepHeight() {
-		float baseStep = wasTouchingWater ? 1F : 0.6F;
+	public float getStepHeight() { //TODO figure out when to recalculate attribute -Partonetrain
+		float baseStep = isInWater() ? 1F : 0.6F;
 		AttributeInstance stepHeightAttribute = getAttribute(Attributes.STEP_HEIGHT);
 		if(stepHeightAttribute != null)
 			return (float) Math.max(0, baseStep + stepHeightAttribute.getValue());

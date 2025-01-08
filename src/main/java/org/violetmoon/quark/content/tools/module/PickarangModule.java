@@ -108,6 +108,8 @@ public class PickarangModule extends ZetaModule {
         if (fireResist)
             properties.fireResistant();
 
+        properties.attributes(PickarangItem.createAttributes());
+
         return properties;
     }
 

@@ -12,6 +12,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -20,6 +21,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -125,18 +127,13 @@ public class PickarangItem extends ZetaItem {
 		return InteractionResultHolder.sidedSuccess( itemstack, worldIn.isClientSide);
 	}
 
-	@SuppressWarnings("deprecation") //Avoiding FOrge extension
-	@NotNull
-	@Override
-	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slot) {
-		Multimap<Attribute, AttributeModifier> multimap = Multimaps.newSetMultimap(new HashMap<>(), HashSet::new);
+	public static ItemAttributeModifiers createAttributes() {
+		ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 
-		if(slot == EquipmentSlot.MAINHAND) {
-			multimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", type.attackDamage, AttributeModifier.Operation.ADDITION));
-			multimap.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -2.8, AttributeModifier.Operation.ADDITION));
-		}
+		builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(Quark.asResource("pickarang_attack_damage"), type.attackDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+		builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(Quark.asResource("pickarang_attack_speed"), -2.8, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
 
-		return multimap;
+		return builder.build();
 	}
 
 	@Override

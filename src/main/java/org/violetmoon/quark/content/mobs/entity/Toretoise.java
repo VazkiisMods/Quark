@@ -38,6 +38,7 @@ import net.minecraft.world.level.block.piston.PistonMovingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
@@ -76,14 +77,14 @@ public class Toretoise extends Animal {
 	public Toretoise(EntityType<? extends Toretoise> type, Level world) {
 		super(type, world);
 		setMaxUpStep(1.0F);
-		setPathfindingMalus(BlockPathTypes.WATER, 1.0F);
+		setPathfindingMalus(PathType.WATER, 1.0F);
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
 
-		entityData.define(ORE_TYPE, 0);
+		builder.define(ORE_TYPE, 0);
 	}
 
 	@Override
@@ -111,14 +112,9 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType spawnType, SpawnGroupData spawnData, CompoundTag additionalData) {
+	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType spawnType, SpawnGroupData spawnData) {
 		popOre(true);
 		return spawnData;
-	}
-
-	@Override
-	public boolean canBreatheUnderwater() {
-		return true;
 	}
 
 	@Override
@@ -360,7 +356,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	protected void jumpFromGround() {
+	public void jumpFromGround() {
 		// NO-OP
 	}
 

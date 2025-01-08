@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -53,7 +54,8 @@ public class BackpackItem extends ArmorItem implements IZetaItem, IZetaItemExten
 				new Item.Properties()
 						.stacksTo(1)
 						.durability(0)
-						.rarity(Rarity.RARE));
+						.rarity(Rarity.RARE)
+						.attributes(createAttributes()));
 
 		this.module = module;
 
@@ -224,9 +226,8 @@ public class BackpackItem extends ArmorItem implements IZetaItem, IZetaItemExten
 		return handler;
 	}
 
-	@Override
-	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot p_40390_) {
-		return ImmutableMultimap.of();
+	public static ItemAttributeModifiers createAttributes(){
+		return ItemAttributeModifiers.builder().build();
 	}
 
 	@Override

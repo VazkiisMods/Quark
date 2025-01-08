@@ -1,13 +1,15 @@
 package org.violetmoon.quark.content.building.block;
 
-import it.unimi.dsi.fastutil.floats.Float2ObjectArrayMap;
-
+import it.unimi.dsi.fastutil.doubles.Double2ObjectArrayMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -33,10 +35,8 @@ import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.event.ForgeEventFactory;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import org.violetmoon.quark.api.ICrawlSpaceBlock;
 import org.violetmoon.zeta.block.SimpleFluidloggedBlock;
 import org.violetmoon.zeta.block.ZetaBlock;
@@ -45,7 +45,7 @@ import org.violetmoon.zeta.registry.RenderLayerRegistry;
 
 public class GrateBlock extends ZetaBlock implements SimpleFluidloggedBlock, ICrawlSpaceBlock {
 	private static final VoxelShape TRUE_SHAPE = box(0, 15, 0, 16, 16, 16);
-	private static final Float2ObjectArrayMap<VoxelShape> WALK_BLOCK_CACHE = new Float2ObjectArrayMap<>();
+	private static final Double2ObjectArrayMap<VoxelShape> WALK_BLOCK_CACHE = new Double2ObjectArrayMap<>();
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final BooleanProperty LAVALOGGED = BooleanProperty.create("lavalogged");
@@ -97,7 +97,7 @@ public class GrateBlock extends ZetaBlock implements SimpleFluidloggedBlock, ICr
 		return TRUE_SHAPE;
 	}
 
-	private static VoxelShape getCachedShape(float stepHeight) {
+	private static VoxelShape getCachedShape(double stepHeight) {
 		return WALK_BLOCK_CACHE.computeIfAbsent(stepHeight, GrateBlock::createNewBox);
 	}
 
@@ -125,8 +125,12 @@ public class GrateBlock extends ZetaBlock implements SimpleFluidloggedBlock, ICr
 			boolean onGrate = world.getBlockState(entity.blockPosition().offset(0, -1, 0)).getBlock() instanceof GrateBlock;
 
 			if(preventedType && !leashed && !onGrate) {
-				return getCachedShape(entity.getStepHeight());
-			}
+                LivingEntity livingEntity = (LivingEntity) entity;
+                AttributeInstance stepHeight = livingEntity.getAttribute(Attributes.STEP_HEIGHT);
+                if (stepHeight != null) {
+                    return getCachedShape(stepHeight.getValue());
+                }
+            }
 
 			return TRUE_SHAPE;
 		}

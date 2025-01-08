@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.neoforged.neoforge.common.Tags;
 import org.violetmoon.quark.base.Quark;
@@ -57,7 +58,7 @@ public class StonelingsModule extends ZetaModule {
 	@LoadEvent
 	public final void register(ZRegister event) {
 		this.registered = true;
-		diamondHeart = new DiamondHeartItem("diamond_heart", this, new Item.Properties());
+		diamondHeart = new DiamondHeartItem("diamond_heart", this, new Item.Properties().rarity(Rarity.UNCOMMON));
 
 		stonelingType = EntityType.Builder.of(Stoneling::new, MobCategory.CREATURE)
 				.sized(0.5F, 0.9F)

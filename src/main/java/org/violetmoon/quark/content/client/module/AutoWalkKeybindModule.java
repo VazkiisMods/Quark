@@ -9,6 +9,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.Input;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
 import org.violetmoon.quark.base.QuarkClient;
@@ -93,17 +95,20 @@ public class AutoWalkKeybindModule extends ZetaModule {
 					if(shouldAccept) {
 						shouldAccept = false;
 						Player player = mc.player;
-						float height = player.getStepHeight();
+						AttributeInstance stepHeight = player.getAttribute(Attributes.STEP_HEIGHT);
+						if(stepHeight != null){
+							double height = stepHeight.getValue();
 
-						autorunning = !autorunning;
+							autorunning = !autorunning;
 
-						if(autorunning) {
-							hadAutoJump = opt.get();
+							if(autorunning) {
+								hadAutoJump = opt.get();
 
-							if(height < 1)
-								opt.set(true);
-						} else
-							opt.set(hadAutoJump);
+								if(height < 1)
+									opt.set(true);
+							} else
+								opt.set(hadAutoJump);
+						}
 					}
 				} else
 					shouldAccept = true;

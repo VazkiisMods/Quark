@@ -58,12 +58,12 @@ public class Wraith extends Zombie {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
 
-		entityData.define(IDLE_SOUND, "");
-		entityData.define(HURT_SOUND, "");
-		entityData.define(DEATH_SOUND, "");
+		builder.define(IDLE_SOUND, "");
+		builder.define(HURT_SOUND, "");
+		builder.define(DEATH_SOUND, "");
 	}
 
 	public static AttributeSupplier.Builder registerAttributes() {
@@ -142,7 +142,7 @@ public class Wraith extends Zombie {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, SpawnGroupData spawnDataIn, CompoundTag dataTag) {
+	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, SpawnGroupData spawnDataIn) {
 		int idx = random.nextInt(WraithModule.validWraithSounds.size());
 		String sound = WraithModule.validWraithSounds.get(idx);
 		String[] split = sound.split("\\|");
@@ -151,7 +151,7 @@ public class Wraith extends Zombie {
 		entityData.set(HURT_SOUND, split[1]);
 		entityData.set(DEATH_SOUND, split[2]);
 
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
 	}
 
 	@Override

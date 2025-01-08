@@ -41,6 +41,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -289,11 +290,6 @@ public class Stoneling extends PathfinderMob {
 			return pickarang.getPiercingModifier() <= 0;
 		else if(sourceEntity instanceof AbstractArrow arrow)
 			return arrow.getPierceLevel() <= 0;
-		return true;
-	}
-
-	@Override
-	public boolean canBreatheUnderwater() {
 		return true;
 	}
 

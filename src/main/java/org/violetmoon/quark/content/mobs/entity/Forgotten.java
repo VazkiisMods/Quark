@@ -34,6 +34,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.providers.VanillaEnchantmentProviders;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -58,9 +59,9 @@ public class Forgotten extends Skeleton {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		entityData.define(SHEATHED_ITEM, ItemStack.EMPTY);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(SHEATHED_ITEM, ItemStack.EMPTY);
 	}
 
 	public static AttributeSupplier.Builder registerAttributes() {
@@ -72,8 +73,8 @@ public class Forgotten extends Skeleton {
 
 	@Override
 	@Nullable
-	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		SpawnGroupData ilivingentitydata = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
+		SpawnGroupData ilivingentitydata = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
 		reassessWeaponGoal();
 
 		return ilivingentitydata;
@@ -160,12 +161,12 @@ public class Forgotten extends Skeleton {
 		prepareEquipment();
 	}
 
-	public void prepareEquipment() {
+	public void prepareEquipment(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance) {
 		ItemStack bow = new ItemStack(Items.BOW);
 		ItemStack sheathed = new ItemStack(Items.IRON_SWORD);
 
-		EnchantmentHelper.enchantItem(random, bow, 20, false);
-		EnchantmentHelper.enchantItem(random, sheathed, 20, false);
+		EnchantmentHelper.enchantItemFromProvider(bow, serverLevelAccessor.registryAccess(), VanillaEnchantmentProviders.MOB_SPAWN_EQUIPMENT, difficultyInstance, random);
+		EnchantmentHelper.enchantItemFromProvider(sheathed, serverLevelAccessor.registryAccess(), VanillaEnchantmentProviders.MOB_SPAWN_EQUIPMENT, difficultyInstance, random);
 
 		if(Quark.ZETA.modules.isEnabled(ColorRunesModule.class) && random.nextBoolean()) {
 			DyeColor color = DyeColor.values()[random.nextInt(DyeColor.values().length)];
@@ -185,12 +186,10 @@ public class Forgotten extends Skeleton {
 
 	@NotNull
 	@Override
-	protected AbstractArrow getArrow(@NotNull ItemStack arrowStack, float distanceFactor) {
-		AbstractArrow arrow = super.getArrow(arrowStack, distanceFactor);
+	protected AbstractArrow getArrow(@NotNull ItemStack arrowStack, float distanceFactor, @Nullable ItemStack itemStack) {
+		AbstractArrow arrow = super.getArrow(arrowStack, distanceFactor, itemStack);
 		if(arrow instanceof Arrow arrowInstance) {
-			ItemStack stack = new ItemStack(Items.TIPPED_ARROW);
-			PotionUtils.setCustomEffects(stack, ImmutableSet.of(new MobEffectInstance(MobEffects.BLINDNESS, 100, 0)));
-			arrowInstance.setEffectsFromItem(stack);
+			arrowInstance.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 100, 0));
 		}
 
 		return arrow;
