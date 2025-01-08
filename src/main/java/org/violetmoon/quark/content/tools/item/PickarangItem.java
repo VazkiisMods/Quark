@@ -3,13 +3,13 @@ package org.violetmoon.quark.content.tools.item;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,15 +20,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.content.tools.config.PickarangType;
@@ -51,33 +48,33 @@ public class PickarangItem extends ZetaItem {
 
 	@Override
 	public boolean hurtEnemy(ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-		stack.hurtAndBreak(2, attacker, (player) -> player.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+		stack.hurtAndBreak(2, attacker, EquipmentSlot.MAINHAND);
 		return true;
 	}
 
 	@Override
-	public boolean isCorrectToolForDrops(@NotNull BlockState blockIn) {
+	public boolean isCorrectToolForDrops(@NotNull ItemStack stack, @NotNull BlockState blockIn) {
 		return switch(type.harvestLevel) {
-		case 0 -> Items.WOODEN_PICKAXE.isCorrectToolForDrops(blockIn) ||
-				(type.canActAsAxe && Items.WOODEN_AXE.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsShovel && Items.WOODEN_SHOVEL.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsHoe && Items.WOODEN_HOE.isCorrectToolForDrops(blockIn));
-		case 1 -> Items.STONE_PICKAXE.isCorrectToolForDrops(blockIn) ||
-				(type.canActAsAxe && Items.STONE_AXE.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsShovel && Items.STONE_SHOVEL.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsHoe && Items.STONE_HOE.isCorrectToolForDrops(blockIn));
-		case 2 -> Items.IRON_PICKAXE.isCorrectToolForDrops(blockIn) ||
-				(type.canActAsAxe && Items.IRON_AXE.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsShovel && Items.IRON_SHOVEL.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsHoe && Items.IRON_HOE.isCorrectToolForDrops(blockIn));
-		case 3 -> Items.DIAMOND_PICKAXE.isCorrectToolForDrops(blockIn) ||
-				(type.canActAsAxe && Items.DIAMOND_AXE.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsShovel && Items.DIAMOND_SHOVEL.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsHoe && Items.DIAMOND_HOE.isCorrectToolForDrops(blockIn));
-		default -> Items.NETHERITE_PICKAXE.isCorrectToolForDrops(blockIn) ||
-				(type.canActAsAxe && Items.NETHERITE_AXE.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsShovel && Items.NETHERITE_SHOVEL.isCorrectToolForDrops(blockIn)) ||
-				(type.canActAsHoe && Items.NETHERITE_HOE.isCorrectToolForDrops(blockIn));
+		case 0 -> Items.WOODEN_PICKAXE.isCorrectToolForDrops(stack, blockIn) ||
+				(type.canActAsAxe && Items.WOODEN_AXE.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsShovel && Items.WOODEN_SHOVEL.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsHoe && Items.WOODEN_HOE.isCorrectToolForDrops(stack, blockIn));
+		case 1 -> Items.STONE_PICKAXE.isCorrectToolForDrops(stack, blockIn) ||
+				(type.canActAsAxe && Items.STONE_AXE.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsShovel && Items.STONE_SHOVEL.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsHoe && Items.STONE_HOE.isCorrectToolForDrops(stack, blockIn));
+		case 2 -> Items.IRON_PICKAXE.isCorrectToolForDrops(stack, blockIn) ||
+				(type.canActAsAxe && Items.IRON_AXE.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsShovel && Items.IRON_SHOVEL.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsHoe && Items.IRON_HOE.isCorrectToolForDrops(stack, blockIn));
+		case 3 -> Items.DIAMOND_PICKAXE.isCorrectToolForDrops(stack, blockIn) ||
+				(type.canActAsAxe && Items.DIAMOND_AXE.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsShovel && Items.DIAMOND_SHOVEL.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsHoe && Items.DIAMOND_HOE.isCorrectToolForDrops(stack, blockIn));
+		default -> Items.NETHERITE_PICKAXE.isCorrectToolForDrops(stack, blockIn) ||
+				(type.canActAsAxe && Items.NETHERITE_AXE.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsShovel && Items.NETHERITE_SHOVEL.isCorrectToolForDrops(stack, blockIn)) ||
+				(type.canActAsHoe && Items.NETHERITE_HOE.isCorrectToolForDrops(stack, blockIn));
 		};
 	}
 
@@ -89,7 +86,7 @@ public class PickarangItem extends ZetaItem {
 	@Override
 	public boolean mineBlock(@NotNull ItemStack stack, @NotNull Level worldIn, BlockState state, @NotNull BlockPos pos, @NotNull LivingEntity entityLiving) {
 		if(state.getDestroySpeed(worldIn, pos) != 0)
-			stack.hurtAndBreak(1, entityLiving, (player) -> player.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+			stack.hurtAndBreak(1, entityLiving, EquipmentSlot.MAINHAND);
 		return true;
 	}
 
@@ -98,7 +95,8 @@ public class PickarangItem extends ZetaItem {
 	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @NotNull InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		playerIn.setItemInHand(handIn, ItemStack.EMPTY);
-		int eff = Quark.ZETA.itemExtensions.get(itemstack).getEnchantmentLevelZeta(itemstack, Enchantments.BLOCK_EFFICIENCY);
+		Holder<Enchantment> enchantment = playerIn.level().registryAccess().holderOrThrow(Registries.ENCHANTMENT).value().getHolderOrThrow(Enchantments.EFFICIENCY);
+		int eff = Quark.ZETA.itemExtensions.get(itemstack).getEnchantmentLevelZeta(itemstack, enchantment);
 		Vec3 pos = playerIn.position();
 		worldIn.playSound(null, pos.x, pos.y, pos.z, QuarkSounds.ENTITY_PICKARANG_THROW, SoundSource.NEUTRAL, 0.5F + eff * 0.14F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
 

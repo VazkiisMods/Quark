@@ -90,13 +90,11 @@ public class WoodSetHandler {
 		quarkBoatEntityType = EntityType.Builder.<QuarkBoat>of(QuarkBoat::new, MobCategory.MISC)
 				.sized(1.375F, 0.5625F)
 				.clientTrackingRange(10)
-				.setCustomClientFactory((spawnEntity, world) -> new QuarkBoat(quarkBoatEntityType, world))
 				.build("quark_boat");
 
 		quarkChestBoatEntityType = EntityType.Builder.<QuarkChestBoat>of(QuarkChestBoat::new, MobCategory.MISC)
 				.sized(1.375F, 0.5625F)
 				.clientTrackingRange(10)
-				.setCustomClientFactory((spawnEntity, world) -> new QuarkChestBoat(quarkChestBoatEntityType, world))
 				.build("quark_chest_boat");
 
 		Quark.ZETA.registry.register(quarkBoatEntityType, "quark_boat", Registries.ENTITY_TYPE);

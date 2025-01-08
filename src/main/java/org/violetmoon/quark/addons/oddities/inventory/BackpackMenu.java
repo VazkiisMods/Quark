@@ -8,9 +8,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.addons.oddities.inventory.slot.BackpackSlot;
 import org.violetmoon.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
@@ -79,7 +77,7 @@ public class BackpackMenu extends InventoryMenu {
 					slot.onQuickCraft(stack, baseStack);
 			}
 
-			else if(slotType != null && slotType.getType() == Type.ARMOR && !this.slots.get(equipIndex).hasItem()) { // shift clicking armor
+			else if(slotType != null && slotType.getType() == Type.HUMANOID_ARMOR && !this.slots.get(equipIndex).hasItem()) { // shift clicking armor
 				if(!this.moveItemStackTo(stack, equipIndex, equipIndex + 1, false))
 					return ItemStack.EMPTY;
 			}
@@ -140,7 +138,7 @@ public class BackpackMenu extends InventoryMenu {
 					int maxStack = Math.min(stack.getMaxStackSize(), slot.getMaxStackSize());
 					int rmv = Math.min(maxStack, stack.getCount());
 
-					if(slot.mayPlace(cloneStack(stack, rmv)) && existingStack.getItem().equals(stack.getItem()) && ItemStack.isSameItemSameTags(stack, existingStack)) {
+					if(slot.mayPlace(cloneStack(stack, rmv)) && existingStack.getItem().equals(stack.getItem()) && ItemStack.isSameItemSameComponents(stack, existingStack)) {
 						int existingSize = existingStack.getCount() + stack.getCount();
 
 						if(existingSize <= maxStack) {
@@ -209,5 +207,4 @@ public class BackpackMenu extends InventoryMenu {
 	public @NotNull MenuType<?> getType() {
 		return BackpackModule.menyType;
 	}
-
 }

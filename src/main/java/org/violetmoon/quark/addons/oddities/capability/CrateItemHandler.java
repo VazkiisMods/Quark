@@ -1,6 +1,7 @@
 package org.violetmoon.quark.addons.oddities.capability;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -9,10 +10,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.items.ItemStackHandler;
-
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.addons.oddities.module.CrateModule;
 import org.violetmoon.quark.base.handler.SortingHandler;
 
@@ -159,11 +158,10 @@ public class CrateItemHandler extends ItemStackHandler {
 	}
 
 	@Override
-	public CompoundTag serializeNBT() {
+	public CompoundTag serializeNBT(HolderLookup.Provider provider) {
 		ListTag items = new ListTag();
 		for(ItemStack stack : stacks) {
-			if(!stack.isEmpty())
-				items.add(stack.save(new CompoundTag()));
+			if(!stack.isEmpty()) items.add(stack.save(provider, new CompoundTag()));
 		}
 		CompoundTag nbt = new CompoundTag();
 		nbt.put("stacks", items);
@@ -171,13 +169,12 @@ public class CrateItemHandler extends ItemStackHandler {
 	}
 
 	@Override
-	public void deserializeNBT(CompoundTag nbt) {
+	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
 		stacks = NonNullList.withSize(maxItems, ItemStack.EMPTY);
 
 		ListTag items = nbt.getList("stacks", Tag.TAG_COMPOUND);
 		for(int i = 0; i < items.size(); i++)
-			stacks.set(i, ItemStack.of(items.getCompound(i)));
+			stacks.set(i, ItemStack.parseOptional(provider, items.getCompound(i)));
 		onLoad();
 	}
-
 }

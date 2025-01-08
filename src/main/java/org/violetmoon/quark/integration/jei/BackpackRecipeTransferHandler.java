@@ -17,6 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 
+import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.Nullable;
 
 import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
@@ -36,7 +37,7 @@ public class BackpackRecipeTransferHandler implements IRecipeTransferHandler<Bac
 	private static final IntSet PLAYER_INV_INDEXES = IntArraySet.of(0, 1, 3, 4);
 
 	private final IRecipeTransferHandlerHelper handlerHelper;
-	private final IRecipeTransferHandler<BackpackMenu, CraftingRecipe> handler;
+	private final IRecipeTransferHandler<BackpackMenu, RecipeHolder<CraftingRecipe>> handler;
 
 	public BackpackRecipeTransferHandler(IRecipeTransferHandlerHelper handlerHelper) {
 		this.handlerHelper = handlerHelper;

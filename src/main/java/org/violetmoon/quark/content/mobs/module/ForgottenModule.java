@@ -1,5 +1,14 @@
 package org.violetmoon.quark.content.mobs.module;
 
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.client.handler.ModelHandler;
@@ -19,24 +28,6 @@ import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.BooleanSuppliers;
 import org.violetmoon.zeta.util.Hint;
-import org.violetmoon.zeta.world.EntitySpawnHandler;
-
-import com.google.common.collect.ImmutableSet;
-
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.MobSpawnEvent;
-import net.minecraftforge.eventbus.api.Event.Result;
 
 @ZetaLoadModule(category = "mobs")
 public class ForgottenModule extends ZetaModule {
@@ -59,7 +50,6 @@ public class ForgottenModule extends ZetaModule {
 		forgottenType = EntityType.Builder.of(Forgotten::new, MobCategory.MONSTER)
 				.sized(0.7F, 2.4F)
 				.clientTrackingRange(8)
-				.setCustomClientFactory((spawnEntity, world) -> new Forgotten(forgottenType, world))
 				.build("forgotten");
 
 		Quark.ZETA.registry.register(forgottenType, "forgotten", Registries.ENTITY_TYPE);

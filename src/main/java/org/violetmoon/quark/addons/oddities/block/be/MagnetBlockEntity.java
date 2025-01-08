@@ -18,7 +18,6 @@ import org.violetmoon.quark.addons.oddities.magnetsystem.MagnetSystem;
 import org.violetmoon.quark.addons.oddities.module.MagnetsModule;
 import org.violetmoon.quark.api.IMagneticEntity;
 import org.violetmoon.quark.content.automation.entity.Gravisand;
-import org.violetmoon.quark.content.experimental.module.VariantSelectorModule;
 import org.violetmoon.quark.mixin.mixins.accessor.AccessorServerGamePacketListener;
 import org.violetmoon.zeta.api.ICollateralMover;
 
@@ -59,7 +58,7 @@ public class MagnetBlockEntity extends BlockEntity {
             }
 
             if (targetState.getBlock() == MagnetsModule.magnetized_block && level.getBlockEntity(targetPos) instanceof MagnetizedBlockBlockEntity mbe) {
-                targetState = mbe.blockState;
+                targetState = mbe.getBlockState();
             }
 
             if (!canFluxPenetrate(targetPos, targetState)) break;
@@ -125,9 +124,9 @@ public class MagnetBlockEntity extends BlockEntity {
     }
 
     private boolean canPullEntity(Entity e) {
-        if (this.level.isClientSide) {
-            if (MagnetsModule.affectsArmor && e instanceof Player) {
-                for (var armor : e.getArmorSlots()) {
+        if (level.isClientSide) {
+            if (MagnetsModule.affectsArmor && e instanceof Player player) {
+                for (var armor : player.getArmorSlots()) {
                     if (MagnetSystem.isItemMagnetic(armor.getItem())) return true;
                 }
             }
@@ -145,8 +144,8 @@ public class MagnetBlockEntity extends BlockEntity {
             return MagnetSystem.isBlockMagnetic(fb.getBlockState());
         }
 
-        if (MagnetsModule.affectsArmor) {
-            for (var armor : e.getArmorSlots()) {
+        if (MagnetsModule.affectsArmor && e instanceof Player player) {
+            for (var armor : player.getArmorSlots()) {
                 if (MagnetSystem.isItemMagnetic(armor.getItem())) return true;
             }
         }

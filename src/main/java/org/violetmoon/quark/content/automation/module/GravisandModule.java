@@ -34,7 +34,6 @@ public class GravisandModule extends ZetaModule {
 				.sized(0.98F, 0.98F)
 				.clientTrackingRange(10)
 				.updateInterval(20) // update interval
-				.setCustomClientFactory((spawnEntity, world) -> new Gravisand(gravisandType, world))
 				.build("gravisand");
 		Quark.ZETA.registry.register(gravisandType, "gravisand", Registries.ENTITY_TYPE);
 	}

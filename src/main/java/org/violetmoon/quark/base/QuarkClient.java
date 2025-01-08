@@ -1,6 +1,5 @@
 package org.violetmoon.quark.base;
 
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import org.violetmoon.quark.integration.lootr.client.ClientLootrIntegration;
 import org.violetmoon.quark.integration.lootr.client.IClientLootrIntegration;
 import org.violetmoon.zeta.client.ClientTicker;

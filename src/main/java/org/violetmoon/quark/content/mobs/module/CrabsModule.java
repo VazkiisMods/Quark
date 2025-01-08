@@ -1,7 +1,28 @@
 package org.violetmoon.quark.content.mobs.module;
 
-import java.util.List;
-
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.Heightmap.Types;
+import net.minecraft.world.level.material.Fluids;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.content.mobs.client.render.entity.CrabRenderer;
@@ -26,34 +47,8 @@ import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.CreativeTabManager;
 import org.violetmoon.zeta.util.Hint;
 import org.violetmoon.zeta.util.ZetaEffect;
-import org.violetmoon.zeta.world.EntitySpawnHandler;
 
-import com.google.common.collect.ImmutableSet;
-
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacements.Type;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.Heightmap.Types;
-import net.minecraft.world.level.material.Fluids;
+import java.util.List;
 
 /**
  * @author WireSegal
@@ -94,17 +89,15 @@ public class CrabsModule extends ZetaModule {
 		CreativeTabManager.daisyChain();
 		crab_leg = new ZetaItem("crab_leg", this, new Item.Properties()
 				.food(new FoodProperties.Builder()
-						.meat()
 						.nutrition(1)
-						.saturationMod(0.3F)
+						.saturationModifier(0.3F)
 						.build()))
 				.setCreativeTab(CreativeModeTabs.FOOD_AND_DRINKS, Items.PUFFERFISH, false);
 
 		Item cookedCrabLeg = new ZetaItem("cooked_crab_leg", this, new Item.Properties()
 				.food(new FoodProperties.Builder()
-						.meat()
 						.nutrition(8)
-						.saturationMod(0.8F)
+						.saturationModifier(0.8F)
 						.build()))
 				.setCreativeTab(CreativeModeTabs.FOOD_AND_DRINKS);
 		CreativeTabManager.endDaisyChain();
@@ -122,11 +115,10 @@ public class CrabsModule extends ZetaModule {
 		crabType = EntityType.Builder.<Crab>of(Crab::new, MobCategory.CREATURE)
 				.sized(0.9F, 0.5F)
 				.clientTrackingRange(8)
-				.setCustomClientFactory((spawnEntity, world) -> new Crab(crabType, world))
 				.build("crab");
 		Quark.ZETA.registry.register(crabType, "crab", Registries.ENTITY_TYPE);
 
-		Quark.ZETA.entitySpawn.registerSpawn(crabType, MobCategory.CREATURE, Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, Crab::spawnPredicate, spawnConfig);
+		Quark.ZETA.entitySpawn.registerSpawn(crabType, MobCategory.CREATURE, SpawnPlacementTypes.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, Crab::spawnPredicate, spawnConfig);
 		Quark.ZETA.entitySpawn.addEgg(this, crabType, 0x893c22, 0x916548, spawnConfig);
 
 		event.getAdvancementModifierRegistry().addModifier(new FuriousCocktailModifier(this, () -> enableBrewing, ImmutableSet.of(resilience))

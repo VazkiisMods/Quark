@@ -20,7 +20,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tweaks.client.render.entity.DyedItemFrameRenderer;
 import org.violetmoon.quark.content.tweaks.entity.DyedItemFrame;
@@ -52,7 +51,6 @@ public class DyeableItemFramesModule extends ZetaModule {
 				.clientTrackingRange(10)
 				.updateInterval(Integer.MAX_VALUE) // update interval
 				.setShouldReceiveVelocityUpdates(false)
-				.setCustomClientFactory((spawnEntity, world) -> new DyedItemFrame(entityType, world))
 				.build("dyed_item_frame");
 		event.getRegistry().register(entityType, "dyed_item_frame", Registries.ENTITY_TYPE);
 
@@ -74,7 +72,7 @@ public class DyeableItemFramesModule extends ZetaModule {
 			BlockPos pos = event.getPos();
 			BlockState state = level.getBlockState(pos);
 
-			InteractionResult result = player.isCrouching() ? InteractionResult.PASS : state.use(level, player, hand, blockhit);
+			InteractionResult result = player.isCrouching() ? InteractionResult.PASS : state.useItemOn(stack, level, player, hand, blockhit).result();
 			if(result == InteractionResult.PASS)
 				result = useOn(context);
 
