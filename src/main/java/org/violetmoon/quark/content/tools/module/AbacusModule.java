@@ -3,14 +3,12 @@ package org.violetmoon.quark.content.tools.module;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -21,7 +19,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
 import org.joml.Matrix4f;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.type.RGBAColorConfig;
@@ -153,8 +150,8 @@ public class AbacusModule extends ZetaModule {
 										f1 /= f3;
 										f2 /= f3;
 
-										bufferIn.vertex(matrix4f, (float) (minX + xIn), (float) (minY + yIn), (float) (minZ + zIn)).color(r, g, b, a).normal(pose.normal(), f, f1, f2).endVertex();
-										bufferIn.vertex(matrix4f, (float) (maxX + xIn), (float) (maxY + yIn), (float) (maxZ + zIn)).color(r, g, b, a).normal(pose.normal(), f, f1, f2).endVertex();
+										bufferIn.addVertex(matrix4f, (float) (minX + xIn), (float) (minY + yIn), (float) (minZ + zIn)).setColor(r, g, b, a).setNormal(pose, f, f1, f2);
+										bufferIn.addVertex(matrix4f, (float) (maxX + xIn), (float) (maxY + yIn), (float) (maxZ + zIn)).setColor(r, g, b, a).setNormal(pose, f, f1, f2);
 									});
 								}
 

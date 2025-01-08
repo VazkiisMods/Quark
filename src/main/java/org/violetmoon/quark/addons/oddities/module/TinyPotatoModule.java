@@ -84,7 +84,7 @@ public class TinyPotatoModule extends ZetaModule {
 					usedNames.add(path);
 
 					path = path.substring("models/".length(), path.length() - ".json".length());
-					event.register(Quark.asResource(path));
+					event.register(ModelResourceLocation.standalone(Quark.asResource(path)));
 				}
 			}
 		}

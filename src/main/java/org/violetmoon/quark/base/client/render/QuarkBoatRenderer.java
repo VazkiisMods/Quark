@@ -80,7 +80,7 @@ public class QuarkBoatRenderer extends EntityRenderer<Boat> {
 		matrix.mulPose(Axis.YP.rotationDegrees(90.0F));
 		model.setupAnim(boat, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
 		VertexConsumer vertexconsumer = buffer.getBuffer(model.renderType(loc));
-		model.renderToBuffer(matrix, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		model.renderToBuffer(matrix, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
 		if(!boat.isUnderWater()) {
 			VertexConsumer waterMask = buffer.getBuffer(RenderType.waterMask());
 			model.waterPatch().render(matrix, waterMask, light, OverlayTexture.NO_OVERLAY);

@@ -1,7 +1,14 @@
 package org.violetmoon.quark.content.mobs.module;
 
-import java.util.List;
-
+import com.google.common.collect.Lists;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.level.levelgen.Heightmap.Types;
+import net.neoforged.neoforge.common.Tags;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.mobs.client.render.entity.ToretoiseRenderer;
 import org.violetmoon.quark.content.mobs.entity.Toretoise;
@@ -16,18 +23,8 @@ import org.violetmoon.zeta.event.load.ZEntityAttributeCreation;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.world.EntitySpawnHandler;
 
-import com.google.common.collect.Lists;
-
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacements.Type;
-import net.minecraft.world.level.levelgen.Heightmap.Types;
-import net.minecraftforge.common.Tags;
+import java.util.List;
 
 @ZetaLoadModule(category = "mobs")
 public class ToretoiseModule extends ZetaModule {
@@ -67,12 +64,11 @@ public class ToretoiseModule extends ZetaModule {
 				.sized(2F, 1F)
 				.clientTrackingRange(8)
 				.fireImmune()
-				.setCustomClientFactory((spawnEntity, world) -> new Toretoise(toretoiseType, world))
 				.build("toretoise");
 
 		Quark.ZETA.registry.register(toretoiseType, "toretoise", Registries.ENTITY_TYPE);
 
-		Quark.ZETA.entitySpawn.registerSpawn(toretoiseType, MobCategory.MONSTER, Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, Toretoise::spawnPredicate, spawnConfig);
+		Quark.ZETA.entitySpawn.registerSpawn(toretoiseType, MobCategory.MONSTER, SpawnPlacementTypes.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, Toretoise::spawnPredicate, spawnConfig);
 		Quark.ZETA.entitySpawn.addEgg(this, toretoiseType, 0x55413b, 0x383237, spawnConfig);
 
 		mineToretoiseTrigger = event.getAdvancementModifierRegistry().registerManualTrigger("mine_toretoise");

@@ -52,7 +52,6 @@ public class SkullPikesModule extends ZetaModule {
 				.clientTrackingRange(3)
 				.updateInterval(Integer.MAX_VALUE) // update interval
 				.setShouldReceiveVelocityUpdates(false)
-				.setCustomClientFactory((spawnEntity, world) -> new SkullPike(skullPikeType, world))
 				.build("skull_pike");
 		Quark.ZETA.registry.register(skullPikeType, "skull_pike", Registries.ENTITY_TYPE);
 	}

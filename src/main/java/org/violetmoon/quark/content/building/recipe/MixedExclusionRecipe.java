@@ -1,59 +1,47 @@
 package org.violetmoon.quark.content.building.recipe;
 
-import com.google.gson.JsonObject;
-
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
-import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.crafting.IShapedRecipe;
-
 import org.jetbrains.annotations.NotNull;
 
 public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<CraftingContainer> {
 
 	public static final RecipeSerializer<MixedExclusionRecipe> SERIALIZER = new Serializer();
 
-	private final ResourceLocation res;
 	private NonNullList<Ingredient> ingredients;
 
-	private final String type;
+	private final String group;
 	private final ItemStack output;
 	private final TagKey<Item> tag;
 	private final ItemStack placeholder;
 
-	public MixedExclusionRecipe(ResourceLocation res, String type, ItemStack output, TagKey<Item> tag, ItemStack placeholder) {
-		this.res = res;
-
-		this.type = type;
+	public MixedExclusionRecipe(String group, ItemStack output, TagKey<Item> tag, ItemStack placeholder) {
+		this.group = group;
 		this.output = output;
 		this.tag = tag;
 		this.placeholder = placeholder;
 	}
 
-	public static MixedExclusionRecipe forChest(String type, ResourceLocation res, boolean log) {
+	public static MixedExclusionRecipe forChest(String group, boolean log) {
 		ItemStack output = new ItemStack(Items.CHEST, (log ? 4 : 1));
 		TagKey<Item> tag = (log ? ItemTags.LOGS : ItemTags.PLANKS);
 		ItemStack placeholder = new ItemStack(log ? Items.OAK_LOG : Items.OAK_PLANKS);
-		return new MixedExclusionRecipe(res, type, output, tag, placeholder);
+		return new MixedExclusionRecipe(group, output, tag, placeholder);
 	}
 
-	public static MixedExclusionRecipe forFurnace(String type, ResourceLocation res) {
+	public static MixedExclusionRecipe forFurnace(String group) {
 		ItemStack output = new ItemStack(Items.FURNACE);
 		TagKey<Item> tag = ItemTags.STONE_CRAFTING_MATERIALS;
 		ItemStack placeholder = new ItemStack(Items.COBBLESTONE);
-		return new MixedExclusionRecipe(res, type, output, tag, placeholder);
+		return new MixedExclusionRecipe(group, output, tag, placeholder);
 	}
 
 	@Override
@@ -61,21 +49,20 @@ public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<Craft
 		return x == 3 && y == 3;
 	}
 
-	@NotNull
 	@Override
-	public ItemStack assemble(@NotNull CraftingContainer arg0, RegistryAccess acc) {
+	@NotNull
+	public ItemStack assemble(CraftingInput input, HolderLookup.Provider provider) {
 		return output.copy();
 	}
 
 	@NotNull
 	@Override
-	public ResourceLocation getId() {
-		return res;
+	public String getGroup() {
+		return this.group;
 	}
 
-	@NotNull
 	@Override
-	public ItemStack getResultItem(RegistryAccess acc) {
+	public ItemStack getResultItem(HolderLookup.Provider provider) {
 		return output.copy();
 	}
 
@@ -91,14 +78,14 @@ public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<Craft
 	}
 
 	@Override
-	public boolean matches(CraftingContainer inv, @NotNull Level world) {
-		if(inv.getItem(4).isEmpty()) {
+	public boolean matches(CraftingInput input, Level level) {
+		if(input.getItem(4).isEmpty()) {
 			ItemStack first = null;
 			boolean foundDifference = false;
 
 			for(int i = 0; i < 9; i++)
 				if(i != 4) { // ignore center
-					ItemStack stack = inv.getItem(i);
+					ItemStack stack = input.getItem(i);
 					if(!stack.isEmpty() && stack.is(tag)) {
 						if(first == null)
 							first = stack;
@@ -107,20 +94,18 @@ public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<Craft
 					} else
 						return false;
 				}
-
 			return foundDifference;
 		}
-
 		return false;
 	}
 
 	@Override
-	public int getRecipeWidth() {
+	public int getWidth() {
 		return 3;
 	}
 
 	@Override
-	public int getRecipeHeight() {
+	public int getHeight() {
 		return 3;
 	}
 
@@ -145,6 +130,7 @@ public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<Craft
 
 	private static class Serializer implements RecipeSerializer<MixedExclusionRecipe> {
 
+		/*
 		@NotNull
 		@Override
 		public MixedExclusionRecipe fromJson(@NotNull ResourceLocation arg0, JsonObject arg1) {
@@ -161,16 +147,16 @@ public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<Craft
 		public void toNetwork(FriendlyByteBuf arg0, MixedExclusionRecipe arg1) {
 			arg0.writeUtf(arg1.type);
 		}
+		 */
 
-		private MixedExclusionRecipe forType(ResourceLocation res, String type) {
+		private MixedExclusionRecipe forType(String type) {
 			return switch(type) {
-			case "chest" -> MixedExclusionRecipe.forChest(type, res, false);
-			case "chest4" -> MixedExclusionRecipe.forChest(type, res, true);
-			case "furnace" -> MixedExclusionRecipe.forFurnace(type, res);
+			case "chest" -> MixedExclusionRecipe.forChest(type, false);
+			case "chest4" -> MixedExclusionRecipe.forChest(type, true);
+			case "furnace" -> MixedExclusionRecipe.forFurnace(type);
 			default -> null;
 			};
 		}
-
 	}
 
 }

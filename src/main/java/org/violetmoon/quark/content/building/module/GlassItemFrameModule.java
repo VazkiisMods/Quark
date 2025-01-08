@@ -6,7 +6,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.client.render.entity.GlassItemFrameRenderer;
 import org.violetmoon.quark.content.building.entity.GlassItemFrame;
@@ -50,7 +49,6 @@ public class GlassItemFrameModule extends ZetaModule {
 				.clientTrackingRange(10)
 				.updateInterval(Integer.MAX_VALUE) // update interval
 				.setShouldReceiveVelocityUpdates(false)
-				.setCustomClientFactory((spawnEntity, world) -> new GlassItemFrame(glassFrameEntity, world))
 				.build("glass_frame");
 		Quark.ZETA.registry.register(glassFrameEntity, "glass_frame", Registries.ENTITY_TYPE);
 
@@ -76,8 +74,7 @@ public class GlassItemFrameModule extends ZetaModule {
 
 		@LoadEvent
 		public void registerAdditionalModels(ZAddModels event) {
-			event.register(new ModelResourceLocation(Quark.asResource("extra/glass_item_frame"), "inventory"));
+			event.register(ModelResourceLocation.inventory(Quark.asResource("extra/glass_item_frame")));
 		}
-
 	}
 }

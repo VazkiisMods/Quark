@@ -25,6 +25,7 @@ import org.violetmoon.zeta.client.event.play.ZScreen;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.bus.ZPhase;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.event.play.entity.player.ZPlayer;
 import org.violetmoon.zeta.module.ZetaLoadModule;
@@ -95,7 +96,7 @@ public class AutomaticRecipeUnlockModule extends ZetaModule {
 		int i = 0;
 		for(var iterator = builders.entrySet().iterator(); iterator.hasNext();) {
 			Map.Entry<ResourceLocation, Advancement.Builder> entry = iterator.next();
-			if(entry.getKey().getPath().startsWith("recipes/") && entry.getValue().getCriteria().containsKey("has_the_recipe")) {
+			if(entry.getKey().getPath().startsWith("recipes/") && entry.getValue().containsKey("has_the_recipe")) {
 				iterator.remove();
 				i++;
 			}
@@ -122,7 +123,8 @@ public class AutomaticRecipeUnlockModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void clientTick(ZClientTick.End event) {
+		public void clientTick(ZClientTick event) {
+			if (event.getPhase() != ZPhase.END) return;
 
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.player != null && mc.player.tickCount < 20) {

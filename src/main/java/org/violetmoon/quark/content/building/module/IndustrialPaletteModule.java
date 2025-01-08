@@ -6,8 +6,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.common.util.ForgeSoundType;
-
 import org.violetmoon.quark.content.building.block.VariantLadderBlock;
 import org.violetmoon.zeta.block.IZetaBlock;
 import org.violetmoon.zeta.block.ZetaBlock;
@@ -25,11 +23,11 @@ import java.util.function.BooleanSupplier;
 public class IndustrialPaletteModule extends ZetaModule {
 
 	private static final SoundType IRON_LADDER_SOUND_TYPE = new SoundType(1.0F, 1.0F,
-			() -> SoundEvents.METAL_BREAK,
-			() -> SoundEvents.LADDER_STEP,
-			() -> SoundEvents.METAL_PLACE,
-			() -> SoundEvents.METAL_HIT,
-			() -> SoundEvents.LADDER_FALL);
+			SoundEvents.METAL_BREAK,
+			SoundEvents.LADDER_STEP,
+			SoundEvents.METAL_PLACE,
+			SoundEvents.METAL_HIT,
+			SoundEvents.LADDER_FALL);
 
 	@Config(flag = "iron_plates")
 	public static boolean enableIronPlates = true;
@@ -60,8 +58,6 @@ public class IndustrialPaletteModule extends ZetaModule {
 				.sound(IRON_LADDER_SOUND_TYPE)
 				.noOcclusion()
 				.pushReaction(PushReaction.DESTROY), false
-		)
-				.setCondition(ironLadderCond);
+		).setCondition(ironLadderCond);
 	}
-
 }

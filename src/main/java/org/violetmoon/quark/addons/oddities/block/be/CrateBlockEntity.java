@@ -2,6 +2,7 @@ package org.violetmoon.quark.addons.oddities.block.be;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -23,9 +24,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.addons.oddities.block.CrateBlock;
 import org.violetmoon.quark.addons.oddities.capability.CrateItemHandler;
 import org.violetmoon.quark.addons.oddities.inventory.CrateMenu;
@@ -72,17 +71,15 @@ public class CrateBlockEntity extends BaseContainerBlockEntity implements Worldl
 	}
 
 	@Override
-	protected void saveAdditional(@NotNull CompoundTag compound) {
-		super.saveAdditional(compound);
-
-		compound.merge(itemHandler().serializeNBT());
+	protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+		super.saveAdditional(tag, provider);
+		tag.merge(itemHandler().serializeNBT(provider));
 	}
 
 	@Override
-	public void load(@NotNull CompoundTag nbt) {
-		super.load(nbt);
-
-		itemHandler().deserializeNBT(nbt);
+	protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+		super.loadAdditional(tag, provider);
+		itemHandler().deserializeNBT(provider, tag);
 	}
 
 	public CrateItemHandler itemHandler() {
@@ -266,5 +263,4 @@ public class CrateBlockEntity extends BaseContainerBlockEntity implements Worldl
 		double d2 = (double) this.worldPosition.getZ() + 0.5D;
 		this.level.playSound(null, d0, d1, d2, sound, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
 	}
-
 }

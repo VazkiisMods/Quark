@@ -1,8 +1,17 @@
 package org.violetmoon.quark.content.building.module;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.block.StoolBlock;
 import org.violetmoon.quark.content.building.client.render.entity.StoolEntityRenderer;
@@ -19,20 +28,8 @@ import org.violetmoon.zeta.registry.CreativeTabManager;
 import org.violetmoon.zeta.util.Hint;
 import org.violetmoon.zeta.util.MiscUtil;
 
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
+import java.util.ArrayList;
+import java.util.List;
 
 @ZetaLoadModule(category = "building")
 public class StoolsModule extends ZetaModule {
@@ -61,7 +58,6 @@ public class StoolsModule extends ZetaModule {
 				.clientTrackingRange(3)
 				.updateInterval(Integer.MAX_VALUE) // update interval
 				.setShouldReceiveVelocityUpdates(false)
-				.setCustomClientFactory((spawnEntity, world) -> new Stool(stoolEntity, world))
 				.build("stool");
 		Quark.ZETA.registry.register(stoolEntity, "stool", Registries.ENTITY_TYPE);
 	}
@@ -85,8 +81,7 @@ public class StoolsModule extends ZetaModule {
 
 		@LoadEvent
 		public final void clientSetup(ZClientSetup event) {
-		EntityRenderers.register(stoolEntity, StoolEntityRenderer::new);
+			EntityRenderers.register(stoolEntity, StoolEntityRenderer::new);
+		}
 	}
-	}
-
 }
