@@ -40,7 +40,7 @@ import java.util.List;
 public class AbacusModule extends ZetaModule {
 
 	@Hint
-	public Item abacus;
+	public static Item abacus;
 
 	@Config
 	RGBAColorConfig highlightColor = RGBAColorConfig.forColor(0, 0, 0, 0.4);
