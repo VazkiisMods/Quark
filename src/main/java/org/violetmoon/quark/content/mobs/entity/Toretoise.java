@@ -16,7 +16,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -37,12 +36,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.piston.PistonMovingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
 import org.jetbrains.annotations.NotNull;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.QuarkSounds;
@@ -76,7 +74,6 @@ public class Toretoise extends Animal {
 
 	public Toretoise(EntityType<? extends Toretoise> type, Level world) {
 		super(type, world);
-		setMaxUpStep(1.0F);
 		setPathfindingMalus(PathType.WATER, 1.0F);
 	}
 
@@ -173,7 +170,7 @@ public class Toretoise extends Animal {
 						playSound(QuarkSounds.ENTITY_TORETOISE_ANGRY, 1F, 0.2F);
 					else if(angeryTicks == 0) {
 						serverLevel.sendParticles(ParticleTypes.CLOUD, x, y, z, 200, dangerRange, 0.5, dangerRange, 0);
-						gameEvent(GameEvent.ENTITY_ROAR);
+						gameEvent(GameEvent.ENTITY_ACTION);
 					}
 				}
 
@@ -233,10 +230,10 @@ public class Toretoise extends Animal {
 		if(e instanceof LivingEntity living) {
 			ItemStack held = living.getMainHandItem();
 
-			if(ore != 0 && held.getItem().canPerformAction(held, ToolActions.PICKAXE_DIG)) { //TODO: IForgeItem
+			if(ore != 0 && held.getItem().canPerformAction(held, ItemAbilities.PICKAXE_DIG)) { //TODO: IForgeItem
 				if(level() instanceof ServerLevel serverLevel) {
-					if(held.isDamageableItem() && e instanceof Player)
-						MiscUtil.damageStack((Player) e, InteractionHand.MAIN_HAND, held, 1);
+					if(held.isDamageableItem() && e instanceof Player player)
+						held.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
 
 					LootParams.Builder lootBuilder = new LootParams.Builder(serverLevel)
 							.withParameter(LootContextParams.TOOL, held);
@@ -371,7 +368,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public boolean canBeLeashed(@NotNull Player player) {
+	public boolean canBeLeashed() {
 		return false;
 	}
 
@@ -421,7 +418,8 @@ public class Toretoise extends Animal {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 60.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.08D)
-				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+				.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+				.add(Attributes.STEP_HEIGHT, 1.0D);
 	}
 
 	@Override // createChild

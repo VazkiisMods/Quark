@@ -1,18 +1,12 @@
 package org.violetmoon.quark.content.tools.module;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tools.client.render.entity.TorchArrowRenderer;
@@ -50,14 +44,7 @@ public class TorchArrowModule extends ZetaModule {
 				.build("torch_arrow");
 		event.getRegistry().register(torchArrowType, "torch_arrow", Registries.ENTITY_TYPE);
 
-		DispenserBlock.registerBehavior(torch_arrow, new ProjectileDispenseBehavior() {
-			@Override
-			protected Projectile getProjectile(Level level, Position position, ItemStack itemStack) {
-				TorchArrow torch_arrow = new TorchArrow(level, position.x(), position.y(), position.z());
-				torch_arrow.pickup = AbstractArrow.Pickup.ALLOWED;
-				return torch_arrow;
-			}
-		});
+		DispenserBlock.registerBehavior(torch_arrow, new ProjectileDispenseBehavior(torch_arrow));
 	}
 
 	@ZetaLoadModule(clientReplacement = true)

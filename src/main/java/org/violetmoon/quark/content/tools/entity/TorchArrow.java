@@ -16,10 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-
 import org.jetbrains.annotations.NotNull;
-
-import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tools.module.TorchArrowModule;
 
 public class TorchArrow extends AbstractArrow {
@@ -28,12 +25,8 @@ public class TorchArrow extends AbstractArrow {
 		super(type, level);
 	}
 
-	public TorchArrow(Level level, double x, double y, double z) {
-		super(TorchArrowModule.torchArrowType, x, y, z, level);
-	}
-
 	public TorchArrow(Level level, LivingEntity shooter) {
-		super(TorchArrowModule.torchArrowType, shooter, level);
+		super(TorchArrowModule.torchArrowType, level);
 	}
 
 	@Override
@@ -71,14 +64,12 @@ public class TorchArrow extends AbstractArrow {
 
 			if((state.isAir() || state.canBeReplaced()) && direction != Direction.DOWN) {
 
-				if(this.getOwner() instanceof Player p && !Quark.FLAN_INTEGRATION.canPlace(p, finalPos))
+				if(this.getOwner() instanceof Player /*p && !Quark.FLAN_INTEGRATION.canPlace(p, finalPos)*/) // TODO: Wait for Neoforge Flan or remove
 					return;
 
-				BlockState setState;
-				if(direction == Direction.UP)
-					setState = Blocks.TORCH.defaultBlockState();
-				else
-					setState = Blocks.WALL_TORCH.defaultBlockState().setValue(WallTorchBlock.FACING, direction);
+				BlockState setState = direction == Direction.UP
+						? Blocks.TORCH.defaultBlockState()
+						: Blocks.WALL_TORCH.defaultBlockState().setValue(WallTorchBlock.FACING, direction);
 
 				if(setState.canSurvive(level(), finalPos)) {
 					level().setBlock(finalPos, setState, 2);
@@ -97,7 +88,7 @@ public class TorchArrow extends AbstractArrow {
 		// incredible hack to ensure we still set entities on fire without rendering the fire texture
 		igniteForSeconds(1);
 		super.onHitEntity(result);
-		extinguishFire();
+		igniteForSeconds(0);
 	}
 
 	@Override
@@ -107,7 +98,7 @@ public class TorchArrow extends AbstractArrow {
 
 	@Override
 	protected ItemStack getDefaultPickupItem() {
-		return new ItemStack(TorchArrowModule.torch_arrow);
+		return new ItemStack(TorchArrowModule.extinguishOnMiss ? Items.ARROW : TorchArrowModule.torch_arrow);
 	}
 
 }

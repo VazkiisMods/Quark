@@ -41,7 +41,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -349,8 +348,8 @@ public class Stoneling extends PathfinderMob {
 	}
 
 	@Override
-	protected void dropCustomDeathLoot(@NotNull DamageSource damage, int looting, boolean wasRecentlyHit) {
-		super.dropCustomDeathLoot(damage, looting, wasRecentlyHit);
+	protected void dropCustomDeathLoot(@NotNull ServerLevel level, @NotNull DamageSource damage, boolean wasRecentlyHit) {
+		super.dropCustomDeathLoot(level, damage, wasRecentlyHit);
 
 		ItemStack stack = getCarryingItem();
 		if(!stack.isEmpty())
@@ -404,16 +403,13 @@ public class Stoneling extends PathfinderMob {
 			if(this.level().clip(new ClipContext(origin, epos.add(0, height, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getType() == HitResult.Type.MISS)
 				return true;
 		}
-
 		return false;
 	}
 
 	@Override
 	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
-
-		compound.put(TAG_CARRYING_ITEM, getCarryingItem().serializeNBT());
-
+		compound.put(TAG_CARRYING_ITEM, getCarryingItem().save(level().registryAccess()));
 		compound.putByte(TAG_VARIANT, getVariant().getIndex());
 		compound.putFloat(TAG_HOLD_ANGLE, getItemAngle());
 		compound.putBoolean(TAG_PLAYER_MADE, isPlayerMade());

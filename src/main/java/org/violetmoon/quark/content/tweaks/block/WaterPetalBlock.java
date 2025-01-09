@@ -2,6 +2,8 @@ package org.violetmoon.quark.content.tweaks.block;
 
 import java.util.function.BooleanSupplier;
 
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.zeta.block.IZetaBlock;
 import org.violetmoon.zeta.module.ZetaModule;
@@ -36,10 +38,10 @@ public class WaterPetalBlock extends PinkPetalsBlock implements IZetaBlock {
 
 		module.zeta.renderLayerRegistry.put(this, RenderLayerRegistry.Layer.CUTOUT);
     }
-    
+
     @Override
-    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
-    	return new ItemStack(base);
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+        return new ItemStack(base);
     }
     
     @Override
