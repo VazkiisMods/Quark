@@ -1,8 +1,5 @@
 package org.violetmoon.quark.content.tools.item;
 
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -14,7 +11,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Inventory;
@@ -35,9 +31,6 @@ import org.violetmoon.quark.content.tools.entity.rang.AbstractPickarang;
 import org.violetmoon.quark.content.tools.module.PickarangModule;
 import org.violetmoon.zeta.item.ZetaItem;
 import org.violetmoon.zeta.module.ZetaModule;
-
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class PickarangItem extends ZetaItem {
 
@@ -81,7 +74,7 @@ public class PickarangItem extends ZetaItem {
 	}
 
 	@Override
-	public int getMaxDamageZeta(ItemStack stack) {
+	public int getMaxDamage(ItemStack stack) {
 		return Math.max(type.durability, 0);
 	}
 
@@ -161,10 +154,5 @@ public class PickarangItem extends ZetaItem {
 	@Override
 	public int getEnchantmentValue() {
 		return type.pickaxeEquivalent != null ? type.pickaxeEquivalent.getEnchantmentValue() : 0;
-	}
-
-	@Override
-	public boolean canApplyAtEnchantingTableZeta(ItemStack stack, Enchantment enchantment) {
-		return super.canApplyAtEnchantingTableZeta(stack, enchantment) || ImmutableSet.of(Enchantments.BLOCK_FORTUNE, Enchantments.SILK_TOUCH, Enchantments.BLOCK_EFFICIENCY).contains(enchantment);
 	}
 }

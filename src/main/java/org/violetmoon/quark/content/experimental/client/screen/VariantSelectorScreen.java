@@ -133,7 +133,7 @@ public class VariantSelectorScreen extends Screen {
             }
 
             if (seg == 0)
-                buf.vertex(x, y, 0).color(r, g, b, a).endVertex();
+                buf.addVertex(x, y, 0).setColor(r, g, b, a);
 
             if (mouseInSector) {
                 slotSelected = seg;
@@ -149,8 +149,8 @@ public class VariantSelectorScreen extends Screen {
             float exp = x + Mth.cos(end) * radius;
             float eyp = y + Mth.sin(end) * radius;
 
-            buf.vertex(sxp, syp, 0).color(r, g, b, a).endVertex();
-            buf.vertex(exp, eyp, 0).color(r, g, b, a).endVertex();
+            buf.addVertex(sxp, syp, 0).setColor(r, g, b, a);
+            buf.addVertex(exp, eyp, 0).setColor(r, g, b, a);
 
             float center = (seg + 0.5f) * degPer + pad;
             float cxp = x + Mth.cos(center) * radius;

@@ -27,11 +27,6 @@
 
 package org.violetmoon.quark.content.automation.client.screen;
 
-import java.util.List;
-
-import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.automation.inventory.CrafterMenu;
-
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -40,6 +35,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
+import org.violetmoon.quark.base.Quark;
+import org.violetmoon.quark.content.automation.inventory.CrafterMenu;
+
+import java.util.List;
 
 public class CrafterScreen extends AbstractContainerScreen<CrafterMenu> {
 	private static final ResourceLocation TEXTURE = Quark.asResource("textures/gui/container/crafter.png");
@@ -56,7 +55,7 @@ public class CrafterScreen extends AbstractContainerScreen<CrafterMenu> {
 
 	@Override
 	public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
-		renderBackground(context);
+		renderBackground(context, mouseX, mouseY, delta);
 		super.render(context, mouseX, mouseY, delta);
 		this.renderTooltip(context, mouseX, mouseY);
 		if (menu.getCarried().isEmpty() && this.hoveredSlot != null && this.hoveredSlot.getItem().isEmpty() && this.hoveredSlot.container == menu.crafter && !isBlocked(this.hoveredSlot)) {

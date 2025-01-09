@@ -1,7 +1,6 @@
 package org.violetmoon.quark.content.experimental.module;
 
 import com.mojang.serialization.Dynamic;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -20,16 +19,10 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-
-import net.minecraft.world.level.levelgen.structure.Structure;
-import net.minecraft.world.level.levelgen.structure.StructureSet;
-import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
-import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.bus.ZResult;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.event.play.ZAnvilUpdate;
 import org.violetmoon.zeta.event.play.ZItemTooltip;
@@ -125,7 +118,7 @@ public class GameNerfsModule extends ZetaModule {
 			return true;
 
 		Level level = entity.level();
-		String dim = level.dimensionTypeId().location().toString();
+		String dim = level.dimension().location().toString();
 		return elytraAllowedDimensions.contains(dim);
 	}
 
@@ -147,12 +140,11 @@ public class GameNerfsModule extends ZetaModule {
 
 	@PlayEvent
 	public void onMobGriefing(ZEntityMobGriefing event) {
-		if(!enableSelectiveMobGriefing || event.getEntity() == null)
-			return;
+		if(!enableSelectiveMobGriefing || event.getEntity() == null) return;
 
 		String name = BuiltInRegistries.ENTITY_TYPE.getKey(event.getEntity().getType()).toString();
 		if(nonGriefingEntities.contains(name))
-			event.setResult(ZResult.DENY);
+			event.setCanGrief(false);
 	}
 
 	public static Predicate<ItemStack> limitMendingItems(Predicate<ItemStack> base) {

@@ -1,9 +1,11 @@
 package org.violetmoon.quark.content.client.module;
 
 import com.mojang.blaze3d.platform.Window;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlot.Type;
@@ -12,9 +14,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
-
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 import org.violetmoon.quark.api.IUsageTickerOverride;
 import org.violetmoon.quark.api.event.UsageTickerEvent;
 import org.violetmoon.quark.base.Quark;
@@ -23,6 +25,7 @@ import org.violetmoon.zeta.client.event.play.ZRenderGuiOverlay;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.bus.ZPhase;
 import org.violetmoon.zeta.event.load.ZConfigChanged;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
@@ -71,7 +74,9 @@ public class UsageTickerModule extends ZetaModule {
 		}
 
 		@PlayEvent
-		public void clientTick(ZClientTick.End event) {
+		public void clientTick(ZClientTick event) {
+			if (event.getPhase() != ZPhase.END) return;
+
 			Minecraft mc = Minecraft.getInstance();
 			if(mc.player != null && mc.level != null)
 				for(TickerElement ticker : elements)
@@ -83,7 +88,7 @@ public class UsageTickerModule extends ZetaModule {
 		public void renderHUD(ZRenderGuiOverlay.Hotbar.Post event) {
 			Window window = event.getWindow();
 			Player player = Minecraft.getInstance().player;
-			float partial = event.getPartialTick();
+			float partial = event.getPartialTick().getGameTimeDeltaTicks();
 
 			GuiGraphics guiGraphics = event.getGuiGraphics();
 
@@ -150,7 +155,7 @@ public class UsageTickerModule extends ZetaModule {
 					float y = window.getGuiScaledHeight() - anim;
 
 					int barWidth = 190;
-					boolean armor = slot.getType() == Type.ARMOR;
+					boolean armor = slot.getType() == Type.HUMANOID_ARMOR;
 
 					HumanoidArm primary = player.getMainArm();
 					HumanoidArm ourSide = (armor != invert) ? primary : primary.getOpposite();
@@ -193,7 +198,7 @@ public class UsageTickerModule extends ZetaModule {
 					stack = over.getUsageTickerItem(stack);
 					returnStack = stack;
 					verifySize = over.shouldUsageTickerCheckMatchSize(currStack);
-				} else if(isProjectileWeapon(stack)) {
+				} else if(isProjectileWeapon(player.level().registryAccess(), stack)) {
 					returnStack = player.getProjectile(stack);
 					logicLock = true;
 				}
@@ -207,7 +212,7 @@ public class UsageTickerModule extends ZetaModule {
 
 				//TODO ZETA: readd this
 				UsageTickerEvent.GetStack event = new UsageTickerEvent.GetStack(slot, returnStack, stack, count, renderPass, player);
-				MinecraftForge.EVENT_BUS.post(event);
+				NeoForge.EVENT_BUS.post(event);
 				return event.isCanceled() ? ItemStack.EMPTY : event.getResultStack();
 			}
 
@@ -215,7 +220,7 @@ public class UsageTickerModule extends ZetaModule {
 				int val = 1;
 
 				if(displayStack.isStackable()) {
-					Predicate<ItemStack> predicate = (stackAt) -> ItemStack.isSameItemSameTags(stackAt, displayStack);
+					Predicate<ItemStack> predicate = (stackAt) -> ItemStack.isSameItemSameComponents(stackAt, displayStack);
 
 					int total = 0;
 					Inventory inventory = player.getInventory();
@@ -234,12 +239,13 @@ public class UsageTickerModule extends ZetaModule {
 
 				//TODO ZETA: readd this
 				UsageTickerEvent.GetCount event = new UsageTickerEvent.GetCount(slot, displayStack, original, val, renderPass, player);
-				MinecraftForge.EVENT_BUS.post(event);
+				NeoForge.EVENT_BUS.post(event);
 				return event.isCanceled() ? 0 : event.getResultCount();
 			}
 
-			private static boolean isProjectileWeapon(ItemStack stack) {
-				return stack.getItem() instanceof ProjectileWeaponItem && Quark.ZETA.itemExtensions.get(stack).getEnchantmentLevelZeta(stack, Enchantments.INFINITY_ARROWS) == 0;
+			private static boolean isProjectileWeapon(RegistryAccess access, ItemStack stack) {
+				Holder<Enchantment> enchantment = access.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.INFINITY);
+				return stack.getItem() instanceof ProjectileWeaponItem && Quark.ZETA.itemExtensions.get(stack).getEnchantmentLevelZeta(stack, enchantment) == 0;
 			}
 
 			public ItemStack getRenderedStack(Player player) {

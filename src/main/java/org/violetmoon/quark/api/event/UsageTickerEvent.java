@@ -4,8 +4,9 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.ICancellableEvent;
 
-public class UsageTickerEvent extends Event {
+public class UsageTickerEvent extends Event implements ICancellableEvent {
 
 	public final EquipmentSlot slot;
 	public final ItemStack currentStack;

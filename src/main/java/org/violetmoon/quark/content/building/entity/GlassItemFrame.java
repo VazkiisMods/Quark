@@ -1,14 +1,10 @@
 package org.violetmoon.quark.content.building.entity;
 
 import com.mojang.authlib.GameProfile;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -31,15 +27,13 @@ import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.FakePlayerFactory;
-import net.minecraftforge.entity.IEntityAdditionalSpawnData;
-import net.minecraftforge.network.NetworkHooks;
-
+import net.neoforged.neoforge.capabilities.BlockCapability;
+import net.neoforged.neoforge.common.util.FakePlayerFactory;
 import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
+import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.module.GlassItemFrameModule;
 
 import java.util.UUID;
@@ -47,6 +41,9 @@ import java.util.UUID;
 public class GlassItemFrame extends ItemFrame implements IEntityWithComplexSpawn {
 
 	public static final EntityDataAccessor<Boolean> IS_SHINY = SynchedEntityData.defineId(GlassItemFrame.class, EntityDataSerializers.BOOLEAN);
+
+	public static final BlockCapability<IItemHandler, @Nullable Direction> ITEM_HANDLER_BLOCK =
+			BlockCapability.createSided(Quark.asResource("glass_frame_capability"), IItemHandler.class);
 
 	private static final String TAG_SHINY = "isShiny";
 	private static final GameProfile DUMMY_PROFILE = new GameProfile(UUID.randomUUID(), "ItemFrame");
@@ -79,16 +76,14 @@ public class GlassItemFrame extends ItemFrame implements IEntityWithComplexSpawn
 	@Override
 	public InteractionResult interact(Player player, @NotNull InteractionHand hand) {
 		ItemStack item = getItem();
-		if(!player.isShiftKeyDown() && !item.isEmpty() && !(item.getItem() instanceof BannerItem)) {
+		if (!player.isShiftKeyDown() && !item.isEmpty() && !(item.getItem() instanceof BannerItem)) {
 			BlockPos behind = getBehindPos();
 			BlockEntity tile = level().getBlockEntity(behind);
 
-			if(tile != null && tile.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent()) {
+			if(tile != null && level().getCapability(ITEM_HANDLER_BLOCK, tile.getBlockPos(), direction) != null) {
 				BlockState behindState = level().getBlockState(behind);
-				InteractionResult result = behindState.use(level(), player, hand, new BlockHitResult(new Vec3(getX(), getY(), getZ()), direction, behind, true));
-
-				if(result.consumesAction())
-					return result;
+				InteractionResult result = behindState.useWithoutItem(level(), player, new BlockHitResult(new Vec3(getX(), getY(), getZ()), direction, behind, true));
+				if (result.consumesAction()) return result;
 			}
 		}
 
@@ -239,12 +234,6 @@ public class GlassItemFrame extends ItemFrame implements IEntityWithComplexSpawn
 		super.readAdditionalSaveData(cmp);
 
 		entityData.set(IS_SHINY, cmp.getBoolean(TAG_SHINY));
-	}
-
-	@NotNull
-	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	@Override

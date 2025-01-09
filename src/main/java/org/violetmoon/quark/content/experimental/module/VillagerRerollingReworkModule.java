@@ -108,9 +108,9 @@ public class VillagerRerollingReworkModule extends ZetaModule {
 					boolean foundEquivalent = false; // We avoid duplicate trades...
 					for(MerchantOffer otherOffer : offers) {
 
-						if(ItemStack.isSameItemSameTags(otherOffer.getBaseCostA(), rerolled.getBaseCostA()) &&
-								ItemStack.isSameItemSameTags(otherOffer.getCostB(), rerolled.getCostB()) &&
-								ItemStack.isSameItemSameTags(otherOffer.getResult(), rerolled.getResult())) {
+						if(ItemStack.isSameItemSameComponents(otherOffer.getBaseCostA(), rerolled.getBaseCostA()) &&
+								ItemStack.isSameItemSameComponents(otherOffer.getCostB(), rerolled.getCostB()) &&
+								ItemStack.isSameItemSameComponents(otherOffer.getResult(), rerolled.getResult())) {
 							foundEquivalent = true;
 							break;
 						}
