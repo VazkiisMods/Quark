@@ -4,8 +4,8 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -95,11 +96,11 @@ public class DyeableItemFramesModule extends ZetaModule {
 			return InteractionResult.FAIL;
 
 		Level level = context.getLevel();
-		HangingEntity hangingentity = new DyedItemFrame(level, blockpos1, direction, Quark.ZETA.dyeables.getDye(itemstack), itemstack.is(Items.GLOW_ITEM_FRAME));
+		HangingEntity hangingentity = new DyedItemFrame(level, blockpos1, direction, Quark.ZETA.dyeables.getDye(itemstack).rgb(), itemstack.is(Items.GLOW_ITEM_FRAME));
 
-		CompoundTag compoundtag = itemstack.getTag();
-		if(compoundtag != null)
-			EntityType.updateCustomEntityTag(level, player, hangingentity, compoundtag);
+		CustomData customData = itemstack.get(DataComponents.CUSTOM_DATA);
+		if(customData != null)
+			EntityType.updateCustomEntityTag(level, player, hangingentity, customData);
 
 		if(hangingentity.survives()) {
 			if(!level.isClientSide) {
@@ -126,8 +127,8 @@ public class DyeableItemFramesModule extends ZetaModule {
 
 		@LoadEvent
 		public void registerAdditionalModels(ZAddModels event) {
-			event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/dyed_item_frame", "inventory"));
-			event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/dyed_item_frame_map", "inventory"));
+			event.register(ModelResourceLocation.inventory(Quark.asResource("extra/dyed_item_frame")));
+			event.register(ModelResourceLocation.inventory(Quark.asResource("extra/dyed_item_frame_map")));
 		}
 
 		@LoadEvent

@@ -1,6 +1,7 @@
 package org.violetmoon.quark.addons.oddities.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -71,7 +72,7 @@ public class CrateBlock extends ZetaBlock implements EntityBlock {
 
 	@NotNull
 	@Override
-	public InteractionResult use(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
+	public InteractionResult useWithoutItem(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hit) {
 		if(worldIn.isClientSide) {
 			return InteractionResult.SUCCESS;
 		} else {
@@ -89,10 +90,10 @@ public class CrateBlock extends ZetaBlock implements EntityBlock {
 
 	@Override
 	public void setPlacedBy(@NotNull Level worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-		if(stack.hasCustomHoverName()) {
+		if(stack.getComponents().has(DataComponents.CUSTOM_NAME)) {
 			BlockEntity tileentity = worldIn.getBlockEntity(pos);
 			if(tileentity instanceof CrateBlockEntity crate)
-				crate.setCustomName(stack.getHoverName());
+				crate.setComponents(stack.getHoverName());
 		}
 	}
 

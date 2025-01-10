@@ -1,10 +1,8 @@
 package org.violetmoon.quark.addons.oddities.inventory.slot;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-
+import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.addons.oddities.module.BackpackModule;
 
 public class BackpackSlot extends CachedItemHandlerSlot {

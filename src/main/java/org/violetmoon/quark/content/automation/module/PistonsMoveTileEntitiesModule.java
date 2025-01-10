@@ -1,7 +1,6 @@
 package org.violetmoon.quark.content.automation.module;
 
 import com.google.common.collect.Lists;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -18,10 +17,8 @@ import net.minecraft.world.level.block.piston.PistonStructureResolver;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraftforge.common.util.NonNullConsumer;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
-
 import org.violetmoon.quark.api.IPistonCallback;
 import org.violetmoon.quark.api.QuarkCapabilities;
 import org.violetmoon.quark.base.Quark;
@@ -140,7 +137,7 @@ public class PistonsMoveTileEntitiesModule extends ZetaModule {
 				if(tile != null) {
 					callCallback(tile, IPistonCallback::onPistonMovementStarted);
 
-					CompoundTag tag = tile.saveWithFullMetadata();
+					CompoundTag tag = tile.saveWithFullMetadata(world.registryAccess());
 					setMovingBlockEntityData(world, pos.relative(facing), tag);
 					world.removeBlockEntity(pos);
 				}
@@ -303,7 +300,7 @@ public class PistonsMoveTileEntitiesModule extends ZetaModule {
 			Quark.LOG.warn("Wrong block entity found at {} (expected {}, got {})", pos.toShortString(), expectedTypeStr, BlockEntityType.getKey(inWorldEntity.getType()));
 			return null;
 		} else {
-			inWorldEntity.load(tag);
+			inWorldEntity.loadWithComponents(tag, level.registryAccess());
 			inWorldEntity.setChanged();
 			return inWorldEntity;
 		}

@@ -32,9 +32,9 @@ import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.saveddata.maps.MapDecoration.Type;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
 import org.violetmoon.quark.base.Quark;
@@ -415,7 +415,7 @@ public class PathfindersQuillItem extends ZetaItem implements CreativeTabManager
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(ItemStack stack, Level level, List<Component> comps, TooltipFlag flags) {
+	public void appendHoverText(ItemStack stack, TooltipContext p_339594_, List<Component> comps, TooltipFlag flags) {
 		ResourceLocation biome = this.getTarget(stack);
 		if(biome != null) {
 			if(ItemNBTHelper.getBoolean(stack, TAG_IS_SEARCHING, false))
@@ -427,8 +427,7 @@ public class PathfindersQuillItem extends ZetaItem implements CreativeTabManager
 	}
 
 	//new concurrent search stuff. Experimental
-	private record Key(GlobalPos pos, ResourceLocation structure) {
-	}
+	private record Key(GlobalPos pos, ResourceLocation structure) {}
 
 	private static final Map<Key, InteractionResultHolder<BlockPos>> RESULTS = new ConcurrentHashMap<>();
 	private static final Set<Key> COMPUTING = ConcurrentHashMap.newKeySet();

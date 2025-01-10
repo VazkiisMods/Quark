@@ -34,7 +34,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.api.ICrawlSpaceBlock;
@@ -146,7 +146,7 @@ public class GrateBlock extends ZetaBlock implements SimpleFluidloggedBlock, ICr
 	}
 
 	@Override
-	public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull PathComputationType path) {
+	protected boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 
@@ -160,10 +160,9 @@ public class GrateBlock extends ZetaBlock implements SimpleFluidloggedBlock, ICr
 		super.neighborChanged(state, level, pos, updatedBlock, neighbor, isMoving);
 		if(!pos.below().equals(neighbor)) {
 			BlockState neighborState = level.getBlockState(neighbor);
-			if(neighborState.getFluidState().is(FluidTags.WATER) &&
-					fluidContained(state).isSame(Fluids.LAVA)) {
+			if(neighborState.getFluidState().is(FluidTags.WATER) && fluidContained(state).isSame(Fluids.LAVA)) {
 				level.destroyBlock(pos, true);
-				level.setBlock(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(level, pos, neighbor, Blocks.OBSIDIAN.defaultBlockState()), 3);
+				level.setBlock(pos, EventHooks.fireFluidPlaceBlockEvent(level, pos, neighbor, Blocks.OBSIDIAN.defaultBlockState()), 3);
 				level.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);
 			}
 		}

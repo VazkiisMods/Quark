@@ -32,7 +32,7 @@ public class ZombieVillagersOnNormalModule extends ZetaModule {
 				zombievillager.finalizeSpawn(serverLevel, level.getCurrentDifficultyAt(zombievillager.blockPosition()), MobSpawnType.CONVERSION, new Zombie.ZombieGroupData(false, true));
 				zombievillager.setVillagerData(villager.getVillagerData());
 				zombievillager.setGossips(villager.getGossips().store(NbtOps.INSTANCE));
-				zombievillager.setTradeOffers(villager.getOffers().createTag());
+				zombievillager.setTradeOffers(villager.getOffers().copy());
 				zombievillager.setVillagerXp(villager.getVillagerXp());
 
 				EventHooks.onLivingConvert(villager, zombievillager);

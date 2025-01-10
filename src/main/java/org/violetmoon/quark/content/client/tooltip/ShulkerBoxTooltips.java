@@ -4,7 +4,6 @@ import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Either;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -26,9 +25,7 @@ import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.handler.SimilarBlockTypeHandler;
 import org.violetmoon.quark.content.client.module.ChestSearchingModule;
@@ -141,10 +138,7 @@ public class ShulkerBoxTooltips {
 						if(ImprovedTooltipsModule.shulkerBoxUseColors && ((BlockItem) currentBox.getItem()).getBlock() instanceof ShulkerBoxBlock boxBlock) {
 							DyeColor dye = boxBlock.getColor();
 							if(dye != null) {
-								float[] colorComponents = dye.getTextureDiffuseColors();
-								color = ((int) (colorComponents[0] * 255) << 16) |
-										((int) (colorComponents[1] * 255) << 8) |
-										(int) (colorComponents[2] * 255);
+								color = dye.getTextureDiffuseColor();
 							}
 						}
 

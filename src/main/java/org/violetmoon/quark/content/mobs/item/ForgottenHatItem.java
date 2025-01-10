@@ -1,36 +1,28 @@
 package org.violetmoon.quark.content.mobs.item;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.ImmutableMultimap.Builder;
-import com.google.common.collect.Multimap;
-
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraftforge.common.ForgeMod;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.item.IZetaItem;
 import org.violetmoon.zeta.item.ZetaArmorItem;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.CreativeTabManager;
 
-import java.util.UUID;
 import java.util.function.BooleanSupplier;
 
 public class ForgottenHatItem extends ZetaArmorItem implements IZetaItem {
 
-	private static final String TEXTURE = Quark.MOD_ID + ":textures/misc/forgotten_hat_worn.png";
+	private static final ResourceLocation TEXTURE = Quark.asResource(":textures/misc/forgotten_hat_worn.png");
 
 	private final ZetaModule module;
-	private Multimap<Attribute, AttributeModifier> attributes;
 
 	public ForgottenHatItem(ZetaModule module) {
 		super(ArmorMaterials.LEATHER, Type.HELMET,
@@ -61,12 +53,13 @@ public class ForgottenHatItem extends ZetaArmorItem implements IZetaItem {
 	}
 
 	@Override
-	public boolean canEquipZeta(ItemStack stack, EquipmentSlot equipmentSlot, Entity ent) {
-		return equipmentSlot == EquipmentSlot.HEAD;
+	public boolean canEquipZeta(ItemStack stack, EquipmentSlot armorType, LivingEntity entity) {
+		return armorType == EquipmentSlot.HEAD;
 	}
 
+	// TODO: Reimpl getArmorTextureZeta
 	@Override
-	public String getArmorTextureZeta(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+	public ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
 		return TEXTURE;
 	}
 
@@ -79,11 +72,8 @@ public class ForgottenHatItem extends ZetaArmorItem implements IZetaItem {
 		ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 		builder.add(Attributes.ARMOR, new AttributeModifier(Quark.asResource("forgotten_hat_armor"), 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD);
 		builder.add(Attributes.LUCK, new AttributeModifier(Quark.asResource("forgotten_hat_luck"), 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD);
-
 		builder.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(Quark.asResource("forgotten_hat_entity_interaction_range"),  2, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD);
 		builder.add(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(Quark.asResource("forgotten_hat_block_interaction_range"), 2, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD);
-
 		return builder.build();
 	}
-
 }

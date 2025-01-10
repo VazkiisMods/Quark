@@ -2,6 +2,7 @@ package org.violetmoon.quark.content.building.item;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -49,9 +51,9 @@ public class QuarkItemFrameItem extends ZetaItem {
 			Level world = context.getLevel();
 			HangingEntity frame = entityProvider.apply(world, placeLocation, facing);
 
-			CompoundTag tag = stack.getTag();
-			if(tag != null)
-				EntityType.updateCustomEntityTag(world, player, frame, tag);
+			CustomData data = stack.get(DataComponents.CUSTOM_DATA);
+			if(data != null)
+				EntityType.updateCustomEntityTag(world, player, frame, data);
 
 			if(frame.survives()) {
 				if(!world.isClientSide) {

@@ -3,6 +3,7 @@ package org.violetmoon.quark.addons.oddities.block.be;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -167,7 +168,7 @@ public class PipeBlockEntity extends SimpleInventoryBlockEntity {
 	}
 
 	public boolean allowsFullConnection(PipeBlockEntity.ConnectionType conn) {
-		return blockState.getBlock() instanceof BasePipeBlock pipe && pipe.allowsFullConnection(conn);
+		return getBlockState().getBlock() instanceof BasePipeBlock pipe && pipe.allowsFullConnection(conn);
 	}
 
 	public boolean passIn(ItemStack stack, Direction face, Direction backlog, long seed, int time) {
@@ -291,20 +292,20 @@ public class PipeBlockEntity extends SimpleInventoryBlockEntity {
 	}
 
 	@Override
-	public void readSharedNBT(CompoundTag cmp) {
+	public void readSharedNBT(CompoundTag tag, HolderLookup.Provider provider) {
 		skipSync = true;
-		super.readSharedNBT(cmp);
+		super.readSharedNBT(tag, provider);
 		skipSync = false;
 
-		ListTag pipeItemList = cmp.getList(TAG_PIPE_ITEMS, cmp.getId());
+		ListTag pipeItemList = tag.getList(TAG_PIPE_ITEMS, tag.getId());
 		pipeItems.clear();
 		pipeItemList.forEach(listCmp -> {
-			PipeItem item = PipeItem.readFromNBT((CompoundTag) listCmp);
+			PipeItem item = PipeItem.readFromNBT((CompoundTag) listCmp, provider);
 			pipeItems.add(item);
 		});
 
-		if(cmp.contains(TAG_CONNECTIONS)) {
-			var c = cmp.getByteArray(TAG_CONNECTIONS);
+		if(tag.contains(TAG_CONNECTIONS)) {
+			var c = tag.getByteArray(TAG_CONNECTIONS);
 			for(int i = 0; i < c.length; i++) {
 				connectionsCache[i] = ConnectionType.values()[c[i]];
 			}
@@ -312,16 +313,16 @@ public class PipeBlockEntity extends SimpleInventoryBlockEntity {
 	}
 
 	@Override
-	public void writeSharedNBT(CompoundTag cmp) {
-		super.writeSharedNBT(cmp);
+	public void writeSharedNBT(CompoundTag tag, HolderLookup.Provider provider) {
+		super.writeSharedNBT(tag, provider);
 
 		ListTag pipeItemList = new ListTag();
 		for(PipeItem item : pipeItems) {
 			CompoundTag listCmp = new CompoundTag();
-			item.writeToNBT(listCmp);
+			item.writeToNBT(listCmp, provider);
 			pipeItemList.add(listCmp);
 		}
-		cmp.put(TAG_PIPE_ITEMS, pipeItemList);
+		tag.put(TAG_PIPE_ITEMS, pipeItemList);
 
 		for(int i = 0; i < connectionsCache.length; i++) {
 			if(connectionsCache[i] == null) {
@@ -329,7 +330,7 @@ public class PipeBlockEntity extends SimpleInventoryBlockEntity {
 				this.convert = true;
 			}
 		}
-		cmp.putByteArray(TAG_CONNECTIONS, (Arrays.stream(connectionsCache).map(c -> (byte) c.ordinal()).toList()));
+		tag.putByteArray(TAG_CONNECTIONS, (Arrays.stream(connectionsCache).map(c -> (byte) c.ordinal()).toList()));
 	}
 
 	protected boolean canFit(ItemStack stack, BlockPos pos, Direction face) {
@@ -533,8 +534,8 @@ public class PipeBlockEntity extends SimpleInventoryBlockEntity {
 			return (ticksInPipe + partial) / PipesModule.effectivePipeSpeed;
 		}
 
-		public void writeToNBT(CompoundTag cmp) {
-			stack.save(cmp);
+		public void writeToNBT(CompoundTag cmp, HolderLookup.Provider provider) {
+			stack.save(provider, cmp);
 			cmp.putInt(TAG_TICKS, ticksInPipe);
 			cmp.putInt(TAG_INCOMING, incomingFace.ordinal());
 			cmp.putInt(TAG_OUTGOING, outgoingFace.ordinal());
@@ -543,8 +544,8 @@ public class PipeBlockEntity extends SimpleInventoryBlockEntity {
 			cmp.putInt(TAG_TIME_IN_WORLD, timeInWorld);
 		}
 
-		public static PipeItem readFromNBT(CompoundTag cmp) {
-			ItemStack stack = ItemStack.of(cmp);
+		public static PipeItem readFromNBT(CompoundTag cmp, HolderLookup.Provider provider) {
+			ItemStack stack = ItemStack.parseOptional(provider, cmp);
 			Direction inFace = Direction.values()[cmp.getInt(TAG_INCOMING)];
 			long rngSeed = cmp.getLong(TAG_RNG_SEED);
 
@@ -587,7 +588,5 @@ public class PipeBlockEntity extends SimpleInventoryBlockEntity {
 
 		public final boolean isSolid, allowsItems, isFlared;
 		private final double flareShift, fullFlareShift;
-
 	}
-
 }

@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -29,14 +30,7 @@ public class CutVineBlock extends ZetaVineBlock implements IZetaBlockColorProvid
 			BlockState blockstate = level.getBlockState(pos.above());
 			return blockstate.is(Blocks.VINE) && blockstate.getValue(booleanproperty);
 		}
-
 		return super.canSupportAtFace(level, pos, dir);
-	}
-
-	@SuppressWarnings("deprecation") //Needless Forge extension
-	@Override
-	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
-		return new ItemStack(Items.VINE);
 	}
 
 	@Override

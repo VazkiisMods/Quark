@@ -3,9 +3,8 @@ package org.violetmoon.quark.base.util;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 
 // formerly from AutoRegLib
@@ -20,10 +19,7 @@ public class InventoryIIH implements IItemHandlerModifiable {
 
 		if(opt.isPresent()) {
 			IItemHandler handler = opt.orElse(null);
-			if(handler instanceof IItemHandlerModifiable)
-				iih = (IItemHandlerModifiable) handler;
-			else
-				iih = null;
+			iih = handler instanceof IItemHandlerModifiable ? (IItemHandlerModifiable) handler : null;
 		} else
 			iih = null;
 

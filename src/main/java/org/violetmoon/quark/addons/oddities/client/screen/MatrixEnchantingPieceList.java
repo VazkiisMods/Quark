@@ -3,15 +3,12 @@ package org.violetmoon.quark.addons.oddities.client.screen;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ObjectSelectionList;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
 
 public class MatrixEnchantingPieceList extends ObjectSelectionList<MatrixEnchantingPieceList.PieceEntry> {
@@ -56,9 +53,8 @@ public class MatrixEnchantingPieceList extends ObjectSelectionList<MatrixEnchant
 		Window main = parent.getMinecraft().getWindow();
 		int res = (int) main.getGuiScale();
 		RenderSystem.enableScissor(getLeft() * res, (main.getGuiScaledHeight() - getBottom()) * res, getWidth() * res, getHeight() * res);
-		renderList(guiGraphics, mouseX, mouseY, partialTicks);
+		renderListItems(guiGraphics, mouseX, mouseY, partialTicks);
 		RenderSystem.disableScissor();
-
 		renderScroll(guiGraphics, i, j);
 	}
 

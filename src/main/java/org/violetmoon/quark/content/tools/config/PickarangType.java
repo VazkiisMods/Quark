@@ -77,7 +77,7 @@ public class PickarangType<T extends AbstractPickarang<T>> implements IConfigTyp
 	}
 
 	public boolean isFireResistant() {
-		return pickaxeEquivalent != null && pickaxeEquivalent.isFireResistant();
+		return pickaxeEquivalent != null && pickaxeEquivalent.fireImmune();
 	}
 
 	public EntityType<T> getEntityType() {
