@@ -191,7 +191,7 @@ public class ItemSharingModule extends ZetaModule {
 
 					guiGraphics.pose().pushPose();
 
-					guiGraphics.pose().mulPoseMatrix(pose.last().pose());
+					guiGraphics.pose().mulPose(pose.last().pose());
 
 					guiGraphics.pose().translate(shift + x, y, 0);
 					guiGraphics.pose().scale(0.5f, 0.5f, 0.5f);

@@ -27,21 +27,12 @@
 
 package org.violetmoon.quark.content.automation.block.be;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
-
-import org.violetmoon.quark.content.automation.block.CrafterBlock;
-import org.violetmoon.quark.content.automation.inventory.CrafterMenu;
-import org.violetmoon.quark.content.automation.module.CrafterModule;
-
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockSource;
-import net.minecraft.core.BlockSourceImpl;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.nbt.ByteTag;
 import net.minecraft.nbt.CompoundTag;
@@ -56,12 +47,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.inventory.ResultContainer;
-import net.minecraft.world.inventory.TransientCraftingContainer;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -69,6 +55,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.violetmoon.quark.content.automation.block.CrafterBlock;
+import org.violetmoon.quark.content.automation.inventory.CrafterMenu;
+import org.violetmoon.quark.content.automation.module.CrafterModule;
+
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 public class CrafterBlockEntity extends BaseContainerBlockEntity implements CraftingContainer, WorldlyContainer {
 	private static final DispenseItemBehavior BEHAVIOR = new CraftDispenseBehavior();
@@ -231,7 +223,7 @@ public class CrafterBlockEntity extends BaseContainerBlockEntity implements Craf
 		Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingInventory, world);
 		if (optional.isPresent()) {
 			CraftingRecipe craftingRecipe = optional.get();
-			ItemStack stack = craftingRecipe.assemble(craftingInventory, world.registryAccess());
+			ItemStack stack = craftingRecipe.assemble(craftingInventory.asCraftInput(), world.registryAccess());
 			if (stack.isItemEnabled(world.enabledFeatures())) {
 				return stack;
 			}
@@ -328,7 +320,7 @@ public class CrafterBlockEntity extends BaseContainerBlockEntity implements Craf
 	}
 
 	@Override
-	public List<ItemStack> getItems() {
+	public NonNullList<ItemStack> getItems() {
 		return stacks;
 	}
 
@@ -354,7 +346,7 @@ public class CrafterBlockEntity extends BaseContainerBlockEntity implements Craf
 					continue;
 
 				ItemStack testStack = getItem(i);
-				if(testStack.isEmpty() || ItemStack.isSameItemSameTags(stackInSlot, testStack))
+				if(testStack.isEmpty() || ItemStack.isSameItemSameComponents(stackInSlot, testStack))
 					min = Math.min(min, testStack.getCount());
 			}
 
@@ -388,17 +380,17 @@ public class CrafterBlockEntity extends BaseContainerBlockEntity implements Craf
 	private static class CraftDispenseBehavior implements DispenseItemBehavior {
 
 		@Override
-		public final ItemStack dispense(BlockSource blockSource, ItemStack itemStack) {
-			ItemStack itemStack2 = this.dispenseSilently(blockSource, itemStack);
-			this.playSound(blockSource);
-			this.spawnParticles(blockSource, blockSource.getBlockState().getValue(CrafterBlock.FACING));
+		public final ItemStack dispense(BlockSource source, ItemStack itemStack) {
+			ItemStack itemStack2 = this.dispenseSilently(source, itemStack);
+			this.playSound(source);
+			this.spawnParticles(source, source.state().getValue(CrafterBlock.FACING));
 			return itemStack2;
 		}
 
 		protected ItemStack dispenseSilently(BlockSource pointer, ItemStack stack) {
-			Direction direction = pointer.getBlockState().getValue(CrafterBlock.FACING);
+			Direction direction = pointer.state().getValue(CrafterBlock.FACING);
 			Position position = getOutputLocation(pointer);
-			spawnItem(pointer.getLevel(), stack, 6, direction, position);
+			spawnItem(pointer.level(), stack, 6, direction, position);
 			return stack;
 		}
 
@@ -419,16 +411,16 @@ public class CrafterBlockEntity extends BaseContainerBlockEntity implements Craf
 		}
 
 		protected void playSound(BlockSource pointer) {
-			pointer.getLevel().levelEvent(1000, pointer.getPos(), 0);
+			pointer.level().levelEvent(1000, pointer.pos(), 0);
 		}
 
 		protected void spawnParticles(BlockSource pointer, Direction side) {
-			pointer.getLevel().levelEvent(2000, pointer.getPos(), side.get3DDataValue());
+			pointer.level().levelEvent(2000, pointer.pos(), side.get3DDataValue());
 		}
 
 		private static Position getOutputLocation(BlockSource pointer) {
-			Direction direction = pointer.getBlockState().getValue(CrafterBlock.FACING);
-			return pointer.getPos().getCenter().add(0.7 * (double)direction.getStepX(), 0.7 * (double)direction.getStepY(), 0.7 * (double)direction.getStepZ());
+			Direction direction = pointer.state().getValue(CrafterBlock.FACING);
+			return pointer.pos().getCenter().add(0.7 * (double)direction.getStepX(), 0.7 * (double)direction.getStepY(), 0.7 * (double)direction.getStepZ());
 		}
 	}
 }

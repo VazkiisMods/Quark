@@ -11,8 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tools.base.RuneColor;
 
-import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -96,7 +94,7 @@ public class GlintRenderTypes extends RenderType {
 
 	private static RenderType buildGlintDirectRenderType(String name) {
 		return RenderType.create("glint_direct_" + name, DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, false, false, CompositeState.builder()
-				.setShaderState(RenderStateShard.RENDERTYPE_GLINT_DIRECT_SHADER)
+				.setShaderState(RenderStateShard.RENDERTYPE_ENTITY_GLINT_DIRECT_SHADER)
 				.setTextureState(new TextureStateShard(texture(name), true, false))
 				.setWriteMaskState(RenderStateShard.COLOR_WRITE)
 				.setCullState(RenderStateShard.NO_CULL)
@@ -120,7 +118,7 @@ public class GlintRenderTypes extends RenderType {
 
 	private static RenderType buildArmorGlintRenderType(String name) {
 		return RenderType.create("armor_glint_" + name, DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, false, false, CompositeState.builder()
-				.setShaderState(RenderStateShard.RENDERTYPE_ARMOR_GLINT_SHADER)
+				.setShaderState(RenderStateShard.RENDERTYPE_ARMOR_ENTITY_GLINT_SHADER)
 				.setTextureState(new TextureStateShard(texture(name), true, false))
 				.setWriteMaskState(RenderStateShard.COLOR_WRITE)
 				.setCullState(RenderStateShard.NO_CULL)

@@ -16,6 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 import org.violetmoon.quark.content.tools.module.AncientTomesModule;
 
+import java.util.List;
+
 import static org.violetmoon.quark.content.tools.module.AncientTomesModule.validEnchants;
 
 /**
@@ -24,7 +26,7 @@ import static org.violetmoon.quark.content.tools.module.AncientTomesModule.valid
  */
 public class EnchantTome extends LootItemConditionalFunction {
 	public EnchantTome(LootItemCondition[] conditions) {
-		super(conditions);
+		super(List.of(conditions));
 	}
 
 	@Override

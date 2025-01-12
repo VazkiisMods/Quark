@@ -3,9 +3,8 @@ package org.violetmoon.quark.base.network.message;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.violetmoon.quark.content.tweaks.client.emote.EmoteHandler;
 import org.violetmoon.zeta.network.IZetaMessage;
 import org.violetmoon.zeta.network.IZetaNetworkEventContext;
@@ -38,7 +37,6 @@ public class DoEmoteMessage implements IZetaMessage {
 			Player player = world.getPlayerByUUID(playerUUID);
 			EmoteHandler.putEmote(player, emote, tier);
 		});
-
 		return true;
 	}
 

@@ -3,7 +3,6 @@ package org.violetmoon.quark.content.tools.client.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BeaconRenderer;
@@ -11,10 +10,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.BeaconBlockEntity;
-
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
-
 import org.violetmoon.quark.content.tools.module.BeaconRedirectionModule;
 import org.violetmoon.quark.content.tools.module.BeaconRedirectionModule.ExtendedBeamSegment;
 
@@ -78,21 +75,20 @@ public class QuarkBeaconBlockEntityRenderer {
 		PoseStack.Pose pose = matrixStackIn.last();
 		Matrix4f matrix4f = pose.pose();
 		Matrix3f matrix3f = pose.normal();
-		addQuad(matrix4f, matrix3f, bufferIn, red, green, blue, alpha, 0, height, x1, y1, x2, y2, u1, u2, v1, v2);
-		addQuad(matrix4f, matrix3f, bufferIn, red, green, blue, alpha, 0, height, x4, y4, x3, y3, u1, u2, v1, v2);
-		addQuad(matrix4f, matrix3f, bufferIn, red, green, blue, alpha, 0, height, x2, y2, x4, y4, u1, u2, v1, v2);
-		addQuad(matrix4f, matrix3f, bufferIn, red, green, blue, alpha, 0, height, x3, y3, x1, y1, u1, u2, v1, v2);
+		addQuad(matrixStackIn, matrix4f, matrix3f, bufferIn, red, green, blue, alpha, 0, height, x1, y1, x2, y2, u1, u2, v1, v2);
+		addQuad(matrixStackIn,matrix4f, matrix3f, bufferIn, red, green, blue, alpha, 0, height, x4, y4, x3, y3, u1, u2, v1, v2);
+		addQuad(matrixStackIn,matrix4f, matrix3f, bufferIn, red, green, blue, alpha, 0, height, x2, y2, x4, y4, u1, u2, v1, v2);
+		addQuad(matrixStackIn,matrix4f, matrix3f, bufferIn, red, green, blue, alpha, 0, height, x3, y3, x1, y1, u1, u2, v1, v2);
 	}
 
-	private static void addQuad(Matrix4f matrixPos, Matrix3f matrixNormal, VertexConsumer bufferIn, float red, float green, float blue, float alpha, int yMin, int yMax, float x1, float z1, float x2, float z2, float u1, float u2, float v1, float v2) {
-		addVertex(matrixPos, matrixNormal, bufferIn, red, green, blue, alpha, yMax, x1, z1, u2, v1);
-		addVertex(matrixPos, matrixNormal, bufferIn, red, green, blue, alpha, yMin, x1, z1, u2, v2);
-		addVertex(matrixPos, matrixNormal, bufferIn, red, green, blue, alpha, yMin, x2, z2, u1, v2);
-		addVertex(matrixPos, matrixNormal, bufferIn, red, green, blue, alpha, yMax, x2, z2, u1, v1);
+	private static void addQuad(PoseStack pose, Matrix4f matrixPos, Matrix3f matrixNormal, VertexConsumer bufferIn, float red, float green, float blue, float alpha, int yMin, int yMax, float x1, float z1, float x2, float z2, float u1, float u2, float v1, float v2) {
+		addVertex(pose, matrixPos, matrixNormal, bufferIn, red, green, blue, alpha, yMax, x1, z1, u2, v1);
+		addVertex(pose, matrixPos, matrixNormal, bufferIn, red, green, blue, alpha, yMin, x1, z1, u2, v2);
+		addVertex(pose, matrixPos, matrixNormal, bufferIn, red, green, blue, alpha, yMin, x2, z2, u1, v2);
+		addVertex(pose, matrixPos, matrixNormal, bufferIn, red, green, blue, alpha, yMax, x2, z2, u1, v1);
 	}
 
-	private static void addVertex(Matrix4f matrixPos, Matrix3f matrixNormal, VertexConsumer bufferIn, float red, float green, float blue, float alpha, int y, float x, float z, float texU, float texV) {
-		bufferIn.vertex(matrixPos, x, (float) y, z).color(red, green, blue, alpha).uv(texU, texV).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(matrixNormal, 0.0F, 1.0F, 0.0F).endVertex();
+	private static void addVertex(PoseStack pose, Matrix4f matrixPos, Matrix3f matrixNormal, VertexConsumer bufferIn, float red, float green, float blue, float alpha, int y, float x, float z, float texU, float texV) {
+		bufferIn.addVertex(matrixPos, x, (float) y, z).setColor(red, green, blue, alpha).setUv(texU, texV).setOverlay(OverlayTexture.NO_OVERLAY).setLight(15728880).setNormal(pose.last(), 0.0F, 1.0F, 0.0F);
 	}
-
 }

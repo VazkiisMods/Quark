@@ -29,7 +29,7 @@ public class DirtyGlassBlock extends ZetaGlassBlock {
 
 	@Nullable
 	@Override
-	public float[] getBeaconColorMultiplierZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	public Integer getBeaconColorMultiplierZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
 		return BEACON_COLOR_MULTIPLIER;
 	}
 

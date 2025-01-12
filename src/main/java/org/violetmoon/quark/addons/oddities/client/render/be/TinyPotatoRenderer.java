@@ -15,6 +15,7 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -250,7 +251,7 @@ public class TinyPotatoRenderer implements BlockEntityRenderer<TinyPotatoBlockEn
 			case WEST -> {
 				if(mySon) {
 					ms.translate(0.95F, -0.29F, 0.9F);
-					if(stack.hasCustomHoverName()) {
+					if(stack.getComponents().has(DataComponents.CUSTOM_NAME)) {
 						TinyPotatoInfo info = TinyPotatoInfo.fromComponent(stack.getHoverName());
 						if(info.name().equals("kingdaddydmac")) {
 							ms.translate(0.55F, 0, 0);

@@ -85,7 +85,7 @@ public class SkullPikesModule extends ZetaModule {
 	@PlayEvent
 	public void onMonsterAppear(ZEntityJoinLevel event) {
 		Entity e = event.getEntity();
-		if(e instanceof Monster monster && !(e instanceof PatrollingMonster) && !(e instanceof Warden) && e.canChangeDimensions() && e.isAlive()) {
+		if(e instanceof Monster monster && !(e instanceof PatrollingMonster) && !(e instanceof Warden) && e.canUsePortal() && e.isAlive()) {
 			boolean alreadySetUp = monster.goalSelector.getAvailableGoals().stream().anyMatch((goal) -> goal.getGoal() instanceof RunAwayFromPikesGoal);
 
 			if(!alreadySetUp)

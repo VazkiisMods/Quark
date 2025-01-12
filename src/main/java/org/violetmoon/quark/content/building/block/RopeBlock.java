@@ -1,15 +1,5 @@
 package org.violetmoon.quark.content.building.block;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.violetmoon.quark.content.automation.module.PistonsMoveTileEntitiesModule;
-import org.violetmoon.quark.content.building.module.RopeModule;
-import org.violetmoon.zeta.block.ZetaBlock;
-import org.violetmoon.zeta.item.ZetaBlockItem;
-import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.registry.IZetaBlockItemProvider;
-import org.violetmoon.zeta.registry.RenderLayerRegistry;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -19,11 +9,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -31,11 +17,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LevelEvent;
-import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -52,6 +34,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.violetmoon.quark.content.automation.module.PistonsMoveTileEntitiesModule;
+import org.violetmoon.quark.content.building.module.RopeModule;
+import org.violetmoon.zeta.block.ZetaBlock;
+import org.violetmoon.zeta.item.ZetaBlockItem;
+import org.violetmoon.zeta.module.ZetaModule;
+import org.violetmoon.zeta.registry.IZetaBlockItemProvider;
+import org.violetmoon.zeta.registry.RenderLayerRegistry;
 
 public class RopeBlock extends ZetaBlock implements IZetaBlockItemProvider, SimpleWaterloggedBlock {
 
@@ -276,14 +267,13 @@ public class RopeBlock extends ZetaBlock implements IZetaBlockItemProvider, Simp
 		world.setBlockAndUpdate(dstPos, nextState);
 
 		if(tile != null) {
-			BlockEntity target = BlockEntity.loadStatic(dstPos, state, tile.saveWithFullMetadata());
+			BlockEntity target = BlockEntity.loadStatic(dstPos, state, tile.saveWithFullMetadata(world.registryAccess()), world.registryAccess());
 			if(target != null) {
 				world.setBlockEntity(target);
 				target.setBlockState(state);
 				target.setChanged();
 			}
 		}
-
 		world.updateNeighborsAt(dstPos, state.getBlock());
 	}
 

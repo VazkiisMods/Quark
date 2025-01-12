@@ -8,7 +8,6 @@ import net.minecraft.world.entity.npc.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
-
 import org.violetmoon.quark.content.experimental.hax.PseudoAccessorMerchantOffer;
 import org.violetmoon.quark.mixin.mixins.accessor.AccessorMerchantOffer;
 import org.violetmoon.zeta.config.Config;
@@ -65,7 +64,7 @@ public class VillagerRerollingReworkModule extends ZetaModule {
 
 	@PlayEvent
 	public void assignSeedIfUnassigned(ZLivingTick event) {
-		LivingEntity entity = event.getEntity();
+		if (!(event.getEntity() instanceof LivingEntity entity)) return;
 		if(canUseSeededRandom(entity)) {
 			CompoundTag persistent = entity.getPersistentData();
 

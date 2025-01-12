@@ -2,7 +2,6 @@ package org.violetmoon.quark.content.automation.module;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.authlib.GameProfile;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -26,12 +25,9 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.common.util.FakePlayerFactory;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
@@ -41,7 +37,6 @@ import org.violetmoon.quark.content.automation.block.FeedingTroughBlock;
 import org.violetmoon.quark.content.automation.block.be.FeedingTroughBlockEntity;
 import org.violetmoon.quark.content.automation.client.screen.TroughScreen;
 import org.violetmoon.quark.mixin.mixins.accessor.AccessorTemptingSensor;
-import org.violetmoon.zeta.client.event.load.ZClientSetup;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
@@ -122,7 +117,7 @@ public class FeedingTroughModule extends ZetaModule {
     }
 
     public static @Nullable Player modifyTemptGoal(TemptGoal goal, Animal animal, ServerLevel level) {
-        return modifyTempt(level, animal, goal.items);
+        return modifyTempt(level, animal, (Ingredient) goal.items);
     }
 
     private static @Nullable Player modifyTempt(ServerLevel level, Animal animal, Ingredient temptations) {

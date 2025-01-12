@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -13,9 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.content.mobs.entity.Crab;
 
 import java.util.Set;
@@ -210,14 +207,13 @@ public class CrabModel extends EntityModel<Crab> {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack matrix, @NotNull VertexConsumer vb, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(PoseStack matrix, @NotNull VertexConsumer vb, int packedLightIn, int packedOverlayIn, int color) {
 		matrix.pushPose();
 		matrix.translate(0, 1.5 - crabSize * 1.5, 0);
 		matrix.scale(crabSize, crabSize, crabSize);
 		matrix.mulPose(Axis.YP.rotationDegrees(90F));
 		matrix.translate(wiggleX, wiggleY, 0);
-		group.render(matrix, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+		group.render(matrix, vb, packedLightIn, packedOverlayIn, color);
 		matrix.popPose();
 	}
-
 }

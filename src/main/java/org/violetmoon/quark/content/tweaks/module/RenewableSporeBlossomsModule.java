@@ -28,8 +28,8 @@ public class RenewableSporeBlossomsModule extends ZetaModule {
 		if(event.getBlock().is(Blocks.SPORE_BLOSSOM) && boneMealChance > 0) {
 			if(Math.random() < boneMealChance)
 				Block.popResource(event.getLevel(), event.getPos(), new ItemStack(Items.SPORE_BLOSSOM));
-
-			event.setResult(ZResult.ALLOW);
+			
+			event.setSuccessful(true);
 		}
 	}
 

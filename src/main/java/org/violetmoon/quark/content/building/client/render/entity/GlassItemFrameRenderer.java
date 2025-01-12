@@ -22,6 +22,7 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -38,6 +39,8 @@ import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
 
+import net.neoforged.neoforge.client.event.RenderItemInFrameEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import org.jetbrains.annotations.NotNull;
 
 import org.violetmoon.quark.base.Quark;
@@ -120,7 +123,7 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrame> {
 
 	@Override
 	protected boolean shouldShowName(@NotNull GlassItemFrame frame) {
-		if(Minecraft.renderNames() && !frame.getItem().isEmpty() && frame.getItem().hasCustomHoverName() && this.entityRenderDispatcher.crosshairPickEntity == frame) {
+		if(Minecraft.renderNames() && !frame.getItem().isEmpty() && frame.getItem().has(DataComponents.CUSTOM_NAME) && this.entityRenderDispatcher.crosshairPickEntity == frame) {
 			double d0 = this.entityRenderDispatcher.distanceToSqr(frame);
 			float f = frame.isDiscrete() ? 32.0F : 64.0F;
 			return d0 < (double) (f * f);
@@ -130,8 +133,8 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrame> {
 	}
 
 	@Override
-	protected void renderNameTag(@NotNull GlassItemFrame frame, @NotNull Component text, @NotNull PoseStack matrix, @NotNull MultiBufferSource buffer, int light) {
-		super.renderNameTag(frame, frame.getItem().getHoverName(), matrix, buffer, light);
+	protected void renderNameTag(GlassItemFrame frame, Component text, PoseStack matrix, MultiBufferSource buffer, int light, float partialTick) {
+		super.renderNameTag(frame, frame.getItem().getHoverName(), matrix, buffer, light, partialTick);
 	}
 
 	protected void renderItemStack(GlassItemFrame itemFrame, PoseStack matrix, MultiBufferSource buff, int light, ItemStack stack) {
@@ -178,7 +181,7 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrame> {
 			int rotation = mapdata != null ? itemFrame.getRotation() % 4 * 2 : itemFrame.getRotation();
 			matrix.mulPose(Axis.ZP.rotationDegrees((float) rotation * 360.0F / 8.0F));
 
-			if(!MinecraftForge.EVENT_BUS.post(new RenderItemInFrameEvent(itemFrame, defaultRenderer, matrix, buff, light))) {
+			if(!NeoForge.EVENT_BUS.post(new RenderItemInFrameEvent(itemFrame, defaultRenderer, matrix, buff, light))) {
 				if(mapdata != null) {
 					matrix.mulPose(Axis.ZP.rotationDegrees(180.0F));
 					matrix.scale(0.0078125F, 0.0078125F, 0.0078125F);

@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -45,7 +46,6 @@ public class MagnetBlock extends ZetaBlock implements EntityBlock{
 
 		registerDefaultState(defaultBlockState().setValue(FACING, Direction.DOWN).setValue(POWERED, false).setValue(WAXED, false));
 
-
 		if(module == null) //auto registration below this line
 			return;
 		setCreativeTab(CreativeModeTabs.REDSTONE_BLOCKS);
@@ -55,9 +55,9 @@ public class MagnetBlock extends ZetaBlock implements EntityBlock{
 	}
 
 	@Override
-	public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
 		if(stack.getHoverName().getString().equals("Q"))
-			tooltip.add(Component.literal("haha yes"));
+			components.add(Component.literal("haha yes"));
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class MagnetBlock extends ZetaBlock implements EntityBlock{
 		BlockEntity tilePresent = world.getBlockEntity(targetPos);
 		CompoundTag tileData = new CompoundTag();
 		if(tilePresent != null && !(tilePresent instanceof MagnetizedBlockBlockEntity)) {
-			tileData = tilePresent.saveWithFullMetadata();
+			tileData = tilePresent.saveWithFullMetadata(world.registryAccess());
 			tilePresent.setRemoved();
 		}
 
@@ -150,5 +150,4 @@ public class MagnetBlock extends ZetaBlock implements EntityBlock{
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
 		return createTickerHelper(type, MagnetsModule.magnetType, MagnetBlockEntity::tick);
 	}
-
 }

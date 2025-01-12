@@ -93,7 +93,7 @@ public class ArmorStandFakePlayerLayer<M extends EntityModel<ArmorStand>> extend
 				rotateModel(model.leftPants, armor.getLeftLegPose());
 				rotateModel(model.rightPants, armor.getRightLegPose());
 
-				model.renderToBuffer(pose, buffer.getBuffer(rendertype), light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+				model.renderToBuffer(pose, buffer.getBuffer(rendertype), light, OverlayTexture.NO_OVERLAY, 1);
 
 				pose.popPose();
 			}

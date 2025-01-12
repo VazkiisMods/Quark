@@ -4,10 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-
+import noobanidus.mods.lootr.common.block.entity.LootrChestBlockEntity;
 import org.violetmoon.quark.base.Quark;
-
-import noobanidus.mods.lootr.block.entities.LootrChestBlockEntity;
 
 /**
  * @author WireSegal

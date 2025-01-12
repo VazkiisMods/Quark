@@ -3,17 +3,19 @@ package org.violetmoon.quark.content.tools.recipe;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SmithingRecipeInput;
 import net.minecraft.world.item.crafting.SmithingTrimRecipe;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -48,7 +50,7 @@ public final class SmithingRuneRecipe extends SmithingTrimRecipe { // Extends to
 		ItemStack stack = input.copy();
 		stack.hideTooltipPart(ItemStack.TooltipPart.ENCHANTMENTS);
 		stack.hideTooltipPart(ItemStack.TooltipPart.MODIFIERS);
-		stack.setHoverName(Component.translatable("quark.jei.any_enchanted"));
+		stack.set(DataComponents.CUSTOM_NAME, Component.translatable("quark.jei.any_enchanted"));
 		if(Quark.ZETA.itemExtensions.get(stack).getEnchantmentValueZeta(stack) <= 0) { // If it can't take anything in ench. tables...
 			stack.enchant(Enchantments.UNBREAKING, 3); // it probably accepts unbreaking anyways
 			return stack;
@@ -85,14 +87,13 @@ public final class SmithingRuneRecipe extends SmithingTrimRecipe { // Extends to
 	}
 
 	@Override
-	public boolean matches(Container container, @Nonnull Level level) {
-		return isTemplateIngredient(container.getItem(0)) && isBaseIngredient(container.getItem(1)) && isAdditionIngredient(container.getItem(2));
+	public boolean matches(SmithingRecipeInput input, Level level) {
+		return isTemplateIngredient(input.getItem(0)) && isBaseIngredient(input.getItem(1)) && isAdditionIngredient(input.getItem(2));
 	}
 
-	@Nonnull
 	@Override
-	public ItemStack assemble(Container container, @Nonnull RegistryAccess registry) {
-		ItemStack baseItem = container.getItem(1);
+	public ItemStack assemble(SmithingRecipeInput input, HolderLookup.Provider provider) {
+		ItemStack baseItem = input.getItem(1);
 		if (isBaseIngredient(baseItem)) {
 			if (ColorRunesModule.getStackColor(baseItem) == runeColor)
 				return ItemStack.EMPTY;
@@ -101,13 +102,12 @@ public final class SmithingRuneRecipe extends SmithingTrimRecipe { // Extends to
 			newStack.setCount(1);
 			return ColorRunesModule.withRune(newStack, runeColor);
 		}
-
 		return ItemStack.EMPTY;
 	}
 
 	@Nonnull
 	@Override
-	public ItemStack getResultItem(@Nonnull RegistryAccess registry) {
+	public ItemStack getResultItem(@Nonnull HolderLookup.Provider provider) {
 		ItemStack displayStack = makeEnchantedDisplayItem(new ItemStack(Items.IRON_CHESTPLATE));
 		ColorRunesModule.withRune(displayStack, runeColor);
 
@@ -129,12 +129,6 @@ public final class SmithingRuneRecipe extends SmithingTrimRecipe { // Extends to
 		if (this.addition.isEmpty())
 			return stack.isEmpty();
 		return this.addition.test(stack);
-	}
-
-	@Nonnull
-	@Override
-	public ResourceLocation getId() {
-		return this.id;
 	}
 
 	@Nonnull

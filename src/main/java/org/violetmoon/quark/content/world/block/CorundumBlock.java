@@ -123,8 +123,7 @@ public class CorundumBlock extends ZetaGlassBlock {
 
 	@Nullable
 	@Override
-	public float[] getBeaconColorMultiplierZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	public Integer getBeaconColorMultiplierZeta(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
 		return colorComponents;
 	}
-
 }

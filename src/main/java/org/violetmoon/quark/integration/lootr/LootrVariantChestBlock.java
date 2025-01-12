@@ -6,7 +6,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -31,7 +30,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import noobanidus.mods.lootr.block.entities.LootrChestBlockEntity;
 import noobanidus.mods.lootr.common.api.LootrTags;
 import noobanidus.mods.lootr.common.block.entity.LootrChestBlockEntity;
 import noobanidus.mods.lootr.neoforge.config.ConfigManager;
@@ -68,8 +66,8 @@ public class LootrVariantChestBlock extends VariantChestBlock implements IZetaBl
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult trace) {
-		if(player.isShiftKeyDown()) {
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult trace) {
+		if (player.isShiftKeyDown()) {
 			ChestUtil.handleLootSneak(this, world, pos, player);
 		} else if(!ChestBlock.isChestBlockedAt(world, pos)) {
 			ChestUtil.handleLootChest(this, world, pos, player);
@@ -178,7 +176,7 @@ public class LootrVariantChestBlock extends VariantChestBlock implements IZetaBl
 						level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(state));
 						BlockEntity newEntity = level.getBlockEntity(pos);
 						if(newEntity != null && nbt != null)
-							newEntity.load(nbt);
+							newEntity.loadWithComponents(nbt, level.registryAccess());
 
 						return InteractionResult.sidedSuccess(level.isClientSide);
 					}

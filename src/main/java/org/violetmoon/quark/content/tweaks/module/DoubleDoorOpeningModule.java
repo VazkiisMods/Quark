@@ -2,15 +2,12 @@ package org.violetmoon.quark.content.tweaks.module;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,14 +23,13 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-
+import net.neoforged.neoforge.common.util.TriState;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;
 import org.violetmoon.quark.base.network.message.DoubleDoorMessage;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.event.bus.ZResult;
 import org.violetmoon.zeta.event.load.ZCommonSetup;
 import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
 import org.violetmoon.zeta.module.ZetaLoadModule;
@@ -109,7 +105,7 @@ public class DoubleDoorOpeningModule extends ZetaModule {
 			BlockHitResult res = new BlockHitResult(new Vec3(otherPos.getX() + 0.5, otherPos.getY() + 0.5, otherPos.getZ() + 0.5), direction, otherPos, false);
 
 			if(res.getType() == HitResult.Type.BLOCK) {
-				InteractionResult interaction = other.use(level, player, InteractionHand.MAIN_HAND, res);
+				InteractionResult interaction = other.useWithoutItem(level, player, res);
 				return interaction != InteractionResult.PASS;
 			}
 		}
@@ -122,14 +118,17 @@ public class DoubleDoorOpeningModule extends ZetaModule {
 		@PlayEvent
 		public void onPlayerInteract(ZRightClickBlock.Low event) {
 			Player player = event.getPlayer();
-			if(!event.getLevel().isClientSide || player.isDiscrete() || event.isCanceled() || event.getResult() == ZResult.DENY || event.getUseBlock() == ZResult.DENY || handling)
+			if(!event.getLevel().isClientSide || player.isDiscrete() || event.isCanceled() || event.getCancellationResult() == InteractionResult.FAIL
+					|| event.getUseBlock() == TriState.FALSE || handling)
 				return;
 
 			Level world = event.getLevel();
 			BlockPos pos = event.getPos();
 
+			/* // TODO: TODO: Wait for Neoforge Flan or remove
 			if(!Quark.FLAN_INTEGRATION.canInteract(player, pos))
 				return;
+			 */
 
 			handling = true;
 			boolean opened = openBlock(world, player, pos);
