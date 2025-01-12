@@ -13,8 +13,13 @@ import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.CreativeTabManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ZetaLoadModule(category = "building", antiOverlap = { "woodworks", "woodster" })
 public class VariantBookshelvesModule extends ZetaModule {
+
+	public static List<VariantBookshelfBlock> variantBookshelves = new ArrayList<>();
 
 	@Config
 	public static boolean changeNames = true;
@@ -22,8 +27,11 @@ public class VariantBookshelvesModule extends ZetaModule {
 	@LoadEvent
 	public final void register(ZRegister event) {
 		CreativeTabManager.daisyChain();
-		for(Wood type : VanillaWoods.NON_OAK)
-			new VariantBookshelfBlock(type.name(), this, !type.nether(), type.soundPlanks());
+		for(Wood type : VanillaWoods.NON_OAK){
+			VariantBookshelfBlock bookshelf = new VariantBookshelfBlock(type.name(), this, !type.nether(), type.soundPlanks());
+			variantBookshelves.add(bookshelf);
+		}
+
 		CreativeTabManager.endDaisyChain();
 	}
 

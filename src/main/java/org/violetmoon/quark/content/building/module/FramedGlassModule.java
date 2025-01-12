@@ -1,6 +1,8 @@
 package org.violetmoon.quark.content.building.module;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.violetmoon.zeta.block.IZetaBlock;
@@ -22,6 +24,8 @@ import net.minecraft.world.level.block.SoundType;
 @ZetaLoadModule(category = "building")
 public class FramedGlassModule extends ZetaModule {
 
+	public static List<Block> glassBlocks = new ArrayList<>();
+
 	@LoadEvent
 	public final void register(ZRegister event) {
 		Block.Properties props = Block.Properties.of()
@@ -33,13 +37,18 @@ public class FramedGlassModule extends ZetaModule {
 
 		Map<DyeColor, IZetaBlock> blocks = new HashMap<>();
 		CreativeTabManager.daisyChain();
-		for(DyeColor dye : MiscUtil.CREATIVE_COLOR_ORDER)
+		for(DyeColor dye : MiscUtil.CREATIVE_COLOR_ORDER){
 			blocks.put(dye, (IZetaBlock) new ZetaGlassBlock(dye.getName() + "_framed_glass", this, true, props).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, Blocks.PINK_STAINED_GLASS, false));
+			glassBlocks.add((Block) blocks.get(dye));
+		}
 		CreativeTabManager.endDaisyChain();
 
 		CreativeTabManager.daisyChain();
-		for(DyeColor dye : MiscUtil.CREATIVE_COLOR_ORDER)
-			new ZetaInheritedPaneBlock(blocks.get(dye)).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, Blocks.PINK_STAINED_GLASS_PANE, false);
+		for(DyeColor dye : MiscUtil.CREATIVE_COLOR_ORDER){
+			Block block = new ZetaInheritedPaneBlock(blocks.get(dye)).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, Blocks.PINK_STAINED_GLASS_PANE, false);
+			glassBlocks.add(block);
+		}
+
 		CreativeTabManager.endDaisyChain();
 	}
 

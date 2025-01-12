@@ -240,6 +240,10 @@ public class WoodSetHandler {
 			this.type = type;
 		}
 
+		public List<Block> allBlocks() {
+			return List.of(log, wood, planks, strippedLog, strippedWood, slab, stairs, fence, fenceGate, door, trapdoor, button, pressurePlate, sign, wallSign, ceilingHangingSign, wallHangingSign, bookshelf, ladder, post, strippedPost, verticalPlanks, hollowLog);
+		}
+
 	}
 
 	public static class Client {

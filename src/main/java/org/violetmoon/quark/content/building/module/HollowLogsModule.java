@@ -1,6 +1,8 @@
 package org.violetmoon.quark.content.building.module;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.minecraft.core.registries.Registries;
@@ -36,6 +38,7 @@ import net.minecraft.world.level.block.state.BlockState;
 @ZetaLoadModule(category = "building")
 public class HollowLogsModule extends ZetaModule {
 
+	public static List<Block> hollowLogs = new ArrayList<>();
 	private static final String TAG_TRYING_TO_CRAWL = "quark:trying_crawl";
 
 	public static ManualTrigger crawlTrigger;
@@ -57,7 +60,8 @@ public class HollowLogsModule extends ZetaModule {
 	@LoadEvent
 	public final void register(ZRegister event) {
 		for(Wood wood : VanillaWoods.ALL_WITH_LOGS) {
-			new HollowLogBlock(wood.log(), this, !wood.nether());
+			Block block = new HollowLogBlock(wood.log(), this, !wood.nether());
+			hollowLogs.add(block);
 		}
 
 		crawlTrigger = event.getAdvancementModifierRegistry().registerManualTrigger("hollow_log_crawl");

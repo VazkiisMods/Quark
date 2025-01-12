@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.util.BlockPropertyUtil;
+import org.violetmoon.quark.content.building.module.VerticalSlabsModule;
 import org.violetmoon.zeta.block.IZetaBlock;
 import org.violetmoon.zeta.block.ZetaSlabBlock;
 import org.violetmoon.zeta.module.ZetaModule;
@@ -35,6 +36,7 @@ public class QuarkVerticalSlabBlock extends VerticalSlabBlock implements IZetaBl
 			setCondition(quarkSlab.parent::isEnabled);
 
 		CreativeTabManager.addToCreativeTabNextTo(CreativeModeTabs.BUILDING_BLOCKS, this, parent, false);
+		VerticalSlabsModule.blocks.add(this);
 	}
 
 	@Override

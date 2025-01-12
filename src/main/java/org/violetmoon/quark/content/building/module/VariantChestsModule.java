@@ -69,8 +69,8 @@ public class VariantChestsModule extends ZetaModule {
 	private static boolean enableRevertingWoodenChests = true;
 
 	// blocks
-	protected final List<Block> regularChests = new ArrayList<>();
-	protected final List<Block> trappedChests = new ArrayList<>();
+	public static final List<Block> regularChests = new ArrayList<>();
+	public static final List<Block> trappedChests = new ArrayList<>();
 
 	// the block entity type (all chests share it)
 	public static BlockEntityType<VariantChestBlockEntity> chestTEType;

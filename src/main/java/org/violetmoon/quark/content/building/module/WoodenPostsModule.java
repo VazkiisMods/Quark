@@ -21,8 +21,12 @@ import org.violetmoon.zeta.util.VanillaWoods;
 import org.violetmoon.zeta.util.VanillaWoods.Wood;
 import org.violetmoon.zeta.util.handler.ToolInteractionHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ZetaLoadModule(category = "building")
 public class WoodenPostsModule extends ZetaModule {
+	public static List<Block> blocks = new ArrayList<>();
 
 	@Hint
 	TagKey<Item> postsTag;
@@ -33,7 +37,9 @@ public class WoodenPostsModule extends ZetaModule {
 			Block b = wood.fence();
 
 			WoodPostBlock post = new WoodPostBlock(this, b, "", wood.soundWood());
+			blocks.add(post.getBlock());
 			WoodPostBlock stripped = new WoodPostBlock(this, b, "stripped_", wood.soundWood());
+			blocks.add(stripped.getBlock());
 			ToolInteractionHandler.registerInteraction(ItemAbilities.AXE_STRIP, post, stripped);
 		}
 	}

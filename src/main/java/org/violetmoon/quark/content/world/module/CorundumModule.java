@@ -90,7 +90,9 @@ public class CorundumModule extends ZetaModule {
 	public static boolean staticEnabled;
 
 	public static List<CorundumBlock> crystals = Lists.newArrayList();
+	public static List<CorundumBlock> waxedCrystals = Lists.newArrayList();
 	public static List<CorundumClusterBlock> clusters = Lists.newArrayList();
+	public static List<Block> panes = Lists.newArrayList();
 	@Hint
 	public static final TagKey<Block> corundumTag = Quark.asTagKey(Registries.BLOCK,"corundum");
 
@@ -130,9 +132,11 @@ public class CorundumModule extends ZetaModule {
 		crystals.add(crystal);
 
 		CorundumBlock waxed = new CorundumBlock("waxed_" + name + "_corundum", color, this, mapColor, true);
+		waxedCrystals.add(waxed);
 		ToolInteractionHandler.registerWaxedBlock(this, crystal, waxed);
 
-		new ZetaInheritedPaneBlock(crystal).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS);
+		Block pane = new ZetaInheritedPaneBlock(crystal).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS);
+		panes.add(pane);
 		CorundumClusterBlock cluster = new CorundumClusterBlock(crystal);
 		clusters.add(cluster);
 

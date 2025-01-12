@@ -17,10 +17,14 @@ import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.CreativeTabManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BooleanSupplier;
 
 @ZetaLoadModule(category = "building")
 public class IndustrialPaletteModule extends ZetaModule {
+
+	public static List<Block> blocks = new ArrayList<>();
 
 	private static final SoundType IRON_LADDER_SOUND_TYPE = new SoundType(1.0F, 1.0F,
 			SoundEvents.METAL_BREAK,

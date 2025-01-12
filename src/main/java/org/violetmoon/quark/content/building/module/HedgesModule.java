@@ -22,27 +22,39 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ZetaLoadModule(category = "building")
 public class HedgesModule extends ZetaModule {
 
 	public static TagKey<Block> hedgesTag;
+	public static List<HedgeBlock> hedges = new ArrayList<>();
 
 	@LoadEvent
 	public final void register(ZRegister event) {
-		for(Wood wood : VanillaWoods.OVERWORLD_WITH_TREE)
-			new HedgeBlock(wood.name() + "_hedge", this, wood.fence(), wood.leaf());
+		for(Wood wood : VanillaWoods.OVERWORLD_WITH_TREE){
+			HedgeBlock hedgeBlock = new HedgeBlock(wood.name() + "_hedge", this, wood.fence(), wood.leaf());
+			hedges.add(hedgeBlock);
+		}
 
-		new HedgeBlock("azalea_hedge", this, Blocks.OAK_FENCE, Blocks.AZALEA_LEAVES);
-		new HedgeBlock("flowering_azalea_hedge", this, Blocks.OAK_FENCE, Blocks.FLOWERING_AZALEA_LEAVES);
+
+		HedgeBlock azaleaHedge = new HedgeBlock("azalea_hedge", this, Blocks.OAK_FENCE, Blocks.AZALEA_LEAVES);
+		hedges.add(azaleaHedge);
+		HedgeBlock floweringAzaleaHedge = new HedgeBlock("flowering_azalea_hedge", this, Blocks.OAK_FENCE, Blocks.FLOWERING_AZALEA_LEAVES);
+		hedges.add(floweringAzaleaHedge);
 	}
 
 	@LoadEvent
 	public void postRegister(ZRegister.Post e) {
-		for(BlossomTreesModule.BlossomTree tree : BlossomTreesModule.blossomTrees)
-			new HedgeBlock(tree.name + "_hedge", this, BlossomTreesModule.woodSet.fence, tree.leaves).setCondition(tree.sapling::isEnabled);
+		for(BlossomTreesModule.BlossomTree tree : BlossomTreesModule.blossomTrees){
+			HedgeBlock blossomHedge = (HedgeBlock) new HedgeBlock(tree.name + "_hedge", this, BlossomTreesModule.woodSet.fence, tree.leaves).setCondition(tree.sapling::isEnabled);
+			hedges.add(blossomHedge);
+		}
 
-		new HedgeBlock("ancient_hedge", this, AncientWoodModule.woodSet.fence, AncientWoodModule.ancient_leaves)
+		HedgeBlock ancientHedge = (HedgeBlock) new HedgeBlock("ancient_hedge", this, AncientWoodModule.woodSet.fence, AncientWoodModule.ancient_leaves)
 			.setCondition(() -> Quark.ZETA.modules.isEnabled(AncientWoodModule.class));
+		hedges.add(ancientHedge);
 	}
 
 	@LoadEvent

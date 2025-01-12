@@ -95,6 +95,7 @@ public class CompressedBlocksModule extends ZetaModule {
 
 	public static Block stick_block;
 
+	public static List<Block> blocks = Lists.newArrayList();
 	private final List<Block> compostable = Lists.newArrayList();
 
 	@LoadEvent
@@ -108,24 +109,40 @@ public class CompressedBlocksModule extends ZetaModule {
 						.sound(SoundType.STONE))
 				.setCondition(() -> enableCharcoalBlock)
 				.setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS, Blocks.COAL_BLOCK, false);
+		blocks.add(charcoal_block);
 
-		pillar("sugar_cane", MapColor.COLOR_LIGHT_GREEN, true, () -> enableSugarCaneBlock, 200);
-		pillar("cactus", MapColor.COLOR_GREEN, true, () -> enableCactusBlock, 50);
-		pillar("chorus_fruit", MapColor.COLOR_PURPLE, false, () -> enableChorusFruitBlock, 10);
+		Block sugarCane = pillar("sugar_cane", MapColor.COLOR_LIGHT_GREEN, true, () -> enableSugarCaneBlock, 200);
+		blocks.add(sugarCane);
+		Block cactus = pillar("cactus", MapColor.COLOR_GREEN, true, () -> enableCactusBlock, 50);
+		blocks.add(cactus);
+		Block chorus = pillar("chorus_fruit", MapColor.COLOR_PURPLE, false, () -> enableChorusFruitBlock, 10);
+		blocks.add(chorus);
 		stick_block = pillar("stick", MapColor.WOOD, false, () -> enableStickBlock, 300);
+		blocks.add(stick_block);
 
 		golden_apple_crate = crate("golden_apple", MapColor.GOLD, false, () -> enableGoldenAppleCrate);
-		crate("apple", MapColor.COLOR_RED, true, () -> enableAppleCrate);
-		crate("potato", MapColor.COLOR_ORANGE, true, () -> enablePotatoCrate);
-		crate("carrot", MapColor.TERRACOTTA_ORANGE, true, () -> enableCarrotCrate);
-		crate("golden_carrot", MapColor.GOLD, false, () -> enableGoldenCarrotCrate);
-		crate("beetroot", MapColor.COLOR_RED, true, () -> enableBeetrootCrate);
+		blocks.add(golden_apple_crate);
+		Block apple = crate("apple", MapColor.COLOR_RED, true, () -> enableAppleCrate);
+		blocks.add(apple);
+		Block potato = crate("potato", MapColor.COLOR_ORANGE, true, () -> enablePotatoCrate);
+		blocks.add(potato);
+		Block carrot = crate("carrot", MapColor.TERRACOTTA_ORANGE, true, () -> enableCarrotCrate);
+		blocks.add(carrot);
+		Block golden_carrot = crate("golden_carrot", MapColor.GOLD, false, () -> enableGoldenCarrotCrate);
+		blocks.add(golden_carrot);
+		Block beetroot = crate("beetroot", MapColor.COLOR_RED, true, () -> enableBeetrootCrate);
+		blocks.add(beetroot);
 
-		sack("cocoa_beans", MapColor.COLOR_BROWN, true, () -> enableCocoaBeanSack);
-		sack("nether_wart", MapColor.COLOR_RED, true, () -> enableNetherWartSack);
-		sack("gunpowder", MapColor.COLOR_GRAY, false, () -> enableGunpowderSack);
-		sack("berry", MapColor.COLOR_RED, true, () -> enableBerrySack);
-		sack("glowberry", MapColor.COLOR_YELLOW, 14, true, () -> enableGlowBerrySack);
+		Block cocoa = sack("cocoa_beans", MapColor.COLOR_BROWN, true, () -> enableCocoaBeanSack);
+		blocks.add(cocoa);
+		Block wart = sack("nether_wart", MapColor.COLOR_RED, true, () -> enableNetherWartSack);
+		blocks.add(wart);
+		Block gunpowder = sack("gunpowder", MapColor.COLOR_GRAY, false, () -> enableGunpowderSack);
+		blocks.add(gunpowder);
+		Block berry = sack("berry", MapColor.COLOR_RED, true, () -> enableBerrySack);
+		blocks.add(berry);
+		Block glowberry = sack("glowberry", MapColor.COLOR_YELLOW, 14, true, () -> enableGlowBerrySack);
+		blocks.add(glowberry);
 
 		blaze_lantern = new ZetaBlock("blaze_lantern", this,
 				Block.Properties.of()
@@ -135,22 +152,25 @@ public class CompressedBlocksModule extends ZetaModule {
 						.lightLevel(b -> 15))
 				.setCondition(() -> enableBlazeLantern)
 				.setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS, Blocks.NETHERRACK, true);
+		blocks.add(blaze_lantern);
 
-		new ZetaBlock("bonded_leather", this, Block.Properties.of()
+		Block leather = new ZetaBlock("bonded_leather", this, Block.Properties.of()
 				.mapColor(MapColor.COLOR_ORANGE)
 				.ignitedByLava()
 				.strength(0.4F)
 				.sound(SoundType.WOOL))
 				.setCondition(() -> enableBondedLeather)
 				.setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS);
+		blocks.add(leather);
 
-		new ZetaBlock("bonded_rabbit_hide", this, Block.Properties.of()
+		Block hide = new ZetaBlock("bonded_rabbit_hide", this, Block.Properties.of()
 				.mapColor(MapColor.TERRACOTTA_WHITE)
 				.ignitedByLava()
 				.strength(0.4F)
 				.sound(SoundType.WOOL))
 				.setCondition(() -> enableBondedRabbitHide)
 				.setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS);
+		blocks.add(hide);
 	}
 
 	@LoadEvent

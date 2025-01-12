@@ -33,6 +33,7 @@ import java.util.List;
 
 @ZetaLoadModule(category = "building")
 public class StoolsModule extends ZetaModule {
+	public static List<StoolBlock> stools = new ArrayList<>();
 
 	public static EntityType<Stool> stoolEntity;
 
@@ -41,7 +42,6 @@ public class StoolsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void register(ZRegister event) {
-		List<StoolBlock> stools = new ArrayList<>();
 
 		CreativeTabManager.daisyChain();
 		for(DyeColor dye : MiscUtil.CREATIVE_COLOR_ORDER)

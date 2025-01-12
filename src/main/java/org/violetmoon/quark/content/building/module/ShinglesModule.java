@@ -11,8 +11,12 @@ import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ZetaLoadModule(category = "building")
 public class ShinglesModule extends ZetaModule {
+	public static List<Block> blocks = new ArrayList<>();
 
 	@LoadEvent
 	public final void register(ZRegister event) {
@@ -37,7 +41,8 @@ public class ShinglesModule extends ZetaModule {
 	}
 
 	private void add(ZRegister event, String name, Block parent) {
-		event.getVariantRegistry().addSlabAndStairs((IZetaBlock) new ZetaBlock(name + "shingles", this, Block.Properties.ofFullCopy(parent)).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, parent, false), CreativeModeTabs.COLORED_BLOCKS);
+		IZetaBlock block = event.getVariantRegistry().addSlabAndStairs((IZetaBlock) new ZetaBlock(name + "shingles", this, Block.Properties.ofFullCopy(parent)).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, parent, false), CreativeModeTabs.COLORED_BLOCKS);
+		blocks.add(block.getBlock());
 	}
 
 }

@@ -10,7 +10,6 @@ import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import org.violetmoon.quark.content.tools.module.AbacusModule;
-
 import java.util.concurrent.CompletableFuture;
 
 public class QuarkRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -33,4 +32,7 @@ public class QuarkRecipeProvider extends RecipeProvider implements IConditionBui
                 .save(recipeOutput); //TODO define config flag requirement - Partonetrain
 
     }
+
+
+
 }

@@ -38,6 +38,7 @@ import net.minecraft.world.level.material.MapColor;
 public class GlassShardModule extends ZetaModule {
 
 	public static ZetaBlock dirtyGlass;
+	public static ZetaBlock dirtyGlassPane;
 
 	public static TagKey<Item> shardTag;
 
@@ -51,7 +52,7 @@ public class GlassShardModule extends ZetaModule {
 		dirtyGlass = new DirtyGlassBlock("dirty_glass", this,
 				Block.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.3F).sound(SoundType.GLASS));
 
-		new ZetaInheritedPaneBlock(dirtyGlass).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, Blocks.WHITE_STAINED_GLASS_PANE, true);
+		dirtyGlassPane = (ZetaBlock) new ZetaInheritedPaneBlock(dirtyGlass).setCreativeTab(CreativeModeTabs.COLORED_BLOCKS, Blocks.WHITE_STAINED_GLASS_PANE, true);
 
 		CreativeTabManager.daisyChain();
 		clearShard = new ZetaItem("clear_shard", this, new Item.Properties()).setCreativeTab(CreativeModeTabs.INGREDIENTS, Items.PINK_DYE, false);

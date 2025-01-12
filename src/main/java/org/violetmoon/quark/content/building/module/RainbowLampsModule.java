@@ -18,8 +18,13 @@ import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ZetaLoadModule(category = "building")
 public class RainbowLampsModule extends ZetaModule {
+
+	public static List<RainbowLampBlock> lamps = new ArrayList<>();
 
 	@Config
 	public static int lightLevel = 15;
@@ -41,7 +46,10 @@ public class RainbowLampsModule extends ZetaModule {
 
 	@LoadEvent
 	public final void register(ZRegister event) {
-		for(CorundumColor color : CorundumColor.values())
-			new RainbowLampBlock(color.name + "_crystal_lamp", color.beaconColor, this, color.mapColor);
+		for(CorundumColor color : CorundumColor.values()){
+			RainbowLampBlock lamp = new RainbowLampBlock(color.name + "_crystal_lamp", color.beaconColor, this, color.mapColor);
+			lamps.add(lamp);
+		}
+
 	}
 }

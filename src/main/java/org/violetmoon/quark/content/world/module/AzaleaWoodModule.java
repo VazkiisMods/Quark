@@ -20,7 +20,7 @@ import org.violetmoon.zeta.module.ZetaModule;
 @ZetaLoadModule(category = "world", antiOverlap = { "caverns_and_chasms" })
 public class AzaleaWoodModule extends ZetaModule {
 
-	private WoodSet woodSet;
+	public static WoodSet woodSet;
 
 	@LoadEvent
 	public final void register(ZRegister event) {

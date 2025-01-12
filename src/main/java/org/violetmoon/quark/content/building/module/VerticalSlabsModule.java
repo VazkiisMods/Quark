@@ -37,6 +37,7 @@ import net.minecraft.world.level.block.state.properties.Property;
 
 @ZetaLoadModule(category = "building")
 public class VerticalSlabsModule extends ZetaModule {
+	public static List<Block> blocks = new ArrayList<>();
 
 	@Config(description = "Should Walls and Panes attempt to connect to the side of Vertical Slabs?")
 	public static boolean allowSideConnections = true;
