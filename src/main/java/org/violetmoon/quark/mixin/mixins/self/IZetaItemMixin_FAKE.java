@@ -15,6 +15,8 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.LevelReader;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.extensions.IItemExtension;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -73,11 +75,8 @@ public class IZetaItemMixin_FAKE implements IItemExtension, IZetaItemExtensions 
 	 */
 
 	@Override
-	public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-		if(toolAction == ToolActions.SHEARS_CARVE)
-			return canShearZeta(stack);
-		else
-			return false;
+	public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
+		return (itemAbility == ItemAbilities.SHEARS_CARVE);
 	}
 
 	@Override

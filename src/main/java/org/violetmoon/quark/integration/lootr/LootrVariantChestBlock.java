@@ -129,7 +129,7 @@ public class LootrVariantChestBlock extends VariantChestBlock implements IZetaBl
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-		return pLevel.isClientSide ? LootrChestBlockEntity::lootrLidAnimateTick : null;
+		return pLevel.isClientSide ? LootrChestBlockEntity::lidAnimateTick : null;
 	}
 
 	@Override

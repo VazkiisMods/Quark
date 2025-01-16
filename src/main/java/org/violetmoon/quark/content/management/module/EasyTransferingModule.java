@@ -3,7 +3,6 @@ package org.violetmoon.quark.content.management.module;
 import java.util.List;
 
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.resources.language.I18n;
 
 import net.minecraft.network.chat.Component;
 import org.violetmoon.quark.base.QuarkClient;

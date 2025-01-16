@@ -2,7 +2,6 @@ package org.violetmoon.quark.content.tools.module;
 
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -12,7 +11,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.gameevent.GameEvent;
-
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.tools.item.SlimeInABucketItem;
 import org.violetmoon.zeta.client.event.load.ZClientSetup;

@@ -3,7 +3,6 @@ package org.violetmoon.quark.addons.oddities.inventory;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlot.Type;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -51,22 +50,20 @@ public class BackpackMenu extends InventoryMenu {
 		final int topSlots = 8;
 		final int invStart = topSlots + 1;
 		final int invEnd = invStart + 27;
-		final int hotbarStart = invEnd;
-		final int hotbarEnd = hotbarStart + 9;
-		final int shieldSlot = hotbarEnd;
-		final int backpackStart = shieldSlot + 1;
+        final int hotbarEnd = invEnd + 9;
+        final int backpackStart = hotbarEnd + 1;
 		final int backpackEnd = backpackStart + 27;
 
 		ItemStack baseStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 
-		if(slot != null && slot.hasItem()) {
+		if(slot.hasItem()) {
 			ItemStack stack = slot.getItem();
 			baseStack = stack.copy();
-			EquipmentSlot slotType = Mob.getEquipmentSlotForItem(stack);
-			int equipIndex = topSlots - (slotType == null ? 0 : slotType.getIndex());
+			EquipmentSlot slotType = playerIn.getEquipmentSlotForItem(stack);
+			int equipIndex = topSlots - slotType.getIndex();
 
-			if(index < invStart || index == shieldSlot) { // crafting and armor slots
+			if(index < invStart || index == hotbarEnd) { // crafting and armor slots
 				ItemStack target = null;
 				if(!this.moveItemStackTo(stack, invStart, hotbarEnd, false) && !this.moveItemStackTo(stack, backpackStart, backpackEnd, false))
 					target = ItemStack.EMPTY;
@@ -77,18 +74,18 @@ public class BackpackMenu extends InventoryMenu {
 					slot.onQuickCraft(stack, baseStack);
 			}
 
-			else if(slotType != null && slotType.getType() == Type.HUMANOID_ARMOR && !this.slots.get(equipIndex).hasItem()) { // shift clicking armor
+			else if(slotType.getType() == Type.HUMANOID_ARMOR && !this.slots.get(equipIndex).hasItem()) { // shift clicking armor
 				if(!this.moveItemStackTo(stack, equipIndex, equipIndex + 1, false))
 					return ItemStack.EMPTY;
 			}
 
-			else if(slotType != null && slotType == EquipmentSlot.OFFHAND && !this.slots.get(shieldSlot).hasItem()) { // shift clicking shield
-				if(!this.moveItemStackTo(stack, shieldSlot, shieldSlot + 1, false))
+			else if(slotType == EquipmentSlot.OFFHAND && !this.slots.get(hotbarEnd).hasItem()) { // shift clicking shield
+				if(!this.moveItemStackTo(stack, hotbarEnd, hotbarEnd + 1, false))
 					return ItemStack.EMPTY;
 			}
 
 			else if(index < invEnd) {
-				if(!this.moveItemStackTo(stack, backpackStart, backpackEnd, false) && !this.moveItemStackTo(stack, hotbarStart, hotbarEnd, false))
+				if(!this.moveItemStackTo(stack, backpackStart, backpackEnd, false) && !this.moveItemStackTo(stack, invEnd, hotbarEnd, false))
 					return ItemStack.EMPTY;
 			}
 
@@ -97,7 +94,7 @@ public class BackpackMenu extends InventoryMenu {
 					return ItemStack.EMPTY;
 			}
 
-			else if(!this.moveItemStackTo(stack, hotbarStart, hotbarEnd, false) && !this.moveItemStackTo(stack, invStart, invEnd, false))
+			else if(!this.moveItemStackTo(stack, invEnd, hotbarEnd, false) && !this.moveItemStackTo(stack, invStart, invEnd, false))
 				return ItemStack.EMPTY;
 
 			if(stack.isEmpty())

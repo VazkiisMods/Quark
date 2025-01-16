@@ -1,7 +1,6 @@
 package org.violetmoon.quark.content.building.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
 
 import net.minecraft.client.Minecraft;
@@ -21,21 +20,19 @@ import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.BannerItem;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MapItem;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BannerBlockEntity;
-import net.minecraft.world.level.block.entity.BannerPattern;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
 
@@ -193,7 +190,7 @@ public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrame> {
 					float s = (float) GlassItemFrameModule.itemRenderScale;
 					if(stack.getItem() instanceof BannerItem bannerItem) {
 						banner.fromItem(stack, bannerItem.getColor());
-						List<Pair<Holder<BannerPattern>, DyeColor>> patterns = banner.getPatterns();
+						BannerPatternLayers patterns = banner.getPatterns();
 
 						matrix.pushPose();
 						matrix.translate(0.0001F, -0.5001F, 0.55F);

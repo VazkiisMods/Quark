@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.TropicalFish;
 import net.minecraft.world.entity.animal.axolotl.Axolotl;
@@ -161,7 +160,7 @@ public class BucketsShowInhabitantsModule extends ZetaModule {
 						int variant = tag.getInt(TropicalFish.BUCKET_VARIANT_TAG);
 
 						DyeColor dyeColor = layer == 1 ? TropicalFish.getBaseColor(variant) : TropicalFish.getPatternColor(variant);
-						float[] colorComponents = dyeColor.getTextureDiffuseColors();
+						float[] colorComponents = dyeColor.getTextureDiffuseColor();
 
 						return ((int) (colorComponents[0] * 255) << 16) |
 								((int) (colorComponents[1] * 255) << 8) |

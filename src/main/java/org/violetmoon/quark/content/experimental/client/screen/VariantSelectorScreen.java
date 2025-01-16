@@ -25,13 +25,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
 
-import org.violetmoon.quark.content.experimental.item.HammerItem;
 import org.violetmoon.quark.content.experimental.module.VariantSelectorModule;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class VariantSelectorScreen extends Screen {
 

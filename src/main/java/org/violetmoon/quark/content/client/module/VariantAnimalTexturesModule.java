@@ -100,16 +100,15 @@ public class VariantAnimalTexturesModule extends ZetaModule {
 
 		@PlayEvent
 		public void doShinySparkles(ZLivingTick event) {
-			if(!shinySparkles)
-				return;
-			LivingEntity entity = event.getEntity();
+			if(!shinySparkles) return;
+			LivingEntity entity = (LivingEntity) event.getEntity();
 			Level level = entity.level();
 			if(level.isClientSide() && level.getGameTime() % 10 == 0) {
 				if(isSparkly(entity)) {
 					double angle = Math.random() * 2 * Math.PI;
 					double dist = Math.random() * 0.5 + 0.25;
 					double dX = Math.cos(angle) * dist;
-					double dY = entity.getDimensions(entity.getPose()).height + (Math.random() - 0.5) * 0.2;
+					double dY = entity.getDimensions(entity.getPose()).height() + (Math.random() - 0.5) * 0.2;
 					double dZ = Math.sin(angle) * dist;
 					level.addParticle(ParticleTypes.HAPPY_VILLAGER, entity.getX() + dX, entity.getY() + dY, entity.getZ() + dZ, Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5);
 				}

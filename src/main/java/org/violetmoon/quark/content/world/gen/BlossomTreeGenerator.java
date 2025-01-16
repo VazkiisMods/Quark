@@ -2,7 +2,6 @@ package org.violetmoon.quark.content.world.gen;
 
 import java.util.Optional;
 
-import net.neoforged.neoforge.common.util.TriState;
 import org.violetmoon.quark.content.world.config.BlossomTreeConfig;
 import org.violetmoon.zeta.world.generator.Generator;
 
@@ -14,7 +13,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap.Types;

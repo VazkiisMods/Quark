@@ -33,6 +33,18 @@ public class Quark {
 	public static Quark instance;
 	public static CommonProxy proxy;
 
+	public Quark(IEventBus bus) {
+		instance = this;
+
+		ZETA.start(bus);
+
+		proxy = Env.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+		proxy.start();
+
+		if (!ZETA.isProduction) // force all mixins to load in dev
+			MixinEnvironment.getCurrentEnvironment().audit();
+	}
+
 	/*
 	public static final IClaimIntegration FLAN_INTEGRATION = ZETA.modIntegration("flan",
 			() -> FlanIntegration::new,
@@ -47,17 +59,6 @@ public class Quark {
 			() -> TerrablenderUndergroundBiomeHandler::new,
 			() -> VanillaUndergroundBiomeHandler::new);
 
-	public Quark(IEventBus bus) {
-		instance = this;
-
-		ZETA.start(bus);
-
-		proxy = Env.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
-		proxy.start();
-
-		if (!ZETA.isProduction) // force all mixins to load in dev
-			MixinEnvironment.getCurrentEnvironment().audit();
-	}
 	public static ResourceLocation asResource(String path) {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}

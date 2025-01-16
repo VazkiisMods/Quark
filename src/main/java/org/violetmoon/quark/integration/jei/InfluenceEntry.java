@@ -3,6 +3,7 @@ package org.violetmoon.quark.integration.jei;
 import mezz.jei.api.recipe.category.extensions.IRecipeCategoryExtension;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
@@ -55,11 +56,11 @@ public class InfluenceEntry implements IRecipeCategoryExtension {
 		for(Enchantment enchantment : enchantments) {
 			if(!EnchantmentsBegoneModule.shouldBegone(enchantment)) {
 				if(stack.isEmpty()) {
-					stack = ColorRunesModule.withRune(new ItemStack(Items.ENCHANTED_BOOK), runeColor)
-							.setHoverName(Component.translatable(locKey).withStyle(chatColor));
+					stack = ColorRunesModule.withRune(new ItemStack(Items.ENCHANTED_BOOK), runeColor);
+					stack.set(DataComponents.CUSTOM_NAME, Component.translatable(locKey).withStyle(chatColor));
 					ItemNBTHelper.setBoolean(stack, EnchantedBookTooltips.TABLE_ONLY_DISPLAY, true);
 				}
-				EnchantedBookItem.addEnchantment(stack, new EnchantmentInstance(enchantment, enchantment.getMaxLevel()));
+				EnchantedBookItem.createForEnchantment(stack, new EnchantmentInstance(enchantment, enchantment.getMaxLevel()));
 			}
 		}
 

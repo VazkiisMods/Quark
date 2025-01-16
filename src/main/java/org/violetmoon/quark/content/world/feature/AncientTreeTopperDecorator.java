@@ -1,7 +1,6 @@
 package org.violetmoon.quark.content.world.feature;
 
 import com.google.common.collect.ImmutableSet;
-import com.mojang.serialization.Codec;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;

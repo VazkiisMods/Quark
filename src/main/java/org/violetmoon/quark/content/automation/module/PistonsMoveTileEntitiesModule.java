@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.piston.PistonStructureResolver;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
-import net.minecraftforge.common.util.NonNullConsumer;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.api.IPistonCallback;
@@ -36,6 +35,7 @@ import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.piston.ZetaPistonStructureResolver;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 @ZetaLoadModule(category = "automation")
@@ -118,7 +118,7 @@ public class PistonsMoveTileEntitiesModule extends ZetaModule {
 			return true;
 
 		ResourceLocation res = BuiltInRegistries.BLOCK.getKey(state.getBlock());
-		return res == null || PistonsMoveTileEntitiesModule.movementBlacklist.contains(res.toString()) || PistonsMoveTileEntitiesModule.movementBlacklist.contains(res.getNamespace());
+		return PistonsMoveTileEntitiesModule.movementBlacklist.contains(res.toString()) || PistonsMoveTileEntitiesModule.movementBlacklist.contains(res.getNamespace());
 	}
 
 	public static void detachTileEntities(Level world, PistonStructureResolver helper, Direction facing, boolean extending) {
@@ -160,7 +160,7 @@ public class PistonsMoveTileEntitiesModule extends ZetaModule {
 		if(entityTag != null) {
 			BlockState currState = world.getBlockState(pos);
 			BlockEntity currEntity = world.getBlockEntity(pos);
-			CompoundTag currTag = currEntity == null ? null : currEntity.saveWithFullMetadata();
+			CompoundTag currTag = currEntity == null ? null : currEntity.saveWithFullMetadata(world.registryAccess());
 
 			world.removeBlock(pos, false);
 			if(!state.canSurvive( world, pos)) {
@@ -246,7 +246,7 @@ public class PistonsMoveTileEntitiesModule extends ZetaModule {
 		delayedUpdates.get(world).add(Pair.of(pos, tag));
 	}
 
-	private static void callCallback(@Nullable BlockEntity entity, NonNullConsumer<? super IPistonCallback> caller) {
+	private static void callCallback(@Nullable BlockEntity entity, Consumer<? super IPistonCallback> caller) {
 		if(entity != null) {
 			IPistonCallback cb = Quark.ZETA.capabilityManager.getCapability(QuarkCapabilities.PISTON_CALLBACK, entity);
 			if(cb != null)

@@ -1,24 +1,21 @@
 package org.violetmoon.quark.content.automation.block.be;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.content.automation.block.ChuteBlock;
 import org.violetmoon.quark.content.automation.module.ChuteModule;
 import org.violetmoon.quark.content.building.module.GrateModule;
-import org.violetmoon.quark.content.building.module.HollowLogsModule;
 import org.violetmoon.zeta.block.be.ZetaBlockEntity;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
 
 /**
  * @author WireSegal
@@ -52,6 +49,7 @@ public class ChuteBlockEntity extends ZetaBlockEntity {
 	}
 
 	private final IItemHandler handler = new IItemHandler() {
+
 		@Override
 		public int getSlots() {
 			return 1;

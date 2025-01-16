@@ -259,8 +259,7 @@ public class ExpandedItemInteractionsModule extends ZetaModule {
 			int lockedSlot = slot.getSlotIndex();
 			if(player instanceof ServerPlayer splayer) {
 				HeldShulkerBoxContainer container = new HeldShulkerBoxContainer(splayer, lockedSlot);
-
-				NetworkHooks.openScreen(splayer, container, buf -> buf.writeInt(lockedSlot));
+				player.openMenu(container);
 			} else
 				player.playSound(SoundEvents.SHULKER_BOX_OPEN, 1F, 1F);
 
@@ -437,7 +436,7 @@ public class ExpandedItemInteractionsModule extends ZetaModule {
 			Minecraft mc = Minecraft.getInstance();
 			Screen gui = mc.screen;
 
-			double scrollDelta = event.getScrollDelta();
+			double scrollDelta = event.getScrollDeltaY();
 
 			if(mc.player != null && gui instanceof AbstractContainerScreen<?> containerGui) {
 				Slot under = containerGui.getSlotUnderMouse();

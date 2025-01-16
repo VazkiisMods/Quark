@@ -1,6 +1,7 @@
 package org.violetmoon.quark.content.tweaks.module;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -17,8 +18,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.play.entity.player.ZRightClickBlock;
 import org.violetmoon.zeta.module.ZetaLoadModule;
@@ -66,7 +67,7 @@ public class ShulkerPackingModule extends ZetaModule {
 							Component component = nameable.getCustomName();
 							if(component != null) {
 								shulkerBoxData.setCustomName(component);
-								newShulkerBox.setHoverName(component);
+								newShulkerBox.set(DataComponents.CUSTOM_NAME, component);
 							}
 						}
 

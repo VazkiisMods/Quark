@@ -1,7 +1,5 @@
 package org.violetmoon.quark.addons.oddities.item;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
@@ -9,8 +7,6 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -21,11 +17,10 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
@@ -38,6 +33,7 @@ import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.registry.CreativeTabManager;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
@@ -87,9 +83,9 @@ public class BackpackItem extends ArmorItem implements IZetaItem, IZetaItemExten
 	}
 
 	public static boolean doesBackpackHaveItems(ItemStack stack) {
-		LazyOptional<IItemHandler> handlerOpt = stack.getCapability(ForgeCapabilities.ITEM_HANDLER, null);
+		Optional<IItemHandler> handlerOpt = Optional.ofNullable(stack.getCapability(Capabilities.ItemHandler.ITEM, null));
 
-		if(!handlerOpt.isPresent())
+		if(handlerOpt.isEmpty())
 			return false;
 
 		IItemHandler handler = handlerOpt.orElse(new ItemStackHandler());
@@ -101,17 +97,12 @@ public class BackpackItem extends ArmorItem implements IZetaItem, IZetaItemExten
 	}
 
 	@Override
-	public boolean canEquipZeta(ItemStack stack, EquipmentSlot equipmentSlot, Entity ent) {
-		return equipmentSlot == EquipmentSlot.CHEST;
+	public boolean canEquipZeta(ItemStack stack, EquipmentSlot armorType, LivingEntity entity) {
+		return armorType == EquipmentSlot.CHEST;
 	}
 
 	@Override
 	public boolean isBookEnchantableZeta(ItemStack stack, ItemStack book) {
-		return false;
-	}
-
-	@Override
-	public boolean canApplyAtEnchantingTableZeta(ItemStack stack, Enchantment enchantment) {
 		return false;
 	}
 
@@ -121,24 +112,18 @@ public class BackpackItem extends ArmorItem implements IZetaItem, IZetaItemExten
 	}
 
 	@Override
-	public boolean canBeDepleted() {
-		return false;
-	}
-
-	@Override
 	public <T extends LivingEntity> int damageItemZeta(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
 		return 0;
 	}
 
 	@Override
 	public void inventoryTick(@NotNull ItemStack stack, Level worldIn, @NotNull Entity entityIn, int itemSlot, boolean isSelected) {
-		if(worldIn.isClientSide)
-			return;
+		if(worldIn.isClientSide) return;
 
 		boolean hasItems = !BackpackModule.superOpMode && doesBackpackHaveItems(stack);
-
 		Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(stack);
 		boolean isCursed = enchants.containsKey(Enchantments.BINDING_CURSE);
+
 		boolean changedEnchants = false;
 
 		if(hasItems) {
@@ -149,7 +134,7 @@ public class BackpackItem extends ArmorItem implements IZetaItem, IZetaItemExten
 				}
 
 				if(BackpackModule.itemsInBackpackTick) {
-					LazyOptional<IItemHandler> handlerOpt = stack.getCapability(ForgeCapabilities.ITEM_HANDLER, null);
+					Optional<IItemHandler> handlerOpt = Optional.ofNullable(stack.getCapability(Capabilities.ItemHandler.ITEM, null));
 					IItemHandler handler = handlerOpt.orElse(new ItemStackHandler());
 					for(int i = 0; i < handler.getSlots(); i++) {
 						ItemStack inStack = handler.getStackInSlot(i);
@@ -173,16 +158,11 @@ public class BackpackItem extends ArmorItem implements IZetaItem, IZetaItemExten
 
 	@Override
 	public boolean onEntityItemUpdateZeta(ItemStack stack, ItemEntity entityItem) {
-		if(BackpackModule.superOpMode || entityItem.level().isClientSide)
-			return false;
+		if (BackpackModule.superOpMode || entityItem.level().isClientSide) return false;
 
-		if(!stack.hasTag())
-			return false;
+		Optional<IItemHandler> handlerOpt = Optional.ofNullable(stack.getCapability(Capabilities.ItemHandler.ITEM, null));
 
-		LazyOptional<IItemHandler> handlerOpt = stack.getCapability(ForgeCapabilities.ITEM_HANDLER, null);
-
-		if(!handlerOpt.isPresent())
-			return false;
+		if (handlerOpt.isEmpty()) return false;
 
 		IItemHandler handler = handlerOpt.orElse(new ItemStackHandler());
 

@@ -3,8 +3,6 @@ package org.violetmoon.quark.content.client.tooltip;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Either;
-import com.mojang.datafixers.util.Pair;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -12,16 +10,14 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.content.client.module.ImprovedTooltipsModule;
 import org.violetmoon.zeta.client.event.play.ZGatherTooltipComponents;
 
@@ -30,8 +26,8 @@ import java.util.List;
 public class FoodTooltips {
 
 	private static boolean isPoison(FoodProperties food) {
-		for(Pair<MobEffectInstance, Float> effect : food.getEffects()) {
-			if(effect.getFirst() != null && effect.getFirst().getEffect() != null && effect.getFirst().getEffect().getCategory() == MobEffectCategory.HARMFUL) {
+		for(FoodProperties.PossibleEffect effect : food.effects()) {
+			if(effect != null && effect.effect().getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
 				return true;
 			}
 		}
@@ -40,17 +36,17 @@ public class FoodTooltips {
 
 	public static void makeTooltip(ZGatherTooltipComponents event, boolean showFood, boolean showSaturation) {
 		ItemStack stack = event.getItemStack();
-		if(stack.isEdible()) {
-			FoodProperties food = stack.getItem().getFoodProperties();
+		if(stack.has(DataComponents.FOOD)) {
+			FoodProperties food = stack.get(DataComponents.FOOD);
 			if(food != null) {
-				int pips = food.getNutrition();
+				int pips = food.nutrition();
 				if(pips == 0)
 					return;
 
 				int len = (int) Math.ceil((double) pips / ImprovedTooltipsModule.foodDivisor);
 
 				int saturationSimplified = 0;
-				float saturation = Math.min(20, food.getSaturationModifier() * food.getNutrition() * 2);
+				float saturation = Math.min(20, food.saturation() * food.nutrition() * 2);
 				if(saturation >= 19)
 					saturationSimplified = 5;
 				else if(saturation < 10) {
@@ -97,13 +93,13 @@ public class FoodTooltips {
 			PoseStack pose = guiGraphics.pose();
 			Minecraft mc = Minecraft.getInstance();
 
-			if(stack.isEdible()) {
+			if(stack.has(DataComponents.FOOD)) {
 				FoodProperties food = stack.getItem().getFoodProperties(stack, mc.player);
 				if(food != null) {
 					RenderSystem.setShader(GameRenderer::getPositionTexShader);
 					RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-					int pips = food.getNutrition();
+					int pips = food.nutrition();
 					if(pips == 0)
 						return;
 

@@ -1,7 +1,6 @@
 package org.violetmoon.quark.content.tweaks.module;
 
 import net.minecraft.core.cauldron.CauldronInteraction;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;

@@ -20,7 +20,6 @@ import org.violetmoon.zeta.util.Hint;
 import org.violetmoon.zeta.world.WorldGenHandler;
 
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.levelgen.GenerationStep;

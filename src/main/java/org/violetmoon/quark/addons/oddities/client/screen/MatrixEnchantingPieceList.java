@@ -17,7 +17,7 @@ public class MatrixEnchantingPieceList extends ObjectSelectionList<MatrixEnchant
 	private final int listWidth;
 
 	public MatrixEnchantingPieceList(MatrixEnchantingScreen parent, int listWidth, int listHeight, int top, int bottom, int entryHeight) {
-		super(parent.getMinecraft(), listWidth, listHeight, top, bottom, entryHeight);
+		super(parent.getMinecraft(), listWidth, listHeight, top, bottom);
 		this.listWidth = listWidth;
 		this.parent = parent;
 	}
@@ -44,7 +44,7 @@ public class MatrixEnchantingPieceList extends ObjectSelectionList<MatrixEnchant
 	}
 
 	@Override
-	public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+	public void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		int i = this.getScrollbarPosition();
 		int j = i + 6;
 

@@ -1,32 +1,15 @@
 package org.violetmoon.quark.content.client.module;
 
-import java.util.*;
-import java.util.function.BooleanSupplier;
-
-import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
-import net.minecraft.network.chat.Component;
-import org.apache.commons.lang3.tuple.Pair;
-import org.joml.Vector2i;
-import org.joml.Vector2ic;
-import org.violetmoon.quark.base.QuarkClient;
-import org.violetmoon.quark.base.client.handler.ClientUtil;
-import org.violetmoon.zeta.client.event.play.ZClientTick;
-import org.violetmoon.zeta.client.event.play.ZRenderContainerScreen;
-import org.violetmoon.zeta.client.event.play.ZScreen;
-import org.violetmoon.zeta.event.bus.PlayEvent;
-import org.violetmoon.zeta.module.ZetaLoadModule;
-import org.violetmoon.zeta.module.ZetaModule;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CraftingScreen;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import net.minecraft.client.gui.screens.recipebook.GhostRecipe;
 import net.minecraft.client.gui.screens.recipebook.GhostRecipe.GhostIngredient;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -34,10 +17,28 @@ import net.minecraft.client.gui.screens.recipebook.RecipeBookPage;
 import net.minecraft.client.gui.screens.recipebook.RecipeCollection;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import org.apache.commons.lang3.tuple.Pair;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
+import org.violetmoon.quark.base.client.handler.ClientUtil;
+import org.violetmoon.zeta.client.event.play.ZClientTick;
+import org.violetmoon.zeta.client.event.play.ZRenderContainerScreen;
+import org.violetmoon.zeta.client.event.play.ZScreen;
+import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.bus.ZPhase;
+import org.violetmoon.zeta.module.ZetaLoadModule;
+import org.violetmoon.zeta.module.ZetaModule;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Stack;
+import java.util.function.BooleanSupplier;
 
 @ZetaLoadModule(category = "client")
 public class MicrocraftingHelperModule extends ZetaModule {
@@ -195,7 +196,8 @@ public class MicrocraftingHelperModule extends ZetaModule {
 
 
 		@PlayEvent
-		public void onTick(ZClientTick.Start event) {
+		public void onTick(ZClientTick event) {
+			if (event.getPhase() != ZPhase.START) return;
 
 			Minecraft mc = Minecraft.getInstance();
 			Screen prevScreen = currentScreen;

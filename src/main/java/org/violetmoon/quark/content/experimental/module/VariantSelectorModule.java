@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.world.level.block.PressurePlateBlock;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
@@ -25,7 +24,6 @@ import org.violetmoon.zeta.client.event.play.ZInput;
 import org.violetmoon.zeta.client.event.play.ZRenderGuiOverlay;
 import org.violetmoon.zeta.client.event.play.ZRenderTooltip;
 import org.violetmoon.zeta.config.Config;
-import org.violetmoon.zeta.config.ConfigManager;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZConfigChanged;

@@ -27,6 +27,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.biome.Biome;
@@ -62,6 +63,7 @@ import org.violetmoon.zeta.util.ItemNBTHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -329,8 +331,8 @@ public class PathfinderMapsModule extends ZetaModule {
 			int xp = xpFromTrade * Math.max(1, (info.level - 1));
 
 			if(hasCompass)
-				return new MerchantOffer(new ItemStack(Items.EMERALD, i), new ItemStack(Items.COMPASS), itemstack, 12, xp, 0.2F);
-			return new MerchantOffer(new ItemStack(Items.EMERALD, i), itemstack, 12, xp, 0.2F);
+				return new MerchantOffer(new ItemCost(Items.EMERALD, i), Optional.of(new ItemCost(Items.COMPASS)), itemstack, 12, xp, 0.2F);
+			return new MerchantOffer(new ItemCost(Items.EMERALD, i), itemstack, 12, xp, 0.2F);
 		}
 	}
 
@@ -415,6 +417,5 @@ public class PathfinderMapsModule extends ZetaModule {
 			ItemColor color = (stack, id) -> id == 0 ? 0xFFFFFF : PathfindersQuillItem.getOverlayColor(stack);
 			event.register(color, pathfinders_quill);
 		}
-
 	}
 }

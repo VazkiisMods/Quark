@@ -1,5 +1,32 @@
 package org.violetmoon.quark.addons.oddities.module;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.DyedItemColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import org.violetmoon.quark.addons.oddities.client.screen.BackpackInventoryScreen;
 import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
 import org.violetmoon.quark.addons.oddities.item.BackpackItem;
@@ -15,6 +42,7 @@ import org.violetmoon.zeta.client.event.play.ZScreen;
 import org.violetmoon.zeta.config.Config;
 import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
+import org.violetmoon.zeta.event.bus.ZPhase;
 import org.violetmoon.zeta.event.load.ZCommonSetup;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.event.play.entity.living.ZLivingDrops;
@@ -23,41 +51,6 @@ import org.violetmoon.zeta.item.ZetaItem;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.core.cauldron.CauldronInteraction;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.decoration.ArmorStand;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.DyeableArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraftforge.common.extensions.IForgeMenuType;
 
 @ZetaLoadModule(category = "oddities")
 public class BackpackModule extends ZetaModule {
@@ -108,7 +101,7 @@ public class BackpackModule extends ZetaModule {
 				.setCondition(() -> enableRavagerHide)
 				.setCreativeTab(CreativeModeTabs.BUILDING_BLOCKS);
 
-		CauldronInteraction.WATER.put(backpack, CauldronInteraction.DYED_ITEM);
+		CauldronInteraction.WATER.map().put(backpack, CauldronInteraction.DYED_ITEM);
 	}
 
 	@LoadEvent
@@ -203,16 +196,18 @@ public class BackpackModule extends ZetaModule {
 		@PlayEvent
 		public void onOpenGUI(ZScreen.Opening event) {
 			Player player = Minecraft.getInstance().player;
-			if(player != null && isInventoryGUI(event.getScreen()) && !player.getAbilities().instabuild && isEntityWearingBackpack(player) && !player.isInsidePortal) {
+			if(player != null && isInventoryGUI(event.getScreen()) && !player.getAbilities().instabuild && isEntityWearingBackpack(player) && !player.portalProcess.isInsidePortalThisTick()) {
 				requestBackpack();
 				event.setCanceled(true);
 			}
 		}
 
 		@PlayEvent
-		public void clientTick(ZClientTick.Start event) {
+		public void clientTick(ZClientTick event) {
+			if (event.getPhase() != ZPhase.START) return;
+
 			Minecraft mc = Minecraft.getInstance();
-			if(isInventoryGUI(mc.screen) && !backpackRequested && isEntityWearingBackpack(mc.player) && !mc.player.isInsidePortal) {
+			if(isInventoryGUI(mc.screen) && !backpackRequested && isEntityWearingBackpack(mc.player) && !mc.player.portalProcess.isInsidePortalThisTick()) {
 				requestBackpack();
 				mc.player.inventoryMenu.setCarried(mc.player.getItemBySlot(EquipmentSlot.CHEST));
 				backpackRequested = true;
@@ -228,7 +223,7 @@ public class BackpackModule extends ZetaModule {
 
 		@LoadEvent
 		public void registerItemColors(ZAddItemColorHandlers event) {
-			ItemColor color = (stack, i) -> i > 0 ? -1 : ((DyeableArmorItem) stack.getItem()).getColor(stack);
+			ItemColor color = (stack, i) -> i > 0 ? -1 : DyedItemColor.getOrDefault(stack, -6265536);
 			event.register(color, backpack);
 		}
 

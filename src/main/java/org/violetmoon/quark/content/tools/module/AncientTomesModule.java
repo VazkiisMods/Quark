@@ -1,10 +1,41 @@
 package org.violetmoon.quark.content.tools.module;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.collect.Lists;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MerchantContainer;
+import net.minecraft.world.inventory.MerchantMenu;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.api.QuarkCapabilities;
@@ -31,44 +62,10 @@ import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
 
-import com.google.common.collect.Lists;
-
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.MerchantContainer;
-import net.minecraft.world.inventory.MerchantMenu;
-import net.minecraft.world.item.EnchantedBookItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.EnchantmentInstance;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @ZetaLoadModule(category = "tools")
 public class AncientTomesModule extends ZetaModule {
@@ -220,7 +217,7 @@ public class AncientTomesModule extends ZetaModule {
 					return;
 
 				Enchantment ench = getTomeEnchantment(right);
-				Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(left);
+				Map<Enchantment, Integer> enchants = EnchantmentHelper(left);
 
 				if(ench != null && enchants.containsKey(ench) && enchants.get(ench) <= ench.getMaxLevel()) {
 					int lvl = enchants.get(ench) + 1;
@@ -230,8 +227,8 @@ public class AncientTomesModule extends ZetaModule {
 					EnchantmentHelper.setEnchantments(enchants, out);
 					int cost = lvl > ench.getMaxLevel() ? limitBreakUpgradeCost : normalUpgradeCost;
 
-					if(name != null && !name.isEmpty() && (!out.hasCustomHoverName() || !out.getHoverName().getString().equals(name))) {
-						out.setHoverName(Component.literal(name));
+					if(name != null && !name.isEmpty() && (!out.has(DataComponents.CUSTOM_NAME) || !out.getHoverName().getString().equals(name))) {
+						out.set(DataComponents.CUSTOM_NAME, Component.literal(name));
 						cost++;
 					}
 
@@ -292,8 +289,8 @@ public class AncientTomesModule extends ZetaModule {
 						EnchantmentHelper.setEnchantments(currentEnchants, out);
 						int cost = normalUpgradeCost;
 
-						if(name != null && !name.isEmpty() && (!out.hasCustomHoverName() || !out.getHoverName().getString().equals(name))) {
-							out.setHoverName(Component.literal(name));
+						if(name != null && !name.isEmpty() && (!out.has(DataComponents.CUSTOM_NAME) || !out.getHoverName().getString().equals(name))) {
+							out.set(DataComponents.CUSTOM_NAME, Component.literal(name));
 							cost++;
 						}
 
@@ -324,9 +321,10 @@ public class AncientTomesModule extends ZetaModule {
 			Player player = event.getPlayer();
 			ItemStack stack = player.getMainHandItem();
 			BlockState state = event.getState();
+			Holder<Enchantment> efficiency = event.getPlayer().level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.EFFICIENCY);
 
 			if(state.is(Blocks.DEEPSLATE)
-					&& EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY, stack) >= 6
+					&& EnchantmentHelper.getTagEnchantmentLevel(efficiency, stack) >= 6
 					&& event.getOriginalSpeed() >= 45F
 					&& (!deepslateTweakNeedsHaste2 || playerHasHaste2(player))) {
 
@@ -477,8 +475,8 @@ public class AncientTomesModule extends ZetaModule {
 				ItemStack inSlot = menu.slots.get(slot).getItem();
 				ItemStack currentStack = container.getItem(tradeSlot);
 
-				if(!ItemStack.isSameItemSameTags(inSlot, offer.getResult()) &&
-						!inSlot.isEmpty() && (currentStack.isEmpty() ? offer.isRequiredItem(inSlot, targetStack) : ItemStack.isSameItemSameTags(targetStack, inSlot))) {
+				if(!ItemStack.isSameItemSameComponents(inSlot, offer.getResult()) &&
+						!inSlot.isEmpty() && (currentStack.isEmpty() ? offer.isRequiredItem(inSlot, targetStack) : ItemStack.isSameItemSameComponents(targetStack, inSlot))) {
 					int currentCount = currentStack.isEmpty() ? 0 : currentStack.getCount();
 					int amountToTake = Math.min(targetStack.getMaxStackSize() - currentCount, inSlot.getCount());
 					ItemStack newStack = inSlot.copy();

@@ -2,7 +2,6 @@ package org.violetmoon.quark.content.world.gen;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootTable;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.content.building.module.CompressedBlocksModule;
 import org.violetmoon.quark.content.world.module.NetherObsidianSpikesModule;
@@ -12,7 +11,6 @@ import org.violetmoon.zeta.world.generator.Generator;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;

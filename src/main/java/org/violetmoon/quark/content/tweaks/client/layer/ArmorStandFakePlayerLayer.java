@@ -4,7 +4,6 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.PlayerModel;
@@ -27,9 +26,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.SkullBlock;
-
 import org.jetbrains.annotations.NotNull;
-
 import org.violetmoon.quark.content.client.module.UsesForCursesModule;
 import org.violetmoon.zeta.util.ItemNBTHelper;
 
@@ -47,8 +44,7 @@ public class ArmorStandFakePlayerLayer<M extends EntityModel<ArmorStand>> extend
 
 	@Override
 	public void render(@NotNull PoseStack pose, @NotNull MultiBufferSource buffer, int light, @NotNull ArmorStand armor, float p_117353_, float p_117354_, float p_117355_, float p_117356_, float p_117357_, float p_117358_) {
-		if(!UsesForCursesModule.staticEnabled || !UsesForCursesModule.bindArmorStandsWithPlayerHeads)
-			return;
+		if(!UsesForCursesModule.staticEnabled || !UsesForCursesModule.bindArmorStandsWithPlayerHeads) return;
 
 		ItemStack head = armor.getItemBySlot(EquipmentSlot.HEAD);
 		if(head.is(Items.PLAYER_HEAD) && EnchantmentHelper.hasBindingCurse(head)) {

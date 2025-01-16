@@ -1,14 +1,12 @@
 package org.violetmoon.quark.mixin.mixins;
 
-import net.minecraftforge.common.extensions.IForgeItem;
-
+import net.neoforged.neoforge.common.extensions.IItemExtension;
 import org.spongepowered.asm.mixin.Mixin;
-
+import org.violetmoon.quark.mixin.delegates.ForgeItemDelegate;
 import org.violetmoon.zeta.mixin.plugin.DelegateInterfaceMixin;
 import org.violetmoon.zeta.mixin.plugin.DelegateReturnValueModifier;
-import org.violetmoon.quark.mixin.delegates.ForgeItemDelegate;
 
-@Mixin(IForgeItem.class)
+@Mixin(IItemExtension.class)
 @DelegateInterfaceMixin(
 	delegate = ForgeItemDelegate.class, methods = {
 			@DelegateReturnValueModifier(

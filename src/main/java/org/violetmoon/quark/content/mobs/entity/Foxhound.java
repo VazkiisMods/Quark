@@ -204,7 +204,7 @@ public class Foxhound extends Wolf implements Enemy {
 				if(cookTime > 0 && cookTime % 3 == 0) {
 					List<Foxhound> foxhounds = level.getEntitiesOfClass(Foxhound.class, new AABB(blockPosition()),
 							(fox) -> fox != null && fox.isTame());
-					if(!foxhounds.isEmpty() && foxhounds.get(0) == this) {
+					if(!foxhounds.isEmpty() && foxhounds.getFirst() == this) {
 						furnace.cookingProgress = furnace.cookingProgress == 3 ? 5 : Math.min(furnace.cookingTotalTime - 1, cookTime + 1);
 
 						if(getOwner() instanceof ServerPlayer sp)
@@ -274,9 +274,7 @@ public class Foxhound extends Wolf implements Enemy {
 
 		if(flag) {
 			entityIn.igniteForSeconds(5);
-			this.doEnchantDamageEffects(this, entityIn);
 		}
-
 		return flag;
 	}
 
@@ -410,15 +408,6 @@ public class Foxhound extends Wolf implements Enemy {
 	public void setTatering(boolean tatering) {
 		entityData.set(TATERING, tatering);
 	}
-
-//	public static boolean canSpawnHere(IServerWorld world, BlockPos pos, Random rand) {
-//		if(world.getLightFor(LightType.SKY, pos) > rand.nextInt(32)) {
-//			return false;
-//		} else {
-//			int light = world.getWorld().isThundering() ? world.getNeighborAwareLightSubtracted(pos, 10) : world.getLight(pos);
-//			return light <= rand.nextInt(8);
-//		}
-//	}
 
 	@Override
 	public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {

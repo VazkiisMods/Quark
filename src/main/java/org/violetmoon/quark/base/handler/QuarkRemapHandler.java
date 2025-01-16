@@ -1,12 +1,6 @@
 package org.violetmoon.quark.base.handler;
 
-import net.minecraft.core.DefaultedRegistry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.MissingMappingsEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import org.violetmoon.quark.base.Quark;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +8,7 @@ import java.util.Map;
 @EventBusSubscriber
 public class QuarkRemapHandler {
 	//datafixers could have also been used here but good luck figuring them out
+	// TODO: Replace with Registry#addAlias/DataFixers
 
 	private static final Map<String, String> REMAP = new HashMap<>();
 
@@ -36,12 +31,12 @@ public class QuarkRemapHandler {
 		REMAP.put("quark:egg_parrot_grey", "quark:egg_parrot_gray");
 	}
 
+	/*
 	@SubscribeEvent
 	public static void onRemapBlocks(MissingMappingsEvent event) {
 		remapAll(event, BuiltInRegistries.BLOCK);
 		remapAll(event, BuiltInRegistries.ITEM);
 	}
-
 
 	private static <T> void remapAll(MissingMappingsEvent event, DefaultedRegistry<T> block) {
 		for (var v : event.getMappings(block.key(), Quark.MOD_ID)) {
@@ -52,4 +47,5 @@ public class QuarkRemapHandler {
 			} else v.ignore();
 		}
 	}
+	 */
 }

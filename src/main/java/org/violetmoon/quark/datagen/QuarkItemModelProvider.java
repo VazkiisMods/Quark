@@ -4,7 +4,6 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.violetmoon.quark.base.Quark;
-import org.violetmoon.quark.content.automation.module.ChuteModule;
 import org.violetmoon.quark.content.tools.module.AbacusModule;
 
 public class QuarkItemModelProvider extends ItemModelProvider {

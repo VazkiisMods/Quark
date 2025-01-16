@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.QuartPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -197,7 +198,7 @@ public class PathfindersQuillItem extends ZetaItem implements CreativeTabManager
 				player.displayClientMessage(Component.translatable(msg), true);
 
 				Vec3 pos = player.getPosition(1F);
-				level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.NOTE_BLOCK_CHIME.get(), SoundSource.PLAYERS, 0.5F, 1F);
+				level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.NOTE_BLOCK_CHIME, SoundSource.PLAYERS, 0.5F, 1F);
 
 				//we have to check for off hand manually as game uses same slot index....
 				if(player.getOffhandItem() == stack){
@@ -371,7 +372,7 @@ public class PathfindersQuillItem extends ZetaItem implements CreativeTabManager
 
 		MapItem.renderBiomePreviewMap(level, stack);
 		MapItemSavedData.addTargetDecoration(stack, targetPos, "+", Type.RED_X);
-		stack.setHoverName(Component.translatable("item.quark.biome_map", biomeComponent));
+		stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.quark.biome_map", biomeComponent));
 
 		stack.getOrCreateTagElement("display").putInt("MapColor", color);
 		ItemNBTHelper.setBoolean(stack, PathfinderMapsModule.TAG_IS_PATHFINDER, true);

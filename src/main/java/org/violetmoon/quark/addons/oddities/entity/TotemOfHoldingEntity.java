@@ -1,6 +1,5 @@
 package org.violetmoon.quark.addons.oddities.entity;
 
-import net.minecraft.commands.arguments.item.ItemParser;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;

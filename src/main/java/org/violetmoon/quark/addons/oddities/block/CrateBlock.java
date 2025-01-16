@@ -5,7 +5,6 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,11 +24,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import org.violetmoon.quark.addons.oddities.block.be.CrateBlockEntity;
 import org.violetmoon.quark.addons.oddities.module.CrateModule;
 import org.violetmoon.zeta.block.ZetaBlock;
@@ -79,7 +75,7 @@ public class CrateBlock extends ZetaBlock implements EntityBlock {
 			BlockEntity be = worldIn.getBlockEntity(pos);
 			if(be instanceof CrateBlockEntity crate) {
 				if(player instanceof ServerPlayer serverPlayer)
-					NetworkHooks.openScreen(serverPlayer, crate, pos);
+					serverPlayer.openMenu(crate);
 
 				PiglinAi.angerNearbyPiglins(player, true);
 			}
@@ -93,7 +89,7 @@ public class CrateBlock extends ZetaBlock implements EntityBlock {
 		if(stack.getComponents().has(DataComponents.CUSTOM_NAME)) {
 			BlockEntity tileentity = worldIn.getBlockEntity(pos);
 			if(tileentity instanceof CrateBlockEntity crate)
-				crate.setComponents(stack.getHoverName());
+				crate.setComponents(stack.getComponents());
 		}
 	}
 

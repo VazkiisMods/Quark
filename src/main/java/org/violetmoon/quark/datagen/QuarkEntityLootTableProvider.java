@@ -4,8 +4,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 
-import java.util.Set;
-
 public class QuarkEntityLootTableProvider extends EntityLootSubProvider {
 
     protected QuarkEntityLootTableProvider(HolderLookup.Provider registries) {

@@ -58,8 +58,8 @@ public class QuarkJeiPlugin implements IModPlugin {
 
     @Override
     public void registerVanillaCategoryExtensions(@NotNull IVanillaCategoryExtensionRegistration registration) {
-        registration.getCraftingCategory().addCategoryExtension(ElytraDuplicationRecipe.class, ElytraDuplicationExtension::new);
-        registration.getCraftingCategory().addCategoryExtension(SlabToBlockRecipe.class, SlabToBlockExtension::new);
+        registration.getCraftingCategory().addExtension(ElytraDuplicationRecipe.class, ElytraDuplicationExtension::new);
+        registration.getCraftingCategory().addExtension(SlabToBlockRecipe.class, SlabToBlockExtension::new);
     }
 
     private boolean matrix() {

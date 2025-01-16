@@ -1,12 +1,29 @@
 package org.violetmoon.quark.content.building.module;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.BooleanSupplier;
-
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.QuarkClient;
@@ -37,30 +54,8 @@ import org.violetmoon.zeta.util.VanillaWoods.Wood;
 import org.violetmoon.zeta.util.handler.StructureBlockReplacementHandler;
 import org.violetmoon.zeta.util.handler.StructureBlockReplacementHandler.StructureHolder;
 
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.structure.Structure;
-import net.minecraftforge.common.Tags;
+import java.util.*;
+import java.util.function.BooleanSupplier;
 
 @ZetaLoadModule(category = "building", antiOverlap = { "woodworks" })
 public class VariantChestsModule extends ZetaModule {
@@ -240,7 +235,7 @@ public class VariantChestsModule extends ZetaModule {
 						copy.setCount(1);
 						held.shrink(1);
 
-						horse.getPersistentData().put(DONK_CHEST, copy.serializeNBT());
+						horse.getPersistentData().put(DONK_CHEST, copy.save(player.level().registryAccess()));
 
 						horse.setChest(true);
 						horse.createInventory();
@@ -257,7 +252,7 @@ public class VariantChestsModule extends ZetaModule {
 	public void onDeath(ZLivingDeath event) {
 		Entity target = event.getEntity();
 		if(target instanceof AbstractChestedHorse horse) {
-			ItemStack chest = ItemStack.of(horse.getPersistentData().getCompound(DONK_CHEST));
+			ItemStack chest = ItemStack.parseOptional(target.level().registryAccess(), horse.getPersistentData().getCompound(DONK_CHEST));
 			if(!chest.isEmpty() && horse.hasChest())
 				WAIT_TO_REPLACE_CHEST.set(chest);
 		}

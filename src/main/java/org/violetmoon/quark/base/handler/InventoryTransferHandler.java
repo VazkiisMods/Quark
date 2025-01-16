@@ -1,11 +1,18 @@
 package org.violetmoon.quark.base.handler;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.BiPredicate;
-
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.SlotItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.violetmoon.quark.api.IQuarkButtonAllowed;
@@ -15,17 +22,9 @@ import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.config.QuarkGeneralConfig;
 import org.violetmoon.quark.content.management.module.EasyTransferingModule;
 
-import net.minecraft.world.Container;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BiPredicate;
 
 public class InventoryTransferHandler {
 
@@ -130,7 +129,7 @@ public class InventoryTransferHandler {
 
 					boolean itemEqual = stack.getItem() == stackAt.getItem();
 					boolean damageEqual = stack.getDamageValue() == stackAt.getDamageValue();
-					boolean nbtEqual = ItemStack.isSameItemSameTags(stackAt, stack);
+					boolean nbtEqual = ItemStack.isSameItemSameComponents(stackAt, stack);
 
 					if(itemEqual && damageEqual && nbtEqual)
 						return true;
@@ -228,7 +227,7 @@ public class InventoryTransferHandler {
 
 		@Override
 		public void transfer(TransferPredicate predicate) {
-			IItemHandler inv = itemHandlers.get(0).getLeft();
+			IItemHandler inv = itemHandlers.getFirst().getLeft();
 			IItemHandler playerInv = new PlayerInvWrapper(player.getInventory());
 
 			for(int i = inv.getSlots() - 1; i >= 0; i--) {

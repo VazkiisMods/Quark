@@ -2,6 +2,7 @@ package org.violetmoon.quark.content.tools.module;
 
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -13,7 +14,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrownTrident;
-import net.minecraft.world.item.CompassItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -38,9 +38,7 @@ import org.violetmoon.zeta.event.play.entity.player.ZPlayerTick;
 import org.violetmoon.zeta.event.play.loading.ZLootTableLoad;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
-import org.violetmoon.zeta.network.ZetaNetworkDirection;
 import org.violetmoon.zeta.util.Hint;
-import org.violetmoon.zeta.util.ItemNBTHelper;
 
 import java.util.List;
 import java.util.Map;
@@ -116,7 +114,7 @@ public class ColorRunesModule extends ZetaModule {
 	public static void syncTrident(Consumer<Packet<?>> packetConsumer, ThrownTrident trident, boolean force) {
 		ItemStack stack = trident.getPickupItem();
 		ItemStack prev = TRIDENT_STACK_REFERENCES.get(trident);
-		if(force || prev == null || ItemStack.isSameItemSameTags(stack, prev))
+		if(force || prev == null || ItemStack.isSameItemSameComponents(stack, prev))
 			packetConsumer.accept(Quark.ZETA.network.wrapInVanilla(new UpdateTridentMessage(trident.getId(), stack), ZetaNetworkDirection.PLAY_TO_CLIENT));
 		else
 			TRIDENT_STACK_REFERENCES.put(trident, stack);
@@ -188,7 +186,7 @@ public class ColorRunesModule extends ZetaModule {
 	}
 
 	public static boolean canHaveRune(ItemStack stack) {
-		return stack.isEnchanted() || (stack.getItem() == Items.COMPASS && CompassItem.isLodestoneCompass(stack)); // isLodestoneCompass = is lodestone compass
+		return stack.isEnchanted() || (stack.getItem() == Items.COMPASS && stack.has(DataComponents.LODESTONE_TRACKER)); // isLodestoneCompass = is lodestone compass
 	}
 
 	public static Component extremeRainbow(Component component) {
@@ -245,7 +243,7 @@ public class ColorRunesModule extends ZetaModule {
 		}
 
 		public static RenderType getGlintDirect() {
-			return renderType(GlintRenderTypes.glintDirect, RenderType::glintDirect);
+			return renderType(GlintRenderTypes.glintDirect, RenderType::entityGlintDirect);
 		}
 
 		public static RenderType getEntityGlintDirect() {
@@ -253,7 +251,7 @@ public class ColorRunesModule extends ZetaModule {
 		}
 
 		public static RenderType getArmorGlint() {
-			return renderType(GlintRenderTypes.armorGlint, RenderType::armorGlint);
+			return renderType(GlintRenderTypes.armorGlint, RenderType::armorEntityGlint);
 		}
 
 		public static RenderType getArmorEntityGlint() {

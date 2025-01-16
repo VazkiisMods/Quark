@@ -13,8 +13,9 @@ import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.JukeboxSongs;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
-
 import org.violetmoon.quark.base.handler.QuarkSounds;
 import org.violetmoon.quark.base.item.QuarkMusicDiscItem;
 import org.violetmoon.zeta.config.Config;
@@ -22,6 +23,7 @@ import org.violetmoon.zeta.event.bus.LoadEvent;
 import org.violetmoon.zeta.event.bus.PlayEvent;
 import org.violetmoon.zeta.event.load.ZRegister;
 import org.violetmoon.zeta.event.play.entity.living.ZLivingDeath;
+import org.violetmoon.zeta.item.ZetaItem;
 import org.violetmoon.zeta.module.ZetaLoadModule;
 import org.violetmoon.zeta.module.ZetaModule;
 import org.violetmoon.zeta.util.Hint;
@@ -54,7 +56,9 @@ public class AmbientDiscsModule extends ZetaModule {
 
 	private void disc(SoundEvent sound) {
 		String name = sound.getLocation().getPath().replaceAll(".+\\.", "");
-		discs.add(new QuarkMusicDiscItem(15, () -> sound, name, this, Integer.MAX_VALUE));
+		// discs.add(new QuarkMusicDiscItem(15, () -> sound, name, this, Integer.MAX_VALUE));
+		// TODO: JukeboxSongs.XXXXXX requires datagen with above parameters
+		discs.add(new ZetaItem(name, this, new Item.Properties().rarity(Rarity.RARE).jukeboxPlayable(JukeboxSongs.THIRTEEN)));
 	}
 
 	@PlayEvent
@@ -73,13 +77,13 @@ public class AmbientDiscsModule extends ZetaModule {
 			LevelRenderer render = mc.levelRenderer;
 			BlockPos pos = tile.getBlockPos();
 
-			SoundInstance sound = render.playingRecords.get(pos);
+			SoundInstance sound = render.playingJukeboxSongs.get(pos);
 			SoundManager soundEngine = mc.getSoundManager();
 			if(sound == null || !soundEngine.isActive(sound)) {
 				if(sound != null) {
 					soundEngine.play(sound);
 				} else {
-					ItemStack stack = tile.getFirstItem();
+					ItemStack stack = tile.getTheItem();
 					if(stack.getItem() instanceof QuarkMusicDiscItem disc)
 						playAmbientSound(disc, pos);
 				}
@@ -94,7 +98,7 @@ public class AmbientDiscsModule extends ZetaModule {
 
 				SimpleSoundInstance simplesound = new SimpleSoundInstance(disc.soundSupplier.get().getLocation(), SoundSource.RECORDS, (float) AmbientDiscsModule.volume, 1.0F, SoundInstance.createUnseededRandom(), true, 0, SoundInstance.Attenuation.LINEAR, pos.getX(), pos.getY(), pos.getZ(), false);
 
-				render.playingRecords.put(pos, simplesound);
+				render.playingJukeboxSongs.put(pos, simplesound);
 				soundEngine.play(simplesound);
 
 				if(mc.level != null)

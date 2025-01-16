@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -154,7 +155,7 @@ public class GoldToolsHaveFortuneModule extends ZetaModule {
 
 	public static void fakeEnchantmentTooltip(ItemStack stack, List<Component> components) {
 		if(staticEnabled && displayBakedEnchantmentsInTooltip)
-			for(Map.Entry<Enchantment, Integer> entry : Quark.ZETA.itemExtensions.get(stack).getAllEnchantmentsZeta(stack).entrySet()) {
+			for(Object2IntMap.Entry<Holder<Enchantment>> entry : Quark.ZETA.itemExtensions.get(stack).getAllEnchantmentsZeta(stack).entrySet()) {
 				int actualLevel = EnchantmentHelper.getTagEnchantmentLevel(entry.getKey(), stack);
 				if(actualLevel != entry.getValue()) {
 					Component comp = entry.getKey().getFullname(entry.getValue());
@@ -173,9 +174,9 @@ public class GoldToolsHaveFortuneModule extends ZetaModule {
 	public static ListTag hideSmallerEnchantments(ItemStack stack, ListTag tag) {
 		if(staticEnabled && displayBakedEnchantmentsInTooltip) {
 			List<ResourceLocation> toRemove = Lists.newArrayList();
-			for(Map.Entry<Enchantment, Integer> entry : Quark.ZETA.itemExtensions.get(stack).getAllEnchantmentsZeta(stack).entrySet()) {
+			for(Object2IntMap.Entry<Holder<Enchantment>> entry : Quark.ZETA.itemExtensions.get(stack).getAllEnchantmentsZeta(stack).entrySet()) {
 				int actualLevel = EnchantmentHelper.getTagEnchantmentLevel(entry.getKey(), stack);
-				if(actualLevel != entry.getValue() && actualLevel != 0) {
+				if(actualLevel != entry.getIntValue() && actualLevel != 0) {
 					toRemove.add(EnchantmentHelper.getEnchantmentId(entry.getKey()));
 				}
 			}

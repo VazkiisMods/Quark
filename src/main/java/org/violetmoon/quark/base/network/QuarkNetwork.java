@@ -1,7 +1,6 @@
 package org.violetmoon.quark.base.network;
 
 import java.time.Instant;
-import java.util.BitSet;
 
 import org.violetmoon.quark.base.Quark;
 import org.violetmoon.quark.base.network.message.ChangeHotbarMessage;

@@ -1,5 +1,6 @@
 package org.violetmoon.quark.base.handler;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -17,10 +18,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
-
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import org.violetmoon.quark.addons.oddities.inventory.BackpackMenu;
 import org.violetmoon.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import org.violetmoon.quark.api.ICustomSorting;
@@ -359,7 +359,7 @@ public final class SortingHandler {
 	}
 
 	private static int foodHealCompare(ItemStack stack1, ItemStack stack2) {
-		return nutrition(stack2.getItem().getFoodProperties()) - nutrition(stack1.getItem().getFoodProperties());
+		return nutrition(stack2.get(DataComponents.FOOD)) - nutrition(stack1.get(DataComponents.FOOD));
 	}
 
 	private static float saturation(FoodProperties properties) {
@@ -409,7 +409,7 @@ public final class SortingHandler {
 		EquipmentSlot slot2 = armor2.getEquipmentSlot();
 
 		if(slot1 == slot2)
-			return armor2.getMaterial().getDefenseForType(armor2.getType()) - armor2.getMaterial().getDefenseForType(armor1.getType());
+			return armor2.getMaterial().value().getDefense(armor2.getType()) - armor2.getMaterial().value().getDefense(armor1.getType());
 
 		return slot2.getIndex() - slot1.getIndex();
 	}
@@ -433,8 +433,10 @@ public final class SortingHandler {
 	}
 
 	public static int potionComplexityCompare(ItemStack stack1, ItemStack stack2) {
-		List<MobEffectInstance> effects1 = PotionUtils.getCustomEffects(stack1);
-		List<MobEffectInstance> effects2 = PotionUtils.getCustomEffects(stack2);
+		List<MobEffectInstance> effects1 = new ArrayList<>();
+		stack1.get(DataComponents.POTION_CONTENTS).getAllEffects().forEach(effects1::add);
+		List<MobEffectInstance> effects2 = new ArrayList<>();
+		stack2.get(DataComponents.POTION_CONTENTS).getAllEffects().forEach(effects2::add);
 
 		int totalPower1 = 0;
 		int totalPower2 = 0;

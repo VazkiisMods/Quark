@@ -2,6 +2,7 @@ package org.violetmoon.quark.addons.oddities.block.be;
 
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -317,8 +318,8 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 	}
 
 	@Override
-	public void writeSharedNBT(CompoundTag cmp) {
-		super.writeSharedNBT(cmp);
+	public void writeSharedNBT(CompoundTag cmp, HolderLookup.Provider provider) {
+		super.writeSharedNBT(cmp, provider);
 
 		CompoundTag matrixCmp = new CompoundTag();
 		if(matrix != null) {
@@ -334,8 +335,8 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 	}
 
 	@Override
-	public void readSharedNBT(CompoundTag cmp) {
-		super.readSharedNBT(cmp);
+	public void readSharedNBT(CompoundTag cmp, HolderLookup.Provider provider) {
+		super.readSharedNBT(cmp, provider);
 
 		if(cmp.contains(TAG_MATRIX)) {
 			long least = cmp.getLong(TAG_MATRIX_UUID_LESS);

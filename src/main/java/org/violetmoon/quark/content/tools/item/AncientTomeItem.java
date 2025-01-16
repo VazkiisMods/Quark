@@ -4,7 +4,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -27,8 +26,7 @@ import java.util.List;
 public class AncientTomeItem extends ZetaItem implements CreativeTabManager.AppendsUniquely {
 
 	public AncientTomeItem(ZetaModule module) {
-		super("ancient_tome", module,
-				new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
+		super("ancient_tome", module, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
 		CreativeTabManager.addToCreativeTab(CreativeModeTabs.INGREDIENTS, this);
 	}
 
@@ -42,19 +40,12 @@ public class AncientTomeItem extends ZetaItem implements CreativeTabManager.Appe
 		return true;
 	}
 
-	@Override
-	public boolean canApplyAtEnchantingTableZeta(ItemStack stack, Enchantment enchantment) {
-		return false;
-	}
-
 	public static ItemStack getEnchantedItemStack(Enchantment ench) {
-		ItemStack newStack = new ItemStack(AncientTomesModule.ancient_tome);
-		EnchantedBookItem.addEnchantment(newStack, new EnchantmentInstance(ench, ench.getMaxLevel()));
-		return newStack;
+		return new ItemStack(AncientTomesModule.ancient_tome).enchant(new EnchantmentInstance(ench, ench.getMaxLevel()));
 	}
 
 	public static Component getFullTooltipText(Enchantment ench) {
-		return Component.translatable("quark.misc.ancient_tome_tooltip", Component.translatable(ench.getDescriptionId()), Component.translatable("enchantment.level." + (ench.getMaxLevel() + 1))).withStyle(ChatFormatting.GRAY);
+		return Component.translatable("quark.misc.ancient_tome_tooltip", Component.translatable(ench.description().getString()), Component.translatable("enchantment.level." + (ench.getMaxLevel() + 1))).withStyle(ChatFormatting.GRAY);
 	}
 
 	@Override
