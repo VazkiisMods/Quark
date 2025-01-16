@@ -82,7 +82,7 @@ public class Stoneling extends PathfinderMob {
 	private static final String TAG_VARIANT = "variant";
 	private static final String TAG_HAS_LICHEN = "has_lichen";
 	private static final String TAG_HOLD_ANGLE = "itemAngle";
-	private static final String TAG_PLAYER_MADE = "playerMade";
+	public static final String TAG_PLAYER_MADE = "playerMade";
 	private final Vec3 PASSENGER_ATTACH_POINT = new Vec3(0, this.getBbHeight(), 0);
 
 	private ActWaryGoal waryGoal;

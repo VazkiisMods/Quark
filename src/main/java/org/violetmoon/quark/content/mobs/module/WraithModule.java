@@ -78,7 +78,7 @@ public class WraithModule extends ZetaModule {
 	public static List<String> validWraithSounds = wraithSounds.stream().filter((s) -> s.split("\\|").length == 3).collect(Collectors.toList());
 
 	@Hint
-	Item soul_bead;
+	public static Item soul_bead;
 
 	@LoadEvent
 	public final void register(ZRegister event) {

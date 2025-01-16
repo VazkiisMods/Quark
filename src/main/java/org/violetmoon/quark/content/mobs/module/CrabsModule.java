@@ -77,9 +77,9 @@ public class CrabsModule extends ZetaModule {
 	public static boolean addCrabLegToFishermanTrades = true;
 
 	@Hint(key = "crab_info")
-	Item crab_leg;
+	public static Item crab_leg;
 	@Hint(key = "crab_info")
-	Item crab_shell;
+	public static Item crab_shell;
 	@Hint(key = "crab_info")
 	public static Item crab_bucket;
 
